@@ -19,11 +19,9 @@ My advisor is Shigeharu Takayama.-->
 - 数学以外の活動も載せる予定です。
 
 ## 事務関連
-
-- Email: masataka[at]ms.u-tokyo.ac.jp
-- 岩井雅崇
 - 専門:複素代数幾何学
-- 
+- Email: masataka[at]ms.u-tokyo.ac.jp
+- 〒153-8914 東京都目黒区駒場3-8-1
 
 
 # プロフィール
