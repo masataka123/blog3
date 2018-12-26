@@ -333,7 +333,7 @@ sidemenu {
     background-color: #1A1A1A;
     color: #FDFDFB;
     float:left;
-    position:relative;
+    position:fixed;
     top: 150px;
     width:150px;
     border: 1px solid #BBBBFF;
@@ -461,7 +461,7 @@ footer {
 	margin:0;
     }
 
-    header, section, footer {
+    header, section, footer,sidemenu {
 	float:none;
 	position:static;
 	width:auto;
