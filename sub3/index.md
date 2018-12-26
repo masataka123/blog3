@@ -1,4 +1,4 @@
-<span style=“font-size: 200%;”>
+
 # 講演履歴
 ## 研究集会
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月
@@ -10,4 +10,3 @@
 ## セミナー
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月
 
-</span>
