@@ -1,6 +1,8 @@
+---
+layout: default
+---
+
 # ホーム
-<!--- I'm a Ph.D student in Graduate School of Mathematical Sciences, The University of Tokyo.
-My advisor is Shigeharu Takayama.-->
 岩井雅崇のホームページです。
 それ以上でもそれ以下でもございません。
 英語版はこちら→
