@@ -2,6 +2,10 @@
 layout: default
 ---
 
+<style>
+.markdown-body { font-size: 17px; }
+</style>
+
 # ホーム
 岩井雅崇のホームページです。
 それ以上でもそれ以下でもございません。
