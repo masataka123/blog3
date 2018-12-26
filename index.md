@@ -62,6 +62,7 @@ My advisor is Shigeharu Takayama.-->
 2.  On the global generation of direct images of pluri-adjoint line bundles, submitted to Mathematische Zeitschrift. [arXiv](https://arxiv.org/abs/1712.06293)
 3. Nadel-Nakano vanishing theorems of vector bundles with singular Hermitian metrics, submitted to Annales -Mathématiques- de la Faculté des sciences de Toulouse. [arXiv](https://arxiv.org/abs/1802.01794)
 4. Characterization of pseudo-effective vector bundles by singular Hermitian metrics, submitted to Manuscripta Mathematica. [arXiv](https://arxiv.org/abs/1804.02146)
+
 # 講演履歴
 ## 研究集会
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月
