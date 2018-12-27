@@ -8,7 +8,7 @@ layout: default
 岩井雅崇のホームページです。
 それ以上でもそれ以下でもございません。
 
-英語版はこちら→
+英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定**
 - 2019年1月19日 DISCO presents ディスカバリーチャンネル コードコンテスト2019 本戦に参加いたします。
