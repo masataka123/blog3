@@ -11,8 +11,8 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定**
-- 2019年1月19日 DISCO presents ディスカバリーチャンネル コードコンテスト2019 本戦に参加いたします。
 - 2019年2月11日から15日までCIRMでのBirational Geometry and Hodge Theoryに参加いたします。
+- 2019年2019 年2 月18 日から2019 年2 月21 日まで開かれる第24 回代数学若手研究会で発表いたします。
 
 ## **はじめに**
 - 初めまして岩井雅崇と申します。
