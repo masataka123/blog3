@@ -1,7 +1,9 @@
 # **リンク/創作物/関心あること**
 ## **リンク**
-
-
+- [Hosono Genki](https://genki-hosono.github.io/math/)
+- [Eiji Inoue](https://www.ms.u-tokyo.ac.jp/~eijinoe/homepage/Eiji.html)
+- [Masaki Taniguchi](https://www.ms.u-tokyo.ac.jp/~masakit/Homepage.html)
+- [Takahiro Saito](http://www.math.tsukuba.ac.jp/~takahiro/)
 
 ## **創作物**
 -  [別表神社の地図](https://drive.google.com/open?id=1JxWpfm2hv-z9RfYKFUQWAVUPeHI&usp=sharing)
