@@ -330,6 +330,11 @@ positon を relative へ変更する
 */
 
 sidemenu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
     background-color: #1A1A1A;
     color: #FDFDFB;
     float:left;
