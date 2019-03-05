@@ -333,7 +333,8 @@ sidemenu {
     background-color: #1A1A1A;
     color: #FDFDFB;
     float:left;
-    position:fixed;
+    position: -webkit-sticky;
+    position: sticky;
     top: 150px;	
     width:150px;
     border: 1px solid #FBFAF7;
