@@ -17,17 +17,11 @@
 
 - [AtCoder](https://atcoder.jp/users/okumura) (2018年4月から) アカウント名の由来は友人の名前から。
 - [Codeforces](https://codeforces.com/profile/okumura) (2019年1月から、英語難しいし適度にやってる)
-
-
 - [Qitta](https://qiita.com/Kentaro_okumura) 
 読む用にしか使ってなかったが、友人に言われてちょっと記事を書いたら、なぜかめちゃくちゃ多くの人に読まれた。
 ライブラリーの使い方とかの記事とか書いてみたい。
-
 - [Twitter](https://twitter.com/Kentarokumura)
 競プロアカウントをそのまま運用してます。
-
-
-
 - [GitHub](https://github.com/masataka123) 
 リポジトリにあるようにそろそろら自分で作ったクラス(セグ木とかBITとか)やアルゴリズムまとめとか作りたい。
 
