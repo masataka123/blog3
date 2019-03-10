@@ -12,9 +12,19 @@
 
 ## **競技プログラミング**
 2018年4月から始めております。言語はPython3です。（C++は勉強中・・・）
+
+アカウント名の由来は友人の名前から。
 - [AtCoder](https://atcoder.jp/users/okumura) (2018年4月から)
-- [Codeforces](https://codeforces.com/profile/okumura) (2019年1月から、英語難しい)
-- [Qitta](https://qiita.com/Kentaro_okumura) (競プロ以外でも活用中)
-- [GitHub](https://github.com/masataka123) (そろそろなんかあげる予定・・・)
+- [Codeforces](https://codeforces.com/profile/okumura) (2019年1月から、英語難しいし適度にやってる)
+
+友人に言われてちょっと記事を書いたら、なぜかめちゃくちゃ多くの人に読まれた。
+ライブラリーの使い方とかの記事とか書いてみたい。
+- [Qitta](https://qiita.com/Kentaro_okumura) 
+
+競プロアカウントをそのまま運用してます。
+- [Twitter](https://twitter.com/Kentarokumura)
+
+リポジトリにあるようにそろそろら自分で作ったクラス(セグ木とかBITとか)やアルゴリズムまとめとか作りたい。
+- [GitHub](https://github.com/masataka123) 
 
 
