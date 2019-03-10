@@ -15,12 +15,13 @@
 プロフィールにも書いてある通り本戦に２回出場。
 
 
-- [AtCoder](https://atcoder.jp/users/okumura) (2018年4月から)
+- [AtCoder](https://atcoder.jp/users/okumura) (2018年4月から) アカウント名の由来は友人の名前から。
 - [Codeforces](https://codeforces.com/profile/okumura) (2019年1月から、英語難しいし適度にやってる)
-アカウント名の由来は友人の名前から。
+
 
 - [Qitta](https://qiita.com/Kentaro_okumura) 
-読むようにしか使ってなかったが、友人に言われてちょっと記事を書いたら、なぜかめちゃくちゃ多くの人に読まれた。
+
+読む用にしか使ってなかったが、友人に言われてちょっと記事を書いたら、なぜかめちゃくちゃ多くの人に読まれた。
 ライブラリーの使い方とかの記事とか書いてみたい。
 
 - [Twitter](https://twitter.com/Kentarokumura)
