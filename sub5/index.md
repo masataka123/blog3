@@ -23,6 +23,6 @@
 - [Twitter](https://twitter.com/Kentarokumura)
 競プロアカウントをそのまま運用してます。
 - [GitHub](https://github.com/masataka123) 
-リポジトリにあるようにそろそろら自分で作ったクラス(セグ木とかBITとか)やアルゴリズムまとめとか作りたい。
+そろそろ自分で作ったクラス(セグ木とかBITとか)やアルゴリズムまとめとか作りたい。
 
 
