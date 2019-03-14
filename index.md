@@ -10,7 +10,6 @@ layout: default
 
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
-![](https://masataka123.github.io/blog3/picture/0.jpg )
 ## **予定**
 - 2019年4月16日に東北大学の幾何セミナーで発表いたします。
 
