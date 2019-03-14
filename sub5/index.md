@@ -4,6 +4,8 @@
 
 別表神社を旧社格、つまり官幣大社、国幣大社・・・で分類をしました。Google mapで地道な作業で作ってます。友人には高評価です。
 
+![](https://masataka123.github.io/blog3/picture/3.jpg )
+
 ## **このホームページ**
 - [GitHubを使ってMarkdown文書を５ステップでホームページとして公開する方法](https://qiita.com/MahoTakara/items/3800e9dc83b530d0a050)
 - [ここまで出来る! GitHubのMarkdownで書くウェブページ　独自テーマの開発](https://qiita.com/MahoTakara/items/e3d88a0d5d128bb07b27)
@@ -13,6 +15,7 @@
 Markdownの書き方については以下を参照。
 - [Markdownの書き方](https://help.docbase.io/posts/13697#image)
 - [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
+
 
 ## **競技プログラミング**
 2018年4月から始めております。言語はPython3です。（C++は勉強中・・・）
@@ -29,4 +32,10 @@ Markdownの書き方については以下を参照。
 - [GitHub](https://github.com/masataka123) 
 そろそろ自分で作ったクラス(セグ木とかBITとか)やアルゴリズムまとめとか作りたい。
 
+```python:what_is_count.py
+x=1;count=0
+while x!=0:
+    x/=2;count+=1
+print(count)
+```
 
