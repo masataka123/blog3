@@ -10,6 +10,7 @@ layout: default
 
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
+
 ## **予定**
 - 2019年4月16日に東北大学の幾何セミナーで発表いたします。
 
@@ -26,4 +27,6 @@ layout: default
 - 指導教官: 高山茂晴教授
 - Email: masataka[at]ms.u-tokyo.ac.jp
 - 住所: 〒153-8914　東京都目黒区駒場3-8-1
+
+![](https://masataka123.github.io/blog3/picture/0.jpg )
 
