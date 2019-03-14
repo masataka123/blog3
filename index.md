@@ -21,6 +21,8 @@ layout: default
 - 主にベクトル束の特異エルミート計量やrelative canonical sheafの正値性、代数多様体間の射に関しての研究を行なっております。
 - 日本語版では数学以外の活動も載せる予定です。
 
+![](https://masataka123.github.io/blog3/picture/0.jpg )
+
 ## **事務関連**
 - 名前: 岩井雅崇
 - 専門: 複素代数幾何学
@@ -28,5 +30,4 @@ layout: default
 - Email: masataka[at]ms.u-tokyo.ac.jp
 - 住所: 〒153-8914　東京都目黒区駒場3-8-1
 
-![](https://masataka123.github.io/blog3/picture/0.jpg )
 
