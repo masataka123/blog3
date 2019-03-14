@@ -10,7 +10,7 @@ layout: default
 
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
-<img src="https://masataka123.github.io/blog3/picture/0.jpg" width=25%>
+![](https://masataka123.github.io/blog3/picture/0.jpg =200x200 )
 ## **予定**
 - 2019年4月16日に東北大学の幾何セミナーで発表いたします。
 
@@ -28,4 +28,6 @@ layout: default
 - Email: masataka[at]ms.u-tokyo.ac.jp
 - 住所: 〒153-8914　東京都目黒区駒場3-8-1
 
-
+```math
+H^{q}(X,K_X \otimes L) = 0
+```
