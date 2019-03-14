@@ -12,6 +12,7 @@
 
 Markdownの書き方については以下を参照。
 - [Markdownの書き方](https://help.docbase.io/posts/13697#image)
+- [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
 
 ## **競技プログラミング**
 2018年4月から始めております。言語はPython3です。（C++は勉強中・・・）
