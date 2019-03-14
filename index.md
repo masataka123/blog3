@@ -27,7 +27,3 @@ layout: default
 - Email: masataka[at]ms.u-tokyo.ac.jp
 - 住所: 〒153-8914　東京都目黒区駒場3-8-1
 
-```infinity.py
-while True:
-    print(1)
-```
