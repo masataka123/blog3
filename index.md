@@ -21,7 +21,7 @@ layout: default
 - 主にベクトル束の特異エルミート計量やrelative canonical sheafの正値性、代数多様体間の射に関しての研究を行なっております。
 - 日本語版では数学以外の活動も載せる予定です。
 
-![](https://masataka123.github.io/blog3/picture/0.jpg )
+![](https://masataka123.github.io/blog3/picture/1.jpg )
 
 ## **事務関連**
 - 名前: 岩井雅崇
