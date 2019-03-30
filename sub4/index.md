@@ -1,4 +1,3 @@
-
 # **リンク**
 ## **友人・先輩**
 - [Hosono Genki](https://genki-hosono.github.io/math/)
@@ -7,3 +6,6 @@
 - [Takahiro Saito](http://www.math.tsukuba.ac.jp/~takahiro/)
 - [Keita Mikami](http://www.ms.u-tokyo.ac.jp/~kmikami/)
 - [Hokuto Konno](https://www.ms.u-tokyo.ac.jp/~hkonno/eng_index.html)
+- [Michiya Mori](http://www.ms.u-tokyo.ac.jp/~mmori/)
+- [Tomohiro Hayase](https://thayafluss.github.io)
+- [Yuya Takeuchi](https://www.ms.u-tokyo.ac.jp/~ytake/)
