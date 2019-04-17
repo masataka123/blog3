@@ -10,4 +10,4 @@
 
 ## **セミナー**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
-2. 'Recent topics in singular Hermitian metrics' 幾何セミナー 2019年4月, 東北大学, 2019年4月 [slide](https://masataka123.github.io/blog3/pdf/2019_04_16.pdf)
+2. 'Recent topics in singular Hermitian metrics' 幾何セミナー, 東北大学, 2019年4月 [slide](https://masataka123.github.io/blog3/pdf/2019_04_16.pdf)
