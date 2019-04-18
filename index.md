@@ -30,7 +30,10 @@ layout: default
 - 名前: 岩井雅崇
 - 専門: 複素代数幾何学、多変数複素解析
 - 指導教官: 高山茂晴教授
-- Email: masataka[at]ms.u-tokyo.ac.jp
+- Email: masataka[at]ms.u-tokyo.ac.jp, masataka.math[at]gmail.com
 - 住所: 〒153-8914　東京都目黒区駒場3-8-1
+- [Google Scholar](https://scholar.google.com/citations?hl=ja&user=ZTKnR6QAAAAJ)
+- [ORCiD](https://orcid.org/0000-0002-0273-0360)
+
 
 
