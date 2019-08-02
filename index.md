@@ -10,9 +10,12 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2019年7月13日から16日まで[葉山シンポジウム](https://sites.google.com/site/scvhayama/)に参加します。
-- 2019年7月17日から18日まで[Complex Geometry 2019 Tokyo ](https://sites.google.com/view/cg2019tokyo/)に参加します。
+- 2019年8月20日から23日まで開かれる[Young mathematicians workshop on algebraic, geometric, 
+and analytic aspects of K theory and vector bundles](http://ktakayuki.github.io/conf2019/churaumi.html)で発表いたします。
+- 2019年8月28日から30日まで開かれる[第54回函数論サマーセミナー ](https://sites.google.com/view/casummerseminar2019)で発表いたします。
+- 2019年9月7日から9日まで開かれる[Young Mathematicians Workshop on Several Complex Variables 2019](http://www.sci.osaka-cu.ac.jp/~tkoike/2019ymwscv.html)で発表いたします。
 - 2019年11月2日から4日まで開かれる第62回函数論シンポジウムで発表いたします。
+- 2019年11月11日から14日まで開かれる[第２５回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa25.html)におそらく参加します。
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します。
