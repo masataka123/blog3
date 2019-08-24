@@ -10,8 +10,7 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2019年8月20日から23日まで開かれる[Young mathematicians workshop on algebraic, geometric, 
-and analytic aspects of K theory and vector bundles](http://ktakayuki.github.io/conf2019/churaumi.html)で発表いたします。
+- 新しい論文 ["On projective manifolds with pseudo-effective tangent bundle"](https://arxiv.org/abs/1908.06421)を投稿いたしました. 松村慎一様と細野元気様との共同研究です。Prop4.8に関してのソースコードは[こちら](https://github.com/masataka123/math/tree/master/polynommial)にあげております。
 - 2019年8月28日から30日まで開かれる[第54回函数論サマーセミナー ](https://sites.google.com/view/casummerseminar2019)で発表いたします。
 - 2019年9月7日から9日まで開かれる[Young Mathematicians Workshop on Several Complex Variables 2019](http://www.sci.osaka-cu.ac.jp/~tkoike/2019ymwscv.html)で発表いたします。
 - 2019年11月2日から4日まで開かれる第62回函数論シンポジウムで発表いたします。
