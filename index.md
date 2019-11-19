@@ -12,9 +12,8 @@ layout: default
 ## **予定など**
 - [大阪市立大学共同利用・共同研究](https://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)の採択をいだたきました。「標準束の幾何学」に関しての共同利用・共同研究の提案者・研究代表者をやっております。 
 - 最後のTAでは[複素解析学1演習](https://sites.google.com/site/mathhirachi/courses-2019/complex1-2019)のTAを行います。2年生の皆様よろしくお願いいたします。
-- 2019年11月2日から4日まで開かれる第62回函数論シンポジウムで発表いたします。
-- 2019年11月11日から14日まで開かれる[第２５回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa25.html)におそらく参加します。
-- 2019年12月21日から23日まで開かれる[2019年度多変数関数論冬セミナー](https://sites.google.com/site/scvwintersemi2019/)におそらく参加します。
+- 12月8,9日に開かれる[Kodaira's Theory on Complex Manifolds and its Development](http://ktakayuki.github.io/conf2019_2/ktcmid.html)で発表いたします。
+
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します。

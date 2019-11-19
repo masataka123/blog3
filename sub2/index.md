@@ -11,8 +11,9 @@ to appear Annales -Mathématiques- de la Faculté des sciences de Toulouse. [arX
 - Genki Hosono, Masataka Iwai, Shin-ichi Matsumura. 'On projective manifolds with pseudo-effective tangent bundle', submitted. [arXiv](https://arxiv.org/abs/1908.06421), [source code of Prop4.8](https://github.com/masataka123/math/tree/master/polynommial)
 
 # **数学以外の論文・プレプリント**
+- Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究’  to appear 数理科学実践研究レター
 - Masataka Iwai, Takahito Kashiwabara, Ichiro Sato and Ryosuke Yano. ‘Earthquake-network in Japan based on Abe-Suzuki model and its characteristics.’ submitted.
-- Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究’ submitted,
+
 
 # **報告集**
 - 岩井雅崇 '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)

@@ -13,6 +13,7 @@
 and analytic aspects of K theory and vector bundles, 琉球大学, 2019年8月
 10. 'Projective manifolds with pseudo-effective tangent bundles' 第54回函数論サマーセミナー, 2019年8月
 11. 'Projective manifolds with pseudo-effective tangent bundles' Young Mathematicians Workshop on Several Complex Variables 2019, 大阪市立大学, 2019年9月
+12. 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム, 大同大学, 2019年11月
 
 ## **セミナー**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
