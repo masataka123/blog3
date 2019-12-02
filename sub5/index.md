@@ -26,8 +26,6 @@ Markdownの書き方については以下を参照。
 - [Codeforces](https://codeforces.com/profile/okumura) (2019年1月から、英語難しいし適当にやってる)
 - [Qitta](https://qiita.com/Kentaro_okumura) 
 読む用にしか使ってなかったが、友人に言われてちょっと記事を書いたら、なぜかめちゃくちゃ多くの人に読まれた。
-- [Twitter](https://twitter.com/Kentarokumura)
-競プロアカウントをそのまま運用してます。
 - [GitHub](https://github.com/masataka123/competitive_algorithms) 
 そろそろ自分で作ったクラス(セグ木とかBITとか)やアルゴリズムまとめとか作りたい。
 

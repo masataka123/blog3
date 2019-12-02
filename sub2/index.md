@@ -1,18 +1,18 @@
 # **論文**
 
-- Masataka Iwai. 'On the global generation of direct images of pluri-adjoint line bundles', Mathematische Zeitschrift. [arXiv](https://arxiv.org/abs/1712.06293) [Article link](https://link.springer.com/article/10.1007/s00209-019-02266-0)
-- Masataka Iwai. 'Nadel-Nakano vanishing theorems of vector bundles with singular Hermitian metrics', 
+- Masataka Iwai. 'On the global generation of direct images of pluri-adjoint line bundles.', Mathematische Zeitschrift. [arXiv](https://arxiv.org/abs/1712.06293) [Article link](https://link.springer.com/article/10.1007/s00209-019-02266-0)
+- Masataka Iwai. 'Nadel-Nakano vanishing theorems of vector bundles with singular Hermitian metrics.', 
 to appear Annales -Mathématiques- de la Faculté des sciences de Toulouse. [arXiv](https://arxiv.org/abs/1802.01794)
 
 # **プレプリント**
-- Masataka Iwai. 'Multiplier ideal sheaves and local geodesics for plurisubharmonic functions', submitted.
+- Masataka Iwai. 'Multiplier ideal sheaves and local geodesics for plurisubharmonic functions.' [PDF](https://masataka123.github.io/blog3/pdf/weak_geodesic.pdf) 
 
-- Masataka Iwai. 'Characterization of pseudo-effective vector bundles by singular Hermitian metrics', submitted. [arXiv](https://arxiv.org/abs/1804.02146)
-- Genki Hosono, Masataka Iwai, Shin-ichi Matsumura. 'On projective manifolds with pseudo-effective tangent bundle', submitted. [arXiv](https://arxiv.org/abs/1908.06421), [source code of Prop4.8](https://github.com/masataka123/math/tree/master/polynommial)
+- Masataka Iwai. 'Characterization of pseudo-effective vector bundles by singular Hermitian metrics.' [arXiv](https://arxiv.org/abs/1804.02146)
+- Genki Hosono, Masataka Iwai, Shin-ichi Matsumura. 'On projective manifolds with pseudo-effective tangent bundle.' [arXiv](https://arxiv.org/abs/1908.06421), [source code of Prop4.8](https://github.com/masataka123/math/tree/master/polynommial)
 
 # **数学以外の論文・プレプリント**
-- Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究’  to appear 数理科学実践研究レター
-- Masataka Iwai, Takahito Kashiwabara, Ichiro Sato and Ryosuke Yano. ‘Earthquake-network in Japan based on Abe-Suzuki model and its characteristics.’ submitted.
+- Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
+- Masataka Iwai, Takahito Kashiwabara, Ichiro Sato and Ryosuke Yano. ‘Earthquake-network in Japan based on Abe-Suzuki model and its characteristics.’ 
 
 
 # **報告集**
