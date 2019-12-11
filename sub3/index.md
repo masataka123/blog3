@@ -14,6 +14,7 @@ and analytic aspects of K theory and vector bundles, 琉球大学, 2019年8月
 10. 'Projective manifolds with pseudo-effective tangent bundles' 第54回函数論サマーセミナー, 2019年8月
 11. 'Projective manifolds with pseudo-effective tangent bundles' Young Mathematicians Workshop on Several Complex Variables 2019, 大阪市立大学, 2019年9月
 12. 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム, 大同大学, 2019年11月
+[PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
 13. 'Bauer-Pignatelli「Rigid but not infinitesimally rigid compact complex manifolds」の解説' Kodaira's Theory on Complex Manifolds and its Development, 大阪市立大学, 2019年12月
 [手書きPDF](https://masataka123.github.io/blog3/pdf/2019_12_09_Bauer.pdf)
 
