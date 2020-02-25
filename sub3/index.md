@@ -1,5 +1,6 @@
 
 # **講演履歴**
+
 ## **研究集会**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
 2. 'On the global generation of direct images of pluri-adjoint line bundles' 日本数学会2018年度秋季総合分科会 関数論分科会, 岡山大学, 2018年9月 [slide](https://masataka123.github.io/blog3/pdf/2018_09_24_g.pdf)  
