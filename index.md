@@ -11,9 +11,7 @@ layout: default
 
 ## **予定など**
 - [大阪市立大学共同利用・共同研究](https://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)の採択をいだたきました。「標準束の幾何学」に関しての共同利用・共同研究の提案者・研究代表者をやっております。 
-- 最後のTAでは[複素解析学1演習](https://sites.google.com/site/mathhirachi/courses-2019/complex1-2019)のTAを行います。2年生の皆様よろしくお願いいたします。
-- 2020年3月9日から12日まで研究集会[ "高次元代数幾何の展望と未解決問題" ](http://ktakayuki.github.io/conf2019_2/phdagop.html)を開きます。大阪市立大学共同利用・共同研究の援助を受けて行います。
-
+- 研究集会[ "高次元代数幾何の展望と未解決問題" ](http://ktakayuki.github.io/conf2019_2/phdagop.html)は延期となりました. 開催時期は未定ですが2020年度の開催を計画しております.
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します。

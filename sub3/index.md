@@ -17,8 +17,16 @@ and analytic aspects of K theory and vector bundles, 琉球大学, 2019年8月
 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
 13. 'Bauer-Pignatelli「Rigid but not infinitesimally rigid compact complex manifolds」の解説' Kodaira's Theory on Complex Manifolds and its Development, 大阪市立大学, 2019年12月
 [手書きPDF](https://masataka123.github.io/blog3/pdf/2019_12_09_Bauer.pdf)
-
+14. ”葉層の代数幾何学” 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2
+月.[手書きPDF](https://masataka123.github.io/blog3/pdf/2020_02_19_foliation.pdf)
+[LazicのレクチャーノートのLink](https://www.math.uni-sb.de/ag/lazic/teach/foliation.pdf)
 
 ## **セミナー**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
 2. 'Recent topics in singular Hermitian metrics' 幾何セミナー, 東北大学, 2019年4月 [slide](https://masataka123.github.io/blog3/pdf/2019_04_16.pdf)
+
+# **集会のオーガナイズ**
+1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月.
+
+# **その他**
+1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表

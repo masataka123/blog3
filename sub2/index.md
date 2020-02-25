@@ -1,12 +1,12 @@
 # **論文**
 
-- Masataka Iwai. 'On the global generation of direct images of pluri-adjoint line bundles.', Mathematische Zeitschrift. [arXiv](https://arxiv.org/abs/1712.06293) [Article link](https://link.springer.com/article/10.1007/s00209-019-02266-0)
+- Masataka Iwai. 'On the global generation of direct images of pluri-adjoint line bundles.', Mathematische Zeitschrift. 294 201-208 (2020) DOI 10.1007/s00209-019-02266-0 [arXiv](https://arxiv.org/abs/1712.06293) 
+[Article link](https://link.springer.com/article/10.1007/s00209-019-02266-0)
 - Masataka Iwai. 'Nadel-Nakano vanishing theorems of vector bundles with singular Hermitian metrics.', 
-to appear Annales -Mathématiques- de la Faculté des sciences de Toulouse. [arXiv](https://arxiv.org/abs/1802.01794)
+to appear Annales -Math\UTF{00E9}matiques- de la Facult\UTF{00E9} des sciences de Toulouse. [arXiv](https://arxiv.org/abs/1802.01794)
 
 # **プレプリント**
 - Masataka Iwai. 'Multiplier ideal sheaves and local geodesics for plurisubharmonic functions.' [PDF](https://masataka123.github.io/blog3/pdf/weak_geodesic.pdf) 
-
 - Masataka Iwai. 'Characterization of pseudo-effective vector bundles by singular Hermitian metrics.' [arXiv](https://arxiv.org/abs/1804.02146)
 - Genki Hosono, Masataka Iwai, Shin-ichi Matsumura. 'On projective manifolds with pseudo-effective tangent bundle.' [arXiv](https://arxiv.org/abs/1908.06421), [source code of Prop4.8](https://github.com/masataka123/math/tree/master/polynommial)
 
