@@ -11,7 +11,7 @@ layout: default
 
 ## **予定など**
 2020年4月から
-[大阪市立大学数学研究所特別研究員](https://www.sci.osaka-cu.ac.jp/OCAMI/about/member/member.html)
+[大阪市立大学数学研究所特別研究員](https://www.sci.osaka-cu.ac.jp/OCAMI/about/member/member.html)(阪市大数学研)
 です.
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します。
