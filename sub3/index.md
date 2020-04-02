@@ -27,7 +27,9 @@ and analytic aspects of K theory and vector bundles, 琉球大学, 2019年8月
 2. 'Recent topics in singular Hermitian metrics' 幾何セミナー, 東北大学, 2019年4月 [slide](https://masataka123.github.io/blog3/pdf/2019_04_16.pdf)
 
 # **集会のオーガナイズ**
-1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月.
+1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
 
 # **その他**
-1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表
+1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  [Prospects and Open Problems 
+in Higher-dimensional Algebraic Geometry](http://ktakayuki.github.io/conf2019_2/phdagop.html)
+, 
