@@ -28,7 +28,7 @@ and analytic aspects of K theory and vector bundles, 琉球大学, 2019年8月
 
 # **集会のオーガナイズ**
 1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. (大阪市立大学 小池 貴之氏との共同主催) [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
-2. ”Prospects and Open Problems in Higher-dimensional Algebraic Geometry (高次元代数幾何の展望と未解決問題)”, 大阪市立大学, 2020 年 3 月 9–12 日 (東京大学 權業善範氏, 東北大学 松村慎一氏, 大阪市 立大学 小池貴之氏との共同主催) , (新型コロナウイルスの影響を受けて中止) [link](http://ktakayuki.github.io/conf2019_2/phdagop.html)
+2. ”Prospects and Open Problems in Higher-dimensional Algebraic Geometry (高次元代数幾何の展望と未解決問題)”, 大阪市立大学, 2020 年 3 月 9–12 日 (東京大学 權業善範氏, 東北大学 松村慎一氏, 大阪市立大学 小池貴之氏との共同主催) , (新型コロナウイルスの影響を受けて中止) [link](http://ktakayuki.github.io/conf2019_2/phdagop.html)
 
 
 
