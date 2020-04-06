@@ -33,6 +33,4 @@ and analytic aspects of K theory and vector bundles, 琉球大学, 2019年8月
 
 
 # **その他**
-1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  [Prospects and Open Problems 
-in Higher-dimensional Algebraic Geometry](http://ktakayuki.github.io/conf2019_2/phdagop.html)
-, 
+1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  
