@@ -13,6 +13,7 @@
 - 2015年11月から2020年3月まで FMSPコース生, Leading Graduate Course for Frontiers of Mathematical Sciences and Physics
 - 2017年4月から2020年3月まで 日本学術振興会特別研究員(DC1)
 - 2020年4月から2021年3月まで 公益財団法人 風樹会 研究奨励金の採択
+- 2020年4月から2021年3月まで 日本数学会奨励研究生
 
 ## **受賞**
 2015年3月 理学部学修奨励賞受賞
