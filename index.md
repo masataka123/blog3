@@ -25,7 +25,7 @@ layout: default
 ## **事務関連**
 - 名前: 岩井雅崇
 - 専門: 複素代数幾何学、多変数複素解析
-- Email: masataka[at]ms.u-tokyo.ac.jp, masataka.math[at]gmail.com, masataka[at]sci.osaka-cu.ac.jp
+- Email: masataka[at]sci.osaka-cu.ac.jp, masataka.math[at]gmail.com, masataka[at]ms.u-tokyo.ac.jp
 - 所属: 大阪市立大学数学研究所
 - 住所: 〒558-8585　大阪市住吉区杉本3-3-138
 - [Google Scholar](https://scholar.google.com/citations?hl=ja&user=ZTKnR6QAAAAJ)
