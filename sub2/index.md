@@ -9,6 +9,8 @@ to appear Annales -Mathmatiques- de la Facult des sciences de Toulouse. [arXiv](
 - Masataka Iwai. 'Multiplier ideal sheaves and local geodesics for plurisubharmonic functions.' [PDF](https://masataka123.github.io/blog3/pdf/weak_geodesic.pdf) 
 - Masataka Iwai. 'Characterization of pseudo-effective vector bundles by singular Hermitian metrics.' [arXiv](https://arxiv.org/abs/1804.02146)
 - Genki Hosono, Masataka Iwai, Shin-ichi Matsumura. 'On projective manifolds with pseudo-effective tangent bundle.' [arXiv](https://arxiv.org/abs/1908.06421), [source code of Prop4.8](https://github.com/masataka123/math/tree/master/polynommial)
+- Sho Ejiri, Masataka Iwai, Shin-ichi Matsumura. 'On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces.' [arXiv](https://arxiv.org/abs/2005.04566)
+
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
