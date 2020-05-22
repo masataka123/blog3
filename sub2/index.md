@@ -20,3 +20,8 @@ to appear Annales -Mathmatiques- de la Facult des sciences de Toulouse. [arXiv](
 
 # **報告集**
 - 岩井雅崇 '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
+- Masataka Iwai "Studies on singular Hermitian metrics and
+their applications in algebraic geometry"
+(特異エルミート計量の研究と
+代数幾何学への応用)", 博士論文 [PDF](https://masataka123.github.io/blog3/pdf/phd_final.pdf)
+藤田分解(section 6.3)の応用を探しております.
