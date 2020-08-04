@@ -23,4 +23,17 @@ to appear Annales -Mathmatiques- de la Facult des sciences de Toulouse. [arXiv](
 - 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
 - Ph.D Thesis. [PDF](https://masataka123.github.io/blog3/pdf/phd_iwai.pdf)
 
+<!---
+# **コメント**
+- 'On the global generation of direct images of pluri-adjoint line bundles.', 
+Mathematische Zeitschrift.に掲載
+- 'Nadel-Nakano vanishing theorems of vector bundles with singular Hermitian metrics.', 
+to appear Annales -Mathmatiques- de la Facult des sciences de Toulouse.
+- Masataka Iwai. 'Multiplier ideal sheaves and local geodesics for plurisubharmonic functions.' 
+修士論文. 今見返してもやっぱりひどい.
+- Masataka Iwai. 'Characterization of pseudo-effective vector bundles by singular Hermitian metrics.' 
+- 'On projective manifolds with pseudo-effective tangent bundle.'
+- 'On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces.' 
+- 'Almost nef regular foliations and Fujita's decomposition of reflexive sheaves.' 
+--->
 
