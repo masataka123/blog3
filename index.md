@@ -10,7 +10,6 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2020年4月から[大阪市立大学数学研究所特別研究員](https://www.sci.osaka-cu.ac.jp/OCAMI/about/member/member.html)(阪市大数学研)です.
 - 2020年5月に[プレプリント](https://arxiv.org/abs/2005.04566)を提出しました.
 東北大学の松村慎一様と大阪大学の江尻祥様との共同研究です.
 - 2020年7月に[プレプリント](https://arxiv.org/abs/2007.13954)を提出しました.
