@@ -1,6 +1,13 @@
 
 # **講演履歴**
 
+## **講演予定**
+- 'On asymptotic base loci of relative anti-canonical divisors' 複素解析幾何セミナー, オンライン開催, 2020年11月
+- '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造について', 幾何セミナー, 大阪大学+オンライン開催, 2020年12月
+- '相対的反標準因子のasymptotic base lociについて' (Einglish titile: On asymptotic base loci of relative anti-canonical divisors), 多変数関数論冬セミナー, オンライン開催, 2020年12月
+- 'On projective manifolds whose tangent bundles contain positive subbundles', Grauert理論と最近の複素幾何, オンライン開催, 2021年2月
+- '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造 について', Grauert理論と最近の複素幾何, 日本数学会2021年度年会 関数論分科会, オンライン開催, 2021年3月
+
 ## **研究集会**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
 2. 'On the global generation of direct images of pluri-adjoint line bundles' 日本数学会2018年度秋季総合分科会 関数論分科会, 岡山大学, 2018年9月 [slide](https://masataka123.github.io/blog3/pdf/2018_09_24_g.pdf)
