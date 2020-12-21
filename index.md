@@ -6,7 +6,7 @@ layout: default
 
 # **岩井雅崇**
 岩井雅崇のホームページです。
-それ以上でもそれ以下でもございません。
+おそらくどこかにいます。
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
@@ -38,6 +38,7 @@ layout: default
 - 住所2: 〒606-8317 京都府京都市左京区北白川追分町 京都大学北部構内
 - [Google Scholar](https://scholar.google.com/citations?hl=ja&user=ZTKnR6QAAAAJ)
 - [ORCiD](https://orcid.org/0000-0002-0273-0360)
+- [Research Map](https://researchmap.jp/Masataka_iwai)
 - 所属学会: 日本数学会 (会員番号: 11981)
 
 
