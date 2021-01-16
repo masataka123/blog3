@@ -15,7 +15,7 @@ layout: default
 - 2020年7月に[プレプリント](https://arxiv.org/abs/2007.13954)を提出しました.
 - R2年度(2020年度)後期 大阪市立大学  全学共通科目 解析Ⅱ *TⅠ機･情33～を担当いたします.
 授業ホームページは[こちら](https://github.com/masataka123/class/tree/master/2020_autumn)です.
-- 2020年10月から2021年3月まで[京都大学数理解析研究所の研究員](http://www.kurims.kyoto-u.ac.jp/ja/list-03.html)です.
+- 2020年10月から[京都大学数理解析研究所の研究員](http://www.kurims.kyoto-u.ac.jp/ja/list-03.html)です.
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
