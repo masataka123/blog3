@@ -8,7 +8,6 @@
 5. Masataka Iwai. 'Almost nef regular foliations and Fujita's decomposition of reflexive sheaves.' to appear in Annali della Scuola Normale Superiore di Pisa, Classe di Scienze. [arXiv](https://arxiv.org/abs/2007.13954)
 
 # **プレプリント**
-- Masataka Iwai. 'Multiplier ideal sheaves and local geodesics for plurisubharmonic functions.' [PDF](https://masataka123.github.io/blog3/pdf/weak_geodesic.pdf) 
 - Sho Ejiri, Masataka Iwai, Shin-ichi Matsumura. 'On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces.' [arXiv](https://arxiv.org/abs/2005.04566)
 
 
@@ -19,9 +18,10 @@
 [ResearchGate](https://www.researchgate.net/publication/335443738_Earthquake-network_in_Japan_based_on_Abe-Suzuki_model_and_its_1_characteristics_2)
 
 # **その他**
+- Ph.D Thesis. [PDF](https://masataka123.github.io/blog3/pdf/phd_iwai.pdf)
+- 修論 [PDF](https://masataka123.github.io/blog3/pdf/weak_geodesic.pdf) 
 - '相対的な設定での藤田予想について'' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
 - 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
-- Ph.D Thesis. [PDF](https://masataka123.github.io/blog3/pdf/phd_iwai.pdf)
 
 <!---
 # **コメント**
