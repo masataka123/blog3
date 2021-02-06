@@ -3,7 +3,6 @@
 
 ## **講演予定**
 
-- 'On projective manifolds whose tangent bundles contain positive subbundles', Grauert理論と最近の複素幾何, オンライン開催, 2021年2月
 - '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造 について', 日本数学会2021年度年会 関数論分科会, オンライン開催, 2021年3月
 
 ## **研究集会**
@@ -24,6 +23,7 @@
 [LazicのレクチャーノートのLink](https://www.math.uni-sb.de/ag/lazic/teach/foliation.pdf)
 15. ' 相対的反標準因子のasymptotic base lociについて' 日本数学会2020年度秋季総合分科会 関数論分科会, オンライン開催, 2020年9月 [slide](https://masataka123.github.io/blog3/pdf/2020_09_22.pdf)
 16. '相対的反標準因子のasymptotic base lociについて' (Einglish titile: On asymptotic base loci of relative anti-canonical divisors), 多変数関数論冬セミナー, オンライン開催, 2020年12月[PDF](https://masataka123.github.io/blog3/pdf/2020_12_17.pdf)
+17. 'On projective manifolds whose tangent bundles contain positive subbundles', Grauert理論と最近の複素幾何, オンライン開催, 2021年2月 [PDF](https://masataka123.github.io/blog3/pdf/2021_02_06.pdf)
 
 ## **セミナー**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
@@ -33,7 +33,7 @@
 
 # **集会のオーガナイズ**
 1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. (大阪市立大学 小池 貴之氏との共同主催) [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
-2. ”Prospects and Open Problems in Higher-dimensional Algebraic Geometry (高次元代数幾何の展望と未解決問題)”, 大阪市立大学, 2020 年 3 月 9–12 日 (東京大学 權業善範氏, 東北大学 松村慎一氏, 大阪市立大学 小池貴之氏との共同主催) , (新型コロナウイルスの影響を受けて中止) [link](http://ktakayuki.github.io/conf2019_2/phdagop.html)
+2. ”Prospects and Open Problems in Higher-dimensional Algebraic Geometry (高次元代数幾何の展望と未解決問題)”, 大阪市立大学, 2020 年 3 月 9\UTF{2013}12 日 (東京大学 權業善範氏, 東北大学 松村慎一氏, 大阪市立大学 小池貴之氏との共同主催) , (新型コロナウイルスの影響を受けて中止) [link](http://ktakayuki.github.io/conf2019_2/phdagop.html)
 
 # **その他**
 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  
