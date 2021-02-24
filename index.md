@@ -10,12 +10,6 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2020年5月に[プレプリント](https://arxiv.org/abs/2005.04566)を提出しました.
-東北大学の松村慎一様と大阪大学の江尻祥様との共同研究です.
-- 2020年7月に[プレプリント](https://arxiv.org/abs/2007.13954)を提出しました.
-- R2年度(2020年度)後期 大阪市立大学  全学共通科目 解析Ⅱ *TⅠ機･情33～を担当いたします.
-授業ホームページは[こちら](https://github.com/masataka123/class/tree/master/2020_autumn)です.
-- 2020年10月から[京都大学数理解析研究所の研究員](http://www.kurims.kyoto-u.ac.jp/ja/list-03.html)です.
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
