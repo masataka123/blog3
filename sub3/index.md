@@ -4,6 +4,7 @@
 ## **講演予定**
 
 - '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造 について', 日本数学会2021年度年会 関数論分科会, オンライン開催, 2021年3月
+[PDF](https://masataka123.github.io/blog3/pdf/2021_03_12.pdf)
 
 ## **研究集会**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
