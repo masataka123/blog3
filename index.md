@@ -10,6 +10,7 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
+- 3月に新しいプレプリントを提出しました. [リンク](https://arxiv.org/abs/2103.08779)
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.

@@ -9,7 +9,7 @@
 
 # **プレプリント**
 - Sho Ejiri, Masataka Iwai, Shin-ichi Matsumura. 'On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces.' [arXiv](https://arxiv.org/abs/2005.04566)
-
+- Masataka Iwai. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' [arXiv](https://arxiv.org/abs/2103.08779)
 
 
 # **数学以外の論文・プレプリント**
@@ -105,5 +105,6 @@ Annali della Scuola Normale Superiore di Pisa, Classe di Scienze. 掲載決定
 
 arXivに出した時期はゼノブレイド definitive editionにハマっていた. ストーリーが暗い感じで常に面白く, 戦闘システムがゼノブレイド２よりもわかりやすいと思う.個人的にはゼノブレイド２よりもゼノブレイド１の方が好きである．
 
+-'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' 
 --->
 
