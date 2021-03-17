@@ -9,7 +9,7 @@
 
 # **プレプリント**
 - Sho Ejiri, Masataka Iwai, Shin-ichi Matsumura. 'On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces.' [arXiv](https://arxiv.org/abs/2005.04566)
-- Masataka Iwai. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' [arXiv](https://arxiv.org/abs/2103.08779)
+- Masataka Iwai. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' [arXiv](https://arxiv.org/abs/2103.08779) [source code of Remark 5.3](https://github.com/masataka123/math/blob/master/chern.ipynb)
 
 
 # **数学以外の論文・プレプリント**
