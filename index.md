@@ -10,7 +10,7 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 3月に新しいプレプリントを提出しました. [リンク](https://arxiv.org/abs/2103.08779)
+- 3月に新しいプレプリントを提出しました. [Link](https://arxiv.org/abs/2103.08779)
 - 大阪市立大学 R3年度(2021年度)前期 全学共通科目 解析 I *TⅠ電(都1～28)の授業を担当いたします. [Link](https://github.com/masataka123/2021_summer)
 
 ## **はじめに**
