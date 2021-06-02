@@ -12,7 +12,7 @@ layout: default
 - 3月に新しいプレプリントを提出しました. [Link](https://arxiv.org/abs/2103.08779)
 - 大阪市立大学 R3年度(2021年度)前期 全学共通科目 解析 I *TⅠ電(都1～28)の授業を担当いたします. [Link](https://github.com/masataka123/2021_summer)
 - 6月1日から東北大学 数理科学連携研究センターの助教です. [Link](http://www.racmas.tohoku.ac.jp/organization.php)
-- 上に伴い6月1日から大阪市立大学数学研究所の専任研究員から兼任研究員に変更いたしました. [Link](https://www.sci.osaka-cu.ac.jp/OCAMI/about/member/member.html)
+- 上に伴い6月1日以降, 大阪市立大学数学研究所の専任研究員から兼任研究員に変更いたしました. [Link](https://www.sci.osaka-cu.ac.jp/OCAMI/about/member/member.html)
 
 
 ## **はじめに**
