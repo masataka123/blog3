@@ -2,10 +2,10 @@
 # **講演履歴**
 
 ## **講演予定**
- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 九州大学幾何学セミナー, オンライン開催, 2021年6月
- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 東北大学幾何セミナー, オンライン開催, 2021年7月
- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 都の西北代数幾何学シンポジウム, オンライン開催, 2021年8月
- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 日本数学会2021年度年会 函数論分科会, オンライン開催, 2021年9月 [PDF](https://masataka123.github.io/blog3/pdf/2021_09_20.pdf)
+- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 九州大学幾何学セミナー, オンライン開催, 2021年6月
+- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 東北大学幾何セミナー, オンライン開催, 2021年7月
+- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 都の西北代数幾何学シンポジウム, オンライン開催, 2021年8月
+- 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 日本数学会2021年度年会 函数論分科会, オンライン開催, 2021年9月 [PDF](https://masataka123.github.io/blog3/pdf/2021_09_20.pdf)
  
 ## **研究集会**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
