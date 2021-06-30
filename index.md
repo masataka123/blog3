@@ -4,8 +4,7 @@ layout: default
 
 
 # **岩井雅崇**
-岩井雅崇のホームページです。
-おそらくどこかにいます。
+岩井雅崇のホームページです。全国で最も多い神社本殿の形式は流造です。
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
