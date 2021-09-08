@@ -49,7 +49,7 @@ ArXivへの投稿を毎回忘れるため
 - [google scholar](https://scholar.google.co.jp)
 論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてくれる. 結構当たってる.
 - [SJR](https://www.scimagojr.com/journalrank.php?category=2601)
-論文のランキングみたいなものです. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). まあ偉い人に聞いたら方が確実.
+論文のランキングみたいなものです. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). まあ偉い人に聞いた方が確実.
 
 ### 研究集会関連
 - [ZAG seminar](https://www.maths.ed.ac.uk/cheltsov/zag/)
@@ -63,7 +63,7 @@ Vakilによるホームページ.
 - [Séminaire N. Bourbaki](https://www.bourbaki.fr)
 ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める(ただしフランス語).フランス語の論文はGoogle翻訳で「フランス語→英語」にすれば良い. Google翻訳はpdfも翻訳できる.
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
-CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続集会でもいいけど) Foliationの論文書くときに参考になった.
+CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続講演でもいいけど) Foliationの論文書くときに参考になった.
 
 ### その他
 - [What's new](https://terrytao.wordpress.com)
