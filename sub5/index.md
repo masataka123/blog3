@@ -56,7 +56,7 @@ ArXivへの投稿を毎回忘れるため
 代数幾何学の大きなオンライン集会. 他にも[AEGA](https://sites.google.com/ncts.ntu.edu.tw/agea-seminar)や[CG seminar](https://sites.google.com/view/cgseminar/homepage)がある. YouTubeにログも残っている. 他にもYoutubeにCIRMやFourierのチャンネルがある. コロナ以降研究集会の動画はYouTubeで見ていることが多い.
 - [Upcoming conferences](http://math.stanford.edu/~vakil/conferences.html)
 Vakilによるホームページ. 
--[List of Conferences](http://yuyamatsumoto.com/conf.html)
+- [List of Conferences](http://yuyamatsumoto.com/conf.html)
 東京理科大学の松本様のホームページ. 
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
 日本数学会幾何学分科会のホームページ. 研究集会情報が載っている.
@@ -66,12 +66,12 @@ Vakilによるホームページ.
 CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続集会でもいいけど) Foliationの論文書くときに参考になった.
 
 ### その他
--[What's new](https://terrytao.wordpress.com)
+- [What's new](https://terrytao.wordpress.com)
 Terence Taoのホームページ. Career advice, On writingとか結構いいこと書いている.
 - [河東先生のホームページ](https://www.ms.u-tokyo.ac.jp/~yasuyuki/index.html)
 東京大学の河東先生のホームページ. 「どうでもよい記事」というページが面白くとても参考になる.
 - [Springer Link](https://link.springer.com)
 所属している大学によっては, Springerの本のpdfが無料で手に入れられるかもしれません(もちろん合法です. 大学がそういう契約をしているからです.)
--[Fanography](https://www.fanography.info)
+- [Fanography](https://www.fanography.info)
 3次元Fanoの分類まとめ. 
 
