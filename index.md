@@ -10,6 +10,7 @@ layout: default
 ## **予定など**
 - "masataka[at]osaka-cu.ac.jp"というメールアドレスが使えなくなります. メールするときは
 masataka.iwai.c5[at]tohoku.ac.jpやmasataka.math[at]gmail.comにメールしてください. 
+- 都の西北代数幾何学シンポジウム2021の報告集をアップロードしました. [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf) 最近の研究や興味ある内容を思う存分書きました.
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
