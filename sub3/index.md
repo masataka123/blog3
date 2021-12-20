@@ -39,6 +39,7 @@
 # **集会のオーガナイズ**
 1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. (大阪市立大学 小池 貴之氏との共同主催) [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
 2. ”Prospects and Open Problems in Higher-dimensional Algebraic Geometry (高次元代数幾何の展望と未解決問題)”, 大阪市立大学, 2020 年 3 月 9--12 日 (東京大学 權業善範氏, 東北大学 松村慎一氏, 大阪市立大学 小池貴之氏との共同主催) , (新型コロナウイルスの影響を受けて中止) [link](http://ktakayuki.github.io/conf2019_2/phdagop.html)
+3. "Subvarieties and foliations of complex projective varieties" (射影的複素多様体の部分多様体と葉層), オンライン開催(大阪市立大学), 2022年 2月 7--10日 (名古屋大学 大沢健夫氏, 大阪市立大学 小池貴之氏との共同主催) ,[link](https://tkoike.com/conf_2021/2022Feb.html)
 
 # **その他**
 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  
