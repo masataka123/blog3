@@ -13,7 +13,6 @@ layout: default
 - 2022年2月7日から10日まで, 研究集会[Subvarieties and foliations of complex projective varieties](https://tkoike.com/conf_2021/2022Feb.html)を開催いたします.皆さんのご参加お待ちしております.
 - 都の西北代数幾何学シンポジウム2021の報告集をアップロードしました. [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf) 最近の研究や興味ある内容を思う存分書きました. (2021/12/20追記: 問題4.1はDruelさんによって完全に解決しました. [Link](https://arxiv.org/abs/2112.05449))
 
-
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
 - 東北大学 数理科学連携研究センターの助教です. 所属の略称はRACMaSです. [Link](http://www.racmas.tohoku.ac.jp/organization.php)
