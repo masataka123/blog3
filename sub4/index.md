@@ -21,34 +21,47 @@
 
 ### 論文関連
 - [Hyper Collocation](https://hypcol.marutank.net/ja/)
-論文書くときにお世話になってる. 他にもGrammaly, Ginger, Google翻訳, Trzeciak "Writing Mathematical Pepers in English"にもお世話になってる.
+論文書くときにお世話になっている. 他にもGrammaly, Ginger, Google翻訳, Trzeciak "Writing Mathematical Pepers in English"にもお世話になってる.
 - [arXivへの投稿の仕方について](http://www.math.tsukuba.ac.jp/~tasaki/tool/arxiv.html)
-ArXivへの投稿を毎回忘れるため
+ArXivへの投稿を毎回忘れる...
 - [google scholar](https://scholar.google.co.jp)
-論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてくれる. 結構当たってる.
-- [SJR](https://www.scimagojr.com/journalrank.php?category=2601)
-論文のランキングみたいなものです. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). まあ偉い人に聞いた方が確実.
+論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてれて, しかも結構当たっている.
+- [SCImago Journal Rank](https://www.scimagojr.com/journalrank.php?category=2601)
+論文のランキングみたいなものです. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). まあ偉い人に聞いた方が確実です.
 
 ### 研究集会関連
 - [ZAG seminar](https://www.maths.ed.ac.uk/cheltsov/zag/)
 代数幾何学の大きなオンライン集会. 他にも[AEGA](https://sites.google.com/ncts.ntu.edu.tw/agea-seminar)や[CG seminar](https://sites.google.com/view/cgseminar/homepage)がある. YouTubeにログも残っている. 他にもYoutubeにCIRMやFourierのチャンネルがある. コロナ以降研究集会の動画はYouTubeで見ていることが多い.
 - [Upcoming conferences](http://math.stanford.edu/~vakil/conferences.html)
-Vakilによるホームページ. 
+Vakil様のホームページ. 
 - [List of Conferences](http://yuyamatsumoto.com/conf.html)
 東京理科大学の松本様のホームページ. 
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
 日本数学会幾何学分科会のホームページ. 研究集会情報が載っている.
 - [Séminaire N. Bourbaki](https://www.bourbaki.fr)
-ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める(ただしフランス語).フランス語の論文はGoogle翻訳で「フランス語→英語」にすれば良い. Google翻訳はpdfも翻訳できる.
+ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める. 'フランス語の論文はGoogle翻訳で「フランス語→英語」にすれば良くGoogle翻訳はpdfも翻訳できるので便利である. DeepLでも良いと思う.)
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
-CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続講演でもいいけど) Foliationの論文書くときに参考になった.
+CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続講演でもが...) Foliationの論文書くときに参考になった.
+- [Projet ANR Karmapolis](https://karmapolis.pages.math.cnrs.fr/index.html) 
+"Kahler manifolds with non-positive curvature: families and special subvarieties"に関する研究プロジェクト. プロジェクトメンバーがすごい人ばっかりである. この研究テーマは2020年から2030年まで我々の分野で流行りそうな研究テーマになると思う. 
+
+### セミナー関連
+- [東京大学大学院数理科学研究科ホームページ](https://www.ms.u-tokyo.ac.jp/index-j.html)
+- [京都大学数学教室セミナー一覧](https://www.math.kyoto-u.ac.jp/ja/event/seminar)
+- [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
+- [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi)
+- [大阪市立大学数学研究所](http://www.sci.osaka-cu.ac.jp/OCAMI/)
 
 ### その他
 - [What's new](https://terrytao.wordpress.com)
-Terence Taoのホームページ. Career advice, On writingとか結構いいこと書いている.
+Terence Tao様のホームページ. Career advice, On writingとか結構いいこと書いている.
 - [河東先生のホームページ](https://www.ms.u-tokyo.ac.jp/~yasuyuki/index.html)
 東京大学の河東先生のホームページ. 「どうでもよい記事」というページが面白くとても参考になる.
 - [Springer Link](https://link.springer.com)
 所属している大学によっては, Springerの本のpdfが無料で手に入れられるかもしれません(もちろん合法です. 大学がそういう契約をしているからです.)
 - [Fanography](https://www.fanography.info)
 3次元Fanoの分類まとめ. 
+- [Database of Ring Theory](https://ringtheory.herokuapp.com)
+環論で出てくるいろんな環のまとめ.
+- [π-Base](https://topology.jdabbs.com)
+位相空間まとめ.
