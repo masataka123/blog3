@@ -41,7 +41,7 @@ Vakil様のホームページ.
 - [Séminaire N. Bourbaki](https://www.bourbaki.fr)
 ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める. 'フランス語の論文はGoogle翻訳で「フランス語→英語」にすれば良くGoogle翻訳はpdfも翻訳できるので便利である. DeepLでも良いと思う.)
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
-CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続講演でもが...) Foliationの論文書くときに参考になった.
+CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続講演でも良いと思う.) Foliationの論文書くときに参考になった.
 - [Projet ANR Karmapolis](https://karmapolis.pages.math.cnrs.fr/index.html) 
 "Kahler manifolds with non-positive curvature: families and special subvarieties"に関する研究プロジェクト. プロジェクトメンバーがすごい人ばっかりである. この研究テーマは2020年から2030年まで我々の分野で流行りそうな研究テーマになると思う. 
 
