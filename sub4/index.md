@@ -1,8 +1,12 @@
 # **リンク**
 リンク先のホームページがなくなっている場合もあります. 
 <!---
-(ホームページ作ったときに, 研究室317や318にいた人に「リンク貼っていいですか?」って言って許可をもらいました. だからいろんな分野の人のリンクになっています.
- 自分の研究室は326だったのですが, 修士博士時代は大学に遊びに行っていたので, 遊び場の317や318の人と喋ることが多かった. 317は一時期トランプと飲み会しかやってなかったし, 318はクレイジーな人が多かった(失言ですね, すみません...)ので, なかなか楽しかった. 今思うとゲージ理論や作用素環の超一流の数学者が多い部屋だったように思う.あと真言宗大谷派の大谷裕さんが317にいたことに, 大谷さんが卒業してから気づいた. 317飲み会に大谷さんがいたことがあったし, お土産を勝手に食べたのも覚えてる. もうちょいお布施しておけばよかったかなあ... )
+ホームページ作ったときに, 研究室317や318にいた人に「リンク貼っていいですか?」って言って許可をもらいました.
+ 自分の研究室は326だったが, 修士博士時代は大学に遊びに行っていたので, 遊び場の317や318の人と喋ることが多かった. 
+ 317は一時期トランプと飲み会しかやってなかった部屋である. 作用素環の荒野さんがさまざまな分野の人と仲が良く, その影響もあって317にはいろんな分野の人が遊びに来ていたのである.  今あのメンバーで荒野の会をやればかなり盛り上がる研究集会になると思う. そういえば真言宗大谷派の大谷裕さんが317にいたことに, 大谷さんが卒業してから気づいた. 317飲み会に大谷さんがいたことがあったし, お土産を勝手に食べたのも覚えてる. もうちょいお布施しておけばよかったかなあ...
+ [ちょっとした余談] 317に入り浸っていた私だが, 荒野さんが研究・勉強しているところをあまり見たことがない. (常にゲームしてるか飲んでるかだった) 研究業績は凄まじい人なので, 荒野さんは"天才"なのであろう.(業績が多い人やアイデアがいっぱい出る人, 知識がいっぱいある人などはよく見るが, あのタイプの"天才"は荒野さん以外思いつかない.) 
+ 318はクレイジーな人が多かったので, なかなか楽しかった. 昔には無限ピザパーティーが行われていた部屋である. 部屋が全体的に汚なかった印象である. もう時効だと思うが谷口くんの机の上にあったカロリーメイトを勝手に食べたことがある. (本人は絶対気づいてないと思う, それくらい机の上には物が多かったのだ)
+ しかし今思うと317, 318部屋はゲージ理論や作用素環の超一流の数学者が多い部屋だったように思う. 修士博士時代は遊んでてあまり気付かなかった, 二流数学者の私には先見の目がなかったということである. 
 --->
 
 ## **友人・先輩**
@@ -17,35 +21,49 @@
 - [Yuya Takeuchi](https://sites.google.com/view/yuya-takeuchi-japanese/)
 
 ## **役に立つかもしれないリンク集**
-勝手にリンクを貼っているので, 怒られたり都合が悪くなれば消します.
+勝手にリンクを貼っているので, 怒られたり都合が悪くなれば消します. 
+他にもいい情報があれば教えてください. 
 
 ### 論文関連
-- [Hyper Collocation](https://hypcol.marutank.net/ja/)
-論文書くときにお世話になっている. 他にもGrammaly, Ginger, Google翻訳, Trzeciak "Writing Mathematical Pepers in English"にもお世話になってる.
-- [arXivへの投稿の仕方について](http://www.math.tsukuba.ac.jp/~tasaki/tool/arxiv.html)
-ArXivへの投稿を毎回忘れる...
+- [ArXiv](https://arxiv.org) 
+みなさんご存知のプレプリント・サーバー. 平日11時くらいにアクセスしAG, CV, DGを見る. 設定すればメールでも通知してくれる.
+- [ArXivへの投稿の仕方について](http://www.math.tsukuba.ac.jp/~tasaki/tool/arxiv.html)
+ArXivへの投稿の仕方を毎回忘れる.
 - [google scholar](https://scholar.google.co.jp)
-論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてれて, しかも結構当たっている.
+論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてくれて, しかも結構当たっている.
 - [SCImago Journal Rank](https://www.scimagojr.com/journalrank.php?category=2601)
 論文のランキングみたいなものです. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). まあ偉い人に聞いた方が確実です.
+- [Hyper Collocation](https://hypcol.marutank.net/ja/)
+論文書くときにお世話になっている. 他にもGrammaly, Ginger, Google翻訳, DeepL翻訳, Trzeciak "Writing Mathematical Pepers in English"などがある
 
 ### 研究集会関連
-- [ZAG seminar](https://www.maths.ed.ac.uk/cheltsov/zag/)
-代数幾何学の大きなオンライン集会. 他にも[AEGA](https://sites.google.com/ncts.ntu.edu.tw/agea-seminar)や[CG seminar](https://sites.google.com/view/cgseminar/homepage)がある. YouTubeにログも残っている. 他にもYoutubeにCIRMやFourierのチャンネルがある. コロナ以降研究集会の動画はYouTubeで見ていることが多い.
 - [Upcoming conferences](http://math.stanford.edu/~vakil/conferences.html)
-Vakil様のホームページ. 
+Vakil様のホームページ. 世界の研究集会の情報が載っている
 - [List of Conferences](http://yuyamatsumoto.com/conf.html)
-東京理科大学の松本様のホームページ. 
+東京理科大学の松本様のホームページ. 主に日本の研究集会の情報が載っている
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
-日本数学会幾何学分科会のホームページ. 研究集会情報が載っている.
+日本数学会幾何学分科会のホームページ. 幾何学に関する研究集会情報が載っている.
 - [Séminaire N. Bourbaki](https://www.bourbaki.fr)
-ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める. 'フランス語の論文はGoogle翻訳で「フランス語→英語」にすれば良くGoogle翻訳はpdfも翻訳できるので便利である. DeepLでも良いと思う.)
+ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める. フランス語の論文はGoogle翻訳で「フランス語→英語」にすれば良くGoogle翻訳はpdfも翻訳できるので便利である. DeepL翻訳でも良いと思う.
+- [岡シンポジウム](http://www.nara-wu.ac.jp/omi/oka_symposium.html) [ENCOUNTER with MATHEMATICS](https://www.math.chuo-u.ac.jp/ENCwMATH/)
+ブルバキセミナーの日本版. 岡シンポジウムには講義録が残っていてちょくちょく読んでいる
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
-CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. (Fourierの5連続講演でも良いと思う.) Foliationの論文書くときに参考になった.
+CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. ([Fourierの5連続講演](https://www.youtube.com/playlist?list=PL0E0n75oNCDk5tuV-t2_K56sEfLd0Od8H)でも良いと思う.) Foliationの論文書くときに参考になった.
 - [Projet ANR Karmapolis](https://karmapolis.pages.math.cnrs.fr/index.html) 
 "Kahler manifolds with non-positive curvature: families and special subvarieties"に関する研究プロジェクト. プロジェクトメンバーがすごい人ばっかりである. この研究テーマは2020年から2030年まで我々の分野で流行りそうな研究テーマになると思う. 
+- [ZAG seminar](https://www.maths.ed.ac.uk/cheltsov/zag/) 
+代数幾何学の大きなオンライン集会. 
+- [AEGA](https://sites.google.com/ncts.ntu.edu.tw/agea-seminar) 
+アジア圏の代数幾何のオンライン集会
+- [CG seminar](https://sites.google.com/view/cgseminar/homepage)
+- [Geometry and TACoS](http://events.dimai.unifi.it/tacos/) 
+幾何学のOnline sessions. YouTubeにも講演動画がある.
+- [CIRM](https://www.youtube.com/channel/UCFqg88K7NWY2xjWB6CeRyAw) [Institut Fourier](https://www.youtube.com/channel/UCf75JOnCeY9uFajrDw1g4-w) 
+コロナ以降研究集会の動画はYouTubeで見ていることが多い. 他にも探してみればいろんなチャンネルがある. 
+- [ICM2022](https://www.youtube.com/channel/UCcw9o5wF2SO1_waKXjZdvxg) 
+ICM2022のYouTubeチャンネル. 今年(2022年)に大量の講演動画がアップロードされるはずである. 探してみればICM2018, ICM2014のチャンネルもある. 
 
-### セミナー関連
+### 日本のセミナー情報
 - [東京大学大学院数理科学研究科ホームページ](https://www.ms.u-tokyo.ac.jp/index-j.html)
 - [京都大学数学教室セミナー一覧](https://www.math.kyoto-u.ac.jp/ja/event/seminar)
 - [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
@@ -57,11 +75,15 @@ CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauv
 Terence Tao様のホームページ. Career advice, On writingとか結構いいこと書いている.
 - [河東先生のホームページ](https://www.ms.u-tokyo.ac.jp/~yasuyuki/index.html)
 東京大学の河東先生のホームページ. 「どうでもよい記事」というページが面白くとても参考になる.
+- [JREC-IN](https://jrecin.jst.go.jp/seek/SeekTop) [日本数学会公募情報](https://www.mathsoc.jp/office/kobo/)
+お仕事探しにお世話になる. あとは各種メーリス(代数幾何・幾何学・函数論などなど)で出てくる公募情報を常に見る必要がある. 
 - [Springer Link](https://link.springer.com)
-所属している大学によっては, Springerの本のpdfが無料で手に入れられるかもしれません(もちろん合法です. 大学がそういう契約をしているからです.)
+所属している大学によっては, Springerの本のpdfが無料で手に入れられるかもしれません. 
 - [Fanography](https://www.fanography.info)
 3次元Fanoの分類まとめ. 
 - [Database of Ring Theory](https://ringtheory.herokuapp.com)
 環論で出てくるいろんな環のまとめ.
 - [π-Base](https://topology.jdabbs.com)
 位相空間まとめ.
+- [BORCHERDSのYouTubeチャンネル](https://www.youtube.com/channel/UCIyDqfi_cbkp-RU20aBF-MQ)
+ムーンシャイン予想を解決したRichard E. BORCHERDSのYouTubeチャンネル. 大量の授業動画がある. これが無料で見れるのは驚きである.
