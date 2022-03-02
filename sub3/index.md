@@ -26,6 +26,7 @@
 18. '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造について', 日本数学会2021年度年会 函数論分科会, オンライン開催, 2021年3月 [PDF](https://masataka123.github.io/blog3/pdf/2021_03_12_P.pdf) [slide](https://masataka123.github.io/blog3/pdf/2021_03_12.pdf)
 19. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 都の西北代数幾何学シンポジウム, オンライン開催, 2021年8月 [slide](https://masataka123.github.io/blog3/pdf/2021_08_20.pdf) [報告集](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
 20. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 日本数学会2021年度秋季総合分科会 函数論分科会, オンライン開催, 2021年9月 [PDF](https://masataka123.github.io/blog3/pdf/2021_09_20.pdf)
+21. 'On the structure of projective manifolds whose tangent bundles are positive.' 第２０回アフィン代数幾何学研究集会, ハイブリッド開催(=オンライン＋対面), 2022年3月 [PDF](https://masataka123.github.io/blog3/pdf/2022_03_02.pdf)
 
 ## **セミナー**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)

@@ -8,10 +8,8 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
+- 3月16日に2021年度大阪市立大学数学研究会論文賞及び特別賞授賞式・受賞講演で発表します. [Link](http://www.sci.osaka-cu.ac.jp/OCAMI/news_page2021_detail.html)
 - 2022年6月20日から24日まで開かれる研究集会[Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net)で講演します.
-- 2022年3月2日から3日まで開かれる研究集会[第20回アフィン代数幾何学研究集会](http://dubouloz.perso.math.cnrs.fr/Confs/AAG-20-Saitama-2022/index.html)で講演します.
-- 2022年2月7日から10日まで, 研究集会[Subvarieties and foliations of complex projective varieties](https://tkoike.com/conf_2021/2022Feb.html)を開催いたします.皆さんのご参加お待ちしております.
-- 都の西北代数幾何学シンポジウム2021の報告集をアップロードしました. [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf) 最近の研究や興味ある内容を思う存分書きました. (2021/12/20追記: 問題4.1はDruelさんによって完全に解決しました. [Link](https://arxiv.org/abs/2112.05449))
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
