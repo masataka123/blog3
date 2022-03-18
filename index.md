@@ -8,7 +8,7 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 3月16日に2021年度大阪市立大学数学研究会論文賞及び特別賞授賞式・受賞講演で発表します. [Link](http://www.sci.osaka-cu.ac.jp/OCAMI/news_page2021_detail.html)
+
 - 2022年6月20日から24日まで開かれる研究集会[Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net)で講演します.
 
 ## **はじめに**

@@ -2,7 +2,7 @@
 # **講演履歴**
 
 ## **講演予定**
-
+- 2022年6月20日から24日まで開かれる研究集会[Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net)で講演します.
  
 ## **研究集会**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
@@ -27,6 +27,7 @@
 19. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 都の西北代数幾何学シンポジウム, オンライン開催, 2021年8月 [slide](https://masataka123.github.io/blog3/pdf/2021_08_20.pdf) [報告集](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
 20. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 日本数学会2021年度秋季総合分科会 函数論分科会, オンライン開催, 2021年9月 [PDF](https://masataka123.github.io/blog3/pdf/2021_09_20.pdf)
 21. 'On the structure of projective manifolds whose tangent bundles are positive.' 第２０回アフィン代数幾何学研究集会, ハイブリッド開催(=オンライン＋対面), 2022年3月 [PDF](https://masataka123.github.io/blog3/pdf/2022_03_02.pdf)
+22. '正則接ベクトル束が正値性を持つ複素代数多様体の研究.' 2021年度大阪市立大学数学研究会論文賞及び特別賞授賞式・受賞講演, 大阪市立大学, 2022年3月. [PDF](https://masataka123.github.io/blog3/pdf/2022_03_16.pdf)
 
 ## **セミナー**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
