@@ -5,7 +5,7 @@
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2022年3月31日をもって東北大学 数理科学連携研究センター(RACMaS)を退職しました. RACMaSの皆様, 短い間でしたがありがとうございました.
+- 2022年3月31日をもって東北大学数理科学連携研究センター(RACMaS)を退職しました. RACMaSの皆様, 短い間でしたがありがとうございました.
 - 2022年4月1日に大阪大学理学研究科数学専攻の助教になりました. [Link](http://www.math.sci.osaka-u.ac.jp/staff.html)
 - 2022年6月20日から24日まで開かれる研究集会[Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net)で講演します.
 
