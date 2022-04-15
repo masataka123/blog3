@@ -64,10 +64,10 @@ CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauv
 ICM2022のYouTubeチャンネル. 今年(2022年)に大量の講演動画がアップロードされるはずである. 探してみればICM2018, ICM2014のチャンネルもある. 
 
 ### 日本のセミナー情報
+- [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi)
 - [東京大学大学院数理科学研究科ホームページ](https://www.ms.u-tokyo.ac.jp/index-j.html)
 - [京都大学数学教室セミナー一覧](https://www.math.kyoto-u.ac.jp/ja/event/seminar)
 - [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
-- [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi)
 - [大阪市立大学数学研究所](http://www.sci.osaka-cu.ac.jp/OCAMI/)
 
 ### その他
@@ -86,4 +86,4 @@ Terence Tao様のホームページ. Career advice, On writingとか結構いい
 - [π-Base](https://topology.jdabbs.com)
 位相空間まとめ.
 - [BORCHERDSのYouTubeチャンネル](https://www.youtube.com/channel/UCIyDqfi_cbkp-RU20aBF-MQ)
-ムーンシャイン予想を解決したRichard E. BORCHERDSのYouTubeチャンネル. 大量の授業動画がある. これが無料で見れるのは驚きである.
+Richard E. BORCHERDSのYouTubeチャンネル. 大量の授業動画がある. これが無料で見れるのは驚きである.
