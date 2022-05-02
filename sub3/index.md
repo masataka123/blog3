@@ -2,6 +2,7 @@
 # **講演履歴**
 
 ## **講演予定**
+- 2022年5月25日の京大東大代数セミナーで(おそらく)講演します.
 - 2022年6月20日から24日まで開かれる研究集会[Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net)で講演します.
  
 ## **研究集会**
@@ -36,7 +37,7 @@
 4. '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造について', 幾何セミナー, 大阪大学+オンライン開催, 2020年12月
 5. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 九州大学幾何学セミナー, オンライン開催, 2021年6月 [PDF](https://masataka123.github.io/blog3/pdf/2021_06_25.pdf)
 6. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 東北大学幾何セミナー, オンライン開催, 2021年7月 [PDF](https://masataka123.github.io/blog3/pdf/2021_07_13.pdf)
-
+7. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 幾何セミナー, 大阪大学+オンライン開催, 2022年4月
 
 # **集会のオーガナイズ**
 1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. (大阪市立大学 小池 貴之氏との共同主催) [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
