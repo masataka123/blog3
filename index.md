@@ -9,7 +9,7 @@ layout: default
 ## **予定など**
 - 2022年4月1日に大阪大学理学研究科数学専攻の助教になりました. [Link](http://www.math.sci.osaka-u.ac.jp/staff.html)
 - 2022年度春夏学期 全学共通教育科目 木曜2限 線形代数学I (生物,生命2) [Link](https://masataka123.github.io/2022_summer_LA/)の授業を担当します.
-- 2022年5月25日の京大東大代数セミナーで(おそらく)講演します.
+- 2022年5月25日の京大東大代数幾何セミナーで(おそらく)講演します.
 - 2022年6月20日から24日まで開かれる研究集会[Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net)で講演します.
 
 ## **はじめに**
