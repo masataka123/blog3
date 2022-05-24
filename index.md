@@ -7,10 +7,10 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2022年4月1日に大阪大学理学研究科数学専攻の助教になりました. [Link](http://www.math.sci.osaka-u.ac.jp/staff.html)
-- 2022年度春夏学期 全学共通教育科目 木曜2限 線形代数学I (生物,生命2) [Link](https://masataka123.github.io/2022_summer_LA/)の授業を担当します.
-- 2022年5月25日の京大東大代数幾何セミナーで(おそらく)講演します.
+- 2022年5月24日に新しい論文を提出しました. [Link](https://arxiv.org/abs/2205.10613) 東北大学の松村慎一氏との共同研究です.
+- 2022年5月25日の京大東大代数幾何セミナーで講演します.
 - 2022年6月20日から24日まで開かれる研究集会[Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net)で講演します.
+- 2022年度春夏学期 全学共通教育科目 木曜2限 線形代数学I (生物,生命2) [Link](https://masataka123.github.io/2022_summer_LA/)の授業を担当します.
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
