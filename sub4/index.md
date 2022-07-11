@@ -77,6 +77,8 @@ Terence Tao様のホームページ. Career advice, On writingとか結構いい
 東京大学の河東先生のホームページ. 「どうでもよい記事」というページが面白くとても参考になる.
 - [JREC-IN](https://jrecin.jst.go.jp/seek/SeekTop) [日本数学会公募情報](https://www.mathsoc.jp/office/kobo/)
 お仕事探しにお世話になる. あとは各種メーリス(代数幾何・幾何学・函数論などなど)で出てくる公募情報を常に見る必要がある. 
+-[雑誌「数学」の論説](https://mathsoc.jp/publication/dbase/sugaku/index.html)
+日本数学会が創刊している雑誌「数学」の論説が見れる. ほぼ全て電子化されているらしく, [こちら](https://www.jstage.jst.go.jp/browse/sugaku/list/-char/ja)のページで詳細検索もできる. 
 - [Springer Link](https://link.springer.com)
 所属している大学によっては, Springerの本のpdfが無料で手に入れられるかもしれません. 
 - [Fanography](https://www.fanography.info)
