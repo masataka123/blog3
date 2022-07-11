@@ -60,8 +60,10 @@ CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauv
 幾何学のOnline sessions. YouTubeにも講演動画がある.
 - [CIRM](https://www.youtube.com/channel/UCFqg88K7NWY2xjWB6CeRyAw) [Institut Fourier](https://www.youtube.com/channel/UCf75JOnCeY9uFajrDw1g4-w) 
 コロナ以降研究集会の動画はYouTubeで見ていることが多い. 他にも探してみればいろんなチャンネルがある. 
-- [ICM2022](https://www.youtube.com/channel/UCcw9o5wF2SO1_waKXjZdvxg) 
-ICM2022のYouTubeチャンネル. 今年(2022年)に大量の講演動画がアップロードされるはずである. 探してみればICM2018, ICM2014のチャンネルもある. 
+- [IMUのYouTubeチャンネル](https://www.youtube.com/c/InternationalMathematicalUnion) 
+IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演動画がアップロードされている. 
+[ICM2018](https://www.youtube.com/c/RioICM2018/videos)や[ICM2014](https://www.youtube.com/user/ICM2014SEOUL/videos)など過去の講演動画もYouTubeにはあるようだ.
+
 
 ### 日本のセミナー情報
 - [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi)
