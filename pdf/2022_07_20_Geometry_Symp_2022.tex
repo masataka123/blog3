@@ -1,0 +1,856 @@
+\documentclass[12pt]{amsart}
+
+
+\setlength{\topmargin}{-0.5cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\topmargin}{-0.25cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+
+\usepackage{amscd} 
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm}
+\usepackage{bigdelim}
+\usepackage{color} 
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+\usepackage[all]{xy} 
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{comment}
+%\usepackage[bookmarks=false]{hyperref}
+
+%\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+
+
+%
+\newtheorem{thm}{定理}[section] 
+\newtheorem{theo}[thm]{定理}
+\newtheorem{cor}[thm]{系}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{ques}[thm]{問題}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{定義}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{ex}[thm]{例} 
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{補足}
+\newtheorem{obs}[thm]{問題}
+\newtheorem{setup}[thm]{Set up}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}{主張}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+
+
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\newcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+
+
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+
+
+\newcommand{\Sigmat}{\mbox{\boldmath\ensuremath{\Sigma}}}
+\newcommand{\evec}{\mbox{\boldmath\ensuremath{e}}}
+\newcommand{\ovec}{\mbox{\boldmath\ensuremath{0}}}
+\newcommand{\xvec}{\mbox{\boldmath\ensuremath{x}}}
+\newcommand{\e}{{\rm e}}
+\newcommand{\dr}{{\rm d}}
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\p}{{\mathbb P}}
+\newcommand{\V}{{\mathbb V}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+
+\title[]{Abundance theorem for minimal compact K\"ahler manifolds with vanishing second Chern class}
+
+
+\author[]{岩井雅崇(大阪大学大学院理学研究科)}
+\address{Department of Mathematics, Graduate School of Science, Osaka University,
+1-1, Machikaneyama-cho, Toyonaka, Osaka 560-0043, Japan.}
+\email{{\tt masataka@math.sci.osaka-u.ac.jp}}
+\email{{\tt masataka.math@gmail.com}}
+
+
+
+%\date{\today, version 0.01}
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+\begin{document}
+\pagestyle{empty}
+
+\maketitle
+\thispagestyle{empty} 
+%
+\begin{abstract}
+この予稿では代数幾何学・双有理幾何学におけるアバンダンス予想(「標準朿$K_X$がネフならば半豊富である」という予想)について紹介し, 2次のChern類が$0$であるコンパクトK\"ahler多様体についてアバンダンス予想が成り立つことを証明する. 本研究は東北大学の松村慎一氏との共同研究である.
+
+
+\end{abstract}
+\setcounter{tocdepth}{1}\tableofcontents
+\setcounter{section}{-1}\section{はじめに}
+
+この予稿において, 射影多様体は$\C \mathbb{P}^N$の複素部分多様体とする.
+また説明のために厳密性を失った箇所が随所に見られるので, ご容赦いただきたい.\footnote{例えばこの予稿では特異点の話が一切出てこないが, 本来は特異点やlog対を考えるべきである. また予想に関しても専門家によって違いがあるようである. \underline{あと私は極小モデル理論の専門家ではない.} }
+%専門家の方は\ref{main}章から読んでほしい.} 
+
+極小モデル理論の部分を書くにあたり, \cite{KMM87}, \cite{KM98}, \cite{Fjn22}を参考にした. 極小モデル理論に関するより詳しい論説として, \cite{Kaw93}, \cite{Fjn09}, \cite{Gon20}, \cite{Fjn22}が挙げられる. この順番で読むと時代の変遷がわかり面白いと思う.
+
+\section{極小モデル理論}
+射影多様体に関する基本的な問題の1つに「射影多様体はどれくらいあるのか」という問題がある. 
+これは簡単にいうと次のような予想である.\footnote{こうした予想の定式化はないが, 専門外向けの説明ではこの定式化が使われているようである.}
+
+\begin{conj}[予想?]
+\label{class}
+射影多様体は次の$3$つから構成される.
+ \begin{enumerate}
+\renewcommand{\labelenumi}{$(\arabic{enumi})$.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+  %$"K_X <0"$
+\item Ricci曲率正な多様体$($標準束$K_X$の曲率が負$)$ $[$Fano多様体$]$\footnote{\underline{標準束$K_X$の定義は$(\det T_X)$の双対である.} Ricci曲率は接ベクトル束$T_X$に関する曲率であるので, Ricci曲率と$K_X$の曲率の正負は逆になる.}
+\item Ricci曲率$0$な多様体$($標準束の曲率が$0$ $)$ $[$Calabi-Yau多様体$]$
+\item Ricci曲率負な多様体$($標準束の曲率が正$)$ $[$一般型多様体$]$\footnote{"$K_X$が巨大"というのが一般型多様体の正しい定義. }
+\end{enumerate}
+\end{conj}
+
+低次元の具体例を見ていく. まず$\dim_{\C} X =1$の場合は, Ricci曲率が正, 0, 負の多様体に分類できることがわかっている. 具体的には下の表のように分類できる.
+%例えば,$\dim_{\C} X =1$のときは
+%このときは古典的な結果から$X$はその種数$g$で分類される. 
+%ここでは「$\C \mathbb{P}^1$($g=0$), 楕円曲線($g=1$), 種数2以上の曲線」の3グループに分ける
+
+\begin{table}[htb]
+  \begin{tabular}{|c||c|c|c|} \hline
+ & $\C \mathbb{P}^1$&  楕円曲線 & 種数2以上の曲線  \\ \hline 
+種数による分類 & $g=0$&  $g=1$ & $g\ge 2$  \\ \hline 
+Ricci曲率& 正&  0 &負  \\ \hline 
+標準朿$K_X$の曲率& 負 &  $0$ & 正  \\ \hline 
+ & Fano多様体& Calabi-Yau多様体& 一般型多様体  \\ \hline 
+  \end{tabular}
+\end{table}
+%よってこの場合, 予想\ref{classification}は正しい
+
+$\dim_{\C} X =2$の場合はCastelnuovoの収縮定理とKodaira-Enriquesによる曲面の分類によって, 
+ブローダウンと呼ばれる双有理写像\footnote{双有理写像とは, あるZariski開集合上で同型な写像. 全体で定義されてなくてもよい.}
+の列
+$$
+X:=X_{0} \rightarrow X_1 \rightarrow X_2 \rightarrow \cdots \rightarrow X_k =: Y
+$$
+があって$Y$は次の3つのいずれかを満たす.
+\begin{itemize}
+\item $\C \mathbb{P}^2$, $\mathbb{C}\mathbb{P}^1$束. [Fano ファイブレーション]
+\item トーラス, 双楕円曲面, K3曲面, Enriques曲面, 楕円ファイブレーション. [Calabi-Yau ファイブレーション]
+\item 一般型多様体
+\end{itemize}
+%$\mathbb{C}\mathbb{P}^1$束や楕円ファイブレーション$Y \rightarrow Z$について, その底空間$Z$の次元は1以下であるので, １次元の分類結果が使える. 
+以上より複素１次元多様体の分類結果を用いて, $X$は双有理同値を除いてRicci曲率が正, 0, 負の多様体から構成される.
+
+では3次元以上の場合はどうなるのだろうか. 
+2次元の場合を考えると以下のような予想が考えられる.\footnote{この予想\ref{classification}はS. KebekusによるBourbakiセミナーおよびC. BirkarによるICM受賞講演やその関連動画から引用した. }
+
+\begin{conj}
+\label{classification}
+射影多様体$X$について, ある双有理写像$X \dashrightarrow Y$があって, $Y$は次の$3$つのいずれかを満たす.
+ \begin{enumerate}
+\renewcommand{\labelenumi}{$(\arabic{enumi})$.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item Fano多様体を一般ファイバーにもつファイブレーションを持つ. $[$Fano ファイブレーション$]$
+\item Calabi-Yau多様体を一般ファイバーにもつファイブレーションを持つ. $[$Calabi-Yau ファイブレーション$]$
+\item 一般型多様体.
+\end{enumerate}
+\end{conj}
+%これは射影多様体は次の3つから構成されるという\cite{BirkarICM}
+
+予想\ref{classification}をもう少し詳しく見ていく. その前に2点定義をする.
+\begin{defn}
+\label{nef_semiample}
+$X$を射影多様体とし, $L$を$X$上の直線束とする.
+\begin{enumerate}
+\renewcommand{\labelenumi}{$(\arabic{enumi})$.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item $L$がネフであるとは, 任意の複素1次元曲線$C \subset X$について$L.C := \int_{C} \deg_{C}(L|_{C}) \ge 0$となること.
+\item $L$が半豊富であるとは, 正の整数$m \in \N_{>0}$と$L^{\otimes m}$の正則切断$s_0, \ldots, s_{N} \in H^{0}(X, L^{\otimes m})$があって, $s_{0}(x) =s_{1}(x) = \cdots = s_{N}(x)=0$となる点$x$が存在しないこと. 
+このとき写像$\Phi_{|L^{\otimes m}|}:  X\rightarrow \C \mathbb{P}^N$を次のように定義できる:
+ $$
+\begin{array}{cccc}
+\Phi_{|L^{\otimes m}|}: &X& \rightarrow & \C \mathbb{P}^N \\
+&x& \longmapsto & (s_{0}(x) : s_{1}(x) : \cdots: s_{N}(x))
+\end{array}
+$$
+\end{enumerate}
+\end{defn}
+%\begin{defn}$K_X$がネフな射影多様体を極小モデルと呼ぶ.\end{defn}
+
+
+予想\ref{classification}の話に戻ると, 射影多様体$X$についてもし$K_X$がネフでないならば, 錐定理と収縮定理(\cite[Theorem 3.7]{KM98})およびフリップの存在定理(\cite[Corollary 1.4.1]{BCHM})によって, 次のどちらかが成り立つ.
+\begin{enumerate}
+\renewcommand{\labelenumi}{$(\arabic{enumi})$.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item $X$はFanoファイブレーションを持つ.
+\item $X$は因子収縮射またはフリップという双有理写像$X:=X_{0} \dashrightarrow X_1$を持つ. 
+\end{enumerate}
+
+(1)の場合はそれ以上考えないことにする. (2)の場合$X_1$の標準束$K_{X_1}$について同じことを考えることで, 
+双有理写像の列
+$$X:=X_{0} \dashrightarrow X_1 \dashrightarrow X_2 \dashrightarrow \cdots \dashrightarrow X_k \dashrightarrow \cdots$$
+を得る. (この操作を「極小モデルプログラム(MMP)を走らせる」という.)
+この操作が有限回で止まることはまだわかっていない. より具体的にいうと因子収縮射は有限回しか起こり得ないことがわかっているが, フリップが有限回しか起こり得ないことはわかっていない. つまり以下の予想は未解決である.\footnote{予想\ref{existence}は\cite[問題2]{Fjn22}から引用した. }
+
+\begin{conj}%[極小モデルの存在問題]
+\label{existence}
+フリップの無限列が存在しないように極小モデルプログラムを走らせることは可能である.
+\end{conj}
+予想\ref{existence}が正しいと仮定すると, 最終的にある双有理写像$X \dashrightarrow Y$があって, 次のどちらかを満たす.
+\begin{enumerate}
+\renewcommand{\labelenumi}{$(\arabic{enumi})$.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item $Y$はFano ファイブレーションを持つ.
+\item 標準朿$K_Y$はネフ. %かのどちらかになる.%\footnote{$K_Y$がネフな多様体を極小モデルと呼ぶ.} 
+\end{enumerate}
+そこで次の予想を考える(この予想も未解決である).
+\begin{conj}[アバンダンス予想]
+\label{Abundance}
+%代数多様体$Y$について, 
+標準束$K_Y$がネフならば半豊富である.
+\end{conj}
+もし予想\ref{Abundance}が正しいと仮定すると, $K_Y$は半豊富より定義\ref{nef_semiample}のように$\Phi_{|K_{Y}^{\otimes m}|} : Y \rightarrow Z$という写像が考えられる.
+$\dim Y = \dim Z$ならば$Y$は一般型多様体であり, $\dim Y \neq \dim Z$ならば$\Phi_{|K_{Y}^{\otimes m}|} : Y \rightarrow Z$はCalabi-Yauファイブレーションである.
+%$K_Y$ネフならば$\Phi_{|K_{X}^{\otimes m}|} : X \rightarrow Y$というfibrationをもち, その一般ファイバーはCalabi-Yauである.
+よって予想\ref{classification}は肯定的に解決する.
+
+つまり予想\ref{classification}を解くためには予想\ref{existence}と予想\ref{Abundance}を考えば良いことがわかる.
+\footnote{予想\ref{existence}の代わりに, 「射影多様体は双有理同値を除いてFanoファイブレーションを持つか極小モデル(標準束$K_Y$がネフな多様体)である」(極小モデルの存在問題)を考えても良い. こちらも未解決である.}
+%\footnote{さらりと言っているが, ここまでの定式化に多くの数学者の研究がベースとなっている. } 
+予想\ref{existence}と予想\ref{Abundance}は双有理幾何学(代数多様体を双有理同値で分類する分野)において大きな未解決問題となっている.
+
+\begin{rem}
+コンパクトK\"ahler多様体上でも"極小モデル理論"を同様に考えることができる(cf. \cite{HP16} \cite{CHP13}). 射影多様体はコンパクトK\"ahlerなので, ここからはコンパクトK\"ahler多様体上で議論を進める. もちろんコンパクトK\"ahler多様体の予想\ref{existence}と予想\ref{Abundance}は未解決である. 
+%\footnote{$X$がコンパクトK\"ahlerの場合は「任意の$\epsilon >0$についてある計量$h_{\epsilon}$があってその曲率が$\sqrt{-1}\Theta_{h_{\epsilon}} \ge -\epsilon \omega$となること」としてネフを定義する.} 
+\end{rem}
+
+\section{アバンダンス予想の先行研究}
+\label{Abundance_research}
+今回の予稿ではアバンダンス予想\ref{Abundance}に関してもう少し詳しく見ていく. 
+断りのない限り$X$を2次元以上のコンパクトK\"ahler多様体とし, $n := \dim_{\C} X$とする.
+%アバンダンス予想\ref{Abundance}の先行結果について述べる.
+\begin{defn}
+%$X$を複素$n$次元射影多様体とし, 
+$L$を$X$上のネフ直線束とする.%\footnote{$X$がコンパクトK\"ahler多様体の場合ネフの定義は}
+\begin{itemize}
+\item $L$の飯高次元$\kappa(L)$を次で定める.
+$$
+\kappa(L) := \limsup_{m \rightarrow \infty} \frac{\log \dim_{\C} H^0 (X , L^{\otimes m})}{\log m}
+\in \{-\infty, 0, 1, \cdots, n\}.
+$$
+\item $L$の数値的飯高次元$\nu(L)$を次で定める.
+$$
+\nu(L) := \max \{ k \in \N_{\ge 0} \,|\,  c_1(L)^k \neq 0 \in H^{k,k}(X, \R)\}
+\in \{0, 1, \cdots, n\}.
+$$
+\end{itemize}
+\end{defn}
+一般論から$\kappa(L) \le \nu(L)$である. \underline{$\kappa(L)= \nu(L)$のとき$L$はアバンダント}と呼ばれる. アバンダンス予想\ref{Abundance}を示すためには, 標準束$K_X$がアバンダントであることを示せば良いことが, 次の定理から知られている.
+%アバンダントに関して次の定理が知られている.
+\begin{thm}\cite{Kaw85}\cite{Nak92}
+\label{Good}
+$X$をコンパクトK\"ahler多様体とする.
+ $K_X$がネフかつアバンダントならば$K_X$は半豊富である.\footnote{射影多様体の場合は\cite{Kaw85}で示され, その後\cite{Nak92}でコンパクトK\"ahlerの場合に示された. 以後の定理で引用が多いのは, 射影多様体の場合とコンパクトK\"ahlerの場合で示した人が違うからである. }
+\end{thm}
+
+%以上よりアバンダンス予想を示すためには, $\kappa(K_X) = \nu(K_X)$を示せば良い.
+%標準朿$K_X$の場合次のことが成り立つ.
+アバンダンス予想については次の先行研究がある.
+\begin{itemize}
+\item $\nu(K_X)=n$の場合. %このとき$K_X$はアバンダントである. 
+一般にネフ直線束$L$について, $\nu(L)=n$ならば$L$はアバンダントである. 射影多様体の場合はHirzebruch-Rieman-Rochの定理からわかり, コンパクトK\"ahlerの場合はDemaillyによる正則モース理論(\cite{Dem})からわかる.
+\item $\nu(K_X)=0$の場合. Beauville-Bogomolov分解からわかる.\footnote{$X$に特異点がある場合やlog対$(X,D)$の場合でも肯定的に解決している. ただし証明は異なる.}
+\item $\dim_{\C} X \le 2$の場合. これはRiemann曲面やKodaira-Enriquesの分類を用いて証明できる.
+\item $\dim_{\C} X = 3$の場合. 射影多様体の場合は\cite{Miya87}と\cite{Kaw92}によって解決し, コンパクトK\"ahlerの場合は\cite{CHP13}によって解決した.
+\end{itemize}
+他にも帰納法的な議論など盛んに行われている. 
+こちらの方面に関して私はフォローできていないので極小モデル理論の専門家にお任せしたい.
+
+
+\section{主結果}
+\label{main}
+
+\subsection{主結果}
+
+%次が今回の話のメインテーマである.
+東北大学の松村慎一氏との共同研究により, 「2次のChern類が$0$であるコンパクトK\"ahler多様体についてアバンダンス予想\ref{Abundance}が成り立つ」ことを示した.
+正確に述べると次のとおりである. 
+
+\begin{thm}\cite{IM22}
+\label{main_result}
+$c_2(X)=0$かつ%となるコンパクトK\"ahler多様体$X$について, 
+$K_X$がネフならば$K_X$は半豊富である$($つまり$c_2(X)=0$なら予想\ref{Abundance}は正しい$)$.
+
+さらにある有限被覆$X' \rightarrow X$があって次のどちらかが成り立つ.
+\begin{enumerate}
+\renewcommand{\labelenumi}{$(\arabic{enumi})$.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item $X'$はトーラス.
+\item 沈めこみ$X' \rightarrow Y$があって, 任意のファイバーはトーラスで$Y$は種数2以上の複素1次元曲線である.
+\end{enumerate}
+\end{thm}
+後半の"さらに..."からの主張は\cite{Hor13}とほぼ同じである. 今回は証明を省略する. 定理\ref{main_result}から$c_2(X)=0$かつ$K_X$がネフな多様体は, トーラスと種数2以上の曲線から構成され, 予想\ref{class}を支持する結果を得た.
+
+\subsection{証明}
+以下は定理\ref{main_result}の証明である. 証明は次の手順に分かれる.
+%証明は気づいてしまえば簡単である.
+\begin{enumerate}
+\item[手順1.] $c_2(X)= 0$かつ$K_X$がネフならば, $\Omega_{X}^{1}$はネフ\footnote{ベクトル束$E$がネフとは$\mathcal{O}_{\mathbb{P}(E)}(1)$が$\mathbb{P}(E)$上のネフ直線束となること.}
+かつ$\nu(K_X) \le 1$である.
+\item[手順2.]$\Omega_{X}^{1}$がネフかつ$\nu(K_X) \le 1$ならば, $K_X$は半豊富である.
+\end{enumerate}
+
+\subsubsection{手順$1$の証明 -generically nef-}
+手順$1$の証明の鍵となるのは, \cite{Peternell}によるgenerically nefの概念である.\footnote{"generically nef "の日本語訳はないので, 今回英語のまま表記することにした.}
+\begin{defn}
+ベクトル束$E$がgenerically nefであるとは, 任意のK\"ahler形式$\omega$と任意の商ベクトル束$E\twoheadrightarrow Q$について$\int_{X} c_1(Q)\wedge  \omega^{n-1} \ge0$となること.\footnote{説明のために\cite{Peternell}とは異なる定義をした. かなり細かい話なので, 厳密な定義を知りたい方は\cite{Peternell}を参照のこと.}
+\end{defn}
+generically nefを考える意味として, 次の結果があるからである.
+
+\begin{thm}\cite{Miy87a}\cite{CP11}\cite{CP19}\cite{Enoki88}\cite{Cao13}
+\label{Semipositivity}
+$K_X$ネフならば余接ベクトル束$\Omega_{X}^{1}$はgenerically nefである.
+\end{thm}
+\begin{thm}\cite{Miy87b}\cite{Ou17}\cite{Cao13}\cite{IM22}
+\label{generically_nef}
+$E$をgenerically nefなベクトル束とする. $c_1(E)$がネフかつ$c_2(E)=0$ならば, 次のいずれかが成り立つ.
+
+ \begin{enumerate}
+\renewcommand{\labelenumi}{(\arabic{enumi}).}
+\renewcommand{\labelenumi}{$(\arabic{enumi})$.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item  $\nu(c_1(E))\ge 2$の場合. あるネフ直線束$L \subset E$があって, $c_1(L) = c_1(E)$かつ$c_2(E/L)=0$.
+\item $\nu(c_1(E)) =1$の場合. あるフィルトレーション$0 =E_0 \subset E_1 \subset \cdots \subset E_l = E$があって次を満たす:
+\begin{itemize}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item 十分小さな正の数$\epsilon>0$について, このフィルトレーションは$(c_1(E) + \epsilon \omega)^{n-1}$ に関するHarder-Narasimhanフィルトレーションである.
+\item $1 \le i \le l$なる自然数$i$について, $0$以上の実数$\lambda_i$があって, $c_1(E_i/ E_{i-1}) = \lambda_{i} c_1(E)$かつ$c_2(E_i/ E_{i-1})=0$.
+\end{itemize}
+\item $\nu(c_1(E)) =0$の場合. $E$はネフである.
+ \end{enumerate}
+\end{thm}
+
+一般にはgenerically nefなベクトル束はネフではない. 例としてK3曲面の余接ベクトルはgenerically nefだがネフではない. しかしある特殊な状況ではネフになることを\cite{IM22}で示した.
+\begin{thm}\cite{IM22}
+\label{nefness}
+generically nefなベクトル束$E$について, $c_1(E)$がネフかつ$c_2(E)=0$ならば$E$はネフである.
+\end{thm}
+証明は定理\ref{generically_nef}に\cite{Nak04}, \cite{Wu20}の手法を応用することで示される.
+\vspace{11pt}
+
+\hspace{-11pt}\underline{手順1. $c_2(X)= 0$かつ$K_X$がネフならば, $\Omega_{X}^{1}$はネフかつ$\nu(K_X) \le 1$の証明.}
+
+$c_2(X)=c_2(\Omega_{X}^1)$なので, 定理\ref{Semipositivity}と定理\ref{nefness}から$\Omega_{X}^{1}$はネフである.
+また$\nu(K_X) \ge 2$ならば, 定理\ref{generically_nef}からあるネフ直線束$L \subset \Omega_{X}^{1}$があって$\nu(L)\ge 2$となるが, これはBogomolov-Sommese消滅定理から矛盾である.  \qed
+
+\begin{rem}[Bogomolov-Sommese消滅定理]
+\label{Bogomolov-Sommese}
+Bogomolov-Sommese消滅定理の主張とは「任意の$1 \le p \le n$と$L \subset \Omega_{X}^{p}$なる直線束$L$について, $\kappa(L) \le p$が成り立つ」である. $\kappa(L)$を$\nu(L)$に変えても成り立つことが\cite{Mou98}により知られている.
+\end{rem}
+
+\subsubsection{手順$2$の証明. -Campana's special variety-}
+\begin{defn}
+$X$が"Campanaの意味でspecial"とは, 任意の$1 \le p \le n$と$L \subset \Omega_{X}^{p}$なる直線束$L$について, $\kappa(L) < p$となること.
+\end{defn}
+補足\ref{Bogomolov-Sommese}から, $X$がspecialでなければ$\kappa(L) =p$かつ$L \subset \Omega_{X}^{p}$なる直線束$L$が存在し, さらにこの$L$を使って$X$から射を作れる. この射に関して詳しく調べたのが\cite{Cam04}である. まとめると次の通りになる.
+\begin{thm}\cite{Cam04}
+\label{Campana_special}
+$X$がspecialでなければ, ある非自明な支配的な有理写像$f : X \dashrightarrow Y$があって次を満たす.
+\begin{itemize}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+\item あるZariski 開集合$Y_0 \subset Y$があって$f: f^{-1}(Y_0) \rightarrow Y_0$は固有射である.
+\item 双正則写像$\pi : X' \rightarrow X$と全射正則写像$f' : X' \rightarrow Y$があって以下の図式を満たす.
+\begin{equation*}
+\xymatrix@C=40pt@R=20pt{
+ \tilde{X}\ar@{->}[d]_{\pi}   \ar@{->}[r]^{f'} & Y \\
+X  \ar@{-->}[ur]_{f} &  \\
+ }
+\end{equation*}
+ \item $F$を$f$の一般ファイバーとすると, $\kappa(K_X) \ge \kappa(K_F) + \dim Y$が成り立つ.
+\end{itemize}
+\end{thm}
+最後の条件がアバンダンスを示す際に使えそうだと気づく. 一般にコンパクトK\"ahler多様体がspecialかどうか判定する術は少ない.
+次の定理はそのような判定法を与えるものである.
+%一般にspecial多様体と$\kappa(K_X)$にはあまり関係がない. 
+\begin{thm}\cite{PRT21}
+\label{numerically1}
+$\nu(L) =1$かつ$L \subset \Omega_{X}^{1}$なる直線束が存在すれば, $X$はspecialではない.
+\end{thm}
+補足として, $\nu(L) =1$かつ$L \subset \Omega_{X}^{1}$なる直線束があっても, $\kappa(L)=1$とは限らない. つまりこの定理は全然自明ではない. 
+
+定理\ref{numerically1}の証明の方針としては次のとおりである. \cite{Tou16}から横断的双曲的葉層(transversally hyperbolic foliation)でその法束が$L^{*}$となるものがある. この葉層のホロノミーと\cite{CS}を用いて, $X$から$\C$の単位円盤の$N$個直積を格子で割った多様体$Z$への写像を構成する. この性質を用いて定理\ref{numerically1}は示される.
+
+\cite{IM22}では定理\ref{main_result}の証明で使えるように定理\ref{numerically1}を次のようにカスタマイズした.
+\begin{thm}\cite{IM22}
+\label{nonspecial}
+$E \subset \Omega_{X}^{1}$かつ$E$が射影的平坦\footnote{ベクトル束$E$が射影的平坦(projectively flat)とは, ある表現$\pi_1(X) \rightarrow \mathbb{P}GL(r,\C)$があって, 射影束$\mathbb{P}(E)$がその表現で作られること. \cite[Corollary 2.7]{Kob87}参照.}
+であるならば, $X$はspecialではない.
+\end{thm}
+証明は定理\ref{numerically1}と$\pi_1(X)$の表現から作られるShafarevich写像を表現で場合分けすることでわかる. このテクニックは比較的新しいが\cite{JR13}や\cite{GKP20b}で使われている.
+
+\vspace{11pt}
+\hspace{-11pt}\underline{手順2. $\Omega_{X}^{1}$がネフかつ$\nu(K_X) \le 1$ならば$K_X$が半豊富の証明.}
+
+$\nu(K_X)=0$の場合のアバンダンス予想は解決しているので, $\nu(K_X)=1$として良い. 
+次のように帰納法を用いて証明する.
+
+定理\ref{generically_nef}のようにフィルトレーション $0 =E_0 \subset E_1 \subset \cdots \subset E_l = \Omega_{X}^{1}$を考えると, $E_1$はスロープ半安定であり, $c_2(E_1)=c_1(E_1)^{2}=0$となる. 
+よって\cite{Nak04}, \cite{Wu20}, \cite{LOY20}から$E_1$は射影的平坦なので, 定理\ref{nonspecial}から$X$はspecialではない. よって定理\ref{Campana_special}より非自明な支配的な有理写像$f : X \dashrightarrow Y$があって, $F$を$f$の一般ファイバーとすると, 
+\begin{equation}
+\label{inequality}
+\kappa(K_X) \ge \kappa(K_F) + \dim Y
+\end{equation}
+である. $F$の余接ベクトル$\Omega_{F}^{1}$はネフかつ$\nu(K_F) \le \nu(K_X) \le1$より, 帰納法の仮定から$\kappa(K_F) = \nu (K_F) \ge 0$である. 一方$\dim Y \ge 1$であるので, 式(\ref{inequality})から$\kappa(K_X) \ge 1$となる. 仮定から$1 = \nu (K_X) \ge \kappa(K_X)$なので, $K_X$はアバンダントである. 以上より定理\ref{Good}から$K_X$は半豊富である. \qed
+
+\vspace{11pt}
+以上が定理\ref{main_result}の証明である. 気づいてしまえば証明は簡単である.
+
+\section{余談と展望}
+\subsection{余談}
+\underline{元々この研究の動機は「アバンダンス予想を解くこと」ではない.}
+余談としてこの研究の動機をお話ししたい. 
+まず初めに接ベクトル束$T_X$がネフな多様体の構造は既にわかっている. 
+\begin{thm}\cite{CP}\cite{DPS}
+\label{DPSthm}
+$T_X$がネフであるならば, 有限被覆$\pi : X' \rightarrow X$とトーラス$A$への沈め込み$f : X' \rightarrow A$が存在して, $f$の任意のファイバーはFano多様体である. 
+\end{thm}
+つまり$T_X$がネフのとき, $X$はトーラスとFano多様体で構成されることがわかり, これは予想\ref{class}を支持する結果である. 私の以前の研究は$T_X$がネフより弱い正値性を持つ射影多様体の構造をしらべていた. \cite{HIM}や\cite{Iwa20}などがそれに当たる. %\footnote{しかしながらこの方向性の研究はその後やることがなくなったのである...}
+
+では$\Omega_{X}^{1}$がネフである場合の多様体の構造はどうなるのだろうか. これはアバンダンス予想と深く関係している.
+\begin{thm}\cite{Hor13}
+$\Omega_{X}^{1}$がネフかつ$K_X$が半豊富ならば, 有限被覆$X' \rightarrow X$と沈め込み$X' \rightarrow Y$があって, 任意のファイバーはトーラスで$Y$は一般型多様体である.
+%さらに$X$が射影多様体の場合$K_Y >0$かつ滑らかなセクション$Y \rightarrow X$が存在する.
+\end{thm}
+よってアバンダンス予想\ref{Abundance}が正しければ, $\Omega_{X}^{1}$がネフである多様体の構造が完璧にわかる. しかし肝心のアバンダンス予想に関する結果は以下の2つぐらいしかなかった.
+\begin{thm}\cite{WZ02}\cite{Liu13}
+\label{Wu_Zheng}
+$X$の双正則断面曲率が$0$以下ならば$K_X$は半豊富である.
+\end{thm}
+\begin{thm}\cite{JR13}\cite{GKP20b}
+\label{GKP20b_thm}
+%X$をKLT特異点を持つ射影代数多様体で次元は2以上とする. $H$を豊富なCartier因子とする,
+%Let $X$ be a projective klt variety of dimension $n \ge 2$ and $H$ be an ample divisor.
+$X$を射影多様体とし, $H$を豊富直線束とする. 
+$\Omega_{X}^{1}$が$H$-半安定かつ
+$$
+\left(c_2(\Omega_{X}^{1}) - \frac{n-1}{2n}c_1(\Omega_{X}^{1})^2 \right)[H]^{n-2}=0
+$$
+ならば有限被覆$ X' \rightarrow X$があって, $X'$はトーラスである.
+\end{thm}
+補足すると, $X$の双正則断面曲率が$0$以下ならば$\Omega_{X}^{1}$はネフである. また定理\ref{GKP20b_thm}の仮定のもとでは, $\Omega_{X}^{1}$は射影的平坦である.
+
+定理\ref{GKP20b_thm}の証明を読んでいると, 彼らは証明中で$K_X$が半豊富であることを示している. 
+一方で$\Omega_{X}^{1}$がネフかつ$\nu(K_X)=1$の場合, \cite{DPS}から$c_2(X)=0$であるので, 定理\ref{generically_nef}より$\Omega_{X}^{1}$は射影的平坦なベクトル束のフィルトレーションで構成される. 
+「$\Omega_{X}^{1}$がネフかつ$\nu(K_X)=1$なら, 状況が定理\ref{GKP20b_thm}とかなり似ているので, もしかしたらアバンダンス予想\ref{Abundance}が成り立つのでは...?」と思い調べてみると, 意外にも簡単にできてしまった. それから色々調べていて主定理\ref{main_result}の形に拡張した.
+
+\cite{IM22}は「$\Omega_{X}^{1}$がネフな多様体の研究」として論文を書いている. ただ\cite{IM22}の内容を講演するとなると, 証明に出てくる道具が多すぎて, 「$\Omega_{X}^{1}$がネフな多様体」の話ができない. 「$c_2(X)=0$のアバンダンス定理」の方がインパクトが強いのでそれはそれでいいのだが, 私の興味はアバンダンス予想ではないので, ちょっともやもやした気分である.
+
+\subsection{展望}
+ここまで幾何学シンポジウムという場で代数幾何学の話ばかりしてしまったので, 最後は微分幾何学の話で終わりたい. 
+%定理\ref{Wu_Zheng}に関してである. 
+
+定理\ref{Wu_Zheng}は微分幾何学の手法で双正則断面曲率が$0$以下のアバンダンス予想\ref{Abundance}を解いている論文である.
+以下にその詳細を述べる.
+%まず定理\ref{Wu_Zheng}の証明の概略を述べる.
+%$X$に双正則断面曲率が半負な計量$g$があるとする. 
+コンパクトK\"ahler多様体$X$のK\"ahler計量を$g$とする. 
+このとき$\mathcal{F} \subset T_X$を
+\begin{equation}
+\label{ricci_foliation}
+\mathcal{F}_{p} := \{v \in T_{p}X  \,|\, Ric(g)(v,v)=0 \}
+\text{\,\,\, ($p \in X$)}
+\end{equation}
+と定義する. 一般点$p \in X$について, $\mathcal{F}_p$のランクは$\nu(K_X)$に一致する.
+また$Ric(g) := - \sqrt{-1} \partial \bar{\partial} \log \omega_{g}^{n}$ であるので, これはMonge-Ampere葉層である.特に\cite{BT87}から$\mathcal{F}$は"複素"葉層であることがわかっている.  ところが$\mathcal{F}$が"正則"葉層であることは一般にはわからない.
+ただ\cite{WZ02}では次のことがわかっている.
+\begin{thm}\cite{WZ02}
+\label{foliation}
+$g$の双正則断面曲率が$0$以下ならば, $\mathcal{F}$は正則葉層である.
+%\footnote{最終的にこの葉層$\mathcal{F}$はファイブレーション$f : X \rightarrow Z$の相対的接ベクトル束$T_{X/Z}$に一致する. つまり$\mathcal{F}$は代数的可積分(algebraicaly integrable)である.}
+\end{thm}
+証明として計量のK\"ahler性を大きく使う.\footnote{証明は\cite{Fer70}などの"Conullity Operator"の研究を基にしている. この部分でも証明は難解である.}
+その後定理\ref{foliation}とDeRham分解を用いて$X$の普遍被覆$\tilde{X}$は$\C^{n-r}$と双正則断面曲率が0以下かつRicci曲率がある1点で負な完備K\"ahler多様体$\tilde{Y}$の直積になる.
+その後\cite{Nad90}のテクニックを使って, 有限被覆$X' \rightarrow X$と沈め込み$X' \rightarrow Y'$で, 任意のファイバーはトーラスで$Y'$が一般型多様体となるものを構成する.
+
+と, ここまで\cite{WZ02}の証明の概略を書いたが, 正直言って私にはよくわからなかった.
+%\footnote{頑張って解読を試みたが証明が難解すぎてわからなかったのである...} 
+かなり微分幾何学のテクニックに依存しているからである. しかも計量のK\"ahler性というのを大きく使うため, $\Omega_{X}^{1}$がネフの場合のアバンダンス予想へ応用ができない.\footnote{これは私にその能力がないだけで, もしかしたら応用できるかもしれない. また微分幾何学の手法をガンガン進めてアバンダンス予想を解く方針も気になるところである. 例えば正則断面曲率が0以下のアバンダンス予想はこの方法で解決できるのではと思われる.}
+そこで次の問題を提示したい.
+
+\begin{ques}
+\label{another_proof}
+定理\ref{Wu_Zheng}の別証明, 特に複素代数幾何学的な証明を見つけよ.
+\end{ques}
+計量のK\"ahler性を使わない別証明があれば面白い. なぜなら$\Omega_{X}^{1}$がネフのアバンダンス予想への応用が期待できるからである.
+
+双正則断面曲率が$0$以下ならば, 式(\ref{ricci_foliation})での葉層$\mathcal{F}$は, あるファイブレーション$f : X \rightarrow Y$の相対的接ベクトル束$T_{X/Y}$に一致する. つまり$\mathcal{F}$は代数的可積分(algebraicaly integrable)である. 
+ここは別証明を与えることができると思う. 
+例えばMonge-Ampere葉層の正則性(cf. \cite{Koike21})や\cite{Druel17}でのBostによる葉層の代数的可積分性を使うところなどを応用すれば, $\mathcal{F}$が代数的可積分な正則葉層であることが意外と簡単に解決するのではないかと思う. 
+もしそれができればDruelらによる葉層理論(cf. \cite{Druel17})によって, DeRham分解以後の定理\ref{Wu_Zheng}の議論はスキップできる(はずである).
+
+他にも葉層を用いたアバンダンス予想\ref{Abundance}へのアプローチとして, \cite{Gon16}の5章や\cite{IM22}の藤田分解などが挙げられる.
+この方針がどこまでできるか検討もつかないが, まだ可能性はあると思う. 
+
+
+
+
+\begin{thebibliography}{n}
+\tiny
+
+\bibitem[BK77]{BT87}
+E. Bedford, M. Kalka,
+\textit{Foliations and complex Monge-Amp\`ere equations.}
+ Comm. Pure Appl. Math.  30  (1977),  no. 5, 543--571.
+ 
+
+ \bibitem[BCHM10]{BCHM}
+C. Birkar, P. Cascini, C. Hacon, J. M\textsuperscript cKernan,
+\textit{Existence of minimal models for varieties of log general type.}
+ J. Amer. Math. Soc.  {\bf{23}}  (2010),  no. 2, 405--468.
+ 
+ \bibitem[Cam04]{Cam04}
+F. Campana. 
+\textit{Orbifolds, special varieties and classification theory.} 
+Ann. Inst. Fourier (Grenoble) {\bf{54}} (2004), no. 3, 499--630. 
+  
+   \bibitem[CHP16]{CHP13}
+ F. Campana, A. H\"oring, T. Peternell. 
+\textit{Abundance for K\"ahler threefolds.}
+Ann. Sci. \'Ec. Norm. Sup\'er. (4)  {\bf{49}}  (2016),  no. 4, 971--1025.
+
+
+\bibitem[CP\u{a}19]{CP19}
+F. Campana, M. P\u{a}un. 
+\textit{Foliations with positive slopes and birational stability of orbifold cotangent bundles.}
+Publ. Math. Inst. Hautes \'Etudes Sci.
+{\bf{129}}  (2019), 1--49.
+
+\bibitem[CPe91]{CP}
+F. Campana, T. Peternell, 
+\textit{Projective manifolds whose tangent bundles are numerically effective.} 
+Math. Ann. {\bf{289}} (1991), 169--187.
+
+\bibitem[CPe11]{CP11}
+F. Campana, T. Peternell.
+\textit{Geometric stability of the cotangent bundle and the universal cover of a projective manifold.}
+Bull. Soc. Math. France  {\bf{139}}  (2011),  no. 1, 41--74.
+
+ 
+
+\bibitem[Cao13]{Cao13}
+J. Cao.
+\textit{A remark on compact K\"ahler manifolds with nef anticanonical bundles and its applications.}
+Preprint, arXiv:1305.4397v2.
+
+\bibitem[CS08]{CS}
+K. Corlette, C. Simpson,
+\textit{On the classification of rank-two representations of quasiprojective fundamental groups.}
+ Compos. Math.  {\bf{144}}  (2008),  no. 5, 1271--1331.
+
+
+ \bibitem[Dem85]{Dem}
+J.-P. Demailly,
+\textit{Champs magn\'etiques et in\'egalit\'es de Morse pour la d"-cohomologie.
+(French)  [[Magnetic fields and Morse inequalities for the d"-cohomology]] }
+Ann. Inst. Fourier (Grenoble)  {\bf{35}}  (1985),  no. 4, 189--229.
+
+
+\bibitem[DPS94]{DPS}
+J.-P. Demailly, T. Peternell, M. Schneider, 
+\textit{Compact complex manifolds with numerically effective tangent bundles.}
+J. Algebraic Geom., {\bf{3}}, (1994), no.2, 295--345.
+
+ 
+ 
+\bibitem[Dru18]{Druel17}
+S. Druel. \textit{A decomposition theorem for singular spaces with trivial canonical class of dimension at most five.}
+Invent. Math. {\bf{211}}, 1 (2018), p. 245-296.
+
+\bibitem[Eno88]{Enoki88}
+I. Enoki. 
+\textit{Stability and negativity for tangent sheaves of minimal K\"ahler spaces.} 
+Geometry and analysis on manifolds (Katata/Kyoto, 1987), 118--126, 
+Lecture Notes in Math., {\bf{1339}}, Springer, Berlin,  1988.
+ 
+ \bibitem[Fer71]{Fer70}
+D. Ferus, 
+\textit{On the completeness of nullity foliations.}
+ Michigan Math. J.  {\bf{18}}  (1971), 61--64.
+ 
+
+\bibitem[Fuj09]{Fjn09}
+藤野 修, 極小モデル理論の新展開, 数学, (2009), 61 巻, 2 号, p. 162-186, 
+%公開日 2012/01/31, Online ISSN 1883-6127, Print ISSN 0039-470X, 
+%\texttt{https://doi.org/10.11429/sugaku.0612162, https://www.jstage.jst.go.jp/article/sugaku/61/2/61_2_162/_article/-char/ja}
+
+ \bibitem[Fuj22]{Fjn22}
+ 藤野, 修 
+ \textit{Problems on the theory of minimal models (Open problems in complex geometry II).}
+ 数理解析研究所講究録, 2211: 223-235 (2022)
+ 
+
+  \bibitem[Gon16]{Gon16}
+ 權業 善範, 極小モデル理論と拡張定理, 第61回 代数学シンポジウム 報告集
+%\url{http://www.mathsoc.jp/assets/file/sections/algebra/algsympo/algsymp16/algebraic-geometry/3-gongyo.pdf}
+%權業善範 東京大学大学院数理科学研究科
+
+ \bibitem[Gon20]{Gon20}
+ 權業 善範, Caucher Birkar氏の業績, 数学, (2020), 72 巻, 1 号, p. 28-36, 
+ %公開日 2022/01/25, Online ISSN 1883-6127, Print ISSN 0039-470X, 
+ %\url{https://doi.org/10.11429/sugaku.0721028, https://www.jstage.jst.go.jp/article/sugaku/72/1/72_0721028/_article/-char/ja}
+ 
+ 
+\bibitem[GKP21]{GKP20b} 
+D. Greb, S. Kebekus, T. Peternell, 
+\textit{Projectively flat KLT varieties},
+%preprint, available at arXiv:2010.06878v1.
+Journal de l'Ecole Polytechnique - Mathematiques {\bf 8} (2021), 1005-1036,
+
+
+\bibitem[H\"or13]{Hor13}
+A. H\"oring, 
+\textit{Manifolds with nef cotangent bundle.}
+ Asian J. Math.  {\bf 17}  (2013),  no. 3, 561--568.
+
+\bibitem[HP16]{HP16}
+A. H\"oring, T. Peternell.
+\textit{Minimal models for K\"ahler threefolds.}
+ Invent. Math.  {\bf{203}}  (2016),  no. 1, 217--264.
+ 
+\bibitem[HIM21]{HIM}
+G. Hosono, M. Iwai, S. Matsumura.
+\textit{On projective manifolds with pseudo-effective tangent bundle.}
+Journal of the Institute of Mathematics of Jussieu, 1-30. 
+doi 10.1017/S1474748020000754.
+
+\bibitem[Iwa21]{Iwa20}
+M. Iwai,
+\textit{Almost nef regular foliations and Fujita's decomposition of reflexive sheaves.}, 
+Annali della Scuola Normale Superiore di Pisa, Classe di Scienze. (2021) DOI:10.2422/2036-2145.202010\_055
+
+\bibitem[IM22]{IM22}
+M. Iwai, S. Matsumura.
+\textit{Abundance theorem for minimal compact K\"ahler manifolds with vanishing second Chern class.}
+Preprint, arXiv:2205.10613
+
+
+
+\bibitem[JR13]{JR13}
+P. Jahnke, I. Radloff,
+\textit{Semistability of restricted tangent bundles and a question of I. Biswas.}
+ Internat. J. Math.  {\bf 24}  (2013),  no. 1, 1250122,
+
+
+   \bibitem[Kaw85]{Kaw85}
+ Y. Kawamata,
+ \textit{Pluricanonical systems on minimal algebraic varieties.}
+ Invent. Math.  {\bf{79}}  (1985),  no. 3, 567--588.
+ 
+
+ \bibitem[Kaw92]{Kaw92}
+ Y. Kawamata. 
+\textit{Abundance theorem for minimal threefolds.}
+ Invent. Math.  {\bf{108}}  (1992),  no. 2, 229--246.
+ 
+ \bibitem[Kaw93]{Kaw93}
+ 川又 雄二郎, 極小モデル理論の最近の発展について, 数学, (1993), 45 巻, 4 号, p. 330-345, 
+ %公開日 2008/12/25, Online ISSN 1883-6127, Print ISSN 0039-470X, 
+% \url{https://doi.org/10.11429/sugaku1947.45.330, https://www.jstage.jst.go.jp/article/sugaku1947/45/4/45_4_330/_article/-char/ja}
+ 
+   \bibitem[KMM87]{KMM87}
+ Y. Kawamata, K. Matsuda, K. Matsuki, 
+ \textit{Introduction to the minimal model problem.}
+ Algebraic geometry, Sendai, (1985), 
+ 283--360, Adv. Stud. Pure Math., {\bf{10}}, North-Holland, Amsterdam, (1987).
+
+\bibitem[Kob87]{Kob87}
+S. Kobayashi, 
+\textit{Differential geometry of complex vector bundles.}
+Publications of the Mathematical Society of Japan, {\bf{15}} 
+Kano Memorial Lectures, {\bf{5}}.
+Princeton University Press, Princeton, NJ; Princeton University Press, Princeton, NJ,  (1987). {\rm xii}+305.
+
+\bibitem[Koi22]{Koike21}
+T. Koike, 
+\textit{On the complement of a hypersurface with flat normal bundle which corresponds to a semipositive line bundle.}
+ Math. Ann.  {\bf{383}}  (2022),  no. 1-2, 291--313.
+
+
+ \bibitem[KM98]{KM98}
+ J. Koll\'ar, S. Mori. 
+\textit{Birational geometry of algebraic varieties.} 
+With the collaboration of C. H. Clemens and A. Corti. Translated from the 1998 Japanese original. 
+Cambridge Tracts in Math., Vol. 134. Cam- bridge: Cambridge Univ. Press, 1998.
+
+\bibitem[Liu14]{Liu13}
+G. Liu,
+\textit{Compact K\"ahler manifolds with nonpositive bisectional curvature.}
+ Geom. Funct. Anal.  {\bf 24}  (2014),  no. 5, 1591--1607.
+ 
+
+
+
+\bibitem[LOY20]{LOY20}
+J. Liu, W. Ou, X. Yang. \textit{Projective manifolds whose tangent bundle contains a strictly nef subsheaf.} Preprint, arXiv:2004.08507
+to appear in Journal of Algebraic Geometry.
+
+ 
+  \bibitem[Miy87a]{Miy87a}
+ Y. Miyaoka, 
+ \textit{Deformations of a morphism along a foliation and applications.}
+ Algebraic geometry, Bowdoin, (1985)  (Brunswick, Maine, 1985), 
+ 245--268, Proc. Sympos. Pure Math., {\bf{46}}, Part 1, Amer. Math. Soc., Providence, RI,  (1987). 
+ 
+ \bibitem[Miy87b]{Miy87b}
+Y. Miyaoka. 
+\textit{The Chern classes and Kodaira dimension of a minimal variety.}
+ Algebraic geometry, Sendai, (1985), 
+ 449-476, Adv. Stud. Pure Math., {\bf 10}, North-Holland, Amsterdam, (1987). 
+ 
+  \bibitem[Miy88]{Miya87}
+ Y. Miyaoka. 
+\textit{Abundance conjecture for 3-folds: case $\nu$=1.}
+ Compositio Math.  {\bf{68}}  (1988),  no. 2, 203--220.
+ 
+ 
+
+\bibitem[Mou95]{Mou98}
+C. Mourougane. \textit{Versions k\"ahl\'eriennes du th\'eor\`eme d'annulation de Bogomolov-Sommese.} (French) \textit{K\"ahler versions of the Bogomolov-Sommese vanishing theorem} C. R. Acad. Sci. Paris S\'er. I Math. {\bf{321}} (1995), no. 11, 1459--1462.
+
+ 
+ 
+
+\bibitem[Nad90]{Nad90}
+A. Nadel, 
+\textit{Semisimplicity of the group of biholomorphisms of the universal covering of a compact complex manifold with ample canonical bundle.}
+ Ann. of Math. (2)  {\bf{132}}  (1990),  no. 1, 193--211.
+
+
+
+    \bibitem[Nak87]{Nak92}
+  N. Nakayama, 
+  \textit{The lower semicontinuity of the plurigenera of complex varieties.}
+ Algebraic geometry, Sendai, (1985), 
+ 551--590, Adv. Stud. Pure Math., {\bf{10}}, North-Holland, Amsterdam,  (1987). 
+ 
+ 
+\bibitem[Nak04]{Nak04} 
+N. Nakayama, 
+\textit{Zariski-decomposition and abundance}, 
+MSJ Memoirs, {\bf{14}},  Mathematical Society of Japan, Tokyo, 2004. 
+xiv+277.
+
+
+
+
+\bibitem[Ou17]{Ou17}
+W. Ou. 
+\textit{On generic nefness of tangent sheaves.}
+Preprint, arXiv:1703.03175.
+
+
+\bibitem[PRT21]{PRT21}
+J. V. Pereira, E. Rousseau, F. Touzet. 
+ \textit{Numerically nonspecial varieties.}
+Preprint,  arXiv:2106.12275v1.
+to appear  Compos. Math.
+
+ \bibitem[Pet12]{Peternell}
+T. Peternell.
+\textit{Varieties with generically nef tangent bundles.} 
+J. Eur. Math. Soc. (JEMS) 
+{\bf{14}} (2012), no. 2, 571--603. MR 2881306
+
+
+ 
+ \bibitem[Tou16]{Tou16}
+F. Touzet, 
+\textit{On the structure of codimension 1 foliations with pseudoeffective conormal bundle.}
+ Foliation theory in algebraic geometry, 
+ 157--216, Simons Symp., Springer, Cham, (2016). 
+ 
+ \bibitem[WZ02]{WZ02}
+H.-H. Wu, F. Zheng,
+\textit{Compact K\"ahler manifolds with nonpositive bisectional curvature.}
+ J. Differential Geom.  {\bf 61}  (2002),  no. 2, 263--287.
+ 
+ \bibitem[Wu22]{Wu20}
+X. Wu. 
+%\textit{Pseudo-effective and numerically flat reflexive sheaves.}
+%Preprint, arXiv:2004.14676v2, to appear in the Journal of Geometric Analysis. 
+\textit{Strongly pseudo-effective and numerically flat reflexive sheaves.}
+ J. Geom. Anal.  {\bf{32}}  (2022),  no. 4, Paper No. 124, 61 pp.
+
+
+
+
+
+\end{thebibliography}
+
+\end{document}
