@@ -28,7 +28,7 @@
 21. 'On the structure of projective manifolds whose tangent bundles are positive.' 第２０回アフィン代数幾何学研究集会, ハイブリッド開催(=オンライン＋対面), 2022年3月 [PDF](https://masataka123.github.io/blog3/pdf/2022_03_02.pdf)
 22. '正則接ベクトル束が正値性を持つ複素代数多様体の研究.' 2021年度大阪市立大学数学研究会論文賞及び特別賞授賞式・受賞講演, 大阪市立大学, 2022年3月. [PDF](https://masataka123.github.io/blog3/pdf/2022_03_16.pdf)
 23. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net), Essen University, 2022年6月21日.
-24. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第69回 幾何学シンポジウム](https://www.mathsoc.jp/~geometry/symp_schedule/geometry_symposium_2022.html) 2022年8月31日.  [slide](https://masataka123.github.io/blog3/pdf/2022_08_31_Geometry_Symp_2022_slide.pdf)[報告集](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
+24. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第69回 幾何学シンポジウム](https://www.mathsoc.jp/~geometry/symp_schedule/geometry_symposium_2022.html) 東京理科大学 野田キャンパス, 2022年8月31日.  [slide](https://masataka123.github.io/blog3/pdf/2022_08_31_Geometry_Symp_2022_slide.pdf)[報告集](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
 
 ## **セミナー**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
