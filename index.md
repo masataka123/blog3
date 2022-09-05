@@ -8,8 +8,6 @@ layout: default
 
 ## **予定など**
 - 2022年5月24日に新しい論文を提出しました. [Link](https://arxiv.org/abs/2205.10613) 東北大学の松村慎一氏との共同研究です.
-- 2022年度春夏学期 全学共通教育科目 木曜2限 線形代数学I (生物,生命2) [Link](https://masataka123.github.io/2022_summer_LA/)の授業を担当します.
-- 2022年8月30日～9月2日まで開かれる [第69回幾何学シンポジウム](https://www.mathsoc.jp/~geometry/symp_schedule/geometry_symposium_2022.html)で講演いたします. 研究背景から今後やりたい内容などを含めた予稿を書きました. [PDF](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf) 
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
