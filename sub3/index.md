@@ -9,6 +9,7 @@
 23. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net), Essen University, 2022年6月21日.
 24. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第69回 幾何学シンポジウム](https://www.mathsoc.jp/~geometry/symp_schedule/geometry_symposium_2022.html) 東京理科大学 野田キャンパス, 2022年8月31日.  [slide](https://masataka123.github.io/blog3/pdf/2022_08_31_Geometry_Symp_2022_slide.pdf)[報告集](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
 
+
 ### **2020年4月から2022年3月まで**
 15. ' 相対的反標準因子のasymptotic base lociについて' 日本数学会2020年度秋季総合分科会 函数論分科会, オンライン開催, 2020年9月 [PDF](https://masataka123.github.io/blog3/pdf/2020_09_22_P.pdf) [slide](https://masataka123.github.io/blog3/pdf/2020_09_22.pdf) 
 16. '相対的反標準因子のasymptotic base lociについて' (Einglish titile: On asymptotic base loci of relative anti-canonical divisors), 多変数関数論冬セミナー, オンライン開催, 2020年12月[slide](https://masataka123.github.io/blog3/pdf/2020_12_17.pdf)
@@ -41,6 +42,7 @@
 ### **2022年4月から今まで**
 7. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 幾何セミナー, 大阪大学+オンライン開催, 2022年4月
 8. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 京大東大代数幾何セミナー, オンライン開催, 2022年5月
+
 ### **2018年4月から2022年3月まで**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
 2. 'Recent topics in singular Hermitian metrics' 幾何セミナー, 東北大学, 2019年4月 [slide](https://masataka123.github.io/blog3/pdf/2019_04_16.pdf)
