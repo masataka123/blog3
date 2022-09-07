@@ -4,6 +4,22 @@
 ## **講演予定**
 
 ## **研究集会**
+
+### **2022年4月から今まで**
+23. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net), Essen University, 2022年6月21日.
+24. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第69回 幾何学シンポジウム](https://www.mathsoc.jp/~geometry/symp_schedule/geometry_symposium_2022.html) 東京理科大学 野田キャンパス, 2022年8月31日.  [slide](https://masataka123.github.io/blog3/pdf/2022_08_31_Geometry_Symp_2022_slide.pdf)[報告集](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
+
+### **2020年4月から2022年3月まで**
+15. ' 相対的反標準因子のasymptotic base lociについて' 日本数学会2020年度秋季総合分科会 函数論分科会, オンライン開催, 2020年9月 [PDF](https://masataka123.github.io/blog3/pdf/2020_09_22_P.pdf) [slide](https://masataka123.github.io/blog3/pdf/2020_09_22.pdf) 
+16. '相対的反標準因子のasymptotic base lociについて' (Einglish titile: On asymptotic base loci of relative anti-canonical divisors), 多変数関数論冬セミナー, オンライン開催, 2020年12月[slide](https://masataka123.github.io/blog3/pdf/2020_12_17.pdf)
+17. 'On projective manifolds whose tangent bundles contain positive subbundles', Grauert理論と最近の複素幾何, オンライン開催, 2021年2月 [slide](https://masataka123.github.io/blog3/pdf/2021_02_06.pdf)
+18. '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造について', 日本数学会2021年度年会 函数論分科会, オンライン開催, 2021年3月 [PDF](https://masataka123.github.io/blog3/pdf/2021_03_12_P.pdf) [slide](https://masataka123.github.io/blog3/pdf/2021_03_12.pdf)
+19. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 都の西北代数幾何学シンポジウム, オンライン開催, 2021年8月 [slide](https://masataka123.github.io/blog3/pdf/2021_08_20.pdf) [報告集](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
+20. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 日本数学会2021年度秋季総合分科会 函数論分科会, オンライン開催, 2021年9月 [PDF](https://masataka123.github.io/blog3/pdf/2021_09_20.pdf)
+21. 'On the structure of projective manifolds whose tangent bundles are positive.' 第２０回アフィン代数幾何学研究集会, ハイブリッド開催(=オンライン＋対面), 2022年3月 [PDF](https://masataka123.github.io/blog3/pdf/2022_03_02.pdf)
+22. '正則接ベクトル束が正値性を持つ複素代数多様体の研究.' 2021年度大阪市立大学数学研究会論文賞及び特別賞授賞式・受賞講演, 大阪市立大学, 2022年3月. [PDF](https://masataka123.github.io/blog3/pdf/2022_03_16.pdf)
+
+### **2018年4月から2020年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
 2. 'On the global generation of direct images of pluri-adjoint line bundles' 日本数学会2018年度秋季総合分科会 函数論分科会, 岡山大学, 2018年9月 [slide](https://masataka123.github.io/blog3/pdf/2018_09_24_g.pdf)
 3. 'Vanishing theorems of vector bundles with singular Hermitian metrics' 日本数学会2018年度秋季総合分科会 函数論分科会, 岡山大学, 2018年9月 [slide](https://masataka123.github.io/blog3/pdf/2018_09_24_vani.pdf)
@@ -19,26 +35,20 @@
 13. 'Bauer-Pignatelli「Rigid but not infinitesimally rigid compact complex manifolds」の解説' Kodaira's Theory on Complex Manifolds and its Development, 大阪市立大学, 2019年12月 [手書きPDF](https://masataka123.github.io/blog3/pdf/2019_12_09_Bauer.pdf)
 14. ”葉層の代数幾何学” 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月.[手書きPDF](https://masataka123.github.io/blog3/pdf/2020_02_19_foliation.pdf)
 [LazicのレクチャーノートのLink](https://www.math.uni-sb.de/ag/lazic/teach/foliation.pdf)
-15. ' 相対的反標準因子のasymptotic base lociについて' 日本数学会2020年度秋季総合分科会 函数論分科会, オンライン開催, 2020年9月 [PDF](https://masataka123.github.io/blog3/pdf/2020_09_22_P.pdf) [slide](https://masataka123.github.io/blog3/pdf/2020_09_22.pdf) 
-16. '相対的反標準因子のasymptotic base lociについて' (Einglish titile: On asymptotic base loci of relative anti-canonical divisors), 多変数関数論冬セミナー, オンライン開催, 2020年12月[slide](https://masataka123.github.io/blog3/pdf/2020_12_17.pdf)
-17. 'On projective manifolds whose tangent bundles contain positive subbundles', Grauert理論と最近の複素幾何, オンライン開催, 2021年2月 [slide](https://masataka123.github.io/blog3/pdf/2021_02_06.pdf)
-18. '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造について', 日本数学会2021年度年会 函数論分科会, オンライン開催, 2021年3月 [PDF](https://masataka123.github.io/blog3/pdf/2021_03_12_P.pdf) [slide](https://masataka123.github.io/blog3/pdf/2021_03_12.pdf)
-19. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 都の西北代数幾何学シンポジウム, オンライン開催, 2021年8月 [slide](https://masataka123.github.io/blog3/pdf/2021_08_20.pdf) [報告集](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
-20. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 日本数学会2021年度秋季総合分科会 函数論分科会, オンライン開催, 2021年9月 [PDF](https://masataka123.github.io/blog3/pdf/2021_09_20.pdf)
-21. 'On the structure of projective manifolds whose tangent bundles are positive.' 第２０回アフィン代数幾何学研究集会, ハイブリッド開催(=オンライン＋対面), 2022年3月 [PDF](https://masataka123.github.io/blog3/pdf/2022_03_02.pdf)
-22. '正則接ベクトル束が正値性を持つ複素代数多様体の研究.' 2021年度大阪市立大学数学研究会論文賞及び特別賞授賞式・受賞講演, 大阪市立大学, 2022年3月. [PDF](https://masataka123.github.io/blog3/pdf/2022_03_16.pdf)
-23. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net), Essen University, 2022年6月21日.
-24. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第69回 幾何学シンポジウム](https://www.mathsoc.jp/~geometry/symp_schedule/geometry_symposium_2022.html) 東京理科大学 野田キャンパス, 2022年8月31日.  [slide](https://masataka123.github.io/blog3/pdf/2022_08_31_Geometry_Symp_2022_slide.pdf)[報告集](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
+
 
 ## **セミナー**
+### **2022年4月から今まで**
+7. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 幾何セミナー, 大阪大学+オンライン開催, 2022年4月
+8. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 京大東大代数幾何セミナー, オンライン開催, 2022年5月
+### **2018年4月から2022年3月まで**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
 2. 'Recent topics in singular Hermitian metrics' 幾何セミナー, 東北大学, 2019年4月 [slide](https://masataka123.github.io/blog3/pdf/2019_04_16.pdf)
 3. 'On asymptotic base loci of relative anti-canonical divisors' 複素解析幾何セミナー, 東京大学(オンライン開催), 2020年11月[PDF1](https://masataka123.github.io/blog3/pdf/2020_11_30_1.pdf)[PDF2](https://masataka123.github.io/blog3/pdf/2020_11_30_2.pdf)
 4. '正則接ベクトルが正値性を持つ部分束を含むときの代数多様体の構造について', 幾何セミナー, 大阪大学+オンライン開催, 2020年12月
 5. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 九州大学幾何学セミナー, オンライン開催, 2021年6月 [PDF](https://masataka123.github.io/blog3/pdf/2021_06_25.pdf)
 6. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 東北大学幾何セミナー, オンライン開催, 2021年7月 [PDF](https://masataka123.github.io/blog3/pdf/2021_07_13.pdf)
-7. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 幾何セミナー, 大阪大学+オンライン開催, 2022年4月
-8. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 京大東大代数幾何セミナー, オンライン開催, 2022年5月
+
 
 # **集会のオーガナイズ**
 1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. (大阪市立大学 小池 貴之氏との共同主催) [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
