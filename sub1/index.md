@@ -34,9 +34,9 @@
 
 ### **2022年度**
 - 2022年度春夏学期 大阪大学 全学共通教育科目 木曜2限 線形代数学I (生物,生命2) [Link](https://masataka123.github.io/2022_summer_LA/)
-- 2022年度秋冬学期 大阪大学 全学共通教育科目 火曜2限 基礎解析学II (理(化))
-- 2022年度秋冬学期 大阪大学理学部数学科 幾何学基礎２（位相空間論）演義 火曜4限
-- 2022年度秋冬学期 大阪大学理学部数学科 幾何学１演義  金曜4限
+- 2022年度秋冬学期 大阪大学 全学共通教育科目 火曜2限 基礎解析学II (理(化)) [Link](https://masataka123.github.io/2022_winter_int/)
+- 2022年度秋冬学期 大阪大学理学部数学科 幾何学基礎２（位相空間論）演義 火曜4限 [Link](https://masataka123.github.io/2022_winter_generaltopology/)
+- 2022年度秋冬学期 大阪大学理学部数学科 幾何学１演義  金曜4限  [Link](https://masataka123.github.io/2022_winter_stokes/)
 
 ### **2020-2021年度 (非常勤講師)**
 - 2020年度後期 大阪市立大学  全学共通科目 解析Ⅱ *TⅠ機･情33～ [Link](https://github.com/masataka123/class/tree/master/2020_autumn)
