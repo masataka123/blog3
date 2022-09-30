@@ -29,7 +29,7 @@ layout: default
 - 所属: 大阪大学大学院理学研究科数学専攻
 - 住所: 〒560-0043　大阪府豊中市待兼山町１-１
 - 部屋番号: 大阪大学 豊中キャンパス 理学部本館 B-401
-- [オフィスアワー](https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo4/gijiroku/attach/1342526.htm)-令和4年度春〜夏学期-: 月曜15:00-17:00
+- [オフィスアワー](https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo4/gijiroku/attach/1342526.htm) 月曜15:00-17:00 (部屋に来る場合は事前にメール等で連絡してくれると助かります.)
 - [Google Scholar](https://scholar.google.com/citations?hl=ja&user=ZTKnR6QAAAAJ)
 - [ORCiD](https://orcid.org/0000-0002-0273-0360)
 - [Research Map](https://researchmap.jp/Masataka_iwai)
