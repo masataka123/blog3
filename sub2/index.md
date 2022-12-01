@@ -7,10 +7,10 @@
 4. Masataka Iwai. 'Characterization of pseudo-effective vector bundles by singular Hermitian metrics.' Michigan Mathematical Journal. (2021) DOI:10.1307/mmj/20195833. [arXiv](https://arxiv.org/abs/1804.02146) [Article link](https://projecteuclid.org/journals/michigan-mathematical-journal/advance-publication/Characterization-of-Pseudo-Effective-Vector-Bundles-by-Singular-Hermitian-Metrics/10.1307/mmj/20195833.short)
 5. Masataka Iwai. 'Almost nef regular foliations and Fujita's decomposition of reflexive sheaves.' Annali della Scuola Normale Superiore di Pisa, Classe di Scienze. (2022) VOL. XXIII, ISSUE 2 719-743 DOI: 10.2422/2036-2145.202010_055 [arXiv](https://arxiv.org/abs/2007.13954) [Article link](https://journals.sns.it/index.php/annaliscienze/article/view/4935)
 6. Sho Ejiri, Masataka Iwai, Shin-ichi Matsumura. 'On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces.' to appear in Journal of Algebraic Geometry. [arXiv](https://arxiv.org/abs/2005.04566)
-
+7. Masataka Iwai. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' to appear in Annales de l'Institut Fourier. [arXiv](https://arxiv.org/abs/2103.08779) [source code of Remark 5.3](https://github.com/masataka123/math/blob/master/chern.ipynb) 
 
 # **プレプリント**
-- Masataka Iwai. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' [arXiv](https://arxiv.org/abs/2103.08779) [source code of Remark 5.3](https://github.com/masataka123/math/blob/master/chern.ipynb)
+
 - Masataka Iwai, Shin-ichi Matsumura. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' [arXiv](https://arxiv.org/abs/2205.10613)
 
 
@@ -51,6 +51,7 @@ Mathematische Zeitschrift.に掲載
 この時期はゼルダの伝説 Breath of the Wildをめちゃくちゃやっていた. おそらくこのゲームはいろんな人に勧めているし, 誰もが面白いと言っていると思う.
 
 
+
 - 'Nadel-Nakano vanishing theorems of vector bundles with singular Hermitian metrics.', 
 
 後輩のセミナーで消滅定理に関することを聞いてて, もっと簡単に証明できるんじゃないと思って書いた. 書いた当時はこれとか絶対応用あるやろっと思ってarXivに投稿したが, よく考えてみると藤野先生の結果のマネっぽいし, うーんって感じ.まあ誰か応用してくれると嬉しい.
@@ -64,6 +65,7 @@ Annales -Mathmatiques- de la Facult des sciences de Toulouseに掲載予定.
 修士論文. 今見返してもやっぱりひどい. 指導教官に投稿しろと言われたが, とてもじゃないが投稿できるレベルではない. 
 
 
+
 - 'Characterization of pseudo-effective vector bundles by singular Hermitian metrics.' 
 
 pseudo-effectiveに関して調べてたら, 特異エルミート計量で特徴付けられるんじゃね?って思って書いた論文.当時はこれめっちゃいいやんと思ったが, 2年ぐらい経ってから見ると, いやこれ結構当たり前のこと書いているなあって思う.まあtangent bundleがbigに関する構造定理を付け加えたし, 面白いかも.
@@ -71,6 +73,8 @@ pseudo-effectiveに関して調べてたら, 特異エルミート計量で特�
 Michigan Mathematical Journal に掲載予定.
 
 この時期はモンハンワールドにハマっていた.マルチで常に海外交流をしてたように思う. 大剣と弓を主に使っていた.
+
+
 
 
 - 'On projective manifolds with pseudo-effective tangent bundle.'
@@ -88,6 +92,8 @@ Michigan Mathematical Journal に掲載予定.
 Journal of the Institute of Mathematics of Jussieuに掲載決定
 
 arXivに提出していたぐらいの時期はファイアーエンブレム風花雪月にハマっていた. 1ルート70時間かかるしそれが4ルートもあるしとかなりハードなゲームだったルナティックむずかしすぎる...
+
+
 
 
 - Ph.D Thesis.
@@ -111,6 +117,8 @@ arXivに提出していたぐらいの時期はファイアーエンブレム風
 主に318など遊びに行っていた研究室への感謝である. リンクのところでも書いてるが, 私は自分の研究室(326)にはあんまり行かず, 317,318に遊びに行っていた. (他にも4階に遊びに行っていた) 修士時代と博士1年くらいまでは荒野さん周りの人が多くいたので, かなり楽しかった. 博士2年に競技プログラミングにハマると, 318で競プロしに行ったりした. (鶴崎くんにあったのも競プロつながりである). ただ博士3年になると, 遊んでくれる人がほぼいなくなったのである.いろんな人がいなくなったことで, 317は真面目な研究室になっていた. 今まで遊ぶために行っていた大学が遊べる場ではなくなっていたのである. そのため博士3年から大学にはあまり行かず高校の同級生と遊んでいた. なんかそれもあってか結局疎遠になってしまった(まあ無職時代に同期や数学科の人とはあまり会わないようにしていたのもあるが...) まあ同じ業界にいるのでいつかは会うと思うし, その感じでいようかと思う.
 
 
+
+
 - 'On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces.' 
 
 9月に松村さんが東京に来て$B-(-K_{X/Y})$が$f$でdominantに落ちない場合について考えようという結論に至った. そこでCampana-Cao-Matsumura見ながら調べると, $B-(-K_{X/Y})$が$f$でdominantに落ちない場合には$f$がlocally trivialになることがわかった.(当時これには信じられず何回も見直したが...). ちょうど10月に大阪で松村さんと会う用事があったのでそこで言おうと準備した.
@@ -122,6 +130,7 @@ arXivに提出していたぐらいの時期はファイアーエンブレム風
 arXivに出した時期は集まれどうぶつの森にハマっていた. 500時間ぐらいやった気もする.東大寺作ったり遊園地を作ったり色々したと思う.
 
 Journal of Algebraic Geometryに掲載決定. 掲載決定まで2年かかった. 実は1回rejectを食らったのだかその理由は「レフェリーは良い論文だといっているが総合的に判断してrejectにしました」というなんとも嫌な気分になるrejectだった. 2年経った今でも内容的には面白い論文だし結構意外な結果が多いと思うのだが, なんか知名度が低い. ちょっと悲しい気分である.
+
 
 
 - 'Almost nef regular foliations and Fujita's decomposition of reflexive sheaves.' 
@@ -141,6 +150,7 @@ Annali della Scuola Normale Superiore di Pisa, Classe di Scienze. 掲載決定
 アクセプトまで3ヶ月と早かった. singular Hermitian metric使わない論文はアクセプトが早いのでは...とも思ってきた
 
 arXivに出した時期はゼノブレイド definitive editionにハマっていた. ストーリーが暗い感じで常に面白く, 戦闘システムがゼノブレイド２よりもわかりやすいと思う.個人的にはゼノブレイド２よりもゼノブレイド１の方が好きである．
+
 
 
 -'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' 
@@ -163,6 +173,8 @@ arXivに出した時期はリングフィットアドベンチャーにハマっ
 またこの論文は絶対に3月26日までに提出すると決めていた. モンハンライズが3月26日に発売される. 3月26日以降は忙しくなる. 現に今も体験版第二弾が出てきて忙しい. 今日も狩りをしなければならない. 体験版の時点でプレイ時間が40時間を超えている. これから忙しくなりそうだ. (結局2021年はモンハンライズを500時間もやってしまったのであった...)
 
 Chapter 5での未解決問題は2021年12月にDruelさんが完璧に解いてしまった. 実は私もやろうとしていてできなかった問題だったのでちょっと悔しい. (10月に長岡くんに会ったときに, 致命的なミスを指摘されて, そっからできなかったのである...)
+
+Annales de l'Institut Fourier に掲載決定. 結構好きな結果だったが, 2021年12月にDruelさんが完璧に解いてしまってから興味を失ってしまった. なのでまあ論文がFourierに掲載されたのは普通に嬉しい. ただ自分の限界も感じる論文でもあった. 
 
 
 
