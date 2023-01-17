@@ -42,6 +42,7 @@
 8. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 京大東大代数幾何セミナー, オンライン開催, 2022年5月
 9. 'Fujita decomposition theorem for pseudo-effective reflexive sheaves and its applications.' University of Bayreuth, 2022年7月.
 10. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class'  東工大幾何セミナー, オンライン開催, 2022年11月25日
+11. '曲率が0以上の複素射影多様体の構造定理' 大阪大学談話会, 大阪大学+オンライン開催, 2023年1月16日. [PDF](https://masataka123.github.io/blog3/pdf/2023_01_16.pdf)
 
 ### **2018年4月から2022年3月まで**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
