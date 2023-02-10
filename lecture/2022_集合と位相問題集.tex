@@ -1,0 +1,1195 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+
+
+\begin{center}
+{\Large 1.距離空間の復習}
+\end{center}
+\begin{flushright}
+ 岩井雅崇 2022/10/04
+\end{flushright}
+
+\begin{enumerate}[label=\textbf{問}1.\arabic*]
+\item 正の自然数$n$について$\R^{n+1}$の部分集合$S^n$を
+$$
+S^n = \{ (x_1, \ldots, x_{n+1}) \in \R^{n+1} \, |\,\sum_{i=1}^{n+1} x_{i}^{2} =1\}
+$$
+と定める. $S^n$は$\R^{n+1}$の有界閉集合であることを示せ.
+\item 閉区間 [a,b]とし, 
+$$
+B[a,b]:= \{f | \text{ $f$ は$[a,b]$上の実数値有界関数} \}
+$$
+とし$f,g \in B[a,b]$について
+$$
+d(f,g) := \sup_{x \in [a,b]} \{ |f(x) - g(x)|\}
+$$
+と定める.  $(B[a,b],d)$が距離空間であることを示せ.
+
+
+ \item  実数列$x = \{ x_n\}_{n=1}^{\infty}$で$\sum_{i=1}^{\infty} x_{i}^{2} < \infty$となるものの集合を$l^2$とする.
+ $x,y \in l^2$について
+ $$
+ d(x,y) = \sqrt{ \sum_{i=1}^{\infty} (x_i - y_i)^2}
+ $$
+ と定める. $d$がwell-definedであることを示し\footnote{$\sum_{i=1}^{\infty} (x_i - y_i)^2$がなぜ収束するのかを示してください.}, $(l^2,d)$は距離空間となることを示せ. (この空間はHilbert空間の一種である.)
+ 
+
+  
+ \item 距離空間$(X,d)$とその部分集合$A \subset X$において次を示せ.
+	 \begin{enumerate}
+ 	\item $A$の内部$A^i$は$A$に含まれる最大の開集合である.
+ 	\item $A$の閉包$\overline{A}$は$A$を含む最小の閉集合である.
+ 	\end{enumerate}
+ ここで$A^i$は$A$の内点の集合とし, $\overline{A}$は$A$の触点の集合とする.
+ また$A$が開集合であるとは$A = A^i$となることとし$A$が閉集合であるとは$A = \overline{A}$となることとする.(教科書4章の定義通りとする.)
+ 
+\item $d,d'$を$X$上の距離関数とする. 
+	\begin{enumerate}
+	\item ある正の数$C>0$があって任意の$x,y \in X$について$d(x,y) \leqq Cd'(x,y)$ならば, 恒等写像$id : (X, d') \rightarrow (X,d)$は連続であることを示せ.
+	\item $(X,d)$における開集合全体の集合を$\mathscr{O}_d$とし, $(X,d')$における開集合全体の集合を$\mathscr{O}_{d'}$とする. ある正の数$C>0$があって, $C^{-1} d'(x,y)\leqq d(x,y) \leqq Cd'(x,y)$ならば, $\mathscr{O}_d = \mathscr{O}_{d'}$であることを示せ.
+	%\item (a)の逆は成り立つか. 真である場合は証明し, 偽である場合は反例をあげよ.
+	\end{enumerate}
+
+%\item $d$を$\R$のユークリッド距離とし, $f : \R \rightarrow \R$を写像とする. 次は同値であることを示せ.
+%	\begin{enumerate}
+%	\item $f$は(距離空間の意味で)連続
+%	\item 任意の$a \in \R$と任意の$\epsilon>0$についてある$\delta >0$が存在し, $|x-a| < \delta$ならば$|f(x)- f(a)| < \epsilon$. ($\epsilon-\delta$論法)
+%	\end{enumerate}
+
+  \item $A$を距離空間$X$の部分集合とするとし, $f : X \rightarrow \R$を$f(x) =d(x,A)$で定める. $f$は連続であることを示せ.
+  
+  
+  \item 任意の空でない集合$X$について, ある距離関数$d$があって$(X,d)$は距離空間になることをしめせ.
+  %Show that for any non-empty set $X$ there exists some distance function $d$ on $X$ such that $(X,d)$ is a metric space.
+  
+    \item $^{*}$\label{Hausdorff} $(X,d)$を距離空間とする. $X$の部分集合$A$が有界であるとは, ある正の数$M$があって任意の$x, y \in A$について$d(x,y) \leqq M$であることとする. $\mathcal{B}(X)$を$X$の有界閉集合全体の集合とする. 次の問いに答えよ.
+    \begin{enumerate}
+    	\item $A,B \in \mathcal{B}(X)$について$\sup_{x \in A}d(x,B) < + \infty$であることを示せ.\footnote{$d(x,B) = \inf_{y \in B} d(x,y)$である.}
+	\item $A,B \in \mathcal{B}(X)$について
+	$$
+	d_{H}(A,B) = \max \{ \sup_{x \in A}d(x,B), \sup_{y  \in B}d(A,y)\}
+	$$
+	とする. 任意の$x \in X$について
+	$$
+	d(x,A) \leqq d(x,B) + d_{H}(A,B) 
+	$$
+	が成り立つことを示せ. 
+    \end{enumerate}
+\item $^{*}$ \ref{Hausdorff}での$(\mathcal{B}(X), d_{H})$は距離空間になることを示せ. (これはハウスドルフ距離と呼ばれる.)
+ %任意の空でない集合$X$について, ある距離関数$d$があって, $(X,d)$は距離空間になることを示せ. 
+ \end{enumerate}
+ 
+ \newpage
+ 
+ 
+\begin{center}
+{\Large 2.位相空間}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/10/11
+\end{flushright}
+\begin{enumerate}[ label=\textbf{問}2.\arabic*]
+\item $X = \{ 0,1\}, \mathscr{O} = \{ \varnothing, X, \{0\} \}$とするとき$(X, \mathscr{O})$は位相空間になることを示せ.
+
+\item $X = (0,1)$とし, 
+$$
+\mathscr{O} = \left\{ \left(0,1 - \frac{1}{n}\right)| n \in \N, n \geqq 2 \right\} \cup \{ X,\varnothing \}
+$$
+とする. $(X, \mathscr{O})$は位相空間になることを示せ.
+
+\item (補有限位相)
+$\R$に関して部分集合の族$\mathscr{O}_c \subset \mathfrak{P}(\R)$を次で定める.
+$$
+\mathscr{O}_c = \{V \subset \R | \text{$\R \setminus V$は有限集合である} \} \cup \{  \varnothing  \}
+$$
+次の問いに答えよ.
+	\begin{enumerate}
+	\item $(\R,\mathscr{O}_c)$は位相空間になることを示せ.
+	\item $\R$のユークリッド位相を$\mathscr{O}_{Euc}$とするとき$\mathscr{O}_c  \subset \mathscr{O}_{Euc}$を示せ. 
+	\item $A \in \mathscr{O}_{Euc}$かつ$A \not \in \mathscr{O}_c$なる$A$の例を一つあげよ.
+	\end{enumerate}
+	
+\item (上半連続位相) $\R$に関して部分集合の族$\mathscr{O}_{usc} \subset \mathfrak{P}(\R)$を次で定める.
+$$
+\mathscr{O}_{usc} = \{(- \infty,t) | t \in \R \} \cup \{  \varnothing , \R \}
+$$
+次の問いに答えよ.
+	\begin{enumerate}
+	\item $(\R,\mathscr{O}_{usc})$は位相空間になることを示せ.
+	\item $\{ 0\}$は $(\R,\mathscr{O}_{usc})$での閉集合ではないことをしめせ. 
+	\end{enumerate}
+	
+\item $\R$に関して部分集合の族$\mathscr{O}_{sc} \subset \mathfrak{P}(\R)$を次で定める.
+$$
+\mathscr{O}_{sc}  = \{U \cup A \subset \R | \text{$U$はユークリッド位相に関する開集合, $A$は$\R \setminus \Q$の部分集合}\}
+$$
+次を示せ.
+	\begin{enumerate}
+	\item $(\R,\mathscr{O}_{sc} )$は位相空間になることを示せ.
+	\item $\{ \sqrt{2}\}$は $(\R,\mathscr{O}_{sc} )$での開集合かつ閉集合であることを示せ.
+	\end{enumerate}
+	
+\item (Fortissimo Space) $X = \R \cup \{ \infty \}$とし\footnote{$\infty$は$\R$の元ではないことに注意する. $\infty$という記号が嫌な場合は$\infty$を$\R$に含まれない元だと思ってください.}
+$$
+\mathscr{O}_{F}= \{ V \subset X | \text{$X \setminus V$は高々可算集合, または$\infty \in V$}\}
+$$
+とおくと$(X, \mathscr{O}_{F})$は位相空間になることを示せ.
+
+\item 位相空間$(X, \mathscr{O})$で距離化可能でないものの例をあげよ.\footnote{つまり「ある距離$d$があってその位相が$\mathscr{O}$となる」ということがない例を挙げてください.}
+
+
+\item $\R$にユークリッド位相$\mathscr{O}_{Euc}$をいれる. $X = (0,1) \cup (2,3]$とし, $X$に$\R$の部分位相を入れる. このとき$(2,3]$は$X$上の開集合かつ閉集合であることを示せ. 
+
+\item $\R$にユークリッド位相$\mathscr{O}_{Euc}$をいれる. $A=\Q$について$A^{i},\overline{A}$を求めよ.
+
+\item $\R$にユークリッド位相$\mathscr{O}_{Euc}$をいれる. 次の問いに答えよ.
+	\begin{enumerate}
+	\item $A=\Q$とし, $A$に相対位相$\mathscr{O}_{A}$を入れる. $\{ 0\}$は$A$の開集合かどうか判定せよ. 
+	\item $\{ 0\}$は$A$の閉集合かどうか判定せよ.
+	\item $\R$の部分集合$B$で, $B$は無限集合であり, $(B, \mathscr{O}_{B})$上において$\{ 0\}$が開集合かつ閉集合となる例を一つあげよ. ここで$\mathscr{O}_{B}$は相対位相とする.
+	\end{enumerate}
+	
+\item $(X, \mathscr{O})$を位相空間とし, $A$を$X$の部分集合とする. 次を示せ. 
+% Let $(X, \mathscr{O})$ be a topological space and $A$ be a subset of $X$. Show that 
+	\begin{enumerate}
+	\item $(A^c)^a = (A^i)^c$;
+	\item $(A^c)^i = (A^a)^c$.
+	\end{enumerate}
+
+
+
+
+\item $^{*}$ 位相空間$(X, \mathscr{O})$とその部分集合$A,B \subset X$を考える. 次の主張に関して, 真である場合は証明し, 偽である場合は反例をあげよ.
+	\begin{enumerate}
+	\item $(A \cap B)^i = A^i \cap B^i$
+	\item $(A \cup B)^i = A^i \cup B^i$
+	\item $(A \cap B)^a= A^a\cap B^a$
+	\item $(A \cup B)^a = A^a\cup B^a$
+	\end{enumerate}
+
+\item  $^{*}$ $A,A^{i},\overline{A}, \overline{A^i}, {(\overline{A})}^i, {\overline{(A^i)}}^i, \overline{({\overline{A}}^i)}$が全て違うような$A$の例をあげよ.
+ここで$\overline{A^i}$は$A$の内部の閉包, 
+${(\overline{A})}^i$は$A$の閉包の内部, ${\overline{(A^i)}}^i$は$A$の内部の閉包の内部, $\overline{({\overline{A}}^i)}$は$A$の閉包の内部の閉包である.
+\item $^{*}$ (Zariski位相)
+$\Z$を整数の集合とする. 素数$p$について
+$$(p) := \{ a \in \Z | \text{ある$b \in \Z$があって$a =bp$}\} \subset \Z$$
+とし, $Spec(\Z) := \{(p) | \text{$p$は素数} \}$とする.
+また整数$n$について
+$$
+V_{n} := \{ (p) \in Spec(\Z) | n\in (p)\} \subset Spec(\Z) 
+$$
+と定義し, $\mathfrak{A} := \{V_{n} | n \in \Z \} \subset \mathfrak{P}(Spec(\Z) ) $とおく.
+このとき$\mathfrak{A}$は閉集合の公理を満たし$(Spec(\Z), \mathfrak{A})$は位相空間になることを示せ.
+
+
+ \end{enumerate}
+ 
+\newpage
+
+
+
+\begin{center}
+{\Large 3.連続写像}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/10/18
+\end{flushright}
+
+\begin{enumerate}[ label=\textbf{問}3.\arabic*]
+
+%\item $\R$にいろんな位相を入れて恒等写像が連続かどうか見る. 大きい位相と小さい位相.
+\item $(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$を位相空間とし, $f : X \rightarrow Y$を写像とする. 次の問いに答えよ．
+	\begin{enumerate}
+	\item $\mathscr{O}_X $が離散位相ならば$f$は連続である.
+	\item $\mathscr{O}_Y $が密着位相ならば$f$は連続である.
+	\end{enumerate}
+
+\item $a<b, c<d$となる実数$a,b,c,d \in \R$について, 次を示せ.
+ 	\begin{enumerate}
+	\item $(a,b)$と$(c,d)$は同相である.  
+	\item $(a,b)$と$\R$は同相である. 
+	\item $[a,b]$と$[c,d]$は同相である. 
+	\end{enumerate}	
+	
+\item $f : \R \rightarrow \R$を次で定める．
+   $$
+  f(x)= \begin{cases}
+     x& (x \leqq 0) \\
+    x+2& (x >0)
+  \end{cases}
+  $$
+  $\mathscr{O}_{Euc}$を$\R$における通常の位相(ユークリッド位相)とし$\mathscr{O}_c$を補有限位相とする. 次の問いに答えよ.
+ 	\begin{enumerate}
+	\item $f $は$(\R, \mathscr{O}_{Euc})$から$(\R, \mathscr{O}_{Euc})$への連続写像かどうか判定せよ.
+	\item $f $は$(\R, \mathscr{O}_{Euc})$から$(\R, \mathscr{O}_c)$への連続写像かどうか判定せよ.
+	\item $f $は$(\R, \mathscr{O}_c)$から$(\R, \mathscr{O}_{Euc})$への連続写像かどうか判定せよ.
+	\item $f $は$(\R, \mathscr{O}_c)$から$(\R, \mathscr{O}_c)$への連続写像かどうか判定せよ.
+	\end{enumerate}
+
+\item $C([0,1])$を$[0,1]$上の連続関数全体の集合とする. $C([0,1])$上に距離$d$を
+$$
+d(f,g) := \sup_{x \in [0,1]} | f(x) - g(x)|
+$$
+で定める. また$\R$にユークリッド位相を入れる.
+	\begin{enumerate}
+	\item $C([0,1], d)$は距離空間であることを示せ.
+	\item $F : C([0,1]) \rightarrow \R$を$F(f) := \int_{0}^{1} f(x) dx$で定める. $F$は連続であることを示せ.
+	\item $G : C([0,1]) \rightarrow \R$を$G(f) := \int_{0}^{1} f(x)^2 dx$で定める. $G$は連続であることを示せ.
+	\end{enumerate}
+
+\item $(X, \mathscr{O})$を位相空間とし, $\R$にユークリッド位相を入れる. $f,g :  X \rightarrow \R$を$X$から$\R$への連続写像とするとき, $f +g, f-g, \alpha f, f/g$は$X$から$\R$への連続写像となることを示せ. ここで$\alpha \in \R$であり, $f/g$は$g(x)=0$となる$x \in X$が存在しないときに定義される. 
+
+
+
+ \item 全単射な連続写像$f :  X \rightarrow Y$で$f^{-1}$が連続ではないものを構成せよ. 
+ %Give an example of topological spaces $(X, \mathscr{O}_X )$ and  $(Y, \mathscr{O}_Y)$ that satisfies the following conditions:
+ 
+%次の(a)-(b)を満たす位相空間$(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$の例を一つあげよ.\footnote{これは連続全単射は同相とは限らない例である.}
+% 	\begin{enumerate}
+%	\item 全単射な連続写像$f :  X \rightarrow Y$がある. %There exists a continuous map $f : X \rightarrow Y$.
+	%\item $f$は全単射である. %$f$ is bijective.
+%	\item $f^{-1}$は連続ではない. %$f^{-1}$ is not continuous.
+%	\end{enumerate}
+	
+
+\item $f : \R \rightarrow \R$を写像とし, $\mathscr{O}_{Euc}$をユークリッド位相, $\mathscr{O}_{usc}$を上半連続位相(問2.4の位相)とする. $f$を$(\R, \mathscr{O}_{usc})$から$(\R, \mathscr{O}_{Euc})$への連続写像とするとき, $f$は定数写像であることを示せ.
+
+\item $^*$ $f : \R \rightarrow \R$を写像とし, $\mathscr{O}_{Euc}$をユークリッド位相, $\mathscr{O}_{usc}$を上半連続位相(問2.4の位相)とする. 次は同値であることを示せ.
+	\begin{enumerate}
+	\item $f$は$(\R, \mathscr{O}_{Euc})$から$(\R, \mathscr{O}_{usc})$への連続写像である.
+	\item 任意の$a \in \R$について$\limsup_{x \rightarrow a} f(x) =f(a)$である.
+	\end{enumerate}
+ 
+ \item$^*$  $(X, \mathscr{O}_X)$,$(Y, \mathscr{O}_Y)$を位相空間とし, $A,B$を$X$の部分集合で$X = A \cup B$となるものとする.
+ 
+ $f : X \rightarrow Y$を$(X, \mathscr{O}_X)$から$(Y, \mathscr{O}_Y)$への連続写像とし, $f_{A}: A \rightarrow Y, f_{B}: B \rightarrow Y$をそれぞれ$f$の$A, B$ への制限とする. 
+ 次の問いに答えよ.
+	\begin{enumerate}
+	\item $A,B$が閉集合であり, $f_A,f_B$がそれぞれ$A,B$に関して連続であるとき, $f$も連続であることを示せ. ここで$A,B$には$X$の相対位相を入れる.
+	\item $f_A,f_B$がそれぞれ$A,B$に関して連続だが, $f$は連続ではない例をあげよ.
+	\end{enumerate}
+
+	
+\item $^*$  $(X, \mathscr{O})$を位相空間とする.
+$X$の点列$\{ x_n\}_{n =1}^{\infty}$が点$x\in X$に収束するとは, 「任意の$x$の近傍$V$についてある$N \in \N$があって$N<n$ならば$x_n \in V$である」ことで定義をする.次の問いに答えよ
+ 	\begin{enumerate}
+	\item 位相空間$(X, \mathscr{O})$で次を満たすものを構成せよ．
+		\begin{enumerate}
+		\item $(X, \mathscr{O})$は密着位相ではない.
+		\item ある点$a \in X$があって, 任意の$X$の点列$\{ x_n\}_{n =1}^{\infty}$は$a$に収束する.
+		\end{enumerate}
+	\item $f :X\rightarrow Y$が点$x\in X$で連続とする. このとき$x$に収束する任意の$X$の点列$\{ x_n\}_{n =1}^{\infty}$について, $\{ f(x_n)\}_{n =1}^{\infty}$は$f(x)$に収束する.
+	\item 上の逆は一般には成り立たない. その例を構成せよ.\footnote{位相空間の間の写像$f :X\rightarrow Y$と点$a \in X$であって, 「$a \in X$に収束する任意の$X$の点列$\{ x_n\}_{n =1}^{\infty}$について, $\{ f(x_n)\}_{n =1}^{\infty}$は$f(a)$に収束する」が「$f :X\rightarrow Y$が点$a\in X$で連続」ではない例を構成してください.}
+	(つまり点列を用いた連続性の定義は一般には弱いことを意味する.)
+	\end{enumerate}
+ \end{enumerate}
+
+
+\newpage
+
+
+\begin{center}
+{\Large 4.開基と基本近傍系}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/10/25
+\end{flushright}
+
+\begin{enumerate}[ label=\textbf{問}4.\arabic*]
+
+
+\item $\R$について次の集合系$\mathscr{B}_u$, $\mathscr{B}_l$を考える
+$$
+\mathscr{B}_u = \{(a,b]| a,b \in \R, a<b\} \,\,,\,\,
+\mathscr{B}_l = \{[a,b)| a,b \in \R, a<b\}
+$$
+次の問いに答えよ.
+	\begin{enumerate}
+	\item $\mathscr{B}_u $を開基とする$\R$上の位相$\mathscr{O}_u$が存在することを示せ. この位相を\underline{上限位相}という.
+	\item $\mathscr{B}_l$を開基とする$\R$上の位相$\mathscr{O}_l$が存在することを示せ. この位相を\underline{下限位相}という.
+	\item $(0,1]$は上限位相において開集合であることを示せ. また下限位相において開集合であるかどうか判定せよ.
+	\item $(0,1]$は上限位相において閉集合であることを示せ. また下限位相において閉集合であるかどうか判定せよ.
+	\end{enumerate}
+\item 引き続き上の下限位相上限位相について次の問いに答えよ.
+	\begin{enumerate}
+	\item 上限位相および下限位相は, ユークリッド位相$\mathscr{O}_{Euc}$よりも真に強いことを示せ.
+	\item 上限位相と下限位相の両方より強い位相は離散位相に限ることを示せ.
+	\end{enumerate}
+
+\item 距離空間$(X,d)$に関して
+$$\mathscr{B} = \{ N(a,\epsilon) | a \in X, \epsilon >0, \epsilon \in \Q\}
+$$
+は開基となることを示せ.
+\item 準開基だが開基でない例を構成せよ.
+\item 位相空間$(X, \mathscr{O})$とし, $\mathscr{S} \subset \mathscr{O}$を部分集合とする.
+$\mathscr{S}$が生成する位相を$\mathscr{O}_{\mathscr{S}}$とするとき, $\mathscr{O}_{\mathscr{S}} \subset \mathscr{O}$であることを示せ. (特に$\mathscr{O}_{\mathscr{S}}$は$\mathscr{S}$を含む最小の位相である.)
+
+%\item 位相空間$(X, \mathscr{O})とし$\mathscr{B}$を開基とする. $x \in X$について$\mathfrak{B}(x) = \{ B | x \in B, B \in \mathscr{B}\}$ とするとき$\mathfrak{B}(x)$は基本近傍系となることを示せ.
+
+\item 次を示せ.
+	\begin{enumerate}
+	\item 第2可算公理を満たすならば第1可算公理を満たす.
+	\item 第2可算公理を満たすならば可分である.
+	\end{enumerate}
+
+\item 次を示せ.	
+	\begin{enumerate}
+	\item 距離空間は第1可算公理を満たす.
+	\item 可分な距離空間は第2可算公理を満たす
+	\end{enumerate}
+
+	
+\item  %次を示せ. Lrt $$
+	\begin{enumerate}
+	%\item Show that $\Q$ is dense set on $(\R, \mathscr{O})$, where $\mathscr{O}$ is a  Euclidean topology of $\R$.
+	%\item Give an example of a topological space $(X, \mathscr{O})$ such that any open set is dense on $X$ and $\mathscr{O}$ is not indiscrete topology.
+	\item $\Q$は$\R$上で稠密であることを示せ.
+	\item 密着位相以外で, 空集合を除く任意の開集合が稠密であるような位相空間の例をあげよ.
+	\end{enumerate}
+	
+\item $^{*}$ 次の問いに答えよ.
+	\begin{enumerate}
+	\item 第1可算公理を満たすが可分でない例をあげよ
+	\item 可分であるが第1可算公理を満たさない例をあげよ
+	\end{enumerate}
+\item  $^{*}$ 次の問いに答えよ.	
+	\begin{enumerate}
+	\item 可分でない距離空間の例をあげよ．
+	\item 第2可算公理を満たすが距離空間でない例をあげよ.
+	\end{enumerate}
+\item  $^{*}$ $\R^2$において
+$$
+\mathscr{B} = \{(a,b] \times (c,d]| a,b,c,d \in \R, a<b, c<d\} 
+$$
+を開基とする位相$\mathscr{O}$を入れる.
+次の問いに答えよ. 
+	 \begin{enumerate}
+	\item $(\R^2,\mathscr{O})$は第1可算公理を満たし, 可分であることを示せ.
+	\item $ A=\{ (x,y)\in \R^2 | x+y=1\}$とし, $A$に$(\R^2,\mathscr{O})$の相対位相$\mathscr{O}_A$を入れる. このとき$\mathscr{O}_A$は離散位相であることをしめせ. また$A$は可分でないことを示せ.
+	\item $(\R^2,\mathscr{O})$は第2可算公理を満たさないことを示せ.
+	\end{enumerate}
+\item  $^{*}$ 整数の集合$\Z$と$a,b \in \Z$について$
+a\Z + b := \{ ax + b | x \in \Z\}$と定め
+$$
+\mathscr{B} = \{ a\Z + b | a,b\in \Z, a \neq 0 \} 
+$$
+とおく. 次の問いに答えよ. 
+	\begin{enumerate}
+	\item $\mathscr{B}$を開基とする位相$\mathscr{O}$が存在することを示せ. (この位相はFurstenberg 位相と呼ばれる). 以下$(\Z,\mathscr{O} )$という位相空間で開集合や閉集合を考える. 
+	\item 空でない有限集合は$(\Z, \mathscr{O})$上で開集合ではないことを示せ. 
+	\item 任意の$a,b \in \Z$について$a\Z + b$は$(\Z, \mathscr{O})$上で開集合かつ閉集合であることを示せ.
+	\item 素数全体の集合を$\mathcal{P}$とする.
+	$$\Z \setminus \{ \pm 1\} = \bigcup_{p \in \mathcal{P}} p\Z$$
+	であることを示せ.
+	\item $\mathcal{P}$が無限集合であることを示せ. つまり素数は無限個存在する.
+	\end{enumerate}
+
+
+\item  $^{*}$ これまで出てきた位相空間の例以外で面白い位相空間の例をあげよ. ただし以下の点に注意すること.
+	\begin{enumerate}
+	\item この問題は教官とTAが「面白い」と思わない場合, 正答とならない. (例えば$\{ 0,1,2\}$に適当な部分集合を使った位相空間はよく見るので正答とはならない.)
+	\item この問題は複数人が解答して良い.
+	\item この問題の解答権は2022年10月中とする. 11月以後はこの問題に答えることはできない. 
+	\end{enumerate}
+
+ \end{enumerate}
+
+
+
+\newpage
+
+
+\begin{center}
+{\Large 5. 積位相}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/11/01
+\end{flushright}
+以下断りがなければ, $\R^{n}$にはユークリッド位相を入れたものを考える. また集合系を表す際に用いられる$\Lambda$は空でないと仮定する. 
+\begin{enumerate}[ label=\textbf{問}5.\arabic*]
+
+\item $f : \R \times \R \rightarrow \R$を$f(x,y)=x+y$で定めると連続写像になることを示せ.
+\item  $f : X \rightarrow \R$を位相空間$X$から$\R$への写像とする．次は同値であることを示せ.
+	\begin{enumerate}
+	\item $f$は連続である.
+	\item $\{ (x,y) \in X \times \R | f(x) >y\}$と$\{ (x,y) \in X \times \R | f(x) <y\}$は共に$X \times \R$の開集合である. 
+	%\item $\{ (x,y) \in X \times \R | f(x) =y\}$は$X \times \R$の閉集合である. 
+	\end{enumerate}
+\item  $f : X \rightarrow \R$を位相空間$X$から$\R$への写像とする. 次の主張が正しい場合は証明し, 間違っている場合は反例をあげよ.
+
+「$\{ (x,y) \in X \times \R | f(x) =y\}$が$X \times \R$の閉集合であるとき, $f$は連続である.」
+
+\item 位相空間$(X, \mathscr{O}_X )$について$\Delta : X \rightarrow X \times X$を$\Delta(x)=(x,x)$で定める．
+$\Delta$は$(X, \mathscr{O}_X )$から$(X, \mathscr{O}_X )\times (X, \mathscr{O}_X )$への連続写像であることを示せ.
+
+\item $(X,d)$を距離空間とする. 距離関数$d : X \times X \rightarrow \R$は積位相に関して連続であることを示せ．
+\item $(X,d_X)$, $(Y,d_Y)$を距離空間とする. 関数$d_{X \times Y} : (X \times Y)\times (X \times Y) \rightarrow \R$を
+$$
+d_{X \times Y} ( (x_1, y_1) ,  (x_2, y_2)) :=  d_X (x_1, x_2) + d_Y(y_1, y_2)
+$$
+と定義する. $d_{X \times Y} $は$X \times Y$上の距離関数になり,  $d_{X \times Y} $が定める位相が$X \times Y$の積位相に一致することを示せ. 
+
+%\item $X,Y$を集合とし, $\mathscr{S}\subset \mathfrak{P}(X), \mathscr{T} \subset \mathfrak{P}(Y)$とする.$\mathscr{S}$から生成される位相を$\mathscr{O}_\mathscr{S}$, $\mathscr{T}$から生成される位相を$\mathscr{O}_\mathscr{T}$とする.積位相$\mathscr{O}_\mathscr{S} \# \mathscr{O}_\mathscr{T}$は$\mathscr{S} \times \mathscr{T}$から生成される位相と一致するか?
+
+
+%\item 位相空間$(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$で$$\mathscr{B} = \{ V \times W | V \in \mathscr{O}_X, W \in \mathscr{O}_Y\}$$が開集合系とならないものの例をあげよ.
+
+%\item 内田例19.1において次が示されている. 「$\mathscr{O}_n, \mathscr{O}_m$を$\R^n,\R^m$のユークリッド位相とする. $\R^n \times \R^m $と$\R^{n+m}$を同一視すれば, $\mathscr{O}_n$と$\mathscr{O}_m$の積位相$\mathscr{O}_n \#\mathscr{O}_m$が$\mathscr{O}_{n+m}$である.」ただどうもこれの証明があまり気に食わなかった. そこで次の通りに証明せよ\begin{enumerate}\item 第一射影$p : \R^{n+m} \rightarrow \R^n$とする. $p$は$(\R^{n+m},\mathscr{O}_{n+m})$から$(\R^{n},\mathscr{O}_{n})$は連続であることをしめせ.\item $\mathscr{O}_n \#\mathscr{O}_m$は$\mathscr{O}_{n+m}$より小さい位相であることをしめせ. \item $(\R^{n+m},\mathscr{O}_{n+m})$の開基$\mathscr{A}$で$$\mathscr{A} \subset \mathscr{B} = \{ V \times W | V \in \mathscr{O}_{n}, W \in \mathscr{O}_{m}\}$$となるものを一つ構成せよ\item $\mathscr{O}_n \#\mathscr{O}_m$は$\mathscr{O}_{n+m}$より大きい位相であることをしめせ. \end{enumerate}
+
+
+
+%\item $\{ X_\lambda \}_{\lambda \in \Lambda}$を集合系とし, $\mathscr{O}_{\lambda}$を$X_{\lambda}$の位相とする. $ V_\lambda \in \mathscr{O}_{\lambda}$を$X_{\lambda}$の開集合とする. 次の主張が正しい場合は証明し, 間違っている場合は反例をあげよ\begin{enumerate}\item $\prod_{\lambda \in \Lambda} V_{\lambda}$は積空間$\prod_{\lambda \in \Lambda} (X_{\lambda},\mathscr{O}_{\lambda} )$の開集合になる．\item $\Lambda$が有限集合ならば, $\prod_{\lambda \in \Lambda} V_{\lambda}$は積空間$\prod_{\lambda \in \Lambda} (X_{\lambda},\mathscr{O}_{\lambda} )$の開集合になる．\end{enumerate}
+
+\item $\N$を自然数の集合とし, 各$i \in \N$について, $X_{i} =\R $とする. %(ただし$\mathscr{O}_{Euc}$は$\R$のユークリッド位相とする.) 
+$\prod_{i \in \N} (0,1)$は積空間$\prod_{i \in \N} X_{i}$の開集合かどうか判定せよ.
+	
+
+%\item 次を示せ
+	%\begin{enumerate}
+	%\item 閉写像でも開写像でない連続写像の例をあげよ.
+	%\item 閉写像であるが開写像でない連続写像の例をあげよ.
+	%\item 連続全単射が開写像であれば同相写像であることを示せ.
+	%\end{enumerate}
+
+\item (積位相の普遍性)
+$\{ X_\lambda \}_{\lambda \in \Lambda}$を集合系とし, $\mathscr{O}_{\lambda}$を$X_{\lambda}$の位相とする. 
+「任意の位相空間$(T, \mathscr{O}_{T})$と連続写像の族$g_{\lambda} : T \rightarrow X_\lambda $について, 
+ある積空間$\prod_{\lambda \in \Lambda} X_{\lambda}$への連続写像$g : T \rightarrow \prod_{\lambda \in \Lambda} X_{\lambda}$
+がただ一つ存在して, 任意の$\mu \in \Lambda$について$g_{\mu} = p_{\mu} \circ g $となる」ことを示せ. 
+
+\item $\N$を自然数の集合とする. 各$i \in \N$について $X_{i} = \{ 0,1\}$とし$ \mathscr{O}_{i}$を$X_i$の離散位相とする.
+%$(X_{i}, \mathscr{O}_{i}) = (\{ 0,1\}, \mathcal{P}(\{0,1 \})) $とする. (つまり$(X_{i}, \mathscr{O}_{i}) $は離散位相空間とする). 
+$f :\prod_{i \in \N} X_{i} \rightarrow \R$を
+$$
+f (\{ x_i\}_{i \in \N}) = \sum_{i=0}^{\infty} \frac{x_i}{2^i}
+$$
+で定める. $f$がwell-definedであり, 積空間$\prod_{i \in \N} X_{i}$から$\R$への連続写像になることを示せ.
+
+
+\item　$(X, \mathscr{O}_X )$, $(Y, \mathscr{O}_Y)$を位相空間とし, $A \subset X$や$B \subset Y$をその部分集合とする. 次を示せ.
+	\begin{enumerate}
+	\item $(A \times  B)^a = A^a \times B^a$
+	\item $(A \times  B)^i = A^i \times B^i$
+	\end{enumerate}
+
+
+\item $\{ X_\lambda \}_{\lambda \in \Lambda}$を集合系とし, $\mathscr{O}_{\lambda}$を$X_{\lambda}$の位相とする. 各$\lambda \in \Lambda$について部分集合$A_{\lambda} \subset X_{\lambda}$を考える.  次の主張が正しい場合は証明し, 間違っている場合は反例をあげよ.
+	\begin{enumerate}
+	\item $(\prod_{\lambda \in \Lambda} A_{\lambda})^a =\prod_{\lambda \in \Lambda} (A_{\lambda}^a)$
+	\item $(\prod_{\lambda \in \Lambda} A_{\lambda})^i =\prod_{\lambda \in \Lambda} (A_{\lambda}^i)$
+	\end{enumerate}
+	
+ \end{enumerate}
+
+\newpage
+
+
+\begin{center}
+{\Large 6. 商位相}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/11/08
+\end{flushright}
+
+この問題を解答するにあたり以下の用語を定義しておく.(これは次回の演習の内容でもある).
+   \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+位相空間$(X, \mathscr{O})$とする．
+$X$が\underline{ハウスドルフ空間(または$T_2$空間)}であるとは, 任意の$a, b \in X$について, ある$U, V \in \mathscr{O}$があって$a \in U, b \in V, U \cap V = \varnothing $となること.
+  \end{dfn}
+ \end{tcolorbox}
+ 
+また断りがなければ, $\R^{n}$にはユークリッド位相を入れたものを考える. また$\R^{n+1}$の部分集合$S^n$を
+$S^n = \{ (x_1, \ldots, x_{n+1}) \in \R^{n+1} \, |\,\sum_{i=1}^{n+1} x_{i}^{2} =1\}$
+と定め, 位相は$\R^{n+1}$の相対位相を入れる. 
+
+\begin{enumerate}[ label=\textbf{問}6.\arabic*]
+	
+	
+
+\item 実数の集合$\R$について, 同値関係$\sim_{1}$を
+	$$
+	x \sim_{1} y \Leftrightarrow x - y \in \Z
+	$$
+	を考える. $\pi : \R \rightarrow \R / \sim_{1}$を標準写像とし$\pi$により$\R / \sim_{1}$に商位相を入れる. 以下の問いに答えよ.
+	\begin{enumerate}
+	\item $f : \R \rightarrow S^1$を$f(t) = (\cos 2 \pi t, \sin 2 \pi t)$とする. このときある連続写像$\tilde{f}: \R / \sim_{1} \rightarrow S^1$で$f = \tilde{f} \circ \pi $となるものが唯一存在することを示せ. 
+	\item $\tilde{f}$は全単射であることを示せ. 
+	%\item $f$は商写像であること示せ. 
+	\item $\tilde{f}^{-1}$は連続であることを示せ. よって$\R / \sim_{1}$と$S^1$は同相である. \footnote{もし別に同相を示す手段があるなら他の方法を用いて良い. 実は授業後半の事実を用いると$(c)$は簡単に示せる. (おそらく現時点だと少々厄介である.).}
+	\end{enumerate}
+
+	
+	%このとき$\R / \sim_{1}$は$S^1$と同相であることを以下
+
+\item 実数の集合$\R$について, 同値関係$\sim_{2}$を
+	$$
+	x \sim_{2} y \Leftrightarrow x - y \in \Q
+	$$
+	とし$\R / \sim_{2}$に商位相を入れる.  $\R / \sim_{2}$はハウスドルフ空間であるか判定せよ. 
+
+\item $X = \{(x,y) \in \R^2| \text{$y=0$または$y=1$} \}$とする. 同値関係$\sim$を
+	$$
+	(x_1,y_1) \sim (x_2,y_2) \Leftrightarrow \text{「$x_1 \neq 0$ かつ $x_1=x_2$」または「$y_1=y_2$かつ$x_1=x_2$」}
+	$$
+	とし$X / \sim$に商位相を入れる.  $X/ \sim$はハウスドルフ空間であるか判定せよ. 
+
+
+ 
+\item 次の問いに答えよ. 
+	\begin{enumerate}
+	\item 閉写像でも開写像でない連続写像の例をあげよ.
+	%\item 閉写像であるが開写像でない連続写像の例をあげよ.
+	\item 連続全単射が開写像であれば同相写像であることを示せ.
+	\end{enumerate}
+	
+\item$^*$ $(X, \mathscr{O}_X )$を位相空間とし, $\sim$を$X$上の同値関係とする. $\mathscr{O}(\pi)$を標準写像$\pi : X \rightarrow X/\sim$による商位相とし, $(X/\sim, \mathscr{O}(\pi))$を商空間とする. 
+次の主張に関して, 真である場合は証明し, 偽である場合は反例をあげよ.
+	\begin{enumerate}
+	\item 商写像$\pi : X \rightarrow X/\sim$は開写像である.
+	\item 商写像$\pi : X \rightarrow X/\sim$は閉写像である.
+	\end{enumerate}
+	
+\item $\R^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	x \sim y \Leftrightarrow \text{0でない実数$\alpha$が存在して$x = \alpha y$}
+	$$
+	と定義する. 商写像$\pi : \R^{n+1} \setminus \{ 0\} \rightarrow (\R^{n+1} \setminus \{ 0\})/\sim$によって位相を入れたものを実射影空間と呼び, $ \R\mathbb{P}^{n}:= (\R^{n+1} \setminus \{ 0\})/\sim$と書く.  以下$x= (x_{1}, x_{2}, \ldots, x_{n+1})$を$\R\mathbb{P}^{n}$の元とみなしたものを$(x_{1}: \cdots : x_{n+1})$と書き実同次座標と呼ぶ. 
+次の問いに答えよ
+	\begin{enumerate}
+	\item $i=1,\ldots, n+1$について$U_{i} = \{(x_{1}: \cdots : x_{n+1}) | x_i \neq 0\}$とおく. $\R\mathbb{P}^{n} = \cup_{i=1}^{n+1}U_i$であることをしめせ.
+    	\item $i=1,\ldots, n+1$について写像$f_i : \R^{n} \rightarrow U_i$を$f_i(y_1, \ldots,y_{n})=(y_1: \cdots :y_{i-1}:1:y_i:y_{i+1}:\cdots : y_{n}:1 )$とする.\footnote{$i=1$のときは$f_1(y_1, \ldots,y_{n})=(1:y_1:\cdots : y_{n} )$とし, $i=n+1$のときは$f_{n+1}(y_1, \ldots,y_{n})=(y_1:\cdots : y_{n}:1 )$とする.}
+	$f_i : \R^{n} \rightarrow U_i$は同相写像を定めることを示せ.
+	\end{enumerate}
+\item $ \R\mathbb{P}^{1}$は$S^1$と同相であることを示せ.
+\item 次の問いに答えよ.	
+	\begin{enumerate}
+	\item 
+	$$
+\begin{array}{ccccc}
+\sigma: &S^{n}& \rightarrow & \R\mathbb{P}^{n}& \\
+&(x_{1}, \ldots, x_{n+1}) & \longmapsto & 
+(x_{1}: \cdots : x_{n+1})&
+\end{array}
+$$
+は全射連続写像であることを示せ.
+	\item $\sigma$は商写像であることを示せ. 
+	\item 任意の$q \in \R\mathbb{P}^{n}$について$\sigma^{-1}(q)$の個数を求めよ.
+	\item $f : S^2 \rightarrow \R^3$を$f(x,y,z)=(yz,zx,xy)$とする.  このときある連続写像で$\tilde{f}: \R\mathbb{P}^{2} \rightarrow \R^3$で$f =\tilde{f} \circ  \sigma$となるものが唯一存在することを示せ. 
+
+	\end{enumerate}
+\item$^{*}$
+$GL(2, \R) $を$2 \times 2$の正則行列とする. $\begin{pmatrix}
+a & b\\
+c& d
+\end{pmatrix}
+\in GL(2, \R) $を$(a,b,c,d) \in \R^4$と同一視することで, $GL(2, \R)$を$\R^4$の部分集合とみなし, $\R^4$の相対位相を入れる.
+
+$GL(2, \R) $に同値関係$\sim$を
+$$
+	A \sim B \Leftrightarrow \text{$P \in GL(2, \R)$が存在して$A = P^{-1} B P$}
+	$$
+を考える. 次の問いに答えよ.
+	\begin{enumerate}
+	\item 任意の$\alpha \neq 0$なる実数について
+$\begin{pmatrix} 1& \alpha\\0& 1\end{pmatrix} \sim \begin{pmatrix} 1 & 1\\0& 1\end{pmatrix}$であることを示せ.
+	\item 商空間$GL(2, \R)/\sim$はハウスドルフ空間であるか判定せよ.
+	\end{enumerate}
+	
+%\item 教科書の例入れてみる?
+%\item 次を示せ
+%\item 商社像のuniversality 
+%\item 幾何学1での問題を持ってくる.
+%\item $S^1$と同相の問題
+%\item 複素射影空間$\C\mathbb{P}^1$と$S^2$の同相
+%\item なんか適当に割った空間のハウスドルフ性
+ \end{enumerate}
+
+
+\newpage
+
+
+\begin{center}
+{\Large 7. 分離公理}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/12/13
+\end{flushright}
+
+分離公理は正規や正則など色々あるが, ハウスドルフが一番大事だと思われるので, 今回ハウスドルフの問題を集めた.\footnote{$T_{2 \frac{1}{2}}$空間など出しても良かったが, 無駄知識になる気がしたのでやめておきました. もし正規や正則などの分離公理が期末試験にでたらすみません.}
+
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である.  以下断りがなければ$\R^{n}$にはユークリッド位相を入れたものを考える. また位相空間$X$は2点以上の点を含むものとする.
+
+
+
+
+\begin{enumerate}[label=\textbf{問}7.\arabic*]
+
+\item $^{\bullet}$ 演習で出てきた位相空間を1つあげハウスドルフかどうか判定せよ. ただしこの問題はまだ発表していない人のみ解答でき, 複数人の回答を可とする.
+\footnote{例えば距離空間, 離散位相空間, 密着位相空間などが挙げられる. なお難しそうな空間に関して解答したい人は第9回の最後の問題を見てください.}
+%\footnote{例えば距離空間($\R^n$や$S^{n}$), 離散位相空間, 密着位相空間などが挙げられる. 他にも問題2.1など演習で扱っているものならばそれを解答しても良い. なおこの問題は発表した位相空間によって配点が異なる. 難しそうな空間であれば配点が大きい.(難しそうな空間ならば誰でも発表して良い).}
+
+\item $^{\bullet}$ $f : X \rightarrow Y$を連続な単射写像とする. $Y$がハウスドルフならば$X$もハウスドルフであることを示せ. またハウスドルフ空間$X$の部分集合$A \subset X$に相対位相を入れたものはハウスドルフであることを示せ. 
+% \footnote{ハウスドルフ空間$X$の部分集合$A \subset X$に相対位相を入れたものはハウスドルフである. 一方商空間には第6回授業でやった通りハウスドルフ性が保存されない.}
+ 
+ \item $^{\bullet}$ 連続な全射写像$f : X \rightarrow Y$で$X$はハウスドルフだが$Y$がハウスドルフでない例を一つあげよ. 
+
+\item$^{\bullet}$ 「位相空間$(X, \mathscr{O})$について$X$が$T_1$空間であるとは, 任意の異なる2点$a, b \in X$についてある$U \in \mathscr{O}$があって$a \in U$かつ$b \not \in U$となること」とする. 次の問いに答えよ.
+	\begin{enumerate}
+	 \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+	\item $X$が$T_1$空間であることは, 任意の点$x \in X$について$\{ x\}$が閉集合であることと同値であることを示せ.
+	\item $X$がハウスドルフ空間($T_2$空間)であれば$T_1$空間であることを示せ.  
+	\item $T_1$空間であるがハウスドルフ空間($T_2$空間)でない例を一つあげよ. 
+	\end{enumerate}
+
+	
+%\item $f : X \rightarrow Y$を連続写像とする. $X$がハウスドルフならば$f(X)$もハウスドルフか?
+
+\item $X$を位相空間とする. 次は同値であることを示せ.
+\begin{enumerate}[label=(\roman*)]
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $X$はハウスドルフである.
+\item 対角集合$\{ (x,x) \in X \times X\}$は$X \times X$の閉集合である.
+\item 任意の位相空間$T$と任意の連続写像$f,g : T \rightarrow X$に対し, ${\rm Ker}(f,g) = \{ t \in T | f(t) =g(t)\}$は$T$の閉集合である.
+\item 任意の位相空間$T$と任意の連続写像$f : T \rightarrow X$について$\{ (t,x) \in T \times X | f(t) =x\}$は$T \times X$の閉集合である.
+\end{enumerate}
+
+
+
+\item $f,g : X \rightarrow Y$を位相空間の間の連続写像とし, $A$を$X$の稠密な部分集合とする. 
+$Y$がハウスドルフかつ$f|_{A} =g|_{A}$ならば, $f =g$であることを示せ. 
+
+
+
+\item \label{torus} $\R^{2}$に対し同値関係$\sim$を
+$$
+(x_1, y_1)\sim (x_2, y_2) \Leftrightarrow x_1 - x_2 \in \Z \text{かつ} y_1 - y_2 \in \Z 
+$$
+で定め, 2次元トーラス$T^2 := \R^2/\sim$とする.
+$\pi : \R^2 \rightarrow T^2$という商写像により$T^2$に商位相を入れるとき, $T^2$はハウスドルフ空間であることを示せ.
+
+%\item\ref{}以外の方法実射影空間$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ.
+
+
+	
+%\item $f,g$を位相空間$(X, \mathscr{O}_X)$から位相空間$(Y, \mathscr{O}_Y)$への連続写像とする.
+	%$$A = \{ x \in X | f(x) = g(x)\}$$
+	%とするとき次の問いに答えよ
+	%\begin{enumerate}
+	%\item 一般には$A$は$X$の閉集合ではない. そのような例を構成せよ.
+	%\item $Y$がハウスドルフであるとき$A$は$X$の閉集合となることを示せ.
+	%\end{enumerate}
+
+\item 問6.8を用いて$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ. 
+
+\item $M(n+1, \R)$を$(n+1) \times (n+1)$実行列の集合とし, $M(n+1, \R) $を$\R^{(n+1)^2}$と同一視して位相を入れる. 
+$\sigma : \R^{n+1} \setminus \{0\} \rightarrow  M(n+1, \R) $を次で定める:
+{\footnotesize
+$$
+\begin{matrix}
+\sigma : & \R^{n+1} \setminus \{0\} &\rightarrow & M(n+1, \R) \\
+&(x_1, \ldots, x_{n+1})&\mapsto & 
+\frac{1}{x_{1}^{2} + \cdots + x_{n+1}^{2} }
+ \begin{pmatrix}
+ x_{1}^{2} & x_1x_2& \cdots&x_1x_{n+1} \\ 
+x_2x_1& x_{2}^{2}& \cdots&x_2x_{n+1} \\ 
+\vdots &\vdots& \cdots& \vdots \\ 
+x_{n+1}x_1&  x_{n+1}x_2& \cdots&x_{n+1}^{2} \\ 
+\end{pmatrix}
+\end{matrix}
+$$
+}
+
+ $\sigma$は連続な単射写像$\tilde{\sigma} : \R\mathbb{P}^{n} \rightarrow M(n+1, \R)$を引き起こすことを示し, それを用いて$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ. 
+ 
+\item $X$を位相空間とする. 「任意の異なる2点$p, q \in X$について, ある連続関数$f : X \rightarrow \R$で$f(p)=0, f(q)\neq 0$となるものが存在する」と仮定する. このとき$X$はハウスドルフ空間であること示せ. またこれを用いて$\R\mathbb{P}^{n}$はハウスドルフ空間であることを示せ. \footnote{ヒント: 直線への射影を用いる. この手法は後の問題でも使える.}
+  
+%\footnote{色々方法がある. 「$S^n$への逆像を考える」方法や「$M(n+1, \R)$への単射を作る」方法, 「射影を」}
+
+\item $\C^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	z \sim w \Leftrightarrow \text{0でない複素数$\alpha$が存在して$z = \alpha w$}
+	$$
+	と定義する. $ \C\mathbb{P}^{n}:= (\C^{n+1} \setminus \{ 0\})/\sim$と書き複素射影空間と呼ぶ. \footnote{実射影空間と同様に$z = (z_{1}, z_{2}, \ldots, z_{n+1})$を$\C\mathbb{P}^{n}$の元とみなしたものを$(z_{1}: \cdots : z_{n+1})$と書き複素同次座標と呼ぶ. }
+	$\C\mathbb{P}^{n}$に商位相を入れるとき, $\C\mathbb{P}^{n}$はハウスドルフ空間であることを示せ.
+
+\item $^{*}$ $1 \le k < n$となる自然数について, 
+$A_{k, n}$を$k \times n$実数行列でランクが$k$となる行列全体の集合とし, $\R^{kn}$の部分集合とみなすことで$A_{k,n}$に$\R^{kn}$の相対位相を入れる. 
+$A_{k, n}$に同値関係$\sim$を
+$$
+	A \sim B \Leftrightarrow \text{正則な$k \times k$実数行列$G$が存在して$A = GB$}
+$$
+と定義する. $G_{k,n}:= A_{k, n}/\sim$と書き実グラスマン多様体と呼ぶ. $G_{k,n}$に商位相を入れるとき, $G_{k,n}$はハウスドルフ空間であることを示せ. 
+
+%\hspace{-22pt}以下の問題は第8回の演習問題に入りきらなかった内容である. 解答の際に第8回以降で扱う内容を用いて良い
+
+
+ \end{enumerate}
+ 
+
+\newpage
+
+
+\begin{center}
+{\Large 8.コンパクト}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/12/13
+\end{flushright}
+
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である.  
+以下断りがなければ, $\R^{n}$にはユークリッド位相を入れたものを考える. 
+%また$\R^{n+1}$の部分集合$S^n$を$S^n = \{ (x_1, \ldots, x_{n+1}) \in \R^{n+1} \, |\,\sum_{i=1}^{n+1} x_{i}^{2} =1\}$と定め, 位相は$\R^{n+1}$の相対位相を入れる. 
+また位相空間$X$は2点以上の点を含むものとする.
+
+\begin{enumerate}[label=\textbf{問}8.\arabic*]
+
+%\item \label{examlple} ユークリッド空間$\R^n$, $n$次元球$S^{n}$, 実射影空間$\R\mathbb{P}^{n}$, 2次元トーラス$T^2$, 
+\item $^{\bullet}$ 演習で出てきた位相空間を1つあげコンパクトかどうか判定せよ. ただしこの問題はまだ発表していない人のみ解答でき, 複数人の回答を可とする.\footnote{例えば$\R^n$, $S^{n}$, 離散位相空間, 密着位相空間, $T^2$, $\R\mathbb{P}^n$, $\C\mathbb{P}^n$, 実グラスマン多様体などが挙げられる. }
+%\footnote{例えば$\R^n$, $S^{n}$, 離散位相空間, 密着位相空間, $T^2$, $\R\mathbb{P}^n$, $\C\mathbb{P}^n$などが挙げられる. 他にも問題2.1など演習で扱っているものならばそれを解答しても良い. なおこの問題は発表した位相空間によって配点が異なる. 難しそうな空間であれば配点が大きい.(難しそうな空間ならば誰でも発表して良い).}
+
+
+\item $^{\bullet}$$f : X \rightarrow Y$を連続な全射写像とする. $X$がコンパクトならば$Y$もコンパクトであることを示せ. またこれを用いて$\R$と$[0,1]$は同相ではないことを示せ.
+
+\item $^{\bullet}$コンパクト位相空間の閉部分集合はコンパクトであることを示せ. またコンパクト位相空間のコンパクトな部分集合で閉集合でないものの例を一つあげよ.
+
+\item $^{\bullet}$コンパクト位相空間$X$の実数値連続関数$f : X \rightarrow \R$は最大値・最小値を持つことを示せ.
+
+\item $^{\bullet}$ハウスドルフ空間のコンパクト集合は閉集合であることを示せ. またこれを用いてコンパクト空間$X$からハウスドルフ空間$Y$への連続全単射$f : X \rightarrow Y$は同相であることを示せ.
+
+
+%\item $(X, \mathscr{O}_X)$を位相空間とし, $A \subset X$を$X$の部分集合, $\mathscr{O}_A$を$\mathscr{O}_X$の部分位相とする. $A$が$\mathscr{O}_X$の位相でコンパクトであることは$\mathscr{O}_A$の位相でコンパクトであることと同値であることを示せ.
+
+%\item  下限位相空間はコンパクトではない.
+%\item $R^n$に次の同値関係を入れる. 
+%\item 
+	%\begin{enumerate}
+	%\item 距離空間上のコンパクト集合は有界閉集合であることを示せ
+	%\item 有界閉集合であるがコンパクトではない例を示せ.
+	% \end{enumerate}
+	
+%\item 一点コンパクト化
+
+\item $\varphi: \C\mathbb{P}^1  \rightarrow S^2$を
+$$
+      \begin{matrix}
+     \varphi: &\C\mathbb{P}^1 & \rightarrow &S^2\\
+      &(z: w)& \mapsto& \left(\frac{2{\rm Re}(z\bar{w})}{|z|^2 + |w|^2}, \frac{2{\rm Im}(z\bar{w})}{|z|^2 + |w|^2}, \frac{|z|^2 - |w|^2}{|z|^2 + |w|^2}\right)
+       \end{matrix}
+      $$
+%($[z:w] \in \C\mathbb{P}^1 $に関しては問題7.11の注釈を参照のこと.)
+とするとき, $\varphi$はwell-definedな同相写像であることを示せ. (複素射影空間$\C\mathbb{P}^n$に関しては問題7.11参照.)
+%\footnote{コンパクトのところで習う定理を用いて良い. \ref{so3}も同様.}
+ただし$\bar{z}$は$z$の複素共役で$|z|^2 = z \bar{z}$とする. また$z \in \C$がある実数$u,v \in \R$を用いて$z = u + \sqrt{-1}v$と表されているとき, ${\rm Re}(z) := u$, ${\rm Im}(z) := v$と定義する. 
+
+\item (一点コンパクト化の普遍性)位相空間$(X, \mathscr{O})$の一点コンパクト化を$(X^{*}, \mathscr{O}^{*})$とする. 
+さらに$X$をコンパクトではない局所コンパクトハウスドルフ空間であると仮定する.
+このとき任意のコンパクトハウスドルフ空間$K$と連続写像$i : X \rightarrow K$で$i : X \rightarrow i(X)$が同相かつ$i(X) \subset K$が$K$の中で稠密となるものについて, ある連続写像$\phi : K \rightarrow X^{*}$がただ一つ存在して次の図式を満たすことを示せ.
+
+\vspace{-22pt}
+  \begin{equation*}
+\xymatrix@C=20pt@R=20pt{
+X\ar@{->}[d]  \ar@{->}[r]^{i} & K\ar@{->}[ld]^{\phi}  \\
+X^{*} & 
+ }
+\end{equation*}
+\item $\C$の一点コンパクト化が$S^2$と同相であることを示せ. またこれを用いて$S^2$と$\C\mathbb{P}^1$は同相であることを示せ.
+
+\item $^{*}$ 2次元トーラス$T^2$を問題7.7のように定義する. 0でない実数$\alpha$について, $f_{\alpha}: \R \rightarrow T^2$を$f_{\alpha}(x) =  (x, \alpha x)$で定め, $f_{\alpha}(\R) \subset T^2$に$T^2$の相対位相を入れる. 次の問いに答えよ.
+
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $\alpha$が有理数であるとき, $f_{\alpha}(\R) $は$S^1$と同相であることを示せ.
+\item $\alpha$が無理数であるとき, $f_{\alpha}: \R \rightarrow f_{\alpha}(\R) $は全単射な連続写像だが, 同相写像ではないことを示せ. 
+ただし中間テスト第5問にあった無理数の特徴づけは証明なしに用いて良い.
+\end{enumerate}
+
+
+
+\item $^{**}$ $X$を位相空間とする. 次は同値であることを示せ.\footnote{(iii)から(i)が難しい. 難しければ(i) $\Rightarrow$ (ii) $\Rightarrow$ (iii)だけを発表しても良い. }
+\begin{enumerate}[label=(\roman*)]
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item  $X$はコンパクトである.
+\item 任意の位相空間$Y$, 任意の$y \in Y$, $X \times \{ y\}$の任意の開近傍$W \subset X \times Y$について, ある$y$の開近傍$V \subset Y$があって, $X \times V \subset W$となる.
+\item 任意の位相空間$Y$に対し第二射影$p_{2} : X \times Y \rightarrow Y$, $p_2(x,y)=y$は閉写像である. 
+\end{enumerate}
+
+
+
+%\footnote{ヒント: $f(\R)$は$T^2$にぐるぐる巻きついている. }
+
+%\item$^{*}$ $g : S^2 \rightarrow \R^4$を$g(x,y,z)=(yz,zx,xy, x^2+2y^2 + 3z^2)$とする. $g$は連続写像$\tilde{g}: \R\mathbb{P}^{2} \rightarrow \R^4$を引き起こすことを示せ. また$\tilde{g}( \R\mathbb{P}^{2} ) \subset \R^4$に部分位相を入れるとき, $\tilde{g}: \R\mathbb{P}^{2} \rightarrow \tilde{g}( \R\mathbb{P}^{2} ) $は同相写像であることを示せ.
+
+
+
+%\hspace{-55pt}\underline{以下の問題は発展的な内容である.(余力のある人がやってください.)} %(個人的には\ref{stone} \ref{Gelfand}は面白いと思う.)
+
+
+\item \label{stone} $^{**}$ (Stone 1937) $X$をコンパクトハウスドルフ空間とし, $C(X):= \{ f : X \rightarrow \R, \text{$f$は連続}\}$とする. 写像
+$T : C(X) \rightarrow \R$で
+$$
+T(f + g) = T(f) + T(g), T(fg)=T(f)T(g),  T(\lambda f) = \lambda T(f), T(1)=1 \quad (\forall f,g \in C(X), \forall \lambda \in \R)
+$$
+となるものを考える.\footnote{$T(1) = 1$の左辺の"1"は$x \in X$について$1 \in \R$を返す定数関数である. } 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 任意の$x \in X$について$g(x) \neq 0$ならば$T(g) \neq 0$であることを示せ. 
+\item ある$x_{T} \in X$があって, 任意の$f \in C(X)$について$T(f) = f(x_{T})$となることを示せ. \footnote{ヒント: 背理法を用いる. もし任意の$x \in X$についてある$f_{x} \in C(X)$があって$T(f_x) \neq f(x)$ならば$f_x$を使って$X$の開被覆が作れる. あとはコンパクト性を使って(a)を満たさない関数を作れば良い.}
+\end{enumerate}
+
+\item $^{**}$\label{Gelfand} (Genfand-Kolomogolov 1939) $X,Y$をコンパクトハウスドルフ空間とし, $C(X), C(Y)$を\ref{stone}の通りとする.
+写像$T : C(X) \rightarrow C(Y)$で
+$$
+T(f + g) = T(f) + T(g), T(fg)=T(f)T(g), T(\lambda f) = \lambda T(f), T(1) =1 \quad (\forall f,g \in C(X), \forall \lambda \in \R)
+$$
+となるものを考える.%\footnote{$T(1) =1$における"1"は$x \in X$について$0 \in \R$を返す定数関数である. } 
+このとき連続写像$\varphi : Y \rightarrow X$であって
+$$
+T(f)(y) = f(\varphi(y)) \quad  (\forall f\in C(X), \forall y \in Y)
+$$
+となるものが存在することを示せ. \footnote{ヒント: \ref{stone}を使って$\varphi$を構成する. 連続性は$X$の閉集合の逆像が$Y$の閉集合であることを示せば良い. どちらにもウリゾーンの補題を用いる. }
+また$T$が全単射ならば$\varphi$は同相であることを示せ.
+
+ 
+\item \label{so3} $^{**}$ 3次特殊直交群$SO(3,\R)$を$ 3\times 3$実数行列$G$で$^{t}GG=E_3$かつ$\det(G)=1$なる行列全体の集合とする. $\R^{9}$の部分集合とみなすことで$SO(3,\R)$に$\R^{9}$の相対位相を入れる. 
+$SO(3,\R)$は$\R\mathbb{P}^{3}$と同相であることを示せ.\footnote{ヒント: 四元数体のノルム1の集合が$S^3$となる. ノルム1の四元数の元から$SO(3,\R)$の元を作れば良い(実はこれはゲーム開発にも用いられている. 物理だとスピノルと関係あるらしい.)}
+
+ \end{enumerate}
+
+
+
+\newpage
+
+
+\begin{center}
+{\Large 9. 連結}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/12/13
+\end{flushright}
+
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である.  以下断りがなければ$\R^{n}$にはユークリッド位相を入れたものを考える. また位相空間$X$は2点以上の点を含むものとする.
+
+
+\begin{enumerate}[label=\textbf{問}9.\arabic*]
+
+%\item \label{examlple} ユークリッド空間$\R^n$, $n$次元球$S^{n}$, 実射影空間$\R\mathbb{P}^{n}$, 2次元トーラス$T^2$, 
+\item $^{\bullet}$ 演習で出てきた位相空間を1つあげ連結かどうか判定せよ. ただしこの問題はまだ発表していない人のみ解答でき, 複数人の回答を可とする.
+\footnote{例えば$\R^n$, $S^{n}$, 離散位相空間, 密着位相空間, $T^2$, $\R\mathbb{P}^n$, $\C\mathbb{P}^n$, グラスマン多様体などが挙げられる. }%footnote{例えば$\R^n$, $S^{n}$, 離散位相空間, 密着位相空間などが挙げられる. 他にも問題2.1など演習で扱っているものならばそれを解答しても良い. なおこの問題は発表した位相空間によって配点が異なる. 難しそうな空間であれば配点が大きい.(難しそうな空間ならば誰でも発表して良い).}
+
+
+\item $^{\bullet}$ 連続な全射写像$f: X \rightarrow Y$について$X$が連結ならば$Y$も連結であることを示せ. またこれを用いて$(0,1)$, $[0,1)$, $[0,1]$はどれも互いに同相ではないことを示せ.
+
+
+\item $^{\bullet}$ $X$を位相空間とし, $A \subset X$を$X$の連結集合とする. 任意の$A \subset B \subset \overline{A}$となる部分集合$B$は$X$の連結集合であることを示せ.
+
+%\item $^{\bullet}$ $(0,1)$, $[0,1)$, $[0,1]$はどれも互いに同相ではないことを示せ.
+
+\item $^{\bullet}$  $X$をコンパクト位相空間, $Y$を連結ハウスドルフ空間とする. 連続写像$f : X \rightarrow Y$が開写像であるならば, $f$は全射であることを示せ. 
+
+\item $^{\bullet}$ $X$を集合とし, $\mathscr{O}_1, \mathscr{O}_2$を $\mathscr{O}_1 \subset \mathscr{O}_2$となる開集合系とする. 次の問いに答えよ.\footnote{開集合が多ければハウスドルフになりやすく, 開集合が少なければコンパクト・連結になりやすいということである.}
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 位相空間$(X, \mathscr{O}_1)$がハウスドルフならば, 位相空間$(X, \mathscr{O}_2)$もハウスドルフである.
+\item 位相空間$(X, \mathscr{O}_2)$がコンパクトならば, 位相空間$(X, \mathscr{O}_1)$もコンパクトである.
+\item 位相空間$(X, \mathscr{O}_2)$が連結ならば, 位相空間$(X, \mathscr{O}_1)$も連結である.
+\end{enumerate}
+
+
+\item $X$を位相空間とする. 次は同値であることを示せ．
+\begin{enumerate}[label=(\roman*)]
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+  \item $X$は連結である.
+  \item 任意の実連続関数$f : X \rightarrow \R$と任意の$u,v \in X$, $t \in \R$について, $f(u) \le t \le f(v)$ならば, ある$w \in X$が存在して$f(w) = t$となる. 
+\end{enumerate}
+\item $\R^2$から$\R$への全単射は存在するが, $\R^2$から$\R$への同相写像は存在しないことを示せ.
+
+
+\item 位相空間$X$と$x \in X$について, $x$を含む最大の連結集合を\underline{$x$を含む$X$の連結成分}という. 次の問いに答えよ. 
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+  \item $0 \in \R$を含む$\R$の連結成分を求めよ.
+  \item $\Q \subset \R$に$\R$の相対位相を入れる. $0 \in \Q$を含む$\Q$の連結成分を求めよ. 
+  \item 連結成分は常に連結な$X$の閉集合であることを示せ.
+  \item 連結成分は常に$X$の開集合になるか. 正しければ証明し, 間違いならば反例を与えよ.
+\end{enumerate}
+
+%$\R$にユークリッド位相をいれ, 有理数の集合$\Q$に$\R$の部分位相を入れる. 任意の$x \in \Q$について$x$を含む連結成分は$\{ x\}$であることを示せ. 特に$\Q$は完全不連結である.
+
+\item $A \subset \R^2$を可算集合とする. $\R^2 \setminus A$は弧状連結であることを示せ. (特に連結な集合となる.)
+
+\item 位相空間$X$について, 任意の$x \in X$とその任意の近傍$N$について$x$の弧状連結な近傍$U$があって$U \subset N$となるとき$X$は\underline{局所弧状連結}と呼ばれる. 次の問いに答えよ.
+	\begin{enumerate}
+	\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+	\item 局所弧状連結だが弧状連結でない空間の例をあげよ.
+	\item 連結かつ局所弧状連結ならば弧状連結であることを示せ. また$\R^n$の連結開集合は弧状連結になることを示せ. 
+	\end{enumerate}
+\item $^{*}$ (topologist's comb) $\R^2$の部分集合$X$を
+$$
+X := \{ 0\} \times (0,1] \cup (0,1] \times \{ 0 \} \cup \bigcup_{n=1}^{\infty}\left\{ \frac{1}{n} \times (0,1] \right\}
+$$
+とし, $X$に$\R^2$の相対位相を入れる. 次の問いに答えよ. 
+	\begin{enumerate}
+	\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt}
+  \item $X$を図示せよ. 
+  \item $X$は連結であることを示せ.
+  \item $X$は弧状連結ではないことを示せ. また局所連結ではないことを示せ.
+  	\end{enumerate}
+%$X$を図示し, $X$は$\R^2$の連結な集合であるが, 弧状連結な集合ではないことを示せ．
+
+%\item 代数学の基本定理.(入れ)
+
+\item $^{*}$問1.2, 1.3, 1.9, 2.2, 2.3, 2.4, 2.5, 2.14, 4.1, 4.11, 4.12で出てきた位相空間のハウスドルフ性・コンパクト性・連結性を各々調べよ.
+なおこの問題は何回も答えて良いし複数人が分担して解答してもよい. なお答えた空間によって配点が異なる.
+
+
+ \end{enumerate}
+ 
+\newpage
+
+
+
+\begin{center}
+{\Large 10.距離空間の完備化}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2022/12/13
+\end{flushright}
+
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である.  以下断りがなければ$\R^{n}$にはユークリッド位相を入れたものを考える. また位相空間$X$は2点以上の点を含むものとする.
+
+\begin{enumerate}[label=\textbf{問}10.\arabic*]
+
+%\item \label{examlple} ユークリッド空間$\R^n$, $n$次元球$S^{n}$, 実射影空間$\R\mathbb{P}^{n}$, 2次元トーラス$T^2$, 
+
+%\item $^{\bullet}$ 完備な距離空間と完備でない距離空間の例をひとつづつあげよ.
+
+\item \label{uniform} $^{\bullet}$  $C[0,1] := \{ f : [0,1] \rightarrow \R \,|\, \text{$f$は実数値連続関数}\}$とおく. 以下この問題では, 関数列$\{ f_{i}\}_{i=1}^{\infty}$と言えば$f_i \in C[0,1]$となる関数の列とする. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 「関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に各点収束する」ことの定義を述べよ.
+\item 「関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束する」ことの定義を述べよ. 
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束するならば, 各点収束することを示せ. 
+\item (c)の逆は一般には成り立たない. その関数列の例を一つあげよ.
+\item $f,g \in C[0,1]$に関して
+$
+d_{\infty}(f,g)=\sup_{x \in [0,1] }\{ |f(x) - g(x)|\}
+$
+とおく. 問題1.2と同様にして$(C[0,1], d_{\infty})$は距離空間になる. 
+$(C[0,1], d_{\infty})$は完備であることを示せ.
+\end{enumerate}
+
+\item \label{hilbert} $^{\bullet}$ 実数列$x = \{ x_n\}_{n=1}^{\infty}$で$\sum_{n=1}^{\infty} x_{n}^{2} < \infty$となるものの集合を$l^2$とする.
+ $x,y \in l^2$について$d_{ l^2}(x,y) = \sqrt{ \sum_{n=1}^{\infty} (x_n- y_n)^2}$
+ と定めると, 問1.3から$(l^2,d_{ l^2})$は距離空間となる. $l^2$はこの距離$d_{ l^2}$に関して完備であることを示せ.
+
+\item $^{\bullet}$ 次の問いに答えよ.
+	\begin{enumerate}
+	\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+	\item 距離空間上のコンパクト集合は有界閉集合であることを示せ.
+	\item $(l^2,d_{ l^2})$を \ref{hilbert}の通りとし, 
+	$
+	A := \{ x  \in  l^2 \,|\, d_{ l^2}(x,x)=1\}
+	$
+	とおく. $A$は$(l^2,d_{ l^2})$の有界閉集合であるがコンパクト集合ではないことを示せ. また$(l^2,d_{ l^2})$もコンパクトではないことを示せ.
+	 \end{enumerate}
+
+
+
+\item $(X,d)$を距離空間とし, $X$の部分集合$A,B$について
+$d(A,B) := \inf_{a \in A, b \in B} \{ d(a,b)\}$
+と定める. 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+	\item ある距離空間と互いに交わらない閉集合$A,B$で$d(A,B) =0$となるものの例をあげよ.
+	\item $A$をコンパクト集合, $B$を閉集合とするとき, $A$と$B$が互いに交わらなければ$d(A,B)=0$であることを示せ.
+\end{enumerate}
+
+
+\item $^{*}$ $(C[0,1], d_{\infty})$を\ref{uniform}の通りとする. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $A=\{ f \in C[0,1] \,|\, f([0,1]) \subset [0,1] \}$とおくと, $A$は$(C[0,1], d_{\infty})$のコンパクト集合ではないこと示せ.
+\item $B=\{ f \in A \,|\, \text{任意の$x,y \in [0,1]$について}|f(x)-f(y)| \le |x-y| \}$とおくと, $B$は$(C[0,1], d_{\infty})$のコンパクト集合であることを示せ.%\footnote{ヒント: $[0,1]\times[0,1]$を$n$等分点}
+\end{enumerate}
+
+
+\item $^{*}$ $C[0,1]$を\ref{uniform}の通りとし, $f,g \in C[0,1]$に関して
+$$
+d_1(f,g) := \int_{0}^{1} |f(x) - g(x)| dx
+$$
+とおくと$d_1$は$C[0,1]$の距離となる. $d_1$の距離に関して関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に収束するとき, $\{ f_{i}\}_{i=1}^{\infty}$は$f$に$L^1$収束すると呼ぶ. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $(C[0,1], d_1)$は完備ではないことを示せ.
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に一様収束するならば, $L^1$収束すること示せ. 
+\item $L^1$収束するが一様収束しない関数列の例を一つあげよ.
+\item 各点収束するが$L^1$収束しない関数列の例を一つあげよ.
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$であって, $L^1$収束するが, 任意の$x \in [0,1]$について$\{f_{i}(x)\}_{i=1}^{\infty}$が収束しない関数列の例を一つあげよ.
+\end{enumerate}
+
+\item $^{*}$ $C[0,1]$を\ref{uniform}の通りとする. $x \in [0,1]$について$X_x = \R$とおくことで, 
+$C[0,1] \subset \prod_{x \in [0,1]} X_{x}$とみなせる. そこで$\prod_{x \in [0,1]} X_{x}$の積位相の$C[0,1]$への相対位相を$\mathscr{O}_p$とおく. 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 関数列$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に各点収束することは, 位相空間$(C[0,1], \mathscr{O}_p)$において$\{ f_{i}\}_{i=1}^{\infty}$が$f \in C[0,1]$に収束することと同値であることを示せ. (後者の収束の定義に関しては問題3.10を参照せよ.)
+\item $\mathscr{O}_p$は距離空間$(C[0,1],d_{\infty})$が作る位相$\mathscr{O}_{\infty}$よりも真に小さい, つまり$\mathscr{O}_p\subsetneq \mathscr{O}_{\infty}$であることを示せ.\footnote{\ref{uniform}と合わせると位相が小さいほど収束しやすいことがわかる.}
+\end{enumerate}
+
+
+
+\item $^{*}$ $p$を素数とする. 
+%$f_p : \Q \rightarrow \Q$を
+%$$
+%  f_p(x)= \begin{cases}
+%     p^{- \gamma}& (x=p^{-\gamma}\frac{m}{n}, \text{$m,n$は互いに素な整数}) \\
+%    0& (x =0)
+%  \end{cases}
+%  $$
+0でない有理数$r \in \Q$について, $r=p^e\frac{n}{m}$($m,n$はともに$p$と互いに素な整数)と表せるとき, $v_{p}(r):=e$と定義する.
+$r \in \Q$について
+$$|r|_{p}= \begin{cases} p^{- v_{p}(r)}& (r\neq 0)\\0& (r=0)\end{cases}
+$$
+とおく. 次の問いに答えよ.
+
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 0でない有理数$r,s \in \Q$について, $r+s \neq 0$ならば$v_{p}(r+s) \ge \min(v_{p}(r), v_{p}(s))$であることを示せ.
+%\footnote{$v_{p}(0)=\infty$と形式的に定義すれば, $v_{p}$は次の3つの条件を満たす: 「(1)$v_{p}(x)=\infty \Leftrightarrow x = 0$」, 「(2)$v_{p}(xy)=v_{p}(x)v_{p}(y)$」, 「(3)$v_{p}(x+y) \le \min(v_{p}(r), v_{p}(s))$」 このような}
+\item $x,y \in \Q$について$d_{p}(x,y) :=|x-y|_{p} $とおくと$d_{p}$は$\Q$の距離になることを示せ.
+%\item $(\Q, d_{p})$は完備でないことを示せ. 
+以下$\Q_p$を$\Q$の$d_{p}$による完備化とする. また完備化によって誘導される$\Q_p$上の距離を$d_{p}$と同じ記号で書くことにする.
+\item $\{ a_{n}\}_{n=0}^{\infty}$を有理数の数列とする. $(\Q_p,d_{p})$上で$\sum_{n=0}^{\infty} a_n$がある値に収束することは
+$\lim_{n \rightarrow \infty}|a_n|_{p} = 0$ であることと同値であることを示せ.
+\item $(\Q_p,d_{p})$上で$\sum_{n=0}^{\infty} p^n = \frac{1}{1-p}$であることを示せ. %特に$(\Q_2,d_{2})$上で$-1 = \sum_{n=0}^{\infty} 2^n = 1 + 2 + 4 + \cdots$である.
+\item $b_n \in \{0,1\}$かつ$(\Q_2,d_{2})$上で$\frac{2}{7} = \sum_{n=0}^{\infty} b_n 2^n$となるような数列$\{b_n\}_{n=0}^{\infty}$を決定せよ.
+\end{enumerate}
+
+
+ \end{enumerate}
+ 
+  \vspace{11pt}
+\begin{wrapfigure}{r}[0pt]{0.2\textwidth}
+  \centering
+ \includegraphics[height=25mm, width=25mm]{genetopo.png}
+\end{wrapfigure}
+
+
+演習の問題は授業ページ(\url{https://masataka123.github.io/2022_winter_generaltopology/})にもあります. 
+右下のQRコードからを読み込んでも構いません.
+ 
+ 
+ \end{document}

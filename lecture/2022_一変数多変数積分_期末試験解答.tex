@@ -1,0 +1,606 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage[dvipdfmx]{hyperref}
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{S}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+\newtheorem{dfnthm}[thm]{定義・定理}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+\begin{center}
+{\Large 期末試験 (基礎解析学2)の解答例}
+
+{\small 2022年度秋冬学期 大阪大学 全学共通教育科目 火曜2限 基礎解析学II (理(化))}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇(いわいまさたか) 2023/02/07
+\end{flushright}
+
+%\vspace{4t}
+{\Large 第1問.} 重積分の計算問題(2次元)
+\vspace{11pt}
+
+%{\large(1). $D=\{ (x,y) \in \R^2 : 0 \leqq y, \text{\,} 0 \leqq x-y, \text{\,} x+y \leqq 2\}$とする.重積分$\iint_{D} (x^2-y^2)dxdy$のを求めよ.}\vspace{5pt}
+
+%{\large(2). $D= \{ (x,y)\in \R^2 | \sqrt{x^2 + y^2 } \leqq 1  \}$とする. $\iint_{D} e^{-x^2-y^2}dxdy$を求めよ. }\vspace{5pt}
+
+\begin{comment}
+
+{\large(1). $D=\{ (x,y) \in \R^2 \,|\, x^2 + y^2 \leqq 1\}$とする. 
+重積分$\iint_{D}\frac{1}{(1+x^2+y^2)^2} \, dxdy$の値を求めよ.}\vspace{7pt}
+
+\hspace{-11pt}(解.) 
+$E=[0,1]\times[0,2\pi]$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & \R^2 & \\
+&(r,\theta) & \longmapsto & (r \cos \theta , r \sin \theta)&
+\end{array}
+$$
+とすると, 多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D}\frac{1}{(1+x^2+y^2)^2} \, dxdy
+&=
+\iint_{E} \frac{1}{(1+r^2)^2} |r|drd\theta =
+\int_{0}^{2\pi} \left( \int_{0}^{1}\frac{r}{(1+r^2)^2}  dr\right)d\theta \\
+&=\int_{0}^{2\pi} \left[ \frac{-1}{2(r^2 +1)}\right]_{0}^{1} d\theta 
+=\int_{0}^{2\pi} \left( -\frac{1}{4} + \frac{1}{2} \right) d\theta 
+=\frac{\pi}{2}.
+    \end{split}
+  \end{align*}
+  \vspace{7pt}
+  
+  \end{comment}
+  
+ 
+{\large(1). $D=\{ (x,y) \in \R^2  \,|\,  y \leqq x, x \leqq 1, 0 \leqq y  \}$とする. 重積分$\iint_{D} x^2y \, dxdy$の値を求めよ.}\vspace{7pt}
+
+\hspace{-11pt}(解.) $D=\{ (x,y) \in \R^2  \,|\,  y \leqq x \leqq 1, 0 \leqq y  \leqq 1 \}$より累次積分を使用して
+\begin{align*}
+\begin{split}
+\iint_{D} x^2ydxdy 
+= \int_{0}^{1} \left( \int_{y}^{1} x^2 y dx\right) dy 
+= \int_{0}^{1}\left[  \frac{x^3y}{3}\right]_{y}^{1} dy
+=  \frac{1}{3}\int_{0}^{1}  (y - y^4)     dy
+= \frac{1}{3}\left[  \frac{y^2}{2} - \frac{y^5}{5}   \right]_{0}^{1} = \frac{1}{10}.
+\end{split}
+\end{align*}
+
+{\large(2). $D=\{ (x,y) \in \R^2 \,|\, x^2 + y^2 \leqq x\}$とする.
+重積分$\iint_{D} \sqrt{x}\,dxdy$の値を求めよ.}\vspace{7pt}
+
+\hspace{-11pt}(解.) $E= \{ (r ,\theta) \in \R^2  | 0 \leqq r \leqq \cos \theta, 
+ -\frac{\pi}{2}\leqq \theta  \leqq\frac{\pi}{2}\}$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & D& \\
+&(r,\theta) & \longmapsto & (r \cos \theta , r \sin \theta)&
+\end{array}
+$$
+とすると, 多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D} \sqrt{x}dxdy
+&=
+\iint_{E}  (r\cos \theta)^{\frac{1}{2}} rdrd\theta 
+= \int_{- \frac{\pi}{2}}^{\frac{\pi}{2}} 
+ \int_{0}^{\cos \theta} r^{\frac{3}{2}} (\cos \theta)^{\frac{1}{2}} drd\theta \\
+&=
+\int_{- \frac{\pi}{2}}^{\frac{\pi}{2}}
+ \left[ \frac{2}{5}r^{\frac{5}{2}} \right]_{0}^{\cos \theta}  (\cos \theta)^{\frac{1}{2}}  d\theta 
+=\frac{2}{5} \int_{- \frac{\pi}{2}}^{\frac{\pi}{2}} (\cos \theta)^{3} d\theta 
+=\frac{8}{15}.
+    \end{split}
+  \end{align*}
+\vspace{7pt}
+
+{\large(3). $D=\{ (x,y) \in \R^2 \,|\, 0 \leqq x+y \leqq 2, 0 \leqq x-y \leqq 2\}$とする.重積分$\iint_{D} (x-y)e^{x+y}\,dxdy$の値を求めよ.}\vspace{7pt}
+
+\hspace{-11pt}(解.) $s = x+y, t=x-y$と変換すれば良さそうだと気づく. 実際$E= \{ (s,t) \in \R^2  | 0 \leqq s \leqq 2 , 
+0 \leqq t \leqq 2 \}$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & D & \\
+&(s,t) & \longmapsto & (\frac{s+t}{2} , \frac{s-t}{2})&
+\end{array}
+$$
+とすると,
+$D\Phi=
+\left(\begin{array}{cc} \frac{1}{2} &\frac{1}{2} \\ \frac{1}{2} &-\frac{1}{2}  \\ \end{array} \right)
+$
+かつ$\det D\Phi = -\frac{1}{2}\neq 0$である.
+よって多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D} (x-y)e^{x+y}\,dxdy
+&=
+\iint_{E}  te^s \left|-\frac{1}{2}\right|dsdt
+= \frac{1}{2}\int_{0}^{2} 
+ \int_{0}^{2} te^s dsdt \\
+&=
+\frac{1}{2} \times  \left[\frac{1}{2}t^2 \right]^{2}_{0} \times  \left[e^s \right]^{2}_{0} 
+=\frac{1}{2} \times \frac{4}{2} \times (e^2 - 1)
+=e^2 - 1.
+    \end{split}
+  \end{align*}
+\vspace{7pt}
+
+{\large(4). $D=\{ (x,y) \in \R^2 \,|\, 0 \leqq x, 0 \leqq y,  x+y \leqq 1\}$とする.
+重積分$\iint_{D} \frac{1}{1 + (x+y)^2}\,dxdy$の値を求めよ.}\vspace{7pt}
+
+\hspace{-11pt}(解.) $s = x, t=x+y$と変換すれば良いことに気づく. 実際
+$E= \{ (s,t) \in \R^2  |  0 \leqq s \leqq t, 0 \leqq t \leqq 1 \}$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & D & \\
+&(s,t) & \longmapsto & (s , t-s)&
+\end{array}
+$$
+とすると,
+$D\Phi=
+\left(\begin{array}{cc} 1 &-1\\ 0&1 \\ \end{array} \right)
+$
+かつ$\det D\Phi = 1\neq 0$である.
+よって多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D} \frac{1}{1 + (x+y)^2}\,dxdy
+&=
+\iint_{E}  \frac{1}{1 + t^2}dsdt
+= \int_{0}^{1} \int_{0}^{t}  \frac{1}{1 + t^2}dsdt \\
+&= \int_{0}^{1} \frac{t}{1 + t^2} dt
+=\left[ \frac{1}{2}\log(1 + t^2)\right]_{0}^{1} 
+=  \frac{\log 2}{2}.
+    \end{split}
+  \end{align*}
+\vspace{7pt}
+
+
+%{\large(3). $D=\{ (x,y) \in \R^2  \,|\,  0 \leqq x, \text{\,}  0 \leqq y,\text{\,} \sqrt{x} + \sqrt{y} \leqq 1\}$とする. 重積分$\iint_{D} x^2dxdy$の値を求めよ.}\vspace{7pt}
+
+
+\vspace{11pt}
+{\Large 第2問.} 重積分の計算問題(3次元) 
+\vspace{11pt}
+
+{\large(1). $a$を正の実数とする. 円柱$V_1= \{ (x,y,z) \in \R^3 \,|\,x^2 + y^2 \leqq a^2\}$と円柱$V_2 = \{ (x,y,z) \in \R^3 \,|\, y^2 + z^2 \leqq a^2 \}$の共通部分$V_1 \cap V_2$の体積を求めよ.}\vspace{4pt}
+
+\hspace{-11pt}(解.)
+$D=\{ (x,y) \in \R^2 | x^2 + y^2 \leqq a^2\}$とおくと
+$$
+V_1 \cap V_2= \{ (x,y,z) \in \R^3 \,|\, (x,y) \in D, -\sqrt{a^2 -y^2} \leqq z \leqq  \sqrt{a^2-y^2} \}
+$$
+である. よって$V_1 \cap V_2$の体積は
+\begin{align*}
+\begin{split}
+\iiint_{V} dxdydz 
+&=
+\iint_{D} \left( \int_{-\sqrt{a^2-y^2}}^{\sqrt{a^2 -y^2} } dz \right) dxdy
+= \iint_{D} 2\sqrt{a^2  -y^2}dxdy \\
+    \end{split}
+  \end{align*}
+  ここで$D=\{ (x,y) \in \R^2 | -a \leqq y \leqq a, -\sqrt{a^2 -y^2} \leqq x \leqq  \sqrt{a^2-y^2} \}$であるので累次積分を使用すると
+ \begin{align*}
+\begin{split}
+\iint_{D} 2\sqrt{a^2  -y^2}dxdy 
+&=\int_{-a}^{a} \left( \int_{ -\sqrt{a^2 -y^2}}^{\sqrt{a^2 -y^2}} 2\sqrt{a^2  -y^2} dx \right)dy
+=\int_{-a}^{a}4(a^2 - y^2)dy\\
+&= 4\left[ a^2y - \frac{1}{3}y^3\right]_{-a}^{a}
+= 4\left(2a^3 - \frac{2}{3}a^3\right)=\frac{16}{3}a^3.
+    \end{split}
+  \end{align*}
+  以上より求める体積は$\frac{16}{3}a^3$である.
+  \vspace{7pt}
+
+{\large(2). $V=\{ (x,y,z) \in \R^3 \,|\,  0 \leqq x, 0 \leqq y, 0 \leqq z, x^2+y^2+z^2 \leqq 1\}$とする.重積分$\iiint_{V} z \text{\,}dxdydz$の値を求めよ.}
+
+\hspace{-11pt}(解.)
+$D=\{ (x,y) \in \R^2 \, | \, 0 \leqq x, 0 \leqq y, x^2 + y^2 \leqq 1\}$とおくと
+$$
+V = \{ (x,y,z) \in \R^3 \,|\, (x,y) \in D, 0 \leqq z \leqq  \sqrt{1 -x^2 -y^2} \}
+$$
+である. よって
+\begin{align*}
+\begin{split}
+\iiint_{V} zdxdydz 
+&=
+\iint_{D} \left( \int^{\sqrt{1 -x^2 -y^2}}_{0}  z dz \right) dxdy
+= \iint_{D} \left[ \frac{z^2}{2}\right]^{\sqrt{1 -x^2 -y^2}}_{0}dxdy =\frac{1}{2} \iint_{D}(1 -x^2 -y^2) dxdy. \\
+    \end{split}
+  \end{align*}
+ $E=[0,1]\times[0,\frac{\pi}{2}]$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & D & \\
+&(r,\theta) & \longmapsto & (r \cos \theta , r \sin \theta)&
+\end{array}
+$$
+とすると, 多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\frac{1}{2} \iint_{D}(1 -x^2 -y^2) dxdy
+&= 
+\frac{1}{2}\int_{0}^{\frac{\pi}{2}} \left( \int_{0}^{1}(1-r^2)r dr\right)d\theta 
+= 
+\frac{1}{2}\int_{0}^{\frac{\pi}{2}} \left( \int_{0}^{1}(r-r^3) dr\right)d\theta \\
+&= 
+\frac{1}{2}\int_{0}^{\frac{\pi}{2}} \left[  \frac{r^2}{2} - \frac{r^4}{4}\right]^{1}_{0}d\theta 
+= 
+\frac{1}{2}\int_{0}^{\frac{\pi}{2}}\frac{1}{4} d\theta 
+=\frac{\pi}{16}.
+    \end{split}
+  \end{align*}
+  以上より$\iiint_{V} zdxdydz  = \frac{\pi}{16}$である.
+  \vspace{7pt}
+  
+%{\large(2). $a$を正の実数とする. 円柱$V_1= \{ (x,y,z) \in \R^3 \,|\,x^2 + y^2 \leqq a^2\}$と球$V_2 = \{ (x,y,z) \in \R^3 \,|\, x^2 + y^2 + z^2 \leqq a^2 \}$の共通部分$V_1 \cap V_2$の体積を求めよ.}\vspace{4pt}
+
+%{\large(2). $V=\{ (x,y,z) \in \R^3 \,|\,  0 \leqq x, 0 \leqq y, 0 \leqq z, x^2+y^2+z^2 \leqq 1\}$とする.重積分$\iiint_{V} xyz \text{\,}dxdydz$の値を求めよ.}
+
+\vspace{33pt}
+
+{\Large 第3問.} 広義積分・ガウス積分
+\vspace{11pt}
+
+{\large(1). 広義積分$\int_{- \infty}^{\infty} e^{- x^2} dx$は収束することを示せ.}\vspace{7pt}
+
+\hspace{-11pt}(解.)
+$$\int_{- \infty}^{\infty} e^{- x^2} dx = 
+\int_{1}^{\infty} e^{- x^2} dx
++\int_{- 1}^{1} e^{- x^2} dx
++\int_{- \infty}^{-1} e^{- x^2} dx$$
+であり, $\int_{- 1}^{1} e^{- x^2} dx$は有限の値を取るので, 
+広義積分$\int_{1}^{\infty} e^{- x^2} dx$と$\int_{- \infty}^{-1} e^{- x^2} dx$が収束することを示せば良い.
+以下, 広義積分$\int_{1}^{\infty} e^{- x^2} dx$が収束することを示す. ($\int_{- \infty}^{-1} e^{- x^2} dx$の方も同様である)
+$$\lim_{x \rightarrow +\infty} x^2 e^{- x^2}=0$$
+であるので, $[1, + \infty)$上で$x^2 e^{- x^2}$は有界である.
+つまりある$C>0$があって$[1, + \infty)$上で$|x^2 e^{- x^2}| \leqq C $となる.
+以上より, $[1, + \infty)$上で$|e^{- x^2}| \leqq  Cx^{-2}$かつ, 広義積分$\int_{1}^{\infty} Cx^{-2}dx$は$-2<-1$より収束するので, 第8回授業の広義積分の収束判定法から広義積分$\int_{1}^{\infty} e^{- x^2}dx$も収束する.
+\vspace{7pt}
+
+
+{\large(2). $a$を正の実数とし, $D_{a} = \{  (x,y) \in \R^2 \,|\,x^2 + y^2 \leqq a^2\}$とおく. 次の不等式が成り立つことを示せ.}
+$$
+\iint_{D_a} e^{-x^2 - y^2} dxdy \leqq \left(\int_{-a}^{a} e^{- x^2} dx  \right)^{2} \leqq \iint_{D_{2 a}} e^{-x^2 - y^2} dxdy 
+$$
+\vspace{7pt}
+
+\hspace{-11pt}(解.)
+$\R^2$上で$e^{-x^2 - y^2}\geqq0$であり, 
+$D_{a} \subset [-a, a] \times [-a, a] \subset D_{2a}$であるので, 
+$$
+\iint_{D_a} e^{-x^2 - y^2} dxdy \leqq \iint_{[-a, a] \times [-a, a] } e^{-x^2 - y^2} dxdy \leqq \iint_{D_{2 a}} e^{-x^2 - y^2} dxdy 
+$$
+となる. 真ん中の式は累次積分を使用して
+$$
+\iint_{[-a, a] \times [-a, a] } e^{-x^2 - y^2} dxdy
+= 
+\left(\int_{-a}^{a} e^{- x^2} dx  \right)\left(\int_{-a}^{a} e^{- y^2} dy \right)
+=
+\left(\int_{-a}^{a} e^{- x^2} dx  \right)^{2}
+$$
+となるので, (2)の不等式が成り立つ.
+\vspace{7pt}
+
+{\large(3). 広義積分$\int_{-\infty}^{\infty} e^{- x^2} dx$の値を求めよ.}\vspace{7pt}
+
+\hspace{-11pt}(解.)
+広義積分$\int_{-\infty}^{\infty} e^{- x^2} dx$の値を$I$とおき, $I_a = \int_{-a}^{a} e^{- x^2} dx $とおくと
+(1)より広義積分は収束し, $\lim_{a \rightarrow \infty} I_a = I =\int_{-\infty}^{\infty} e^{- x^2} dx$となる.
+また$I>0$である. 
+
+$E=[0,a]\times[0,2\pi]$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & D_a & \\
+&(r,\theta) & \longmapsto & (r \cos \theta , r \sin \theta)&
+\end{array}
+$$
+とすると, 多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D_a} e^{-x^2 - y^2} dxdy 
+&=
+\iint_{E} e^{- r^2}|r|drd\theta =
+\int_{0}^{2\pi} \left( \int_{0}^{a} re^{- r^2} dr\right)d\theta \\
+&=\int_{0}^{2\pi} \left[  -\frac{1}{2} e^{- r^2}\right]_{0}^{a} d\theta 
+=\int_{0}^{2\pi} \left(  -\frac{1}{2} e^{- a^2} + \frac{1}{2} \right) d\theta 
+=\pi \left( 1 -  e^{- a^2}\right).
+    \end{split}
+  \end{align*}
+よって(2)から
+$$
+\pi \left( 1 -  e^{- a^2}\right)
+\leqq I_{a}^{2}
+\leqq \pi \left( 1 -  e^{- 4a^2}\right)
+$$
+を得る. $\lim_{a \rightarrow \infty} I_a = I$と 
+$\lim_{a \rightarrow \infty} \pi \left( 1 -  e^{- a^2}\right) = \lim_{a \rightarrow \infty} \pi \left( 1 -  e^{- 4a^2}\right)=\pi$
+からはさみうちの原理より
+$$
+I^2 = \lim_{a \rightarrow \infty} I_{a}^{2}  =  \pi
+$$
+を得る. 以上より$I>0$から
+$
+\int_{-\infty}^{\infty} e^{- x^2} dx = I = \sqrt{\pi}
+$
+である. 
+
+\vspace{33pt}
+
+\begin{comment}
+
+%\vspace{22pt}
+{\Large 第4問.} 広義積分
+\vspace{11pt}
+
+
+{\large$p$を実数とする. 広義積分$$\int_{1}^{\infty}  (2+7\sqrt{x})^{2p} \log x \, dx$$が収束するような$p$の範囲を求めよ.}
+
+\hspace{-11pt}(解.)
+以下$f(x) = (2+7\sqrt{x})^{2p} \log x$とおく. 
+
+まず「$p < -1$ならば広義積分$\int_{1}^{\infty} f(x) \, dx$が収束する」ことを示す. $p<-1$よりある$\epsilon >0$があって$p+\epsilon<-1$となる.
+よって
+$$
+\lim_{x \rightarrow +\infty}\frac{f(x)}{x^{p+\epsilon}}=
+\lim_{x \rightarrow +\infty}\frac{(2+7\sqrt{x})^{2p} \log x }{x^{p+\epsilon}}
+=\lim_{x \rightarrow +\infty}\left( \frac{2+7\sqrt{x}}{\sqrt{x}} \right)^{2p}\frac{\log x}{x^{\epsilon}}
+=0
+$$
+であるので, $[1, + \infty)$上で$\frac{f(x)}{x^{p+\epsilon}}$は有界である.
+%\footnote{ここを正確に述べると, $\lim_{x \rightarrow +\infty}\frac{f(x)}{x^{p+\epsilon}}=0$より, ある$R>0$があって, $[R, + \infty)$上で$|\frac{f(x)}{x^{p+\epsilon}}| <1$となる. 一方$[1,R]$上で$\frac{f(x)}{x^{p+\epsilon}}$は最大値・最小値を持つので(閉区間上の連続関数は最大値を持つ), ある$M>0$があって,  $[1, R]$上で$|\frac{f(x)}{x^{p+\epsilon}}| <M$となる. よって, $[1, + \infty)$上で$|\frac{f(x)}{x^{p+\epsilon}}| < 1+M$となる. よって有界である.}
+つまりある$C>0$があって, $[1, + \infty)$上で$|\frac{f(x)}{x^{p+\epsilon}}| < C$となる.
+以上より, $[1, + \infty)$上で$|f(x)| < C{x^{p+\epsilon}}$かつ, 広義積分$\int_{1}^{\infty}C{x^{p+\epsilon}}dx$は$p+\epsilon<-1$より収束するので, 広義積分$\int_{1}^{\infty} f(x) dx$も収束する.
+
+次に「$p\geqq -1$ならば広義積分$\int_{1}^{\infty} f(x) dx$は発散する」ことを示す. 
+$$
+\lim_{x \rightarrow +\infty}\frac{x^p}{(2+7\sqrt{x})^{2p}}
+=\lim_{x \rightarrow +\infty}\left( \frac{\sqrt{x}}{2+7\sqrt{x}} \right)^{2p}
+= 7^{-2p}
+$$
+であるので, $[3,  + \infty)$上で$\frac{x^p}{(2+7\sqrt{x})^{2p}}$は有界である.
+つまりある$C>0$があって, $[3, + \infty)$上で$x^p< C(2+7\sqrt{x})^{2p}$となる.
+一方$3 \leqq x$ならば$1 \leqq \log x$である.
+ 以上より
+ $$
+C^{-1} x^p < (2+7\sqrt{x})^{2p}\log x =f(x)
+ $$
+ が$[3, + \infty)$上で成り立つ. また広義積分$\int_{3}^{\infty} C^{-1} x^p dx$は$p\geqq -1$であるので$+ \infty$に発散する. よって広義積分$\int_{3}^{\infty} f(x)  dx$も$+ \infty$に発散する. 以上より広義積分$\int_{1}^{\infty} f(x) dx$も$+ \infty$に発散する.
+ 
+したがって広義積分$\int_{1}^{\infty}  (2+7\sqrt{x})^{2p} \log x \, dx$が収束するような$p$の範囲は$p < -1$である.
+%\vspace{11pt}
+
+%{\large(1). $p< -1$ならば広義積分$\int_{1}^{\infty} f(x) dx$は収束することを示せ．}\vspace{7pt}
+
+%{\large(2). $p\geqq -1$ならば広義積分$\int_{1}^{\infty} f(x) dx$は発散することを示せ.}
+\vspace{44pt}
+\end{comment}
+
+
+{\Large おまけ問題.} 積分の定義
+\vspace{11pt}
+
+(1). 関数$g : [0,1] \rightarrow \R$を
+$$g(x)= \begin{cases} \frac{1}{q}& (\text{$x$が有理数で互いに素な0以上の整数$p,q$を用いて$x=\frac{p}{q}$と表せれるとき.})\\
+0& (\text{$x$が無理数のとき})\end{cases}
+$$
+とする. (ただし$g(0)=0$とする.) $g(x)$は$[0,1]$上でリーマン積分可能か判定せよ. \vspace{15pt}
+
+\hspace{-11pt}(解.)
+リーマン積分可能であり
+$$
+\int_{0}^{1} g(x)dx =0
+$$
+である. 以下そのことを示す.
+
+$\Delta = ( 0, x_1, \dots , x_{m-1} , 1 ) $を$[0,1]$の分割とする.
+ $1 \leqq i \leqq m$となる自然数$i$について
+ $$
+ M_{i} = \sup \{ g(x) \,\,| \,\,x_{i-1} \leqq x \leqq x_i \}, \text{\,\,\,\,}
+ m_{i} = \inf \{ g(x) \,\,| \,\,x_{i-1} \leqq x \leqq x_i  \} \text{\,\,とし, }
+$$
+ $$
+ S_{\Delta} = \sum_{i=1}^{m} M_{i}(x_i - x_{i-1}), \text{\,\,\,\,}
+  T_{\Delta} =\sum_{i=1}^{m} m_{i}(x_i - x_{i-1})\text{\,\,とおく. }
+ $$
+示すべきことは$\lim_{|\Delta| \rightarrow 0}S_{\Delta} = \lim_{|\Delta| \rightarrow 0}T_{\Delta} = 0$である.
+
+Step1. 任意の分割について$T_{\Delta} = 0$を示す. これは$[0,1]$の分割$\Delta = ( 0, x_1, \dots , x_{m-1} , 1 ) $と$1 \leqq i \leqq m$となる自然数$i$について, ある無理数$x \in (x_{i-1}, x_i)$が存在するので$m_i=0$となる.
+よって$T_{\Delta}=0$である.
+
+Step2. $\lim_{|\Delta| \rightarrow 0}S_{\Delta}= 0$を示す.
+これは任意の$\epsilon >0$について, ある自然数$N>0$があって, $|\Delta| \leqq \frac{1}{4N^3}$ならば$S_{\Delta} \leqq \epsilon$となることを示せば良い.
+任意の$\epsilon >0$について
+$$
+\frac{N(N+1)}{8N^3} + \frac{1}{N} \leqq \epsilon
+$$
+となる自然数$N$をとる.さらに集合$S_N$を
+$$
+S_{N} = \left\{\frac{p}{q} \in [0,1] \, | \, \text{$p,q$は互いに素な0以上の整数, $1 \leqq q \leqq N-1$} \right\}
+$$
+とおく. $S_N$の集合の個数は高々$\frac{N(N+1)}{2}$個である.
+$|\Delta| \leqq \frac{1}{4N^3}$
+となる$[0,1]$の分割$\Delta = ( 0, x_1, \dots , x_{m-1} , 1 ) $について, 
+\begin{align*}
+\begin{split}
+S_{\Delta}
+&= \sum_{i=1}^{m} M_{i}(x_i - x_{i-1})
+=\sum_{(x_{i-1}, x_i) \cap S_N \neq \varnothing} M_{i}(x_i - x_{i-1}) + \sum_{(x_{i-1}, x_i) \cap S_N = \varnothing} M_{i}(x_i - x_{i-1}) 
+    \end{split}
+  \end{align*}
+ここで$(x_{i-1}, x_i) \cap S_N $に関して場合分けをしていく.
+
+$\bullet$$(x_{i-1}, x_i) \cap S_N \neq \varnothing$となる場合, $M_i \leqq 1$かつ$x_i - x_{i-1} \leqq |\Delta| \leqq \frac{1}{4N^3}$より
+\begin{equation}
+\label{1}
+\sum_{(x_{i-1}, x_i) \cap S_N \neq \phi} M_{i}(x_i - x_{i-1}) 
+\leqq \sum_{(x_{i-1}, x_i) \cap S_N \neq \phi}  \frac{1}{4N^3}
+\leqq \frac{N(N+1)}{8N^3} 
+\end{equation}
+
+$\bullet$$(x_{i-1}, x_i) \cap S_N = \varnothing$となる場合, $M_i \leqq \frac{1}{N}$であるので, 
+\begin{equation}
+\label{2}
+\sum_{(x_{i-1}, x_i) \cap S_N = \varnothing} M_{i}(x_i - x_{i-1}) 
+\leqq \sum_{(x_{i-1}, x_i) \cap S_N = \varnothing} \frac{1}{N}(x_i - x_{i-1}) 
+\leqq \sum_{i=1}^{m} \frac{1}{N}(x_i - x_{i-1}) =\frac{1}{N}
+\end{equation}
+よって(\ref{1}), (\ref{2})から
+$$
+S_{\Delta}
+= \sum_{(x_{i-1}, x_i) \cap S_N \neq \varnothing} M_{i}(x_i - x_{i-1}) + \sum_{(x_{i-1}, x_i) \cap S_N = \varnothing} M_{i}(x_i - x_{i-1})  \leqq \frac{N(N+1)}{8N^3} + \frac{1}{N} \leqq \epsilon
+$$
+である. 以上より$\lim_{|\Delta| \rightarrow 0}S_{\Delta} = 0$である.
+
+Step1, Step2より$\lim_{|\Delta| \rightarrow 0}S_{\Delta} = \lim_{|\Delta| \rightarrow 0}T_{\Delta} = 0$であるので, $g(x)$は$[0,1]$上でリーマン積分可能であり, その積分値は0である.
+
+\hspace{-22pt}
+[余談.]
+$g(x)$は有理数で不連続であり無理数で連続となる関数の例である. 帰宅途中「この関数は積分可能なのかな」と思ってたら案外すんなりと答えが出た.
+結構解答として面白かったのでおまけ問題として出すことにした. 
+\vspace{11pt}
+
+
+(2). 次の定理はバナッハ・タルスキーの定理とよばれる.
+
+\begin{thm}[Banach-Tarski 1924]
+3次元空間内の半径1の球体を有限個に分割したのち、それらのパーツを平行移動したり回転させたりして組み合わせることにより半径1の球体を2個作ることが出来る.
+\end{thm}
+
+バナッハ・タルスキーの定理を用いた$1=2$の証明がある. 
+これは次のとおりである.\footnote{「半径1の球体1個が2個になったから$1=2$」というのをより論理的に書いたものである.}
+
+\begin{proof}[証明$??$]
+3次元空間内の半径1の球体$D $とすると, バナッハ・タルスキーの定理から, $D$は互いに交わらない有限個の$\R^3$の集合$A_1, \ldots, A_N, B_1, \ldots, B_N$に分割できて, $A_1, \ldots, A_N$を並行移動したり回転させたりして組み合わせると$D$になり, $B_1, \ldots, B_N$を並行移動したり回転させたりして組み合わせると$D$になる. 
+よって空間図形$C$の体積$v(C)$と表すことにすると, 
+\begin{align*}
+\begin{split}
+v(D) &= v( A_1) + \cdots + v(A_N) + v( B_1)+ \cdots +v(B_N) \quad {\footnotesize\text{(互いに交わらないから.)}}\\
+& = v(D )   + v( B_1)+ \cdots +v(B_N)  \quad{\footnotesize\text{($A_1, \ldots, A_N$を並行移動・回転で組み合わせると$D$になるから.)}}\\&= v(D )   + v(D )\quad{\footnotesize\text{($B_1, \ldots, B_N$を並行移動・回転で組み合わせると$D$になるから.)}}
+\end{split}
+\end{align*}
+半径1の球体$D $の体積$v(D)$は0ではないので, 上の式から$1=2$を得る. 
+\end{proof}
+
+もちろん上の証明には間違いがある. その間違いを指摘せよ. 
+\vspace{11pt}
+
+\hspace{-11pt}(解.)
+%記述式の解答であるので答え方はいろいろある. 
+模範的な解答は「$A_1, \ldots, A_N, B_1, \ldots, B_N$は体積が定義されない可能性があるため, 上の式変形は意味を持たない」もしくは「並行移動・回転不変となる体積を$\R^3$の任意の集合について定義することはできない」となる.
+なんにせよ「体積を定義するのが無理」という記述があれば正解としている. \footnote{実は別解も存在する. それは「選択公理を認めているとは限らないから」というものである. "選択公理"を認めないとバナッハ・タルスキーの定理は導けない(らしい)ので, この公理を認めない数学の体系ではバナッハ・タルスキーの定理は合っているとは限らないとも言える.(まあおそらくそのような体系で数学することは稀な気もするが...)}
+
+%\hspace{-11pt}(別解.)「選択公理を認めているとは仮定していないので, バナッハ・タルスキーの定理そのものが間違いである.」も正答である. ただし"選択公理"という言葉がなければ不十分であるので不正解とした. 
+
+\hspace{-16pt}[余談.]
+私が学生のとき他学科の人にバナッハ・タルスキーの定理を話したら「数学者は球体を2つに増やせるのか」と返されたことがある. 
+現実世界において体積が定義されない集合に球体を分割することを不可能なので, 我々数学者も現実世界においては球体を2つに増やすことはできない. (これは現実世界がおかしいということである.)
+授業中でもちょっと触れたし, 「体積は常に定義できるとは限らない」と言う常識を疑う視点が面白いのでおまけ問題として出すことにした. 
+
+
+バナッハ・タルスキーの定理に関してより詳しいことを知りたい方は\url{https://www.kurims.kyoto-u.ac.jp/~kenkyubu/kokai-koza/H27-ozawa.pdf}を参照してほしい.
+
+
+ \vspace{33pt} 
+   
+   \hspace{-11pt}{\Large 期末試験について.}
+
+
+各問題を通しての感想は以下のとおりです.
+\begin{itemize}
+\item [第1問 (1).] 配点8点. 正答率92\%.  授業でも出した問題なので出来はよかったです. 
+\item [第1問 (2).] 配点8点. 正答率77\%. 授業でも演習でも出した問題なのに意外に間違っていました.
+\item [第1問 (3).] 配点12点. 正答率80\%. こちらの方が(2)よりも正答者が多かったです. 教科書に同じ問題があります.
+\item [第1問 (4).] 配点12点. 正答率36\%. 某大学の院試からちょっと改題した問題です. 積分の範囲を理解していないとつまづく問題です. 
+\item [第2問 (1).] 配点15点. 正答率60\%. 極座標を用いると解けなくなるちょっと意地悪な問題です. これも教科書に同じ問題があります.
+\item [第2問 (2).] 配点15点. 正答率59\%. これも某大学の院試からちょっと改題した問題です. 極座標を使うと積分範囲がわかりづらいと思います. 素直に積分した方が楽に求められます.
+\item [第3問 (1).] 配点12点. 正答率48\%. シラバスに書いてあるとおりガウス積分は重要なので問題にしました. 採点してて広義積分の判定法をあまり理解していないと感じました. 
+\item [第3問 (2).]  配点8点. 正答率51\%. 積分する範囲を見れば簡単にわかる不等式です. 
+\item [第3問 (3).] 配点10点. 正答率55\%. (2)を使えば(3)ははさみうちの原理からすぐにわかります. (2)を使わない解答で論理的に正しい解答はありませんでした. 
+\item [おまけ問題. ] 各5点. おまけ問題第1問は誰も正解していませんでした. おそらく数学科の学生に出してもほぼ答えられないと思います. 第2問は2人正答者がいました.  
+\end{itemize}
+第1問から第3問を通して, 平均点は58.3点でした. (優しめにしたつもりでしたが...)
+なお今回試験の平均点が60点未満だったため, 成績の補正を行っております. つまり試験の点数が60点未満でも単位が認定されている人がまあまあいます. 
+ 
+
+ \end{document}
+ 
+
+ 

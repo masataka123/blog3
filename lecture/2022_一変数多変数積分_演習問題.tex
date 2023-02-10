@@ -1,0 +1,441 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage[dvipdfmx]{hyperref}
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{S}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+\newtheorem{dfnthm}[thm]{定義・定理}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+\begin{document}
+\begin{center}
+{\Large 基礎解析学2 -一変数と多変数の積分- 演習問題}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇 2023/01/10
+\end{flushright}
+
+\section{期末試験の日時・内容}
+
+期末試験の情報は次のとおりです.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 期末試験の日時は2023年2月7日(火)2限(10:30-12:00)です. 試験開始5分前には着席しておいてください.
+\item 期末試験の場所は豊中総合学館302です. 
+\item 教科書・ノート等の持ち込みはできません. スマートフォン・携帯も使用できません.
+\end{enumerate}
+
+\hspace{-20pt}
+期末試験の問題は以下のものを考えております.
+
+\begin{itemize}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 重積分の計算問題(2次元). 「第5回授業の重積分2 -累次積分」「第6回授業の重積分3 -重積分の変数変換公式-」の内容.
+\item 重積分の計算問題(3次元). 「第7回授業の重積分4 -3次元の積分と体積-」の内容.
+\item 広義積分. 「第8回授業の広義積分1-広義積分の定義とガウス積分-」の内容.
+\end{itemize}
+これらの内容が期末試験のメインとなります. これらの内容で100点程度を考えております. 
+
+またおまけの問題は「第4回授業の重積分1 -重積分の定義-」と「第2回授業の一変数の積分1 -微分積分学の基本定理-」を考えております. これは解けることを想定していない問題です. 10点くらいを考えております. 
+
+以下110点(ぐらい)で出来に応じて何か修正をします. 基本的な計算問題を解けていれば不可になることはありません .逆を返すと「この計算問題は間違えるはずがない」という問題に関してありえない解答をしていれば, 不可になります. \footnote{正解なら0点で間違えれば-20点という問題を出す人もいますが, 今回はやめておきました.}
+
+
+ \vspace{11pt}
+\begin{wrapfigure}{r}[0pt]{0.2\textwidth}
+  \centering
+ \includegraphics[height=25mm, width=25mm]{cal2.png}
+\end{wrapfigure}
+
+この演習の問題及び授業の資料・板書内容は授業ページ(\url{https://masataka123.github.io/2022_winter_int/})にもあります. 
+右下のQRコードからを読み込んでも構いません.
+
+\newpage 
+\section{演習問題}
+
+\hspace{11pt}
+{\Large 第1問.} 重積分の計算問題(2次元)
+\vspace{11pt}
+
+{\large(1). $D=\{ (x,y) \in \R^2 \,|\, 0 \leqq y, \text{\,} 0 \leqq x-y, \text{\,} x+y \leqq 2\}$とする.
+重積分$\iint_{D} (x^2-y^2)dxdy$の値を求めよ.}\vspace{5pt}
+
+{\large(2). $D= \{ (x,y)\in \R^2 \,|\, \sqrt{x^2 + y^2 } \leqq 1  \}$とする. 
+重積分$\iint_{D} e^{-x^2-y^2}dxdy$の値を求めよ.}\vspace{5pt}
+
+{\large(3). $D=\{ (x,y) \in \R^2  \,|\, x^2 + y^2 \leqq x\}$とする.
+重積分$\iint_{D} \sqrt{x}dxdy$の値を求めよ.}\vspace{5pt}
+
+{\large(4). $D=\{ (x,y) \in \R^2 \,|\, 0 \leqq x, \text{\,}  0 \leqq y,\text{\,} \sqrt{x} + \sqrt{y} \leqq 1\}$とする.
+重積分$\iint_{D} x^2dxdy$の値を求めよ.}
+
+\vspace{22pt}
+{\Large 第2問.} 重積分の計算問題(3次元) 
+\vspace{11pt}
+
+{\large(1). $a$を正の実数とする. 円柱$V_1= \{ (x,y,z) \in \R^3 \,|\,x^2 + y^2 \leqq ax\}$と球$V_2 = \{ (x,y,z) \in \R^3 \,|\, x^2 + y^2 + z^2 \leqq a^2 \}$の共通部分$V_1 \cap V_2$の体積を求めよ.}\vspace{4pt}
+
+{\large(2). $a$を正の実数とする. 円柱$V_1= \{ (x,y,z) \in \R^3 \,|\,x^2 + y^2 \leqq a^2\}$と球$V_2 = \{ (x,y,z) \in \R^3 \,|\, x^2 + y^2 + z^2 \leqq 4a^2 \}$の共通部分$V_1 \cap V_2$の体積を求めよ.}\vspace{4pt}
+
+{\large(3). $ V = \{ (x,y,z) \in \R^3\,|\, x^2 + y^2 + z^2 \leqq 1\}$とする. 重積分
+$\iiint_{V} x dxdydz$ の値を求めよ.}
+
+
+\vspace{22pt}
+{\Large 第3問.} 広義積分
+\vspace{11pt}
+
+
+
+{\large$p$を実数とし$f(x) = x^p \log x$とする. 次の問いに答えよ. }
+\vspace{11pt}
+
+{\large(1). $p< -1$ならば広義積分$\int_{1}^{\infty} f(x) dx$は収束することを示せ.}\vspace{4pt}
+
+{\large(2). $p\geqq -1$ならば広義積分$\int_{1}^{\infty} f(x) dx$は発散することを示せ.}
+
+
+
+\newpage
+\section{演習問題の解答}
+
+\hspace{11pt}
+{\Large 第1問.} 重積分の計算問題(2次元)
+\vspace{11pt}
+
+{\large(1). $D=\{ (x,y) \in \R^2 \,|\, 0 \leqq y, \text{\,} 0 \leqq x-y, \text{\,} x+y \leqq 2\}$とする.
+重積分$\iint_{D} (x^2-y^2)dxdy$の値を求めよ.}\vspace{5pt}
+
+\hspace{-11pt}(解.) 
+   $D= \{ (x,y) \in \R^2 \,|\, 0 \leqq y \leqq 1, 
+y \leqq x  \leqq 2-y \}$
+より累次積分を使用して
+ 
+\begin{align*}
+\begin{split}
+\iint_{D} (x^2 -y^2) dxdy
+&= \int_{0}^{1} 
+ \int_{y}^{2-y} (x^2 -y^2) dxdy =\int_{0}^{1} 
+ \left[ \frac{x^3}{3} - x y^2 \right]_{y}^{2-y} dy=
+\int_{0}^{1} 
+\left( \frac{4 y^3}{3} -4y + \frac{8}{3} \right) dy
+=1.
+    \end{split}
+  \end{align*}
+  
+
+{\large(2). $D= \{ (x,y)\in \R^2 | \sqrt{x^2 + y^2 } \leqq 1  \}$とする. 
+重積分$\iint_{D} e^{-x^2-y^2}dxdy$の値を求めよ. }
+
+\hspace{-11pt}(解.) 
+$E=[0,1]\times[0,2\pi]$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & \R^2 & \\
+&(r,\theta) & \longmapsto & (r \cos \theta , r \sin \theta)&
+\end{array}
+$$
+とすると, 多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D} e^{-x^2-y^2}dxdy
+&=
+\iint_{E} e^{-(r \cos \theta )^2- (r \sin \theta )^2} |r|drd\theta =
+\iint_{E} e^{-r^2}r drd\theta \\
+&=
+\int_{0}^{2\pi} \left( \int_{0}^{1}e^{-r^2}r dr\right)d\theta 
+=\int_{0}^{2\pi} \left[ \frac{-e^{-r^2}}{2} \right]_{0}^{1} d\theta 
+=\int_{0}^{2\pi} \frac{1-e^{-1}}{2} d\theta =\pi\left( 1-\frac{1}{e}\right).
+    \end{split}
+  \end{align*}
+  
+
+{\large(3). $D=\{ (x,y) \in \R^2 | x^2 + y^2 \leqq x\}$とする.
+重積分$\iint_{D} \sqrt{x}dxdy$の値を求めよ.}
+
+\hspace{-11pt}(解.) $E= \{ (r ,\theta) \in \R^2  | 0 \leqq r \leqq \cos \theta, 
+ -\frac{\pi}{2}\leqq \theta  \leqq\frac{\pi}{2}\}$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & \R^2 & \\
+&(r,\theta) & \longmapsto & (r \cos \theta , r \sin \theta)&
+\end{array}
+$$
+とすると, 多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D} \sqrt{x}dxdy
+&=
+\iint_{E}  (r\cos \theta)^{\frac{1}{2}} rdrd\theta 
+= \int_{- \frac{\pi}{2}}^{\frac{\pi}{2}} 
+ \int_{0}^{\cos \theta} r^{\frac{3}{2}} (\cos \theta)^{\frac{1}{2}} drd\theta \\
+&=
+\int_{- \frac{\pi}{2}}^{\frac{\pi}{2}} (\cos \theta)^{\frac{1}{2}} 
+ \left[ \frac{2}{5}r^{\frac{5}{2}} \right]_{0}^{\cos \theta} d\theta 
+=\frac{2}{5} \int_{- \frac{\pi}{2}}^{\frac{\pi}{2}} (\cos \theta)^{3} d\theta 
+=\frac{8}{15}.
+    \end{split}
+  \end{align*}
+
+
+{\large(4). $D=\{ (x,y) \in \R^2 : 0 \leqq x, \text{\,}  0 \leqq y,\text{\,} \sqrt{x} + \sqrt{y} \leqq 1\}$とする.
+重積分$\iint_{D} x^2dxdy$の値を求めよ.}
+
+\hspace{-11pt}(解.)  $E= \{ (u ,v) \in \R^2 : 0 \leqq u \leqq 1,  
+0 \leqq v \leqq 1-u \}$とし, 
+ $$
+\begin{array}{ccccc}
+\Phi: &E & \rightarrow & \R^2 & \\
+&(u,v) & \longmapsto & (u^2 , v^2)&
+\end{array}
+$$
+とすると, 多重積分の変数変換の公式から
+\begin{align*}
+\begin{split}
+\iint_{D} x^2 dxdy
+&=
+\iint_{E} u^4(4uv) dudv = \int_{0}^{1} 
+ \int_{0}^{1-u} 4 u^5 v \, dvdu \\
+&=
+\int_{0}^{1} 4u^5
+ \left[ \frac{v^2}{2} \right]_{0}^{1-u} du
+=2\int_{0}^{1} \left( u^5 - 2u^6 + u^7 \right) du
+=\frac{1}{84}.
+    \end{split}
+  \end{align*}
+
+\vspace{22pt}
+{\Large 第2問.} 重積分の計算問題(3次元) 
+\vspace{11pt}
+
+{\large(1). $a$を正の実数とする. 円柱$V_1= \{ (x,y,z) \in \R^3 \,|\,x^2 + y^2 \leqq ax\}$と球$V_2 = \{ (x,y,z) \in \R^3 \,|\, x^2 + y^2 + z^2 \leqq a^2 \}$の共通部分$V_1 \cap V_2$の体積を求めよ.}
+
+\hspace{-11pt}(解.)
+$D=\{ (x,y) \in \R^2 | x^2 + y^2 \leqq ax\}$とおくと
+$$
+V_1 \cap V_2= \{ (x,y,z) \in \R^3 \,|\, (x,y) \in D, -\sqrt{a^2 -x^2 -y^2} \leqq z \leqq  \sqrt{a^2 -x^2 -y^2} \}
+$$
+である. よって$V_1 \cap V_2$の体積は
+\begin{align*}
+\begin{split}
+\iiint_{V} dxdydz 
+&=
+\iint_{D} \left( \int_{-\sqrt{a^2 -x^2 -y^2}}^{\sqrt{a^2 -x^2 -y^2} } dz \right) dxdy
+= \iint_{D} 2\sqrt{a^2 -x^2 -y^2}dxdy \\
+&=  \int_{- \frac{\pi}{2}}^{\frac{\pi}{2}}\int_{0}^{a \cos \theta} 2\sqrt{a^2 - r^2} \,r drd\theta\quad \text{{\footnotesize(第1問(3)に同じ.)}}\\
+&=\int_{- \frac{\pi}{2}}^{\frac{\pi}{2}} \left[ \frac{-2}{3} (a^2 - r^2)^{\frac{3}{2}}\right]_{0}^{a \cos \theta}d\theta \\
+&=\frac{2 a^3}{3}\int_{- \frac{\pi}{2}}^{\frac{\pi}{2}} 1 - |\sin \theta|^3 d\theta 
+=\frac{4 a^3}{3}\int_{0}^{\frac{\pi}{2}} 1 - (\sin \theta)^3 d\theta
+= \frac{4 a^3}{3}\left( \frac{\pi}{2} - \frac{2}{3}\right).
+    \end{split}
+  \end{align*}
+
+
+
+
+{\large(2). $a$を正の実数とする. 円柱$V_1= \{ (x,y,z) \in \R^3 \,|\,x^2 + y^2 \leqq a^2\}$と球$V_2 = \{ (x,y,z) \in \R^3 \,|\, x^2 + y^2 + z^2 \leqq 4a^2 \}$の共通部分$V_1 \cap V_2$の体積を求めよ.}
+
+\hspace{-11pt}(解.)
+$D=\{ (x,y) \in \R^2 | x^2 + y^2 \leqq a^2\}$とおくと
+$$
+V_1 \cap V_2= \{ (x,y,z) \in \R^3 \,|\, (x,y) \in D, -\sqrt{4a^2 -x^2 -y^2} \leqq z \leqq  \sqrt{4a^2 -x^2 -y^2} \}
+$$
+である. よって$V_1 \cap V_2$の体積は
+\begin{align*}
+\begin{split}
+\iiint_{V} dxdydz 
+&=
+\iint_{D} \left( \int_{-\sqrt{4a^2 -x^2 -y^2}}^{\sqrt{4a^2 -x^2 -y^2} } dz \right) dxdy
+= \iint_{D} 2\sqrt{4a^2 -x^2 -y^2}dxdy \\
+&=  \int_{0}^{2\pi}\int_{0}^{a} 2\sqrt{4a^2 - r^2} \,r drd\theta\quad \text{{\footnotesize(第1問(2)に同じ.)}}\\
+&=\int_{0}^{2\pi} \left[ \frac{-2}{3} (4a^2 - r^2)^{\frac{3}{2}}\right]_{0}^{a }d\theta  = \int_{0}^{2\pi}\frac{2}{3}(8 - 3 \sqrt{3})a^3 d\theta =\frac{4 \pi a^3}{3}(8 - 3 \sqrt{3}). 
+    \end{split}
+  \end{align*}
+
+\newpage
+{\large(3). $ V = \{ (x,y,z) \in \R^3 | x^2 + y^2 + z^2 \leqq 1\}$とする. 重積分
+$\iiint_{V} x dxdydz$ の値を求めよ.}
+
+\hspace{-11pt}(解.)
+$D=\{ (x,y) \in \R^2 | x^2 + y^2 \leqq 1\}$とおくと
+$$
+V = \{ (x,y,z) \in \R^3 \,|\, (x,y) \in D, -\sqrt{1 -x^2 -y^2} \leqq z \leqq  \sqrt{1 -x^2 -y^2} \}
+$$
+である. よって
+\begin{align*}
+\begin{split}
+\iiint_{V} xdxdydz 
+&=
+\iint_{D} \left( \int_{-\sqrt{1 -x^2 -y^2}}^{\sqrt{1 -x^2 -y^2} } xdz \right) dxdy
+= \iint_{D} 2x\sqrt{1 -x^2 -y^2}dxdy \\
+&=  \int_{0}^{2\pi}\int_{0}^{1} 2r \cos \theta \sqrt{1 - r^2} \,r drd\theta\quad \text{{\footnotesize(第1問(2)に同じ.)}}\\
+&= \int_{0}^{1} \left(  \int_{0}^{2\pi} 2r^2\sqrt{1 - r^2} \cos \theta  d \theta  \right) dr 
+= \int_{0}^{1} \left[ 2r^2\sqrt{1 - r^2} \sin\theta \right]_{0}^{2\pi} dr 
+= \int_{0}^{1} 0 dr =0.
+    \end{split}
+  \end{align*}
+  
+  \vspace{11pt}
+{\Large 第3問.} 広義積分
+\vspace{11pt}
+
+
+{\large$p$を実数とし$f(x) = x^p \log x$とする. }
+\vspace{11pt}
+
+{\large(1). $p< -1$ならば広義積分$\int_{1}^{\infty} f(x) dx$は収束することを示せ．}
+
+\hspace{-11pt}(解.)
+$p<-1$よりある$\epsilon >0$があって$p+\epsilon<-1$となる.
+よって
+$$
+\lim_{x \rightarrow +\infty}\frac{f(x)}{x^{p+\epsilon}}=
+\lim_{x \rightarrow +\infty}\frac{x^p \log x}{x^{p+\epsilon}}
+=\lim_{x \rightarrow +\infty}\frac{\log x}{x^{\epsilon}}
+=0
+$$
+であるので, $[1, + \infty)$上で$\frac{f(x)}{x^{p+\epsilon}}$は有界である.
+%\footnote{ここを正確に述べると, $\lim_{x \rightarrow +\infty}\frac{f(x)}{x^{p+\epsilon}}=0$より, ある$R>0$があって, $[R, + \infty)$上で$|\frac{f(x)}{x^{p+\epsilon}}| <1$となる. 一方$[1,R]$上で$\frac{f(x)}{x^{p+\epsilon}}$は最大値・最小値を持つので(閉区間上の連続関数は最大値を持つ), ある$M>0$があって,  $[1, R]$上で$|\frac{f(x)}{x^{p+\epsilon}}| <M$となる. よって, $[1, + \infty)$上で$|\frac{f(x)}{x^{p+\epsilon}}| < 1+M$となる. よって有界である.}
+つまりある$C>0$があって, $[1, + \infty)$上で$|\frac{f(x)}{x^{p+\epsilon}}| < C$となる.
+以上より, $[1, + \infty)$上で$|f(x)| < C{x^{p+\epsilon}}$かつ, 広義積分$\int_{1}^{\infty}C{x^{p+\epsilon}}dx$は$p+\epsilon<-1$より収束するので, \underline{第8回授業の広義積分の収束判定法から}広義積分$\int_{1}^{\infty} f(x) dx$も収束する.
+
+\vspace{11pt}
+
+{\large(2). $p\geqq -1$ならば広義積分$\int_{1}^{\infty} f(x) dx$は発散することを示せ.}
+
+\hspace{-11pt}(解.)
+$3 \leqq x$ならば$1 \leqq \log x$であるので, $[3, + \infty)$上で$x^p\leqq x^p\log x$である. また広義積分$\int_{3}^{\infty} x^p dx$は$p\geqq -1$であるので$+ \infty$に発散する. よって\underline{第8回授業の広義積分の収束判定法から}広義積分$\int_{3}^{\infty} f(x) dx$も$+ \infty$に発散する. 以上より広義積分$\int_{1}^{\infty} f(x) dx$も$+ \infty$に発散する.
+
+\vspace{11pt}
+[補足1.] 上の議論に関して使っている定理は次のものである.
+ \begin{thm}
+$[1, +\infty)$上の連続関数$g(x)$について, ある定数$B>0$があって$\lim_{x \rightarrow +\infty}g(x)=B$ならば, ある定数$C>0$があって$g(x) < C$となる. 
+ \end{thm}
+
+(証.) $\lim_{x \rightarrow +\infty}g(x)=B$より, ある$R>0$があって, $[R, + \infty)$上で$|g(x)| < B+1$となる. 一方$[1,R]$上で$g(x)$は最大値・最小値を持つので(閉区間上の連続関数は最大値を持つ), ある$M>0$があって,  $[1, R]$上で$|g(x)| <M$となる. よって, $[1, + \infty)$上で$|g(x) |< 1+M+B =C$となる. 
+  
+[補足2.]  前バージョンで「どのようにして収束判定したのかわからない」というコメントがあった. 使っている収束判定法は次のものである.
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+$f(x)$を$[a,b)$上の連続関数とする.
+$[a,b)$上の連続関数$g(x)$があって, $[a , b)$上で$|f(x)| \leqq g(x)$かつ広義積分$\int_{a}^{b} g(x) dx$が収束すると仮定する.
+このとき広義積分$\int_{a}^{b} f(x) dx$もまた収束する.
+ \end{thm}
+ \end{tcolorbox}
+ 
+   \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+$f(x)$を$[a,b)$上の連続関数とする.
+$[a,b)$上の連続関数$g(x)$があって, $[a , b)$上で$0 \leqq g(x) \leqq f(x)$かつ広義積分$\int_{a}^{b} g(x) dx$が発散すると仮定する.
+このとき広義積分$\int_{a}^{b} f(x) dx$もまた発散する.
+ \end{thm}
+ \end{tcolorbox}
+
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[広義積分の判定法]
+    \label{kougi}
+$f(x)$を$[a,b)$上の連続関数とする.
+\begin{enumerate}
+\item $b=+ \infty$のとき, ある$\lambda >1$があって, $f(x)x^{\lambda}$が
+$[a, +\infty)$上で有界ならば, 広義積分$\int_{a}^{\infty} f(x)dx $は収束する.
+\item $b$が実数のとき($b <+ \infty$のとき), ある$\mu <1$があって, $f(x)(x-b)^{\mu}$が
+$[a, b)$上で有界ならば, 広義積分$\int_{a}^{b} f(x)dx $は収束する.
+\end{enumerate}
+ \end{thm}
+ \end{tcolorbox}
+
+この解答では「定理2と定理3」または「定理4」を用いて収束判定をしていることがわかる.
+ 
+ \end{document}
+ 
+
+ 

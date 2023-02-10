@@ -30,9 +30,9 @@
 (担当: 平地健吾先生) 
 
 # **講義資料**
-- 2022年度秋冬学期 基礎解析学II 一変数・多変数の積分 [講義資料](https://github.com/masataka123/2022_winter_int/blob/master/material/0_一変数多変数の積分.pdf) [授業のホームページ](https://masataka123.github.io/2022_winter_int/)
-- 2022年度秋冬学期 幾何学基礎2(位相空間論)演義 [演習問題](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/0_集合と位相問題集.pdf) [演習資料](https://github.com/masataka123/2022_winter_generaltopology/blob/master/material/0_集合と位相まとめ.pdf) [授業のホームページ](https://masataka123.github.io/2022_winter_generaltopology/)
-- 2022年度秋冬学期 幾何学１演義  [演習問題]((https://github.com/masataka123/2022_winter_stokes/blob/master/material/0_幾何学1問題集.pdf) [授業のホームページ](https://masataka123.github.io/2022_winter_stokes/)
+- 2022年度秋冬学期 基礎解析学II 一変数・多変数の積分 [講義資料](https://masataka123.github.io/blog3/lecture/2022_一変数多変数積分.pdf) [授業のホームページ](https://masataka123.github.io/2022_winter_int/)
+- 2022年度秋冬学期 幾何学基礎2(位相空間論)演義 [演習問題](https://masataka123.github.io/blog3/lecture/2022_集合と位相問題集.pdf) [演習資料](https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf) [授業のホームページ](https://masataka123.github.io/2022_winter_generaltopology/)
+- 2022年度秋冬学期 幾何学１演義  [演習問題](https://masataka123.github.io/blog3/lecture/2022_幾何学1問題集.pdf)  [授業のホームページ](https://masataka123.github.io/2022_winter_stokes/)
 - 2022年度春夏学期 線形代数 掃き出し法・行列式 [講義資料](https://masataka123.github.io/blog3/lecture/2022_線形代数掃き出し法.pdf) [授業のホームページ](https://masataka123.github.io/2022_summer_LA/)
 - 2021年度前期 一変数の微積分 [講義資料](https://masataka123.github.io/blog3/lecture/2021_一変数の微分積分.pdf) [授業のホームページ](https://github.com/masataka123/2021_summer)
 - 2020年度後期 多変数の微積分 [講義資料](https://masataka123.github.io/blog3/lecture/2020_多変数の微分積分.pdf) [授業のホームページ](https://github.com/masataka123/class/tree/master/2020_autumn)

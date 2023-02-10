@@ -1,0 +1,1882 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=25truemm,bottom=25truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{mdwlist}
+\usepackage{caption}
+
+
+\setstretch{1.1}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\Supp}{{\rm Supp}}
+
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{dfnthm}[thm]{定義と定理}
+\newtheorem{rem}[thm]{補足}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{注意}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+%\maketitle
+
+
+\begin{center}
+{\Large 1-4. 多様体の復習・多様体の例・接ベクトル空間}
+\end{center}
+\begin{flushright}
+ 岩井雅崇 2022/10/07
+\end{flushright}
+
+講義では多様体の復習・多様体の例・接ベクトル空間を4回かけて行う(と聞いている). ただ演習では問題作成の都合上, 1-4回の内容をまとめた. なお今回の演習問題は難易度が高いため, 解けない場合は適宜教科書やインターネット, TA・教官に頼っても良い. (わからなければこちらからヒントを出していきます).
+
+\vspace{22pt}
+
+\begin{comment}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[多様体の定義]
+    $r$を1以上の自然数または$\infty$とする. 位相空間$M$が次の条件を満たすとき, $C^r$級微分可能多様体と呼ぶ
+    \begin{enumerate}
+    \item $M$はハウスドルフ空間である.
+    \item $M$は$m$次元の座標近傍$\{ (U_{\alpha}, \varphi_{\alpha})\}_{\alpha \in A}$で被覆される.
+     ここで$(U_{\alpha}, \varphi_{\alpha})$が$m$次元の座標近傍であるとは, ある$\R^m$の開集合$U'_{\alpha}$があって$\varphi_{\alpha} : U_{\alpha} \rightarrow U'_{\alpha}$は同相写像である.
+     \item $U_{\alpha} \cap U_{\beta} = \varnothing$なる$\alpha, \beta \in A$について
+     $$
+     \varphi_{\beta}: \circ \varphi_{\alpha}: \varphi_{\alpha}(U_{\alpha}\cap U_{\beta})
+     \rightarrow  \varphi_{\beta}(U_{\alpha}\cap U_{\beta})
+     $$
+     は$C^r$級写像である.
+       \end{enumerate}
+
+    \end{dfn}
+    \end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[接ベクトル空間]
+$M$を$C^1$級多様体とし, $(x_1, \ldots, x_m)$を点$p \in M$の局所座標系とする. 
+$h$
+
+    \end{dfn}
+    \end{tcolorbox}
+\end{comment}
+
+
+
+多様体の作り方は大きく分けて次に分けられる.
+\begin{itemize}
+
+\item 多様体$M,N$について, その直積$M \times N$は多様体
+\item 多様体$M$の開集合$U$は多様体.
+\item 多様体間の写像$f : M \rightarrow N$と$y \in N$について, $f^{-1}(y)$は"だいたい"$M$の部分多様体. 
+これは次の定理を用いる.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[][多様体の基礎 定理15-1]
+    
+$f : M \rightarrow N$を多様体の間の$C^r$級写像とする. さらに$q \in N$を正則値であると仮定する. 
+$f^{-1}(q) \neq \varnothing $ならば, $f^{-1}(q) $は$\dim M - \dim N$次元の$C^r$級部分多様体である.
+
+ここで$q \in N$が$f : M \rightarrow N$の正則値であるとは, 任意の$p \in f^{-1}(q)$について,
+微分写像
+$$
+(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)
+$$
+が全射であることとする.
+    \end{thm}
+    \end{tcolorbox}
+\item 多様体$M$を同値関係$\sim$で割ってできる多様体$M/\sim$. ただし常に$M/\sim$が多様体になるとは限らない.\footnote{私が学部生だったとき群$G$が多様体$M$に固定点自由かつ真性不連続に作用している場合の内容をやった. 調べてみると担当教官がその道のプロであることがわかった. } 
+参考までに次の事実が知られている.[リー群と表現論 第6章]「Lie群$G$が多様体$M$に推移的かつ連続に作用しているとき, $G_{x} = \{g\in G| gx =x \}(x \in M)$は閉部分群になり$G/G_{x}$は$M$と$C^{\infty}$微分同相となる.」%調べたところ群$G$が多様体$M$に作用している場合は次のような判定法がある.(これは事実として)
+\end{itemize}
+
+講義ではやらないが演習でちょっと使う重要な事実なので次の内容もまとめておく.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfnthm}[][埋め込みとはめ込み]
+    $f : M \rightarrow N$を多様体の間の$C^r$級写像とする. 
+    \begin{itemize}
+    \item $f$が\underline{はめ込み}であるとは, 任意の点$p \in M$について微分写像$(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)$が単射であること.
+    \item $f$が\underline{埋め込み}であるとは, $f$がはめ込みであり, $f : M \rightarrow f(M)$が同相であることとする． ここで$f(M)$には$N$の相対位相を入れる. このとき$f(M)$は$N$の部分多様体であることが知られている. 
+    \end{itemize}
+
+    \end{dfnthm}
+    \end{tcolorbox}
+\newpage
+
+\begin{enumerate}[label=\textbf{問}1.\arabic*]
+%\item 次を示せ.
+	%\begin{enumerate}
+	\item $^{*}$ Give an example of a topological space that is connected but not path-connected. %連結だが弧状連結でない位相空間の例をあげよ.
+	\item $^{*}$ Show that any connected manifold is path-connected. %連結な多様体は弧状連結であることをしめせ. 
+	%\end{enumerate}
+\item 次の問いに答えよ．
+	\begin{enumerate}
+	\item 実数の集合$\R$について, 同値関係$\sim_{1}$を
+	$$
+	x \sim_{1} y \Leftrightarrow x - y \in \Z
+	$$
+	とし$\R / \sim_{1}$に商位相を入れる. このとき$\R / \sim_{1}$は多様体になることを示せ.
+	\item 実数の集合$\R$について, 同値関係$\sim_{2}$を
+	$$
+	x \sim_{2} y \Leftrightarrow x - y \in \Q
+	$$
+	とし$\R / \sim_{2}$に商位相を入れる.  このとき$\R / \sim_{2}$は多様体とならないことを示せ.
+	\end{enumerate}
+	
+\item \label{sphere} $S^{m} := \{ (x_1, x_2, \ldots, x_{m+1}) \in \R^{m+1}| \sum_{i=1}^{m+1} x_{i}^{2} = 1 \}$とおく. $S^{m}$が$m$次元の$C^{\infty}$級多様体であることを2通りの方法で示したい. 次の問いに答えよ. 
+	\begin{enumerate}
+	\item $N=(0,0,\ldots, 1),S=(0,0,\ldots, -1)$とし, $U_{N} = S_{m} \setminus N$, $U_{S} = S_{m} \setminus S$とおく. 
+$$
+\begin{array}{ccccc}
+\varphi_{N}: &U_{N}& \rightarrow & \R^{m} & \\
+&(x_{1},x_{2}, \ldots ,x_{m+1})& \longmapsto &(\frac{x_{1}}{1-x_{m+1}}, \ldots, \frac{x_{m}}{1-x_{m+1}})&
+\end{array}
+$$	
+$$
+\begin{array}{ccccc}
+\varphi_{S}: &U_{S}& \rightarrow & \R^{n} & \\
+&(x_{1}, x_{2}, \ldots, x_{n+1})& \longmapsto &(\frac{x_1}{1 + x_{m+1}}, \ldots, \frac{x_m}{1+x_{m+1}})&
+\end{array}
+$$	
+とおく. $\{(U_N, \varphi_N), (U_S, \varphi_S) \}$が$S^m$の座標近傍系を与えることを示し, これにより$S^{m}$は$m$次元の$C^{\infty}$級多様体となることを示せ.
+	\item $f : \R^{m+1} \rightarrow \R$となる$C^{\infty}$級写像で$f^{-1}(1) = S^{m}$かつ$1 \in \R$が$f$の正則値であるようなものを一つ求めよ. またこれを用いて$S^{m}$は$m$次元の$C^{\infty}$級多様体であることを示せ. 
+	\end{enumerate}
+
+\item $i : S^{m} \rightarrow \R^{m+1} $を包含写像とする. 次の問いに答えよ.
+\begin{enumerate}
+	\item 任意の点$a \in S^{m}$について, 微分写像$(di)_{a} : T_{a}S^{m} \rightarrow T_{a}\R^{m+1}$は単射であることをしめせ.
+	\item $a \in S^{m}$を$S^{m}$の点とする. $(di)_{a} $が単射であることと$T_{a}\R^{m+1} \cong \R^{m+1}$により$T_{a}S^{m}  \subset \R^{m+1} $とみなす. 
+	このとき
+	$$
+	T_{a}S^{m} = \{ v \in \R^{m+1} | <a,v> = 0\}
+	$$
+	となることを示せ. ここで$<\bullet, \bullet>$は$ \R^{m+1}$上のユークリッド内積とする. 
+\end{enumerate}
+ 
+\newpage 
+\item $f : \C \rightarrow \C$を$f(z) = z(z+1)$とする. 次の問いに答えよ.
+	\begin{enumerate}
+	\item $z = x + \sqrt{-1} y$によって$\C$に座標$(x,y)$を入れ$f$を座標表示せよ.
+	\item $z \in \C$においてヤコビ行列を求めよ.
+	\item $(df)_{p} : T_{z}\C \rightarrow T_{z}\C$が同型でない$z$を全て求めよ.
+	%\item $i :\C \rightarrow \C\mathbb{P}^{1}$を$i(z) = (z:1)$とすることにより, $\C$を$\C\mathbb{P}^{1}$の開部分多様体と見なす.  ある$F : \C\mathbb{P}^{1} \rightarrow \C\mathbb{P}^1$となる$C^{\infty}$級写像で$F|_{\C} = f$となるものがあることを示せ. 
+	\end{enumerate}
+
+
+\item (多様体の基礎 11章) $\C^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	z \sim w \Leftrightarrow \text{0でない複素数$\alpha$が存在して$z = \alpha w$}
+	$$
+	と定義する.$ \C\mathbb{P}^{n}:= (\C^{n+1} \setminus \{ 0\})/\sim$と書き複素射影空間と呼ぶ. 以下$z = (z_{1}, z_{2}, \ldots, z_{n+1})$を$\C\mathbb{P}^{n}$の元とみなしたものを$(z_{1}: \cdots : z_{n+1})$と書き複素同次座標と呼ぶ.
+	次の問いに答えよ.
+	\begin{enumerate}
+	\item $\C\mathbb{P}^{n}$がハウスドルフであることを示せ.
+	\item $U_{i} = \{ (z_{1}:z_{2}: \ldots : z_{n+1}) | z_{i}\neq 0\}$とおき, 
+$$
+\begin{array}{ccccc}
+\varphi_{i}: &U_{i}& \rightarrow & \C^{n} & \\
+&(z_{1}:z_{2}: \ldots : z_{n+1})& \longmapsto &(\frac{z_1}{z_i}, \ldots, \frac{z_{i-1}}{z_i}, \frac{z_{i+1}}{z_i}, \ldots, \frac{z_n}{z_i})&
+\end{array}
+$$	
+と定める. $\{ (U_i , \varphi_{i})\}_{i=1}^{n+1}$は座標近傍系となることを示し, $\C\mathbb{P}^{n}$は(実)$2n$次元の$C^{\infty}$級多様体であることを示せ. 
+	\end{enumerate}
+\item %$S^2 = \{ (x_1, x_2, x_3)| x_{1}^{2} + x_{2}^{2} + x_{3}^{2}= 1 \}$とおく. 
+$\C\mathbb{P}^{1}$と$S^2$は$C^{\infty}$級微分同相であることをしめせ. 
+
+\item $i :\C \rightarrow \C\mathbb{P}^{1}$を$i(z) = (z:1)$とすることにより, $\C$を$\C\mathbb{P}^{1}$の開部分多様体と見なす.  $f : \C \rightarrow \C$を$f(z) = z^2 +1$とおく. このときある$F : \C\mathbb{P}^{1} \rightarrow \C\mathbb{P}^1$となる$C^{\infty}$級写像で$F|_{\C} = f$となるものがあることを示せ. 
+\item (多様体の基礎 11章)
+	\begin{enumerate}
+	\item  
+	$$
+\begin{array}{ccccc}
+\pi: &S^{2n+1}& \rightarrow & \C\mathbb{P}^{n} & \\
+&(x_1, x_2, \ldots, x_{2n+1}, x_{2n+2}) & \longmapsto &(x_1 + \sqrt{-1}x_2, x_3 + \sqrt{-1}x_4,\ldots, x_{2n+1}+ \sqrt{-1}x_{2n+2})&
+\end{array}
+$$
+とおく． この写像が全射$C^{\infty}$級写像であることを示せ.
+\item $\C\mathbb{P}^{n} $はコンパクトであることを示せ. 
+	\item 任意の$z \in \C\mathbb{P}^{n}$について$f^{-1}(z)$は$S^{1}$と位相同相であることを示せ.
+	\end{enumerate}
+
+\item $^{*}$ $n$を2以上の整数とする. $H = \{ (z_{1}:z_{2}: \ldots : z_{n+1}) \in  \C\mathbb{P}^{n} |  z_{1} + \cdots+ z_{n+1} =0\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ.
+
+\item $^{**}$ $n$を2以上の整数とする. $Q= \{ (z_{1}:z_{2}: \ldots : z_{n+1}) \in \C\mathbb{P}^{n} |  z_{1}^{2} + \cdots +z_{n+1}^{2} =0\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ.
+
+
+\item $M(n,\R)$を$n\times n$行列の全体の集合とする.  $M(n,\R)$を$\R^{n^2}$と同一視する. 特に$M(n,\R)$が$n^2$次元$C^{\infty}$級多様体となる. 次の問いに答えよ.
+	\begin{enumerate}
+	%\item $M(n,\R)$は$\R^{n^2}$と同一視できることを示せ. 特に$M(n,\R)$が$n^2$次元$C^{\infty}$級多様体となる.
+	\item $GL(n, \R) = \{ A \in M(n,\R) | \det A \neq 0\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\item $SL(n, \R) = \{ A \in M(n,\R) | \det A =1\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\end{enumerate}
+\item  (多様体の基礎 15章) $O(n, \R) = \{ A \in M(n,\R) | {}^{t}AA =E\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\item  $SO(n, \R) = \{ A \in M(n,\R) | \det A =1, {}^{t}AA =E\}$が$C^{\infty}$級多様体であることを示し, その次元を求めよ. 
+	\item $SO(2, \R) $が$S^1$と$C^{\infty}$級微分同相であることを示せ. 
+	
+\item  $^{*}$ 次の問いに答えよ
+	\begin{enumerate}
+	\item $GL(n, \R) $は弧状連結ではないことを示せ.
+	\item $GL(n, \R)_{+}=\{ A \in M(n,\R) | \det A > 0\}$は弧状連結であること示せ.
+	\end{enumerate}
+
+\item $^{*}$ $SO(n, \R) $は弧状連結であることを示せ.
+
+\item (多様体の基礎 15章) $k,m$を$1 \ge k \ge m$となる自然数とし$M_{k, m}$を実数係数$k \times m$行列全体とする.
+$$
+V_{k,m}= \{ A \in M_{k, m}| A ({}^{t}A) = E\}
+$$
+とする. 次の問いにこたえよ.
+	\begin{enumerate}
+	\item $f : \R^{2m} \rightarrow \R^3$を次で定める.
+$$
+\begin{array}{ccccc}
+f: &\R^{2m}& \rightarrow & \R^{3} & \\
+&(x_{1}, \ldots, x_m, y_1, \ldots, y_m) & \longmapsto & 
+(\sum_{i=1}^{m} x_{i}^{2}, \sum_{i=1}^{m} y_{i}^{2}, \sum_{i=1}^{m} x_{i}y_{i})&
+\end{array}
+$$
+	$(x_{1}, \ldots, x_m, y_1, \ldots, y_m) \in \R^m$での$f$のヤコビ行列を求めよ
+	\item $V_{2,m}$は$\R^{2m}$の$C^{\infty}$級部分多様体であることを示し, その次元を求めよ.
+	\item$V_{3,m}$は$\R^{3m}$の$C^{\infty}$級部分多様体であることを示し, その次元を求めよ.
+	\end{enumerate}
+	
+\item $^{*}$ 
+	$$
+\begin{array}{ccccc}
+f: &S^{3}& \rightarrow & \R & \\
+&(x,y,z,w) & \longmapsto & xy - zw&
+\end{array}
+$$
+とおく.  $f^{-1}(0)$は$S^{3}$の部分多様体であることをしめせ.
+
+\newpage
+\item $^{*}$ 
+$$
+M = \{ (x,y,z,w) \in\R^4  | 2x^2 + 2 = 2 z^2 + w^2, 3x^2 + y^2 = z^2 + w^2\}
+$$
+とおく.　次の問いに答えよ.
+	\begin{enumerate}
+	\item $M$は$\R^4$の部分多様体であることを示し, その次元を求めよ
+	\item $F : M \rightarrow \R^2$を$F(x,y,z,w) = (x^2, y^2)$とする. $p=(X,Y) \in \R^2$について$F^{-1}(p)$の元の個数を求めよ.
+	\item $M$はコンパクトかどうか判定せよ
+	\end{enumerate}
+
+
+\item $*$ $M,N$を連結な$C^\infty$級多様体とし, $f : M \rightarrow N$を$C^\infty$級写像とする. 任意の$p \in M$について$(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)$が零写像であるならば, $f$は$M$を$N$の一点へ写す定値写像であることを示せ. 
+
+\item $^{*}$  $M,N$をそれぞれ$m$次元, $n$次元の$C^{\infty}$多様体とし$C^{\infty}$写像$f : M \rightarrow N$とする. さらに\underline{$M$はコンパクト}とし$N$は連結コンパクトで$m \ge n$であると仮定する.
+任意の$x \in M$について$(df)_{p} : T_{p}(M) \rightarrow T_{f(p)}(N)$が全射であるとき$f$も全射であることを示せ. 
+
+\item $^{*}$  $\R^{n+1} \setminus \{ 0\}$について, 同値関係$\sim$を
+	$$
+	x \sim y \Leftrightarrow \text{0でない実数$\alpha$が存在して$x = \alpha y$}
+	$$
+	と定義する.$ \R\mathbb{P}^{n}:= \R^{n+1} \setminus \{ 0\}/\sim$と書き実射影空間と呼ぶ.  $ \R\mathbb{P}^{n}$は$n$次元$C^{\infty}$級多様体となることが知られている.  以下$x= (x_{1}, z_{2}, \ldots, x_{n+1})$を$\R\mathbb{P}^{n}$の元とみなしたものを$(x_{1}: \cdots : x_{n+1})$と書き実同次座標と呼ぶ. 
+	次の問いに答えよ.
+	\begin{enumerate}
+	\item 
+	$$
+\begin{array}{ccccc}
+\pi: &S^{n}& \rightarrow & \R\mathbb{P}^{n}& \\
+&(x_{1}, \ldots, x_{n+1}) & \longmapsto & 
+(x_{1}: \cdots : x_{n+1})&
+\end{array}
+$$
+は全射$C^{\infty}$級写像であることをしめせ．
+	\item 任意の$q \in \R\mathbb{P}^{n}$について$f^{-1}(q)$の個数を求めよ.
+	\item $f : S^2 \rightarrow \R^3$を$f(x,y,z)=(yz,zx,xy)$とする. $f$と$\pi$を使って自然に$\tilde{f}: \R\mathbb{P}^{2} \rightarrow \R^3$が定義できることを示せ. 
+	\item $\tilde{f}$ははめ込みではないことをしめせ.
+	\end{enumerate}
+\item$^{**}$上の記法において$g : S^2 \rightarrow \R^4$を$g(x,y,z)=(yz,zx,xy, x^2+2y^2 + 3z^2)$とする. $g$と$\pi$を使って自然に$\tilde{g}: \R\mathbb{P}^{2} \rightarrow \R^4$が定義でき, $\tilde{g}$は埋め込みであることを示せ.
+
+\item$^{**}$ 複素ベクトル空間$\C^{n}$について, その$k$次元ベクトル部分空間全体の集合を$G_{n,k}$とおく. $G_{n,k}$は自然に$C^{\infty}$級多様体の構造を持つことを示し, その次元を求めよ.(複素グラスマン多様体と呼ばれる).
+
+\item $^{**}$ $G_{4,2}$は$\{ (z_0:z_1:z_2:z_3:z_4:z_5) \in  \C\mathbb{P}^{5}| z_0z_5 - z_1z_4 + z_2z_3 =0\}$と$C^{\infty}$級同相であることを示せ. (プリュッカー埋め込みと呼ばれる).
+
+
+
+\item$^{*}$ 授業や演習などこれまで出てきた多様体の例以外で面白い多様体の例をあげよ. ただし以下の点に注意すること.
+	\begin{enumerate}
+	\item この問題は教官とTAが「面白い」と思わない場合, 正答とならない. (例えば$\R^4$の開集合やトーラス・メビウスの帯・クラインの壺などはよく見るので正答とはならない.)
+	\item この問題は複数人が解答して良い.
+	\item この問題の解答権は2022年10月中とする. 11月以後はこの問題に答えることはできない. 
+	\end{enumerate}
+
+%次の問いに答えよ.	
+%	\begin{enumerate}
+%	\item $z_1, \ldot, z_{n}$を$\C^{n}$の座標とする. $1 \ge \alpha_1 < \cdots < \alpha_{k} \ge n$となる自然数の集合$\alpha = (\alpha_1,  \ldots, \alpha_{k})$について
+%	$$U_{\alpha} :~ \{ V \in G_{n,k} | \text{$z_{\alpha_1}, \ldots, z_{\alpha_{k}}$は$V$上で一次独立}\}$$
+%	とおく. 
+	
+%	\item $G_{n,k}$は自然に$C^{\infty}$級多様体の構造を持つことを示し, その次元を求めよ.
+%\end{enumerate}
+
+
+\end{enumerate}
+
+\newpage 
+
+
+
+\begin{center}
+{\Large 5-6 ベクトル場と積分曲線}
+\end{center}
+\begin{flushright}
+ 岩井雅崇 2022/11/18
+\end{flushright}
+
+\section{おわび}
+前回の問題は「あまり教育的でない・難しすぎる」など少々良くなかった気がします. 今回は教育的な問題などを集めました. \footnote{演習の授業を担当していて気づいたのですが, 学生のみなさんは「演習問題は全て解けるもの」を用意してると思われているようです. 難しい問題や良くない問題も用意しているので, 全部解こうとはしないほうが賢明です.}
+また演習でも糟谷先生のプリントの問題も解いて良いです.\footnote{演習でプリントの問題を発表してCLEで提出するのも良いです.}
+
+
+
+\section{多様体に関する諸注意}
+前回の演習の授業で少々気になった点があったので, 何点か補足する.
+
+\subsection{多様体の座標近傍の書き方.}
+
+多様体の基礎の座標近傍の定義や多様体の定義は次のとおりである.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[]
+    \label{defn_local}
+    位相空間$M$の開集合$U$から$\R^m$の開集合$V$への同相写像$\varphi : U \rightarrow V$について$(U, \varphi)$を$m$次元座標近傍といい, $\varphi$を$U$上の局所座標系という. 
+    
+    $p \in U$について, $\varphi(p) =(x_1, \ldots, x_m)$とかける. $x_1, \ldots, x_m$を$(U, \varphi)$に関する$p$の局所座標という.$(U, \varphi)$のことを$(U; x_1, \ldots, x_m)$と書くことがある. 
+    \end{dfn}
+    \end{tcolorbox}
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[]
+    $M$をハウスドルフ空間とする. 次の条件が成り立つとき$M$は$m$次元$C^{\infty}$級多様体と呼ばれる.
+     \begin{enumerate}
+     \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+     \item 座標近傍系$\{(U_\lambda, \varphi_\lambda)\}_{\lambda \in\Lambda}$があって, $M = \cup_{\lambda \in \Lambda} U_{\lambda}$となる. 
+     \item $U_\lambda \cap U_\mu \neq \phi$なる$\lambda, \mu \in \Lambda$について
+    $
+   \varphi_\mu\circ \varphi_{\lambda}^{-1} : \varphi_{\lambda}(U_\lambda \cap U_\mu) \rightarrow \varphi_{\mu}(U_\lambda \cap U_\mu) 
+    $
+    は$C^{\infty}$級写像である
+     \end{enumerate}
+
+
+    \end{dfn}
+    \end{tcolorbox}   
+    
+「多様体の基礎」の定義のおける$ x_1, \ldots, x_m$は厳密に言えば$x_i : U \rightarrow \R^m \rightarrow \R$となる$U$上の関数である. 一方でこの本は後の方で「$(x_1, \ldots, x_m) \in \varphi(U)$について...」と$ x_1, \ldots, x_m$が点を表しているように書いている. （これは初学者が大変困惑する同一視である. 慣れたらこっちの方が楽ではあるが.)\footnote{気になって別の本「トゥー 多様体 (L. W. Tu \textit{An introduction to Manifolds.})」を見たが, その本では区別して書いていた. 「トゥー 多様体」の英語版は学内からSpringer Linkを経由することで無料で入手可能である.} 
+
+
+また局所座標系を明示する際には$(U, \varphi)$と$(U; x_1, \ldots, x_m)$の二つがあるが私は後者を使うことをお勧めする. これは接ベクトル空間の定義\ref{tangent_vector_space}の(3)をよく使うからである.\footnote{「トゥー 多様体」では「局所座標系を$(U, \varphi)=(U; x_1, \ldots, x_m)$とする」と言う書き方をしていた. 要するに座標系の書き方は世界共通ではなさそうだ. 気になる人は「トゥー 多様体」の書き方でも良い.} 
+ 
+\subsection{接ベクトル空間の定義と書き方について.}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[接ベクトル空間]
+    \label{tangent_vector_space}
+    $m$次元$C^{\infty}$級多様体$M$と$p \in M$について次の集合は一致する.
+     \begin{enumerate}
+          \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+     \item $p$における方向微分$v$の集合 $D_{p}^{\infty}(M)$. ここで$v$が$p$における方向微分であるとは, $p$の開近傍で定義された$C^{\infty}$級関数$\xi$について実数$v(\xi)$を対応させる操作であって次を満たすものとする.
+    \begin{enumerate}
+         \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+    \item $\xi,\eta$が$p$の周りで一致すれば$v(\xi) =v(\eta)$.
+    \item 実数$a,b$について$v(a\xi + b\eta)=av(\xi) + bv(\eta)$.
+    \item $v(\xi\eta) = v(\xi)\eta(p) + \xi(p)v(\eta) $.
+    \end{enumerate}
+     \item 曲線$c$に沿った方向微分$v_{c}$全体の集合. ここで$c$は$M$にはいる$C^{\infty}$級曲線$c : (-\epsilon, \epsilon) \rightarrow M$で$c(0)=p$を満たすものとし, $v_{c}$は$p$の開近傍で定義された$C^{\infty}$級関数$\xi$について実数
+     $$
+     v_{c}:\xi \mapsto \drv{\xi(c(t))}{t}\Bigr|_{t=0}
+     $$
+     を対応させるものとする.
+     \item $(U; x_1, \ldots, x_m)$を$p$の周りの座標系とした場合の$(\pdrv{}{x_1})_{p}, \ldots, (\pdrv{}{x_m})_{p}$ではられる$\R$ベクトル空間$T_{p}(M)$. ここで$(\pdrv{}{x_i})_{p}$とは$p$の開近傍で定義された$C^{\infty}$級関数$\xi$について実数
+     $$
+   \left(\pdrv{}{x_i}\right)_{p} :   \xi \mapsto \pdrv{\xi}{x_i}(p)
+     $$
+     を対応させるものとする.
+     \end{enumerate}
+     
+     
+この$\R$上のベクトル空間を\underline{$M$の接ベクトル空間}と呼び$T_{p}M$とかく. 
+    \end{dfn}
+    \end{tcolorbox}    
+    \begin{rem}
+       $C^{\infty}$級でない場合でも$(3) \subset (2) \subset (1)$は成り立つ. ただ$(1) \subset (3)$が成り立つのは$C^{\infty}$級の多様体のみである(多様体の基礎 p.86 注意を見よ). 
+       
+       また定義\ref{tangent_vector_space}の(3)においても定義\ref{defn_local}のような同一視がなされている. もっと正確に書けば, %\footnote{これもトゥー多様体 Chapter 8に基づく. } 
+       座標系を$(U, \varphi)=(U; x_1, \ldots, x_m)$とし, $\varphi(U) \subset \R^{m}$の標準座標を$r_1, \ldots, r_m$とするとき, 
+       $$
+        \pdrv{\xi}{x_i}(p) := \pdrv{(\xi  \circ \varphi^{-1})}{r_i}( \varphi(p) )  \text{となる.}
+       $$
+       %となる. (気になる人のために書いておく. )
+    \end{rem}
+    
+  要するに接ベクトル空間$T_{p}M$の元を表す方法は3つある. 人にもよるが私は定義\ref{tangent_vector_space}の(3)の書き方がわかりやすいと思う. つまり$v \in T_{p}M$の元はある$a_1, \ldots, a_m \in \R$を用いて
+     $$
+     v = \sum_{i=1}^{m} a_i \left(\pdrv{}{x_i}\right)_{p} \text{と書くことができる.}\footnote{接ベクトル空間を「何かよくわからないもの$(\pdrv{}{x_i})_{p}$が$\R$上ではられるもの」と思うという荒技もある. これはベクトル束の立場から見るとそうなる. 恥ずかしながら接ベクトル空間の厳密な定義を最近まで忘れていた. (ベクトル場を構成した論文を出してたので油断していました. )}
+     $$
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[]
+    \label{differential}
+    $M$を$m$次元$C^{\infty}$級多様体, $N$を$n$次元$C^{\infty}$級多様体, $f: M \rightarrow N$を$C^{\infty}$級写像とする. 
+    $p \in M$をとり$q := f(p) \in N$とする.
+    次の写像$(df)_{p} : T_{p}(M) \rightarrow T_{q}(N)$は一致する.
+     \begin{enumerate}
+              \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+     \item $p$における方向微分$v$について
+     $$
+    (df)_{p}(v)  : \eta \mapsto  v(\eta \circ f)
+     $$
+     と定義する. ($\eta$は$q$の開近傍で定義された$C^{\infty}$級関数である).
+     $ (df)_{p}(v) $は$q$における方向微分となり, $T_{q}(N)$の元となる.
+     \item 曲線$c$に沿った方向微分$v_{c}$(ただし$c$は$C^{\infty}$級写像$c : (-\epsilon, \epsilon) \rightarrow M$で$c(0)=p$を満たすもの)について, 
+     $$
+     (df)_{p}(v_c) := v_{f \circ c}
+    % f\circ c : (- \epsilon, \epsilon) \rightarrow N
+     $$
+     と定義する. $f\circ c(0) =q$を満たすため$v_{f \circ c}$は$T_{q}(N)$の元である.
+     %は$f\circ c(0) =q$を満たす$C^{\infty}$級曲線である. よって$v_{f \circ c}$はで$T_{q}(N)$の元である.
+     \item $(V, y_1, \ldots, y_n)$を$q$の周りの座標系, $(U; x_1, \ldots, x_m)$を$f(U) \subset V$となる$p$の周りの座標系とする.
+         $f$を$(U; x_1, \ldots, x_m)$と$(V, y_1, \ldots, y_n)$ によって局所座標表示したものを
+$$y_1=f_1(x_1, \ldots, x_m), \ldots, y_n=f_n(x_1, \ldots, x_m)$$
+としたとき, $(df)_{p} : T_{p}(M) \rightarrow T_{q}(N)$を次のように定義する.
+$$ (df)_{p} : \sum_{i=1}^{m} a_i \left(\pdrv{}{x_i}\right)_{p}  \mapsto 
+\sum_{j=1}^{n} \left(\sum_{i=1}^{m} a_i  \pdrv{f_{j}}{x_i}(p) \right)  \left(\pdrv{}{y_j}\right)_{q} $$
+     \end{enumerate}
+     
+     
+この$(d f)_{p} : T_{p}(M) \rightarrow T_{q}(N)$を\underline{$p$における$f$の微分}という.
+    \end{dfn}
+    \end{tcolorbox} 
+    
+    \begin{rem}
+   定義\ref{differential} (3)において, $b_j = \sum_{i=1}^{m} a_i  \pdrv{f_{j}}{x_i}(p) $ とおき, $n \times m$行の行列$(Jf)_{p}$を
+   $$
+   (Jf)_{p} = 
+   \begin{pmatrix}
+   \pdrv{f_{1}}{x_1}(p) & \pdrv{f_{1}}{x_2}(p)  & \cdots & \pdrv{f_{1}}{x_m}(p) \\
+   \vdots& \vdots& \cdots & \vdots \\
+   \pdrv{f_{n}}{x_1}(p) & \pdrv{f_{n}}{x_2}(p)  & \cdots & \pdrv{f_{n}}{x_m}(p) \\
+   \end{pmatrix}
+   \text{とすれば,} 
+   \begin{pmatrix}
+   b_1 \\ \vdots \\ b_n 
+   \end{pmatrix}
+   =
+   (Jf)_{p} 
+   \begin{pmatrix}
+   a_1 \\ \vdots \\ a_m
+   \end{pmatrix}
+      \text{が成り立つ.} 
+   $$
+ $(Jf)_{p} $をヤコビ行列と呼ぶ.\footnote{これは座標系$(U; x_1, \ldots, x_m),(V, y_1, \ldots, y_n)$に依存する. } 
+またここでも定義\ref{defn_local}のような同一視がなされている. 正確に書けば次のとおりである:
+座標系を$(U, \varphi)=(U; x_1, \ldots, x_m)$とする. $\varphi(U) \subset \R^{m}$の標準座標を$r_1, \ldots, r_m$とする. 
+$(V, \psi) = (V, y_1, \ldots, y_n)$を$q$の座標系とする. $\psi(z) = (y_1(z), \ldots, y_n(z))$に注意すれば, 
+       $$
+        \pdrv{f_j}{x_i}(p) := \pdrv{ (y_j \circ f  \circ \varphi^{-1})}{r_i}( \varphi(p) )  \text{となる.}
+       $$
+       %となる. (気になる人のために書いておく. )
+    \end{rem}
+
+
+%\subsection{ここまで気にしないといけないの?}
+%はっきりいうとそこまで気にする必要はない! 
+
+%\begin{rem}
+%本音を言うとそこまで気にする必要はない! 
+%多様体を「$\R^{m}$の開球の貼り合わせ」とし, 局所座標系$(U, x_1, \ldots,x_m)$としたとき
+%接ベクトル空間を「何かよくわからないもの$(\pdrv{}{x_i})_{p}$が$\R$上ではられるもの」と思うという荒技もある. 
+%\footnote{ベクトル束の立場から見るとそうなる. 10年ぶりに多様体の基礎を読み返して接ベクトル空間の厳密な定義を思い出した. 裏返すと研究するときに厳密な定義はそこまで使わないということである.(私がいい加減に研究しているかもしれないが...でもベクトル場を構成した論文出したときに査読者には何も言われなかったんで, もしかしたら他の人も結構いい加減に多様体を扱ってるかもしれない.)}
+%(本当にその正当化が本当に良いのかちょっと怪しいので演習問題\ref{another_construction}で触れたいと思う.)
+%ただ初学者がそれをやると絶対に良くないので, 建前上は多様体の基礎通りに学んだ方が良いです. 
+
+%ちなみに大学院の院試を見ると, 問題文に局所座標系を明示している問題が少なく「$f$の正則値を求めよ」や「微分写像$df$が全射でない点を求めよ」などの問題が多かった. 察するに接ベクトル空間の定義よりもそういった応用的なことの方が重要視されているからだと思う. \end{rem}
+
+\section{ベクトル場の定義と性質}
+以下断りがなければ$M$を$m$次元$C^\infty$級多様体とする.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[ベクトル場]
+ \text{}
+    \begin{enumerate}
+    \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+    \item $p \in M$について$X_{p} \in T_{p}M$が一つずつ対応しているとき, その対応$X = \{ X_p\}_{p \in M}$を\underline{$M$上のベクトル場}という.
+    \item 座標近傍$(U, x_1, \ldots, x_m)$について, $U$上のベクトル場$\pdrv{}{x_i}$を
+    $$\pdrv{}{x_i} := \left\{ \left( \pdrv{}{x_i} \right)_p \right\}_{p \in U} \text{と定義する.}$$
+    \item $M$上のベクトル場$X$と座標近傍$(U, x_1, \ldots, x_m)$について, ある$U$上の関数$\xi_i : U \rightarrow \R$があって
+    $$
+   X|_{U}= \{ X_p\}_{p \in U} = \xi_1 \pdrv{}{x_1} + \cdots +\xi_m \pdrv{}{x_m}
+    $$
+    とかける. %ここで$X|_{U}:= \{ X_p\}{p \in U}$で$U$上のベクトル場とする. 
+    各座標近傍$(U, x_1, \ldots, x_m)$について上の$\xi_i $が$C^{\infty}$級となるとき, $X$は\underline{$C^{\infty}$ベクトル場}であるという
+    $M$上の$C^{\infty}$級ベクトル場の集合を$\mathscr{X}(M)$で表す. 
+    \end{enumerate}
+       \end{dfn}
+    \end{tcolorbox}
+    
+ 
+ 
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[ベクトル場の演算]
+    %$M$を$m$次元$C^\infty$級多様体, 
+    $X,Y$を$M$上の$C^{\infty}$ベクトル場, $f$を$M$上の$C^{\infty}$級関数とする. 
+    \begin{enumerate}
+        \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+    \item $p \in M$について$Xf(p) := X_{p} (f)$と定義する(定義\ref{tangent_vector_space}の(1)を使った). $Xf$を関数$f$にベクトル場を作用させて得られる関数と呼ぶ. 
+    座標近傍$(U, x_1, \ldots, x_m)$について$X|_{U} = \xi_1 \pdrv{}{x_1} + \cdots +\xi_m \pdrv{}{x_m}$と書けている場合
+    $$
+    Xf(p) =  \xi_1(p) \pdrv{f}{x_1}(p) + \cdots +\xi_m(p) \pdrv{f}{x_m}(p) \text{となる.}
+    $$
+    \item $X,Y$の\underline{かっこ積(Lie bracket)}を$[X,Y]:= XY -YX$と定める. $[X,Y]$は$C^{\infty}$級ベクトル場となる. 座標近傍$(U, x_1, \ldots, x_m)$について$X|_{U} = \sum_{i=1}^{m}\xi_i \pdrv{}{x_i}, Y|_{U} = \sum_{i=1}^{m}\eta_i \pdrv{}{x_i}$と書けている場合
+    $$
+        [X, Y]|_{U} = (XY-YX)|_{U} =  
+    \sum_{i=1}^{m} \left\{ \sum_{j=1}^{m} \left(  \xi_j\pdrv{\eta_i}{x_j} -  \eta_j\pdrv{\xi_i}{x_j} \right) \right\}\pdrv{}{x_i}
+    \text{となる.}
+    $$
+    \item $F: M \rightarrow N$を$C^{\infty}$級微分同相写像とする. $M$上の$C^{\infty}$級ベクトル場$X$について, $N$上のベクトル場$F_{*}X$を$
+    (F_{*}X)_{f(p)} := (dF)_{p}(X_{p}) \text{とする.}
+    $
+    \end{enumerate}
+    \end{dfn}
+    \end{tcolorbox}
+
+\section{積分曲線・1パラメーター変換群・リー微分}
+以下断りがなければ$M$を$m$次元$C^\infty$級多様体とし, $X$を$C^{\infty}$級ベクトル場とする. 
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[積分曲線]
+    
+ $a$を実数または$- \infty$, $b$を実数または$+\infty$とし, 開区間$(a,b)$は$0$を含むとする.
+ $C^{\infty}$級曲線$c : (a,b) \rightarrow M$が$X$の\underline{積分曲線}であるとは, 任意の$\alpha \in (a,b)$について
+    $$
+    \drv{c}{t}\Bigr|_{t=\alpha} =X_{c(\alpha)}
+    $$
+    が成り立つこととする(左辺に関しては定義\ref{tangent_vector_space}参照)．
+    $c(0)=p$を$c$の\underline{初期値}という.
+   
+    \end{dfn}
+    \end{tcolorbox}
+ 
+
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[積分曲線の局所的な存在と一意性]
+    \text{}
+    %$M$を$C^{\infty}$級多様体とし$X$を$C^{\infty}$級ベクトル場とする. 
+    \begin{enumerate}
+        \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+    \item 任意の$p \in M$について, 正の数$\epsilon >0$と$c(0)=p$となる積分曲線$c : (-\epsilon, \epsilon) \rightarrow M$が存在する.
+    \item $0$を含む開区間$(a_1, b_1), (a_2, b_2) $と積分曲線$c_1 : (a_1, b_1) \rightarrow M$, $c_2 : (a_2, b_2) \rightarrow M$について, $c_1(0) =c_2(0)$ならば, $c_1$と$c_2$は$(a_1, b_1) \cap (a_2, b_2) $上で一致する. 
+    \end{enumerate}
+
+    \end{thm}
+    \end{tcolorbox}
+  
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+      %$M$を$C^{\infty}$級多様体とし$X$を$C^{\infty}$級ベクトル場とする. 
+      \text{}
+      \begin{enumerate}
+          \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+      \item $p \in M$を初期値とする積分曲線$c_{p} : (a,b) \rightarrow M$で定義域をこれ以上広げられないものを\underline{極大積分曲線}という.
+      \item 任意の$p \in M$を初期値とする極大積分曲線$c_{p} : (a,b) \rightarrow M$の定義域$(a,b)$が$\R$であるとき, $X$は\underline{完備なベクトル場}であるという. 
+      \end{enumerate}
+    \end{dfn}
+    \end{tcolorbox}
+$c_{p}$を$p$を初期値とする極大積分曲線 \footnote{多様体の基礎では$c_{p}(t)$を$c(t,p)$と書いている.}とすると, $t \in \R$について$c_{p}(t)$は"ベクトル場$X$に沿って時間$t$だけ流した時の位置"を対応させているとみれる.
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+      %$M$を$C^{\infty}$級多様体とし
+      $X$を完備な$C^{\infty}$級ベクトル場とし, $p \in M$を通る極大積分曲線を$c_{p} : \R \rightarrow M$とする.
+      $t \in \R$について$\varphi_{t} : M \rightarrow M$を
+      $$
+      \begin{matrix}
+      \varphi_{t} : &M & \rightarrow &M\\
+      &p & \mapsto&c_{p}(t) 
+       \end{matrix}
+      $$
+      とおく. このとき$\varphi_{t} : M \rightarrow M$は$C^{\infty}$級同相写像であり次が成り立つ. 
+      \begin{enumerate}
+          \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+      \item $\varphi_{0} = {\rm id}_{M}$.
+      \item $\varphi_{t+s} = \varphi_{t} \circ \varphi_{s}$ ($\forall t,s \in \R$).
+      \item $\varphi_{-t} = (\varphi_{t})^{-1}$ ($\forall t \in \R$).
+      \item   次の写像$F : \R \times M \rightarrow M$は$C^{\infty}$級写像である
+  $$
+      \begin{matrix}
+      F: &\R \times M & \rightarrow &M\\
+      &(t,p) & \mapsto&\varphi_{t}(p)
+       \end{matrix}
+      $$
+      \end{enumerate}   
+   逆に$C^{\infty}$級同相写像の族$\{ \varphi_{t} : M \rightarrow M \}_{t \in \R}$が上の4条件を満たすとき, 定義\ref{tangent_vector_space}の(2)を用いてベクトル場$X=\{ X_{p}\}_{p \in M}$を
+   $$
+   X_p := \drv{\varphi_{t}(p)}{t}\Bigr|_{t=0} \in T_{p}M
+   $$
+   で定義すると, $X$が完備なベクトル場であり$p$を初期値とする極大積分曲線は$c(t)=\varphi_{t}(p)$で与えられる.
+   
+ このような$C^{\infty}$級同相写像の族$\{ \varphi_{t} : M \rightarrow M \}_{t \in \R}$を\underline{1パラメーター変換群}と呼ぶ. 
+    \end{thm}
+    \end{tcolorbox}
+ 
+ 要するに「完備なベクトル場」と「1パラメーター変換群」は1対1に対応する. 完備なベクトル場$X$に対応する1パラメーター変換群$\{ \varphi_{t} \}_{t \in \R}$を$\{ {\rm Exp}(tX)\}_{t \in \R}$と表すこともある.
+ \begin{rem}
+ $C^{\infty}$級写像$F : \R \times M \rightarrow M$がフローとは$F(0, p)=p$かつ$F(t, F(s,p))=F(t+s, p)$を満たすこととする. 
+ フローと1パラメーター変換群が一対一に対応する. 
+ \end{rem}
+ 
+     \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+    \label{Lie_derivative}
+$X$を完備な$C^{\infty}$級ベクトル場とし, $C^{\infty}$級同相写像の族$\{ \varphi_{t} : M \rightarrow M \}_{t \in \R}$を1パラメーター変換群とする.
+      $C^{\infty}$級関数$f$とベクトル場$Y$についてリー微分$\mathcal{L}_{X}(f), \mathcal{L}_{X}(Y)$をそれぞれ以下で定める.
+      $$
+      \mathcal{L}_{X}(f) = \lim_{t \rightarrow 0}\frac{\varphi_{t}^{*} f-f}{t}
+      \quad
+        \mathcal{L}_{X}(Y) = \lim_{t \rightarrow 0}\frac{(\varphi_{-t})_{*} Y - Y}{t}
+      $$
+このとき次が成り立つ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $\mathcal{L}_{X}(f)  = Xf$, $\mathcal{L}_{X}(Y)=[X,Y]$.
+\item $[X,Y]=0$であることは任意の$t \in \R$について$(\varphi_{t})_{*} Y =Y$となることと同値である.
+\item $\{ \psi_{t} \}_{t \in \R}$を$Y$の1パラメーター変換群とする. $[X,Y]=0$であることは任意の$s,t \in \R$について$\varphi_{t} \circ \psi_{s} = \psi_{t} \circ \varphi_{s}$を満たすことと同値である.
+\end{enumerate}
+
+    \end{thm}
+    \end{tcolorbox}
+ 
+ 
+ 
+
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{thm}
+$C^{\infty}$級写像$f : M\rightarrow \R$が固有な沈め込みであれば, 任意の$a,b \in \R$について$f^{-1}(a)$と$f^{-1}(b)$は$C^{\infty}$級微分同相である. 
+ここで$f $が固有とは任意のコンパクト集合の$f$の逆像がコンパクトになることとし, $f$が沈め込みとは任意の$p \in M$について$(df)_{p}$が全射であることとする.
+    \end{thm}
+    \end{tcolorbox}
+
+\newpage
+
+\section{演習問題}
+以下断りがなければ$M,N$は$C^{\infty}$級多様体とし, $m = \dim M$とする.
+
+\vspace{11pt}
+\hspace{-22pt}{\large $\bullet$ベクトル場の問題}
+\begin{enumerate}[label=\textbf{問}2.\arabic*]
+
+\item 次の問いに答えよ.
+\begin{enumerate}
+\item $X$を$C^{\infty}$級ベクトル場とし$f$を$M$上の$C^{\infty}$関数とする. $Xf$と$fX$の厳密な定義とその違いを述べよ.
+\item $\R^{2}$上でのベクトル場のかっこ積$[- y \pdrv{}{x} + x \pdrv{}{y}, \pdrv{}{x}]$を計算せよ.
+\end{enumerate}
+
+
+
+\item 
+$a,b \in \R$と$X,Y,Z \in \mathscr{X}(M)$について, 次が成り立つことを示せ.\footnote{$(\mathscr{X}(M), [ , ])$がリー代数の構造をもつ}
+\begin{enumerate}
+\item (双線型性) $[aX+bY, Z]=a[X,Z] + b[Y,Z], [Z, aX+bY]=a[Z,X] + b[Z,Y] $.
+\item (交代性) $ [Y,X]=-[X,Y]$.
+\item (ヤコビ恒等式) $[[X,Y],Z] + [[Y,Z],X] +[[Z,X],Y] = 0$.
+\end{enumerate}
+
+
+
+
+\item \label{sn_no_vanishing} $^{*}$ Let $(x_1, y_1, \ldots, x_{n}, y_{n})$ be the standard coordinates on $\R^{2n}$. The unit sphere $S^{2n-1}$ in $\R^{2n}$ is defined by the equation $\sum_{i=1}^{n}x_{i}^{2} + y_{i}^{2} =1$.
+Show that
+$$
+X = \sum_{i=1}^{n} - y_i \pdrv{}{x_i} + x_i \pdrv{}{y_i}
+$$ 
+is a no where-vanishing $C^{\infty}$ vector field on $S^{2n-1}$.
+
+
+%\item 以下の問いに答えよ.ただし多様体の基礎 命題13.11は使って良い. \footnote{多様体の基礎を読んでいて以下の部分が欠落していると思った}
+	%\begin{enumerate}
+	%\item 「ベクトル場$X$が$C^{\infty}$級である」ことは「任意の$C^{\inftyl}$級関数$f$について$Xf$が$C^{\infty}$級であること」と同値である
+	%\item $C^{\infty}$級関数
+	%\item $\varphi_{*}[X,Y] = $
+	%\end{enumerate}
+
+
+
+\item \label{tm_const } $TM = \cup_{p \in M}T_{p}M = \cup_{p \in M}\{ (p,v) | v \in T_{p}M\}$とし, $\{ (U_{\lambda}, \varphi_{\lambda})=(U_{\lambda}, x_{1}^{\lambda}, \ldots, x_{m}^{\lambda})\}_{\lambda \in \Lambda}$を$M$の座標近傍系とする. $\lambda \in \Lambda$について次のように写像を定める.
+$$
+\begin{matrix}
+\pi :& TM &\rightarrow& M& &\Phi_{\lambda} :& \pi^{-1}(U_{\lambda})& \rightarrow& \varphi_{\lambda}(U_{\lambda}) \times \R^{m} \\
+	& (p,v) &\mapsto& p& &					& (p, \sum_{i=1}^{m} a_{i} \left(\pdrv{}{x_{i}^{\lambda}}\right)_p)& \rightarrow& (\varphi(p), (a_1, \ldots, a_{m})) \\
+\end{matrix}
+$$
+次の問いに答えよ. 
+
+\begin{enumerate}
+\item $\Phi_{\lambda}$は$\pi^{-1}(U_{\lambda})$と$\varphi_{\lambda}(U_{\lambda}) \times \R^{m} $の一対一対応を与えることを示せ.
+\item $TM$の位相で任意の$\lambda \in \Lambda$について$\pi^{-1}(U_{\lambda})$が開集合で$\Phi_{\lambda}$が位相同型になるようなものが存在することを示せ.
+\item $TM$には$\{( \pi^{-1}(U_{\lambda}), \Phi_{\lambda} )\}_{\lambda \in \Lambda}$が座標近傍系になるような$2m$次元の$C^{\infty}$級多様体の構造が入ることを示せ. $(TM, \pi)$を\underline{$M$の接ベクトル束}という. \footnote{ベクトル束に関しては, 例えば「今野 微分幾何学」を参照のこと. 実はヤコビ行列を用いても接ベクトル束を構成することができる. }
+\end{enumerate}
+
+\item \label{tm_vector} $^{*}$ 引き続き接ベクトル束$TM$に関する次の問いに答えよ.
+\begin{enumerate}
+\item $\pi : TM \rightarrow M$は全射$C^{\infty}$級写像であることを示せ. 
+\item 「$C^{\infty}$ベクトル場$X$」は「$C^{\infty}$級写像$\chi : M \rightarrow TM$で$\pi \circ \chi = id_{M}$となるもの」と1対1に対応することを示せ.
+\item $M$上の$C^{\infty}$ベクトル場$X_1, \ldots, X_{m}$で, 任意の$p \in M$について$(X_1)_{p}, \ldots, (X_{m})_{p}$が$T_{p}M$の基底となるものが存在すると仮定する. このとき$TM $と$M \times \R^{m}$は微分同相であることを示せ.  
+\end{enumerate}
+
+\item $TS^1$は$S^1 \times \R$と微分同相であることを示せ. ただしこの問題の解答期限は\ref{sn_no_vanishing}と\ref{tm_vector}が解かれるまでとする. \footnote{\ref{sn_no_vanishing}と\ref{tm_vector}(c)から$TS^1 $と$S^{1} \times \R $は微分同相であることがいえる. もし別解があれば発表してもよい.}
+
+\item $^{*}$  $TS^n$は$\{ (z_1, \ldots,z_{n+1}) \in \C^{n+1} | \sum_{i=1}^{n+1} z_{i}^{2} =1\}$と微分同相であることを示せ. \footnote{ヒント. 前回演習の問1.5を用いる.}
+%またこれを用いて$TS^1 $と$S^{1} \times \R $は微分同相であることを示せ.\footnote{ヒント. 前回演習の問1.5を用いる.}
+
+%\item 一時独立なベクトル場の問題
+
+% ベクトル束が張り合うとは?
+\item $^{*}$  $i : \C \rightarrow \C\mathbb{P}^{1}$を$i(z) = (z:1)$とすることにより, $\C$を$\C\mathbb{P}^{1}$の開部分多様体と見なす.  
+$\C $上のベクトル場$X = x \pdrv{}{x} + y \pdrv{}{y}$と定める (ただし$z = x + \sqrt{-1} y$として$(x,y)$を$\C$の座標を考えている).
+このとき$X$は$\C \mathbb{P}^{1}$上の$C^{\infty}$級ベクトル場$\tilde{X}$に拡張されることを示せ. また$\tilde{X}_{p}=0$となる$p \in \C \mathbb{P}^{1}$を全て求めよ. 
+
+\item Let $F : M \rightarrow N$ be a $C^{\infty}$ diffeomorphism of manifolds. 
+\begin{enumerate}
+\item Prove that if $g$ is a $C^{\infty}$ function and $X$ is a $C^{\infty}$ vector field on $M$, then $F_{*}(gX) = (g \circ F^{-1}) F_{*}X$.
+\item Prove that if $X$ and $Y$ are $C^{\infty}$ vector fields on $M$, then $F_{*}[X,Y]=[F_{*}X,F_{*}Y]$.
+
+\end{enumerate}
+
+
+%\newpage
+\vspace{11pt}
+\hspace{-33pt}{\large $\bullet$積分曲線の問題}
+
+%\item Let $X$ be the vector field $x^{2}\pdrv{}{x}$ on the real line $\R$. Find the maximal integral curve of $X$ starting at $x=2$.
+\item 
+\begin{enumerate}
+\item Find the maximal integral curve of $X=x\pdrv{}{x} + y \pdrv{}{y}$ starting at $(1,1) \in \R^2$.
+\item Find the maximal integral curve of $Y=\pdrv{}{x} + y \pdrv{}{y}$ starting at $(1,1) \in \R^2$.
+\end{enumerate}
+\item $\R^{2}$上のベクトル場を$X = -y \pdrv{}{x} + x \pdrv{}{y}$とする. 次の問いに答えよ.
+\begin{enumerate}
+\item $X$は完備であることを示せ.%\footnote{極座標を用いたら幾分楽かもしれない.}
+ %$(1,0)$を通る極大積分曲線を求めよ.
+\item $\{ \varphi_{t} \}_{t \in \R}$を1パラメーター変換群とする. $ \varphi_{t}: M \rightarrow M$を求めよ. 
+\item $X_{p} =  \drv{\varphi_{t}(p)}{t}\Bigr|_{t=0} $を確かめよ.
+\end{enumerate}
+
+\item \label{torus} $^{*}$$\R^{2}$に対し同値関係$\sim$を
+$$
+(x_1, y_1)\sim (x_2, y_2) \Leftrightarrow x_1 - x_2 \in \Z \text{かつ} y_1 - y_2 \in \Z 
+$$
+で定め, 2次元トーラス$T^2 := \R^2/\sim$とする. $\pi : \R^2 \rightarrow T^2$という商写像により$T^2$に位相を入れる. \footnote{$T^2 = \R^2/\Z^2$ともかく. この問題では$T^2$が$C^{\infty}$級多様体であることを認めて良い. また$T^2$は$S^{1} \times S^{1}$と微分同相である. } 
+次の問いに答えよ.
+\begin{enumerate}
+\item $Y=\pdrv{}{x}$を$\R^2$上の$C^{\infty}$級ベクトル場とする. このとき$T^2$上の$C^{\infty}$級ベクトル場$X$で, 任意の$p \in \R^2$について$(d \pi)_{p} (Y)= X_{\pi(p)}$となるものが存在することを示せ.
+\item $X$が生成する1パラメーター変換群$\{ \varphi_{t} \}_{t \in \R}$を求めよ.
+\item  $T(T^{2})$は$ T^{2} \times \R$と微分同相であることを示せ. 
+\end{enumerate}
+
+
+%Let $X$ be the vector field $-y \pdrv{}{x} + x \pdrv{}{y}$ on $\R^{2}$.  Find the maximal integral curve of $X$ starting at $(1,0) \in \R^2$.
+%\item Araujoの例
+
+\item コンパクト$C^{\infty}$級多様体$M$上の任意の$C^{\infty}$級ベクトル場は完備であることを示せ.
+
+\item  定理\ref{Lie_derivative}の(1)-(3)をそれぞれ示せ. 
+
+\item $^{*}$ $M$をコンパクト$C^{\infty}$級多様体とし$X$を$C^{\infty}$級ベクトル場とする. 
+$M$上の$C^{\infty}$級関数$f,g : M \rightarrow \R$が$Xf = g, Xg =f$を満たすとする.
+次の問いに答えよ.
+\begin{enumerate}
+\item $X$の任意の積分曲線$c : \R \rightarrow M$について$(f \circ c)'' (t) = (f \circ c) (t)$であることを示せ.
+\item $f,g$は恒等的に0であることを示せ. 
+\end{enumerate}
+
+
+\vspace{11pt}
+\hspace{-33pt}{\large $\bullet$教育的な問題}
+
+%\subsection{教育的な問題}
+
+第1-4回の演習で出した問題以外でとても教育的な問題を追加で出しておく. 
+ %(これらはまだ解答していない人向けとする).
+
+
+%\item $M$を$m$次元$C^{\infty}$級多様体とし, $f$を$M$上の$C^{\infty}$級関数とする. ある点$p \in M$において$(df)_{p} \in T^{*}M$は$(df)_{p} \neq 0$を満たすとする. このとき$C^{\infty}$級可微分曲線$\varphi : (-1,1) \rightarrow M$で$\varphi(0) = p$かつ$(f \circ \varphi)'(0) >0$なるものが存在する.  $M$がコンパクトならば$(df)_{p} =0$なる$p \in M$が存在する.
+
+\item $M$を$m$次元コンパクト$C^{\infty}$級多様体とする. $C^{\infty}$級写像$f: M \rightarrow \R^{m}$ではめ込みとなるものは存在しないことを示せ. ($m = \dim M$に注意すること).
+\item $M$と$N$が微分同相であるならば$\dim M =\dim N$を示せ. 
+\item $f : \R \mathbb{P}^{n} \rightarrow \R$を
+$$
+f([x_1: \cdots : x_{n+1}] ) = \frac{x_{1}^{2}}{x_{1}^{2} + \cdots+ x_{n+1}^{2}}
+$$
+とおく. 次の問いに答えよ.
+\begin{enumerate}
+\item $f$がwell-definedな$C^{\infty}$級写像であることを示せ.
+\item $(df)_{p}$が消える$p \in \R \mathbb{P}^{n}$の点を全て求めよ. 
+\item $f$の最大値・最小値を求めよ
+\end{enumerate}
+
+\item (糟谷先生の第3回のプリントの問題) $f : M\rightarrow \R$を$C^{\infty}$級写像とする.
+\begin{enumerate}
+\item $p \in M$において$(df)_{p} \neq 0$ならば, ある$C^{\infty}$級写像$c : (-1,1) \rightarrow M$で$c(0)=p$かつ$(f \circ c)'(0) >0$となるものが存在することを示せ. 
+\item $M$がコンパクトならば$(df)_{p} = 0$となる$p \in M$が存在することを示せ. 
+\end{enumerate}
+
+\item $m,k$を正の自然数とする. $C^{\infty}$級写像$f : \R^{m+k} \rightarrow \R^{k}$とその正則値$c$を考える. 
+$M = f^{-1}(c)$は$\R^{m+k}$の部分多様体となり, 任意の$p \in M$について$T_{p}M = {\rm Ker}(df)_{p}$となることを示せ． またこれを用いて問題1.5を示せ. （つまり$a \in S^{m}$について$T_{a}S^{m} = \{ v \in \R^{m+1} | <a,v> = 0\}$となることを示せ. ここで$<\bullet, \bullet>$は$ \R^{m+1}$上のユークリッド内積とし, $T_{a}\R^{m+1}$と$\R^{m+1}$を同一視する.)
+
+\vspace{11pt}
+\hspace{-33pt}{\large $\bullet$発展課題}
+%\subsection{発展課題}
+
+\hspace{-22pt}以下の問題は私が少々気になった事柄である. 余裕のある人向けの問題となっております. \footnote{教育的な問題からそうでない問題まで揃えております.}
+%この授業とあまり関係ないあるいはこの授業の理解を大きく阻害をする問題であるため, あまり熱心にとかないことをお勧めする. 
+
+\item $^{*}$ $C^{\infty}(M)$を$M$上の$C^{\infty}$級関数全体のなす集合とする. 
+次の問いに答えよ.\footnote{必要であれば多様体の基礎 命題13.11を用いて良い.}
+\begin{enumerate}
+\item $C^{\infty}$級ベクトル場$X$について$D_{X} : C^{\infty}(M)  \rightarrow  C^{\infty}(M) $を$D_{X}(f) := Xf$で定める. $D_{X}$が線形かつライプニッツ則を満たすことを示せ. 
+\item 写像$D :  C^{\infty}(M)  \rightarrow  C^{\infty}(M) $が線形でありライプニッツ則を満たすとき, ある$C^{\infty}$級ベクトル場$X$があって$D = D_{X}$となることを示せ.
+\item $C^{\infty}$級ベクトル場$X,Y$について$X = Y$であることは$D_{X} = D_{Y}$であることと同値であることを示せ. \footnote{多様体の基礎 命題16.5の証明を見ていると, この本ではこの事実を認めている気がする. }
+\end{enumerate}
+ここで「線形」と「ライプニッツ則」については次のように定義する.
+\begin{itemize}
+\item $D$が線形であるとは$a,b \in \R, f,g \in C^{\infty}(M)$について$D(af + bg)=aD(f) + bD(g)$であることとする.
+\item $D$がライプニッツ則を満たすとは$ f,g \in C^{\infty}(M)$について$D(fg)=D(f)g + fD(g)$であることとする.
+\end{itemize}
+
+
+
+%$X : C^{\infty}(M) \rightarrow C^{\infty}(M)$が線形でありライプニッツ則を満たすとき, $X$が$C^{\infty}$級ベクトル場であることを示せ. 
+
+%ここで「$X$が線形であるとは$a,b \in \R, f,g \in C^{\infty}(M)$について$X(af + bg)=aX(f) + bX(g)$である」こととし, 
+%「$X$がライプニッツ則を満たすとは$ f,g \in C^{\infty}(M)$について$X(fg)=X(f)g + fX(g)$である」こととする.
+
+\item $f : M \rightarrow N$を$C^{\infty}$級写像とする. 
+$C^{\infty}(M)$を$M$上の$C^{\infty}$級関数全体の集合として, 
+$$
+\begin{matrix}
+f^{*} : &  C^{\infty}(N) &  \rightarrow & C^{\infty}(M) \\
+	 &  \xi &  \mapsto & \xi \circ f\\
+\end{matrix}
+$$
+と定める.  $X \in \mathscr{X}(M)$, $Y \in \mathscr{X}(N)$について$X$と$Y$が$f$-関係にあるとは
+$D_{X} \circ f^{*} = f^{*} \circ D_Y$であることとする. 次の問いに答えよ.
+\begin{enumerate}
+\item $X$と$Y$が$f$-関係にあることは, 任意の$p \in M$について$(df)_{p}(X_{p}) = Y_{f(p)}$であることと同値であることを示せ.
+\item $f$が微分同相写像のとき, 任意の$X \in \mathscr{X}(M)$について, $X$と$f$-関係にあるベクトル場$Y$がただ一つ存在することを示せ.
+\item $X_1$と$Y_1$が$f$-関係にあり, $X_2$と$Y_2$が$f$-関係にあるとき, $[X_1, X_2]$と$[Y_1, Y_2]$も$f$-関係にあることをしめせ.
+\end{enumerate}
+
+\item  $M=N=\R$とし, $f : M \rightarrow N$を$f(x) = x^{\frac{1}{3}}$とする. 
+$M$は$\R$への通常の$C^{\infty}$級多様体の構造を入れる. 
+また$N$には$f^{-1} : N \rightarrow M = \R$によって$C^{\infty}$級多様体の構造を入れる
+(つまり$\{ (N,f^{-1}) \}$が$N$の座標近傍系となる).
+次の問いに答えよ.
+\begin{enumerate}
+\item $\varphi : M \rightarrow N$を恒等写像とする. $\varphi$は全単射な$C^{\infty}$級写像であることを示せ%$f^{-1} : N \rightarrow M$%$g : N \rightarrow M$を$g(y) = y^{3}$とおくと$g$
+\item $\varphi^{-1}$は$C^{\infty}$級写像ではないことを示せ.つまり$\varphi$は$C^{\infty}$級微分同相ではない. 
+\item $X = \pdrv{}{x}$について$\varphi$-関係にある$N$上の$C^{\infty}$級ベクトル場は存在しないこと示せ. 
+\end{enumerate}
+
+%\item 定理\ref{Lie_derivative}の(1)-(4)を証明せよ.
+
+\item $^{**}$ $TS^3 $は$S^3 \times \R^{3}$と微分同相であることを示せ. \footnote{ヒント: 四元数体のノルム1の全体集合が$S^{3}$になる.}
+\item$^{***} $ $TS^n$が$S^n \times \R^{n}$と微分同相となるような自然数$n$を決定せよ. \footnote{$n$が偶数ではないことはPoincare-Hopfの定理からわかる. $n$が奇数のときどのように議論するか私はわからない.}
+
+%\item 定理\ref{tangent_vector_space}の事柄を証明せよ. 特に証明のどこに$C^{\infty}$を使ったのかを明らかにせよ. \footnote{この問題は解く意味があまりないかもしれない.}
+
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+{\Large 8-12. 微分形式とストークスの定理}
+\end{center}
+\begin{flushright}
+ 岩井雅崇 2022/12/02
+\end{flushright}
+
+\section{ベクトル空間のテンソル積}
+
+%以下断りがなければ$M$を$m$次元$C^\infty$級多様体とする.
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}
+$V$を$m$次元の$\R$ベクトル空間とする.
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $V$の\underline{双対ベクトル空間} $V^{*}$を
+$
+V^{*} := \{\omega : V \rightarrow \R  \,|\, \text{$\omega$は線型写像} \}
+\text{とする.}
+$
+%と定義する.
+\item $\{ e_1, \ldots, e_m\}$を$V$の基底とするとき, $1 \le i \le m$なる$i$について$\omega_{i} \in V^{*}$を
+     $$
+      \begin{matrix}
+     \omega_{i} : &V & \rightarrow &\R\\
+      &a_1e_1 + \cdots +a_m e_m& \mapsto& a_i
+       \end{matrix}
+      $$
+ と定義する. $\{ \omega_1, \ldots, \omega_m\}$は$V^{*}$の基底で, $\{ e_1, \ldots, e_m\}$の双対基底と呼ばれる.
+ \item $V$上の\underline{$k$次多重線型形式}とは$\omega : V^{k}=V \times \cdots \times V \rightarrow \R$となる写像で$\omega(v_1, \ldots, v_k)$が各$v_i$について線型であることとする. $V$上の$k$次多重線型形式なす$m^k$次元のベクトル空間を$\otimes^{k} V^{*}$と表す.
+   \item $\omega \in \otimes^{k} V^{*}$が\underline{$k$次対称形式}であるとは, 任意の$k$次の置換$\sigma$と, 任意の$(v_1, \ldots, v_k )\in V^{k}$について$\omega(v_{\sigma(1)}, \ldots, v_{\sigma(k)})=\omega(v_1, \ldots, v_k)$となることとする.
+  \item $\omega \in \otimes^{k} V^{*}$が\underline{$k$次交代形式}であるとは, 任意の$k$次の置換$\sigma$と, 任意の$(v_1, \ldots, v_k) \in V^{k}$について$\omega(v_{\sigma(1)}, \ldots, v_{\sigma(k)})=\sgn(\sigma)\omega(v_1, \ldots, v_k)$となることとする. $V$の$k$次交代形式の${}_m C_{k}$次元のベクトル空間を$\wedge^{k} V^{*}$で表す. 
+\end{itemize}
+
+    \end{dfn}
+    \end{tcolorbox}
+    \begin{exa}
+ $\eta_1, \ldots, \eta_k \in V^{*}$について
+     $$
+      \begin{matrix}
+     \eta_1\otimes \cdots \otimes \eta_k  : &V \times \cdots \times V & \rightarrow &\R &
+     \eta_1\wedge \cdots \wedge \eta_k  : &V \times \cdots \times V & \rightarrow &\R \\
+      &(v_1, \ldots, v_k)& \mapsto& \eta_1(v_1)\cdots \eta_{k}(v_k) & &(v_1, \ldots, v_k)& \mapsto& \det((\eta_i(v_j))_{1 \le i,j \le k})
+       \end{matrix}
+      $$
+    と定義する. $\eta_1\otimes \cdots \otimes \eta_k \in \otimes^{k} V^{*}$であり\underline{$\eta_1, \ldots, \eta_k$のテンソル積}と呼ばれる. 
+
+$\{ e_1, \ldots, e_m\}$を$V$の基底とし, $\{ \omega_1, \ldots, \omega_m\}$を$\{ e_1, \ldots, e_m\}$の双対基底とするとき, $\{ \omega_{i_1}\otimes \cdots \otimes  \omega_{i_k}\}_{i_1, \ldots, i_k=1, \ldots,m}$は$\otimes^{k} V^{*}$の基底となる.また$\{ \omega_{i_1}\wedge \cdots \wedge \omega_{i_k}\}_{1 \le i_1< \cdots < i_k\le m}$は$\wedge^{k} V^{*}$の基底となる.
+定義から$\omega_2 \wedge \omega_1 = -\omega_1 \wedge \omega_2$や$\omega_1 \wedge \omega_1 = 0$であることがわかる.
+\end{exa}
+    
+\section{微分形式}
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}
+
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $p \in M$について, 接ベクトル空間$T_{p}M$の双対空間を\underline{余接ベクトル空間}と呼び$T_{p}^{*}M$と表す.
+\item 任意の$p \in M$について$\omega_{p} \in T_{p}^{*}M$が一つずつ対応しているとき, その対応$\omega = \{ \omega_p\}_{p \in M}$を\underline{$M$上の1次微分形式}という.
+\item 座標近傍$(U, x_1, \ldots, x_m)$について$(dx_{i})_{p}$を
+    $$
+     \begin{matrix}
+    (dx_i )_{p} : &T_{p}M & \rightarrow &\R\\
+    & a_1\left( \pdrv{}{x_1}\right)_p  + \cdots + a_m\left(\pdrv{}{x_m}\right)_p & \mapsto  &a_i
+    \end{matrix}
+     $$
+    とし, $U$上の1次微分形式$dx_i  := \{ (dx_{i})_p\}_{p \in U}$と定義する. これにより$M$上の1次微分形式は座標近傍$(U, x_1, \ldots, x_m)$について, ある$U$上の関数$f_i : U \rightarrow \R$があって
+    $$
+    \omega|_{U} = f_1dx_1 + \cdots + f_mdx_m
+    $$
+    とかける. 各座標近傍$(U, x_1, \ldots, x_m)$について上の$f_i $が$C^{\infty}$級となるとき, $\omega$は\underline{$C^{\infty}$級1次微分形式}という.
+    
+    %$M$上の$C^{\infty}$級ベクトル場の集合を$\mathscr{X}(M)$で表す. 
+\end{itemize}
+    \end{dfn}
+    \end{tcolorbox}
+    
+   \begin{exa}
+$f : M\rightarrow \R$を$C^{\infty}$級写像とすると, 微分写像$df_{p} : T_{p}M \rightarrow T_{f(p)}\R \cong \R$により, $df:= \{df_{p}\}_{p \in M}$は$M$上の1次微分形式だと思える.
+ 座標近傍$(U, x_1, \ldots, x_m)$を用いて1次微分形式$df$は
+ $$
+ df|_{U} = \pdrv{f}{x_1} dx_1 + \cdots +\pdrv{f}{x_n}dx_{n}
+ \text{と表せられる.}
+ $$
+ %と表すことができる. 
+\end{exa}
+    
+     \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}
+$k=1, \ldots, m=\dim M$となる自然数とする. 
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 任意の$p \in M$について$\omega_{p} \in \wedge^{k} T_{p}^{*}M$が一つずつ対応しているとき, その対応$\omega = \{ \omega_p\}_{p \in M}$を\underline{$M$上の$k$次微分形式}という.
+\item $M$上の$k$次微分形式$\omega$は座標近傍$(U, x_1, \ldots, x_m)$について, ある$U$上の関数$f_{i_1 i_2 \cdots i_k}: U \rightarrow \R$($1 \le i_1< \cdots < i_k \le m$)があって
+    $$
+    \omega|_{U} = \sum_{ 1 \le i_1< \cdots < i_k\le m }f_{i_1 i_2 \cdots i_k}d x_{i_1}\wedge dx_{i_2} \wedge \cdots \wedge dx_{i_k}
+    $$
+    とかける. 各座標近傍$(U, x_1, \ldots, x_m)$について上の$f_{i_1 i_2 \cdots i_k}$が$C^{\infty}$級となるとき, $X$は\underline{$C^{\infty}$級$k$次微分形式}であるという.
+  
+    %$M$上の$C^{\infty}$級ベクトル場の集合を$\mathscr{X}(M)$で表す. 
+\end{itemize}
+    \end{dfn}
+    \end{tcolorbox}
+ 断りのない限り微分形式は全て$C^{\infty}$級であるとする. 
+%以下, 座標近傍$(U, x_1, \ldots, x_m)$とする.
+
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}[外積]
+%$k=1, \ldots, m=\dim M$となる自然数とする. 
+
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+  $M$上の$k$次微分形式$\omega$と$l$次微分形式$\eta$について, その\underline{外積$\omega \wedge \eta $}を
+$$
+\omega \wedge \eta(X_1, \ldots, X_{k+l})
+=
+\frac{1}{k! l!} \sum_{\sigma \in S_{k+l}} \sgn(\sigma) \omega(X_{\sigma(1)}, \ldots, X_{\sigma(k)}) \eta(X_{\sigma(k+1)}, \ldots, X_{\sigma(k+l)})
+\text{とする.}
+$$
+$\omega = \sum_{ 1 \le i_1< \cdots < i_k\le m }f_{i_1 \cdots i_k}d x_{i_1}\wedge \cdots \wedge dx_{i_k}$, $\eta = \sum_{ 1 \le j_1< \cdots < j_l\le m }g_{j_1 \cdots j_l}d x_{j_1} \wedge \cdots \wedge dx_{j_l}$と座標近傍$(U, x_1, \ldots, x_m)$上でかけている場合, 
+$$
+\omega \wedge \eta=
+ \sum_{ 1 \le i_1< \cdots < i_k\le m }\sum_{ 1 \le j_1< \cdots < j_l\le m }
+ f_{i_1 \cdots i_k}g_{j_1 \cdots j_l}d x_{i_1} \wedge \cdots \wedge dx_{i_k}\wedge d x_{j_1} \wedge \cdots \wedge dx_{j_l}
+\text{となる. }
+$$
+    \end{dfn}
+    \end{tcolorbox}
+    
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}[外微分]
+%$k=1, \ldots, m=\dim M$となる自然数とする. 
+%座標近傍$(U, x_1, \ldots, x_m)$とする
+$M$上の$k$次微分形式$\omega$について, \underline{外微分$d \omega$}を
+\begin{align*}
+\begin{split}
+d\omega(X_1, \ldots, X_{k+1})
+&=
+\sum_{i=1}^{k+1}(-1)^{i+1}X_i(\omega(X_1, \ldots,\widehat{X_{i}}, \ldots, X_{m}))\\
+&+\sum_{i<j}(-1)^{i+j}\omega([X_i, X_j], X_1, \ldots, \widehat{X_{i}},  \ldots, \widehat{X_{j}}, \ldots, X_{m}).
+%\text{とする.}
+\end{split}
+\end{align*}
+とする.  ここで$(X_1, \ldots, X_{k+1})$はベクトル場とし, $(X_1, \ldots,\widehat{X_{i}}, \ldots, X_{m})$は$(X_1, \ldots,X_{i-1}, X_{i+1}, \ldots, X_{m})$を意味する.
+$\omega = \sum_{ 1 \le i_1< \cdots < i_k\le m }f_{i_1 \cdots i_k}d x_{i_1}\wedge \cdots \wedge dx_{i_k}$と座標近傍$(U, x_1, \ldots, x_m)$上でかけている場合, 
+\begin{align*}
+\begin{split}
+d\omega
+&=
+ \sum_{ 1 \le i_1< \cdots < i_k\le m }
+ df_{i_1 \cdots i_k}d x_{i_1} \wedge \cdots \wedge dx_{i_k}\\
+& =  \sum_{ 1 \le i_1< \cdots < i_k\le m }\left(\sum_{j=1}^{m}\pdrv{f_{i_1 \cdots i_k}}{x_{j}}d x_{j}\right)\wedge d x_{i_1} \wedge \cdots \wedge dx_{i_k}
+\text{となる. }
+\end{split}
+\end{align*}
+
+    \end{dfn}
+    \end{tcolorbox}
+      \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}[引き戻し]
+%$k=1, \ldots, m=\dim M$となる自然数とする. 
+
+ $\varphi : M \rightarrow N$を$C^{\infty}$写像とする. $N$上の$l$次微分形式$\eta$について, $\eta$の$\varphi$による\underline{引き戻し$\varphi^{*}\eta$}を
+$$
+(\varphi^{*}\eta)_{p}(X_{p}) := \eta_{\varphi(p)}((d\varphi)_{p} X_{p}) \quad (\forall p \in M, \forall X \in T_{p}M)
+$$
+と定める. これは$M$上の$l$次微分形式となる. 
+%これを$\eta$の$\varphi$による引き戻しという.
+$M$の座標近傍$(U, x_1, \ldots, x_m)$, $N$の座標近傍$(V, y_1, \ldots, y_n)$に関して, $\eta = \sum_{ 1 \le j_1< \cdots < j_l\le m }g_{j_1 \cdots j_l}d y_{j_1} \wedge \cdots \wedge dy_{j_l}$とかけている場合, 
+$$
+\varphi^{*}\eta:= 
+\sum_{ 1 \le j_1< \cdots < j_l\le m }(g_{j_1 \cdots j_l}\circ \varphi )
+\left(\sum_{i_1 =1}^{m}\pdrv{ y_{j_1}}{x_{i_1}} dx_{i_1} \right)\wedge \cdots \wedge 
+\left(\sum_{i_l =1}^{m}\pdrv{dy_{j_l}}{x_{i_l}} dx_{i_l}\right)\text{となる.}
+$$
+    \end{dfn}
+    \end{tcolorbox}
+ 
+ %\begin{rem}上の定義は局所座標$(U, x_1, \ldots, x_m)$を用いていない定義である. 局所座標を用いない定義はわかりずらい印象がある.(外微分は特に局所座標の方がわかりやすいと思う). ただ証明などではこちらが便利な時もある. \end{rem}
+ 
+ \begin{exa}
+ $\omega=f_1dx_1+ f_2dx_2$,  $\eta=g_1dx_1+ g_2dx_2$, $\varphi (z_1, z_2) = (\varphi_1(z_1,z_2), \varphi_2(z_1,z_2))$とすると外積, 外微分, 引き戻しはそれぞれ次の通りとなる. 
+ $$
+ \omega \wedge \eta = (f_1dx_1+ f_2dx_2) \wedge (g_1dx_1+ g_2dx_2)
+ = (f_1g_2)dx_1 \wedge dx_2 + (f_2g_1)dx_2 \wedge dx_1 = (f_1g_2 - f_2 g_1) dx_1 \wedge dx_2.
+ $$
+ $$
+ d \omega = \left(\pdrv{f_1}{x_1} dx_1+ \pdrv{f_1}{x_2} dx_2\right) \wedge dx_1 + \left(\pdrv{f_2}{x_1} dx_1+ \pdrv{f_2}{x_2} dx_2\right) \wedge dx_2
+ %= \pdrv{f_1}{x_2} dx_2\wedge dx_1 +  \pdrv{f_2}{x_1} dx_1\wedge dx_2
+= \left( -\pdrv{f_1}{x_2} + \pdrv{f_2}{x_1}\right)dx_1 \wedge dx_2.
+ $$
+ \begin{align*}
+\begin{split}
+ \varphi^{*}\omega
+& =
+ f_{1} (\varphi(z)) d\varphi_{1} +  f_{2} (\varphi(z)) d\varphi_{2}
+ =
+  f_{1} (\varphi(z)) \left(\pdrv{\varphi_1}{z_1} dz_1 + \pdrv{\varphi_1}{z_2} dz_2 \right) 
+  +  f_{2} (\varphi(z)) \left(\pdrv{\varphi_2}{z_1} dz_1 + \pdrv{\varphi_2}{z_2} dz_2 \right). \\
+  %&=(f_{1} (\varphi(z)) \pdrv{\varphi_1}{z_1} +  f_{2} (\varphi(z)) d\varphi_{2} (\pdrv{\varphi_2}{z_1})dz_1+ (f_{1} (\varphi(z))\pdrv{\varphi_1}{z_2}+  f_{2} (\varphi(z)) \pdrv{\varphi_2}{z_2} )dz_2
+\end{split}
+ \end{align*}
+ 
+ \end{exa}
+
+
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{prop}
+$\omega$を$k$次微分形式, $\eta$を$l$次微分形式, $\zeta$を$s$次微分形式とする. 次が成り立つ.
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item$\omega \wedge \eta = (-1)^{kl} \eta \wedge \omega$, $\omega \wedge (\eta  \wedge \zeta)= (\omega \wedge \eta)  \wedge \zeta$. 
+\item $\varphi^{*}(\omega \wedge \eta) = \varphi^{*}(\omega) \wedge \varphi^{*}(\eta)$.
+\item $d(\omega \wedge \eta ) = (d \omega) \wedge \eta + (-1)^{k}\omega \wedge (d \eta)$.
+    %$M$上の$C^{\infty}$級ベクトル場の集合を$\mathscr{X}(M)$で表す. 
+    \item $d(d \omega)=0$, $d(\varphi^{*}\omega)=\varphi^{*}(d \omega)$.
+\end{itemize}
+    \end{prop}
+    \end{tcolorbox}
+  
+  
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}[ド・ラームコホモロジー]
+$k$次微分形式の集合を$\Omega^{k}(M)$とする. 
+$$
+0 \rightarrow \Omega^{0}(M) \overset{d}{\rightarrow}\Omega^{1}(M) \overset{d}{\rightarrow} \cdots 
+\overset{d}{\rightarrow} \Omega^{m}(M) \overset{d}{\rightarrow} 0
+$$
+を\underline{ド・ラーム複体}といい, 
+$$
+H_{DR}^{k}(M):= \frac{\ker (d : \Omega^{k}(M) \rightarrow  \Omega^{k+1}(M))}{\Im(d : \Omega^{k-1}(M) \rightarrow  \Omega^{k}(M)) }
+%\{ \omega \in\Omega^{k}(M) | d \omega =0 \}/\{ \eta \in \Omega^{k}(M) | \exists \zeta  \in \Omega^{k}(M) \text{s.t.} \eta = d \zeta \}
+$$
+を$M$の\underline{$k$次のド・ラームコホモロジー群}という.
+
+
+    \end{dfn}
+    \end{tcolorbox}
+    
+\begin{rem}
+$d\omega=0$なる微分形式を\underline{閉形式}といい, ある微分形式$\eta$があって$\omega = d \eta$とかける微分形式$\omega$を\underline{完全形式}という.　$d \circ d =0$なので完全形式ならば閉形式である.  ド・ラームコホモロジー群は閉形式と完全形式のずれを記述している群である.
+\end{rem}
+
+    
+ \section{1の分割と多様体上の積分}
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{thm}
+$p \in M$と$p$の開近傍$U$について, ある$p$の開近傍$V$と$C^{\infty}$級関数$\rho : M \rightarrow \R$があって
+$\overline{V} \subset U$かつつぎを満たす.
+$$
+\left\{
+\begin{array}{ll}
+\rho(q) =1& q \in \overline{V} \\
+0 \leqq \rho(q) <1& q \in U \setminus \overline{V}\\
+\rho(q)=0&q \in M \setminus U
+\end{array}
+\right.
+$$
+特に$\rho$の台${\rm Supp}(\rho) :=\overline{\{q \in M | \rho(q) \neq 0 \}}$とするとき, $\Supp(\rho) \subset U$となる.
+     \end{thm}
+    \end{tcolorbox} 
+    
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{thm}[1の分割]
+$M$が第二可算であると仮定する.
+任意の$M$の開被覆$\{U_{\alpha}\}_{\alpha \in A}$についてある可算個の$C^{\infty}$級関数$\rho_{j} : M \rightarrow \R$($j \in \N$)があって次が成り立つ
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $\{ \Supp(\rho_{j})\}_{j \in \N}$は$M$の被覆であり, $p \in M$についてある$p$の開近傍$U$をとれば$U \cap \Supp(\rho_{j}) \neq \varnothing$なる$j$は有限個になる.(局所有限な被覆という.)
+\item 任意の$j \in \N$についてある$\alpha_{j} \in A$があって$\Supp(\rho_{j}) \subset U_{\alpha_j}$となる. ($\{U_{\alpha}\}_{\alpha \in A}$の細分という.)
+\item $0 \le \rho_j \le 1$かつ$\sum_{j \in \N} \rho_{j} \equiv 1$.
+\end{enumerate}
+この$\{ \rho_{j} \}_{j \in \N}$を\underline{$\{U_{\alpha}\}_{\alpha \in A}$に従属する1の分割}という.
+     \end{thm}
+    \end{tcolorbox} 
+\begin{rem}
+上は$\sigma$コンパクトで成り立つ定理である.(第二可算な多様体は$\sigma$コンパクトであるらしい.)ただ$\sigma$コンパクトは応用上で使うか怪しいし, 多様体に第二可算を仮定することが多いので, ここでは第二可算として主張を述べた.\footnote{「トゥー 多様体」では多様体に第二可算を仮定している.}要するに1の分割は取れると思って良い. 
+\end{rem}
+
+ %この章では多様体$M$について第二可算を仮定する. 第二可算ならばsigma compact
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}
+\label{integral_local}
+$(U, \varphi) = (U, x_1, \ldots, x_m)$を座標近傍とし, $U$上の$m$次微分形式を$\omega = f(x_1, \ldots, x_m)dx_1 \wedge \cdots \wedge dx_m$とする.
+$\varphi(U)$が正方形領域$V:=[-a,a]^{m}$に含まれるとき, $\omega$の$U$上の積分を
+$$
+\int_{U} \omega := \int_{[-a,a]^{m}}f(x_1, \ldots, x_m)dx_1 \wedge \cdots \wedge dx_m
+\text{で定義する.}
+$$
+    \end{dfn}
+    \end{tcolorbox} 
+    
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}
+
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $(U, x_1, \ldots, x_m)$, $(V, y_1, \ldots, y_m)$を$U \cap V \neq \phi$となる$M$の座標近傍とする.
+$(U, x_1, \ldots, x_m)$と$(V, y_1, \ldots, y_m)$が\underline{同じ向き}であるとは, $U \cap V$上で
+$$
+\pdrv{(y_1, \ldots, y_m)}{(x_1, \ldots, x_m)}:=\det(\left( \pdrv{y_j}{x_i} \right)_{1\le i,j \le m}) >0
+\text{となることとする.}
+$$
+\item \underline{$M$が向きづけ可能}であるとは, $M$の座標近傍系$\{ (U_{\alpha}, x_{1}^{\alpha}, \ldots, x_{m}^{\alpha})\}$であって, 同じ向きになるものが存在することとする.
+\end{itemize}
+    \end{dfn}
+    \end{tcolorbox} 
+
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{thm}
+$M$が向きづけ可能なコンパクト$m$次元多様体とし, $\omega$を$m$次微分形式とする.
+このとき同じ向きになる$M$の座標近傍系$U_1, \ldots, U_N$とそれに従属する1の分割$\rho_{1}, \ldots, \rho_{N}$があって,
+$\omega$の$M$上の積分を
+$$
+\int_{M} \omega := \sum_{j=1}^{N} \int_{M} \rho_j \omega
+$$
+で定義する. この積分の値は実数値であり, 1の分割や近傍系の取り方によらない. 
+    \end{thm}
+    \end{tcolorbox} 
+
+\begin{rem}
+ $\rho_j \omega$は定義\ref{integral_local}の仮定を満たすため上のように積分が定義できる. 
+$M$がコンパクトでない場合でも1の分割が取れれば積分は定義できるが, 有限の値になるかはわからない. 
+\end{rem}
+
+ \section{ストークスの定理}
+ 以下の内容は「坪井俊 著 幾何学3 微分形式」を参考にした.
+
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[]
+    $M$を第二可算ハウスドルフ空間とする. 次の条件が成り立つとき$M$は$m$次元境界つき($C^{\infty}$級)多様体と呼ばれる.
+     \begin{enumerate}
+     \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+     \item $M$の開被覆$M = \cup_{\lambda \in \Lambda} U_{\lambda}$と像への同相写像
+     $$
+     \varphi_{\lambda} : U_{\lambda} \rightarrow \mathbb{H}^n := \{ (x_1, x_2, \ldots, x_m) \in \R^m | x_1 \geqq 0\}
+     \text{が存在する.}
+     $$
+    % 座標近傍系$\{(U_\lambda, \varphi_\lambda)\}_{\lambda \in\Lambda}$があって, $M = \cup_{\lambda \in \Lambda} U_{\lambda}$となる. 
+     \item $U_\lambda \cap U_\mu \neq \phi$なる$\lambda, \mu \in \Lambda$について
+    $
+   \varphi_\mu\circ \varphi_{\lambda}^{-1} : \varphi_{\lambda}(U_\lambda \cap U_\mu) \rightarrow \varphi_{\mu}(U_\lambda \cap U_\mu) 
+    $
+    は$C^{\infty}$級写像である
+     \end{enumerate}
+ $\partial M := \cup_{\lambda \in \Lambda} \varphi_{\lambda}^{-1}(\{ 0\} \times \R^{m-1}) \subset $を$M$の境界と呼ぶ.
+    \end{dfn}
+    \end{tcolorbox}   
+\begin{rem}
+$M$の境界 $\partial M$は$m-1$次元多様体となる. また$M$が向きづけ可能であるとき, $\partial M$には座標近傍系$\{(U_\lambda, x_{2}^{\lambda}, \ldots, x_{m}^{\lambda})\}_{\lambda \in \Lambda}$によって向きが入る.
+\end{rem}
+
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{thm}
+$M$が向きづけ可能なコンパクト$m$次元境界つき多様体とし, $\eta$を$m-1$次微分形式とするとき, 次が成り立つ. 
+$$
+\int_{M} d \eta = \int_{\partial M} \eta 
+$$
+    \end{thm}
+    \end{tcolorbox} 
+    
+ストークスの定理は境界がない多様体(つまり普通の意味での"多様体")について述べると次のとおりである.
+「$M$が向きづけ可能なコンパクト$m$次元多様体とし, $\eta$を$m-1$次微分形式とするとき, $\int_{M} d \eta =0 $となる.」
+ストークスの定理は研究でも応用でも使われる定理である. 
+\newpage
+
+
+
+\section{演習問題}
+問題の上に$^{\bullet}$がついている問題は\underline{解けてほしい}問題である. 問題の上に$^{*}$がついている問題は\underline{面白いかちょっと難しい}問題である. 
+
+以下断りがなければ$M,N$は$C^{\infty}$級多様体とし, $m = \dim M$とする.
+$\R^n$をユークリッド空間とし, $S^n \subset \R^{n+1}$を半径1の$n$次元球面とする.
+
+\vspace{11pt}
+\hspace{-22pt}{\large $\bullet$ 微分形式の問題}
+\begin{enumerate}[label=\textbf{問}3.\arabic*]
+
+\item $^{\bullet}$ 講義で配られるプリントにある微分形式に関する計算問題を好きなだけ解答せよ. \footnote{この問題は解答者が複数いても良い. なるべく糟谷先生のプリントの問題も解いてください. }
+
+\item $^{\bullet}$ $\R^{2n}$上の2次微分形式$\omega = \sum_{i=1}^{n} dx_{2i-1} \wedge dx_{2i}$について$\omega^n$を求めよ.
+
+\item $^{\bullet}$ $i : S^2 \rightarrow \R^3$を包含写像とする. 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $i^{*}(dx \wedge dy \wedge dz)$を求めよ.
+\item $i^{*}(dx \wedge dy)$の値が0になる$S^2$の点を全て求めよ.
+\end{enumerate}
+
+
+\item (多様体の基礎 19章) $f : M \rightarrow \R$を$C^{\infty}$級関数とする. 
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 微分写像$df_{p} : T_{p}M \rightarrow T_{f(p)}\R \cong \R$により, $df:= \{df_{p}\}_{p \in M}$は$M$上の微分形式だと思える.
+ 座標近傍$(U, x_1, \ldots, x_m)$を用いて, 微分形式$df$は次のように表せることを示せ. 
+ $$
+ df|_{U} = \pdrv{f}{x_1} dx_1 + \cdots + \pdrv{f}{x_m}dx_{m}
+ $$
+\item $X$をベクトル場とするとき, $(df) (X) = X(f)$を示せ.  %\footnote{定義から求める方法と局所座標を用いて示す方法の２種類がある.}
+%$p \in M$について$(df)_p (X_{p}) = X_{p}(f)$が成り立つことを示せ. \footnote{定義から求める方法と局所座標を用いて示す方法の２種類がある.}
+\end{enumerate}
+
+
+
+
+\item $V$を$\R$上の$m$次元ベクトル空間とし, $\{ e_1, \ldots, e_m\}$を$V$の基底とし, $\{ \omega_1, \ldots, \omega_m\}$は$V^{*}$を $\{ e_1, \ldots, e_m\}$の双対基底とする. また$k$を2以上の自然数とする. 次の問いに答えよ
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item %$\{ \omega_1, \ldots, \omega_m\}$を用いて
+$k$次多重線型形式のなす空間$\otimes^{k} V^{*}$の基底を一つ構成せよ. また$\otimes^{k} V^{*}$の次元を求めよ.
+\item $k$次対称形式のなす空間${\rm S}^{k}(V^{*})$の基底を一つ構成せよ. また${\rm S}^{k}(V^{*})$の次元を求めよ.
+\item $k$次交代形式のなす空間$\wedge^{k} V^{*}$の基底を一つ構成せよ. また$\wedge^{k} V^{*}$の次元を求めよ.
+\end{enumerate}
+
+%\item (多様体の基礎 20章) $\omega$を1次微分形式, $X,Y$を$M$上のベクトル場とするとき$$d \omega(X,Y) = X(\omega(Y)) - Y(\omega(X)) -\omega([X,Y])\text{を示せ.}$$
+
+
+\item $k$を1以上の自然数とする. $\wedge^{k}T^{*}M = \cup_{p \in M}\wedge^{k}T_{p}^{*}M$に$C^{\infty}$級多様体の構造が入ることを示せ. またその多様体の次元を求めよ. \footnote{難しければ$k=1,m$の場合のみ解答しても良い. $T^{*}M$は\underline{余接ベクトル束}と呼ばれる. }
+
+\item $^{*}$ $X = \R^3 \setminus \{(0,0,0)\}$とし, $f(x,y,z)$を$X$上の$C^{\infty}$級関数で$r = \sqrt{x^2 + y^2 + z^2}$を用いて
+$f(x,y,z) = h(r)$とかけているとする.
+$X$上の1次微分形式$\omega$を
+$$
+\omega = f(x,y,z)(x dx + y dy + z dz)
+$$
+とする. 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $d\omega =0$を示せ. つまり$\omega$は閉形式である.
+\item ある$C^{\infty}$級関数$g$があって$\omega =dg$となることを示せ.つまり$\omega$は完全形式である.
+\item $\Delta \varphi=0$となる$C^{\infty}$級関数$\varphi$によって$\omega =d\varphi$となるとき, $f$を$x,y,z$を用いて表せ. 
+ここで
+$$
+\Delta \varphi=\pdrv{^2\varphi}{x^{2}}+\pdrv{^2\varphi}{y^{2}}+\pdrv{^2\varphi}{z^{2}}
+\text{である.}
+$$
+\end{enumerate}
+
+\item $^{\bullet}$ $\R^{2} \setminus \{0\}$上の1次微分形式
+$$
+\omega = \frac{-ydx + x dy}{x^2+y^2}
+$$
+について次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 極座標$(x,y)=(r \cos \theta, r \sin \theta)$を用いて$\omega$を$dr,d\theta$で表せ. 
+\item $d \omega=0$を示せ. つまり$\omega$は閉形式である. 
+\item $C=S^{1}$とし, 向きを反時計回りで入れる. $\int_{C} \omega $を計算せよ. 
+\item $\omega = d g$となる$C^{\infty}$級関数は存在しないことを示せ. つまり$\omega$は完全形式ではない. 
+\end{enumerate}
+
+\item 連結な多様体$M$について0次ド・ラームコホモロジー群$H^{0}_{DR}(M)$を求めよ. 
+
+\item \label{poincare}  $^{*}$ 次の問いに答えよ.
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $\omega$を$d \omega=0$となる$\R^2$の$1$次微分形式とする.
+$(x,y) \in \R^2$について$L_{(x,y)}$を0が始点で$(x,y) $が終点となる線分とし, 
+$
+g(x,y) = \int_{L_{(x,y) }} \omega %\quad (x \in \R^n)
+$
+とおく. このとき$g(x,y)$は$\omega=dg$となる$\R^2$上の$C^{\infty}$級関数であることを示せ. 
+\item $\R^2$の$2$次微分形式$\eta$についてある$1$次微分形式$\omega$があって$\eta = d \omega$となることを示せ. 
+\item $\R^2$のド・ラームコホモロジー群$H^{k}_{DR}(\R^2)$($k=0,1,2,\ldots$)を求めよ. \footnote{余裕があれば$H^{k}_{DR}(\R^n)$はどうなるか考察せよ. }
+\end{enumerate}
+
+\item  $^{*}$ $S^1$のド・ラームコホモロジー群$H^{k}_{DR}(S^1)$($k=0,1,2,\ldots$)を求めよ.\footnote{頑張れば今の状況でも求められる.(トゥー 多様体24章を見よ.) 他にも\underline{ド・ラームの定理}「滑らかな多様体$M$について$H^{k}_{DR}(M) \cong {\rm Hom}(H_{k}(M,\Z), \R)$が成り立つ」を認めればホモロジー群から求められる. }
+
+%ここで$L_x$は0が始点で$x$が終点とする線分とする. 
+
+
+%\item\label{poincare}  $^{*}$ $\R^n$のド・ラームコホモロジー群$H^{k}_{DR}(\R^n)$($k=0,1,2,\ldots$)を求めよ.
+\item 
+ $\R^3$の関数(スカラー場)$F(x,y,z)$とベクトル場${\bf V}(x,y,z) = (V_1(x,y,z), V_2(x,y,z), V_3(x,y,z))$について, 
+$$
+{\rm grad}(F)=\nabla F=\left(\pdrv{F}{x}, \pdrv{F}{y}, \pdrv{F}{z}\right) \quad {\rm div}({\bf V}) = \nabla \cdot {\bf V} = \pdrv{V_1}{x}+\pdrv{V_2}{y}+ \pdrv{V_3}{z}
+$$
+$$
+{\rm rot}({\bf V})=\nabla \times {\bf V}
+=\left(\pdrv{V_3}{y}- \pdrv{V_2}{z}, \pdrv{V_1}{z} - \pdrv{V_3}{x}, \pdrv{V_2}{x} - \pdrv{V_1}{y}\right)
+$$
+%$${\rm div}({\bf V}) = \nabla \cdot {\bf V} = \pdrv{V_1}{x}+\pdrv{V_2}{y}+ \pdrv{V_3}{z}$$
+と定義する. 次の問いに答えよ.\footnote{この問題は「$\R^3$上のベクトル解析が微分形式によって再解釈される」ことを確かめる問題である.そのため数学的な記述は少々曖昧であるのでご了承いただきたい.}
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 下の図式が可換になるように$\Phi_1,\Phi_2, \Phi_3$をうまく定義せよ. %次の図式を考える.
+\begin{equation*}
+\hspace{-55pt}
+\xymatrix@C=30pt@R=20pt{
+\{\text{関数(スカラー場)}\}\ar@{=}[d]\ar@{->}[r]^{\hspace{15pt}{\rm grad}} &\{\text{ベクトル場}\}\ar@{->}[r]^{{\rm rot}}  \ar@{->}[d]^{\Phi_1}
+&\{\text{ベクトル場} \}\ar@{->}[d]^{\Phi_2}\ar@{->}[r]^{{\rm div}\hspace{15pt}} &\{\text{関数(スカラー場)}\}  \ar@{->}[d]^{\Phi_3}\\ 
+\{\text{関数(0次微分形式)}\}\ar@{->}[r]^{\hspace{15pt} d}&\{\text{1次微分形式}\} \ar@{->}[r]^{d}
+&\{ \text{2次微分形式}\}\ar@{->}[r]^{d}&\{ \text{3次微分形式}\}\\
+ }
+\end{equation*}
+%上の図式が可換になるようにうまく$\Phi_1,\Phi_2, \Phi_3$を定義せよ.
+\item ${\rm rot}({\rm grad}(F)) =0$と${\rm div}({\rm rot}({\bf V}) =0$をそれぞれ示せ.
+\item $\R^3$のベクトル場${\bf V}$について, ${\rm rot}{\bf V}\equiv 0$であることは${\bf V} = {\rm grad}\phi$なるスカラー場(スカラー・ポテンシャル)$\phi$が存在することと同値であることを示せ．\footnote{ヒント: $k >0$について$H^{k}_{DR}(\R^3)=0$であることを用いる. 同様に${\rm div}{\bf V}\equiv 0$であることは${\bf V} = {\rm rot}{\bf A}$なるベクトル場(ベクトル・ポテンシャル)${\bf A}$が存在することと同値であることがわかる. }
+%\item ${\rm div}{\bf V}\equiv 0$であることは${\bf V} = {\rm rot}{\bf A}$なるベクトル場(ベクトル・ポテンシャル)${\bf A}$が存在することと同値であることを示せ． 
+\end{enumerate}
+
+\newpage 
+\item $^{}$ [Tu. Problem 19.13] 次を英訳し問題に解答せよ.
+%[Tu. Problem 19.13 Twentieth-century formulation of Maxwell’s equations] 次を英訳し問題に解答せよ.
+
+In Maxwell's theory of electricity and magnetism, developed in the late nineteenth century,
+the electric field ${\bf E} = (E_1, E_2, E_3)$ and the magnetic field ${\bf B} = (B_1, B_2, B_3)$ in a vacuum
+$\R^3$
+with no charge or current satisfy the following equations:
+$$
+{\rm rot}{\bf E} = - \pdrv{{\bf B}}{t} ,  
+{\rm rot} {\bf B} = \pdrv{{\bf E}}{t}, 
+{\rm div} {\bf E} = 0,
+{\rm div} {\bf B} = 0. 
+$$
+We define the 1-form $E$ on $\R^3$ corresponding to the vector field $ { \bf E}$ by $E = E_1 dx + E_2 dy + E_3 dz$ and define the 2-form $B$ on $\R^3$ corresponding to the vector field ${ \bf B}$ by $B = B_1 dy \wedge dz + B_2 dz \wedge dx + B_3 dx \wedge dy$. 
+%By the correspondence in Subsection 4.6, the 1-form $E$ on $\R^3$ corresponding to the vector field $ { \bf E}$ is $E = E_1 dx + E_2 dy + E_3 dz$ and the 2-form $B$ on $\R^3$ corresponding to the vector field ${ \bf B}$ is $B = B_1 dy \wedge dz + B_2 dz \wedge dx + B_3 dx \wedge dy$. 
+
+Let $\R^4$ be space-time with coordinates $(x, y, z, t)$. 
+Then both $E$ and $B$ can be viewed as
+differential forms on $\R^4$. Define $F$ to be the 2-form
+$$
+F = E \wedge dt + B
+$$
+on space-time. Decide which two of Maxwell's equations are equivalent to the equation $dF =0$.
+Prove your answer. \footnote{この文章には続きがあった. "The other two are equivalent to $d * F = 0$ for a star-operator $*$ defined indifferential geometry."つまり後二つは$d * F =0$と同じである. ここで$*$はHodge-star operatorである. }
+
+
+\vspace{11pt}
+\hspace{-33pt}{\large $\bullet$1の分割・多様体上の積分・ストークスの定理}
+
+\item %$^{}$[Tu Problem 13.3 Smooth Urysohn Lemma] 
+Let $A$ and $B$ two disjoint closed sets in a manifold $M$. Find $C^{\infty}$ function $f$ on $M$ such that $f$ is identically 1 on $A$ and identically 0 on $B$.
+%\begin{enumerate}
+%\setlength{\parskip}{0cm}
+  %\setlength{\itemsep}{2pt} 
+ %\item Let $A$ and $B$ two disjoint closed sets in a manifold $M$. Find $C^{\infty}$ function $f$ on $M$ such that $f$ is identically 1 on $A$ and identically 0 on $B$.
+%\item Let $A$ be a closed subset and $U$ an open subset of a manifold $M$. Show that there is a $C^{\infty}$function $f$ on $M$ such that $f$ is identically 1 on $A$ and $\Supp f \subset U$.
+%\end{enumerate}
+
+\item $M$を向きづけ可能なコンパクト$m$次元多様体とし, $N $を$m-1$次元の$M$の閉部分多様体とする. $\omega$を$m$次微分形式とするとき
+$
+\int_{M} \omega = \int_{M \setminus N} \omega
+\text{を示せ.}
+$
+%であることを示せ.
+\item $^{\bullet}$(多様体の基礎 20章) リーマン球面$\C\mathbb{P}^1 = \C \cup \C$を構成する2つの複素平面$\C$をそれぞれ$z = x + iy$, $\xi = \zeta + i\eta$の対応で$(\zeta, \eta)$平面, $(x,y)$平面と同一視する. 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item 座標変換$z= \frac{1}{\xi}$を$(\zeta, \eta)$と$(x,y)$を用いて表せ.
+\item $(x,y)$平面上の2次微分形式$\omega = \frac{dx \wedge dy}{(1+x^2+y^2)^2}$は$\C\mathbb{P}^1$上の2次微分形式$\widetilde{\omega}$に拡張できることを示せ.
+%$(\zeta, \eta)$平面上の$C^{\infty}$級2次微分形式$\widetilde{\omega}$に拡張できることを示せ
+\footnote{ヒント: $(\zeta, \eta)$平面上の$C^{\infty}$級2次微分形式$\alpha$で, $(\zeta, \eta)$平面と$(x,y)$平面の共通部分で$\omega$と一致するものを一つ見つけよ. そうすると$\alpha$と$\omega$の貼り合わせで$\widetilde{\omega}$が構成できる.}
+\item $\int_{\C\mathbb{P}^1 } \widetilde{\omega}$の値を求めよ.
+\end{enumerate}
+
+\item 2次元トーラス$T^2 = \{(x,y,z,w) \in \R^4 | x^2 + y^2 = z^2 + w^2 =1\}$について
+$$
+\int_{T^2} yzw \, dx \wedge dz
+$$
+を求めよ. ただし$T^2$にどのような向きを入れたのかを明記すること.
+
+\item $^{\bullet}$ $$\int_{S^2} x dy \wedge dz + y dz \wedge dx + z dx \wedge dy$$を求めよ. ただし$S^2$にどのような向きを入れたのかを明記すること.
+\item  $^{\bullet}$ $D=[a,b] \times [c, d]$とし, $f(x,y), g(x,y)$を$D$上の$C^{\infty}$級関数とする.\footnote{$D^{\circ}$上で$C^{\infty}$級で$D$上で連続と言った方がいい?}グリーンの定理
+$$
+\int_{\partial D} f(x,y) dx + g(x,y) dy = \iint_{D} \left(\pdrv{g}{x}  -\pdrv{f}{y} \right) dxdy
+$$
+を示せ. ただし$\partial D$にどのような向きを入れたか明記すること.
+
+\item $^{\bullet}$ $\R^{2} \setminus \{ (0,0)\}$上で定義された領域上で定義された関数$f(x,y) = \log\sqrt{x^2 +y^2}$を考える. $\R^{2}  \setminus  \{ (0,0)\}$上の1次微分形式を
+$
+\omega := \pdrv{f}{x}dy -  \pdrv{f}{y}dx
+$
+とする. 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $\R^{2} \setminus \{ (0,0)\}$上 $\Delta f = \pdrv{^2f}{x^2} + \pdrv{^2f}{y^2} =0$であることを示せ.
+\item $C_1$を中心$(3,0)$で半径2の円周とし, 向きを反時計回りに入れる. $\int_{C_1} \omega$を計算せよ.
+\item $C_2$を中心$(1,0)$で半径4の円周とし, 向きを反時計回りに入れる. $\int_{C_2} \omega$を計算せよ.
+\end{enumerate}
+
+
+\vspace{11pt}
+\hspace{-33pt}{\large $\bullet$向きづけの問題}
+
+\item \label{nform} $^{*}$(多様体の基礎 20章)
+ 多様体$M$が向きづけ可能であるための必要十分条件は, どの点でも0にならない$m$次微分形式$\omega$が存在することであることを示せ.(つまり向きづけ可能とは$\wedge^{m}T^{*}M$が自明になることと同値である.)
+%多様体$M$が向きづけ可能であるための必要十分条件は, $\wedge^{m} T^{*}M$
+%\end{enumerate}
+
+%\item $\C\mathbb{P}^2$は向きづけ可能であることを示せ.\footnote{より一般に複素多様体は向きづけ可能であることがわかる.}
+
+
+\item $^{*}$多様体$M$についてその接ベクトル束$TM$は常に向きづけ可能であることを示せ.
+
+\item $^{*}$ $\C\mathbb{P}^n$は向きづけ可能であることを示せ. %\footnote{実はより一般に複素多様体は向きづけ可能である.}
+%\item $S^n$は向きづけ可能であることを示せ.
+
+\item $^{*}$ %メビウスの帯を定義し, 向きづけ不可能であることをしめせ. 
+$(-1,1) \times \R$に同値関係$\sim$を
+	$$
+	(x,y) \sim (z,w)\Leftrightarrow \text{ある整数$m$があって}z = (-1)^m x, w = y+m.
+	$$
+	と定義する. $X := ((-1,1) \times \R) / \sim$とし\underline{メビウスの帯}という. 商写像$\pi : (-1,1) \times \R \rightarrow X$によって$X$に位相を入れる. 次の問いに答えよ.
+	\begin{enumerate}
+	 \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+  \item $U_1: = \pi( (-1,1) \times (0,1) ) $,  $U_2: = \pi( (-1,1) \times (-\frac{1}{2},\frac{1}{2}) )$とおく. 
+各$i=1,2$について$\R^2$の開集合$V_i$への同相写像$\varphi_i : U_i \rightarrow V_i$で, $\{ (U_1, \varphi_1), (U_2, \varphi_2)\}$が$X$の座標近傍系になるような$\varphi_1, \varphi_2$を一つ構成せよ. またメビウスの帯は$C^{\infty}$級多様体になることを示せ.
+  \item メビウスの帯$X$は向きづけ不可能であることを示せ.
+	\end{enumerate}
+
+
+
+\item $^{**}$ $\R \mathbb{P}^n$は$n$が奇数なら向きづけ可能であるが, $n$が偶数なら向きづけ不可能であることを示せ. \footnote{一応\ref{nform}を使えば現時点でも求められる. 他にも「$m$次元コンパクト連結多様体$M$について, その$n$次ホモロジー群$H_{n}(X,\Z)$が$\Z$ならば向きづけ可能であり, $0$ならば向きづけ不可能である」という定理を使えば, ホモロジー群からも求められる. }
+
+
+
+
+%\vspace{11pt}\hspace{-33pt}{\large $\bullet$教育的な問題}
+
+\vspace{11pt}
+\hspace{-33pt}{\large $\bullet$発展課題\footnote{教育的な問題からそうでない問題まで揃えており, 余裕のある人向けの問題となっております.}}
+%\hspace{-22pt}以下の問題は私が少々気になった事柄である. 余裕のある人向けの問題となっております. \footnote{教育的な問題からそうでない問題まで揃えております.}
+
+
+
+%\item 複素多様体は剥きづけ可能
+\item $^{*}$ $X$をベクトル場とし, $\omega$を$k$次微分形式とする.
+$$
+(L_{X}\omega) (X_1,\ldots, X_k):=X(\omega(X_1, \ldots, X_k)) - \sum_{i=1}^{k}\omega(X_1, \ldots, [X,X_i], \ldots, X_k)
+$$
+と定義する. \underline{$L_{X}\omega$を$\omega$の$X$によるLie微分}という. 次の問いに答えよ. \footnote{難しければ$k=1$など低い次数の微分形式対して示して良い. }
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $L_X \omega$は$k$次微分形式であることを示せ. 
+\item $\{ \varphi_{t} \}_{t \in \R}$を$X$の1パラメーター変換群とするとき, $L_{X} \omega = \lim_{t \rightarrow 0}\frac{\varphi^{*}_{t} \omega - \omega}{t}$を示せ. 
+\item $L_{X}L_{Y} - L_{Y}L_{X}= L_{[X,Y]}$を示せ.
+\item $L_{X}(\omega \wedge \eta )=L_{X}(\omega) \wedge \eta  + \omega \wedge L_{X}( \eta )$と$d L_{X} = L_{X}  d$をそれぞれ示せ.
+\end{enumerate}
+
+\item $^{*}$ $X$をベクトル場とし, $\omega$を$k$次微分形式とする.
+$$
+(i_{X}\omega) (X_1,\ldots, X_{k-1}):=\omega(X, X_1, \ldots, X_{k-1}) 
+$$
+と定義する. \underline{$i_{X}\omega$を$\omega$と$X$の内部積}という. 次の問いに答えよ
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $i_X \omega$は$k-1$次微分形式であることを示せ. 
+%\item $\{ \varphi_{t} \}_{t \in \R}$を$X$の1パラメーター変換群とするとき, $L_{X} \omega = \frac{\varphi^{*}_{t} \omega - \omega}{t}$であることを示せ. 
+%\item $L_{X}L_{Y} - L_{Y}L_{X}= L_{[X,Y]}$を示せ.
+\item $\omega$を$k$次微分形式とするとき, $i_{X}(\omega \wedge \eta )=i_{X}(\omega) \wedge \eta  +(-1)^k \omega \wedge i_{X}( \eta )$を示せ. 
+\item $i_{[X,Y]} = L_{X} i_{Y} - i_{Y} L_X$を示せ.
+\item Cartanの公式 $L_X = i_{X}  d + d  i_{X} $を示せ. 
+\end{enumerate}
+
+\item $^{*}$ $\omega$を$\R^n$上の1次微分形式とし, $S_{\omega}$を$\R^n$のベクトル場$X$で$i_{X}\omega =0$となるものの集合とする.  $d \omega \wedge \omega =0$ならば任意の$X,Y \in S_{\omega}$について$[X,Y] \in S_{\omega}$であることを示せ.
+%次が同値であることを示せ.%\footnote{微分形式を用いた葉層の特徴づけである. }
+%\begin{enumerate}
+% \setlength{\parskip}{0cm}
+ % \setlength{\itemsep}{2pt} 
+%\item 任意の$X,Y \in S_{\omega}$について$[X,Y] \in S_{\omega}$である.
+%\item $d \omega \wedge \omega =0$.
+%\end{enumerate}
+
+\item $^{*}$ $M$を向きづけ可能なコンパクト多様体とし$g$を$M$上のリーマン計量とする. 
+
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $\{ (U_{\lambda}, x_{1}^{\lambda}, \ldots, x_{m}^{\lambda})\}_{\lambda \in \Lambda}$を互いに同じ向きになる座標近傍系とする. 
+$g_{ij}^{\lambda} =g \left(\pdrv{}{x_{i}^{\lambda}}, \pdrv{}{x_{j}^{\lambda}}\right)$とし, 
+$$
+\omega_{\lambda} := \sqrt{\left|\det (g_{ij}^{\lambda}) \right|} dx_{1}^{\lambda} \wedge \cdots \wedge d x_{m}^{\lambda}
+$$
+とおく. $M$上の$m$次微分形式$\omega_{g}$で$\omega_{g}|_{U_{\lambda}} = \omega_{\lambda} $となるものが存在することを示せ. この$\omega_g$は\underline{リーマン計量の体積要素}と呼ばれる.
+
+\hspace{-33pt}以下, $\R^n$に標準的なリーマン計量$g$, つまり$g_{ij} = \delta_{ij}$となる計量$g$を入れる. \footnote{$\delta_{ij}$はクロネッカーのデルタである.}
+
+%\item 半径1の開円盤を$B^2$とし$B^2$に$\R^2$から誘導されるリーマン計量$g_{B^2}$を入れる時, $\int_{B^2} \omega_{g_{B^2}}$を求めよ.
+\item $S^1$に$\R^2$から誘導されるリーマン計量$g_{S^1}$を入れる. $\int_{S^1} \omega_{g_{S^1}}$を求めよ.
+
+\item $S^2$に$\R^3$から誘導されるリーマン計量$g_{S^2}$を入れる. $\int_{S^2} \omega_{g_{S^2}}$を求めよ.
+
+%\item 半径1の開球を$B^{3}$とし, $B^{3}$に$\R^3$から誘導されるリーマン計量$g_{B^3}$を入れる. $\int_{B^3} \omega_{g_{B^3}}$を求めよ.
+
+\end{enumerate}
+
+\item $^{**}$ (学部一年の積分の授業で習ったと思われる)曲線の長さや曲面の表面積を求める公式を上のリーマン計量の体積要素を用いて導出せよ. \footnote{学部1年で線分の長さや表面積の公式習ったと思うが, その公式の証明はされていなかったと思う. 実は表面積や線分の長さの公式はリーマン計量の体積要素からわかるものであり, とどのつまり学部3年にしてようやく表面積や曲線の長さが定義できたのである. }
+%$$S_{\omega} := \{ X \in \chi(\R^n)  | i_{X} \}$$
+%\item ベクトル解析
+%\item カルタンの公式
+%\item 葉層の問題
+%\item 電磁気の法則
+
+\item $^{**}$ベクトル解析におけるガウスの発散定理を調べ, それが(多様体の)ストークスの定理から導かれることを示せ.\footnote{面積分をうまく定義する必要がある. 本当はもっと演習問題ぽく出したかったがどうもリーマン計量が出てくるためうまく問題が作れなかった...} 
+
+\end{enumerate}
+
+\vspace{11pt}
+\begin{wrapfigure}{r}[0pt]{0.2\textwidth}
+  \centering
+ \includegraphics[height=25mm, width=25mm]{stokes.png}
+\end{wrapfigure}
+
+演習の問題は授業ページ(\url{https://masataka123.github.io/2022_winter_generaltopology/})にもあります. 
+右のQRコードからを読み込んでも構いません.
+
+
+
+
+\begin{comment}
+
+\begin{wrapfigure}{r}[0pt]{0.5\textwidth}
+%\begin{flushright}
+ \includegraphics[height=17mm, width=17mm]{stokes.png}
+ %\caption*{}
+%\end{flushright}
+\end{wrapfigure}
+\section{微分形式の計算規則}
+座標近傍$(U, x_1, \ldots, x_m)$とする.\footnote{あるいは$M$を$\R^m$の開集合と考えても良い.}
+
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+\begin{dfn}
+$V$を$m$次元の$\R$ベクトル空間とする.
+\begin{itemize}
+\item $V$上の$k$次多重線型形式とは$\omega : V \times \cdots \times V \rightarrow \R$となる写像で$\omega(v_1, \ldots, v_k)$が各々$X_i$について線型であることとする. $V$上の$k$次多重線型形式なす$m^k$次元のベクトル空間を$\otimes^{k} V^{*}$と表す.
+%\item $\eta_1, \ldots, \eta_k \in V^{*}$について$$\begin{matrix} \eta_1\otimes \cdots \otimes \eta_k  : &V \times \cdots \times V & \rightarrow &\R\\&(v_1, \ldots, v_k)& \mapsto& \eta_1(v_1)\cdots \eta_{k}(v_k)\end{matrix}$$と定義し, $\eta_1\otimes \cdots \otimes \eta_k$を$\eta_1, \ldots, \eta_k$のテンソル積という.
+  %\item 特に$\{ e_1, \ldots, e_m\}$を$V$の基底とし, $\{ \omega_1, \ldots, \omega_m\}$は$V^{*}$を $\{ e_1, \ldots, e_m\}$の双対基底とするとき, $\{ \omega_{i_1}\otimes \cdots \otimes  \omega_{i_k}\}_{i_1, \ldots, i_k=1, \ldots,m}$が$\otimes^{k} V^{*}$の基底となる.
+  \item $\omega \in \otimes^{k} V^{*}$が$k$次対称形式であるとは, 任意の$k$次の置換$\sigma$と, 任意の$\omega(v_1, \ldots, v_k) \in V^{k}$について$\omega(v_{\sigma(1)}, \ldots, v_{\sigma(k)})=\omega(v_1, \ldots, v_k)$となること
+  \item $\omega \in \otimes^{k} V^{*}$が$k$次交代形式であるとは, 任意の$k$次の置換$\sigma$と, 任意の$\omega(v_1, \ldots, v_k) \in V^{k}$について$\omega(v_{\sigma(1)}, \ldots, v_{\sigma(k)})=\sgn(\sigma)\omega(v_1, \ldots, v_k)$となること. $V$の$k$次交代形式の${}_m C_{k}$次元のベクトル空間を$\wedge^{k} V^{*}$で表す. 
+\end{itemize}
+    \end{dfn}
+    \end{tcolorbox}
+\begin{exa}
+ $\eta_1, \ldots, \eta_k \in V^{*}$について
+     $$
+      \begin{matrix}
+     \eta_1\otimes \cdots \otimes \eta_k  : &V \times \cdots \times V & \rightarrow &\R &
+     \eta_1\wedge \cdots \wedge \eta_k  : &V \times \cdots \times V & \rightarrow &\R \\
+      &(v_1, \ldots, v_k)& \mapsto& \eta_1(v_1)\cdots \eta_{k}(v_k) & &(v_1, \ldots, v_k)& \mapsto& \det((\eta_i(v_j))_{1 \le i,j \le k})
+       \end{matrix}
+      $$
+      と定義する. $\eta_1\otimes \cdots \otimes \eta_k \in \otimes^{k} V^{*}$であり$\eta_1, \ldots, \eta_k$のテンソル積と呼ばれる. 
+
+$\{ e_1, \ldots, e_m\}$を$V$の基底とし, $\{ \omega_1, \ldots, \omega_m\}$は$V^{*}$を $\{ e_1, \ldots, e_m\}$の双対基底とするとき, $\{ \omega_{i_1}\otimes \cdots \otimes  \omega_{i_k}\}_{i_1, \ldots, i_k=1, \ldots,m}$が$\otimes^{k} V^{*}$の基底となる.また$\{ \omega_{i_1}\wedge \cdots \wedge \omega_{i_k}\}_{1 \le i_1< \cdots < i_k<m}$が$\wedge^{k} V^{*}$の基底となる.
+\end{exa}
+
+\item 写像$f : \C^n \rightarrow \C^{n}$を
+     $$
+      \begin{matrix}
+     f : &\C^n & \rightarrow &\C^n\\
+      &z=(z_1, \ldots, z_n) & \mapsto& (f_1(z), \ldots, f_n(z))
+       \end{matrix}
+      $$
+%写像$f : \C^n \rightarrow C^{n}$, $f(z_1, \ldots, z_n) = (f_1(z), \ldots, f_n(z))$とする. を各変数について正則であるとする.
+とし, 各$f_i(z)$は各変数$z_1, \ldots, z_n$について正則であるとする. 次の問いに答えよ.
+\begin{enumerate}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{2pt} 
+\item $z_i = x_i + \sqrt{-1}y_i$によって$\C^n$に座標$(x_1, y_1, \ldots, x_n, y_n)$を入れる. $f$のヤコビ行列の行列式は常に0以上であることをしめせ.
+\item $\C\mathbb{P}^n$は向きづけ可能であることを示せ.\footnote{より一般に複素多様体は向きづけ可能であることがわかる.}
+\end{enumerate}
+
+\end{comment}
+
+
+ \end{document}
