@@ -1,6 +1,10 @@
 
 # **講義履歴**
 
+## **2023年度**
+- 2023年度春夏学期 大阪大学 理学部数学科 火曜4限 複素関数論続論演義 [Link](https://masataka123.github.io/2023_summer_complex/)
+- 2023年度春夏学期 大阪大学 全学共通教育科目 水曜3限 学問への扉(ゲームにまつわる数学)  [Link](https://masataka123.github.io/2023_summer_game/)
+
 ## **2022年度**
 - 2022年度春夏学期 大阪大学 全学共通教育科目 木曜2限 線形代数学I (生物,生命2) [Link](https://masataka123.github.io/2022_summer_LA/)
 - 2022年度秋冬学期 大阪大学 全学共通教育科目 火曜2限 基礎解析学II (理(化)) [Link](https://masataka123.github.io/2022_winter_int/)

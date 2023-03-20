@@ -9,6 +9,7 @@
 23. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [Workshop on Complex Analysis and Geometry](https://grauert-tubes-2022.esaga.net), Essen University, 2022年6月21日.
 24. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第69回 幾何学シンポジウム](https://www.mathsoc.jp/~geometry/symp_schedule/geometry_symposium_2022.html) 東京理科大学 野田キャンパス, 2022年8月31日.  [slide](https://masataka123.github.io/blog3/pdf/2022_08_31_Geometry_Symp_2022_slide.pdf)[報告集](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
 25. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第28回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa28.html),  石川県政記念 しいのき迎賓館, 2022年11月10日.
+26. '曲率が0以上の複素射影多様体の構造定理' , 第18回代数・解析・幾何学セミナー, オンライン開催, 2023年2月20日. 
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
@@ -36,6 +37,7 @@
 22. '正則接ベクトル束が正値性を持つ複素代数多様体の研究.' 2021年度大阪市立大学数学研究会論文賞及び特別賞授賞式・受賞講演, 大阪市立大学, 2022年3月. [PDF](https://masataka123.github.io/blog3/pdf/2022_03_16.pdf)
 
 
+
 ## **セミナー**
 ### **2022年4月から今まで**
 7. 'Abundance theorem for minimal projective manifolds with vanishing second Chern classes', 幾何セミナー, 大阪大学+オンライン開催, 2022年4月
@@ -53,10 +55,11 @@
 6. 'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality', 東北大学幾何セミナー, オンライン開催, 2021年7月 [PDF](https://masataka123.github.io/blog3/pdf/2021_07_13.pdf)
 
 
-# **集会のオーガナイズ**
+# **集会のオーガナイズ・世話人**
 1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. (大阪市立大学 小池 貴之氏との共同主催) [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
 2. ”Prospects and Open Problems in Higher-dimensional Algebraic Geometry (高次元代数幾何の展望と未解決問題)”, 大阪市立大学, 2020 年 3 月 9--12 日 (東京大学 權業善範氏, 東北大学 松村慎一氏, 大阪市立大学 小池貴之氏との共同主催) , (新型コロナウイルスの影響を受けて中止) [link](http://ktakayuki.github.io/conf2019_2/phdagop.html)
 3. "Subvarieties and foliations of complex projective varieties" (射影的複素多様体の部分多様体と葉層), オンライン開催(大阪市立大学), 2022年 2月 7--10日 (名古屋大学 大沢健夫氏, 大阪市立大学 小池貴之氏との共同主催) ,[link](https://tkoike.com/conf_2021/2022Feb.html)
+4. "Workshop on Complex Geometry in Osaka 2023", 大阪大学, 2023年 3月 22--24日.(大阪大学 糟谷久矢氏との共同主催) [link](https://sites.google.com/site/hisashikasuyamath/workshop-on-complex-geometry-in-osaka-2023?authuser=0)
 
 # **その他**
 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  
