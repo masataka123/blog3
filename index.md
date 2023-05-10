@@ -10,6 +10,7 @@ layout: default
 - 2023年度日本数学会地方区代議員（阪神支部）に選出されました．皆様よろしくお願いいたします．
 - 2023年度春夏学期 大阪大学 理学部数学科 複素関数論続論演義を担当いたします. [Link](https://masataka123.github.io/2023_summer_complex/)
 - 2023年度春夏学期 大阪大学 全学共通教育科目 学問への扉(ゲームにまつわる数学) を担当いたします. [Link](https://masataka123.github.io/2023_summer_game/)
+- 2023年5月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2303.00268)  Chen Jiang氏, Haidong Liu氏との共同研究です. 
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
