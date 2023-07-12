@@ -94,14 +94,11 @@ Michigan Mathematical Journal に掲載予定.
 後日談だが, 他の研究者から「 I must admit that I am still amazed by the computations that H-I-M do in Section 4 of their paper」と言われた. 
 
 Journal of the Institute of Mathematics of Jussieuに掲載決定
+この論文は私はかなり好きである. 著者全員の個性・良さが出てる論文だと思う. 
 
 arXivに提出していたぐらいの時期はファイアーエンブレム風花雪月にハマっていた. 1ルート70時間かかるしそれが4ルートもあるしとかなりハードなゲームだったルナティックむずかしすぎる...
 
-2023/07/12 追記
-細野さんはどうも数学を辞めたようである. 
-彼は頭が良い人だったので少々残念である. (まあ彼の個性と研究分野はミスマッチを起こしてたと思うけど)
-実際この論文の「ベクトル束のspliting」のところは細野さんのアイデアである. シンプルに偉い. ここはやっぱり細野さんらしい部分だなあと何回読んでも思う. 
-そしてこの論文は私はかなり好きである. 著者全員の個性・良さが出てる論文だと思う. 
+
 
 
 - Ph.D Thesis.
