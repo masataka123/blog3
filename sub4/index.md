@@ -28,10 +28,8 @@
 ### 研究集会の情報
 - [Upcoming conferences](http://math.stanford.edu/~vakil/conferences.html)
 Vakil様のホームページ. 世界の研究集会の情報が載っている.
-<!--
-- [List of Conferences](http://yuyamatsumoto.com/conf.html)
-東京理科大学の松本様のホームページ. 主に日本の研究集会の情報が載っている.
--->
+[](- [List of Conferences](http://yuyamatsumoto.com/conf.html)
+東京理科大学の松本様のホームページ. 主に日本の研究集会の情報が載っている.)
 - [Conferences & Seminars](https://ryokanda.net/conferences.html?lang=ja)
 大阪公立大学の神田様のホームページ . 主に日本の研究集会の情報が載っている.
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
