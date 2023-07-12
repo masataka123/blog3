@@ -3,6 +3,7 @@
 
 ## **講演予定**
 - 2023年7月24日から28日まで開かれる, [2023 Pacific Rim Complex & Symplectic Geometry Conference](https://2023prcsg.casconf.cn/page/1625378116333604865)で講演いたします. 
+
 ## **研究集会**
 
 ### **2022年4月から今まで**
