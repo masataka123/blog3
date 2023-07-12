@@ -15,6 +15,8 @@
 
 - Masataka Iwai, Chen Jiang, Haidong Liu. 'Miyaoka type inequality for terminal threefolds with nef anti-canonical divisors.' [arXiv](https://arxiv.org/abs/2303.00268)
 
+- Sho Ejiri, Osamu Fujino, Masataka Iwai 'Positivity of extensions of vector bundles.' [arXiv](https://arxiv.org/abs/2307.05022)
+
 
 # **報告集**
 - '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)

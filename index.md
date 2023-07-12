@@ -9,6 +9,8 @@ layout: default
 ## **予定など**
 - 2023年度日本数学会地方区代議員（阪神支部）に選出されました．皆様よろしくお願いいたします．
 - 2023年5月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2303.00268)  Chen Jiang氏, Haidong Liu氏との共同研究です. 
+- 2023年7月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2307.05022)  江尻 祥 氏, 藤野 修 氏との共同研究です. 
+- 2023年7月24日から28日まで開かれる, [2023 Pacific Rim Complex & Symplectic Geometry Conference](https://2023prcsg.casconf.cn/page/1625378116333604865)で講演いたします. 
 
 ## **はじめに**
 - 初めまして岩井雅崇(いわいまさたか)と申します.

@@ -28,8 +28,10 @@
 ### 研究集会の情報
 - [Upcoming conferences](http://math.stanford.edu/~vakil/conferences.html)
 Vakil様のホームページ. 世界の研究集会の情報が載っている.
+<!--
 - [List of Conferences](http://yuyamatsumoto.com/conf.html)
 東京理科大学の松本様のホームページ. 主に日本の研究集会の情報が載っている.
+-->
 - [Conferences & Seminars](https://ryokanda.net/conferences.html?lang=ja)
 大阪公立大学の神田様のホームページ . 主に日本の研究集会の情報が載っている.
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
@@ -150,6 +152,6 @@ print(count)
 
 答えに関しては以下の通り.
 -  [理論的な答え](https://github.com/masataka123/2023_summer_game/blob/master/material/11_確率テスト_公開用.pdf) 手書き資料になります.
--[プログラミングによる答え](https://github.com/masataka123/2023_summer_game/blob/master/material/11_確率テスト.ipynb) プログラミングやりたかったんでやった. プログラミングの方がわかりやすいかな？
+- [プログラミングによる答え](https://github.com/masataka123/2023_summer_game/blob/master/material/11_確率テスト.ipynb) プログラミングやりたかったんでやった. プログラミングの方がわかりやすいかな？
  
 
