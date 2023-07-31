@@ -11,7 +11,7 @@
 25. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class' [第28回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa28.html),  石川県政記念 しいのき迎賓館, 2022年11月10日.
 26. '曲率が0以上の複素射影多様体の構造定理' , 第18回代数・解析・幾何学セミナー, オンライン開催, 2023年2月20日. 
 27. 'チャーン類が消えているlog smooth対の構造について', Workshop on Complex Geometry in Osaka 2023, 大阪大学, 2023年3月22日. 
-28. 'On minimal projective manifolds with vanishing second Chern classes', [2023 Pacific Rim Complex & Symplectic Geometry Conference](https://2023prcsg.casconf.cn/page/1625378116333604865), SIENA NARADA GRAND HOTEL(Qingtian Country, Lishui City, Zhenjiang Province),  2023年7月24-28日. 
+28. 'On minimal projective manifolds with vanishing second Chern classes', [2023 Pacific Rim Complex & Symplectic Geometry Conference](https://2023prcsg.casconf.cn/page/1625378116333604865), SIENA NARADA GRAND HOTEL(Qingtian Country, Lishui City, Zhenjiang Province),  2023年7月24-28日. [PDF](https://masataka123.github.io/blog3/pdf/2023_07_26_PacificRim.pdf)
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
