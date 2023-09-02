@@ -42,6 +42,17 @@ Vakil様のホームページ. 世界の研究集会の情報が載っている.
 - [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
 - [大阪市立大学数学研究所](http://www.sci.osaka-cu.ac.jp/OCAMI/)
 
+### 論文関連
+- [ArXiv](https://arxiv.org) 
+みなさんご存知のプレプリント・サーバー. 平日11時くらいにアクセスしAG, CV, DGを見る. 設定すればメールでも通知してくれる.
+- [ArXivへの投稿の仕方について](http://www.math.tsukuba.ac.jp/~tasaki/tool/arxiv.html)
+ArXivへの投稿の仕方を毎回忘れる.
+- [google scholar](https://scholar.google.co.jp)
+論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてくれて, しかも結構当たっている.
+- [SCImago Journal Rank](https://www.scimagojr.com/journalrank.php?category=2601)
+論文のランキングみたいなものです. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). まあ偉い人に聞いた方が確実です.
+- [Hyper Collocation](https://hypcol.marutank.net/ja/)
+論文書くときにお世話になっている. 他にもGrammaly, Ginger, Google翻訳, DeepL翻訳, Trzeciak "Writing Mathematical Pepers in English"などがある
 
 ### 研究のサーベイ
 - [Séminaire N. Bourbaki](https://www.bourbaki.fr)
@@ -70,18 +81,6 @@ IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演
 [ICM2018](https://www.youtube.com/c/RioICM2018/videos)や[ICM2014](https://www.youtube.com/user/ICM2014SEOUL/videos)など過去の講演動画もYouTubeにはあるようだ.
 - [BORCHERDSのYouTubeチャンネル](https://www.youtube.com/channel/UCIyDqfi_cbkp-RU20aBF-MQ)
 Richard E. BORCHERDSのYouTubeチャンネル. 大量の授業動画がある. これが無料で見れるのは驚きである.
-
-### 論文関連
-- [ArXiv](https://arxiv.org) 
-みなさんご存知のプレプリント・サーバー. 平日11時くらいにアクセスしAG, CV, DGを見る. 設定すればメールでも通知してくれる.
-- [ArXivへの投稿の仕方について](http://www.math.tsukuba.ac.jp/~tasaki/tool/arxiv.html)
-ArXivへの投稿の仕方を毎回忘れる.
-- [google scholar](https://scholar.google.co.jp)
-論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてくれて, しかも結構当たっている.
-- [SCImago Journal Rank](https://www.scimagojr.com/journalrank.php?category=2601)
-論文のランキングみたいなものです. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). まあ偉い人に聞いた方が確実です.
-- [Hyper Collocation](https://hypcol.marutank.net/ja/)
-論文書くときにお世話になっている. 他にもGrammaly, Ginger, Google翻訳, DeepL翻訳, Trzeciak "Writing Mathematical Pepers in English"などがある
 
 
 ### その他の役に立つ情報
@@ -138,18 +137,5 @@ while x!=0:
 print(count)
 ```
 
-## **確率テスト**
-
-2023年春夏学期の授業，[学問の扉](https://masataka123.github.io/2023_summer_game/)で作った.
-
-- [確率テスト](https://forms.gle/DYzMmnWK7V2zsXPS7)
-
-匿名で受けれるようにしてます. 暇な人はやってください.
-結構な人が間違っていて, 4点以下が続出だった. 
-多分答えを知らない状態で私がやってもそれくらいしか取れないと思う.
-
-答えに関しては以下の通り.
--  [理論的な答え](https://github.com/masataka123/2023_summer_game/blob/master/material/11_確率テスト_公開用.pdf) 手書き資料になります.
-- [プログラミングによる答え](https://github.com/masataka123/2023_summer_game/blob/master/material/11_確率テスト.ipynb) プログラミングやりたかったんでやった. プログラミングの方がわかりやすいかな？
  
 
