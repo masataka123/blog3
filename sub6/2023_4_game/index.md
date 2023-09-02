@@ -1,11 +1,18 @@
-# Nim
+# 石取りゲーム
 
-Alice and Bob are playing the following game:
+AさんとBさんが次のゲームをします.
 
-- There are 5 piles of coins with 5, 8, 6, 10, and 7 coins in each pile, respectively.
-- Alice and Bob take turns selecting "one pile" and remove coins from it. However, they must take 1, 3, or 4 coins from the chosen pile.
-- The player who takes the last coin wins.
-- Both players play optimally.
+- 5個のコインの山があって, それぞれの山には5,8,6,10,7枚のコインがある.
+- AさんとBさんが交互に"一つの山"を選び, そこからコインを取ります. ただし一度にとるコインの枚数は1,3,4枚のいずれかと等しくないといけない.
+- 最後にコインを取った方が勝ち.
+- 両者とも最善を尽くして戦う. 
 
-If Alice goes first, who will win?
+最初の手番がAさんであるとき, どちらが勝つでしょうか?
+
+## コメント
+2023年の授業で出した. 
+[蟻本](https://www.amazon.co.jp/プログラミングコンテストチャレンジブック-第2版-～問題解決のアルゴリズム活用力とコーディングテクニックを鍛える～-秋葉拓哉/dp/4839941068)にそのまま同じ問題が載っている. 
+
+実はこの問題が数学的にどこまで解けているか知りたくて学問の扉でもこの問題を出した.
+調べてみると, "Sprague–Grundy theorem"という定理に行き着いた. もっと調べると, SpragueさんがTohoku Journalに[論文](https://www.jstage.jst.go.jp/article/tmj1911/41/0/41_0_438/_article)を出していたみたいである. GrothendieckにしかりTohoku Journalは面白い論文が多いなあと思った. 
 
