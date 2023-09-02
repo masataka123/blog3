@@ -2,6 +2,7 @@
 
 Martin Deraux さんのホームページにある問題
 [Mad Professor?](http://www-fourier.univ-grenoble-alpes.fr/~deraux/puzzle/professor.html)
+
 転載すると次のとおり:
 
 A professor tells her assistant that she dined with three people last night.
