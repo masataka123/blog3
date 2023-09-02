@@ -1,10 +1,8 @@
-# 円周上の点
+# Points on a circle
 
-Sを平面R^2上にある原点中心半径1の円の円周とし, a1,...anをS上の点とする.
-このときあるS上の点pで|a1-p|× |a_2 - p| ×...×|a_n - p| =1となるものが存在することを示せ. 
-(|a1-p| はa1とpの距離とする.)
+Let S be the circumference of a circle centered at the origin with radius 1 in Euclid space R^2.
+Let a1, a2, ..., an be points on S. 
+Prove that there exists a point p on S such that |a1-p| × |a2 - p| × ... × |an - p| = 1. (Here, |a1-p| represents the distance between a1 and p.)
 
 
-## コメント
-2023年の演習で出した. 私が考えた問題ではなく, とある本の演習問題である.
 
