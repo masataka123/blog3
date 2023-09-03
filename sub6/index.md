@@ -8,7 +8,6 @@
 - [石取りゲーム](https://masataka123.github.io/blog3/sub6/2023_4_game/)
 
 
-
 # **その他**
 
 -[コンウェイのGame of Life](https://masataka123.github.io/blog3/sub6/conway/)
