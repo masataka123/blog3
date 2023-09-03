@@ -37,7 +37,7 @@
 
 - シェルソート
 
-![](https://masataka123.github.io/blog3/sub6/sort/sort_selection.gif)
+![](https://masataka123.github.io/blog3/sub6/sort/sort_shell.gif)
 
 
 計算時間がO(N log N)のものはどれだろうか?
