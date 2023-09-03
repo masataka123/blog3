@@ -65,5 +65,4 @@
 4. "Workshop on Complex Geometry in Osaka 2023", 大阪大学, 2023年 3月 22--24日.(大阪大学 糟谷久矢氏との共同主催) [link](https://sites.google.com/site/hisashikasuyamath/workshop-on-complex-geometry-in-osaka-2023?authuser=0)
 5. 大阪大学幾何セミナー世話人, 大阪大学, 2023年4月から
 
-# **その他**
-1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  
+[](# **その他** 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  )
