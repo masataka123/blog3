@@ -10,8 +10,12 @@
 
 # **その他**
 
--[コンウェイのGame of Life](https://masataka123.github.io/blog3/sub6/conway/)
--[いろんなソート](https://masataka123.github.io/blog3/sub6/sort/)
+## プログラミング
+なぜかときたまプログラミングをする時があります. 
+全く上手くはないです. そして実用的なプログラミングは全くできないです. 
+
+- [コンウェイのGame of Life](https://masataka123.github.io/blog3/sub6/conway/)
+- [いろんなソート](https://masataka123.github.io/blog3/sub6/sort/)
 
 ## 競技プログラミング
 2018年4月から始めた. 言語はPython3です. ただ現在は興味失ってやっていません.
@@ -19,9 +23,11 @@
 
 - [AtCoder](https://atcoder.jp/users/okumura) 
 - [Codeforces](https://codeforces.com/profile/okumura) 
-- [Qitta](https://qiita.com/Kentaro_okumura) 
-読む用にしか使ってなかったが友人に言われてちょっと記事を書いたら, なぜかめちゃくちゃ多くの人に読まれた.
 - [GitHub](https://github.com/masataka123/competitive_algorithms) 
+- [Qitta](https://qiita.com/Kentaro_okumura) 
+
+Qittaに関しては読む用にしか使ってなかったが友人に言われてちょっと記事を書いたら, なぜかめちゃくちゃ多くの人に読まれた.
+2018年の時はPythonで競技プログラミングをするのは珍しかったからだと思う.(Pythonのコミュニティーもあった. 今は公式回答もPythonで書いている)
 
 ```python:what_is_count.py
 x=1;count=0
