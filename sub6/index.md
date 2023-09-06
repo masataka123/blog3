@@ -47,9 +47,9 @@ print(count)
 - [GitHubを使ってMarkdown文書を５ステップでホームページとして公開する方法](https://qiita.com/MahoTakara/items/3800e9dc83b530d0a050)
 - [ここまで出来る! GitHubのMarkdownで書くウェブページ　独自テーマの開発](https://qiita.com/MahoTakara/items/e3d88a0d5d128bb07b27)
 
-このホームページは上の二つを参考にして作りました. htmlめんどくさいという人とかgithub使いたいという人はオススメです. (まあhtmlやった方が楽かもしれませんが...)
-あと左のやつをもっと上手くしたいのですが, よくわからないです. なんか上手いやり方知っている人は教えてください.
+このホームページは上の二つを参考にして作りました. htmlめんどくさいという人とかgithub使いたいという人はオススメです.  Github pageは[Supported themes](https://pages.github.com/themes/)でいろんなテンプレが標準装備されている. このページはDinkyを使っている. 授業のホームページはCaymanである. 
 
 Markdownの書き方については以下を参照。
 - [Markdownの書き方](https://help.docbase.io/posts/13697#image)
 - [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
+
