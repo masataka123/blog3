@@ -64,5 +64,6 @@
 3. "Subvarieties and foliations of complex projective varieties" (射影的複素多様体の部分多様体と葉層), オンライン開催(大阪市立大学), 2022年 2月 7--10日 (名古屋大学 大沢健夫氏, 大阪市立大学 小池貴之氏との共同主催) ,[link](https://tkoike.com/conf_2021/2022Feb.html)
 4. "Workshop on Complex Geometry in Osaka 2023", 大阪大学, 2023年 3月 22--24日.(大阪大学 糟谷久矢氏との共同主催) [link](https://sites.google.com/site/hisashikasuyamath/workshop-on-complex-geometry-in-osaka-2023?authuser=0)
 5. 大阪大学幾何セミナー世話人, 大阪大学, 2023年4月から
+6. "複素幾何における葉層と力学系の諸問題" 京都大学数理解析研究所, 2023年 11月 20--22日. (名古屋大学 大沢健夫氏, 大阪市立大学 小池貴之氏, 静岡大学 足立 真訓氏, 京都産業大学 濱野 佐知子氏との共同主催) [Link](https://tkoike.com/conf_2023/2023Nov.html)
 
 [](# **その他** 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  )
