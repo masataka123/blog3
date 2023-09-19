@@ -17,6 +17,7 @@
 
 - Sho Ejiri, Osamu Fujino, Masataka Iwai 'Positivity of extensions of vector bundles.' [arXiv](https://arxiv.org/abs/2307.05022)
 
+- Masataka Iwai, Shin-ichi Matsumura, Guolei Zhong 'Positivity of tangent sheaves of projective varieties -- the structure of MRC fibrations.'  [arXiv](https://arxiv.org/abs/2309.09489)
 
 # **報告集**
 - '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
