@@ -28,18 +28,22 @@ Vakil様のホームページ. 世界の研究集会の情報が載っている.
 [](- [List of Conferences](http://yuyamatsumoto.com/conf.html)
 東京理科大学の松本様のホームページ. 主に日本の研究集会の情報が載っている.)
 - [Conferences & Seminars](https://ryokanda.net/conferences.html?lang=ja)
-大阪公立大学の神田様のホームページ . 主に日本の研究集会の情報が載っている.
+大阪公立大学の神田様のホームページ . 主に日本の研究集会の情報が載っている. 
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
 日本数学会幾何学分科会のホームページ. 幾何学に関する研究集会情報が載っている.
 - [CIRM](https://www.cirm-math.com) フランス・マルセイユにある数学研究所. 
 - [Oberwolfach](https://www.mfo.de) ドイツにあるオーバーヴォルファッハ数学研究所. 集会が終わった後にレポートを作ってくれるのは嬉しい. 
+- [Projet ANR Karmapolis](https://karmapolis.pages.math.cnrs.fr/index.html) 
+"Kahler manifolds with non-positive curvature: families and special subvarieties"に関する研究プロジェクト. プロジェクトメンバーがすごい人ばっかりである. この研究テーマは2020年から2030年まで我々の分野で流行りそうな研究テーマになると思う. 
 
 ## 日本のセミナー情報
-- [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi)
-- [東京大学大学院数理科学研究科ホームページ](https://www.ms.u-tokyo.ac.jp/index-j.html)
+- [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 過去のセミナーの履歴は[このページ](http://www.math.sci.osaka-u.ac.jp/seminar/)の"セミナー案内履歴"からみることができます.
+- [東京大学大学院数理科学研究科ホームページ・セミナー情報](https://www.ms.u-tokyo.ac.jp/index-j.html)
 - [京都大学数学教室セミナー一覧](https://www.math.kyoto-u.ac.jp/ja/event/seminar)
 - [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
-- [大阪市立大学数学研究所](http://www.sci.osaka-cu.ac.jp/OCAMI/)
+- [大阪公立大学セミナー一覧](https://www.omu.ac.jp/orp/ocami/activities/seminars/)
+- [東北大学幾何セミナー](https://sites.google.com/site/aobageometry/tohoku-university-geometry-group)
+- [杉本代数セミナー(大阪公立大学)](https://sites.google.com/view/sugimoto-algebra-seminar/home)
 
 ## 論文関連
 - [ArXiv](https://arxiv.org) 
@@ -54,7 +58,6 @@ ArXivへの投稿の仕方を毎回忘れる.
 - [Hyper Collocation](https://hypcol.marutank.net/ja/)
 論文書くときにお世話になっている. 数学の論文を書くなら, Trzeciak "Writing Mathematical Pepers in English"もいい本だと思う. 
 
-
 ## 研究のサーベイ
 - [Séminaire N. Bourbaki](https://www.bourbaki.fr)
 ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める. [Claudonのサーベイ](https://arxiv.org/pdf/1603.09568.pdf)には非常にお世話になった.
@@ -66,8 +69,6 @@ ArXivへの投稿の仕方を毎回忘れる.
 ## 研究集会の動画
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
 CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. ([Fourierの5連続講演](https://www.youtube.com/playlist?list=PL0E0n75oNCDk5tuV-t2_K56sEfLd0Od8H)でも良いと思う.) Foliationの論文書くときに参考になった.
-- [Projet ANR Karmapolis](https://karmapolis.pages.math.cnrs.fr/index.html) 
-"Kahler manifolds with non-positive curvature: families and special subvarieties"に関する研究プロジェクト. プロジェクトメンバーがすごい人ばっかりである. この研究テーマは2020年から2030年まで我々の分野で流行りそうな研究テーマになると思う. 
 - [CIRM](https://www.youtube.com/channel/UCFqg88K7NWY2xjWB6CeRyAw)
 CIRMで行われた集会の動画が見れる. 
 - [Institut Fourier](https://www.youtube.com/channel/UCf75JOnCeY9uFajrDw1g4-w) 
@@ -83,9 +84,11 @@ Institut Fourierで行われた集会の動画が見れる.
 - [IMUのYouTubeチャンネル](https://www.youtube.com/c/InternationalMathematicalUnion) 
 IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演動画がアップロードされている. 
 [ICM2018](https://www.youtube.com/c/RioICM2018/videos)や[ICM2014](https://www.youtube.com/user/ICM2014SEOUL/videos)など過去の講演動画もYouTubeにはあるようだ.
+
+## 授業の動画
 - [BORCHERDSのYouTubeチャンネル](https://www.youtube.com/channel/UCIyDqfi_cbkp-RU20aBF-MQ)
 Richard E. BORCHERDSのYouTubeチャンネル. 大量の授業動画がある. これが無料で見れるのは驚きである.
-
+- [渡邉究先生のYouTubeチャンネル](https://www.youtube.com/channel/UCRcK-UYSCi8uk5SQChka7hA) 中央大学の渡邉究先生のYouTubeチャンネル. 3年次の代数の授業内容をYouTubeで学ぶことができる. プロの数学者の授業を日本語で無償で受けられるとはいい時代になったなあと思う. 一つの動画が10-20分程度なのも嬉しい. 
 
 ## その他の役に立つ情報
 - [志学数学 -研究の諸段階 発表の工夫-](https://www.amazon.co.jp/志学数学-研究の諸段階-発表の工夫-シュプリンガー数学クラブ-伊原/dp/4621061593) 伊原康隆先生の本. 数学を志すならば読んでほしい. 良い本なのでここでも勧めることにした. 東大の河東先生の[書評](https://mathsoc.jp/publication/tushin/1004/kawahigashi.pdf)も面白い. 
