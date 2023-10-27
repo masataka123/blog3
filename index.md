@@ -8,7 +8,7 @@ layout: default
 
 ## **予定など**
 - 2023年度日本数学会地方区代議員（阪神支部）に選出されました．皆様よろしくお願いいたします．
-- 2023年5月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2303.00268)  Chen Jiang氏, Haidong Liu氏との共同研究です. 
+- 2023年5月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2303.00268)  Chen Jiang氏, Haidong Liu氏との共同研究です. SCIENCE CHINA Mathematicsに掲載決定しました. 
 - 2023年7月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2307.05022)  江尻 祥 氏, 藤野 修 氏との共同研究です. 
 - 2023年9月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2309.09489)  松村 慎一 氏, Guolei Zhong 氏との共同研究です. 
 - [第29回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa29.html)で講演いたします.
