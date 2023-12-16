@@ -11,7 +11,6 @@ layout: default
 - 2023年5月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2303.00268)  Chen Jiang氏, Haidong Liu氏との共同研究です. SCIENCE CHINA Mathematicsに掲載決定しました. 
 - 2023年7月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2307.05022)  江尻 祥 氏, 藤野 修 氏との共同研究です. Mathematische Zeitschrift.に掲載決定しました. 
 - 2023年9月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2309.09489)  松村 慎一 氏, Guolei Zhong 氏との共同研究です. 
-- 12月9日から11日まで開かれる北京での集会[Young Perspectives on Algebraic Geometry](http://www.jliumath.com/conferences/2023PAG.html)で講演いたします. 
 - 2024年3月13-15日に大阪大学において [Workshop on Complex Geometry in Osaka 2024](https://masataka123.github.io/complexgeometry_osaka_2024/)を開催いたします. 皆様のご参加お待ちしております. 
 
 <!--
