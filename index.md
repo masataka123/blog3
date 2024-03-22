@@ -7,11 +7,7 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2023年度日本数学会地方区代議員（阪神支部）に選出されました．皆様よろしくお願いいたします．
-- 2023年5月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2303.00268)  Chen Jiang氏, Haidong Liu氏との共同研究です. SCIENCE CHINA Mathematicsに掲載決定しました. 
-- 2023年7月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2307.05022)  江尻 祥 氏, 藤野 修 氏との共同研究です. Mathematische Zeitschrift.に掲載決定しました. 
 - 2023年9月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2309.09489)  松村 慎一 氏, Guolei Zhong 氏との共同研究です. 
-- 2024年3月13-15日に大阪大学において [Workshop on Complex Geometry in Osaka 2024](https://masataka123.github.io/complexgeometry_osaka_2024/)を開催いたします. 皆様のご参加お待ちしております. 
 
 <!--
 - 2023年度秋冬学期 大阪大学理学部数学科 幾何学基礎２（位相空間論）演義 を担当します. [Link](https://masataka123.github.io/2023_winter_generaltopology/)
@@ -30,7 +26,7 @@ layout: default
  他には代数多様体間の射の構造.  相対的藤田予想の研究や相対的反標準因子について研究しました.
 
 
-![](https://masataka123.github.io/blog3/picture/1.jpg )
+![](https://masataka123.github.io/blog3/picture/4.jpg )
 
 ## **事務関連**
 - 名前: 岩井雅崇
