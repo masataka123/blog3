@@ -8,11 +8,11 @@
 
 どのように操作しても上から4段目までのどこかに黒石が残ることを示せ. 
 
-        ●
-      ○   ○
-    ○   ○   ○
-  ○   ○   ○   ○
-○   ○   ○   ○   ○
+            ●
+          ○   ○
+        ○   ○   ○
+      ○   ○   ○   ○
+    ○   ○   ○   ○   ○
 
 ## コメント
 元ネタはMaxim Kontsevichが1981に出したパズル[Escape of the Clones](https://www.cut-the-knot.org/Curriculum/Games/CloneEscape.shtml)
