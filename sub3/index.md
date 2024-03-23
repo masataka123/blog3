@@ -61,7 +61,7 @@
 
 
 # **世話人・オーガナイザー**
-## **研究集会・ワークショップ***
+## **研究集会・ワークショップ**
 1. 複素代数多様体上の直線束と多重劣調和関数, 東北大学, 2020 年2月. (大阪市立大学 小池 貴之氏との共同主催) [link](https://tkoike.com/conf_2020/2020Febtouhoku.html)
 2. ”Prospects and Open Problems in Higher-dimensional Algebraic Geometry (高次元代数幾何の展望と未解決問題)”, 大阪市立大学, 2020 年 3 月 9--12 日 (東京大学 權業善範氏, 東北大学 松村慎一氏, 大阪市立大学 小池貴之氏との共同主催) , (新型コロナウイルスの影響を受けて中止) [link](http://ktakayuki.github.io/conf2019_2/phdagop.html)
 3. "Subvarieties and foliations of complex projective varieties" (射影的複素多様体の部分多様体と葉層), オンライン開催(大阪市立大学), 2022年 2月 7--10日 (名古屋大学 大沢健夫氏, 大阪市立大学 小池貴之氏との共同主催) ,[link](https://tkoike.com/conf_2021/2022Feb.html)
@@ -69,7 +69,7 @@
 6. "複素幾何における葉層と力学系の諸問題" 京都大学数理解析研究所, 2023年 11月 20--22日. (名古屋大学 大沢健夫氏, 大阪市立大学 小池貴之氏, 静岡大学 足立 真訓氏, 京都産業大学 濱野 佐知子氏との共同主催) [Link](https://tkoike.com/conf_2023/2023Nov.html)
 7. "Workshop on Complex Geometry in Osaka 2024", 大阪大学, 2024年3月13--15日. (大阪大学 糟谷久矢氏との共同主催) [Link](https://masataka123.github.io/complexgeometry_osaka_2024/)
 
-## **学内・学外セミナー***
+## **学内・学外セミナー**
 5. 大阪大学幾何セミナー世話人, 大阪大学, 2023年度 20件 [2023年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rirekiThisY.cgi)
 8. 大阪大学幾何セミナー世話人, 大阪大学, 2024年度
 
