@@ -6,6 +6,7 @@
 - [確率テスト](https://masataka123.github.io/blog3/sub6/2_door/)
 - [円周上の点](https://masataka123.github.io/blog3/sub6/3_circle/)
 - [石取りゲーム](https://masataka123.github.io/blog3/sub6/4_game/)
+- [Kontsevichのパズル](https://masataka123.github.io/blog3/sub6/5_Kontsevich/)
 - [行列の操作](https://masataka123.github.io/blog3/sub6/6_matrix/)
 
 # **その他**
