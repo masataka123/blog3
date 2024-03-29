@@ -45,6 +45,8 @@
 (担当: 平地健吾先生) 
 
 # **講義資料**
+- 2023年度秋冬学期 大阪大学 理学部数学科 幾何学基礎２（位相空間論）演義 火曜4限 [演習問題](https://masataka123.github.io/blog3/lecture/2023_集合と位相問題集.pdf) [授業のホームページ](https://masataka123.github.io/2023_winter_generaltopology/)
+- 2023年度秋冬学期 大阪大学 全学共通教育科目 線形代数学入門 (経(161〜)) 木曜3限 [講義資料](https://masataka123.github.io/blog3/lecture/2023_線形代数.pdf) [授業のホームページ](https://masataka123.github.io/2023_winter_linearalgebra/)
 - 2023年度春夏学期 大阪大学 理学部数学科 火曜4限 複素関数論続論演義 [演習問題](https://masataka123.github.io/blog3/lecture/2023_複素解析続論_演習問題.pdf) [演習資料](https://masataka123.github.io/blog3/lecture/2023_複素解析ノート.pdf) [授業のホームページ](https://masataka123.github.io/2023_summer_complex/)
 - 2023年度春夏学期 大阪大学 全学共通教育科目 水曜3限 学問への扉(ゲームにまつわる数学)  [講義資料](https://masataka123.github.io/blog3/lecture/2023_学問の扉資料.pdf) [授業のホームページ](https://masataka123.github.io/2023_summer_game/)
 - 2022年度秋冬学期 基礎解析学II 一変数・多変数の積分 [講義資料](https://masataka123.github.io/blog3/lecture/2022_一変数多変数積分.pdf) [授業のホームページ](https://masataka123.github.io/2022_winter_int/)
