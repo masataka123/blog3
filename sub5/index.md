@@ -1,15 +1,35 @@
-# **友人・先輩のリンク**
+# **研究者のリンク**
+勝手にリンクを貼っているので, 怒られたり都合が悪くなれば消します. 
 リンク先のホームページがなくなっている場合もあります. 
 
+## 共同研究した人たち
+- [Shin-ichi Matsumura](https://sites.google.com/view/math-matsumura/home)
 - [Genki Hosono](https://genki-hosono.github.io/math/)
+- [Sho Ejiri](https://researchmap.jp/shoejiri?lang=en)
+- [Chen Jiang](https://chenjiangfudan.github.io/home/)
+- [Haidong Liu](https://sites.google.com/view/liuhaidong/home?authuser=0)
+- [Osamu Fujino](https://www.math.kyoto-u.ac.jp/~fujino/)
+- [Guolei Zhong](https://sites.google.com/view/guoleizhongshomepage/research?authuser=0)
+- [Niklas Muller](https://www.esaga.uni-due.de/niklas.mueller/)
+
+## その他お世話になった・お世話になっている人たち
+- [Takayuki Koike](https://tkoike.com)
 - [Eiji Inoue](http://ithems-members.riken.jp/eijinoe/home.html)
+- [Takahiro Inayama](https://sites.google.com/view/takahiro-inayama-webpage/home)
+- [Yuya Takeuchi](https://sites.google.com/view/yuya-takeuchi-japanese/)
+- [Kouichi Taira](https://sites.google.com/view/the-home-page-of-kouichi-taira/home)
+- [Yasuhiko Asao](https://sites.google.com/view/yasuhikoasao)
 - [Masaki Taniguchi](https://sites.google.com/view/masaki-taniguchis-homepage)
 - [Takahiro Saito](https://www.kurims.kyoto-u.ac.jp/~takahiro/)
-- [Keita Mikami](http://ithems-members.riken.jp/mikami/)
 - [Hokuto Konno](http://ithems-members.riken.jp/konno/eng_index.html)
+- [Keita Mikami](http://ithems-members.riken.jp/mikami/)
 - [Michiya Mori](https://www.ms.u-tokyo.ac.jp/~mmori/jindex.html)
 - [Tomohiro Hayase](https://thayafluss.github.io)
-- [Yuya Takeuchi](https://sites.google.com/view/yuya-takeuchi-japanese/)
+- [Hisashi Kasuya](https://sites.google.com/site/hisashikasuyamath/home)
+- [Yoshihiko Matsumoto](http://www4.math.sci.osaka-u.ac.jp/~matsumoto/)
+- [Makoto Miura](https://sites.google.com/view/makoto-miura/home) [Solo-Cat Game](https://miurror.net/solocat/)
+- [Yasuda Takehiko](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/) [Euler Getter](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/EG/)
+
 
 <!---
 ホームページ作ったときに, 研究室317や318にいた人に「リンク貼っていいですか?」って言って許可をもらいました.
@@ -38,12 +58,20 @@ Vakil様のホームページ. 世界の研究集会の情報が載っている.
 
 ## 日本のセミナー情報
 - [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 過去のセミナーの履歴は[このページ](http://www.math.sci.osaka-u.ac.jp/seminar/)の"セミナー案内履歴"からみることができます.
-- [東京大学大学院数理科学研究科ホームページ・セミナー情報](https://www.ms.u-tokyo.ac.jp/index-j.html)
+- [大阪公立大学セミナー一覧](https://www.omu.ac.jp/orp/ocami/activities/seminars/)
+- [杉本代数セミナー(大阪公立大学)](https://sites.google.com/view/sugimoto-algebra-seminar/home)
 - [京都大学数学教室セミナー一覧](https://www.math.kyoto-u.ac.jp/ja/event/seminar)
 - [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
-- [大阪公立大学セミナー一覧](https://www.omu.ac.jp/orp/ocami/activities/seminars/)
+- [東京大学大学院数理科学研究科ホームページ・セミナー情報](https://www.ms.u-tokyo.ac.jp/index-j.html)
 - [東北大学幾何セミナー](https://sites.google.com/site/aobageometry/tohoku-university-geometry-group)
-- [杉本代数セミナー(大阪公立大学)](https://sites.google.com/view/sugimoto-algebra-seminar/home)
+
+## 日本の集中講義情報
+- [大阪大学集中講義](http://www.math.sci.osaka-u.ac.jp/seminar/)
+- [大阪公立大学集中講義](https://www.omu.ac.jp/sci/math/education/intensive-courses/)
+- [京都大学数学教室集中講義](https://www.math.kyoto-u.ac.jp/ja/event/lecture)
+- [東京大学集中講義](https://www.ms.u-tokyo.ac.jp/kyoumu/jikanwari_shucho.html)
+- [東京都立大学集中講義](https://math.fpark.tmu.ac.jp/curriculum/shuchu23.html)
+- [東北大学集中講義](http://www.math.tohoku.ac.jp/research/intensive.html)
 
 ## 論文関連
 - [ArXiv](https://arxiv.org) 
@@ -54,7 +82,8 @@ ArXivへの投稿の仕方を毎回忘れる.
 論文探すときにお世話になる. 登録しておけば, 自分の分野に関係する論文を教えてくれて, しかも結構当たっている.
 - [SCImago Journal Rank](https://www.scimagojr.com/journalrank.php?category=2601)
 論文のランキングみたいなもの. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). 論文のランキングは人によって意見が異なるようだ.
-- [ChatGPT](https://chat.openai.com/auth/login) これのおかげでメールの返信や論文作成など, 英語・日本語問わず文章作成のストレスが格段に減ったと思う. 「適当にChat GPTに投げてそれをちょっと編集してメール返信!」が多くなったと思う. 他には[Google翻訳](https://translate.google.co.jp/?hl=ja), [DeepL翻訳](https://www.deepl.com/ja/translator)も使いやすい.
+- [ChatGPT](https://chat.openai.com/auth/login) これのおかげでメールの返信や論文作成など, 英語・日本語問わず文章作成のストレスが格段に減ったと思う. 「適当にChat GPTに投げてそれをちょっと編集してメール返信!」が多くなったと思う. 
+- [DeepL翻訳](https://www.deepl.com/ja/translator) [Google翻訳](https://translate.google.co.jp/?hl=ja) これなしで英語のメールは書けなくなった. 翻訳が使いやすい.
 - [Hyper Collocation](https://hypcol.marutank.net/ja/)
 論文書くときにお世話になっている. 数学の論文を書くなら, Trzeciak "Writing Mathematical Pepers in English"もいい本だと思う. 
 
@@ -108,5 +137,6 @@ Terence Tao様のホームページ. Career advice, On writingとか結構いい
 位相空間まとめ.
 - [数学の現在 e・i・π ](https://www.utp.or.jp/book/b307189.html) 学生から「ちょっと踏み込んだ内容が知りたい」という質問が多くあったので, この本を勧めることにした. 確かに学部2,3年の人が自分の分野を選ぶのにこの本は参考になると思う. []((思い通りにいかなかった私が言うのもなんだかなあとは思うが...))
 - [選択公理と同値な命題](http://alg-d.com/math/ac/) 役に立つかはわからないが, 見ていて楽しい.
+- [Euler Getter](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/EG/) 安田健彦先生が作ったゲーム. ちょっとやったが全然勝てない. Euler Getterに関しては安田先生の本である[ゲームで大学数学入門](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)でも取り上げられている. 学問の扉という授業をする際に非常にお世話になった. 
 
 
