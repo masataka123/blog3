@@ -69,7 +69,7 @@
 6. "複素幾何における葉層と力学系の諸問題" 京都大学数理解析研究所, 2023年 11月 20--22日. (名古屋大学 大沢健夫氏, 大阪市立大学 小池貴之氏, 静岡大学 足立 真訓氏, 京都産業大学 濱野 佐知子氏との共同主催) [Link](https://tkoike.com/conf_2023/2023Nov.html)
 7. "Workshop on Complex Geometry in Osaka 2024", 大阪大学, 2024年3月13--15日. (大阪大学 糟谷久矢氏との共同主催) [Link](https://masataka123.github.io/complexgeometry_osaka_2024/)
 8. "New developments in Kobayashi–Hitchin correspondence and Higgs bundles", 大阪公立大学, 2024年8月5--9日. (大阪大学 糟谷久矢氏, 大阪公立大学 橋本義規氏, 東北大学 宮武夏雄氏との共同主催) [Link](https://masataka123.github.io/Kobayashi_Hitchin/)
-9. "Workshop on Algebraic Geometry over complex number field or in positive characteristic -Around positivity of tangent sheaves and anti-canoncal divisors- " 大阪公立大学, 2024年9月17--20日. (大阪公立大学 江尻祥氏, 大阪公立大学 小池貴之, 九州大学 佐藤謙太氏, 東北大学 松村慎一氏との共同主催) [Link](https://masataka123.github.io/tangent_anticanonical/)
+9. "Workshop on Algebraic Geometry over complex number field or in positive characteristic -Around positivity of tangent sheaves and anti-canoncal divisors- " 大阪公立大学, 2024年9月17--20日. (大阪公立大学 江尻祥氏, 大阪公立大学 小池貴之, 九州大学 佐藤謙太氏, 大阪公立大学 松澤陽介氏, 東北大学 松村慎一氏との共同主催) [Link](https://masataka123.github.io/tangent_anticanonical/)
 
 
 ## **学内・学外セミナー**
