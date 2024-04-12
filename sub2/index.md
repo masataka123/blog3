@@ -17,6 +17,8 @@
 
 - Masataka Iwai, Shin-ichi Matsumura, Guolei Zhong 'Positivity of tangent sheaves of projective varieties -- the structure of MRC fibrations.'  [arXiv](https://arxiv.org/abs/2309.09489)
 
+- Masataka Iwai, Shin-ichi Matsumura, Niklas Müller 'Abundance theorem for minimal projective varieties satisfying Miyaoka's equality.'  [arXiv](https://arxiv.org/abs/2404.07568)
+
 # **報告集**
 - '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
 - 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
