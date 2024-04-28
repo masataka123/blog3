@@ -7,8 +7,9 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **予定など**
-- 2023年9月に新しい論文を出しました. [arXiv](https://arxiv.org/abs/2309.09489)  松村 慎一 氏, Guolei Zhong 氏との共同研究です. 
-- 2024年3月に新しい論文を出しました.[arXiv](https://arxiv.org/abs/2404.07568) 松村 慎一 氏, Niklas Müller 氏との共同研究です. 
+- 2024年4月に新しい論文を出しました.[arXiv](https://arxiv.org/abs/2404.07568) 松村 慎一 氏, Niklas Müller 氏との共同研究です. 
+- 2024年5月27--28日に集会を開きます. [Mini-workshop on Higgs bundles](https://masataka123.github.io/miniworkshop_Higgs/) 皆さんのご参加お待ちしております.
+- 2024年8月5--8日に集会を開きます. [New developments in Kobayashi–Hitchin correspondence and Higgs bundles](https://masataka123.github.io/Kobayashi_Hitchin/) 皆さんのご参加お待ちしております.
 - 2024年9月17--20日に集会を開きます [Workshop on Algebraic Geometry over complex number field or in positive characteristic -Around positivity of tangent sheaves and anti-canonical divisors-](https://masataka123.github.io/tangent_anticanonical/) 皆さんのご参加お待ちしております.
 
 <!--
