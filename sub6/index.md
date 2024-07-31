@@ -10,6 +10,7 @@
 - [行列のパズル](https://masataka123.github.io/blog3/sub6/6_matrix/)
 - [チェス盤1](https://masataka123.github.io/blog3/sub6/7_chess1/)
 - [チェス盤2](https://masataka123.github.io/blog3/sub6/8_chess2/)
+- [100人の囚人問題](https://masataka123.github.io/blog3/sub6/9_100prisoner/)
 # **その他**
 
 ## プログラミング
