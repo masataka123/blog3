@@ -10,5 +10,7 @@
 
 ## コメント
 この問題は100人の囚人問題と呼ばれている. 調べてみると[wikipedia](https://en.wikipedia.org/wiki/100_prisoners_problem)にページがあった.
+Ted Education チャンネルの[Can you solve the prisoner boxes riddle?](https://www.youtube.com/watch?v=vIdStMTgNl0)の動画にも答えがある. 
+
 私も答えられなかったし, 線形代数学の試験で"おまけ問題"として出したが, 誰も答えられなかった. 
 (ちなみに, 試験前に「今回のおまけ問題は私もわからなかった問題を出します」と言ったら, 学生は笑っていた. )
