@@ -52,9 +52,19 @@ Vakil様のホームページ. 世界の研究集会の情報が載っている.
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
 日本数学会幾何学分科会のホームページ. 幾何学に関する研究集会情報が載っている.
 - [CIRM](https://www.cirm-math.com) フランス・マルセイユにある数学研究所. 
-- [Oberwolfach](https://www.mfo.de) ドイツにあるオーバーヴォルファッハ数学研究所. 集会が終わった後にレポートを作ってくれるのは嬉しい. 
 - [Projet ANR Karmapolis](https://karmapolis.pages.math.cnrs.fr/index.html) 
 "Kahler manifolds with non-positive curvature: families and special subvarieties"に関する研究プロジェクト. プロジェクトメンバーがすごい人ばっかりである. この研究テーマは2020年から2030年まで我々の分野で流行りそうな研究テーマになると思う. 
+- [Several Complex Variables Home Page in Japan](https://sites.google.com/site/scvgroupjapan/) 日本の多変数複素関数論のホームページ. 2001年の岡潔に関する集会の写真がある. おそらく松本和子先生が撮ったものだと思われる. なお[Demailly先生の追悼記事](https://ydeng.perso.math.cnrs.fr/Demailly.pdf)において日本で撮られた写真も松本和子先生が持っていたものである. ちなみにKyotoではなくNaraが正解である. バックに写ってるのは奈良の興福寺五重塔である. 
+[]((松本先生は他にも多くの写真を持っていた. 松本先生はドルボー先生の写真を持っていたりと我々が見たことないが聞いたことがある先生方の写真を多く持っている. Demailly先生の記事を見てこういった画像で記録する人も必要だなあと感じた. 興味がある人は松本先生に話しかけてみるのも良いかと思う. 葉山で話した時も貴重なお話をかなり多く聞けた.))
+
+## 研究のサーベイ
+- [Séminaire N. Bourbaki](https://www.bourbaki.fr)
+ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める. [Claudonのサーベイ](https://arxiv.org/pdf/1603.09568.pdf)には非常にお世話になった.
+- [Oberwolfach](https://www.mfo.de) ドイツにあるオーバーヴォルファッハ数学研究所. 集会が終わった後にレポートを作ってくれるのは嬉しい. 
+- [岡シンポジウム](http://www.nara-wu.ac.jp/omi/oka_symposium.html) [ENCOUNTER with MATHEMATICS](https://www.math.chuo-u.ac.jp/ENCwMATH/)
+ブルバキセミナーの日本版. 岡シンポジウムには講義録が残っていてちょくちょく読んでいる.
+- [雑誌「数学」の論説](https://mathsoc.jp/publication/dbase/sugaku/index.html)
+日本数学会が創刊している雑誌「数学」の論説が見れる. ほぼ全て電子化されているらしく, [こちら](https://www.jstage.jst.go.jp/browse/sugaku/list/-char/ja)のページで詳細検索もできる. 
 
 ## 日本のセミナー情報
 - [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 過去のセミナーの履歴は[このページ](http://www.math.sci.osaka-u.ac.jp/seminar/)の"セミナー案内履歴"からみることができます.
@@ -64,6 +74,7 @@ Vakil様のホームページ. 世界の研究集会の情報が載っている.
 - [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
 - [東京大学大学院数理科学研究科ホームページ・セミナー情報](https://www.ms.u-tokyo.ac.jp/index-j.html)
 - [東北大学幾何セミナー](https://sites.google.com/site/aobageometry/tohoku-university-geometry-group)
+
 
 ## 日本の集中講義情報
 - [大阪大学集中講義](http://www.math.sci.osaka-u.ac.jp/seminar/)
@@ -87,13 +98,6 @@ ArXivへの投稿の仕方を毎回忘れる.
 - [Hyper Collocation](https://hypcol.marutank.net/ja/)
 論文書くときにお世話になっている. 数学の論文を書くなら, Trzeciak "Writing Mathematical Pepers in English"もいい本だと思う. 
 
-## 研究のサーベイ
-- [Séminaire N. Bourbaki](https://www.bourbaki.fr)
-ブルバキセミナーのリンク. めちゃくちゃわかりやすいサーベイが読める. [Claudonのサーベイ](https://arxiv.org/pdf/1603.09568.pdf)には非常にお世話になった.
-- [岡シンポジウム](http://www.nara-wu.ac.jp/omi/oka_symposium.html) [ENCOUNTER with MATHEMATICS](https://www.math.chuo-u.ac.jp/ENCwMATH/)
-ブルバキセミナーの日本版. 岡シンポジウムには講義録が残っていてちょくちょく読んでいる.
-- [雑誌「数学」の論説](https://mathsoc.jp/publication/dbase/sugaku/index.html)
-日本数学会が創刊している雑誌「数学」の論説が見れる. ほぼ全て電子化されているらしく, [こちら](https://www.jstage.jst.go.jp/browse/sugaku/list/-char/ja)のページで詳細検索もできる. 
 
 ## 研究集会の動画
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
