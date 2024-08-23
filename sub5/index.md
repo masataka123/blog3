@@ -65,6 +65,8 @@ Vakil様のホームページ. 世界の研究集会の情報が載っている.
 ブルバキセミナーの日本版. 岡シンポジウムには講義録が残っていてちょくちょく読んでいる.
 - [雑誌「数学」の論説](https://mathsoc.jp/publication/dbase/sugaku/index.html)
 日本数学会が創刊している雑誌「数学」の論説が見れる. ほぼ全て電子化されているらしく, [こちら](https://www.jstage.jst.go.jp/browse/sugaku/list/-char/ja)のページで詳細検索もできる. 
+- [複素幾何学の諸問題](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/170380) [複素幾何学の諸問題2](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/268311)
+高山茂晴先生によって開かれた集会のサーベイ. 個人的には[高木寛通先生のサーベイ](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/170575)に毎回助けられている. このサーベイはかなりわかりやすい. 
 
 ## 日本のセミナー情報
 - [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 過去のセミナーの履歴は[このページ](http://www.math.sci.osaka-u.ac.jp/seminar/)の"セミナー案内履歴"からみることができます.
