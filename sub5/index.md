@@ -139,7 +139,7 @@ IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演
 Terence Tao様のホームページ. Career advice, On writingとか結構いいこと書いている.
 - [河東先生のホームページ](https://www.ms.u-tokyo.ac.jp/~yasuyuki/index.html)
 東京大学の河東先生のホームページ. [セミナーの準備のしかたについて](https://www.ms.u-tokyo.ac.jp/~yasuyuki/sem.htm)はあまりにも有名である. (私には真似できないが...) また[どうでもよい記事](https://www.ms.u-tokyo.ac.jp/~yasuyuki/misc.htm)というページが面白くとても参考になる.
-2024年に河東先生の本["数学者の思案"](https://www.iwanami.co.jp/book/b646698.html)が出版された. 
+2024年に河東先生の本[数学者の思案](https://www.iwanami.co.jp/book/b646698.html)が出版された. 
 - [JREC-IN](https://jrecin.jst.go.jp/seek/SeekTop) [日本数学会公募情報](https://www.mathsoc.jp/office/kobo/)
 お仕事探しにお世話になる. あとは各種メーリス(代数幾何・幾何学・函数論などなど)で出てくる公募情報を常に見る必要がある. 
 - [Springer Link](https://link.springer.com)
