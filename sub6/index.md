@@ -44,7 +44,7 @@ print(count)
 
 別表神社を旧社格, つまり官幣大社, 国幣大社などで分類をしました. Google mapで地道な作業で作ってます. 友人には高評価です。(ちなみに下の神社もこのマイマップの中にあります.)
 
-![](https://masataka123.github.io/blog3/picture_2/5.jpg )
+![](https://masataka123.github.io/blog3/picture/5.jpg )
 
 ## このホームページについて
 - [GitHubを使ってMarkdown文書を５ステップでホームページとして公開する方法](https://qiita.com/MahoTakara/items/3800e9dc83b530d0a050)
