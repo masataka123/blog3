@@ -126,7 +126,7 @@ IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演
 - [渡邉究先生のYouTubeチャンネル](https://www.youtube.com/channel/UCRcK-UYSCi8uk5SQChka7hA) 中央大学の渡邉究先生のYouTubeチャンネル. 3年次の代数の授業内容をYouTubeで学ぶことができる. プロの数学者の授業を日本語で無償で受けられるとはいい時代になったなあと思う. 一つの動画が10-20分程度なのも嬉しい. 
 
 ## 数学に関する動画
-- [evima lab](https://www.youtube.com/c/evimalab) [Atcoder](https://atcoder.jp)のevimaさんのYoutube. 1回の動画時間が短い割に面白く, 毎回「そーなのかー」と感心する限りである. あとゆっくりでチルノと魔理沙なのはちょっと意外である. (普通は霊夢と魔理沙. あとアイコンは魔理沙の帽子を被ったチルノかな？）
+- [evima lab](https://www.youtube.com/c/evimalab) evimaさん([Atcoder](https://atcoder.jp))のYoutube. 1回の動画時間が短い割に面白く, 毎回「そーなのかー」と感心する限りである. あとゆっくりでチルノと魔理沙なのはちょっと意外である. (普通は霊夢と魔理沙. あとアイコンは魔理沙の帽子を被ったチルノかな？）
 - [TED-Ed](https://www.youtube.com/user/TEDEducation?app=desktop&hl=ja&client=mv-google&gl=JP) 数学以外も豊富にある. riddle系の動画は結構数学が強めである. 
 - [Numberphile](https://www.youtube.com/@numberphile) Charlie FeffermanやJames Maynardが出てる回がある. 
 - [3Blue1Brown](https://www.youtube.com/c/3blue1brown)
