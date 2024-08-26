@@ -122,8 +122,16 @@ IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演
 
 ## 授業の動画
 - [BORCHERDSのYouTubeチャンネル](https://www.youtube.com/channel/UCIyDqfi_cbkp-RU20aBF-MQ)
-Richard E. BORCHERDSのYouTubeチャンネル. 大量の授業動画がある. これが無料で見れるのは驚きである.
+大量の授業動画がある. これが無料で見れるのは驚きである.
 - [渡邉究先生のYouTubeチャンネル](https://www.youtube.com/channel/UCRcK-UYSCi8uk5SQChka7hA) 中央大学の渡邉究先生のYouTubeチャンネル. 3年次の代数の授業内容をYouTubeで学ぶことができる. プロの数学者の授業を日本語で無償で受けられるとはいい時代になったなあと思う. 一つの動画が10-20分程度なのも嬉しい. 
+
+## 数学に関する動画
+- [evima lab](https://www.youtube.com/c/evimalab) [Atcoder](https://atcoder.jp)のevimaさんのYoutube. 1回の動画時間が短い割に面白く, 毎回「そーなのかー」と感心する限りである. あとゆっくりでチルノと魔理沙なのはちょっと意外である. (普通は霊夢と魔理沙. あとアイコンは魔理沙の帽子を被ったチルノかな？）
+- [TED-Ed](https://www.youtube.com/user/TEDEducation?app=desktop&hl=ja&client=mv-google&gl=JP) 数学以外も豊富にある. riddle系の動画は結構数学が強めである. 
+- [Numberphile](https://www.youtube.com/@numberphile) Charlie FeffermanやJames Maynardが出てる回がある. 
+- [3Blue1Brown](https://www.youtube.com/c/3blue1brown)
+- [Kyoto-U OCW](https://www.youtube.com/channel/UCR6RTNmSsSe0gpbiz9wlcCA) 一時消えそうになったが多くの人の声により存続した. Haconの[Generic vanishing](https://www.youtube.com/watch?v=wkeBot5XcUg&list=PL6YRiWyfIQWp81KGy7XWcIJMwmlmnyw52)や[Boundedness](https://www.youtube.com/watch?v=2kUFPZohOYU)
+の動画もここにある. 
 
 ## その他の役に立つ情報
 - [志学数学 -研究の諸段階 発表の工夫-](https://www.amazon.co.jp/志学数学-研究の諸段階-発表の工夫-シュプリンガー数学クラブ-伊原/dp/4621061593) 伊原康隆先生の本. 数学を志すならば読んでほしい. 良い本なのでここでも勧めることにした. 東大の河東先生の[書評](https://mathsoc.jp/publication/tushin/1004/kawahigashi.pdf)も面白い. 
