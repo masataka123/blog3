@@ -4,8 +4,8 @@
 ## **2024年度**
 - 2024年度春夏学期 大阪大学 全学共通教育科目 線形代数学I 	工（理63〜123）水曜3限 [Link](https://masataka123.github.io/2024_summer_linear_algebra/)
 - 2024年度春夏学期 大阪大学 全学共通教育科目 解析学入門 経（161〜）木曜3限 [Link](https://masataka123.github.io/2024_summer_calculus/)
-- 2024年度秋冬学期 大阪大学 全学共通教育科目 線形代数学概論 医（放・検）火曜4限
-- 2024年度秋冬学期 大阪大学 理学部数学科 幾何学１演義 金曜4限
+- 2024年度秋冬学期 大阪大学 全学共通教育科目 線形代数学概論 医（放・検）火曜4限 [Link](https://masataka123.github.io/2024_winter_linear_algebra/)
+- 2024年度秋冬学期 大阪大学 理学部数学科 幾何学１演義 金曜4限 [Link](https://masataka123.github.io/2024_winter_geometry1/)
 
 ## **2023年度**
 - 2023年度春夏学期 大阪大学 理学部数学科  複素関数論続論演義 火曜4限 [Link](https://masataka123.github.io/2023_summer_complex/)
