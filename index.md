@@ -8,7 +8,6 @@ layout: default
 
 ## **予定など**
 - 2024年4月に新しい論文を出しました.[arXiv](https://arxiv.org/abs/2404.07568) 松村 慎一 氏, Niklas Müller 氏との共同研究です. 
-- 2024年9月17--20日に集会を開きます [Workshop on Algebraic Geometry over complex number field or in positive characteristic -Around positivity of tangent sheaves and anti-canonical divisors-](https://masataka123.github.io/tangent_anticanonical/) 皆さんのご参加お待ちしております.
 - 2024年12月13--15日に集会を開きます [2024年度 多変数関数論冬セミナー](https://masataka123.github.io/2024scvwinter/) 皆さんのご参加お待ちしております.
 
 <!--
