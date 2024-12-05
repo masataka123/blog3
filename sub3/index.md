@@ -14,6 +14,7 @@
 28. 'On minimal projective manifolds with vanishing second Chern classes', [2023 Pacific Rim Complex & Symplectic Geometry Conference](https://2023prcsg.casconf.cn/page/1625378116333604865), SIENA NARADA GRAND HOTEL(Qingtian Country, Lishui City, Zhenjiang Province),  2023年7月24-28日. [PDF](https://masataka123.github.io/blog3/pdf/2023_07_26_PacificRim.pdf)
 29. 'Positivity of tangent sheaves of projective klt varieties' [第29回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa29.html), 石川県政記念 しいのき迎賓館, 2023年12月4-8日. [PDF](https://masataka123.github.io/blog3/pdf/2023_12_05_29thSymposium_CG.pdf)
 30. 'Positivity of tangent sheaves of projective klt varieties' [Young Perspectives on Algebraic Geometry](http://www.jliumath.com/conferences/2023PAG.html), Academy of Mathematics and Systems Science, Chinese Academy of Sciences. 2023年12月9-11日.
+31. ''Complex projective manifolds satisfying Miyaoka's equality' [SCV, CR geometry and Dynamics](https://math.univ-cotedazur.fr/~stolo/conf/SCVCRDyn24.html), RIMS. 2024年11月26日.
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
