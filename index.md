@@ -10,10 +10,12 @@ layout: default
 - 2024年4月に新しい論文を出しました.[arXiv](https://arxiv.org/abs/2404.07568) 松村 慎一 氏, Niklas Müller 氏との共同研究です. 
 
 <!--
+
 - 2023年度秋冬学期 大阪大学理学部数学科 幾何学基礎２（位相空間論）演義 を担当します. [Link](https://masataka123.github.io/2023_winter_generaltopology/)
 - 2023年度秋冬学期 大阪大学 全学共通教育科目 線形代数学入門 (経(161〜)) を担当します.  [Link](https://masataka123.github.io/2023_winter_linearalgebra/)
 - 2024年9月17--20日に集会を開きます [Workshop on Algebraic Geometry over complex number field or in positive characteristic -Around positivity of tangent sheaves and anti-canonical divisors-](https://masataka123.github.io/tangent_anticanonical/) 皆さんのご参加お待ちしております.
 - 2024年12月13--15日に集会を開きます [2024年度 多変数関数論冬セミナー](https://masataka123.github.io/2024scvwinter/) 皆さんのご参加お待ちしております.
+
 -->
 
 
