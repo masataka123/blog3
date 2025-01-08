@@ -1,0 +1,618 @@
+\documentclass[12pt]{amsart}
+
+
+%%%Package
+\setlength{\lineskip}{0pt}
+
+%\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+\usepackage{comment}
+\usepackage[normalem]{ulem}
+%\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref} 
+\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref} %If you use overleaf or Arxiv, these should be commented out, since "dvipdfmx" is not needed
+\usepackage{amscd} 
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb} 
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{bigdelim}
+\usepackage{color} 
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+\usepackage[all]{xy} 
+\usepackage{color} 
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+%\usepackage[driverfallback=dvipdfm]{hyperref}
+%\usepackage[bookmarks=false]{hyperref}
+%\usepackage[dvipdfmx]{hyperref}
+%\usepackage{aligned-overset}
+
+\setlength{\topmargin}{-0.5cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\topmargin}{-0.25cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\baselineskip = 15pt
+\footskip = 32pt
+
+
+
+
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{eg}[thm]{Example} 
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+\numberwithin{equation}{section}
+\newtheorem{case}{Case}
+
+
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\newcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Coker}[0]{\operatorname{Coker}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+\newcommand{\polar}{\beta}
+  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{Z}_+}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+
+\title[Remarks on Miyaoka's inequality for compact K\"ahler manifolds]
+{Remarks on Miyaoka's inequality \\ for compact K\"ahler manifolds}
+
+\author{Masataka IWAI}
+\address{Department of Mathematics, Graduate School of Science, Osaka University,
+1-1, Machikaneyama-cho, Toyonaka, Osaka 560-0043, Japan.}
+\email{{\tt masataka@math.sci.osaka-u.ac.jp}}
+\email{{\tt masataka.math@gmail.com}}
+
+%\author{Shin-ichi MATSUMURA}
+%\address{Mathematical Institute, Tohoku University, 6-3, Aramaki Aza-Aoba, Aoba-ku, Sendai 980-8578, Japan.}
+%\email{{\tt mshinichi-math@tohoku.ac.jp}}
+%\email{{\tt mshinichi0@gmail.com}}
+
+%\author{Niklas M\"uller}
+%\address{Niklas M\"uller, Department of Mathematics, Universit\"at Duisburg-Essen,Thea-Leymann-Str. 9, 45127 Essen, Germany.}
+%\email{{\tt niklas.mueller@uni-duisburg-essen.de}}
+
+
+
+
+
+\date{\today, version 0.02}
+
+%\renewcommand{\subjclassname}{
+%\textup{2020} Mathematics Subject Classification}
+%\subjclass[2020]{Primary 14E30, Secondary 14D06, 32M25 , 32Q26}
+%14D06  Fibrations, degenerations in algebraic geometry
+%14E30  	Minimal model program (Mori theory, extremal rays)
+%32Jxx	Compact analytic spaces {For Riemann surfaces, see 14Hxx, 30Fxx; for algebraic theory, see 14Jxx}
+%32M25  	Complex vector fields, holomorphic foliations, $\mathbb{C}$-actions
+%14M22  	Rationally connected varieties
+%32Q30 Uniformization of complex manifolds
+%32Q26 Notions of stability for complex manifolds
+%14E20 Coverings in algebraic geometry
+%\keywords{Abundance conjecture, Numerical Kodaira dimension, Projectively flat, Numerically projectively flat, Generically ample, Foliation, Fujita's decomposition, Slope, hermitian flat}
+%\keywords{Bogomolov-Gieseker inequality, Logarithmic tangent bundle, Log smooth pair, Projectively flat, Numerically projectively flat, Stability, Uniformization, Rational curve, MRC fibration, Rationally connected}
+%Almost nef, Pseudo-effective, Generically ample, Singular hermitian metrics, Numerically flatness, Foliation, Algebraically integrable foliation, Fujita's decomposition, Slope, hermitian flatness, Anti-canonical bundle, Rational curves, MRC fibrations, Rationally connected, Numerical dimension. Weakly positivity theorem
+
+
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+
+\begin{document}
+
+\maketitle
+%
+%\begin{abstract}
+%\end{abstract}
+%
+%\tableofcontents
+
+
+\section{Miyaoka's inequality for compact K\"aler manifolds}
+
+In this note, we will prove Miyaoka's inequality for compact K\"ahler manifolds.
+A precise statement is as follows:
+
+\begin{thm}
+\label{thm-Miyaoka-inequality-kahler}
+Let $X$ be a compact K\"ahler manifold and $\omega$ be a K\"ahler form.
+If $K_X$ is nef and $\nu(K_X) \ge 2$, then there exists $\varepsilon_{0}$ depending on $(X, \omega)$ such that 
+\begin{equation}
+\label{eq-miyaoka}
+\left( 3c_2(\Omega_{X}^{1}) - c_{1} (\Omega_{X}^{1})^2\right)(K_{X} + \varepsilon \omega)^{n-2}\ge 0.
+\end{equation}
+holds for any $0 < \varepsilon < \varepsilon_{0}$.
+
+Moreover, 
+%there exists $\varepsilon_{0}$ depending on $(X, \omega)$ such that if
+if 
+$$\left( 3c_2(\Omega_{X}^{1}) - c_{1} (\Omega_{X}^{1})^2 \right)(K_{X} + \varepsilon \omega)^{n-2} = 0$$
+ holds for some $0 < \varepsilon < \varepsilon_{0}$, then 
+there exists a finite \'etale cover $A \times S \rightarrow X$, where $A$ is a torus and $S$ is a smooth projective surface whose universal cover is an open ball.
+\end{thm}
+
+In \cite{Miy87}, Miyaoka proved this type inequality for normal projective variety smooth in codimension 2. So, this type inequality \eqref{eq-miyaoka} is called "\textit{Miyaoka's inequality.}"
+There are many studies related to Miyaoka's inequality, for example, \cite{Lan02}, \cite{RT16} and \cite{RT22}. 
+Anyway, for any KLT (Kawamata log terminal) projective variety,  Miyaoka's Inequality holds by \cite{IMM24}.
+But in  K\"ahler case, we don't know whether  Miyaoka's inequalities hold, even if compact K\"ahler manifold case. This is because, in Miyaoka's proof, he use some cutting argument by hypersurfaces.  His argument can not be applied for compact K\"ahler manifold.
+
+In \cite{IMM24}, we show Miyaoka's inequality by using Higgs bundle. So, by using this argument, we can prove Miyaoka's inequality like \eqref{eq-miyaoka}, because the argument about Higgs bundle can be applied for compact K\"ahler manifolds thanks to Simpson's results in \cite{Sim88}.
+
+{\bf Hence the proof of Theorem \ref{thm-Miyaoka-inequality-kahler} is  not new.}
+Indeed, we can prove this inequality only by using the argument of \cite{Cao13},  \cite{IM22} and \cite{IMM24}. However, it is better to prove it, so the author decided to write the proof here. 
+
+
+
+\begin{proof}[Proof of Theorem \ref{thm-Miyaoka-inequality-kahler}]
+\text{}
+
+\vspace{0.5\baselineskip}
+\emph{Step 1: Set up}
+\vspace{0.5\baselineskip}
+
+Set $\nu:=\nu(c_1(K_X))$ and $\alpha_{ \varepsilon }:=c_1(K_X) +  \varepsilon  \{\omega\}$ for any $  \varepsilon  >0$.
+By \cite[Proposition 2.3]{Cao13}, if $  \varepsilon  >0$ is small enough,
+the $\alpha_{ \varepsilon }^{n-1}$-Harder Narasimhan filtration
+$$
+0 =: \mathcal{E}_0 \subset \mathcal{E}_1 \subset \cdots \subset \mathcal{E}_l:=\Omega_{X}^{1}
+$$
+is independent of $  \varepsilon  $.
+Set $\mathcal{G}_i := \mathcal{E}_i / \mathcal{E}_{i-1}$ and $r_i := \rk(\mathcal{G}_i)$.
+Since $\Omega_{X}^{1}$ is $\alpha_{ \varepsilon }^{n-1} $-generically nef for any 
+positive $\varepsilon$ small enough
+by \cite{Cao13}, we have $\mu_{\alpha_{ \varepsilon }}(\mathcal{G}_i) \ge 0$.
+The sheaf $\mathcal{G}_i$ is an $\alpha_{ \varepsilon }^{n-1}$-semistable sheaf.
+By \cite[Claim 6.2]{IM22}, we obtain 
+\begin{equation*}
+\label{eq-zero}
+c_1(\mathcal{G}_i)c_1(K_X)^{\nu}\{\omega\}^{n-1-\nu}  =0.
+\end{equation*}
+
+The Bogomolov-Gieseker inequality shows that
+$c_2(\Omega_{X}^{1})\alpha_{ \varepsilon }^{n-2}>0$ holds if $l=1$.
+Hence, we may assume that $l\ge2$.
+Set $a_i := c_1(\mathcal{G}_i)c_1(K_X)^{\nu -1}\{\omega\}^{n-\nu}$.
+Then, we have
+$$
+\mu_{\alpha_{ \varepsilon }}(\mathcal{G}_i)=\binom{n-1}{\nu-1} \frac{a_i}{r_i} \varepsilon ^{n-\nu}+O(\varepsilon ^{n-\nu+1}).
+$$
+From $\mu_{\alpha_{ \varepsilon }}(\mathcal{G}_1) > \cdots > \mu_{\alpha_{ \varepsilon }}(\mathcal{G}_l)\ge0$,
+we obtain $a_1/r_1 \ge a_2/r_2 \ge \cdots \ge a_l/r_l\ge0$
+for sufficiently small $ \varepsilon >0$.
+
+By \cite[Section 6]{IM22}, we obtain 
+\begin{align}
+\begin{split}
+\label{eq-estimate-epsilon}
+c_1(K_X)^2\alpha_{ \varepsilon }^{n-2} 
+&= \sum_{1\le k\le l}c_1(\mathcal{G}_k)c_1(K_X)\alpha_{ \varepsilon }^{n-2} \\
+&=\binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right) \varepsilon ^{n-\nu}+ O( \varepsilon ^{n-\nu +1}),  \\
+\frac{(c_1(\mathcal{G}_i)c_1(\mathcal{E}) \alpha_{ \varepsilon }^{n-2})^2}{c_1(\mathcal{E})^2 \alpha_{ \varepsilon }^{n-2}} 
+&=\left(\binom{n-2}{\nu-2} a_i \varepsilon ^{n-\nu}+ O( \varepsilon ^{n-\nu +1}) \right)^2
+\cdot \left( \frac{ \varepsilon ^{-n+\nu}}{\binom{n-2}{\nu-2}\left(\sum_{1\le k\le l} a_k \right)}+ O( \varepsilon ^{-n+\nu+1}) \right) \\
+&= \binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1} a_{i}^{2} \varepsilon^{-n+\nu} + O( \varepsilon ^{n-\nu +1}).\\
+%\left(c_1(\mathcal{E})^2 \alpha_{ \varepsilon }^{n-2}\right)^{-1} 
+%&=
+%\left(\binom{n-2}{\nu-2}\left( \sum_{1\le k\le l} a_k \right)\varepsilon ^{n-\nu}+ O( \varepsilon ^{n-\nu +1}) \right)^{-1}\\
+%&=
+%\frac{ \varepsilon ^{-n+\nu}}{\binom{n-2}{\nu-2}\left(\sum_{1\le k\le l} a_k \right)}+ O( \varepsilon ^{-n+\nu+1}). \\
+%c_1(\mathcal{G}_i)c_1(\mathcal{E}) \alpha_{ \varepsilon }^{n-2} 
+%&=\binom{n-2}{\nu-2} a_i \varepsilon ^{n-\nu}+ O( \varepsilon ^{n-\nu +1}),  \\
+\end{split}
+\end{align}
+
+\vspace{0.5\baselineskip}
+\emph{Step 2: Estimate of $c_2(\mathcal{G}_i)\alpha_{\varepsilon}^{n-2}$.}
+%\emph{Step 2: $\mathcal{E}_1 \oplus \mathcal{O}_X$ has a Higgs bundle structure.}
+\vspace{0.5\baselineskip}
+
+ Since $\mathcal{G}_i$ is $\alpha_{\varepsilon}^{n-1}$-semistable for any $2 \le i \le l$, the Bogomolov-Gieseker inequality yields
+\begin{equation}
+\label{eq-BG}
+\left( c_2(\mathcal{G}_i) - \frac{r_i - 1}{2r_i}c_1(\mathcal{G}_i)^2 \right)\alpha_{\varepsilon}^{n-2} \ge 0
+\end{equation}
+
+To get a desired inequality, we need to estimate $c_2(\mathcal{G}_1)\alpha_{\varepsilon}^{n-2}$ more detail.
+We define the Higgs sheaf $(\mathcal{H}, \theta)$  by 
+$\mathcal{H} := \mathcal{G}_1 \oplus \mathcal{O}_{X}$ and 
+$$
+\begin{array}{cccc}
+\theta \colon  & \mathcal{H} = \mathcal{G}_1 \oplus \mathcal{O}_{X} &\rightarrow  
+&\mathcal{H} \otimes \Omega_{X}^{1} = (\mathcal{G}_1 \oplus \mathcal{O}_{X}) \otimes \Omega_{X}^{1} \\
+	   & (a,b)&\mapsto& (0,a).
+\end{array}
+$$
+Since $\mathcal{G}_1 \subset \Omega_{X}^{1}$ is $\alpha_{\varepsilon}^{n-1}$-semistable with $\mu_{\alpha_{\varepsilon}^{n-1}}(\mathcal{G}_1)>0$, 
+the Higgs sheaf $(\mathcal{H}, \theta)$ is $ \alpha_{\varepsilon}^{n-1}$-stable by the same argument in  \cite[Proposition 2.8]{IMM24}. Hence the Bogomolov-Gieseker inequality in \cite{Sim88} yields
+\begin{equation}
+\label{eq-BG-Higgs}
+\left( c_2(\mathcal{G}_1) - \frac{r_1}{2(r_1 +1)}c_1(\mathcal{G}_1)^2 \right)\alpha_{\varepsilon}^{n-2} \ge 0.
+\end{equation}
+
+\vspace{0.5\baselineskip}
+\emph{Step 3: Calculation of $\left(6c_2(\Omega_{X}^{1}) - 2 c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} $.}
+\vspace{0.5\baselineskip}
+
+By the same calculation as in \cite[Section 6]{IM22}, we obtain 
+\begin{align}
+\begin{split}
+\label{eq-inequality-cptkahler}
+&\left(6c_2(\Omega_{X}^{1}) - 2 c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} \\
+%&\underalign{}{=}
+%\left(\sum_{1\le i\le l}\left( 6c_2(\mathcal{G}_i )- 3c_1 (\mathcal{G}_i)^2 \right)+ 3c_1(X)^2 - 2 c_1(X)^2 \right)\alpha_{ \varepsilon }^{n-2}\\
+&\underalign{}{=}
+\left(c_1(K_X)^2  + \sum_{2\le i\le l}\left( 6c_2(\mathcal{G}_i )- 3c_1 (\mathcal{G}_i)^2 \right)
++ 6c_2(\mathcal{G}_1) - 3 c_{1}(\mathcal{G}_1)^{2} \right)\alpha_{ \varepsilon }^{n-2} \\
+& \underalign{\eqref{eq-BG}}{\ge} 
+\left(c_1(K_X)^2  + \sum_{2\le i\le l}\left( \frac{3(r_i -1)}{r_i}c_2(\mathcal{G}_i )- 3c_1 (\mathcal{G}_i)^2 \right)
++ 6c_2(\mathcal{G}_1) - 3 c_{1}(\mathcal{G}_1)^{2} \right)\alpha_{ \varepsilon }^{n-2} \\
+&\underalign{}{=}
+\left(c_1(K_X)^2  - \sum_{2\le i\le l}\left( \frac{3}{r_i}c_1 (\mathcal{G}_i)^2 \right)
++ 6c_2(\mathcal{G}_1) - 3 c_{1}(\mathcal{G}_1)^{2} \right)\alpha_{ \varepsilon }^{n-2} \\
+& \underalign{\left(\text{by Hodge index Theorem}\right)}{\ge} 
+c_1(K_X)^2\alpha_{ \varepsilon }^{n-2} - 
+3\sum_{2\le i\le l}\frac{(c_1(\mathcal{G}_i)c_1(K_X) \alpha_{ \varepsilon }^{n-2})^2}{r_ic_1(K_X)^2 \alpha_{ \varepsilon }^{n-2}}
++ \left(6c_2(\mathcal{G}_1) - 3 c_{1}(\mathcal{G}_1)^{2}\right) \alpha_{ \varepsilon }^{n-2} \quad \\\
+ \end{split}
+\end{align}
+
+If $r_1 =1$, the equation \eqref{eq-BG-Higgs} implies $c_{1}(\mathcal{G}_1)^{2} \le 0$. Thus, as in the estimates of \cite[p.25]{IM22}, we obtain 
+\begin{align*}
+\begin{split}
+&\left(6c_2(\Omega_{X}^{1}) - 2 c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} \\
+&\underalign{}{\ge} 
+c_1(K_X)^2\alpha_{ \varepsilon }^{n-2} - 3\sum_{2\le i\le l}\frac{(c_1(\mathcal{G}_i)c_1(K_X) \alpha_{ \varepsilon }^{n-2})^2}{r_ic_1(K_X)^2 \alpha_{ \varepsilon }^{n-2}}  \\
+& \underalign{\eqref{eq-estimate-epsilon}}{=}
+ \binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1}
+\left(\sum_{1\le i\le l} a_i \sum_{1\le j\le l} a_j - 3\sum_{2\le i\le l} \frac{a_{i}^{2}}{r_i} \right)\varepsilon ^{n-\nu}
++ O( \varepsilon ^{n-\nu+1}) \\
+&\underalign{}{ \ge}
+\binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1}
+\left(\sum_{1\le i\le l} a_i \sum_{1\le j\le l} a_j - 3a_1\sum_{2\le i\le l} a_i \right)\varepsilon ^{n-\nu}
++ O( \varepsilon ^{n-\nu+1})  \quad \left(\text{by } \frac{a_1}{r_1} \ge \frac{a_i}{r_i}\right)
+\\
+ &\underalign{}{=}
+ \binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1}
+\left(\left(a_1 -\frac{1}{2} \sum_{2\le i\le l} a_i \right)^{2} + \frac{3}{4} \left(\sum_{2\le i\le l} a_i \right)^{2} \right)\varepsilon ^{n-\nu}
++ O( \varepsilon ^{n-\nu+1}).
+ \end{split}
+\end{align*}
+Since $\sum_{1 \le i \le l}a_i =1$, 
+$$\left(a_1 -\frac{1}{2} \sum_{2\le i\le l} a_i \right)^{2} + \frac{3}{4} \left(\sum_{2\le i\le l} a_i \right)^{2}
+$$
+ is always positive, hence $\left(3c_2(\Omega_{X}^{1}) - c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} $ is also positive for any $0 < \varepsilon \ll 1$.
+
+From now on, we may assume $r_1 \ge 2$.
+
+\begin{claim}
+\label{claim_kalher_inequality}
+The following estimate holds:
+\begin{align*}
+\begin{split}
+& \left(6c_2(\Omega_{X}^{1}) - 2 c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2}  \\ 
+&\ge \binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1}
+\left( \left(1 - \frac{3}{r_1 + 1} \right) a_{1}^{2}
++ \sum_{2\le i\le l} a_i \left(2 - \frac{3}{r_1} \right) a_{1}
++\left(\sum_{2\le i\le l} a_i \right)^2 \right)\varepsilon ^{n-\nu} + O( \varepsilon ^{n-\nu+1}) 
+ \end{split}
+ \end{align*}
+ 
+ In particular, if $r_1 >2$ or $\sum_{2\le i\le l} a_i >0$, then $\left(3c_2(X) -  c_1(X)^2 \right)\alpha_{ \varepsilon }^{n-2} $ is positive for any $0 < \varepsilon \ll 1$.
+\end{claim}
+
+\begin{proof}[Proof of Claim \ref{claim_kalher_inequality}]
+%By the same argument as in Lemma \ref{prop-Higgs-1}, the Bogomolov-Gieseker inequality yields
+%$$
+%\left(6c_2(\mathcal{E}_1) - 3 c_{1}(\mathcal{E}_1)^{2}\right) \alpha_{ \varepsilon }^{n-2})
+% \ge -3 \frac{ c_{1}(\mathcal{E}_1)^{2}\alpha_{ \varepsilon }^{n-2}}{r_1 +1} 
+% \ge -3 \frac{ (c_1(\mathcal{E}_1)c_1(K_X) \alpha_{ \varepsilon }^{n-2})^2}{(r_1 %+1) c_1(K_X)^2 \alpha_{ \varepsilon }.^{n-2}}
+%$$
+As in the estimates of \cite[p. 25]{IM22}, we obtain 
+\begin{align*}
+\begin{split}
+&\left(6c_2(\Omega_{X}^{1}) - 2 c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} \\
+%&\ge c_1(\mathcal{E})^2\alpha_{ \varepsilon }^{n-2} - 3\sum_{2\le i\le l}\frac{(c_1(\mathcal{G}_i)c_1(\mathcal{E}) \alpha_{ \varepsilon }^{n-2})^2}{r_ic_1(\mathcal{E})^2 \alpha_{ \varepsilon }^{n-2}}  -3 \frac{ (c_1(\mathcal{E}_1)c_1(\mathcal{E}) \alpha_{ \varepsilon }^{n-2})^2}{(r_1 +1) c_1(\mathcal{E})^2 \alpha_{ \varepsilon }^{n-2}}\\
+&\underalign{\eqref{eq-BG-Higgs}}{\ge}
+c_1(K_X)^2\alpha_{ \varepsilon }^{n-2} - 
+3\sum_{2\le i\le l}\frac{(c_1(\mathcal{G}_i)c_1(K_X) \alpha_{ \varepsilon }^{n-2})^2}{r_ic_1(K_X)^2 \alpha_{ \varepsilon }^{n-2}}
++ \left( \frac{3 r_1}{r_1 + 1}c_{1}(\mathcal{G}_1)^{2}- 3 c_{1}(\mathcal{G}_1)^{2}\right)\alpha_{ \varepsilon }^{n-2} \\
+&\underalign{\text{(by Hodge index Theorem)}}{\ge}
+c_1(K_X)^2\alpha_{ \varepsilon }^{n-2} - 
+3\sum_{2\le i\le l}\frac{(c_1(\mathcal{G}_i)c_1(K_X) \alpha_{ \varepsilon }^{n-2})^2}{r_ic_1(K_X)^2 \alpha_{ \varepsilon }^{n-2}}
+-3\frac{(c_1(\mathcal{G}_1)c_1(K_X) \alpha_{ \varepsilon }^{n-2})^2}{(r_1 +1) c_1(K_X)^2 \alpha_{ \varepsilon }^{n-2}}  \\
+&\underalign{\eqref{eq-estimate-epsilon}}{=}
+\binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1}
+\left(\sum_{1\le i\le l} a_i \sum_{1\le j\le l} a_j - 3\sum_{2\le i\le l} \frac{a_{i}^{2}}{r_i} - 3\frac{a_{1}^{2}}{r_1 + 1}\right)\varepsilon ^{n-\nu}
++ O( \varepsilon ^{n-\nu+1}) \\
+&\underalign{\text{by  $\frac{a_1}{r_1} \ge \frac{a_i}{r_i}$}}{\ge}
+\binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1}
+\left(\sum_{1\le i\le l} a_i \sum_{1\le j\le l} a_j - 3 \frac{a_1}{r_1} \sum_{2\le i\le l}a_{i}- 3\frac{a_{1}^{2}}{r_1 + 1}\right)\varepsilon ^{n-\nu}
++ O( \varepsilon ^{n-\nu+1}) \\
+%\quad \left(\text{by } \frac{a_1}{r_1} \ge \frac{a_i}{r_i}\right)\\
+& \underalign{}{=}
+\binom{n-2}{\nu-2} \left(\sum_{1\le k\le l} a_k \right)^{-1}
+\left( \left(1 - \frac{3}{r_1 + 1} \right) a_{1}^{2}
++ \sum_{2\le i\le l} a_i \left(2 - \frac{3}{r_1} \right) a_{1}
++\left(\sum_{2\le i\le l} a_i \right)^2 \right)\varepsilon ^{n-\nu}\\
+& \quad\quad \underalign{}{+} O( \varepsilon ^{n-\nu+1}). \\
+\end{split}
+\end{align*}
+Hence, if $r_1 >2$ or $\sum_{2\le i\le l} a_i >0$, then 
+$$
+\left(1 - \frac{3}{r_1 + 1} \right) a_{1}^{2}
++ \sum_{2\le i\le l} a_i \left(2 - \frac{3}{r_1} \right) a_{1}
++\left(\sum_{2\le i\le l} a_i \right)^2  >0, 
+$$
+in particular, $\left(3c_2(\Omega_{X}^{1}) -  c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} $ is positive for any $0 < \varepsilon \ll 1$.
+\end{proof}
+
+From now on, we assume that $r_1 =2$ and $\sum_{2\le i\le l} a_i  = 0$.
+Let us consider the case where
+$c_1(\mathcal{G}_2)c_1(K_X)^{\nu -t}\{\omega\}^{n-1-\nu+t}\neq 0 $ holds
+for some $t \in \{ 2, \ldots, \nu-1\}$.
+Then, we take the minimal number $s \in \{ 2, \ldots, \nu-1\}$ such that $c_1(\mathcal{G}_2)c_1(K_X)^{\nu -s}\{\omega\}^{n-1-\nu+s}\neq 0 $, and
+set $b_i := c_1(\mathcal{G}_i)c_1(K_X)^{\nu -s}\{\omega\}^{n-1-\nu+s}$
+for any $i = 2, \ldots, l$.
+Then, since we have
+$$
+c_1(\mathcal{G}_i) \alpha_{ \varepsilon }^{n-1} 
+= 
+\binom{n-1}{\nu-s} b_i \varepsilon ^{n-\nu+s-1} + O(\varepsilon ^{n-\nu+s})
+\ge 0,
+$$
+we obtain $b_i \ge 0$. 
+Thus we conclude that   $\sum_{2 \le i\le l}b_{i}>0$.
+Moreover, by the Hodge index Theorem, we can estimate as follows:
+\begin{align}
+\begin{split}
+\label{eq-estimate-nu}
+c_1(\mathcal{G}_i)c_1(K_X) \alpha_{ \varepsilon } ^{n-2}
+&=
+\binom{n-2}{\nu-s-1} b_i \varepsilon ^{n-\nu+s-1}  + O( \varepsilon ^{n-\nu+s}) 
+\\
+c_1(\mathcal{G}_i)^2 \alpha_{ \varepsilon } ^{n-2}
+&\le \frac{\left(c_1(\mathcal{G}_i)c_1(K_X) \alpha_{ \varepsilon }^{n-2}\right)^2}{c_1(K_X)^2 \alpha_{ \varepsilon }^{n-2}}
+=
+\frac{\binom{n-2}{\nu-s-1}^2 b_{i}^{2} }{ \binom{n-2}{\nu-2}a_1}  \varepsilon ^{n-\nu + 2s -2} + O( \varepsilon ^{n-\nu + 2s -1})\\
+\left ( \sum_{2 \le i \le l} c_1(\mathcal{G}_i) \right)^{2} \alpha_{ \varepsilon }^{n-2}
+& \le \frac{ \left(\sum_{2 \le i \le l} c_1(\mathcal{G}_i)c_1(K_X)\alpha_{ \varepsilon }^{n-2} \right)^2}{c_1(K_X)^2\alpha_{ \varepsilon }^{n-2}}\\
+&= \frac{\binom{n-1}{\nu-s-1}^2 (\sum_{2 \le i\le l}b_{i})^{2} }{ \binom{n-2}{\nu-2}a_1}  \varepsilon ^{n-\nu + 2s -2} + O( \varepsilon ^{n-\nu + 2s -1}).\\
+ \end{split}
+\end{align}
+Hence, by the same argument as in \cite[p.26]{IM22}, we can get
+\begin{align}
+\begin{split}
+\label{eq-inequality-cptkahler-2}
+&\left(6c_2(\Omega_{X}^{1}) - 2 c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} \\
+& \underalign{\eqref{eq-inequality-cptkahler}}{\ge} 
+\left(
+c_1(K_X)^2
+- 3\sum_{2\le i\le l}\frac{c_1(\mathcal{G}_i)^2}{r_i}  
++ 6c_2(\mathcal{G}_1) - 3 c_{1}(\mathcal{G}_1)^{2}
+ \right)
+\alpha_{ \varepsilon }^{n-2} 
+\\\
+&\underalign{\eqref{eq-BG-Higgs}}{\ge}
+\left(
+c_1(K_X)^2
+- 3\sum_{2\le i\le l}\frac{c_1(\mathcal{G}_i)^2}{r_i}  
+ -  c_{1}(\mathcal{G}_1)^{2}
+ \right) 
+ \alpha_{ \varepsilon }^{n-2}  \\
+ &\underalign{}{=}  
+ \left(
+ 2 \sum_{2\le i\le l} c_1(\mathcal{G}_i)c_1(K_X) 
+ - \left( \sum_{2\le i\le l} c_1(\mathcal{G}_i) \right)^2
+ - \sum_{2\le i\le l} \frac{3}{r_i}c_1(\mathcal{G}_i)^2
+ \right)
+ \alpha_{ \varepsilon }^{n-2}
+ \\
+ &\underalign{ \eqref{eq-estimate-nu}}{\ge} 
+ 2\binom{n-2}{\nu-s-1} \left(\sum_{2 \le i\le l}b_{i}\right)  \varepsilon ^{n-\nu+s-1}+ O( \varepsilon ^{n-\nu+s}).
+ \end{split}
+\end{align}
+From $s-1>0$ and  $\sum_{2 \le i\le l}b_{i}>0$
+we obtain $\left(3c_2(\Omega_{X}^{1}) -  c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} >0$
+for sufficiently small $ \varepsilon >0$.
+
+Hence, from now on, we assume that $c_1(\mathcal{G}_i)c_1(K_X)^{t}\{\omega\}^{n-1-t} = 0 $
+for any $t = 1, \dots,  n-1$ and $i = 2, \dots, l$.
+Then we have
+\begin{equation}
+\label{eq-inner-product-zero}
+c_1(\mathcal{G}_i)c_1(K_X)\alpha_{ \varepsilon } ^{n-2}=c_1(\mathcal{G}_i)c_1(K_X)(c_1(K_X) +  \varepsilon  \{\omega\})^{n-2}=0.
+\end{equation}
+From $c_1(K_X)^2\alpha_{ \varepsilon } ^{n-2} >0$,
+we obtain 
+\begin{equation}
+\label{eq-square-zero}
+c_1(\mathcal{G}_i)^2 \alpha_{ \varepsilon } ^{n-2} \le 0 \quad \text{and} \quad 
+\left( \sum_{2\le i\le l} c_1(\mathcal{G}_i) \right)^2 \alpha_{ \varepsilon } ^{n-2}\le 0
+\end{equation}
+by the Hodge index Theorem in \cite[Lemma 6.1]{IM22}.
+Thus, it holds that
+\begin{align*}
+\begin{split}
+&\left(6c_2(\Omega_{X}^{1}) - 2 c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon }^{n-2} \\
+&\underalign{\eqref{eq-inequality-cptkahler-2}}{\ge}
+ \left(
+ 2 \sum_{2\le i\le l} c_1(\mathcal{G}_i)c_1(K_X) 
+ - \left( \sum_{2\le i\le l} c_1(\mathcal{G}_i) \right)^2
+ - \sum_{2\le i\le l} \frac{3}{r_i}c_1(\mathcal{G}_i)^2
+ \right)
+ \alpha_{ \varepsilon }^{n-2} \\
+ &\underalign{\eqref{eq-inner-product-zero} \text{ and } \eqref{eq-square-zero}}{\ge}
+ 0.
+ \end{split}
+\end{align*}
+
+To summarize all the discussions in Step 3, we can say that $\left(3c_2(\Omega_{X}^{1}) - c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon } ^{n-2}$ is nonnegative for any $0 < \varepsilon \ll 1$.
+
+
+\vspace{0.5\baselineskip}
+\emph{Step 4: The structure of $X$ if equality holds in \eqref{eq-miyaoka}}
+%\emph{Step 2: $\mathcal{E}_1 \oplus \mathcal{O}_X$ has a Higgs bundle structure.}
+\vspace{0.5\baselineskip}
+
+We consider the case of 
+$\left(6c_2(\Omega_{X}^{1}) - 2c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon } ^{n-2} =0 $  for some small $0 < \varepsilon \ll 1$. 
+By the argument in Step 3, we obtain 
+$$\rk \mathcal{E}_1 =2 \quad \text{and} \quad c_1(\mathcal{G}_i)^2 \alpha_{ \varepsilon } ^{n-2} = 0$$
+for any $2 \le i \le l$. Hence the Hodge index Theorem in \cite[Lemma 6.1]{IM22} implies $c_1(\mathcal{G}_i) \equiv0$, and finally we can get $c_1(\mathcal{G}_1) \equiv c_1(K_X)$ and $l=2$. 
+
+Set $\mathcal{Q} := \Omega_{X}^{1}/\mathcal{G}_1$. Then we have 
+\begin{equation}
+\label{eq-inequality-cptkahler-3}
+\left(3c_2(\Omega_{X}^{1}) - c_1(\Omega_{X}^{1})^2 \right)\alpha_{ \varepsilon } ^{n-2}
+= \left(3c_2(\mathcal{G}_1) - c_1(\mathcal{G}_1)^2 \right)\alpha_{ \varepsilon } ^{n-2}
++ 3c_2(\mathcal{Q})\alpha_{ \varepsilon } ^{n-2}.
+\end{equation}
+%Since $\mathcal{Q}$ is $\alpha_{ \varepsilon } ^{n-1}$-semistable, 
+Since the two terms in RHS of (\ref{eq-inequality-cptkahler-3}) is nonnegative, hence we obtain
+$$
+ \left(3c_2(\mathcal{G}_1) - c_1(\mathcal{G}_1)^2 \right)\alpha_{ \varepsilon } ^{n-2}
+= 3c_2(\mathcal{Q})\alpha_{ \varepsilon } ^{n-2} =0.
+$$
+Thus $\mathcal{Q}$ is a rank $n-2$ flat locally free sheaf.
+Hence, $\mathcal{Q}^{\vee} \subset T_X$ is a regular codimension 2 foliation with hermitian flat structure. 
+Thus, by \cite{PT13}, there exists a finite \'etale cover $A \times S \rightarrow X$, where $A$ is a torus and $S$ is a smooth projective surface whose universal cover is an open ball (see also \cite[Theorem 4.12]{IMM24}).
+
+%By an  easy calculation, we obtain $ \left(3c_2(X) -  c_1(X)^2 \right)\alpha_{ \varepsilon }^{n-2} $ for any $0 < \varepsilon \ll 1$.
+ %Moreover, there exists a $\varepsilon_{0}$ depending on $(X, \omega)$ such that if$\left( 3c_2(X) - c_{1}^{2}(X)\right)(K_{X} + \varepsilon \omega)^{n-2} = 0$for some $0 < \varepsilon \ll \varepsilon_{0}$, then $r_1=2$, $\left(3c_2(\mathcal{E}_1)-c_1(\mathcal{E}_1)^2 \right)\alpha_{ \varepsilon }=0$, and $c_1(\mathcal{E}_1)  \equiv K_X$.
+%If Claim \ref{claim_kalher_inequality} holds, then $\mathcal{Q} := \Omega_{X}^{1} / \mathcal{E}_1$ is flat locally free sheaf by the same argument as in Theorem \ref{thm-Miyaoka-equal-case}.
+%Thus $\mathcal{Q}^{*} \subset T_{X}$ is a codimension 2 flat foliation, by \cite{PT14},
+%there exists a finite \'etale cover $\gamma : A \times S \rightarrow X$, where $A$ is a torus and $S$ is a smooth projective surface whose universal cover is an open ball.
+%Hence, if $\left(6c_2(X) - 2 c_1(X)^2 \right)\alpha_{ \varepsilon } ^{n-2} =0$ for some $\varepsilon_0> \varepsilon >0$, By the same argument in \ref{claim-locally-free}, hence $\left(3c_2(X) - c_1(X)^2 \right)\alpha_{ \varepsilon } ^{n-2}$ is also nonnegative for any $0 < \varepsilon \ll 1$.If the LHS of (\ref{eq-inequality-cptkahler-3}) is zero  for some small $0 < \varepsilon \ll 1$, then 
+
+\end{proof}
+
+By putting together \cite{IM22} and Theorem \ref{thm-Miyaoka-inequality-kahler}, we obtain the following theorem.
+\begin{thm}
+Let $X$ be a compact K\"ahler manifold and $\omega$ be a K\"ahler form.
+If $K_X$ is nef, then there exists $\varepsilon_{0}$ depending on $(X, \omega)$ such that 
+\begin{equation}
+\left( 3c_2(\Omega_{X}^{1}) - c_{1} (\Omega_{X}^{1})^2\right)(K_{X} + \varepsilon \omega)^{n-2}\ge 0
+\end{equation}
+holds for any $0 < \varepsilon < \varepsilon_{0}$.
+
+Moreover, 
+%there exists $\varepsilon_{0}$ depending on $(X, \omega)$ such that if
+if 
+$$\left( 3c_2(\Omega_{X}^{1}) - c_{1} (\Omega_{X}^{1})^2 \right)(K_{X} + \varepsilon \omega)^{n-2} = 0$$
+ holds for some $0 < \varepsilon < \varepsilon_{0}$, then, the canonical divisor $K_X$ is semi-ample and $\nu(K_{X})=\kappa(K_{X})$ is either $0$, $1$, or $2$. 
+Moreover, up to finite \'etale cover of $X$, one of the following holds depending on the Kodaira dimension:
+\begin{itemize}
+\item[$(i)$] In the case where $\nu(K_{X})=\kappa(K_{X})=0$, 
+the variety $X$ is isomorphic to a complex torus. 
+
+\item[$(ii)$] In the case where $\nu(K_{X})=\kappa(K_{X})=1$, 
+the variety $X$ admits a smooth torus fibration $X \rightarrow C$ over a curve $C$ of genus $\ge 2$.
+
+\item[$(iii)$] In the case where $\nu(K_{X})=\kappa(K_{X})=2$, the variety $X$ is isomorphic to the product $A \times S$ of a complex torus $A$ 
+and a smooth projective surface $S$ whose universal cover is an open ball in $\mathbb{C}^{2}$. 
+\end{itemize}
+\end{thm}
+
+\subsection*{Acknowledgments}
+The author would like to thank the organizers of \textit{"SCV, CR geometry and Dynamics"} at RIMS in Kyoto for providing the opportunity to write this note.\footnote{In this conference, the author mentioned this contents at his talk. Then one audience asked to him “who proved the Miyaoka's inequality for compact K\"ahler manifolds ?". By this question, he found that Miyaoka's inequality for compact K\"ahler manifold has never been known before. So he decided to write this note. }
+
+\bibliographystyle{alpha}
+\bibliography{ref_minimal.bib}
+\end{document}
+
+

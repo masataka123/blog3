@@ -13,17 +13,23 @@
 
 # **プレプリント**
 
-- Masataka Iwai, Shin-ichi Matsumura. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' [arXiv](https://arxiv.org/abs/2205.10613)
+- Masataka Iwai, Shin-ichi Matsumura. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' [arXiv](https://arxiv.org/abs/2205.10613) 
 
 - Masataka Iwai, Shin-ichi Matsumura, Guolei Zhong 'Positivity of tangent sheaves of projective varieties -- the structure of MRC fibrations.'  [arXiv](https://arxiv.org/abs/2309.09489)
 
 - Masataka Iwai, Shin-ichi Matsumura, Niklas Müller 'Minimal projective varieties satisfying Miyaoka's equality.'  [arXiv](https://arxiv.org/abs/2404.07568)
 
+# **Note**
+- [Remarks on minimal compact Kahler manifolds with vanishing second Chern class](https://masataka123.github.io/blog3/pdf/Torus_fibration_c2=0.pdf)
+ 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.'の補足です. 
+- [Remarks on Miyaoka's inequality for compact Kahler manifolds](https://masataka123.github.io/blog3/pdf/Miyaoka_inequality_kahler.pdf)
+'Minimal projective varieties satisfying Miyaoka's equality.' の補足です. 
+
 # **報告集**
-- '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
-- 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
--  'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' 都の西北代数幾何学シンポジウム2021報告集 [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
-- 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' 第69回幾何学シンポジウム 予稿(報告集) [PDF](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
+1. '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
+2. 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
+3.  'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' 都の西北代数幾何学シンポジウム2021報告集 [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
+4. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' 第69回幾何学シンポジウム 予稿(報告集) [PDF](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)

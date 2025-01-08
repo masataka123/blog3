@@ -1,0 +1,223 @@
+\documentclass[12pt]{amsart}
+
+
+
+\setlength{\topmargin}{-0.5cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\topmargin}{-0.25cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+
+\usepackage{amscd}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bigdelim}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+\usepackage[all]{xy}
+
+\usepackage{amsmath,calligra,mathrsfs}
+
+
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{comment}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{setup}[thm]{Setting}
+\newtheorem{e.g.}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notations}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgments}
+
+\numberwithin{equation}{section}
+
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\newcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\rk}{{\rm rk}}
+\newcommand{\Supp}{{\rm Supp}}
+
+
+
+
+\newcommand{\Hom}{{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}}
+
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\title[Remarks on minimal compact K\"ahler manifolds with vanishing second Chern class]
+{Remarks on minimal compact K\"ahler manifolds with vanishing second Chern class}
+
+
+\author{Masataka IWAI}
+\address{Department of Mathematics, Graduate School of Science, Osaka University,
+1-1, Machikaneyama-cho, Toyonaka, Osaka 560-0043, Japan.}
+\email{{\tt masataka@math.sci.osaka-u.ac.jp}}
+\email{{\tt masataka.math@gmail.com}}
+
+%\author{Shin-ichi MATSUMURA}
+%\address{Mathematical Institute, Tohoku University,6-3, Aramaki Aza-Aoba, Aoba-ku, Sendai 980-8578, Japan.}
+%\email{{\tt mshinichi-math@tohoku.ac.jp}}
+%\email{{\tt mshinichi0@gmail.com}}
+
+
+\date{\today, version 0.01}
+
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+
+\begin{document}
+
+\maketitle
+
+%\begin{abstract}
+%このメモは2024年11月に開かれた集会で指摘された問題"いつどの多様体が$c_2=0$になるか"について考えたものです. 
+%\end{abstract}
+
+%\tableofcontents
+
+
+\section{Remarks on minimal compact K\"ahler manifolds with vanishing second Chern class}
+
+\begin{thm}
+\label{thm-Torus-fibration}
+Let $X \to C $ be a smooth torus fibration onto a curve $C$ of genus $\ge 2$.
+Then, the numerical Kodaira dimension $\nu(K_{X})$ is equal to one and  the cotangent bundle $\Omega_{X}$ is nef. In particular, $c_2(\Omega_{X})=0$.
+\end{thm}
+
+The following proof is based on an idea by Xiaojun Wu.
+\begin{proof}
+Since $f$ is a smooth torus fibration, the curvature of $K_{X/C}$ is equal to the pull-back of the Weil-Peterson form as follows (c.f. \cite[Equation 1.1]{BCS20}):
+$$
+2 \pi c_1(K_{X/C}) = \frac{1}{{\rm vol} X_{c}} f^{*}\omega_{{\rm WP}}.
+$$
+The dimension of $C$ is one, so we conclude that $c_1(\Omega_{X})^2 =0$.
+
+Since $f^{*}\Omega_{C}$ is nef, it is enough to show that $\Omega_{X/C}$ is also nef.
+This is directly follows from \cite[Theorem 5.2 and Corollary 7.8]{Gri70} and \cite[Proposition 5]{Kra97}.
+Indeed, by \cite{Gri70}, $R^{1}f_{*}\mathcal{O}_{X}$ is Griffith seminegative.\footnote{In Griffith's paper, the  fibration is assumed to be projective. However, this result holds even in the case when $f$ is proper K\"ahler submersion. For more details, please refer to \cite[Section 2.3]{MT07}. Using the same notation as in \cite[Section 2.3]{MT07}, setting $d=1$ and $p=0$, it follows that $R^{1}f_{*}\mathcal{O}_{X}$ is Griffith seminegative.} 
+Thus $f_{*}\Omega_{X/C}$ is Griffith semipositive, so is $\Omega_{X/C}=f^{*}f_{*}\Omega_{X/C}$.
+\end{proof}
+
+Since the condition "$c_2(\Omega_{X})=0$" is invariant under finite étale covers, we obtain the following corollary from \cite{IM22}.
+
+\begin{cor}[cf. \cite{IM22}]
+Let $X$ be a compact K\"ahler manifold  with nef canonical divisor $K_{X}$. 
+Then $c_2(\Omega_{X})=0$ in $H^{2,2}(X,\R)$ \xr{if and only if}
+there exists a finite \'etale cover $X'\rightarrow X$ such that one of the following holds depending on the Kodaira dimension$:$
+\begin{itemize}
+\item[$(i)$] In the case where $\nu(K_{X})=\kappa(K_{X})=0$, 
+the variety $X'$ is isomorphic to a complex torus. 
+\item[$(ii)$] In the case where $\nu(K_{X})=\kappa(K_{X})=1$, 
+the variety $X'$ admits a smooth torus fibration $X \to C$ onto a curve of genus $\ge 2$.
+\end{itemize}
+\end{cor}
+Similarly, we obtain the following corollary.
+\begin{cor}[cf. \cite{IMM24}]
+Let $X$ be a projective klt variety of dimension $n$ with nef canonical divisor $K_{X}$. Then the Miyaoka's equality holds for some ample divisors $H_i$ on $X$$:$
+\begin{equation*}
+\label{eq-miyaoka}
+ \left( 3 \widehat{c}_2(\Omega_{X}^{[1]}) - \widehat{c}_1(\Omega_{X}^{[1]})^2 \right)
+H_1\cdots H_{n-2}=0
+\end{equation*}
+\xr{if and only if} there exists a finite quasi-\'etale cover $X'\rightarrow X$ such that one of the following holds depending on the Kodaira dimension$:$
+\begin{itemize}
+\item[$(i)$] In the case where $\nu(K_{X})=\kappa(K_{X})=0$, 
+the variety $X'$ is isomorphic to an abelian variety. 
+
+\item[$(ii)$] In the case where $\nu(K_{X})=\kappa(K_{X})=1$, 
+the variety $X'$ admits the structure of an abelian group scheme $X' \rightarrow C$ over a curve $C$ of general type.
+
+
+\item[$(iii)$] In the case where $\nu(K_{X})=\kappa(K_{X})=2$, the variety $X'$ is isomorphic to the product $A \times S$ of an abelian variety $A$ 
+and a smooth surface $S$ whose universal cover is an open ball in $\mathbb{C}^{2}$. 
+\end{itemize}
+\end{cor}
+
+\subsection*{Acknowledgments}
+The author would like to thank Xiaojun Wu for kindly considering this problem and sharing his ideas.  
+He also thank Prof.\, Ngaiming Mok for suggesting the problem that inspired Theorem \ref{thm-Torus-fibration}.  
+Finally, he thanks the organizers of \textit{"SCV, CR geometry and Dynamics"} at RIMS in Kyoto for providing the opportunity to explore this problem.
+\bibliographystyle{alpha}
+\bibliography{ref_minimal.bib}
+
+
+\end{document}
+
+
