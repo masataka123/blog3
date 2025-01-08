@@ -1,0 +1,994 @@
+%%
+%% 「学会予稿用クラスファイルの使い方」
+%%
+%% 情報システム運用委員会 (日本数学会)
+%%
+%% Copyright (C) 2009- Mathematical Society Japan
+%%
+%% Rev. 2022/05/23  大幅に更新
+%% Rev. 2011/10/31  epic.sty と eepic.sty を使用可能な
+%%                  スタイルファイルとして追加.
+%% Rev. 2011/10/27  v.1.0.0 の初期ドキュメント
+%%
+%#!uplatex
+\documentclass[dvipdfmx]{msjproc}
+\usepackage{graphicx}
+\usepackage{here}
+\usepackage{hyperref}
+\usepackage{pxjahyper}
+\usepackage{multicol}
+\hypersetup{%
+  colorlinks=true,
+  linkcolor=red,
+  citecolor=blue, 
+  urlcolor=black
+}
+\usepackage{bxtexlogo}
+
+\usepackage{listings}
+\lstset{
+  language=TeX,
+  basicstyle={\ttfamily},
+}
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{setspace}
+\setstretch{1}
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{wrapfig}
+%\usepackage{showkeys}
+%\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+\usepackage{ascmac}
+\usepackage{array}
+%%
+%% BibTeX用設定
+%%
+%\bibliographystyle{junsrt}
+
+%%
+%% remark 環境
+%%
+\newenvironment{remark}{\list{※}{%
+  \setlength\itemsep{0pt}%
+  \setlength\parskip{0pt}%
+  \setlength\parsep{0pt}%
+  \setlength\labelwidth{1\zw}%
+  \setlength\labelsep{0\zw}%
+  \setlength\leftmargin{1\zw}}}{%
+  \endlist}
+
+%%
+%% hanging 環境
+%%
+\newenvironment{hanging}{\list{}{%
+  \setlength\parskip{0pt}}%
+  \item\relax}{%
+  \endlist}
+
+%%
+%% TeX関連ロゴ
+%%
+%\providecommand\pLaTeX{{p\LaTeX}}
+%\providecommand\BibTeX{{\rmfamily 
+%  B\kern-.05em\textsc{i\kern-.025em b}\kern-.08em\TeX}}
+%\providecommand\JBibTeX{{\lower.5ex\hbox{J}\kern-0.08em\BibTeX}}
+%\providecommand\pdfLaTeX{\leavevmode\lower 0.4ex\hbox{pdf}\LaTeX}
+%\providecommand\XeLaTeX{%
+%  X\kern -.125em\lower .5ex\hbox{\resizebox{-\width}{\height}{E}}\kern -.12em
+%  \LaTeX}
+
+%%
+%% ディレクトリツリー構造
+%%
+\usepackage[edges]{forest}
+\newdimen\forestdimen
+\newcommand{\filename}[2]{\makebox[\forestdimen][l]{\texttt{#1}}#2}
+
+\hyphenation{LUATEX}
+
+
+
+
+
+
+
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}[section] 
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{ques}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+\renewcommand{\proofname}{\textbf{証明}}
+
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\newcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Coker}[0]{\operatorname{Coker}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+\newcommand{\polar}{\beta}
+  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+
+\title{チャーン類の不等式と構造定理}
+
+\author{岩井 雅崇}{阪大理}
+\address{〒560-0043 大阪府豊中市待兼山町１-１ 大阪大学大学院理学研究科 数学専攻}
+\email{masataka@math.sci.osaka-u.ac.jp, masataka.math@gmail.com}
+
+%\author{Shin-ichi MATSUMURA}
+%\address{Mathematical Institute, Tohoku University, 6-3, Aramaki Aza-Aoba, Aoba-ku, Sendai 980-8578, Japan.}
+%\email{{\tt mshinichi-math@tohoku.ac.jp}}
+%\email{{\tt mshinichi0@gmail.com}}
+
+%\author{Niklas M\"uller}
+%\address{Niklas M\"uller, Department of Mathematics, Universit\"at Duisburg-Essen,Thea-Leymann-Str. 9, 45127 Essen, Germany.}
+%\email{{\tt niklas.mueller@uni-duisburg-essen.de}}
+
+
+
+
+
+%\date{\today, version 0.02}
+
+%\renewcommand{\subjclassname}{
+%\textup{2020} Mathematics Subject Classification}
+%\subjclass[2020]{Primary 14E30, Secondary 14D06, 32M25 , 32Q26}
+%14D06  Fibrations, degenerations in algebraic geometry
+%14E30  	Minimal model program (Mori theory, extremal rays)
+%32Jxx	Compact analytic spaces {For Riemann surfaces, see 14Hxx, 30Fxx; for algebraic theory, see 14Jxx}
+%32M25  	Complex vector fields, holomorphic foliations, $\mathbb{C}$-actions
+%14M22  	Rationally connected varieties
+%32Q30 Uniformization of complex manifolds
+%32Q26 Notions of stability for complex manifolds
+%14E20 Coverings in algebraic geometry
+%\keywords{Abundance conjecture, Numerical Kodaira dimension, Projectively flat, Numerically projectively flat, Generically ample, Foliation, Fujita's decomposition, Slope, hermitian flat}
+%\keywords{Bogomolov-Gieseker inequality, Logarithmic tangent bundle, Log smooth pair, Projectively flat, Numerically projectively flat, Stability, Uniformization, Rational curve, MRC fibration, Rationally connected}
+%Almost nef, Pseudo-effective, Generically ample, Singular hermitian metrics, Numerically flatness, Foliation, Algebraically integrable foliation, Fujita's decomposition, Slope, hermitian flatness, Anti-canonical bundle, Rational curves, MRC fibrations, Rationally connected, Numerical dimension. Weakly positivity theorem
+
+
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%\baselineskip = 15pt
+%\footskip = 32pt
+
+
+\begin{document}
+
+\maketitle
+%
+%\begin{abstract}
+%\end{abstract}
+%
+%\tableofcontents
+
+\section{イントロダクション}
+
+相加相乗不等式を考えよう. この不等式を厳密にいうと次のようになる. 
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item (不等式) 任意の正の数$a,b$について$\frac{a+b}{2} \ge \sqrt{ab}$である.
+\item (等号成立条件) 上の不等式の等号が成立するとき, $a=b$である.
+\end{enumerate}
+このように不等式の存在には必ず等号成立条件がつきものである. 
+
+第2 Chern類の不等式に関しても同じことが言えないだろうか?
+より厳密にいうと, 今回次のことをお話ししたい.
+%\begin{screen}
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item (Chern類の不等式) 複素多様体$X$に条件をつければ, 定数$A$があって, 不等式$c_2(X) - A c_1(X)^2\ge 0$が成り立つ?%ここで$A$は次元による定数で$\frac{n}{2(n+1)}, 0,\frac{1}{3}$などである.
+\item (構造定理) 上の不等式の等号が成立するとき, $X$の構造は決定できるか?
+\end{enumerate}
+%\end{screen}
+
+%以下このことに関して先行研究・関連研究・私の研究をお話しする. 
+
+%\section{Chern類の不等式と構造定理}
+
+\section{宮岡-Yau 不等式と構造定理}
+以下しばらく$X$を$n$次元射影複素多様体とする. 
+つまり$X$は$\C\mathbb{P}^N$の閉部分複素多様体と思って良い. 
+また$\Omega_{X}^{1}$を正則余接ベクトル束とし, 標準束を$K_X := \det \Omega_{X}^{1}$で定める. 
+これによって, $X$のChern類は
+$$
+c_1(X):= - c_1(\Omega_{X}^{1}) \quad  c_1(X)^2 = c_1(\Omega_{X}^{1})^2 \quad
+c_2(X) := c_2(\Omega_{X}^{1})
+$$
+と書くことができる. 
+
+Chern類の不等式で一番有名なのは次の"宮岡-Yau不等式"であろう.
+
+\begin{thm}\cite{Miy77}\cite{Yau77}
+\label{thm-MY}
+$K_X$が豊富(曲率正)であるとき, 次の"宮岡-Yau不等式"
+\begin{equation}
+\label{eq-MY}
+\left(c_2(X) - \frac{n}{2(n+1)}c_1(X)^{2} \right) [K_{X}]^{n-2}\ge 0
+\end{equation}
+が成り立つ. また\eqref{eq-MY}の等号が成り立つとき, $X$の普遍被覆は$\C^n$の単位球となる.
+\end{thm}
+
+ここで直線束の正値性について復習しておく. 
+\begin{dfn}\cite[Section 6]{Dem12}
+\label{dfn-Dem12}
+$L$を直線束とする. 
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+  \item ある滑らかな計量$h$があってそのChern曲率が$\sqrt{-1}\Theta_{L, h} >0$を満たすとき, $L$は{\bf 豊富(曲率正)}であるという.
+ % \item $L$が曲率正(positive) $(resp. 曲率半正 (semipositive))$とは, ある$L$の滑らかな計量$h$でそのChern曲率$\sqrt{-1}\Theta_{L, h}$が0より大きい(resp. 0以上)であること.
+  \item 任意の複素１次元曲線$C \subset X$について$L \cdot C \ge 0$となるとき, $L$は{\bf ネフ}であるという.
+% \footnote{同値な条件として「任意の$\varepsilon >0$について, ある$L$の滑らかな計量$h_{\varepsilon}$で$\sqrt{-1}\Theta_{L, h} \ge - \varepsilon \omega$となること.(ただし$\omega$はK\"ahler形式とする.)」もある.}
+	%\begin{itemize}
+ 	 %\setlength{\parskip}{0cm} 
+  	%\setlength{\itemsep}{0cm}
+	%\item 任意の複素１次元曲線$C \subset X$について$L.C \ge 0$.
+	%\item 任意の$\varepsilon >0$について, ある$L$の滑らかな計量$h_{\varepsilon}$で$\sqrt{-1}\Theta_{L, h} \ge - \varepsilon \omega$となること.(ただし$\omega$はK\"ahler形式とする.)
+  	%\end{itemize}
+ \end{enumerate} 
+\end{dfn}
+関係としては次が成り立つ. 
+\begin{equation*}
+\xymatrix@C=25pt@R=9pt{
+ *++[F]{\txt{ 豊富(曲率正) } }\ar@{=>}[r]  
+ &  *++[F]{\txt{ 滑らかな計量$h$で$\sqrt{-1}\Theta_{L, h}\ge 0$ \\ (曲率半正) } }  \ar@{=>}[r]&
+ *++[F]{\txt{ネフ} }\\   
+}
+\end{equation*}
+%$$
+%\text{曲率正(positive)}
+%\to
+%\text{$L$の滑らかな計量$h$で$\sqrt{-1}\Theta_{L, h}\ge 0$となる}
+%\text{曲率半正 (semipositive)}
+%\to
+%\text{ネフ(nef)}
+%$$
+%また小平の埋め込み定理から, 曲率正(positive) と豊富(ample)は同値である. 
+
+次に$K_X $の曲率が0の場合を考える. これも\cite{Yau77}によってわかっている. 
+\begin{thm}\cite{Yau77}
+\label{thm-Yau}
+$K_X $の曲率は0, つまり$c_1(K_X)=0$であるとする. 
+このとき任意の豊富直線束$H$について
+\begin{equation}
+\label{eq-Yau}
+c_2(X) H^{n-2}\ge 0
+\end{equation}
+が成り立つ. また\eqref{eq-Yau}の等号が成り立つとき, $X$はトーラス$T$からの有限被覆$T \to X$を持つ.
+\end{thm}
+
+定理\ref{thm-MY}や定理\ref{thm-Yau}の証明は以下のとおりである.
+ $K_X$が豊富や曲率0の場合は\cite{Yau77}からK\"ahler-Einstein計量が存在する.
+ よって次のChen-荻上の定理\cite{CO75}を示せば良い．
+ \begin{thm}\cite{CO75}
+ \label{thm-CO75}
+$X$がK\"ahler-Einstein計量$\omega$を持つならば, 
+ \begin{equation}
+\label{eq-CO75}
+\left(c_2(X) - \frac{n}{2(n+1)}c_1(X)^{2} \right) [\omega]^{n-2}\ge 0
+\end{equation}
+を満たす. そしてその等号が成立するならば, $X$の普遍被覆は$\C\mathbb{P}^n$, $\C^n$, $\C^n$の単位球の3つに限られる. 
+ \end{thm}
+
+ \begin{proof}
+ \cite[Section 4]{Kob14}にも証明がある. 今回は\cite[Section 3]{Hisa24}の証明を拝借した.
+ %and denote its Riemannian, Ricci, and scalar curvature tensor by $\mathrm{Rm}(\omega), \mathrm{Ric}(\omega),$ and $R(\omega)$. 
+normalized Riemann curvature tensorやnormalized Ricci tensorを
+\[
+\widetilde{\mathrm{Rm}}(\omega) := R_{ij\overline{k}\overline{\ell}} - \frac{R(\omega)}{n(n+1)} \left(g_{ij}g_{\overline{k}\overline{\ell}} + g_{i\overline{\ell}}g_{j\overline{k}}\right) \quad
+\widetilde{\mathrm{Ric}}(\omega) := \mathrm{Ric}(\omega) - \frac{R(\omega)}{n} \omega. 
+\]
+とする. ここで$R(\omega)$はスカラー曲率である. 
+\cite{CO75}によって
+\begin{align}
+\begin{split}
+\label{eq-Kobayashi}
+&\left\{ 2(n+1)c_2(X) - n c_1(X)^2 \right\} [\omega]^{n-2} \\
+&= \frac{1}{4\pi^2 n(n-1)} \int_X \left\{ (n+1) \left|\widetilde{\mathrm{Rm}}(\omega)\right|^2 - (n+2)\left|\widetilde{\mathrm{Ric}}(\omega)\right|^2 \right\} \omega^n.
+\end{split}
+\end{align}
+がわかっている. よって$\omega$がK\"ahler-Einstein計量ならば, 
+\[
+\left|\widetilde{\mathrm{Ric}}(\omega)\right|^2 = \left|\mathrm{Ric}(\omega)\right|^2 - \frac{R(\omega)^2}{n} \leq \left|\mathrm{Ric}(\omega) - \frac{R(\omega)}{n}\omega \right|^2
+=0
+\]
+であるので, \eqref{eq-Kobayashi}に代入して
+\[
+\left\{ 2(n+1)c_2(X) - n c_1(X)^2 \right\} [\omega]^{n-2} 
+\geq 
+\frac{1}{4\pi^2 n(n-1)} \int_X (n+1) \left|\widetilde{\mathrm{Rm}}(\omega)\right|^2 
+\ge 0
+%\frac{1}{4\pi^2 n(n-1)} \int_X \left\{ (n+1) \left|\widetilde{\mathrm{Rm}}(\omega)\right|^2 - (n+2)\left|\mathrm{Ric}(\omega) - \frac{R}{n}\omega \right|^2 \right\} \omega^n. \tag{3.6}
+\]
+がわかる. \eqref{eq-CO75}の等号が成立する場合は$\widetilde{\mathrm{Rm}}(\omega) =0$となる.
+つまり$\omega$の正則断面曲率は一定である. 古典的な結果\footnote{かの有名な微分幾何の本"Kobayashi-Nomizu"によるとHawleyとIgusaが独立に示したとのこと. }によって, $X$の普遍被覆は$\C\mathbb{P}^n$, $\C^n$, $\C^n$の単位球の3つに限られる. 
+ \end{proof}
+
+
+
+以上をまとめると次のとおりである. 
+\begin{screen}
+$K_X$が豊富や曲率0だと, \eqref{eq-MY}や\eqref{eq-Yau}のようなChern類の不等式が存在し, 
+その等号が成立するとき, $X$の構造が決定できる. 
+\end{screen}
+
+
+\section{宮岡の不等式}
+
+\subsection{宮岡の不等式と構造定理}
+では$K_X$の曲率半正の場合はどうなるのだろうか?
+定義\ref{dfn-Dem12}から$K_X$の曲率半正ならばネフなので, 自然と次の問題が考えられる. 
+
+\begin{ques}
+$K_X$がネフの場合の「Chern類の不等式と構造定理」はどうなるだろうか?
+\end{ques}
+
+この場合のChern類の不等式はもうすでにわかっている.
+\begin{thm}\cite{Miy87}
+$K_X $がネフであるとき, 任意の豊富直線束$H$について以下の"宮岡の不等式"が成り立つ.
+\begin{equation}
+\label{eq-Miyaoka}
+\left( c_2(X) - \frac{1}{3}c_1(X)^2 \right) H^{n-2}\ge 0
+\end{equation}
+\end{thm}
+
+では等号成立した場合の$X$の構造はどうなるだろうか? 
+これに答えたのが我々の論文\cite{IMM24}の主定理である.
+
+\begin{thm}\cite{IMM24}
+\label{thm-IMM24}
+$K_X $がネフであり豊富な直線束$H$について
+\begin{equation}
+\label{eq-Miyaoka}
+\left( c_2(X) - \frac{1}{3}c_1(X)^2 \right) H^{n-2} =0
+\end{equation}
+が成り立つとき, ある有限被覆$X' \to X$があって, $X'$は次の3つに限られる. 
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item ($c_1(X)=0$のとき) $X'$はトーラス.
+
+\item ($c_1(X) \neq 0$かつ$c_1(X)^{2}=0$のとき) 沈め込み$X' \to C$ があって, ファイバーはトーラスかつ$C$は種数2以上のリーマン面である. 
+
+\item ($c_1(X)^{2} \neq 0$のとき) $X'$は$A \times S$と同型である. ここで$A$は$n-2$次元トーラスかつ$S$は複素曲面でその普遍被覆は$\mathbb{C}^{2}$の単位球である.
+\end{enumerate}
+\end{thm}
+
+証明はかなりテクニカルである. \cite{Yau77}や\cite{CO75}のような微分幾何学的なアプローチは用いず, 
+\cite{PRT22}の葉層理論を使ったり, CampanaのSpecial多様体の理論などの理論を用いる.  
+私はこういったテクニカルな論文は好きだが, ここで証明を書いても退屈しそうなので, 今回は証明を書かない. 
+
+\subsection{極小モデル理論との関連}
+
+ここで双有理幾何学・極小モデル理論のお話をする.
+なおこの節を書くにあたって , 藤野先生のサーベイ\cite{FujSur}や權業先生のサーベイ\cite{GonSur}を参考にした.
+
+極小モデル理論には以下の二つの大予想がある
+
+\begin{conj}[非消滅予想]
+\label{conj-nonvanishing}
+$K_X$が擬有効ならば, ある$m \in \N$があって $H^0(X,K_{X}^{\otimes m})\neq0$.
+\end{conj}
+
+\begin{conj}[アバンダンス予想]
+\label{conj-Abundance}
+$K_X$が擬有効ならば$\kappa(K_X)=\nu(K_X)$. 
+特に$K_X$がネフならば半豊富である.
+%\footnote{「$K_X$が擬有効ならば$\kappa(K_X)=\nu(K_X)$」という形で書いていることもある. 今回擬有効の$\nu(K_X)$を定義するのが面倒なので, \cite{KMM88}の表記に合わせた. }
+\end{conj}
+
+用語について説明すると, 以下のとおりである.
+\begin{dfn}\cite[Section 6]{Dem12}\cite{GonSur}
+$L$を直線束とする. 
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item $\kappa(L)$を以下で定義する. 
+$$\kappa(L) :=\max
+ \left\{
+ k \in \N |
+\limsup_{m \to \infty}\frac{\dim_{\C}H^0(X, L^{\otimes m})}{m^k} >0 
+\right\}
+$$
+ただし右の集合が空の場合は$\kappa(L):= -\infty$と定義する. 
+%$ \{- \infty, 0,\ldots, n \}$
+\item $\nu(L)$を以下で定義する. 
+$$
+\nu(L) :=\max
+ \left\{
+ k\in \N | \text{豊富直線束$A$があって}
+\limsup_{m \to \infty}
+\frac{\dim_{\C}H^0(X, L^{ \otimes m}\otimes A)}{m^k} >0
+\right\}
+$$
+とおく. ただし右の集合が空の場合は$\nu(L):= -\infty$と定義する. 
+なお$L$がネフの場合は$\nu(L) = \max\{ k \in \N | c_1(L)^{k} \neq 0 \}$である.
+%擬有効の場合の定義は\cite{Gon}を見てほしい. \footnote{いろんな$\nu$の定義があり, 一時期全て同じだと思われていた. が, \cite{John}によって違うことがわかった. }
+\item $L$が{\bf 巨大}とは, $\kappa(L) = \dim X$となること. 
+\item $L$が{\bf 擬有効}とは巨大直線束の極限でかけること. つまり任意の豊富直線束$A$と$m \in \N$について$L ^{\otimes m} \otimes A$が巨大となること. 
+\item $L$が{\bf 半豊富}とは, ある$m \in \N$があって$L^{\otimes m}$が大域的に生成されること. 
+つまり任意の$x \in X$についてある正則切断$s \in H^0 (X, L^{\otimes m}) $があって$s(x)\neq 0$となること. 
+\end{enumerate}
+\end{dfn}
+図にすると以下のとおりである. 
+
+\begin{equation*}
+\xymatrix@C=20pt@R=15pt{
+ *++[F]{\txt{豊富(曲率正) \\$\sqrt{-1}\Theta_{L, h}>0$}}\ar@{=>}[r]  \ar@{=>}[d]
+ &   *++[F]{\txt{ 半豊富 }}\ar@{=>}[r] 
+ &*++[F]{\txt{曲率半正 \\$\sqrt{-1}\Theta_{L, h}\ge0$}}  \ar@{=>}[r]
+ &*++[F]{\txt{ネフ}}\ar@{=>}[d]\\   
+*++[F]{\txt{ネフかつ巨大} }\ar@{=>}[r] 
+   & *++[F]{  \txt{巨大} }\ar@{=>}[r]
+   &  *++[F]{  \txt{ある$m$で$H^0(X, L^{\otimes m})\neq0$.} } 
+  \ar@{=>}[r]
+&  *++[F]{ \txt{擬有効}}\\
+}
+\end{equation*}
+
+どの矢印も一般の直線束$L$については逆は成り立たない. 
+%$\kappa(K_X)$は小平次元で$\limsup_{m \to \infty}\frac{\log h^0(X, K_{X}^{m})}{\log m}$で定義する. $\nu(K_X)$は数値的小平次元である. ネフの場合は$\nu(K_X) = \max \{ \}$
+%擬有効の場合の定義は\cite{}を見てほしい. \footnote{いろんな$\nu$の定義があり, 一時期全て同じだと思われていた. が, \cite{John}によって違うことがわかった. }
+
+
+アバンダンス予想から非消滅定理が従う. なぜなら$K_X$が擬有効ならば, $\nu(K_X) \ge 0$が常に言えているからである. 
+また\cite{Has18}により, 滑らかな射影多様体に関する非消滅定理が解けると極小モデルの存在がわかる. 
+つまり予想\ref{conj-nonvanishing}や\ref{conj-Abundance}は極めて難しいことがわかる.
+予想\ref{conj-nonvanishing}や\ref{conj-Abundance}は3次元以下では解決しているが, 4次元以上では未解決である. 
+
+定理\ref{thm-IMM24}の構造定理はアバンダンス予想\ref{conj-Abundance}への応用がある． 
+
+\begin{cor}\cite{IMM24}
+$K_X$がネフかつ$\left( c_2(X) - \frac{1}{3}c_1(X)^2 \right) H^{n-2} =0$ならば
+$K_X$は半豊富である.
+\end{cor}
+特に「$K_X$がネフかつ$c_2(X)H^{n-2} =0$ならば$K_X$半豊富」である.
+これは我々の前の研究\cite{IM22}の内容である. 
+%元々\cite{IM22}で$c_2=0$のアバンダンスが解けていた. その後色々考えてみると\cite{IMM24}がいえ, 前研究を上回っていることがわかった. 
+
+%非消滅定理とアバンダンス予想が解決したとしよう. 
+%\cite{Hashi}により非消滅定理が解けると極小モデルの存在がわかる. 
+%よってbirational map $X \dashrightarrow X'$があって$K_{X'}$はネフまたは$X' \to $
+%アバンダンス予想が解けると, その極小モデルは
+
+\subsection{特異点をつけた場合の宮岡の不等式. }
+
+定理\ref{thm-IMM24}は特異点つけても成り立つ. 
+ここで特異点に関して復習する. 
+\begin{dfn}
+$X$を正規射影代数多様体とする. 
+$X$が高々{\bf terminal (resp. canonical, Kawamata log terminal, log canonical)特異点}を持つとは, ある特異点解消
+$\pi : X' \to X$と$X'$上の例外因子$E_i$があって
+$$
+K_{X'} \sim_{\Q} \pi^{*}K_X + \sum_{i=1}^{l}a_{i} E_i
+$$
+とかけるとき, 全ての$a_i$が$>0$ (resp. $\ge 0$, $>-1$, $\ge -1$)を満たす.
+\end{dfn}
+
+定理\ref{thm-IMM24}はKLT(Kawamata log terminal)にまで拡張できる.
+
+\begin{thm}\cite{IMM24}
+$X$をKLT多様体(KLT特異点を持つ射影代数多様体)とする. 
+$K_X$がネフならば, 豊富直線束$H$について
+\begin{equation}
+\label{eq-Miyaoka-KLY}
+\left( \widehat{c}_2(\Omega_{X}^{[1]}) - \frac{1}{3}c_1(\Omega_{X}^{[1]})^2 \right) H^{n-2} \ge0
+\end{equation}
+が成り立つ.
+さらに等号が成立するとき, quasi-\'etale cover(余次元1集合を除いて有限エタールな被覆)$X' \to X$が存在して$X'$は滑らかである. よって$X'$は定理\ref{thm-IMM24}の(1)-(3)の3つに限られる. 
+\end{thm}
+
+ここで「$\widehat{c}_2(\Omega_{X}^{[1]}) $とはなんぞや？」となる.
+これは"$\Q$-Chern 類"というもので次のように定義する. \footnote{詳しくは\cite{GKPT19b}参照のこと.  \cite{IMM24}でも簡潔に書いた.}
+%\footnote{元々は\cite{Mum83}で定義した. \cite{Kaw92}で3次元アバンダンス予想に$\Q$-Chern classは使われ, \cite{K++}でより代数的な構成がなされた. \cite{GKPT19b}でもわかりやすく書かれている. \cite{IMM24}でも簡潔に書いた.}
+ 
+$X$をKLT多様体とする.
+\cite{GKP16}から, $\codim (X \setminus X^{\circ}) \ge 3$となるZariski開集合$X^{\circ} \subset X$で$X^{\circ}$は商特異点のみを持つものがある. 
+よって$X^{\circ}$にはオービフォールドの構造$X^{\circ}_{orb}$が入る. 
+また$X_{\reg}$を非特異集合, $i : X_{\reg} \to X$を包含写像として
+$\Omega_{X}^{[1]} :=(i_{*}\Omega_{X_{\reg}}^{1})^{\vee\vee}$と定める.\footnote{$\mathcal{E}^{\vee}:= {\textit Hom}(\mathcal{E}, \mathcal{O}_X)$である.}
+すると$\Omega_{X}^{[1]}|_{X^{\circ}}$はオービフォールド ベクトル束となるので, 
+オービフォールド Chern類 $\widehat{c}_2(\Omega_{X}^{[1]}) $が定義でき,  直線束との交点数$\widehat{c}_2(\Omega_{X}^{[1]})  H^{n-2}$が定義できる. これは$\codim (X \setminus X^{\circ}) \ge 3$なので, $X^{\circ}$の取り方によらなくなる.  なお$\codim (X \setminus X_{\reg}) \ge 3$ならば$\widehat{c}_2(\Omega_{X}^{[1]}) $は普通のchern類$c_2(X) $と同じである. 
+
+実は宮岡-Yau不等式などに関しても, Greb-Kebekus-Peternell-TajiによってKLT多様体で成り立つことが知られている.  
+\begin{thm}\cite{GKPT19b}\cite{GKPT20}
+$X$がKLT多様体で$K_X $がネフかつ巨大ならば
+\begin{equation}
+\label{eq-MY-klt}
+\left(\widehat{c}_2(\Omega_{X}^{[1]}) - \frac{n}{2(n+1)}c_1(\Omega_{X}^{[1]})^{2} \right) K_{X}^{n-2}\ge 0
+\end{equation}
+が成り立つ. 
+また\eqref{eq-MY-klt}の等号が成り立つとき, $X$の標準モデル$X_{can}$についてquasi-\'etale cover $X' \to X_{can}$が存在して$X'$は滑らかである. 特に$X'$の普遍被覆は$\C^n$の単位球である. 
+\end{thm}
+
+
+\begin{thm}\cite{GKP16}\cite{LT18}
+$X$がKLT多様体で$K_X \sim_{\Q}0$ならば, 豊富直線束$H$について
+\begin{equation}
+\label{eq-Yau-klt}
+\widehat{c}_2(\Omega_{X}^{[1]}) H^{n-2} \ge 0
+\end{equation}
+が成り立つ. また\eqref{eq-Yau-klt}の等号が成り立つとき, quasi-\'etale cover $X' \to X_{can}$が存在して$X'$はトーラスである.  
+\end{thm}
+
+\subsection{コンパクトK\"ahler多様体の宮岡の不等式}
+
+コンパクトK\"ahler多様体でも宮岡の不等式は言える.
+
+\begin{thm}\cite{IM22}\cite{Iwa25}
+$(X,\omega)$をコンパクトK\"ahler多様体とする. 
+$K_X$がネフ\footnote{K\"ahlerの場合は部分多様体がないこともあるので, ネフの定義は変わる. 「任意の$\varepsilon >0$について, ある$K_X$の滑らかな計量$h_{\varepsilon}$で$\sqrt{-1}\Theta_{K_X, h_{\varepsilon}} \ge - \varepsilon \omega$となる」ことをネフの定義にする. }
+ならば, $(X, \omega)$に依存した正の数$\varepsilon_{0}>0$が存在して
+\begin{equation}
+\label{eq-Miyaoka-kahler}
+\left(c_2(X) - \frac{1}{3}c_{1} (X)^2\right)(K_{X} + \varepsilon \omega)^{n-2}\ge 0
+\end{equation}
+が任意の$0 < \varepsilon < \varepsilon_{0}$で成り立つ. 
+そして\eqref{eq-Miyaoka-kahler}の等号がある正の数$0 < \varepsilon < \varepsilon_{0}$
+で成り立つとき, ある有限被覆$X' \to X$があって, $X'$は定理\ref{thm-IMM24}の(1)-(3)の3つに限られる. 
+\end{thm}
+
+ただ今の所ちょっと気に入ってないのが"$(K_{X} + \varepsilon \omega)^{n-2}$"の部分である. 
+この部分を"$\omega^{n-2}$"にできないのか?と思う(\cite{Iwa25}参照).\footnote{\cite{Iwa25}はホームページで公開している. 正直あまり新しい結果と思えないので, 今の所論文にする気はない. この問題を解けたら論文にしてもいいかなとは思う. }
+
+%ちなみにKLT kahler 多様体でも不等式は得られる (c.f. \cite{Iwa25}参照)ただ等号成立に関して, まだわかっていない.
+
+\section{弱Fano多様体のChern類の不等式と構造定理}
+
+\subsection{弱Fano多様体の宮岡-Yau不等式.}
+今まで$K_X$が正値性を持つ場合をやってきた. 
+次は$-K_X$が正値性を持つ場合, つまり(弱)Fano多様体の場合を考える. 
+%$-K_X$が豊富であってもK\"ahler-Einstein計量が存在するとは限らないので, 宮岡-Yau不等式はわかっていない. 
+この場合は宮岡-Yau不等式は必ずしも成り立たない. 
+\begin{exa}\cite[Example 7]{GKP22}
+4次元Fano多様体$X = \mathbb{P}(\mathcal{O}_{\C\mathbb{P}^3} \oplus \mathcal{O}_{\C\mathbb{P}^3}(3))$
+を考えると, $c_1(X)^4 = 800$かつ$c_2(X)c_1(X)^2=296$なので, 宮岡-Yau不等式は成り立たない. 
+%また3次元canonical Gorenstein Fano多様体$X=\mathbb{P}(1,1,1,3)$を考えると, $(-K_X)^3=72$かつ$c_2(X)c_1(X)=24$で宮岡-Yau不等式は成り立たない. 
+\end{exa}
+
+
+ただ次のことはわかっている. 
+\begin{thm}\cite{CO75}\cite{Hisa24}\cite{Ou17}
+\label{thm-MY-Fano}
+$X$をKLT多様体とし次のどちらかを仮定する.
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+ \item $-K_X$はネフかつ巨大であり, $X$は一様K安定である. 
+ %$-K_X$ ネフ and bigかつ$\delta(-K_X) >1$($\Leftrightarrow$ uniform K stable)である.
+ \item $-K_X$はネフだが巨大ではない.
+\end{enumerate}
+このとき
+\begin{equation}
+\label{eq-MY-Fano}
+\left(\widehat{c}_2(\Omega_{X}^{[1]}) - \frac{n}{2(n+1)}c_1(\Omega_{X}^{[1]})^{2} \right)
+ [-K_{X}]^{n-2}\ge 0
+\end{equation}
+が成り立つ. 
+また仮定1のもとで\eqref{eq-MY-Fano}の等号が成り立つとき, 反標準モデル$X_{ac}$は$\C\mathbb{P}^n$からのquasi-\'etale cover $\C\mathbb{P}^n \to X_{ac}$を持つ.
+\end{thm}
+$-K_X$が豊富の場合, 一様K安定からK\"ahler-Einstein計量が存在するので,定理\ref{thm-CO75}から宮岡-Yau不等式がわかる. 
+\cite{Hisa24}ではtwisted K\"ahler-Einstein計量を用いて, 宮岡-Yau不等式が成り立つことを示している. \footnote{後に2024年6月に久本先生と議論したらもっと代数的な証明があることや等号成立に関してもわかった.ただ既存の大結果を組み合わせたらできたので, 久本先生の論文に付け加えてもらうことにした.}
+%(2)に関してはよく考えると$\widehat{c}_2(\Omega_{X}^{1}) K_{X}^{n-2}\ge 0$を示せば良いことがわかる. これは滑らかな場合は\cite{Ou17}でもっと強いことが示されている. 
+
+\begin{proof}
+
+(1).\cite{Hisa24}では滑らかな多様体しか扱っていないので, 一応証明を付け加えておく. (ただし証明は全く同じである.)
+\cite[Theorem 1.1, 1.2]{Xu23}から反標準モデル$X_{ac}$が定義でき, 
+$X_{ac}$は一様K安定である. 
+%これはfinite generationが\cite[Theorem 1.1]{Xu23}でいえているからである. 
+%また\cite[Theorem 1.2]{Xu23}から$X$のuniform K stability($\Leftrightarrow $ $\delta(X)>1$)と$X_{ac}$のuniform K stabilityは同値である. 
+よって$X_{ac}$は特異K\"ahler-Einstein計量を持つ(\cite[Remark 4]{DGP20}参照).
+これより\cite[Theorem B]{DGP20}から, 
+"canonical extension"が$-K_{X_{ac}}$半安定である.
+以上より
+\begin{align*}
+\begin{split}
+&\left(\widehat{c}_2(\Omega_{X}^{[1]}) - \frac{n}{2(n+1)}c_1(\Omega_{X}^{[1]})^{2} \right) [-K_{X}]^{n-2}\\
+&\underset{\cite{GKPT20}}{\ge} \left(\widehat{c}_2(\Omega_{X_{ac}}^{[1]}) - \frac{n}{2(n+1)}c_1(\Omega_{X_{ac}}^{[1]})^{2} \right) [-K_{X_{ac}}]^{n-2}
+\underset{\text{BG 不等式}}{\ge} 0.
+\end{split}
+\end{align*}
+であるので\eqref{eq-MY-Fano}が言えた. 等号成立の場合の主張は\cite{GKP22}と同じである. 
+
+(2). \cite{Ou17}から, $-K_X$ネフならば任意の豊富直線束$H$について
+$$
+\widehat{c}_2(\Omega_{X}^{[1]}) H^{n-2}\ge0
+$$
+である. (KLTの場合は\cite{IMM24}参照.)
+よって$H_{\varepsilon} = K_X + \varepsilon H$として$\varepsilon \to 0$とすれば, \eqref{eq-MY-Fano}が言える. 
+\end{proof}
+
+ところで(2)の証明で出てきた 「$-K_X$ ネフならば$\widehat{c}_2(X) H^{n-2}\ge0$」に関して
+等号成立する場合はどうなるのだろうか.
+これも\cite{IMM24}でKLT多様体の場合にわかった.
+
+\begin{thm}\cite{IMM24}
+$X$がKLT多様体で$-K_X$がネフとする. 
+ある豊富直線束 $H$で
+$$
+\widehat{c}_2(\Omega_{X}^{[1]}) H^{n-2}=0
+$$
+が成り立つとき, あるquasi-\'etale cover $X' \to X$があって$X'$は次のどちらかである. 
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item ($\nu(K_X)=0$のとき) $X'$ はトーラス.
+\item ($\nu(K_X)=1$のとき) $X'$はトーラス$A$上の$\C\mathbb{P}^{1}$ファイバー束.
+\end{enumerate}
+\end{thm}
+
+この構造定理は滑らかな射影多様体の場合は\cite{Cao13}や\cite{Ou17}でわかっていた. 
+コンパクトK\"ahlerの場合は\cite{IM22}で示した.  
+それからKLT多様体の場合どうなるか考えていたが, \cite{IMM24}で解決した.
+
+\subsection{弱Fano多様体のChern類の不等式.}
+
+定理\ref{thm-MY-Fano}から弱Fano多様体が宮岡-Yau不等式を満たすのにはK\"ahler-Einstein計量が必要だということがわかる. 
+ではそうでないものについては何かわからないのだろうか? 
+\cite{IJL23}で次のことを示した. 
+
+\begin{thm}\cite{IJL23}
+任意の$n \in \N$についてある定数$b_n>0$があって, 
+任意の$n$次元terminal 多様体$X$で$-K_X$がネフかつ巨大ならば次が成り立つ. 
+$$
+b_n c_2(X) (-K_X)^{n-2} \ge (-K_X)^{n}
+$$
+\end{thm}
+この$b_n$はBirkarによるBAB予想の解決を使うので, 具体的にはわかっていない. 
+%この$b_n$の存在はBirkarによるBAB予想の解決と\cite{IJL23}での$c_2(X) (-K_X)^{n-2}>0$からわかる.
+%\footnote{実は\cite{IJL23}の前のバージョンでChen JiangさんとHaidong Liuさんが「$c_2(X) (-K_X)^{n-2}>0$が成り立つか？」と予想で書いていた. たまたまarxivでこの問題を見た私は「いや絶対できるやろ」と思い２週間くらいで解いて2人に送った. それで共同研究になったのが\cite{IJL23}である. } 
+%ではこの$b_n$は具体的にわからないのだろうか?
+3次元の場合は以下の予想がある. 
+\begin{conj}
+\label{conj_b3}
+$b_3 =3$
+\end{conj}
+現状次がわかっている. 
+%$b_3$の値に関しては次がわかっている.
+\begin{thm}
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+  \item \cite{IJL23} $b_3 <2^4 \cdot 3^6 \cdot 7$.
+  %\item \cite{Pro05} canonical Gorenstein なFanoに限れば$b_3=3$
+  \item \cite{LL23}\cite{LL24} Picard数1かつ$\Q$-factorial なFanoに限れば$b_3 =3$
+\end{enumerate}
+\end{thm}
+
+
+\begin{rema}
+なぜ$b_3=3$と予想されているのか? それは予想\ref{conj_b3}から$(-K_X)^3 \le 72$という予想が導かれるからである.
+以下はChing-Jui Lai先生から教えてもらった.
+
+$X$がterminalで$\dim X =3$とすると, Reid's Riemann-Rochから
+$$
+\chi(\mathcal{O}_{X})
+=
+\frac{1}{24}c_2(X) (-K_X)
++ \frac{1}{24}\sum_{r \in R_X} \left(r - \frac{1}{r} \right)
+$$
+である. ここで$R_X := \{ r \in \N | \text{ある$x \in X$で$\frac{1}{r}(1,-1,b)$特異点を持つ} \}$である.
+$-K_X$がネフかつ巨大ならば$\chi(\mathcal{O}_{X})=1$であるので, 
+$$
+1 = \frac{1}{24}c_2(X) (-K_X)
++ \frac{1}{24}\sum_{r \in R_X} \left(r - \frac{1}{r} \right)
+\ge \frac{1}{24}c_2(X) (-K_X)
+$$
+となる. もし予想が正しいならば上の式から$(-K_X)^{3} \le 72$である.
+
+ちなみにRiemann-Rochから$X$が滑らかな場合は$b_3=3$がわかる.
+%また\cite{Pro05}によって, canonical Gorenstein 3次元Fanoならば$b_3=3$であることもわか
+\end{rema}
+
+\section{まとめと問題集}
+
+今回の話をまとめると下の図のようになる.
+
+\begin{center}
+{\footnotesize
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|>{\centering\arraybackslash}p{2.7cm}|>{\centering\arraybackslash}p{2.2cm}|>{\centering\arraybackslash}p{3cm}|>{\centering\arraybackslash}p{3cm}|>{\centering\arraybackslash}p{2.5cm}|}
+\hline
+& \text{$K_X$ 豊富} & \text{$K_X$ 曲率 0} & \text{$K_X$ ネフ} & 
+\begin{tabular}{c}
+\text{$-K_X$ 豊富 かつ} \\
+\text{一様 $K$ 安定}
+\end{tabular} & \text{$-K_X$ ネフ} \\
+\hline
+\text{不等式}
+& $c_2 - \frac{n}{2(n+1)}c_{1}^2 \geq 0$ 
+& $c_2 \geq 0$ 
+& $c_2 - \frac{1}{3}c_{1}^2 \geq 0$ 
+& $c_2 - \frac{n}{2(n+1)}c_{1}^2 \geq 0$ 
+& $c_{2} \geq 0$  \\
+\hline
+\text{構造定理} 
+& 
+\begin{tabular}{c}
+\text{普遍被覆が} \\
+$\mathbb{C}^n$ \text{の単位球} 
+\end{tabular}
+&
+トーラス
+& 
+{\tiny
+\begin{tabular}{l}
+\text{(1) トーラス} \\
+\text{(2) 種数 2 以上のリーマン面の} \\
+\text{トーラスファイブレーション} \\
+\text{(3) トーラスと普遍被覆が} \\
+$\mathbb{C}^2$ \text{の単位球となる曲面の直積}
+\end{tabular}
+}
+& $\mathbb{CP}^n$
+&
+\begin{tabular}{l}
+\text{(1) トーラス} \\
+\text{(2) トーラス上の} \\
+\hspace{15pt}$\mathbb{CP}^1$ \text{束}
+\end{tabular}
+\\
+\hline
+\end{tabular}
+}
+}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+{\footnotesize
+\[
+\begin{array}{|c|c|c|c|c|c|}
+\hline
+& \text{$K_X$ 豊富} & \text{$K_X$曲率0} & \text{$K_X$ネフ}  & 
+\begin{tabular}{c}
+\text{$-K_X$豊富で}\\
+\text{一様K安定} 
+\end{tabular}
+& \text{$-K_X$ネフ}\\
+\hline
+\begin{tabular}{c}
+%\text{Chern類}\\
+\text{不等式} 
+\end{tabular}
+& c_2 - \frac{n}{2(n+1)}c_{1}^2 \geq 0 & c_2 \geq 0 & c_2 - \frac{1}{3}c_{1}^2 \geq 0 
+& c_2- \frac{n}{2(n+1)}c_{1}^2 \geq 0 & c_{2} \geq 0  \\
+\hline
+\text{構造定理} 
+& 
+\begin{tabular}{c}
+\text{普遍被覆が}\\
+\text{$\C^n$の単位球} 
+\end{tabular}
+&
+トーラス
+ & 
+ { \tiny
+ \begin{tabular}{l}
+\text{(1)トーラス}\\
+\text{(2)種数2以上のリーマン面}\\
+\text{のトーラスファイブレーション} \\
+\text{(3)トーラスと普遍被覆が}\\
+\text{$\C^2$の単位球となる曲面の直積} 
+\end{tabular}
+}
+ & \C\mathbb{P}^n
+ &
+  \begin{tabular}{l}
+\text{(1)トーラス}\\
+\text{(2)トーラス上の}\\
+\text{$\C\mathbb{P}^1$束} \\
+\end{tabular}
+
+ \\
+\hline
+\end{array}
+\]
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{終わりに -気になる問題集-}
+\cite{IMM24}で私が気になっていた構造定理は得られたのでその部分は一件落着した. 
+ただ$-K_X$が正値性を持っている場合などはまだよくわかっていない.
+Chern類の研究はしばらくはまだやるかな?という状況である.
+なので気になる問題をこの節で書いてみることにした.
+
+\subsection{$\Omega_{X}^{1}$がネフの場合のアバンダンス予想. }
+\cite{IM22}\cite{IMM24}のきっかけになったのは次の予想である.
+
+\begin{conj}%[$\Omega_{X}^{1}$ネフのアバンダンス予想. ]
+$\Omega_{X}^{1}$がネフ(つまり$\mathbb{P}(\Omega_{X}^1)(1)$がネフ)ならば, $K_X$は半豊富か?
+\end{conj}
+\cite{IM22}から$\nu(K_X) =1$の場合が解けた. なぜなら$\nu(K_X)=1$かつ$\Omega_{X}^{1}$ネフから\cite{DPS94}で$c_2=0$がわかるからである. 
+「アバンダンス予想\ref{conj-Abundance}は難しいのになぜこの問題をするのか?」との声もあるが以下の定理があるからである.
+\begin{thm}\cite{WZ02}
+双正則断面曲率が$0$以下ならば, $K_X$は半豊富である.
+\end{thm}
+双正則断面曲率が$0$以下ならば$\Omega_{X}^{1}$がネフがすぐに従う. 
+\cite{WZ02}の証明だが, 古い微分幾何の結果のオンパレードで私には全くわからない. 
+どうも"Ricci flat foliation"を作って, それが代数的可積分であることを示しているようで有る. \footnote{\cite{IM22}でも葉層理論の結果を用いて示したので, 葉層がカギなのは確かである. (\cite{GonSur}の最終章も参照)}
+この辺りは最近葉層理論が流行っているので, もっと簡単に示せないかなと思う. 
+
+ちなみに\cite{IM22}から「$\Omega_{X}^{1}$がネフならばnumerical flatな$Q$とgenerically ampleな$G$で$\Omega_{X}^{1} = Q \oplus G$となる分解(藤田分解)」が存在する.
+これはアバンダンスで使えるのでは?と思いDruel先生に聞いてみたら, 「$Q \subset \Omega_{X}^{1}$からnumerical flatな葉層が作れ, それから$X$の普遍被覆はわかる」と言われた. この内容は最近\cite{DPPT24}としてArxivに提出された. 
+
+\subsection{なぜ宮岡の不等式の係数は$\frac{1}{3}$なのか?}
+
+宮岡の不等式をもう一度見てみると, $K_X$がネフならば
+$$
+\left(c_2(X) - \frac{1}{3}c_1(X)^2 \right) H^{n-2} \ge0
+$$
+である. なぜ$\frac{1}{3}$なのだろうか?
+\cite{IMM24}で確かにこの不等式を示したのだが「計算したらなぜかこうなった」としか言えないのである. 
+\cite{Miy87}の証明を見ても自然な理由が全くわからない.
+一体どうやって宮岡先生はこの不等式を見つけてきたのか毎回不思議に思う. 
+
+宮岡-Yauの不等式は微分幾何学でみるとある意味自然である. それは\eqref{eq-Kobayashi}から
+$2(n+1)c_2(X) - n c_{1}(X)^{2}$がRiemann curvature tensorの言葉で書けるからである. 
+なので自然と次が思いつく.
+\begin{ques}
+$3c_2(X) -  c_{1}(X)^{2}$はRiemann curvature tensorの言葉で書けないか?
+\end{ques}
+%もしかけたら"$\frac{1}{3}$"の部分はかなり自然と言える. 
+
+もう一つ思うことは, この$\frac{1}{3}$は変えれるのではないかということである. 
+\begin{ques}
+宮岡の不等式の"$\frac{1}{3}$"の部分はもっと精密にできないか?
+例えば$\nu(K_X)$との関係はないだろうか?
+\end{ques}
+これは共同研究者のNiklasさんから「博論でこの問題をやるので, 考えさせてほしい」と言われた. 
+%\footnote{私は「この問題は面白いから共同研究にしよう」とNiklasさん誘ったが「ドイツの博論は1人で問題解決しないといけない」と言われ断られた. }
+ただその後全く音沙汰がない. 
+実際似たような問題は宮岡先生のサーベイ\cite[p.28]{MiySurOka}にもある. 
+
+\subsection{なぜ2次のChern類だけなのか?}
+これも宮岡先生のサーベイ\cite{MiySur}で書いていたことである.
+\begin{ques}\cite[問題 4.1]{MiySur}
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item 安定ベクトル束$E$について$c_3(E), c_4(E),\ldots$を含む自然な不等式はあるか?
+\item $K_X$がネフならば$c_3(X), c_4(X),\ldots$が満たすべき不等式はあるか?
+\end{enumerate}
+\end{ques}
+なぜ2次のChern類だけこのような不等式や構造定理はあるのだろうか?
+3次, 4次のChern類は考える意味はないのだろうか?
+調べてみたが, 全く研究が見つからなかった. 
+
+
+
+
+\subsection{Fano多様体のChern類の不等式の問題}
+これはChing-Jui Lai先生から聞いた予想である. 
+\begin{conj}
+$-K_X$が豊富かつ$T_X$がネフならば宮岡-Yau不等式は成り立つか?
+%$\left(c_2(X) - \frac{n}{2(n+1)}c_1(X)^{2} \right) (-K_{X})^{n-2}\ge 0$か?
+\end{conj}
+Campana-Peternell予想が正しければ, $X$にK\"ahler-Einstein計量が入るので, この予想は正しい. 
+Ching-Jui Lai先生からは「これが難しくても$\left(c_2(X) - \frac{1}{3}c_1(X)^{2} \right) (-K_{X})^{n-2}\ge 0$ぐらいはわかるのでは?」と言われた. 
+
+もう一つはHaidong Liuさんからいた予想である. 
+\begin{conj}
+$-K_X$ ネフ かつ$\left(c_2(X) - \frac{n}{2(n+1)}c_1(X)^{2} \right)(-K_{X})^{n-2}=0$の$X$の構造は?
+\end{conj}
+ネフかつ巨大かつ一様K安定なら\cite{Hisa24}の結果から$X$の構造はわかる.
+では巨大を外したときはどうなるのだろうか?.
+
+他にもHaidong Liuさん関連の予想もこの際なので書いておく.
+ \begin{conj}
+ $X$を3次元Calabi-Yau多様体とする. $L$がstrictlyネフならば$c_2(X)L>0$か?
+ \end{conj}
+ これが解けると3次元のampleness予想「$L$がstrictly ネフならば豊富」がとける.(\cite{Liu23}参照)
+ampleness予想に関しては4次元の場合は\cite{LM23}で解けている. 
+なぜか3次元の場合が残っている. 
+
+%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\end{comment}
+
+\section{思い出話}
+\cite{Miy87}や\cite{Ou17}がこの研究のスタートになっている.
+これらの論文は2019年の博士3年の時に読んだ. 
+\cite{Miy87}は初等的な道具だけでChern類の不等式を示していて, 何回読んでもいい論文だなあと思う限りである.
+\cite{Ou17}は\cite{Miy87}をより精密に書いた論文である. これも何回も読んだ. 
+ただその時はこの論文が何かためになるとは思っていなかった. 
+
+2021年に東北大学の助教になった際, 「せっかく東北大学に来たのだから, 松村先生が言っていた問題($\Omega_{X}^{1}$がネフのアバンダンス)を解こう!」と思った.
+当然, 解けるわけもなく\cite{WZ02}を読んでも理解できるわけもなく, 途方に暮れていた.
+ある日の帰り道に「$c_1(X)^2=0$かつ$\Omega_{X}^{1}$ネフなら解けるのかな?」と思った. 
+ふと\cite{Ou17}が頭に思いつき, 当時ちょっと読んでた葉層の論文\cite{PRT22}と合体させると, アバンダンスがすぐに示せた.あまりに簡単に解けたので不安になり, 松村先生とセミナーをした. その後この内容を論文にしたのが\cite{IM22}である.
+
+その後\cite{IM22}をKLT多様体に拡張しようと考えたが, これが全くうまくいかなかった.
+これと別件で\cite{Miy87}の宮岡の不等式の等号成立の場合を調べていた. 滑らかな多様体の場合はすぐにできたのだが, KLTの場合がわからず,  お蔵入りになっていた. 
+そこで2023年6月にフランスの集会でClaudon先生に「こういうのはできたんですけどねー」とこの結果を話した. すると横にいたNiklasさんが「これは僕が博論で考えてた問題やねんけど...」と言ってきた. その場にいたClaudon先生から「共同研究したら?」と勧められ, Niklasさんと共同研究することになった.
+その後松村先生も誘ってできたのが, \cite{IMM24}である.  
+
+\cite{IJL23}の共同研究の成り立ちも面白い. \cite{IJL23}の前のバージョンに, Chen JiangさんとHaidong Liuさんの予想「$-K_X$がネフかつ巨大ならば$c_2(X) (-K_X)^{n-2}>0$が成り立つか？」があった. たまたまArXivでこの問題を見た私は「\cite{IM22}の計算使えば絶対できるやろ」と思った. 実際2週間くらいで解けたので2人に送り, それが共同研究になった. 
+私からすると「2週間で問題が解けて論文も書けてラッキー」となるが, 2人からするとどう思っていたのであろう?
+Chen Jiangさんは東大時代の私のことを覚えていたらしく全くの見知らぬ人ではなかった.
+ただHaidong Liuさんはメールでも初対面であった. 今思えば見知らぬ人からいきなり「お前の問題解けたぞ」とメールが来たらそれは少し怖い気もする. 
+ちなみにHaidong Liuさんとはその後日本でも中国でも会った. 2025年6月の中国の集会に招待してもらっている. 
+
+\bibliographystyle{alpha}
+\bibliography{ref_minimal.bib}
+
+\end{document}
+
+

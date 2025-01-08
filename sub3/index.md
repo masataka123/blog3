@@ -1,9 +1,11 @@
 # **講演や集会参加の予定**
 - 2025年1月16日に[What is セミナー](https://sites.google.com/view/handai-what-is-seminar/)で話します.
-- 2025年3月19日に函数論分科会特別講演で講演する予定です.
-- 2025年4月21-25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に(余裕があれば)参加するかもしれません. 
+- 2025年2月17--21日に大阪公立大学で開催される[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)で講演いたします. 
+- 2025年3月19日に[日本数学会2025年度年会](https://www.mathsoc.jp/activity/meeting/waseda25mar/index.html)函数論分科会特別講演で講演する予定です.
+- 2025年4月21--25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に(余裕があれば)参加するかもしれません. 
+- 2025年5月14--16日に福岡工業大学で[Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka](https://masataka123.github.io/AG_SCV_2025/)を開催します. 
 - 2025年6月23--27日に北京大学で開催される"algebraic geometry conference about MMP, Fano varieties and related topics"で講演する予定です. 
-- 2025年7月14--18日にコロラド州立大学で開催される[2025 Summer Research Institute in Algebraic Geometry Week 1](https://sites.google.com/view/2025summerinstitute/home/week-1-july-14-18)に(抽選が当たって余裕があれば)参加するかもしれません. 
+- 2025年7月14--18日にコロラド州立大学で開催される[2025 Summer Research Institute in Algebraic Geometry Week 1](https://sites.google.com/view/2025summerinstitute/home/week-1-july-14-18)に(余裕があれば)参加するかもしれません. 
 
 # **講演履歴**
 

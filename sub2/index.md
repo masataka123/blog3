@@ -30,6 +30,7 @@
 2. 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
 3.  'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' 都の西北代数幾何学シンポジウム2021報告集 [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
 4. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' 第69回幾何学シンポジウム 予稿(報告集) [PDF](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
+5. 'チャーン類の不等式と構造定理' 日本数学会2025年度年会 函数論分科会 特別講演 アブストラクト [PDF](https://masataka123.github.io/blog3/pdf/2025_01_日本数学会_homepage.pdf)
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
