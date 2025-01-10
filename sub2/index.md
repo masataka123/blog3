@@ -22,8 +22,11 @@
 # **Note**
 - [Remarks on minimal compact Kahler manifolds with vanishing second Chern class](https://masataka123.github.io/blog3/pdf/Torus_fibration_c2=0.pdf)
  'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.'の補足です. 
+ 
+  <!--
 - [Remarks on Miyaoka's inequality for compact Kahler manifolds](https://masataka123.github.io/blog3/pdf/Miyaoka_inequality_kahler.pdf)
 'Minimal projective varieties satisfying Miyaoka's equality.' の補足です. 
+-->
 
 # **報告集**
 1. '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
