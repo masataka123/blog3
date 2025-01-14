@@ -24,10 +24,8 @@
  'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.'の補足です. 
  
  <!--
- 
 - [Remarks on Miyaoka's inequality for compact Kahler manifolds](https://masataka123.github.io/blog3/pdf/Miyaoka_inequality_kahler.pdf)
-'Minimal projective varieties satisfying Miyaoka's equality.' の補足です. 
-
+'Minimal projective varieties satisfying Miyaoka's equality.' の補足です.
 -->
 
 # **報告集**
