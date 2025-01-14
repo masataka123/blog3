@@ -1,5 +1,4 @@
 # **講演や集会参加の予定**
-- 2025年1月16日に[What is セミナー](https://sites.google.com/view/handai-what-is-seminar/)で話します.
 - 2025年2月17--21日に大阪公立大学で開催される[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)で講演いたします. 
 - 2025年3月19日に[日本数学会2025年度年会](https://www.mathsoc.jp/activity/meeting/waseda25mar/index.html)函数論分科会特別講演で講演する予定です.
 - 2025年4月21--25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に(余裕があれば)参加するかもしれません. 
@@ -58,6 +57,7 @@
 11. '曲率が0以上の複素射影多様体の構造定理' 大阪大学談話会, 大阪大学+オンライン開催, 2023年1月16日. [PDF](https://masataka123.github.io/blog3/pdf/2023_01_16.pdf)
 12. 'Miyaoka type inequality for terminal weak Fano varieties.' 複素解析幾何セミナー, 東京大学, 2023年6月26日
 13. ‘Abundance theorem for minimal projective varieties satisfying Miyaoka's equality’, Sun Yat-Sen University, 2024年05月16日
+14. '数学の勉強法・研究の進め方・専門の決め方について' [What is セミナー](https://sites.google.com/view/handai-what-is-seminar/), 大阪大学, 2025年1月16日. [PDF](https://masataka123.github.io/blog3/pdf/2025_0116_What_is_seminar.pdf)
 
 ### **2018年4月から2022年3月まで**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)

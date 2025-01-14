@@ -1,0 +1,893 @@
+\documentclass[11pt,dvipdfmx]{beamer}
+
+%%% 使用するテーマ（現在Copenhagenを指定しています。適当に変えてみよう。）%%%
+%
+\usetheme{Antibes}  
+%\usetheme{Default}       % シンプルで機能的なテーマ #何も指定しない場合は自動的にこれ
+%\usetheme{Bergen}        % フレームを縦方向に分割
+%\usetheme{Boadilla}      % より多くの情報を収容可
+%\usetheme{Madrid}        % Boadillaをよりカラフルにしたもの
+%\usetheme{Pittsburgh}    % シンプルで機能的、見出しは右寄せ
+%\usetheme{Rochester}     % 横方向のヘッダパネルが特徴     % 上部にナビゲーションバーを持つ、明瞭度の高いテーマ
+%\usetheme{JuanLesPins}   % Antibesと類似のテーマ
+%\usetheme{Montpellier}   % シンプルで色調のおとなしいもの
+%\usetheme{Berkeley}      % 横方向のヘッダパネルを持つ機能的なテーマ
+%\usetheme{PaloAlto}      % Berkeleyと類似のテーマ
+%\usetheme{Goettingen}    % サイドバーは右側で、ヘッダパネルなし
+%\usetheme{Marburg}       % Goettingenの色調を強くしたもの
+%\usetheme{Hannover}      % サイドバーは左側で見出しは右寄せ
+%\usetheme{Berlin}        % 縦方向のナビゲーションバーを上部に持つ強い色調のテーマ
+%\usetheme{Ilmenau}       % Berlinと類似のテーマ
+%\usetheme{Dresden}       % Ilmenauと類似のテーマ
+%\usetheme{Darmstadt}     % 横方向のナビゲーションバーを上部に持つ
+%\usetheme{Frankfurt}     % Darmstadtと類似、しかしサブセクション情報は含まない
+%\usetheme{Singapore}     % ソフトな色調を持ったテーマ
+%\usetheme{Szeged}        % Singaporeと類似、しかし境界線は明確
+%\usetheme{Copenhagen}    % セクション/サブセクションテーブルを上部に配置
+%\usetheme{Luebeck}       % Copenhagenから丸みを取ったもの
+%\usetheme{Malmoe}        % Copenhagenをより質素にしたもの
+\usetheme{Warsaw}        % Copenhagenと類似のテーマ
+
+%%% 数式のフォント（TeXっぽいフォントになる）%%%
+%
+\usefonttheme{professionalfonts}
+
+
+%%% 隠蔽されている要素の透明度の設定 %%%
+%
+%\setbeamercovered{transparent=10}
+
+%%% その他のクラス・パッケージの導入 %%%
+
+\usepackage{graphicx}  % includegraphicsコマンドなどで図を表示するためのクラス
+\usepackage{amsmath}   % プロ仕様の数学用のフォントI（AMSはアメリカ数学会）
+\usepackage{amssymb}   % プロ仕様の数学用のフォントII（AMSはアメリカ数学会）
+\usepackage{bm}        % 太字を表現するのに便利なクラス
+\usepackage[absolute,overlay]{textpos}
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{multicol}
+%% ゴシック体にする
+%\renewcommand{\kanjifamilydefault}{gt}
+
+% フォントはお好みで
+%\usepackage{txfonts}
+%\mathversion{bold}                             %%% 数式を太字にする
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\kanjifamilydefault}{\gtdefault} %%% 日本語フォントを太字にする
+%\setbeamerfont{title}{size=\large,series=\bfseries}
+%\setbeamerfont{frametitle}{size=\large,series=\bfseries}
+%\setbeamertemplate{frametitle}[default][center]
+%\usefonttheme{professionalfonts} 
+%
+%\setbeamertemplate{footline}[frame number]
+
+\newtheorem{theore}{定理}
+\newtheorem{proposition}{命題}
+\newtheorem{assumption}{仮定}
+\newtheorem{cor}{系}
+\newtheorem{conje}{予想}
+\newtheorem{remark}{Remark}
+\newtheorem{exercise}{Exercise}
+
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{corr}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{eg}[thm]{Example} 
+\newtheorem{ex}[thm]{Example} 
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{ques}[thm]{Question}
+%\newtheorem{problem}[thm]{Problem}
+\newtheorem{setup}[thm]{Set up}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}{Claim}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+
+
+
+%% 自分で定義したマクロ
+\newcommand{\Sym}{{\rm Sym}}
+
+\newcommand{\Sigmat}{\mbox{\boldmath\ensuremath{\Sigma}}}
+\newcommand{\evec}{\mbox{\boldmath\ensuremath{e}}}
+\newcommand{\ovec}{\mbox{\boldmath\ensuremath{0}}}
+\newcommand{\xvec}{\mbox{\boldmath\ensuremath{x}}}
+\newcommand{\R}{{\rm I\!R}}
+\newcommand{\e}{{\rm e}}
+\newcommand{\dr}{{\rm d}}
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\p}{{\mathbb P}}
+\newcommand{\V}{{\mathbb V}}
+
+
+\title[数学の勉強法・研究の進め方・専門の決め方について]{数学の勉強法・研究の進め方・専門の決め方について}
+\author[岩井雅崇]{岩井雅崇}
+%% 所属の登録 \institute[所属の略称]{所属}
+\institute[大阪大学理学研究科]{大阪大学理学研究科}
+%% 日付
+\date{2025年1月16日}  %% <- \today 命令は今日の日付を表示. 任意の日付を入れれば良い:（例）\date{2008年7月14日}
+
+%%% 以下が本体 %%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% タイトルページ出力 %%
+
+\begin{frame}  %% <- \begin{frame} から \end{frame}までが1つの頁になると思って下さい.
+ \titlepage    %% <- このコマンドで自動的に表紙のページが作成されます.
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{はじめに}
+この講演を引き受ける際に次のメールが来ました. 
+
+\pause
+\begin{center}
+ \includegraphics[width=0.8\linewidth]{picture1.jpg}
+\end{center}
+
+おそらく皆さんと話していると
+\begin{itemize}
+\item 数学の勉強法・研究の進め方
+\item 専門の決め方
+\item これからのキャリアパス(どのように研究者になるのか? 今後どうなるのか?)
+\end{itemize}
+に興味があるのかと思います.
+
+\end{frame}
+
+
+
+\begin{frame}  %% <- この書き方でもOK.
+ %\tableofcontents   %% <- このコマンド1つで自動的に目次のページが作成されます.
+
+ \frametitle{講演内容}
+ \begin{center}
+\begin{enumerate}
+\item 数学の勉強法・研究の進め方
+\item 専門の決め方
+\item これからのキャリアパス(どのように研究者になるのか? 今後どうなるのか?)
+\end{enumerate}
+
+ \end{center}
+ 
+ \vspace{11pt}
+なお私はスライドでの発表が苦手なので, 早くなったりわからなくなったりしたら手をあげて止めてください.  
+
+ \vspace{11pt}
+ スライドの内容をこの講演で全て紹介することは不可能なので, このスライドはWhat is seminarのページにおいておきます. 
+\end{frame}
+
+\begin{frame}  
+ \begin{center}
+ 数学の勉強法・研究の進め方
+ \end{center}
+ 
+\end{frame}
+
+
+
+\begin{frame} 
+ \frametitle{数学の勉強法・研究の進め方}
+ 
+ 「数学の勉強法・研究の進め方」については確実に言えることが一つあります. 
+ 
+ \pause
+ \begin{block}{}
+  \begin{center}
+ 私も知らん!
+  \end{center}
+  \end{block}
+  
+もっというと次が正しいです
+\pause
+ \begin{block}{}
+  \begin{center}
+どの方法がいいかは人や時期によって違う. 私の勉強方法や研究方法も時期によって変わっているので, なんとも言えない.
+ \end{center}
+   \end{block}
+\end{frame}
+
+
+
+
+\begin{frame} 
+ \frametitle{数学の勉強法・研究の進め方}
+ 勉強時間・研究時間は時期によってかなり違っています. 
+     \begin{enumerate}
+     \item 学生時代(修士-博士) (2015-2020)
+     		\begin{itemize}
+     		\item[時間]12時起床. 13時ぐらいから活動し始めて, やる気のある時に研究し, 寝るのは26時.
+     		\item[場所] 近所の喫茶店. 大学には遊びに行っていた.
+     		\end{itemize}
+     \item 研究員・東北助教時代 (2020-2022) 
+     		\begin{itemize}
+     		\item[時間] 8-9時 起床. 研究時間は9-17時まで 寝るのは23時.
+     		\item[場所] 家
+     		\end{itemize}
+       \item 今 (2022-) 
+     		\begin{itemize}
+     		\item[時間] 8-9時 起床. 勤務時間は10-19時くらい?日によってまちまち 寝るのは22時.
+     		\item[場所] 大学・家
+     		\end{itemize}
+     \end{enumerate}
+\end{frame}
+
+
+\begin{frame} 
+研究の進め方に関しては"全くわからん!"
+
+[過去の研究例]
+\begin{itemize}
+\item 1年間考えてた解けなかった問題が, 出張中の飛行機内で解けた. その後東北大学の先生にメール送ったら, 「議論は間違ってるけど, 面白い問題だと思います.」と言われ, その後研究になった.
+\item ArXivにあった論文を見て, 「ちょっとこの場合考えてみるか」と考えたらなんとなくできた. 
+\item 歩いてたら急に問題が降ってきて, 1週間考えたらできた. 
+\item たまたまArXivで見た論文にあった問題を, 2週間考えたら解けた. その後論文の著者に送り付けたら共同研究になった. 
+\item 韓国で仲良くなった研究者からメールが来て, 話し合ってたら研究になった.
+\item フランスで偉い先生と話してたら, 横にいた学生が「これ博論でやろうとしてた問題やってんけど...」と言ってきてそっから共同研究になった. そしてその学生が私が2年間考えてた問題をすんなりと解いてしまった. 
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame} 
+ \frametitle{数学の勉強法・研究の進め方}
+研究の進め方に関しては私も修行中の身なので聞かないでください....
+
+\begin{block}{}
+学生の皆さんは\underline{指導教官の言うことをよく聞いて}, 自分なりの研究方法を身につけましょう.
+  \end{block}
+  
+  {\scriptsize ちなみに私は指導教官の言うことをよく聞かなかったので, こんなことになっています. }
+  
+\end{frame}
+
+
+\begin{frame} 
+ \frametitle{数学の勉強法・研究の進め方}
+ 
+とは言ったもののこれで突き放すのはなんなので, 一冊ためになる本をご紹介します.
+
+   \begin{multicols}{2}
+     
+        \begin{itemize}
+	    \item 研究の諸段階・発表の工夫 
+	     \item 伊原康隆 著
+	     \item 数学の勉強法など, 数学者になるのに必要なことほぼ書いてある. 
+	    \item 河東泰之(東京大学)先生が書評にて「今すぐこの本を買ってきて読みなさい」というくらい.
+	\end{itemize}
+     \includegraphics[width=0.8\linewidth]{picture2.jpg}
+   \end{multicols}
+    
+\end{frame}
+
+
+\begin{frame} 
+ \frametitle{数学の勉強法・研究の進め方}
+
+ちなみに河東泰之(東京大学)先生も最近本を出したので宣伝しておきます. 
+   \begin{multicols}{2}
+       \begin{itemize}
+       	     \item 河東泰之 著
+	    \item 数学者の思案
+	    \item 河東先生のホームページにある「どうでもよい記事」もかなり面白いです. \url{https://www.ms.u-tokyo.ac.jp/~yasuyuki/misc.htm}
+	\end{itemize}
+     \includegraphics[width=0.8\linewidth]{picture3.jpg}
+   \end{multicols}
+\end{frame}
+
+
+\begin{frame}  
+ \begin{center}
+専門の決め方
+ \end{center}
+ 
+\end{frame}
+
+\begin{frame} 
+ \frametitle{専門の決め方}
+
+これも一概になんとも言えないですが, 言えることは
+\pause
+\begin{block}{}
+\begin{center}
+学部3年まで好き勝手に勉強していれば, 自ずと
+\begin{itemize}
+\item この分野は自分に合っていそう
+\item この分野は自分には無理そう
+\end{itemize}
+がわかってくるので, あとはその直感で選ぶ
+\end{center}
+\end{block}
+
+のがいいのかな?と思います. 
+
+なのでこれからは私がどうやって専門を選んだかをお話しします. 
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{研究分野の雑な紹介}
+\vspace{0pt}
+私の専門は複素幾何で特に(複素)代数多様体を研究しています.
+%\begin{itemize}\item 私の専門は複素代数幾何学です.\item 複素代数幾何学とは複素代数多様体を研究する分野です.\end{itemize}
+   \begin{exampleblock}{定義}
+     %\begin{center}
+	%代数多様体 $=$ $\mathbb{CP}^N$の複素部分多様体.
+     %\end{center
+  \begin{center}
+ \begin{tabular}{lll}
+  %複素 &・・・・・& %($2 +  \sqrt{-1}$などの)
+ %  複素数体上の\\
+%代数 &・・・・・&%($x^2 + y^3 =1$のような)代数方程式多項式で作られる\\
+　%代数多様体 &・・・・・&  (局所的に)多項式で定義される図形\\
+　(複素)代数多様体 &=&  $\mathbb{CP}^N$の複素部分多様体\\
+%図形 (図形の貼り合わせ)　\\
+\end{tabular}
+\end{center}
+   \end{exampleblock}
+ %\begin{textblock*}{0.4\linewidth}(15pt, 160pt)\centering\includegraphics[height=30mm, width=60mm]{pic.jpg} \end{textblock*} \begin{textblock*}{0.4\linewidth}(200pt, 160pt)\centering\includegraphics[height=30mm, width=50mm]{pic2.jpg}\end{textblock*}
+
+\begin{theore}[Chow 49]
+ある同次多項式$F_{1}(t_0, \ldots, t_{N}), \ldots, F_{l}(t_0, \ldots, t_{N})$があって, 代数多様体は次のようにかける.
+$$
+ \{ (x_0, \ldots, x_N) \in \mathbb{CP}^N |  F_1(x_0, \ldots, x_N) =\cdots =F_{l}(x_0, \ldots, x_N)=0 \}
+$$
+\end{theore}
+
+(例). $X=\{ (x_0, \ldots, x_3) \in \mathbb{CP}^3 \, |\, x_{0}^{4} + x_{1}^{4} +   x_{2}^{4} +   x_{3}^{4} =0    \}$
+
+三つの方向から研究ができる.
+\begin{itemize}
+\item 代数幾何学 (代数)
+\item 複素幾何学・微分幾何学 (幾何)
+\item 多変数複素解析 (解析)
+\end{itemize}
+
+なぜこの分野をやることになったかというと....
+\end{frame}
+
+
+
+
+
+\begin{frame} 
+ \frametitle{学部生時代}
+
+ \vspace{11pt}
+  $\bullet$ 学部1年
+  \begin{itemize}
+ \item 学部1年の時に全学自由ゼミナール(「学問の扉」みたいな授業)で代数幾何学の授業があった. この授業は学部4年~修士1年でやる代数幾何学の内容を学部1年にやる授業だった
+ \item この時になんとなく「代数」の分野に興味があった
+\item 学部2年に数学科に進学. 
+\end{itemize}
+
+\pause
+ \vspace{11pt}
+  $\bullet$ 学部2-3年
+  
+ 数学科の人たちとセミナーで次の本を読んだ
+ \begin{itemize}
+ \item アティヤー・マクドナルド 著 "可換代数入門"
+ \item 森重文 著  "代数幾何学"
+ \item マンフォード著 "代数幾何学講義"
+ \end{itemize}
+などなど.
+
+\end{frame}
+
+
+
+\begin{frame} 
+ \frametitle{学部3年}
+ 
+
+
+学部3年の授業でも「代数・幾何」が多めだった
+
+\vspace{5pt}
+(3年前期 必修)
+ \begin{itemize}
+ \item[代数] 代数学1(群・環・体論)
+ \item[幾何] 幾何学1(多様体入門)
+ \item[解析] ルベーグ積分・複素解析2(リーマンの写像定理など)
+ \end{itemize}
+
+
+\vspace{5pt}
+(3年後期 選択)
+ \begin{itemize}
+ \item[代数] 代数学2(環論と群の表現論)・代数学3(ガロア理論)
+ \item[幾何] 幾何学2(ホモロジー)・幾何学3(ド・ラーム コホモロジー)
+ \item[解析] なし
+ \end{itemize}
+
+この時点で解析・応用にはいかないことが決まってた. 
+\end{frame}
+
+
+
+\begin{frame} 
+ \frametitle{学部4年 夏学期}
+
+学部4年では高木俊輔先生のセミナーで次の本を読む.
+\begin{itemize}
+ \item Shigeru Iitaka "Algebraic Geometry: An Introduction to Birational Geometry of Algebraic Varieties"
+ \end{itemize}
+
+
+
+と同時期に小平邦彦先生の本を読んで, 「小平邦彦先生のような複素幾何学っぽい代数幾何学がしたい!」と思った. 
+
+\vspace{11pt}
+無事院試に合格したが, 一つ困った問題が...
+
+\pause
+\begin{block}{}
+小平邦彦先生のような複素幾何学っぽい代数幾何学をやってる先生があんまりいなかった...
+\end{block}
+\end{frame}
+
+
+
+
+\begin{frame} 
+ \frametitle{学部4年 9月以降}
+具体的に言うと当時の代数幾何学系の先生で
+\begin{itemize}
+ \item 川又雄二郎 先生
+ \item 寺杣友秀 先生
+ \item 宮岡洋一 先生 
+ \item 高木寛通 先生
+ \item 高木俊輔 先生
+ \end{itemize}
+ がいて, 院試後に面談したが「"代数"っぽい代数幾何でなんか違うなあ」と思った. 
+ 
+ \pause
+ \vspace{11pt}
+ そんな中, 解析系の先生で
+\begin{itemize}
+ \item 高山茂晴 先生
+ \end{itemize}
+と面談すると, "多変数複素解析・複素幾何・代数幾何学"をやっているっぽくて, 「いろんな道具使ってなんかできるから面白そう」と思い, 修士以降は高山先生の研究室に行くことにした. 
+
+\end{frame}
+
+
+
+\begin{frame} 
+ \frametitle{修士1年以降}
+高山先生に, 「修士に入る前に多変数複素解析・複素幾何の本を読んできてください」と言われたので, 
+\begin{itemize}
+ \item 小林昭七 著 "複素幾何"
+ \item 中野茂雄 著 "多変数函数論 : 微分幾何学的アプローチ"
+ \end{itemize}
+ を急いで適当に読みました.
+ %(なのでいまだに複素幾何・多変数複素解析はちょっと自信がないです...)
+ 
+ \vspace{11pt}
+ 修士からは1年間次の本を読む. 
+ \begin{itemize}
+ \item Demailly 著 "Analytic methods in Algebraic Geometry"
+ \end{itemize} 
+ 
+ その後は(指導教官の言うことは聞かず, まあ順調には行ってないものの), 無事代数幾何学の研究ができて今に至ります. 
+ 
+  \pause
+ \begin{block}{忠告}
+ \begin{center}%
+学生の皆さんは指導教官の言うことをよく聞きましょう!
+ \end{center}
+  \end{block}
+
+ {\scriptsize
+でも実は高山先生に「この方向の研究は難しいのでやらない方がいい」と言われたものが, 前に言った東北大学の先生との共同研究だったりします...
+}
+
+
+  
+\end{frame}
+
+
+
+\begin{frame} 
+ \frametitle{まとめると...}
+ 
+ \begin{block}{}
+  \begin{center}
+学部2-3年で自分の興味のある分野(代数・幾何・解析・応用)がある程度わかると思うので, それからやんわりと具体的な分野を決めて行ってもいいかと思います. 
+ \end{center}
+ \end{block}
+ 
+特に修士に行く際に先生と面談して具体的な分野を決めていいと思います.(私は5人くらい面談した.)
+ 
+ \pause
+ \vspace{11pt}
+ ちなみに, 同期では
+ \begin{itemize}
+ \item 3年に代数幾何学の本を読んで, 4年以降偏微分方程式の解析方面に行った.
+ \item 数論とトポロジーに興味があり, トポロジーの先生の研究室に行った.
+ \end{itemize}
+など結構学部4年や修士に行く際に分野を変えている人もいる気がします.
+　
+\end{frame}
+
+
+
+
+\begin{frame} 
+ \frametitle{専門の決め方}
+「数学の最近の研究は何をやっているのか?」と聞かれた時には, とりあえずこの本を進めています.
+   \begin{multicols}{2}
+     
+        \begin{itemize}
+	    \item 数学の現在 $i,\pi,e$
+	     \item 斎藤　毅・河東泰之・小林俊行 編
+	\item 東大数学科4年で 「数学講究B」 という「先生たちが自分の分野の紹介を1時間かけて行う」授業があり, その授業の内容が本になった.  
+	\end{itemize}
+     \includegraphics[width=0.8\linewidth]{picture4.jpg}
+   \end{multicols}
+
+(先生方で他に何かおすすめがあれば教えてください...)
+\end{frame}
+
+
+
+
+\begin{frame} 
+ \frametitle{余談: 学部4年生の本は今後の自分の研究内容を決める??}
+東大の高山研究室では修士1年の時に
+        \begin{itemize}
+ \item Demailly "Analytic methods in Algebraic Geometry"
+	\end{itemize}
+を読むことになっています.
+
+なので全員が同じ分野に進むのかな?と思いきや, そんなこともなく
+        \begin{itemize}
+ \item 代数幾何
+ \item 複素幾何
+ \item 微分幾何
+ \item 多変数複素解析
+ \item 複素力学系
+	\end{itemize}
+などいろんな分野に分散されています. 
+(最近だと同じ研究室出身だけど詳しい研究手法とか全くわからんとかもよくあります.)
+
+学部4年の本がなんとなく今後の分野につながっているのでは?と思ってはいます.
+\end{frame}
+
+\begin{frame}  
+ \begin{center}
+これからのキャリアパス
+ \end{center}
+\end{frame}
+
+ \begin{frame} 
+ \frametitle{これからのキャリアパス}
+あと何年後かには皆さんは何かしらの職業につくかもしれないので, ここからは
+ \begin{itemize}
+ \item 研究者になるには
+ \item 研究者以外になるには
+ \end{itemize}
+ についてお話しします. 
+ \end{frame}
+ 
+  \begin{frame} 
+ \frametitle{研究者以外になるには?}
+
+これは簡単で
+\pause
+\begin{block}{}
+\begin{center}
+就活がんばれ!
+\end{center}
+\end{block}
+
+身近な上の先輩などから情報を仕入れて就活をしよう!
+
+{\scriptsize 少なくとも私は一般的な就活をしていないので, 就活は何にもわからないです...}
+ \end{frame}
+ 
+ 
+   \begin{frame} 
+ \frametitle{研究者以外になるには? }
+ ちなみに数学科の就職は全然悪くないです. むしろいい方です. 
+ 昔は「教員」しかなれないとか言われてましたが, 今は色々(金融・保険・IT・コンサルなどなど)あるようです. 
+
+\vspace{11pt}
+私が学生だった5年前だと, 人工知能などの分野が流行っていて, 数学ができると
+\begin{itemize}
+  \item プログラミング
+  \item 統計 (統計検定など)
+ \end{itemize}
+ などがすぐできるから, 数学科の人の就職が良かった気がします. 
+ 
+ \end{frame}
+ 
+   \begin{frame} 
+ \frametitle{データ}
+\begin{center}学部卒\end{center}
+     \includegraphics[width=1\linewidth]{picture5.jpg}
+     
+\begin{center}修士卒\end{center}
+      \includegraphics[width=1\linewidth]{picture6.jpg}  
+
+就職先のデータは\url{http://www.math.sci.osaka-u.ac.jp/shinro.html}にあります. 
+
+ \end{frame}
+ 
+    \begin{frame} 
+ \frametitle{研究者以外になるには?}
+ 民間就活するタイミングは, 以下があります. 
+ \begin{itemize}
+ \item 学部生
+\item 修士生
+\item 博士生・ポスドク(ポスト・ドクター)
+ \end{itemize}
+
+\vspace{11pt}
+5年以上前, 私が博士の時の体感としては
+\begin{block}{}
+ \begin{itemize}
+\item 学部生と修士生の民間就活の差はあんまり感じない.
+\item 博士生の民間就職はちょっときつい？
+ \end{itemize}
+ \end{block}
+実際「日本の大企業は博士の学生を取らない」
+みたいなことを言われました.
+
+が, 実際は周りの人が博士から"富士通やNEC"などに行ってたし, ちょっとよくわかりません. (今は人材不足なので尚更変わってるかも?)
+
+%そして今は人材不足なので尚更かと. 少なくとも, "職にこだわらなければ", そして"生きる気力があれば"博士でた後に民間就職できないはないかもです. 
+ \end{frame}
+ 
+ \begin{frame}
+ \frametitle{研究者のキャリアパス(どのように研究者になるのか?)}
+ 
+ 数学の研究者になるには
+ 
+ \begin{itemize}
+ \item 修士 (通常 2年) + 博士 (通常 3年)
+ \item ポスドク・研究員 ($n$年)
+ \item 助教・講師・准教授・教授...
+ \end{itemize} 
+ というプロセスを踏みます.
+ 
+ \vspace{11pt}
+ 修士・博士で, 自分の新しい結果を出して論文を書き, 出版されるようになってください. 
+自分の論文が出版されたら, 博士号は取れると思います.
+ \end{frame}
+ 
+ 
+
+
+ 
+ 
+ 
+ \begin{frame} 
+ \frametitle{博士・ポスドク}
+
+博士になったあとは「研究員・ポスドク(ポストドクター)」を$n$回やり, 助教などの公募に応募して助教になります.
+
+\vspace{11pt}
+ただ問題として
+\pause
+\begin{block}{日本の問題点}
+研究員・ポスドクなどの数が海外に比べると圧倒的に少ないし給料が安い!
+\end{block}
+なのでこのタイミングで海外に行く人が多くいます.
+
+\vspace{11pt}
+ちなみに謎の数学者チャンネルの動画(\url{https://www.youtube.com/watch?v=Wq_BzP6WlYw})でも助教になるのが圧倒的に難しいと言ってました. 
+
+%\vspace{11pt}
+%助教以後のことは私はわかりません. き
+ \end{frame}
+ 
+  \begin{frame} 
+ \frametitle{余談: 就職に関して (ドイツ・フランスの例)}
+「日本は欧米に比べて助教になりづらい！」と言うわけではなく, おそらく世界的に見てなりづらいかもしれないです.
+
+\begin{itemize}
+\item  「ドイツでは助教になるまでにポスドクを10年くらいやる」らしい. 
+\item ドイツには助教と教授の間の職がなく, 教授になるのがかなり難しい. 
+\item 実際私の3つ上のドイツの助教の方は10本以上論文を書いていましたが, 去年数学を辞めて銀行に勤めることになりました. 
+\end{itemize}
+ちなみにフランスのポスドクの方とも話していると「就職大変やわ」って聞くので, 世界的に研究職の就職は厳しい気がします. (なんなら日本はマシかもしれない?)
+
+\vspace{11pt}
+気になる人は"河東泰之(東京大学)先生 著 数学者の思案"を読んでみよう!
+  \end{frame}
+ 
+ \begin{frame} 
+ \frametitle{最近の動向}
+
+最近の動向としては
+ \begin{block}{}
+\begin{center}
+民間就職を挟んで数学の研究職を目指すケースも...
+\end{center}
+\end{block}
+[例]
+\begin{itemize}
+\item 池 祐一(九州大学): \\ 東大博士→民間就職(富士通)→東大助教→九大准教授
+\item 佐野 岳人(理化学研究所): \\ 民間就職(ヤフー)→東大修士・博士→理化学研究所 研究員
+\item 森村 勇人(Kavli IPMU): \\ 民間就職(群馬県農業共済組合連合会?)→東大修士→SISSA(イタリア)博士→Kavli IPMU(東大) 研究員
+\end{itemize}
+
+\vspace{11pt}
+\pause
+これはむしろいいことで
+ \begin{block}{}
+\begin{center}
+数学者になる道は一通りではない!
+%人生の選択肢はいっぱいある.
+\end{center}
+\end{block}
+%と言うことを意味しています. 
+
+定年退職した方が博士号取るとかもあるかもしれないですね...
+ \end{frame}
+
+ 
+  \begin{frame} 
+ \frametitle{私の場合は...(2020年まで)}
+
+$\bullet$ 修士・博士時代. 
+
+修士時代からフェローシップ(月15万)や学進(月20万)の支援があり, 特に何も考えず博士に進んだ．
+
+\vspace{11pt}
+
+$\bullet$ 博士3年(2019年) 
+\begin{itemize}
+\item 2019年4月(博士3年)に出した学進PD(ポスドク）の応募は9月に通知があって見事落選. 
+\item そして色々職探しをした挙句, 2020年3月以後は6ヶ月無職した後に, 2020年9月開始のPaun先生(ドイツ)のポスドク(年 50000 ユーロ)になることに. 
+\end{itemize}
+
+%2019年4月(博士3年)に出した学進PD(ポスドク）の応募は9月に通知があって見事落選. 
+%そして色々職探しをした挙句, 指導教官の高山先生のつてを頼って, 博士(2020年3月)以後は, 2020年9月開始のPaun先生(ドイツ)のポスドクになることに. しかし...
+\vspace{11pt}
+しかし....
+\pause
+ \begin{block}{}
+\begin{center}
+2020年3月にコロナ発生！
+\end{center}
+\end{block}
+
+ドイツのPaun先生に「コロナで研究費が当たるかわからんから, ポスドクとして君を雇うのはだいぶ遅なる. いつになるかわからん」と言われた.
+
+\end{frame}
+
+  \begin{frame} 
+ \frametitle{私の場合は...(2020年以後)}
+
+\begin{itemize}
+\item なので2020年4月からは「先行き不明・無職状態」で実家にいました. 
+%\item その後とりあえず半年間雇用の京大の研究員になったりしていた(2020年9月から2021年3月)
+%ちなみに学進PD(ポスドク）には2回落ちてます
+\item その後先行き不明のまま, 「半年間雇用の京大の研究員」になったり「風樹会からお金の援助」をしてもらったりした. 
+\pause
+\item 2021年4月に東北大学数理科学連研究センター(現: 東北大学数理科学共創社会センター)の助教(任期1年)の公募に送り面接に通った. そして2021年6月以降はそこの助教になる. 
+\item 2021年に応募した大阪大学の助教の公募に見事受かり, 2022年4月から大阪大学助教に着任しました. 
+\end{itemize}
+
+今でも「人生どういうふうになるかわからんなあ」と思う次第です. 
+\end{frame}
+
+  \begin{frame} 
+ \frametitle{まとめると...}
+ 
+ \begin{block}{}
+ \begin{center}
+ 私の場合は運よく研究もできて論文が書けたし, 運よくこの職につけたしで, 「運が良かった！」
+ \end{center}
+ \end{block}
+
+実は(博士2年の際に)私は民間就職しようとしてた時期もありましたが, 運よく(運悪く?)民間就職しませんでした. 
+
+%\begin{itemize}
+%\item 実は(博士2年の際に)私は民間就職しようとしてた時期もありました.
+ %\item ただ今思うと, なぜか運よく就職しなかったし, 運よく研究もできたし, 運よくこの職につけたしで, 「運が良かった！」と思う次第です.
+%\end{itemize}
+
+%実は(博士2年の際に)私は民間就職しようとしてた時期もありました.
+
+%まあ今思うと, なぜか運よく就職しなかったし, 運よく研究もできたし, 運よくこの職につけたしで, 「運が良かった！」と思う次第です.
+
+\pause 
+\vspace{11pt}
+そして"研究者"になるには"努力"だけでなく"運"や"才能"の部分結構あると思います.
+(なんと河東先生も本で同じこと言ってた!)
+
+[例]
+\begin{itemize}
+\item (才能型) 私が見るかぎり, 大学でカードゲームしかしていないし, ほぼ毎日飲んでた名古屋大学の某准教授.
+\item (努力型) ほぼ毎日9時から25時まで数学してる韓国の共同研究者.
+\end{itemize}
+
+「才能と運は自分にはどうしようもないので, 努力するしかないなあ...」と思う次第です. 
+
+ 
+%\vspace{11pt}
+%[例]
+%\begin{itemize}
+%\item (才能型) 私が見るかぎり, 大学でカードゲームしかしていないし, ほぼ毎日飲んでた名古屋大学の某准教授
+%\item (努力型) ほぼ毎日9時から25時まで数学してる韓国の共同研究者
+%\end{itemize}
+
+%僕は研究者になるのに
+%\begin{itemize}
+%\item 運 5割
+%\item 努力 4割
+%\item 才能 1割
+%\end{itemize}
+%が必要だと思っています. (なんと河東先生も本で同じこと言ってた!)
+%(ゴルゴ13も同じこと言ってた気がする. あとはコミュニケーション能力も才能以上に必要だと思う. )
+
+%でも「才能と運は自分にはどうしようもないので, 努力するしかないなあ...」と思う次第です. 
+
+%ちなみに努力でなんとかする数学者もいて, 韓国の研究者(Guolei Zhongさん)はほぼ毎日9時から24時まで数学をしてて結果を出しているので, 努力でもなんとかできます. (共同研究してた時, 彼に生活を合わせていたので, 体調を崩しました...)
+
+\end{frame}
+
+
+
+ 
+  \begin{frame} 
+  \frametitle{最後に}
+ \begin{block}{}
+\begin{center}
+数学者じゃなくても数学を活かせる職業はいっぱいあるので, 悔いのないように自分がやりたい人生をやればいいかと思います.
+\end{center}
+\end{block}
+
+%数学科に来て数学の授業を受けてるだけで, 「自分は世間の人や阪大の他の学科の人よりも数学はできる!」と思っていいです. 
+\vspace{11pt}
+
+数学を活かせる職業もいっぱいあるので, 「自分は数学者じゃないといけない!」と自分の将来の道を塞ぎ込むのもよくないと思います. 
+
+そして民間就職してからも博士をとる道もあるので, 色々と考えてみてください. 
+
+\end{frame}
+
+
+  \begin{frame} 
+  
+\begin{center}
+ご清聴ありがとうございました. 
+\end{center}
+
+\end{frame}
+
+\end{document}
+
