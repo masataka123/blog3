@@ -1,0 +1,4672 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % æ°å­¦ç¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref} 
+\setstretch{1.2}
+\usepackage{pgfplots}
+%\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{S}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\colim}{{\rm colim}}
+
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+\newtheorem{dfnthm}[thm]{定義・定理}
+\newtheorem{ques}[thm]{問題}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+  
+  \newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\title{Condensed mathematicsワークショップ \\ \cite[Section 2.A Appendix]{Sch19}の解説}
+\author{岩井雅崇 (大阪大学)}
+\date{2025年2月18日, ver 1.00}
+%ここから本文．
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\newpage
+
+\setcounter{section}{-1}
+\section{はじめに}
+
+\subsection{このノートの概要}
+このノートは2025年2月17日-21日開催の"Condensed mathematicsワークショップ"
+での\cite[Section 2.A Appendix]{Sch19}の岩井の原稿である.
+
+勉強用のメモ書きについては\url{https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf}にあります. (QRコードは下)
+\begin{figure}[htbp]
+\begin{center}
+ \includegraphics[height=30mm, width=30mm]{seminarnote.png}
+ %\caption{授業のQRコード}
+\end{center}
+\end{figure}
+こちらは勉強用に書いたもので100ページくらいあります.
+ところどころ雑なところや脱字など非常の多くあるが, 発表に追い込まれている状況で書いたものなのでご了承いただきたい. %(いずれ時間があれば榎園さん・橋詰さん・松澤さんの発表しているところなども付け足していきたい.)
+
+\subsection{参考にした文献}
+この勉強会はショルツのレクチャーノート"Lectures on Condensed Mathematics"\cite{Sch19}
+を元に行われた. \cite{SchClau}にYouTubeの講演やノートがある.
+
+当初はこれで勉強しようと思ったが, あまりにも難しい(+何を言っているのかわからない)ので以下の文献を大いに参考にした.
+\begin{enumerate}
+\item \cite{Bar22}
+Michael Barz \textit{Condensed Mathematics} \\
+\url{https://www.dropbox.com/scl/fi/xm2bs6jgtv9oaqir2slbt/condensed-final.pdf?rlkey=r1x82m3a135rfeec86jrjj79k&e=1&dl=0} \\
+学生の方が書いたとは思えないくらいきちんと書かれている.
+\item \cite{Stum} Bernard Le Stum
+\textit{An introduction to condensed mathematics}
+\url{https://perso.univ-rennes1.fr/bernard.le-stum/bernard.le-stum/Enseignement_files/CondensedBook.pdf} 
+\item \cite{Land} Marks Land \textit{CONDENSED MATHEMATICS}
+\url{https://www.markus-land.de/teaching/}
+\end{enumerate}
+上の3冊はかなり親切丁寧に書かれていて読みやすかった印象である. 特に\cite{Stum}や\cite{Bar22}は大いに参考にした. 他にも\cite{Asg} や\cite{Lep}などの修論・博論も参考にした. 
+
+圏論の基礎に関しては次の文献を参考にした.
+\begin{enumerate}
+\item \cite{Mac} S. マックレーン 圏論の基礎 丸善出版
+\item \cite{alg}
+alg-d 全ての概念はKan拡張である
+\url{https://alg-d.com/math/kan_extension/} \\
+Amazonで本が売っている. 
+\end{enumerate}
+%上の二つを読んでいれば事足りると思う. 
+個人的にはトポスを先に勉強しておけばよかったと後悔している.(\cite{Stum}や\cite{Bar22}はトポスの一般論も網羅している印象である.)
+
+基数などに関しては以下を参考にした. 
+\begin{enumerate}
+\item \cite{Tana}
+田中尚夫 公理的集合論　培風館
+\item \cite{Sha2}
+Shane Kelly
+\textit{Fast track guide to cardinals for use with Lurie’s Higher Topos Theory}
+\url{https://www.ms.u-tokyo.ac.jp/~kelly/pdfs/cardinalsFastTrack.pdf}
+\end{enumerate}
+
+%他にも色々と参考にしたが, それは参考文献の欄に載せるだけにする. 
+
+%\newpage
+
+\section{\cite[Proposition 2.9]{Sch19}の準備}
+
+\subsection{基数}
+\subsubsection{順序数・基数の定義}
+ 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+\begin{itemize}
+\item 集合$A$が推移的であるとは
+$x \in A$かつ$y \in x$ならば$y \in A$を満たすこと
+\item 集合Aが全順序とは任意の$x,y \in A$について$x \in y$か$x=y$か$y \in x$が成り立つこと
+\item 集合$A$が順序数とは$A$が推移的かつ全順序なること. 
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+
+%順序数全体の集まりを$OR = \{ u | \text{$u$は順序数} \}$とする. これは集合ではない. 
+
+\begin{exa}
+以下は順序数である. 
+\begin{itemize}
+\item $0 = \varnothing$
+\item $1 = 0 \cup \{ 0\} = \{ 0\} =\{ \varnothing\}$
+\item $2 = 1 \cup \{1\} = \{0,1 \}= \{\varnothing, \{ \varnothing\}\}$
+\end{itemize}
+\end{exa}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[整列可能定理]
+(選択公理を認めれば)任意の集合は整列可能である. 
+よって任意の集合は整列可能な順序構造をもち, それはある順序数と同型となる
+\end{thm}
+\end{tcolorbox}
+
+集合$A,B$について$A\sim B$を$A$から$B$への全単射が存在することで定義する. 
+$A\sim B$を$A$と$B$は同等という.
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[濃度・基数]
+\begin{itemize}
+\item 集合$A$についてその濃度を, $A$と同等な順序数のうち最小のものとする. つまり順序数$\alpha$で$A \sim \alpha$となるののの最小なものである
+\item 集合$A$の濃度を$|A|$として定義する. 定義から「$|A| \sim A$」かつ「任意の順序数$\beta$で$\beta \sim A$ならば$\beta \ge |A|$である. 」
+\item 集合の濃度を基数という. つまり順序数$\alpha$が基数であるとは, $\alpha = |A|$となる集合が存在することとする. 基数全体のクラスをCardと表す.
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+
+\subsubsection{正則基数}
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[定義4.5.1]
+全順序集合$(A,<)$とする. $B \subset A$が共終部分集合であるとは
+任意の$a \in A$についてある$b \in B$が存在して$a\le b$が成り立つこと.
+
+順序数(基数)$\alpha, \beta$について$\beta$が$\alpha$と共終とは
+$A \subset \alpha$なる共終部分集合で順序同型$(A, \in) \cong (\beta, \in)$があること.
+\end{dfn}
+\end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[定義4.5.2]
+\begin{itemize}
+\item 順序数$\alpha$と共終な最小の順序数を共終数といい$cf(\alpha)$と表す. 
+$cf(\alpha)$は基数となる.  
+\item $cf(\alpha) = \alpha$なる順序数を正則基数という. 
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+定義から$cf(\alpha)\le \alpha$である. 
+
+\begin{rem}
+定義から「任意の順序数$\beta$について, $A \subset \alpha$なる共終部分集合で$\beta \cong A$
+ならば$cf(\alpha) \le \beta$」である. 
+
+実はもっと強く「$A \subset \alpha$なる共終部分集合ならば$cf(\alpha) \le |A|$である.」
+なぜならば$(A, \in)$は整列集合であるので, $(\beta, \in) \cong (A, \in)$となる順序数$(\beta, \in)$が存在する.
+よって$cf(\alpha) \le \beta$である.
+これより$cf(\alpha)\to A$という単射が作れるので, $|cf(\alpha)| \le |A|$ . $cf(\alpha)$は基数なので
+$cf(\alpha) = |cf(\alpha)| \le |A|$
+\end{rem}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}
+\label{prop-regular-cardinal}
+$\alpha$が正則ならば, $| I | <  \alpha, |S_i| < \alpha$について
+$ S = \cup_{i \in I}S_i$として$|S| < \alpha$
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$\mu := \sup |S_{i}|$とする.
+$\mu < \alpha$である.
+(もし$\mu \ge \alpha$ならば$I \to \alpha$で共終となるような写像が作れてしまうから)
+よって
+$$
+|S| =
+ |\cup_{i \in I}S_i |
+ \le 
+ | I | \cdot {\mu}
+= \max {|I|, \mu}
+< \alpha
+$$
+となり言えた. 
+\end{proof}
+
+
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[000E 3.7 Cofinality]{Sta}
+\label{lem-cofinal}
+$\kappa$を無限基数とする
+\begin{enumerate}
+\item $\kappa < cf(\alpha)$となる基数$\alpha$が存在する.
+\item $\kappa < cf(\alpha)$となる強極限基数が存在する.
+\end{enumerate}
+\end{lem}
+ \end{tcolorbox}
+ 
+\begin{proof}
+(1). $\alpha$を$|\alpha|>\kappa$となる順序数の中で一番小さいものとする.
+$\alpha$は極限数である. もしそうでなければ$\alpha = \beta +1$かつ$|\alpha|=|\beta|$となって最小性に矛盾するため.
+
+$cf(\alpha) \le \kappa$であるとする.この時$S \subset \alpha$で共終なもので$|S| \le \kappa$となるものが存在する.
+ここで$\beta \in S \subset \alpha$について$\beta < \alpha$より最小性から$|\beta| \le \kappa$
+よって$S$の共終性から
+$$
+|\alpha|
+=
+|\cup_{\beta \in S}\beta|
+\le 
+|S| |\beta|
+\le
+\kappa \kappa = \kappa
+$$ 
+となるが, これは$\alpha$の取り方に矛盾する.
+
+また$\alpha$は基数となる. 
+なぜなら$\alpha\ge |\alpha| = || \alpha||$であるので$\alpha$の最小性より$\alpha =|\alpha| $となる. 
+
+(2)
+$\kappa < cf(\beta)$なる基数$\beta$をとり$\alpha = \beth_{\beta}$をとる.
+$cf(\beta) \le cf(\alpha )$を示せば良い.
+$J \subset \beth_{\beta}$なる共終集合について, $f: J \to \beta$を$j \in J$について$f(j)$を$j \in 2^{\gamma}$となる最小の$\gamma < \beta$と定義すれば, $J$は$\beta$の共終集合になる. 
+よって$cf(\beta) \le cf(\alpha )$となる. 
+
+\end{proof}
+
+
+
+\subsubsection{強極限基数}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[強極限基数]
+$\kappa$が非加算強極限基数(uncountable strong limit cardinal)であるとは
+\begin{enumerate}
+\item $\kappa$ uncountable
+\item $\kappa \neq 0$かつどの順序数$\alpha$についても$\kappa \neq \alpha^{+}$ ( limit cardinal)
+\item  $\lambda < \kappa$ならば$2^{\lambda} < \kappa$
+\end{enumerate}
+ \end{dfn}
+ \end{tcolorbox}
+ 
+ 順序数$\alpha$について
+
+\begin{itemize}
+\item $\beth_0 = \aleph_0$
+\item $\beth_{\alpha+1}= 2^{\beth_{\alpha}}$
+\item $\beth_{\alpha}= \cup_{\beta < \alpha }2^{\beth_{\beta}}$ $\alpha$が極限数の時
+\end{itemize}
+と定義する
+$\beth_{\omega}$は強極限的である. 
+
+ 
+\underline{ 以下このノートでは$\kappa$強極限基数といえば非加算であることを仮定する.}
+
+
+\subsection{圏論}
+\subsubsection{普遍射と極限}
+ 
+ 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$S : \mathcal{D} \to \mathcal{C}$関手, $c \in Ob(\mathcal{C})$とする.
+$c$から$S$への普遍射とは$r \in Ob(\mathcal{D})$と $u: c \to Sr$の組み$(r,u) \in Ob(\mathcal{D})\times hom_{\mathcal{C}}(c, S_r)$であって次の普遍性を満たすものである.
+
+「任意の$d \in Ob(\mathcal{D})$と　$f : c\to Sd$について, ある唯一な写像$f' : r \to d \in hom_{\mathcal{D}}(r,d)$があって, $Sf' \circ u =f$」となる.
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+&c\ar@{=}[d]  \ar@{->}[r]^{u} & Sr\ar@{-->}[d]^{Sf'} &r\ar@{->}[d]_{f'}\\
+&c\ar@{->}[r]_{f} &Sd&d \\   
+}
+\end{equation*}
+\end{dfn}
+つまり$c \to Sd$なる射は$Sf' \circ u$の形に限り, この$f'$はただ一つに定まる. 
+ \end{tcolorbox}
+
+
+\begin{exa}[余極限]
+$\mathcal{C}, \mathcal{J}$を圏とする. ($\mathcal{J}$を添字圏とする.)
+$\Delta : \mathcal{C} \to \mathcal{C}^{\mathcal{J}}$を対角関手とする　．
+つまり
+\begin{itemize}
+\item$c \in Ob(C)$について$\Delta c : \mathcal{J} \to \mathcal{C}$を任意のobjectを$c$に射を$id_c$の送るものとする
+\item  $f: c \to c'$について$\Delta f : \Delta c \to \Delta c'$となる自然変換を任意の$j \in Ob(\mathcal{J})$について$(\Delta f)_{j}=f : \Delta c(j) = c \to \Delta c' (j)=c' $ とする.
+\end{itemize}
+
+$\Delta : \mathcal{C} \to \mathcal{C}^{\mathcal{J}}$関手, 
+$F \in Ob(\mathcal{C}^{\mathcal{J}})$とする.
+$F$から$\Delta $への普遍射とは$r \in Ob(\mathcal{C})$と $u: F \to \Delta r$の組み
+であって次の普遍性を満たすものである.
+
+「任意の$d \in Ob(\mathcal{C})$と$f : F\to \Delta d$について, ある唯一な写像$f' : r \to d \in hom_{\mathcal{C}}(r,d)$があって, $\Delta f' \circ u =f$」となる.
+
+一つずつ噛み砕いていく.
+\begin{itemize}
+\item $u: F \to \Delta r$を与えることは$J$内の$k : 1\to 2$について$u_i : F(i) \to r$で$u_2 \circ F(k) = u_1 : F(1) \to r$を与えることである.
+\item $f : F\to \Delta d$を与えることは, $J$内の$k : 1\to 2$について$f_i : F(i) \to r$で$f_2 \circ F(k) = f_1 : F(1) \to d$を与えることである.
+\item  $\Delta f' \circ u =f$となるとは, 二つはどちらも自然変換なので, $j \in Ob(j)$について$f' \circ u_j = f_j$ということである.
+\end{itemize}
+以上より, $F$から$\Delta $への普遍射とは$r \in Ob(\mathcal{C})$と $u: F \to \Delta r$の組みで
+\begin{enumerate}
+\item $(r, u_j)$のくみで, $J$内の$k : 1\to 2$について$u_i : F(i) \to r$で$u_2 \circ F(k) = u_1 : F(1) \to r$が成り立ち, 
+\item 任意の$J$内の$k : 1\to 2$について$f_i : F(i) \to d$で$f_2 \circ F(k) = f_1 : F(1) \to d$が成り立つ$(d, f_j)$の組みについて,
+\item ある$f' : r \to d$が存在して, 任意の$j$について$f' \circ u_j = f_j$となる.
+\end{enumerate}
+よってこの$r \in Ob(\mathcal{C})$と $u: F \to \Delta r$の組み, 噛み砕くと,
+$(r, u_j : F(j) \to r)$の組みを$F$の余極限という. 
+\end{exa}
+
+\subsubsection{$\lambda$-フィルター余極限と$\lambda$-極限の交換}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}\cite{Sha1}
+ $\kappa$を無限基数(cardinal)とする.
+ \begin{itemize}
+ \item 圏$J$が$\kappa$-smallとは$Mor(J) =\{f : a \to b \}$が集合であり濃度が$\kappa$未満であること. この時$Ob(J)$も濃度$\kappa$未満となる.
+ \item $F: J\to C$が$\kappa$-small limitとは$J$が$\kappa$-smallの場合のlimitとする.
+ \item 圏$J$が$\kappa$-filteredとは, 
+ %\begin{enumerate}
+% \item $J$は空でない
+% \item
+  任意の$\kappa$-small圏$I$からの関手$F : I \to J$について, cocone $c \in Ob(J)$と $u: F \to \Delta c$の組が存在することとする.\footnote{coconeとは$F$から$\Delta : J \to J^{I}$への普遍射から普遍性を除いたもの}
+ %つまり, $c \in Ob(J)$と $u: F \to \Delta c$の組が存在する.
+つまり次を満たす$c,u$が存在することとする. 
+ \begin{enumerate}
+ \item ある$c \in Ob(J)$と$u_{i} : F(i) \to c$のくみが存在して
+ \item 任意の$f : i \to i'$について$ u_{i'}\circ F(f) = u_{i} : F(i) \to c$となるもの
+ \end{enumerate}
+%\item 任意の$\kappa$small圏$I$からの関手$F : I \to J$について, \end{enumerate}
+\item $F: J\to C$が$\kappa$-filtered limitとは$J$が$\kappa$-filtered categoryの場合のlimitとする.
+ \end{itemize}
+ \end{dfn}
+  \end{tcolorbox}
+
+\begin{exa}
+$\omega = |\N|$とする.
+$J$が$\omega$-filteredであることは$J$がフィルター圏である. つまり, 
+\begin{enumerate}
+\item $j, j' \in Ob(J)$についてある$j \to k, j' \to k$が存在する
+\item $a, b: j \to k$について, $u: k \to m$が存在して$ua = ub : j \to k \to m$
+\end{enumerate}
+と同値である.
+これは数学的帰納法からわかる.
+%\xr{時間があれば詳しく}
+
+$\omega$-smal limitは濃度$\omega$未満の図式からのlimitと同値であり, これは有限極限と同値である. 
+
+\end{exa}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-regular-commute}
+$\lambda$を正則基数とする. 
+この時$\lambda$-filtered colimitは$\lambda$-small limitと可換である.
+
+つまり$I$を$\lambda$-filtered, $J$を$\lambda$-smallとして
+$H : I \times J \to {\bf Set}$を関手としたとき
+canonical map
+$$
+\Phi: \colim_{i \in I} \lim_{j \in J}H(i,j)
+\to
+\lim_{j \in J}
+\colim_{i \in I} H(i,j)
+$$
+は全単射である. 
+\end{thm}
+ \end{tcolorbox}
+
+\begin{proof}
+
+\underline{[0] canonical mapの構成 }
+それは次の図式からわかる. 
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+H(i,j)\ar@{->}[d]
+& \lim_{J} H(i,j)\ar@{-->}[d]\ar@{->}[l]\ar@{->}[r]
+&\colim_{I}\lim_{J} H(i,j)\ar@{-->}[d]
+\\
+\colim_{I}F(p,j)
+&\lim_{J}\colim_{I}H(i,j)\ar@{->}[l]
+&\lim_{J}\colim_{I}H(i,j)\ar@{=}[l] \\   
+}
+\end{equation*}
+この写像は次のように書き下せる.
+$a \in \colim_{i \in I} \lim_{j \in J}H(i,j)$とすると, $a = [(a_i, i)]$となる$i \in I$が取れる.
+同値類の割り方は$(a_i, i) \sim (a_{i'}, i')$は$u : i \to k, u' : i' \to k$があって$H(u, id_{j})a_i = H(u', id_{j})a_{i'}$である.
+$a_i \in \lim_{j \in J}H(i,j)$なので, 
+$a_i =(a_{ij})_{j \in J} \in \prod_{j \in J}H(i,j)$で$u : j \to j'$ならば$H(id_{i}, u)a_{ij} = a_{ij'}$となるもの
+である.
+すると各$j \in J$について
+$$
+[((a_{ij})_{j \in J} , i)] \mapsto [(a_{ij}, i)]
+$$
+というmapは$\colim_{i \in I} \lim_{j \in J}H(i,j) \to \colim_{i \in I} H(i,j)$
+のwell-definedなmapになっている. これによって
+$$
+\Phi : [((a_{ij})_{j \in J} , i)] \mapsto ([(a_{ij}, i)])_{j \in J}
+$$
+というmapを得る. 
+
+\underline{[1]$\lim_{j \in J}\colim_{i \in I} H(i,j)$の元を簡単に表す } 
+$c \in \lim_{j \in J}\colim_{i \in I} H(i,j)$の元は
+$c = (c_j)_{j \in J}$かつ$c_j \in \colim_{i \in I} H(i,j)$となるので, 
+$j$に依存する$i_{j} \in I$と$c_{i_{j}j} \in H(i_{j},j)$が存在して, 
+$c = (c_j)_{j \in J}=([c_{i_{j}j}, i_{j}])_{j \in J}$とかける. 
+
+ここで$J'$をObjectを$J$とし, Morphismを恒等射のみとするものとして
+$$
+K : J' \to I \quad j \mapsto i_{j}
+$$
+とおくと, $J$は$\lambda$-smallで$K$は関手となるのでcocone $i_{max} \in I$が存在する.
+つまり$i_j \to i_{max}$なので,
+ $$
+ c = (c_j)_{j \in J}=([c_{i_{j}j}, i_{j}])_{j \in J}
+ =([c_{i_{max}j}, i_{max}])_{j \in J}
+ $$
+ とかける. 
+ つまり元$c$にはある$i \in I$があって$c= ([c_{ij}, i])_{j \in J}$と書くことができる. 
+ 
+
+\underline{[2] 単射性について }
+$\Phi(a)=\Phi(b)$なる$a, b \in \colim_{i \in I} \lim_{j \in J}H(i,j)$をとる. 
+示すことはある$i_0 \in I$と$a =[a_{i_0}, i_0], b =[b_{i_0}, i_0]$で
+$a_{i_0} = (a_{i_{0},j})_{j \in J}$, $b_{i_0} = (b_{i_{0},j})_{j \in J}$と書いた時
+$$
+a_{i_{0},j} = b_{i_{0},j}
+$$
+が各$j \in J$で等しくなるものの存在である. 
+[1]により共通の$i \in I$をとって
+$$
+\Phi(a) = ([(a_{ij}, i)])_{j \in J} = ([(b_{ij}, i)])_{j \in J} = \Phi(b)$$
+であるとして良い. 
+各$j \in J$について
+$$
+[(a_{ij}, i)] = [(b_{ij}, i)] \quad \text{in $\colim_{i \in I} H(i,j)$}
+$$
+である. 
+よって, $u : i \to i_{j}$があって, 
+$$
+F(u, id_{j})a_{ij} = F(u, id_{j})b_{ij}
+$$
+である. [1]と同様にしてある$i_{0} \in I$があって
+$i_{j} \to i_{0}$となる.
+つまり$j \in J$によらない共通の$i_{0}$が取れる.
+
+よって任意の$j \in J$について, $[a_{ij}, i] = [a_{i_{0}j}, i_{0}]$となる$a_{i_{0}j}$と$b_{i_{0}j}$があって
+$$
+a_{i_{0}j} = b_{i_{0}j}
+$$
+となるとして良い. 
+$a_{i_0} = (a_{i_{0},j})_{j \in J}$とおけば[2]の主張を得る. 
+
+\underline{[3]全射性 } 
+[1]より$c \in \lim_{j \in J}\colim_{i \in I} H(i,j)$の元は
+ある$i \in I$があって， $c= ([c_{ij}, i])_{j \in J}$と書くことができる. 
+よって
+$c_{i}:=(c_{ij})_{j \in J}$とおけば$c_i \in \lim_{J}H(i.j)$の元であり
+$[c_{i} , i] \in \colim_{i \in I} \lim_{j \in J}H(i,j)$であるので
+$\Phi([c_i , i])=c$となる. 
+\end{proof}
+
+\subsubsection{コンマ圏}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$T :  \mathcal{E} \to \mathcal{C}$, $S : \mathcal{D} \to \mathcal{C}$関手として
+コンマ圏$(T \downarrow S)$を次のように定義する. 
+\begin{itemize}
+\item Object $(e,d,f) \in Ob(\mathcal{E}) \times Ob(\mathcal{D}) \times Hom_{\mathcal{C}}(Te, Sd)$ , つまり$f : Te \to Sd$とする. s
+\item Morphism $(k,h) : (e,d,f)  \to (e',d',f') \in Hom_{\mathcal{E}}(e,e') \times Hom_{\mathcal{D}}(d,d') $ を $k : e \to e', h: d \to d'$で$f' \circ Tk = Sh \circ f$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+e \ar@{->}[d] _{k}&Te\ar@{->}[d]_{Tk}  \ar@{->}[r]^{f} & Sd\ar@{->}[d]^{Sh} &d\ar@{->}[d]_{h}\\
+e'&Te'\ar@{->}[r]_{f'} &Sd'&d' \\   
+}
+\end{equation*}
+\end{dfn}
+\end{tcolorbox}
+
+\begin{exa}
+$\mathcal{E}={\bf 1}$とする.
+$b \in Ob(\mathcal{C})$は
+$b :  {\bf 1} \to \mathcal{C}$という関手とみれる. 
+$S : \mathcal{D} \to \mathcal{C}$関手として
+コンマ圏$(b \downarrow S)$は次のようになる. 
+\begin{itemize}
+\item Object $(1,d,f) \in Ob(\mathcal{E}) \times Ob(\mathcal{D}) \times Hom_{\mathcal{C}}(b, Sd)$ , つまり$f : b \to Sd$とする. 
+\item Morphism $(1,h) : (1,d,f)  \to (1,d',f') \in Hom_{\mathcal{E}}(e,e') \times Hom_{\mathcal{D}}(d,d') $ を $1 : 1 \to 1, h: d \to d'$で$f' = f' \circ id_b = Sh \circ f$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+1 \ar@{->}[d] _{1}&b\ar@{=}[d]_{id_b}  \ar@{->}[r]^{f} & Sd\ar@{->}[d]^{Sh} &d\ar@{->}[d]_{h}\\
+1&b\ar@{->}[r]_{f'} &Sd'&d' \\   
+}
+\end{equation*}
+
+紛らわしいので１を消すと
+\begin{itemize}
+\item Object $(d,f) \in \times Ob(\mathcal{D}) \times Hom_{\mathcal{C}}(b, Sd)$ , つまり$f : b \to Sd$とする. 
+\item Morphism $h : (d,f)  \to (d',f') \in Hom_{\mathcal{D}}(d,d') $ を 
+$h: d \to d'$で$f'  = Sh \circ f$となるもの
+\end{itemize}
+
+\end{exa}
+
+
+\subsubsection{左Kan拡張}
+証明はAppendixの\ref{subsubsec-Kan}に右Kan拡張の場合だけ書いておいた. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[左Kan拡張]
+$K : M \to C$, $T : M \to A$を関手とする.
+$K$に沿った$T$の左Kan拡張とは
+\begin{itemize}
+\item $L : C \to A$関手
+\item $\epsilon :  T \to LK$自然変換
+\end{itemize}
+に二つくみ$(L, \epsilon : LK \to T)$であって, 
+任意の$S : C \to A, \alpha :  T \to SK $について, $\alpha = \sigma K \circ \epsilon:  T \to SK$となる自然変換$\sigma : L \to S$が唯一存在すること. 
+
+このとき$L := Lan_{K}T$とかく. 
+\end{dfn}
+\end{tcolorbox}
+
+$\sigma \mapsto \epsilon \cdot \sigma K$によって自然な全単射
+$$
+Nat (L, S)=Nat (Lan_{K}T, S) \cong Nat(T, SK)
+$$
+となる.よってこれをかっこよくいうと次の補題を得る. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-leftkan-adjoint}
+$K : M \to C$を固定する. 
+任意の$T \in A^{M}$ ($T : M \to A$)について左Kan拡張
+$(L, \epsilon) := (Lan_{K}T \in A^C, \epsilon_{T}: T \to LK)$
+が存在すると仮定する.
+
+この時$\beta : A^M \to A^C$を
+\begin{itemize}
+\item $\beta T := Lan_{K}T$
+\item $\beta (g : T \to T')$について$\beta(g) : Lan_{K}T \to Lan_{K'}T$を, 
+$S = Lan_{K}T' : C \to A, \alpha =g\circ \epsilon_T : T \to SK = Lan_{K}T' K$として, 唯一存在する自然変換
+$\beta(g):=\sigma :  Lan_{K}T \to Lan_{K}T'$で$\alpha =g\circ \epsilon_T  = \beta(g)K \cdot \epsilon_T $となるもの. 
+\end{itemize}
+で決めると, 
+$$
+F : A^C \to A^M \quad N :C\to A\mapsto N \circ K : M \to A 
+$$
+の左随伴, つまり
+$$
+Nat (Lan_{K}T, N)
+=
+ hom_{A^C}(Lan_{K}T, N)
+ \cong
+ hom_{A^M}(T, F(N)) = Nat(T,NK)
+$$
+となり, $\epsilon :  I \to Ran_{K} \circ F$はunitである. 
+\end{lem}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[点列極限としての左Kan拡張]
+\label{thm-leftKan-extension}
+$K : M \to C$, $T : M \to A$を関手とする.
+任意の$c \in Ob(C)$について
+$$
+T \circ P : (K \downarrow c ) \to M \to A
+$$
+に関する余極限$\colim T\circ P$と$\mu:  TP \to \Delta (\lim T\circ P)$が存在すると仮定する.
+
+このとき$L : C \to A$を
+\begin{itemize}
+\item $c \in Ob(C)$について, $Lc : = \colim (T \circ P : (K \downarrow c ) \to M \to A)$
+\item $g : c \to c'$について $Lg : Lc \to Lc'$となる射
+\end{itemize}
+とするとこれは関手になる
+
+さらに$\epsilon : T \to RK $について
+$\epsilon_{m} :  Tm \to RKm$を次で定めるとこれは自然変換になる: 
+
+%(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km$,
+$LKm =\colim T\circ P \in Ob(A)$と$\mu: TP \to \Delta TPm$は定義から, 
+$(LKm , \mu_{x})$のくみ($x : Km \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$
+($x' : Km' \to Km$)について
+\begin{itemize}
+\item $\mu_{x} :  Tm \to  RKm  $, つまりA内で$\mu_{x} :   Tm  \to RKm$
+\item $  \mu_{x} \circ TP h = \mu_{x'} : TQ(m',x') =Tm' \to RKm $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+である. そこで$\epsilon_{m} := \mu_{ id_{Km}} : Tm \to RKm $と定義する.
+
+そして$(L,\epsilon)$は$K$に沿った$T$の左Kan拡張となる. 
+\end{thm}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\label{cor-leftkan-small}
+$M$がsmall, $A$が完備なら
+任意の$T : M \to A$は任意の$K : M \to C$に沿った左Kan拡張を持つ. 
+さらに$A^K$は左随伴を持つ
+
+特に$M$smallならば任意の$T : M \to {\bf Set}$は任意の$K : M \to C$に沿った左Kan拡張を持つ. 
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\ref{thm-Kan-extension}のように
+$K : M \to C$, $T : M \to A$を関手, 
+任意の$c \in Ob(C)$について
+$$
+T \circ P : (K \downarrow c) \to M \to A
+$$
+に関する極限$\colim T\circ P$と$\mu:  TP \to \Delta (\lim T\circ Q)$が存在すると仮定する.
+
+さらに$K : M \to C$がfully faithfullの場合, 
+$K$の$T$に沿ったKan拡張$L = Lan_{K}T$についての
+普遍射$\epsilon : T \to LK$は自然同型を与える
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$M$が$C$のfull sub categoryつまり包含関手$K : M \to C$がfullyfaithfullとする. 
+$T : M \to A$関手とする. 
+$c \in C$について
+$$
+( K \downarrow c) \to M \to A
+$$
+が$A$内に極限を持つとき$L : C \to A$があって
+$\epsilon :  T \cong LK$である.
+
+特に恒等自然変換$1: RK \to T$とすると
+$(L,1)$は$T$の$K$に沿った左Kan拡張となる. 
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+$K : M \to C$, $T : M \to A$, $G :  A \to X$とする.
+$G$が右随伴を持つ時, $G$は左Kan拡張を保存する. 
+$$
+G \circ Lan_{K} T = Lan_{K}GT
+$$
+\end{thm}
+\end{tcolorbox}
+
+\subsubsection{表現関手と余極限}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\label{cor-colim-represent}
+$\mathcal{D}$ small 
+$K : \mathcal{D}^{op} \to {\bf Set}$反変関手, つまり$K \in {\bf Set}^{\mathcal{D}^{op}}$とする. ($K$は前層)この時$K$は$hom_{\mathcal{D}}(\cdot, d)$の余極限でかける. 
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+$J$をコンマ圏$1 \downarrow K$とする.
+つまり,
+$1 \in Ob({\bf Set})$(1は１点集合のこと)
+$1 :  {\bf 1} \to {\bf Set}$という関手とみれる. 
+$K : \mathcal{D}^{op} \to {\bf Set}$関手として
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}^{op}) \times Hom_{{\bf Set}}(1, Sd)$ , つまり$x : 1 \to Kd$とする. 
+\item Morphism $h : (d,x)  \to (d',x') \in Hom_{\mathcal{D}^{op}}(d,d') $ を 
+$h: d \to d' in \mathcal{D}^{op}$で$x'  = Kh \circ x$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+1 \ar@{->}[d] _{1}&1\ar@{=}[d] \ar@{->}[r]^{x} & Kd\ar@{->}[d]^{Kh} &d\ar@{->}[d]_{h}\\
+1&1\ar@{->}[r]_{x'} &Kd'&d' \\   
+}
+\end{equation*}
+もう少し噛み砕くと
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}^{op}) \times Kd$. $x \in Kd \in Ob({\bf Set})$である.
+\item Morphism $h : (d,x)  \to (d',x') \in Hom_{\mathcal{D}^{op}}(d,d')$ を
+$h: d \to d' in \mathcal{D}^{op}$で, $Kh : Kd \to Kd'$は集合の写像になるので, $x' = Kh(x)$である. 
+\end{itemize}
+
+そこで関手$M : \mathcal{J}^{op} \to {\bf Set }^{\mathcal{D}^{op}}$を
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}^{op}) \times Kd$について$M(d,x) = hom_{\mathcal{D}}(\cdot, d)$
+\item Morpshim $h : (d,x)  \to (d',x') in \mathcal{J}^{op} $について, 
+$h : (d',x') \to (d,x) in \mathcal{J}$より, 
+$h : d'  \to d in \mathcal{D}^{op}$で$x = Kh(x')$なるものがあり, 
+$h : d \to d' in \mathcal{D} $であるので, 
+$Mh :  M(d,x) = hom_{\mathcal{D}}( \cdot, d) \to  M(d',x) = hom_{\mathcal{D}}(\cdot, d') $て定義できる. 
+\end{itemize}
+
+ここで$J$はsmallとなる.
+ これは$|Ob(\mathcal{D})| < cf(\kappa) \le \kappa$となる基数$\kappa$をとると(この存在は\ref{lem-cofinal}から), $\sup_{d \in Ob(\mathcal{D})} |Kd| < \kappa$が言えるから. 
+
+示すことは$K \in Ob({\bf Set}^{\mathcal{D}^{op}})$が
+$M \in Psh(\mathcal{D}^{op},{\bf Set})^{\mathcal{J}^{op}}$の余極限
+$$
+K \cong  \colim_{M : \mathcal{J}^{op} \to {\bf Set }^{\mathcal{D}^{op}}}M(d,x)
+=\colim_{M : \mathcal{J}^{op} \to {\bf Set }^{\mathcal{D}^{op}}} hom_{\mathcal{D}}(\cdot, d)
+$$
+であることを示す. 
+$K \in Ob({\bf Set}^{\mathcal{D}^{op}})$と $u: M \to \Delta K$の組みで普遍なものがあることを示せば良い
+($\Delta K \in Psh(\mathcal{D}^{op},{\bf Set})^{\mathcal{J}^{op}}$に注意する)
+
+つまり
+%$K \in Ob({\bf Set}^{\mathcal{D}})$と $u: M \to MK$の組み, 噛み砕くと,
+$(K, u_{(d,x)}: M(d,x) \to K)$の組で
+\begin{enumerate}
+\item $(K, u_{(d,x)}: M(d,x) \to K)$のくみで, $J ^{op}$内の$h : (d,x)\to (d',x')$について
+$u_{(d,x)}  = u_{(d',x')} \circ M(h) : M(d ,x) \to K)$が成り立ち, 
+\item $J ^{op}$内の$h : (d,x)\to (d',x')$について$f_{d,x} : M(d,x) \to L$
+, $f_{d',x'} : M(d',x') \to L$で
+$f_{d,x}  = f_{d',x'}\circ M(h) : M(d,x) \to L$が成り立つ$(L, f_{d,x})$の組みについて,
+\item ある$f' : K \to L$が存在して, 任意の$j$について$f' \circ u_{d,x} = f_{d,x}$となる.
+\end{enumerate}
+であることを示せば良い.
+
+$u_{(d,x)} \in Nat(M(x, d)=hom_{\mathcal{D}}(\cdot, d), K) \cong Kd$
+より$u{(d,x)} = x$とすれば良い. 
+(つまり$u_{(d,x)}(c) : hom_{\mathcal{D}}(c, d) \to  Kc$を$f \mapsto (Kf)(x)$とする)
+$h : (d,x)  \to (d',x') in \mathcal{J}^{op} $について, 
+$h : d'  \to d in \mathcal{D}^{op}$で$x = Kh(x')$となる. 
+よって$u_{(d,x)}  = u_{(d',x')} \circ M(h) : M(d ,x) \to K$であることは, 
+任意の$c \in \mathcal{D}$, $f \in M(d ,x)(c) = hom_{\mathcal{D}}(c, d) $について
+$$
+u_{(d',x')} \circ M(h) (f)
+= u_{(d',x')} (h \circ f) 
+=K(h \circ f) (x')
+=Kf\circ Kh (x')
+Kf (x)=u_{(d,x)}(f) 
+$$
+となり言える. 
+
+(2)については$(L, f_{d,x})$の組みについて, 
+自然変換$f : K \to L$を与えることは$d' \in Ob(\mathcal{D})$について$f_{d'} : Kd' \to Ld'$で可換性を満たすようなものを作れば良い. $f_{d,x} \in Nat( M(d,x), L)=Nat( hom(\cdot,d), L)\cong Ld$より, $f_{d,x}$は$Ld$の元とみなせる
+これは$a \in Kd'$について$f_{d,a}$を返せば良い. 
+自然性は米田の同型を追えば良い
+\end{proof}
+
+\subsection{レクチャーノート1章2章の内容で今回の発表で使うもの.}
+
+  
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Definition 2.4]{Sch19}
+コンパクトハウスドルフ空間$S$がextremally discconetedであるとは, 任意のコンパクトハウスドルフ空間$S'$からの全射$ p : S '  \twoheadrightarrow S$について, ある$\pi : S \to S'$が存在して$p \circ \pi = id_{S}$となる. 
+ \end{dfn}
+ \end{tcolorbox}
+ 
+ 同値な定義として, 「$S \to A$と全射$B \twoheadrightarrow A$は常にリフト$S \to B$を持つ」とも言える. 
+ 
+   \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Example 2.5]{Sch19}
+\label{prop-sch-exa2.5}
+$\kappa$ 強極限基数とする.
+
+$|S_0| <\kappa$となる離散集合について, 
+$\beta S_0$を$S_0$のstone cechコンパクト化とするとき,
+ $\beta S_0$はextremally discconetedで
+$|\beta S_0 | < \kappa$となる.
+
+特に任意のコンパクトハウスドルフ空間$S$に関して, extremally discconeted $\beta S_{dist}$からの
+全射$\beta S_{dist} \to S$が存在する. 
+
+ \end{prop}
+ \end{tcolorbox}
+ 
+ 以下このノートでは$\beta S_{dist}$を\underline{$S$に離散位相を入れたStone Cechコンパクト化}とする. 
+ 
+   \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Example 2.5]{Sch19}
+$\kappa$ 強極限基数とする.
+
+${\bf ED}_{< \kappa}$を次からなる圏とする.
+\begin{itemize}
+\item Object: extremally discconeted set で$|S| < \kappa$となるもの. 
+\item Morphism: 連続写像$S \to S'$
+\end{itemize}
+%とする. この圏はnot smallだがessentially small, つまり小さな圏と圏同値である. 
+
+そして$Cov({\bf ED}_{< \kappa})$を
+有限個連続写像$f_i : X_i \to Y$で$\cup_{i=1}^{n}f_i(X_i) =Y$となるものとする. 
+
+この時${\bf ED}_{< \kappa}$のsheafの圏は(profinite setの制限によって)$\kappa$-condenced setの圏と圏同値
+ \end{prop}
+ \end{tcolorbox}
+ 
+特に$\kappa$-small condenced set $Cond_{<\kappa}$の圏は
+$$
+T : {\bf ED}_{< \kappa}^{op} \to {\bf Set}
+$$
+なる関手で
+\begin{enumerate}
+\item $T(\phi) = 1pt$
+\item $T(S_1 \sqcup S_2) \to T(S_1) \times T(S_2)$がbijection
+\end{enumerate}
+となるものとして特徴づけられる .
+(EDの性質により2つ目の条件はすぐに出る. )
+
+以下このノートでは原則的に${ \bf Cond}_{<\kappa}$の圏は
+\underline{${\bf ED}_{< \kappa}^{op}$から${\bf Set}$への関手で 
+上の1.2の条件を満たすもの}とする. 理由としてはEDの方が使いやすいからである.
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[proposition 1.7]{Sch19}
+$\kappa$強極限基数とする. 
+$$
+F : {\bf Cond}_{< \kappa} \to {\bf Top_{<\kappa}} \quad T \to T(\ast)_{top}
+$$
+$$
+G :  {\bf Top_{<\kappa}} \to {\bf Cond}_{< \kappa} \quad X \to \underline{X}:=hom_{{\bf ED}_{<\kappa}}(\cdot, X)
+$$
+とする. 
+ここで$T(\ast)_{top}$は底空間$T(\ast)$に位相を
+$$
+\sqcup_{S \in {\bf ED}_{<\kappa}}  \sqcup_{f \in T(S) }  S \to T(\ast)
+$$
+が商写像になるように定義する.
+
+この時$F$は$G$の左随伴射でcounitは$\epsilon : FG \to I$は$\epsilon_{X}=id_{X}: FG(X)=\underline{X}(\ast)_{top}\cong X^{\kappa-cg} \to X$となる. 
+特に
+$$
+hom_{{\bf Top}_{<\kappa}}(T(\ast)_{top}, X) \cong hom_{{\bf Cond}_{<\kappa}}(T, \underline{X})
+$$
+となる. 
+ \end{prop}
+ \end{tcolorbox}
+
+
+
+\section{\cite[Proposition 2.9]{Sch19}の解説}
+
+
+
+\subsection{\cite[Proposition 2.9]{Sch19}の主張}
+
+   \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Proposition 2.9]{Sch19}
+\label{prop-Sch19-2.9}
+$\kappa < \widetilde{\kappa}$を強極限基数とする.
+この時
+$$
+\mathcal{F}_{\widetilde{\kappa}, \kappa} : 
+{\bf Cond_{<\kappa}} \to {\bf Cond_{<\widetilde{\kappa}}}
+$$
+となる自然な関手が存在する. 
+これは次で与えられる. 
+\begin{itemize}
+\item $T \in Ob({\bf Cond_{<\kappa}})$について, $T_{\widetilde{\kappa}} :=\mathcal{F}_{\widetilde{\kappa}, \kappa}(T) \in {\bf Cond_{<\widetilde{\kappa}}}$を, 任意の$\widetilde{S} \in {\bf ED}_{< \widetilde{\kappa}}$について
+$$
+T_{\widetilde{\kappa}} := \colim_{\widetilde{S} \to S} T(S)
+$$
+として定義する. ここで$\widetilde{S} \to S$は$\kappa$-small extremally disconnected set $S$ への連続写像全てを回る.
+\item morphism $f : T \to T'$について, $\widetilde{S} \to S$について$T'(S) \to T(S)$が存在するので, その$\colim$として定義する. 
+
+\end{itemize}
+すると$T_{\widetilde{\kappa}} $はsheafになり, $\mathcal{F}_{\widetilde{\kappa}, \kappa} : {\bf Cond_{<\kappa}} \to {\bf Cond_{<\widetilde{\kappa}}}$は
+次を満たす.
+\begin{enumerate}
+\item $\mathcal{F}_{\widetilde{\kappa}, \kappa} $はfully-faithfullである. 
+\item 関手$G$を
+$$
+G : {\bf Cond_{<\widetilde{\kappa}}} \to {\bf Cond_{<\kappa}} 
+\quad \widetilde{T} \mapsto \widetilde{T}|_{{\bf ED}_{< \kappa}}
+$$
+で定めると, 
+$\mathcal{F}_{\widetilde{\kappa}, \kappa}$は$G$
+左随伴射である. 特にcolimと可換である.
+\item $\lambda := cf(\kappa)$とする時, 任意の$\lambda$-small limitと交換する. 
+\end{enumerate}
+ \end{prop}
+ \end{tcolorbox}
+ \begin{rem}
+ ショルツのレクチャーノートでは, 
+「 $T \in {\bf Cond_{<\kappa}} $について, $T_{\widetilde{\kappa}} :=\mathcal{F}_{\widetilde{\kappa}, \kappa}(T) \in {\bf Cond_{<\widetilde{\kappa}}}$を, 任意の$\widetilde{S} \in {\bf Profin}_{< \widetilde{\kappa}}$について
+$$
+T_{\widetilde{\kappa}} := \colim_{\widetilde{S} \to S} T(S)
+$$
+の"sheafification"として定義する. ここで，$\widetilde{S} \to S$は$\kappa$-small profinite set$S$ への連続写像全てを回る」
+として定義していた.
+ただこれだとすぐには$\lambda$-small limitとの可換性は言えないと思う. というのもsheafificationが$\lambda$-small limitとの可換かはわからないからである. 
+
+ただ結論としては正しい. というのも
+$$
+Sh({\bf Profin}_{<\kappa}, {\bf Set}) \cong Sh({\bf ED}_{<\kappa}, {\bf Set}) 
+$$
+という圏同値があるからである. 
+%逆にいうと$\lambda$-small limitとの可換性以外の主張は全て成り立つ. 
+
+ \end{rem}
+
+ 
+ \begin{rem}[Sch19. Remark 2.10]
+ $\lambda$-small極限の主張以外は, ${\bf Set}$ではなくてもfiltered colimitが常に存在する圏に値を持つcondensed objectにも適応できる.
+ 
+  $\lambda$-small極限に関しては${\bf Set}$へのconservative forgetful functor 忘却関手をもち, limitとfiltered colimitが可換になるものについては成り立つ. 
+   ここで$F : C \to D$がconservative functorとは任意のmorpshim $f$について$F(f)$がisomならば$f$がisomなことを言う. 
+ \end{rem}
+
+
+\subsection{\cite[Proposition 2.9]{Sch19}の主張 (=命題\ref{prop-Sch19-2.9})の証明}
+
+\begin{proof}[Proof of Proposition \ref{prop-Sch19-2.9}]
+非常に長いが一つずつ噛み砕いていく. 
+
+\underline{[1] $\mathcal{F}_{\widetilde{\kappa}, \kappa} :  Cond_{<\kappa} \to Cond_{<\widetilde{\kappa}}$の存在} 
+
+\underline{[1-1]左Kan拡張の存在 }$T \in {\bf Cond_{<\kappa}}$とする.
+これは次を満たす関手である.
+\begin{itemize}
+\item $T \in {\bf Set}^{{\bf ED}_{\kappa}^{op}}$
+\item $T(\varnothing)=1$かつ$T(S_1 \sqcup S_2) \to T(S_1) \times (S_2)$がbijection
+\end{itemize}
+そこで$K : {\bf ED}_{<\kappa}^{op} \to {\bf ED}_{<\widetilde{\kappa}}^{op}$を包含関手とする. 
+$K$はfully faithfullである.
+
+すると
+\begin{itemize}
+\item $K$が包含関手でfully faithfull.
+\item ${\bf ED}_{<\kappa}^{op}$はsmall.
+\item ${\bf Set }$は余完備.
+\end{itemize}
+であるので, \ref{thm-leftKan-extension}や\ref{cor-leftkan-small}により$T$の$K$に沿った左Kan拡張
+$Lan_{K}T \in {\bf Set}^{{\bf ED}_{<\widetilde{\kappa}}^{op}}$
+%$(Lan_{K}T \in Ob({\bf Ed}_{\widetilde{\kappa}}^{op}) , 1 :  F \to Lan_{K}F \cdot K)$
+が存在する. そして
+$\widetilde{S} \in {\bf ED}_{\widetilde{\kappa}}^{op}$について
+$$
+Lan_{K}T(\widetilde{S}) = \colim(T \circ P : (K \downarrow \widetilde{S}) \to {\bf ED}_{<\kappa} \to {\bf Set})
+$$
+となる.
+%[1-3.] 関手になること. 
+%これは[2-1]からわかる
+%[2] 各種の条件について
+%以下$F_{\kappa \widetilde{\kappa}} =Lan_{K}$とする.
+%[2-1] fully-faithfullと左随伴関手性について
+すると\ref{lem-leftkan-adjoint}によって
+\begin{itemize}
+\item $Lan_{K} : {\bf  Cond_{<\kappa}} \to { \bf Cond_{<\widetilde{\kappa}} }$ を$T \mapsto Lan_{K}T$
+\item $K : {\bf Cond_{<\widetilde{\kappa}} }\to {\bf Cond_{< \kappa}} $を$T \mapsto T \circ K$
+\end{itemize}
+としたとき, 
+$Lan_{K}$は$K$の左随伴, つまり
+$$
+Nat(Lan_{K}F, N)
+=
+hom_{{\bf Cond_{<\widetilde{\kappa}}} }(Lan_{K}F, N)
+ \cong
+ hom_{{\bf Cond_{< \kappa}}}(F, K(N)) 
+ = Nat(T,NK)
+$$
+となり, 恒等自然変換$1:  I_{{\bf Cond_{<\kappa}}}\to Lan_{K} \circ K$はunitである. 
+
+\underline{[1-2] $\mathcal{F}_{\widetilde{\kappa}, \kappa} = Lan_{K}$であること}
+
+左Kan拡張$Lan_{K}$をを書き下していく. 
+$ (K \downarrow \widetilde{S})$の圏とは定義から次で与えられる.\footnote{ただし連続写像と${\bf ED}_{\kappa}^{op}$の矢印を区別するため, ${\bf ED}_{\kappa}^{op}$での矢印を$\xr{\to}$で表す. またわかりやすさのため包含写像$K$もあえて書く.}
+\begin{itemize}
+\item Object $(S_1, f_1)$は$S_1 \in {\bf ED}_{\kappa}$かつ$f_1: KS_1 \xr{\to} \widetilde{S}$の組み.
+$f_1: KS_1 \xr{\to} \widetilde{S}$は連続写像$f_1 : \widetilde{S} \to S_1$と同値である. 
+\item Morpshim $h : (S_1, f_1) \to (S_2, f_2)$を$h : S_1 \xr{\to} S_2$で$f_2 \circ Kh = f_1  : S_1 \xr{\to} \widetilde{S}$となるもの. 
+よって連続写像の言葉で直すと, $\widetilde{S} \to S_2 \to S_1$が可換になること. 
+\end{itemize}
+ 図で表すと次の様になる.\footnote{なぜか矢印に色がつかなかった...}
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+KS_1\ar@{->}[d] _{\xr{h}}
+&KS_1\ar@{->}[d]_{\xr{Kh}}  \ar@{->}[r]^{\xr{f_1}} 
+& \widetilde{S}\ar@{=}[d]
+&\widetilde{S}\ar@{=}[d]
+\\
+KS_2
+&KS_2 \ar@{->}[r]_{\xr{f_2}} 
+&\widetilde{S}
+&\widetilde{S}
+ \\   
+{\bf Ed}_{\kappa}^{op}
+&{\bf Ed}_{\widetilde{\kappa}}^{op}
+&
+&1 
+\\   
+}
+\end{equation*}
+そして$T \circ P : (K \downarrow \widetilde{S}) \to {\bf ED}_{\kappa} \to {\bf Set}$とは
+$(S_1, f_1) \mapsto T(K(S_1))$であるので
+\begin{align*}
+\begin{split}
+Lan_{K}F (\widetilde{S})
+&:=
+\colim(F \circ P : (K \downarrow \widetilde{S}) \to P \to {\bf Set})\\
+&=
+\colim_{f_1: K(S_1) \xr{\to} \widetilde{S}, S_1 \in  {\bf ED}_{\kappa} }T(S_1)\\
+&=
+\colim_{f_1 : \widetilde{S} \to S_1, S_1 \in  {\bf ED}_{\kappa}}T(S_1) \\
+\end{split}
+\end{align*}
+%$\colim(F \circ P : (K \downarrow \widetilde{S}) \to P \to {\bf Set})$とは
+%$F \circ P : (K \downarrow \widetilde{S}) \to P \to {\bf Set}$から
+%$\Delta : {\bf Set} \to {\bf Set}^{ (K \downarrow \widetilde{S}) }$への普遍射の$r \in Ob({\bf Set})$と 
+%$u: F \circ P \to \Delta r$の組みのことである. 
+
+\underline{[1-3] $Lan_{K}T$がsheafになること }
+$T(\varnothing)=1$に関しては恒等関手を見れば
+$$
+1_{\varnothing}=id_{T(\varnothing)} : T(\varnothing) \to   Lan_{K}T\cdot K(\varnothing)=(\varnothing)
+$$
+となるので一点集合である.
+
+次に$\widetilde{S}_1,  \widetilde{S}_2\in Ob({\bf ED}_{<\widetilde{\kappa}})$について
+$Lan_{K}T (\widetilde{S}_1 \sqcup  \widetilde{S}_2) \cong
+ Lan_{K}T (\widetilde{S}_1 ) \times  Lan_{K}T ( \widetilde{S}_2)$
+となることを示す.
+
+まず$K \downarrow  (\widetilde{S}_1 \sqcup  \widetilde{S}_2)$の部分圏$J$を次で定める.
+\begin{itemize}
+\item Object $(S_1 \sqcup  S_2, f_1 \sqcup  f_2)$を$S_1, S_2 \in {\bf ED}_{<\kappa}$かつ連続写像$f_1 : \widetilde{S_1} \to S_1$, $f_2 : \widetilde{S_2} \to S_2$の組みとする. 
+\item Morphism $h=g_1\sqcup g_2 : (S_1 \sqcup S_2, f_1 \sqcup f_2) \to  (S'_{1} \sqcup S'_2, f'_1 \sqcup f'_2)$とかけるものとする. ここで$g_i \circ f_i = f_{i}' : \widetilde{S_i} \to S'_i \to S_{i}$とする. 
+\end{itemize}
+これは確かに部分圏となっている. 
+なぜならば$S_1, S_2 \in {\bf ED}_{<\kappa}$ならば$S_1 \sqcup  S_2 \in {\bf ED}_{<\kappa}$であり, $f_1 : \widetilde{S_1} \to S_1$, $f_2 : \widetilde{S_2} \to S_2$の組みがあれば
+$$
+i_1 \circ f_1 : \widetilde{S_1} \to S_1 \sqcup S_2, \quad 
+i_2 \circ f_2 : \widetilde{S_2} \to S_1 \sqcup S_2,
+$$
+が定義できるので, 余積の定義から
+$$
+f_1 \sqcup f_2  : \widetilde{S}_1 \sqcup \widetilde{S}_2  \to S_1 \sqcup S_2
+$$
+が定義できるからである. 
+
+\underline{$J$が$K \downarrow  (\widetilde{S}_1 \sqcup  \widetilde{S}_2)$の共終部分圏になること}を示す.
+(共終については\ref{dfn-cofiinal-category}参照.) 
+これは共終の定義の2条件を満たすことを示せば良い.
+
+(1). 任意の$(S, f) \in K \downarrow  (\widetilde{S}_1 \sqcup  \widetilde{S}_2)$について, ある
+$(S_1 \sqcup  S_2, f_1 \sqcup  f_2)$があって
+$\widetilde{S}_1 \sqcup  \widetilde{S}_2 \xr{\leftarrow} S_1 \sqcup  S_2  \xr{\leftarrow} S$
+であること.
+これは連続写像に言い換えると, 任意の$f : \widetilde{S} \to S$について, 
+$g_i: \widetilde{S}_i \to S_i$, $h_i: S_i \to S$があって次の図式を満たせば良い.
+\begin{equation*}
+\label{eq-conti}
+\xymatrix@C=78pt@R=20pt{
+\widetilde{S}_1 \sqcup  \widetilde{S}_2 \ar@/^20pt/[rr]^{f} 
+ \ar@{->}[r]^{g_1 \sqcup  g_2}
+&S_1 \sqcup  S_2  \ar@{->}[r]^{h_1 \sqcup  h_2}
+& S
+\\
+}
+\end{equation*}
+$f(\widetilde{S_1} ) \subset S$を$\widetilde{S_1} \to \widetilde{S}_1 \sqcup  \widetilde{S}_2 \overset{f}{\to} S$の像とし, $S_1 := \beta (f(\widetilde{S_1} )_{dist}) $とする.\footnote{ $\beta (f(\widetilde{S_1} )_{dist})$については\ref{prop-sch-exa2.5}参照}
+すると$S_1 \in {\bf ED}_{<\kappa}$である.
+また$S_1 \twoheadrightarrow f(\widetilde{S_1} ) $は全射かつ$\widetilde{S}_1 \in {\bf ED}$のため, $g_1 : \widetilde{S_1} \to S_1$が存在する. 
+同様に$g_2 : \widetilde{S_2} \to S_2$も存在する.
+また$h_i : S_i \to f(\widetilde{S_i} ) \subset S$とする.
+直和の定義をちゃんと見ればこれが可換になっている.
+
+(2). 任意の$(S, f) \in K \downarrow  (\widetilde{S}_1 \sqcup  \widetilde{S}_2)$と
+$(S_1 \sqcup  S_2, f_1 \sqcup  f_2)$, $(T_1 \sqcup  T_2, g_1 \sqcup  g_2) \in Ob(J)$ で
+$$
+g_{S} : (S, f) \xr{\to}(S_1 \sqcup  S_2, f_1 \sqcup  f_2)
+\quad
+g_{T} : (S, f) \xr{\to}(T_1 \sqcup  T_2, g_1 \sqcup  g_2)
+$$
+であったとする.
+そこで$W_1 := \beta((S_1\times T_1)_{dist})$とする
+$W_1 \twoheadrightarrow S_1$が全射なので$\widetilde{S_1} \to W_1$を誘導し, 次の図式を得る. 
+\begin{equation*}
+\label{eq-conti}
+\xymatrix@C=78pt@R=20pt{
+&S_1 \ar@{->}[rd]\ar@{=}[d]
+& 
+\\
+\widetilde{S}_1 
+ \ar@{->}[r] \ar@{->}[rd]\ar@{->}[ru]
+&S_1  \ar@{->}[r] 
+& S
+\\
+&W_1 \ar@{->}[ru] \ar@{->}[u]
+& 
+\\
+}
+\end{equation*}
+これを$i=2$の場合も同様にして次の図式を得る．
+\begin{equation*}
+\label{eq-conti}
+\xymatrix@C=78pt@R=20pt{
+&S_1\sqcup S_2 \ar@{->}[rd]\ar@{=}[d]
+& 
+\\
+\widetilde{S}_1 \sqcup \widetilde{S_2}
+ \ar@{->}[r] \ar@{->}[rd]\ar@{->}[ru]
+&S_1 \sqcup S_2  \ar@{->}[r] 
+& S
+\\
+&W_1\sqcup W_2 \ar@{->}[ru] \ar@{->}[u]
+& 
+\\
+}
+\end{equation*}
+これを$T$側にも同じことをすると, 次の図式を得る. 
+\begin{equation*}
+\label{eq-conti}
+\xymatrix@C=40pt@R=20pt{
+&
+&
+S&
+&
+\\
+S_1 \sqcup S_2\ar@{->}[rru] \ar@{=}[r]&
+S_1 \sqcup S_2\ar@{->}[ru]&
+W_1 \sqcup W_2\ar@{->}[u] \ar@{->}[r] \ar@{->}[l]&
+T_1 \sqcup T_2\ar@{->}[lu]\ar@{=}[r]&
+T_1 \sqcup T_2 \ar@{->}[llu]
+}
+\end{equation*}
+これにより共終の定義\ref{dfn-cofiinal-category}(2)を満たしていることがわかる.
+
+よって共終と余極限の性質\ref{thm-cofinal-commute}から$J$での余極限に取り替えることができる. つまり
+\begin{align*}
+\begin{split}
+Lan_{K}T (\widetilde{S}_1 \sqcup  \widetilde{S}_2) 
+&=
+\colim(T \circ P : K \downarrow  (\widetilde{S}_1 \sqcup  \widetilde{S}_2) \to P \to {\bf Set}) \\
+&\cong
+\colim(T \circ P : J   \to P \to {\bf Set}) \\
+&=
+\colim_{f_1: \widetilde{S_1} \to S_1,  f_2: \widetilde{S_2} \to S_2} T(S_1 \sqcup  S_2) \\
+& \cong 
+\colim_{f_1 : \widetilde{S_1} \to S_1,  f_2: \widetilde{S_2} \to S_2} T(S_1) \times  T( S_2)
+\end{split}
+\end{align*}
+となる.
+あとはcolimと直積が可換になることを示せば良い.
+
+そこで$R := (K \downarrow  \widetilde{S}_1) \times (K \downarrow  \widetilde{S}_2) $, ${\bf 2}=\{ 1,2\}$とし
+関手$G : R \times {\bf 2} \to {\bf Set}$を
+$$G(S_1, f_1, S_2, f_2, 1) := T(S_1)
+\quad
+G(S_1, f_1, S_2, f_2, 2) := T(S_2)
+$$
+として定義する．
+$(K \downarrow  \widetilde{S}_1) $は[2-2]より$\lambda$-filteredとなるので, $R$も$\lambda$-filtered. 
+また${\bf 2}$は$\lambda$-smallである. 
+よって$\lambda$は正則より\ref{thm-regular-commute}から極限と余極限を交換できて
+$$
+\colim_{R} \lim_{{\bf2}}G(S_1, f_1, S_2, f_2, i)
+\cong 
+\lim_{{\bf2}}\colim_{R} G(S_1, f_1, S_2, f_2, i)
+$$
+である. 
+$\lim_{{\bf2}}G(S_1, f_1, S_2, f_2, i) =F(S_1) \times F (S_2)$であることに注意すれば
+\begin{align*}
+\begin{split}
+\colim_{f_1 : \widetilde{S_1} \to S_1,  f_2 : \widetilde{S_2} \to S_2} T(S_1) \times  T( S_2)
+&=\colim_{R} \lim_{{\bf2}}G(S_1, f_1, S_2, f_2, i)\\
+& \cong \lim_{{\bf2}}\colim_{R} G(S_1, f_1, S_2, f_2, i) \\
+&= \colim_{R} G(S_1, f_1, S_2, f_2, 1)  \times \colim_{R} G(S_1, f_1, S_2, f_2, 2) \\
+&=\colim_{f_1 : \widetilde{S_1} \to S_1 } T(S_1) \times  \colim_{ f_2 : \widetilde{S_2} \to S_2}T( S_2) \\
+&= Lan_{K}T(\widetilde{S}_1) \times Lan_{K}T(\widetilde{S}_2) 
+\end{split}
+\end{align*}
+となる. 
+よってsheafになる. 
+
+\underline{[1-4]関手になること } 
+これは\ref{lem-leftkan-adjoint}と[1-1]よりすでに言えている. 
+
+\vspace{5pt}
+\underline{[2]各種の条件に関して}
+
+\underline{[2-1] fullyfaithfullと左随伴性について}
+
+[1-1]により, unit$1 : I \to Lan_{K} \circ K$は同型である. 
+%任意の$T \in Cond_{<\kappa}$について$1_{F}$は同型なので, 
+よってunitが同型なので$Lan_{K}$はfully faithfullである.(\ref{thm-adjoint-fullyfaithfull}参照.)
+左随伴性もすでに言えている. 
+
+\underline{[2-2] $\lambda=cf(\kappa)$-small limitと交換すること.}
+$I$を$\lambda$-smallな圏とする.
+示すことは
+$$
+Lan_{K}(\lim_{i \in I}T_{i})  \cong \lim_{i \in I}( Lan_{K} T_{i})
+$$
+である. つまり$\widetilde{S} \in Ob({\bf ED}_{<\widetilde{\kappa}}^{op})$について
+$$
+Lan_{K}(\lim_{i \in I}T_{i})(\widetilde{S} )
+:=
+\colim_{\widetilde{S} \to S} (\lim_{i \in I} (T_{i}(S) )
+\cong
+\lim_{i \in I}(\colim_{\widetilde{S} \to S} (T_{i} (S))
+=:
+\lim_{i \in I}( Lan_{K} T_{i})(\widetilde{S} )
+$$
+を示せば良い.
+よって任意の$\widetilde{S} \in Ob({\bf ED}_{< \widetilde{\kappa}}^{op})$について
+$$
+G : I \times (K \downarrow \widetilde{S})
+\to {\bf Set} 
+\quad
+(i,(S, f)) \mapsto G(i,(S, f))=T_{i}(S)
+$$
+とおいたときに
+$$
+\colim_{(S, f) \in K \downarrow \widetilde{S}}
+ (\lim_{i \in I} G(i,(S, f))
+\cong 
+\lim_{i \in I}
+(\colim_{(S, f) \in K \downarrow \widetilde{S}} ( G(i,(S, f))
+$$
+であることを示せば良い. 
+$\lambda = cf(\kappa)$は正則基数なので
+$K \downarrow \widetilde{S}$が$\lambda$-filteredであることを示せば定理\ref{thm-regular-commute}から極限と余極限を交換できて上が従う. 
+
+任意の$\lambda$-smallな圏$J$とその関手$H : J \to K \downarrow \widetilde{S}$について, cocone $(S,f) \in K \downarrow \widetilde{S}$と$u : H \to \Delta (S,f)$の組が存在することを示す.
+$j \in H$について$H(j) = (S_j,f_j)$とする. 
+$S_j \in {\bf ED}_{<\kappa}$かつ$f_j :  S_{j} \xr{\to} \widetilde{S}$とする.
+そこで$(S_j,f_j)$の位相空間としての極限
+$$
+S_0 := \lim_{j \in J}S_j
+$$
+をとる. 
+極限の定義から連続写像$f_0 : \widetilde{S} \to S_0$があるので
+$f_0 : S \xr{\to} \widetilde{S}$となる. \footnote{ただし$S_0$はExtremally disconnectedとは限らない.}
+
+まず$|S_0| < \kappa$であることを示す.
+$\mu := \sup_{j \in J} |S_j|$とおく. 
+すると\ref{prop-regular-cardinal}より$\mu < \kappa$である.
+%なぜならば$\mu \ge \kappa$であると
+%$J \to \kappa, j \mapsto |S_j|$によって$J$が$\kappa$の共終部分集合となるが, $|J|<\lambda=cf(\kappa)$に矛盾する. 
+よって$S_0$の濃度は
+\begin{align*}
+\begin{split}
+|S_0| = | \lim_{j \in J} S_j| 
+&\le |\prod_{i \in J} S_j|   \quad\quad \text{(limの定義)}\\
+&\le \mu^{\lambda} \quad\quad \text{($|S_i| \le \mu$と$J \to \cup_{j}S_j$)}\\
+&\le (2^{\mu})^{\lambda} \quad\quad \text{($\mu < 2^{\mu}$)}\\
+&\le 2^{\mu \cdot \lambda}\quad\quad \text{(積の法則)}\\
+&< \kappa \quad\quad \text{($\mu \cdot \lambda < \kappa$と$\kappa$ 強極限)}\\
+\end{split}
+\end{align*}
+となる. (途中に$\mu \cdot \lambda =\max \{\mu, \lambda \} < \kappa$を用いた.\footnote{$\mu,  \lambda $がともに有限の時は$\mu \cdot \lambda < \kappa$は明らか. })
+
+$S := \beta ({S_0}_{dist})$とする. %(つまり$S_0$に離散位相を入れたもののStone-Cechコンパクト化)
+$S \in {\bf ED}_{< \kappa}$であり全射$g : S \twoheadrightarrow  S_0$が存在する. 
+連続写像の図で書くと次の様になる. %(opと逆向きの矢印になる.)
+\begin{equation}
+\label{eq-conti}
+\xymatrix@C=78pt@R=20pt{
+\widetilde{S} \ar@{->}[r]^{f_0}\ar@{-->}[rd]_{f} 
+&S_0:= \lim_{j \in J}S_j \ar@{->}[rd]_{f_2}  \ar@{->}[r]^{f_1} 
+& S_1 
+\\
+&S := \beta ({S_0}_{dist}) \ar@{->>}[u]_{g} 
+&
+S_2\ar@{->}[u] 
+}
+\end{equation}
+
+%$S := \beta (f_0(\widetilde{S}))_{dist}$とする. (つまり$S_0$に離散位相を入れたもののStone-Cechコンパクト化)
+%すると$g : S \to  S_0$が存在する
+%$S \in {\bf ED}_{< \kappa}$である
+%連続写像の図で書くとこんな感じである. (opと逆向きの矢印になる.)
+%\begin{equation*}
+%\xymatrix@C=78pt@R=20pt{
+%\widetilde{S} \ar@{->}[r]^{f_0}
+%&f_0(\widetilde{S}) \ar@{->}[r]
+%&S_0:= \lim_{j \in J}S_j \ar@{->}[rd]_{f_2}  \ar@{->}[r]^{f_1} 
+%& S_1 
+%\\
+%&S := \beta (f_0(\widetilde{S}))_{dist}\ar@{->}[u]_{g} \ar@{-->}[ul] 
+%&
+%&
+%S_2\ar@{->}[u] 
+%}
+%\end{equation*}
+%そこで$f : S \to \widetilde{S}$を$S$のED性から誘導される連続写像とする. さらに$g_j := \circ f_0 \circ f$
+
+そこで$f : \widetilde{S} \to S $を$\widetilde{S}$のED性から誘導される連続写像とする. 
+さらに$u_j := f_j \circ g: S \to S_j$とおく. この$(S, f)$と$u=\{ u_j \}_{j \in J}$が
+$J$とその関手$H : J \to K \downarrow \widetilde{S}$についてのcocone$(S,f) \in K \downarrow \widetilde{S}$と$u : H \to \Delta (S,f)$の組みである. 
+それは以下の2条件が成り立つからである
+
+(1.) $S \in ED_{<\kappa}$であり$f : \widetilde{S} \to S $であるので$f : S \xr{\to} \widetilde{S}$となり, $(S, f) \in Ob(K \downarrow \widetilde{S})$となる. 
+
+(2.) $u : H \to \Delta (S,f)$であることは, 任意の$k : 1 \to 2$について
+$u_{2} \circ H(k)  = u_{1} : (S_1,f_1) \xr{\to} (S,f)$であることを示せば良い.
+連続写像の言葉で書くと(\ref{eq-conti})の図を参考にすれば
+$$
+H(k) \circ u_2
+=
+(S_2 \to S_1) \circ (f_2 \circ g)
+=
+f_1 \circ g 
+=
+u_1
+$$
+となるので, 双対(op)を考えれば言える.
+\end{proof}
+
+\section{強極限基数によらないCondenced setの定義と性質. \cite[Definition 2.11]{Sch19}の解説}
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Definition 2.11]{Sch19}
+\label{dfn-Sch19-Def2.11}
+condenced setの圏${\bf Cond}$を"filtered colimit of ${\bf Cond_{<\kappa}}$ along filtered poset of all $\kappa$"とする.
+
+つまり{\bf Cond}のObject $T$とは次を満たすものである.
+\begin{enumerate}
+\item $T : {\bf ED}^{op} \to {\bf Set}$ なる関手
+\item $T(\phi)=1$ かつ$T(S_1\sqcup S_2) \cong T(S_1) \times T(S_2)$
+\item ある強極限基数 $\kappa$と$T_{\kappa} \in {\bf Cond}_{<\kappa}$があって, $T = Lan_{K}T_{\kappa}$とかける. ここで$K : {{\bf ED}_{<\kappa}}^{op} \to {\bf ED}^{op}$を包含関手とする.
+\end{enumerate}
+またmorphismを$T \to T'$となる自然変換で定める.
+\end{dfn}
+ \end{tcolorbox}
+ (3)の条件のおかげで集合論的な問題を解決することができる.\footnote{松澤さんから「(3)の条件から(2)は従うのでは?」と指摘された. 確かに左Kan拡張が自動的にsheafになるので, (2)は不要な気もする.}
+ 
+
+
+
+\begin{rem}\cite[Remark 2.12, 2.13]{Sch19}
+\begin{itemize}
+\item ${\bf Cond}$はlaege categoryでgeneratorの集合を持つとは限らない
+\item ${\bf Cond}$はsite上のsheafとも限らない
+%\item 任意の強極限基数 $\kappa$について, $cf(\kappa)$-small limitと交換できる.
+\end{itemize}
+\end{rem}
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Remark 2.13]{Sch19}
+\label{cor-Sch19-rem2.13}
+${\bf Cond}$は任意のsmall limitとsmall colimitが存在する.
+
+つまり$J$を小さい圏とし関手$F : I \to {\bf Cond}$とした時, 
+ある強極限基数$\kappa$で$F(i) = Lan_{K}T_i$となる$T_i \in {\bf Cond_{<\kappa}}$存在する.
+そして次が成り立つ． 
+\begin{itemize}
+\item $\lim_{i \in I} T_i$は各点で計算できる.
+つまり$S \in { \bf ED}_{< \kappa}$について
+$$(\lim_{i \in I} T_i)(S)= \lim_{i \in I} T_i(S)$$である. $\lim_{i \in I}F_i$は$Lan_{K}(\lim_{i \in I} T_i)$で与えられ, $\kappa <\widetilde{\kappa}$かつ$\widetilde{S} \in { \bf ED}_{< \kappa}$について
+$$
+(\lim_{i \in I}F_i)(\widetilde{S})
+%=Lan_{K}(\lim_{i \in I} T_i)(\widetilde{S})
+%=\lim_{i \in I}(Lan_{K} T_i)(\widetilde{S})
+=\lim_{i \in I} \colim_{\widetilde{S} \to S} T_i(S)
+$$
+となる. 
+\item ${\bf Cond_{<\kappa}}$での余極限はPresheafとしての余極限$T:=\colim_{i \in I} T_i$をsheafificationとして与えられる. 
+それを$T^{\sharp}$とすると${\bf Cond}$での余極限は
+$\colim_{i \in I}F_i := Lan_{K}T^{\sharp}$で与えられる. 
+\item $I$がfiltered categoryならば, sheafとしての余極限は各点で計算できる.つまり$S \in { \bf ED}_{< \kappa}$について
+$$(\colim_{i \in I} T_i)(S) = \colim_{i \in I} (T_i(S))$$
+となる, また$\colim_{i \in I}F_i$は$Lan_{K}(\colim_{i \in I} T_i)$で与えられ, 
+$\kappa <\widetilde{\kappa}$かつ$\widetilde{S} \in { \bf ED}_{< \kappa}$について
+$$
+(\colim_{i \in I}F_i)(\widetilde{S})
+%&=Lan_{K}(\colim_{i \in I} T_i)(\widetilde{S}) \\
+%&=\colim_{i \in I}(Lan_{K} T_i)(\widetilde{S}) 
+=\colim_{i \in I} \colim_{\widetilde{S} \to S} T_i(S)
+$$
+となる. 
+\end{itemize}
+\end{lem}
+ \end{tcolorbox}
+ 
+ ここでsheafificationとその性質についておさらいしておく. 
+  \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{thm}\cite{Sha2}
+ $C$small category with topologyとする. 
+ $Psh(C) :={\bf Set}^{C}$とし, $Sh(C)$を${\bf Set}$に値を持つsheafとする.
+ 
+ このとき自然な関手sheafifictaion$\# : PSh(C) \to Sh(C)$が存在する.
+ さらに包含関手$i : Sh(C) \to Psh(C)$の左随伴射であり
+ $$
+hom_{Sh(C)}(F^{\#}, G) \cong hom_{Psh(C)}(F, i(G)) 
+ $$
+ が成り立つ. また有限limitと可換になる.
+ %\xr{有限だけ？}
+ \end{thm}
+ \end{tcolorbox}
+ 
+  \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{lem}\cite[00WK Lemma 10.15]{Sta}
+ \label{lem-stacks-sheafification}
+ $C$をsmall category with topologyとし, $\mathcal{F} \in {\bf Set}^{C}$とする.
+ また$\sharp : \mathcal{F} \mapsto \mathcal{F}^{\sharp}$をsheafificationとする.
+  
+ 任意の$U \in Ob(C)$と
+  $s \in \mathcal{F}^{\sharp}(U)$についてcovering$\{ U_i \to U\}$と$s_i \in \mathcal{F}(U_i)$が存在して
+  \begin{enumerate}
+  \item $s|_{U_i} = \sharp(U_i)(s_i)$
+  \item 任意の$i,j$についてあるcovering
+  $U_{ijk} \to U_{i} \times_{U} U_j$があって
+  $s_{i}|_{U_{ijk}} = s_{j}|_{U_{ijk}}$となる. 
+  \end{enumerate}
+そして任意のcovering$\{ U_i \to U\}$で(2)を満たすものについて(1)を満たす$s$は唯一である. 
+ \end{lem}
+ \end{tcolorbox}
+
+
+\begin{proof}[Proof of \ref{cor-Sch19-rem2.13}]
+
+\underline{[0]強極限基数$\kappa$の存在 }
+$I$を小さい圏とし関手$F : J \to {\bf Cond}$とする.
+$|Mor(I)| < cf(\kappa) \le \kappa$となる強極限基数$\kappa$で$F(i) = Lan_{K}T_i$となる$T_i \in {\bf Cond_{<\kappa}}$となるものが存在する.
+これは$F(i) = Lan_{K}T_i \in {\bf Cond_{< \kappa_i}}$となる一番小さい基数を$\kappa_i$とすると
+$\kappa_i$は集合なので集合$\prod_{i \in I}\kappa_i$が存在する. 
+そこで\ref{lem-cofinal}より$|\prod_{i \in I}\kappa_i| < cf(\kappa) \le \kappa$となる$\kappa$をとれば
+$\kappa_i \to \prod_{i \in I}\kappa_i$となる単射が存在するので$\kappa_i \le |\prod_{i \in I}\kappa_i| < \kappa$である. 
+%すれば, %命題\ref{prop-Sch19-2.9}によって言える. 
+%なぜならば,  ${\bf Card}$を基数のクラスとし, $G : I \to {\bf Card}$を$G :  i \mapsto \kappa_{i}$を$F(i) = Lan_{K}T_i {\bf Cond_{< \kappa_i}}$となる一番小さい$\kappa_i$としてとる. (これは基数のクラスも整列クラスより取れる.) もし$\sup_{i \in I} G(i) \ge \kappa$なら$|Ob(I)|\le|Mor(I)| < cf(\kappa)$より共終性に矛盾するからである.
+
+\underline{ [1]$\lim$に関して }
+
+\underline{ [1-1] Presheafとしての極限$\lim_{i \in I}T_i$がSheafとしての極限になること.}
+
+Presheafとしての極限は
+$$
+(\lim_{i \in I}T_i)(X):=\lim_{i \in I}(T_{i}(X))
+$$
+であることに注意する. これがsheafの条件を満たすことを示せば良い.
+$X_1, X_2 \in {\bf ED}_{< \kappa}$について, 極限と極限は交換することから\footnote{ncatlabによるlimを右随伴として見れるから.}.
+$$
+(\lim_{i \in I}T_i)(X_1 \sqcup  X_2 ) 
+:= \lim_{i \in I}(T_i(X_1\sqcup X_2))
+\cong 
+\lim_{i \in I}(T_i(X_1)\times T_i( X_2))
+\cong
+\lim_{i \in I}(T_i(X_1))\times \lim_{i \in I}(T_i( X_2))
+$$
+
+ \underline{ [1-2]${\bf Cond}$での極限について }
+ $T = \lim_{i \in I}T_i \in {\bf Cond}_{< \kappa}$として$\colim_{i \in I}F_i := Lan_{K}T$と定義する.
+ %これが$F : I \to {\bf Cond}$のcolimitになり, 各点で計算できること.
+ 左Kan拡張と$cf(\kappa)$-small limitは\ref{prop-Sch19-2.9}より可換なので, 
+ $$
+ Lan_{K}T=Lan_K(\lim_{i \in T}(T_i))\cong \lim_{i \in I}(Lan_{K}(T_i))
+ =\lim_{i \in I}F(i)
+ $$
+ となる. よって$ Lan_{K}T$は$F$の極限である. 
+  また
+ $$
+ (\lim_{i \in I}F(i))(\widetilde{S})
+ \cong
+  (Lan_{K}T)(\widetilde{S})
+  =\colim_{\widetilde{S} \to S}T(S)
+  =\colim_{\widetilde{S} \to S} \lim_{i \in I}T_i(S)
+  \cong
+   \lim_{i \in I} \colim_{\widetilde{S} \to S} T_i(S)
+ $$
+ となるので各点で計算できる.(極限の交換は\ref{prop-Sch19-2.9}の証明より)
+ 
+\underline{ [2] 余極限について }
+
+\underline{[2-1]${\bf Cond}_{< \kappa}$での余極限 }
+Presheafとしての余極限
+$T:=\colim_{i \in I}T_i$とする.
+ これは必ずしもsheafになるとは限らないので, sheafificationしたものを$T^{\sharp}$とおく.
+ これがsheafとしてのcolimになることは, sheafification
+ $\sharp : Psh({\bf Set}) \to sh({\bf Set}) $が左随伴射なのでcolimと可換であり
+ $$
+ (\colim_{i \in I \text{ in Psh }}T_i)^{\sharp} \cong \colim_{i \in I \text{ in sh }}(T_i)^{\sharp}=\colim_{i \in I \text{ in sh }}T_i
+ $$
+ となるからである. ("in Psh"はpresheafでの余極限の意味)
+ 
+ \underline{[2-2]${\bf Cond}$での余極限 }
+ これは左Kan拡張がcolimと可換であることから$\colim_{i \in I}F_i := Lan_{K}T^{\sharp}$である. 
+
+\underline{ [3]$I$がfilteredのとき }
+ 
+このときPresheafとしての余極限$\colim T_i$がsheafになる. 
+ 実際$X_1, X_2 \in {\bf ED}_{< \kappa}$について
+\begin{align*}
+\begin{split}
+(\colim_{i \in I}T_i)(X_1 \sqcup  X_2 ) 
+&:= \colim_{i \in I}(T_i(X_1\sqcup X_2)) \\
+&\cong 
+\colim_{i \in I}(T_i(X_1)\times T_i( X_2))
+\cong
+\colim_{i \in I}(T_i(X_1))\times \colim_{i \in I}(T_i( X_2))
+\end{split}
+\end{align*}
+となる. 最後の同型に関してはフィルター余極限と有限極限は交換することから.
+ 各点で計算できることも[1-2]と同じである. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}
+$C$を任意のfilterd colimitを持つ圏として, ${\bf Cond}(C)$も同様に定義する.
+つまり${\bf Cond}(C)$のObject $T$とは次を満たすものである.
+\begin{itemize}
+\item $T : {\bf ED}^{op} \to C$ なる関手
+\item $T(\phi)=1$ かつ$T(S_1\sqcup S_2) \cong T(S_1) \times T(S_2)$
+\item ある強極限基数 $\kappa$と$T_{<\kappa} \in {\bf Cond}(C)_{< \kappa}$があって, $T = Lan_{K}T_{\kappa}$とかける. ここで$K : {{\bf ED}_{<\kappa}}^{op} \to {\bf ED}^{op}$を包含関手とする.
+\end{itemize}
+
+ \end{dfn}
+ \end{tcolorbox}
+これは左Kan拡張が存在するためである. 
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+${\bf Cond}(C)$はlocally small
+\end{lem}
+ \end{tcolorbox}
+\begin{proof}
+$F \in {\bf Cond}(C)$をとると, 強極限基数$\kappa$と$T \in {\bf Cond}(C)_{< \kappa}$があって, $F = Lan_{K}T$となる. 
+すると$\kappa < \lambda$について
+$$T = Lan_{K: {\bf ED}_{< \kappa} \to {\bf ED}}T 
+= Lan_{K: {\bf ED}_{< \lambda } \to {\bf ED}} (Lan_{K: {\bf ED}_{< \kappa} \to {\bf ED}_{< \lambda}}T)$$
+となる. これは$\widetilde{S} \in {\bf ED}$を代入すればわかる. 
+
+上により任意の$F_1, F_2 \in {\bf Cond}(C)$とすると, 強極限基数$\kappa$と$T_i \in {\bf Cond}(C)_{< \kappa}$があって, $F_i = Lan_{K}T_i$とかけるとして良い. 
+%$\kappa_1 < \kappa_2$として差し支えない. 
+%$ Lan_{K}T_1 = Lan_{K}T_2$となるので, $T_2 =Lan_{K}T_1$となる.\footnote{$K : {\bf ED}_{< \kappa_1} \to {\bf ED}$だったり$K : {\bf ED}_{< \kappa_2} \to {\bf ED}$だったりしているので本来であれば違うKを使うべきである}
+%(これは$\widetilde{S} \in {\bf ED}_{< \kappa_2}$を代入すれば良い.)
+ここで$K : {\bf ED}_{< \kappa} \to {\bf ED}$を包含関手とする.
+% (基数は順序がつけられるので, 大きい方を取れば良い)
+$ Lan_{K}$は左随伴であり, 恒等自然変換$1: I \cong  Lan_{K} \circ K$が同型なので, 
+\begin{align*}
+\begin{split}
+hom_{{\bf Cond}(C)}(F_1, F_2)
+&=
+hom_{{\bf Cond}(C)}( Lan_{K}T_1,  Lan_{K}T_2)\\
+&\cong
+hom_{{\bf Cond}(C)_{<\kappa}}(T_1,  (Lan_{K} \circ K)T_2)
+\cong 
+hom_{{\bf Cond}(C)_{<\kappa}}(T_1, T_2)
+\end{split}
+\end{align*}
+となり, $hom_{{\bf Cond}(C)_{<\kappa}}(T_1, T_2)$は集合なので, $hom_{{\bf Cond}(C)}(F_1, F_2)$もそうなる. 
+\end{proof}
+
+\begin{rem}
+hom集合の同型
+$hom_{{\bf Cond}(C)_{<\kappa}}(T_1,  T_2)
+\cong 
+hom_{{\bf Cond}(C)}(T_1, T_2)$
+から$\kappa$を止めて議論して良いことがわかる.
+つまり左Kan拡張$Lan_{K}$によってfully-faithfullな包含射${\bf Cond}(C)_{< \kappa} \subset {\bf Cond}(C)$が存在する. 
+\end{rem}
+
+\section{Condenced Setにならない$\underline{X} = hom_{{\bf ED}}(\cdot, X)$の例. \cite[Warning 2.14]{Sch19}の解説.}
+\ref{dfn-Sch19-Def2.11}と用いるとCondenced setを${\bf CHaus}$上のsheafとしても定義できる. 
+つまりCondenced setとは次を満たす関手としても見ることができる. 
+\begin{itemize}
+\item $T : {\bf CHaus}^{op} \to {\bf Set}$ なる関手
+\item sheaf条件を満たす. 
+つまり以下を満たす.
+\begin{enumerate}
+\item $T(\varnothing)=1$ 
+\item $T(S_1\sqcup S_2) \cong T(S_1) \times T(S_2)$
+\item $S' \to S$を全射として, 下の写像が全単射になる.
+$$T(S) \to \{ x \in T(S') | p_{1}^{*}x = p_{2}^{*}x \in T(S' \times_S S')\}
+=:eq(T(S') \underset{p_2}{\overset{p_1}{\to}}T(S' \times_S S'))
+$$
+\end{enumerate}
+\item ある強極限基数 $\kappa$と, ${\bf CHaus}_{< \kappa}$上のshaef $T_{< \kappa}$があって, $T = (Lan_{K}T_{\kappa})^{\sharp}$とかける. ここで$K : {{\bf ED}_{<\kappa}}^{op} \to {\bf ED}^{op}$を包含関手, $\sharp$をsheafificationとする. 
+\end{itemize}
+
+これは${ \bf CHaus}_{< \kappa}$上にgrothendieck位相を入れたもののsheafの圏と${\bf  Cond}_{< \kappa}$が圏同値であることからわかる. 
+このことを用いると次が言える. 
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Warning 2.14]{Sch19}
+$X$をSierpinski空間, つまり${0,1}$に位相$\{\phi, \{0\}, \{0,1\} \}$を入れたものとする.
+
+$hom_{{\bf CHaus}}(\cdot,  X) :{\bf CHaus}^{op} \to{\bf Set} $はcondenced setにならない.
+\end{prop}
+ \end{tcolorbox}
+ 
+ $hom_{{\bf CHaus}}(\cdot,  X)$は任意の強極限基数
+ $\kappa$について$\kappa$-condenced setにはなっている. 
+ ただ$hom_{{\bf CHaus}}(\cdot,  X) =  (Lan_{K}T)^{\sharp}$となる$\kappa$や$T \in {\bf Cond}_{< \kappa}$が存在しないということになる. (つまり\ref{dfn-Sch19-Def2.11}の3つ目の条件を満たさない)
+ \footnote{\cite[Warning 2.14]{Sch19}にはお気持ちしか書いていないので, 勉強会で証明をうめた. Condensed setを${\bf CHaus}$の上で定義したのはこの命題で用いるためである.}
+ 
+ \begin{proof}
+
+\underline{[0]Setup }
+ 背理法で証明する. 
+もしcondenced setになるなら
+ %$hom_{{\bf ED}}(\cdot,  X) =  Lan_{K}T$となる$\kappa$や
+ %$T \in {\bf Cond}(C)_{<\kappa}$が存在したとする.
+ ある強極限基数$\kappa$があって
+任意の$|\widetilde{S}|> \kappa$となる集合$\widetilde{S}$について,
+$$
+hom_{{\bf CHaus}}(\widetilde{S},  X) 
+\cong   \left( Lan_{K}hom_{{\bf CHaus}_{< \kappa}}(\cdot,  X )^{\sharp} \right)(\widetilde{S})
+ %\colim_{\widetilde{S} \to S, |S| <\kappa}hom_{{\bf ED}_{<\kappa}} (S,  X)
+%\stackrel{\sim}{\longrightarrow}
+$$
+は同型となる. 
+sheafificationの性質\ref{lem-stacks-sheafification}から任意の$f \in hom_{{\bf CHaus}}(\widetilde{S},  X) $について
+あるcovering $h : \widetilde{S_0} \to S$があって
+$f|_{\widetilde{S_0}} \in  Lan_{K}
+hom_{{\bf CHaus}_{< \kappa}}(\widetilde{S_0},  X )$となる.
+つまり$f \circ h : \widetilde{S_0} \to X$はある$S \in {\bf CHaus}_{< \kappa}$を経由する. 
+
+
+%$X$をSierpinski空間, つまり${0,1}$に位相$\{\phi, \{0\}, \{0,1\} \}$を入れたものであったので, 
+%任意の位相空間$(S, \mathcal{O}_{S})$について$\{0\} \subset X$の逆像が開集合になれば良いので, 
+%\begin{equation}
+%\label{eq-sierpinski}
+%hom(S,X) \cong \mathcal{O}_{S}, \quad f \mapsto f^{-1}(0)
+%\end{equation}
+%で全単射となる. 
+
+そこで$\kappa < \nu$となる強極限基数をとり次の様に定める.
+\begin{itemize}
+\item $\widetilde{S} := \prod_{i < \kappa +\nu} \{0,1\} =\{0,1\}^{\kappa + \nu}$ \footnote{$\kappa + \nu=\nu$だがあえてこう書いている. }で$\{ 0,1\}$には離散位相, $\widetilde{S}$には積位相を入れる.
+\item  $Z := \bigcap_{\kappa \le  i < \kappa +\nu} p^{-1}_{i}(0) = \{0,1\}^{\kappa} \times \{ 0\}^{\nu}$. ここで$i < \kappa +\nu$について$p_i : \widetilde{S} \to \{0,1 \}$を射影とする. %(簡単に書くと$Z=\{0,1\}^{\kappa} \times \{ 0\}^{\nu}$である)
+直積の定義より$\widetilde{S}$の閉集合である.
+\item $f : \widetilde{S} \to X$を$Z$の特性関数とする. $\{1\} \subset X$は$X$の閉集合なので, これは連続写像である. 
+\end{itemize}
+
+\underline{[1] $Z$がたかだか$\kappa$以下個の開集合のintersectionで書けることを示す.} 
+
+背理法の仮定より, 全射$h : \widetilde{S}_0 \to S$,  $S \in {\bf CHaus}_{< \kappa}$があって, 
+$f \circ h = \pi \circ f_{S}$となる. ここで$\widetilde{S_0} \overset{\pi}{\to} S \overset{f_S}{\to} X$である.
+\begin{equation*}
+\xymatrix@C=40pt@R=20pt{
+\widetilde{S_0} \ar@{->}[d]_{h}\ar@{->}[r]^{\pi}
+& S\ar@{->}[d]_{f_{S}}
+\\
+\widetilde{S} \ar@{->}[r]^{f}&
+X
+}
+\end{equation*}
+
+%canonicalな写像
+%$\colim_{\widetilde{S} \to S, |S| <\kappa}hom_{{\bf ED}_{<\kappa}}(S,  X)
+%\stackrel{\sim}{\longrightarrow}
+%hom_{{\bf ED}}(\widetilde{S},  X)$が同型なので
+%ある$S \in { \bf ED}_{< \kappa}$と連続写像
+%$\pi : \widetilde{S} \to S, f: S \to X$があって
+%$f_{Z}  = f \circ \pi$とかける.
+
+%$Z_{S}=f_{S}^{-1}(1) \subset S$とおく. 
+すると
+$$
+\widetilde{S_0} \setminus h^{-1}(Z)
+=
+\widetilde{S_0} \setminus \pi^{-1}f_{S}^{-1}(1)
+=
+\pi^{-1} f_{S}^{-1}(0)
+= \bigcup_{x \in f_{S}^{-1}(0)}  \pi^{-1}(x)
+%\left( \widetilde{S_0} \setminus  \pi^{-1}(x) \right)
+$$
+よって$\widetilde{S} \setminus Z =  \bigcup_{x \in f_{S}^{-1}(0)}  h(\pi^{-1}(x))$となるので
+$$
+Z = \bigcap_{x \in f_{S}^{-1}(0)} h(\pi^{-1}(x))^c
+$$
+である. 
+$h : \widetilde{S_0} \to \widetilde{S}$は閉写像であることを用いると, $h(\pi^{-1}(x))^c$は開集合である. 
+$|f_{S}^{-1}(0)|\le |S| < \kappa$より[1]の主張が言えた.
+
+\underline{[2] 矛盾を導く }
+[1]より任意の$\alpha < \kappa$なる順序数について開集合$U_{\alpha} \subset \widetilde{S}$があって
+$Z = \bigcap_{\alpha < \kappa} U_{\alpha}$となる. 
+$\{ 0\}^{\kappa  + \nu} \in Z$なので
+$ \{ 0\}^{\kappa  + \nu} \in U_{\alpha}$である.
+よって積位相の定義より, 有限個の$j_1, \ldots, j_{N_{\alpha}}$と
+部分集合$F_{j_k} \subset \{ 0,1\}$があって
+$$
+ \{ 0\}^{\kappa  + \nu}  \in 
+  \bigcap_{k=1}^{N_{\alpha}} p_{j_k}^{-1}(F_{j_k})
+  \subset U_{\alpha}
+$$
+となる．$\alpha$に関して共通部分を取ると
+\begin{equation}
+\label{eq-intersection}
+% \{ 0\}^{\kappa  + nu}  \in 
+ \bigcap_{\alpha <\kappa } \bigcap_{k=1}^{N_{\alpha}} p_{j_k}^{-1}(F_{j_k})
+ \subset  \bigcap_{\alpha < \kappa}  U_{\alpha} 
+ =Z=\{0,1\}^{\kappa} \times \{ 0\}^{\nu}
+ \end{equation}
+ となる. 
+ そこで
+$$
+\Lambda := \{  i < \kappa + \nu  |  \text{ $i=j_{k}$となる順序数$\alpha$と$1 \le k \le N_{\alpha}$が存在する} \}
+$$
+とおく. 
+(\ref{eq-intersection})から
+$i \not \in \lambda$ならば
+$p_{i}( \bigcap_{\alpha <\kappa}  U_{\alpha} ) = \{0,1\}$より
+$p_{i}(Z)=\{ 0,1\}$である. 
+よって$i < \kappa$となる
+
+以上より$\kappa \le i < \kappa+\nu$ならば$i \in \Lambda$
+である. 特に$\nu \le |\Lambda|$となる. 
+しかし
+$$
+\nu \le |\Lambda| \le \kappa \cdot |\N| = \kappa
+$$
+であるので矛盾.
+ \end{proof}
+
+
+
+
+
+
+\section{${\bf Cond}$と位相空間との対応. \cite[Proposition 2.15, Theorem 2.16]{Sch19}の解説.}
+
+\subsection{$T(\ast)_{top}$の定義}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem} \cite{Sch19}
+$T \in {\bf Cond}$について$T(\ast)_{top}$という位相空間を次で定義する.
+\begin{itemize}
+\item 底空間を$T(\ast) \in {\bf Set}$とする. 
+\item 位相を$T = Lan_{K}T_{<\kappa}$となる強極限基数$\kappa$を一つとり, 
+$$
+\pi : \sqcup_{S \in {\bf ED}_{<\kappa}}  \sqcup_{f \in T(S) }  S \to T(\ast)
+$$
+として定義する.
+\end{itemize}
+このとき, この位相は$\kappa$の取り方によらない. 
+\end{lem}
+ \end{tcolorbox}
+\begin{proof}
+\underline{[1]位相の定義について }
+%$\sqcup_{S \in {\bf ED}_{<\kappa}}  \sqcup_{f \in T(S) }  S \to T(\ast)$
+%$S \in {\bf Profin}_{<\kappa}$と$f \in T(S)$について$S \to T(\ast)$を次で定める:
+%$S \to \ast$より$S \xr{\leftarrow} \ast$ in  ${\bf Profin}_{<\kappa}^{op}$であるので$T(S) \leftarrow T(\ast)$
+%$x \in S$は$x : \ast \to S$を定めるので, 
+%$T(x) : T(S) \to T(\ast)$を定める.
+%そこで$f(x):=T(x)(f)$として定めることができる. 
+$S \in {\bf ED}_{<\kappa}$と$f \in T(S)$について, 
+$f \in T(S) \cong Nat(\underline{S}, T)$であるので, 
+$f(\ast) : \underline{S}(\ast)=S \to T(\ast)$となる
+\footnote{\cite{Bar22}では$f : S \to T(\ast)$を次で定めていた: $x \in S$は$x : \ast \to S$を定めるので, $T(x) : T(S) \to T(\ast)$を定め, $f(x):=T(x)(f)$として定める. これは米田の定理から任意の$S' \in {\bf ED}$について$f_{S'} : hom(S', S) \to T \quad g \mapsto T(g)(f)$を定めるため同値である.}
+
+これを用いて$\pi : \sqcup_{S \in {\bf ED}_{<\kappa}}  \sqcup_{f \in T(S) }  S \to T(\ast)$が定める. 
+この$\pi$は全射である. なぜなら
+$x \in T(\ast)$について$x : \ast \to T$を考えれば,
+$x(\ast) : \ast \to T(\ast)$の像は$\{ x\}$である. 
+%$S = \ast$つまり一点集合とし, $f \in T(\ast)$とする.
+%すると$x = id_{\ast}: \ast \to \ast$
+%について
+%$T(x)=id_{T(\ast)} : T(\ast) \to T(\ast)$となるので
+%$f(x):=T(x)(f)=id_{T(\ast)} (f)=f$となる. つまり
+%$f : S=\ast \to T(\ast)$は一点を$f$に送る写像になる. 
+%これより$\pi$は全射である.
+
+
+\underline{[2]基数の取り方によらないこと. }
+$\kappa < \lambda$となる強極限基数をとる.
+$T = Lan_{K}T_{<\kappa} = Lan_{K}T_{<\lambda} $となるので,
+$T_{<\lambda} =Lan_{K}T_{<\kappa} $となる.
+%(これは$\widetilde{S} \in {\bf ED}_{< \kappa'}$を代入すれば良い.)
+$$
+\pi_{\kappa} : \sqcup_{S \in {\bf ED}_{<\kappa}}  \sqcup_{f \in T_{\kappa}(S) }  S \to T(\ast)
+$$
+とおきこれによって入れた位相の開集合系を$\mathcal{O}_{\kappa}$とする.$\lambda$も同様に定める.
+$\lambda$の方が大きいため$\mathcal{O}_{\lambda} \subset \mathcal{O}_{\kappa}$がわかる.
+逆側の包含を言えば良い.
+
+$V \in \mathcal{O}_{\kappa}$とする. 
+任意の$\widetilde{S} \in {\bf ED}_{<\lambda}$と$f \in T_{\lambda}(\widetilde{S})$をとる.
+$$
+ T_{\lambda}(\widetilde{S})=Lan_{K}T_{<\kappa}(\widetilde{S})
+ = \colim_{\widetilde{S} \to S} T_{<\kappa}(S)
+$$
+であるので， $f$は$\kappa$-small ED set$S$を経由する$\widetilde{S} \to S \to T(\ast)$.
+$S \to T(\ast)$の$V$の逆像は開集合なので, $f^{-1}(V)$も開集合となる.
+\end{proof}
+
+\begin{rem}
+$T \to T(\ast)_{top}$はfunctorialでもなければ, 任意の位相空間$X$について$\underline{X}(\ast)_{top}$は$X$と同相とも限らない. またcondensed setについて$hom_{{\bf Cond}}(T,\underline{X})$と$hom_{{\bf Top}}(T(\ast)_{top}, X)$のadjunctionも成り立たない(というかadjunctionというものをそもそも定義できない)
+\end{rem}
+  \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+  \begin{cor}
+  condensed setの射$f : S\to T$について
+  $f(\ast) : S(\ast)_{top} \to T(\ast)_{top}$
+  は連続写像である.
+ \end{cor}
+  \end{tcolorbox}
+ \begin{proof}
+ 基数$\kappa$で
+ $S, T \in {\bf Cond}_{< \kappa}$なるものを取る.
+ $U \subset T(\ast)_{top}$を開集合とする. 
+ $f(\ast)^{-1}V$が$S(\ast)_{top} $で開集合であることを示す.
+ つまり任意の$X \in {\bf ED}_{<\kappa}$ と$h \in S(X)$で$h(\ast): X \to S$にいて
+ $h(\ast)^{-1}(f(\ast)^{-1}V)$が$X$の開集合であることを示せば良い.
+ これは$f \circ h \in T(X)$となることから明らかである. 
+ \end{proof}
+
+
+\subsection{用語(qc, qs, $T_1$, WH)の解説}
+\subsubsection{qc, qs, $T_1$}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[quasi-compact, quasi-separated, $T_1$]
+$T$をcondenced setとする. 
+\begin{itemize}
+\item $T$がquasi-compact (qc)とは, 任意の小さな圏$I$と関手$S : I \to {\bf Cond}$で$f_i : S_i \to T$かつ
+$\sqcup f_i : \sqcup_{i \in I} S_i \twoheadrightarrow T$がepi射になるものについて, 
+ある有限集合$I' \subset I$が存在して
+$\sqcup f_{i'} : \sqcup_{i' \in I'} S_{i'} \twoheadrightarrow T$がepi射になること.
+\item $T$がquasi-separated (qs)とは, 任意のqc condensed set $S_1, S_2$で$S_1 \to T, S_2\to T$となるものについて, $S_1 \times_{T}S_2$もまたqcとなること.
+\item $T$が$T_1$とは任意の一点からの射がquasi-compactとなること. 
+つまり任意のqc condensed set $S_1$で$S_1 \to T$と, 任意の射$\ast \to T$について, $S_1 \times_{T}\ast$もまたqcとなること 
+\end{itemize}
+\end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{rem}
+ Scholzeのlectureノート\cite{Sch19}では$T_1$のことを「任意の一点からの射がquasi-compact」と書いていた.
+ ただ調べても射がquasi-compactの定義が出なかった. (SGAに書いてある?)
+ おそらくstackなどでの射のquasi-compactの定義が上のものと同値であるので, 今回は上の意味で$T_1$を定義した. 
+ 
+ %また$I$がsmallじゃないとそもそも$\sqcup_{i \in I} S_i $が定義できないので$I$はsmallであると仮定する. 
+ \end{rem}
+
+\subsubsection{コンパクト生成空間(CG), 弱ハウスドルフ(WH), CGWH}
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Definition 1.1 ,1.2]{Str}
+$X$を位相空間とし, $\mathfrak{B}$を$X$の閉集合系とする. 
+\begin{enumerate}
+\item $Y \subset X$が$k$-closedとは任意のコンパクトハウスドルフ空間$K$からの連続写像$u : K \to X$について$u^{-1}Y$が閉集合となるもの. 
+\item $X$がコンパクト生成空間(CG)とは$X = kX$となる位相空間である. ここで$k$-closed集合を$k\mathfrak{B}$と表し, $kX$を$(X, k\mathfrak{B})$という位相空間とする. 
+\item $X$がWeakly Hausdorff(WH)とは任意のコンパクトハウスドルフ空間$K$からの連続写像$u : K \to X$について$u(K)$が閉集合となるもの
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+\begin{exa}[WHの例]
+ハウスドルフならばWeakハウスドルフ. (ハウスドルフ空間のコンパクト集合は閉集合より)
+
+Weakハウスドルフならば, $T_1$空間.これは一点集合からの射を考えれば良い.
+\end{exa}
+
+\begin{exa}[CGの例]
+第一可算集合はCG. 
+\end{exa}
+
+\begin{exa}[CGWHの例]
+距離空間, locally compact Hausdorff, CW complexなどなど
+\end{exa}
+
+\begin{rem}
+CG空間の圏${\bf CG}$やCGWHの圏${\bf CGWH}$はcomplete, cocomplete, cartesian closedであることが知られている. 
+\end{rem}
+
+上の例・注意に関しては詳しい説明をAppendix\ref{subsec-CGWH}にまとめておいた. 
+
+\subsection{\cite[Proposition 2.15, Theorem 2.16]{Sch19}の主張}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}\cite[Proposition 2.15, Theorem 2.16]{Sch19}
+\label{thm-Scholze-21516}
+$X$を位相空間, $T$をcondenced setとする
+\begin{enumerate}
+\item $X$が$T_1$空間ならば$\underline{X}:=hom_{{\bf ED}}(\cdot, X)$はcondenced setになり$T_1$である. 
+\item 逆に$T$が$T_1$ならば$T(\ast)_{top}$も$T_1$空間になる. 
+\item $G : X \to \underline{X}$によって{\bf CHaus}から{\bf qcqsCond}への圏同値を与える. 
+つまり次が成り立つ.
+\begin{enumerate}
+\item $X$がコンパクトハウスドルフならば$\underline{X}$はqcqsである.
+%\item $T$がqcqsならば$T(\ast)_{top}$はコンパクトハウスドルフとなる. 
+\item $G : {\bf CHaus} \to {\bf qcqsCond}$はfully faithfullである
+\item $T$がqcqsならば$T \cong \underline{Y}$となるコンパクトハウスドルフ空間が存在する. 
+\end{enumerate}
+\item $X$をコンパクト生成空間(CG)とする. このとき$X$がweak Hausdorff(WH)であることは$\underline{X}$がquasi-separatedと同値
+\item $T$がquasi-separatedならば$T(\ast)_{top}$はコンパクト生成 weak Hausdorff(CGWH)となる.
+\end{enumerate}
+\end{thm}
+ \end{tcolorbox}
+ 
+ \begin{rem}
+ $$F: 
+ {\bf Cond }\to 
+ {\bf T1Top}
+ \quad 
+ T \to T(\ast)_{top}$$
+$$G :  {\bf T1Top} \to {\bf Cond} \quad X \to \underline{X}:=hom(\cdot, X)$$
+とおくと, $G$は$F$の右随伴射になる.この時点ではfully faithfullなどもわからない.
+
+しかしこれを制限した
+$$
+F: {\bf qsCond}
+\to {\bf CGWHTop} 
+\quad G :  
+{\bf CGWHTop} \to{\bf qsCond}
+$$
+についてそのcounit$\epsilon : FG \to I$は同型射
+$\epsilon_{X} : FG(X) = \underline{X}(\ast)_{top} \cong \underline{X}$であるので, $G$はfully faithfullである. しかしessentially surjectiveと限らないので, 圏同値とは限らない
+ \end{rem}
+
+\subsection{\cite[Proposition 2.15, Theorem 2.16]{Sch19}(=定理\ref{thm-Scholze-21516})の証明で用いる事柄}
+定理\ref{thm-Scholze-21516}の証明において使う事柄をここで証明付きでまとめる. 
+
+ \subsubsection{{\bf Cond}のmonic射, epi射}
+
+ 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{lem}\cite[Theorem 4.11.2, 4.11.3, 4.11.4]{Bar22}
+ \label{lem-cond-epi}
+ \text{}
+ \begin{enumerate}
+ \item $f : T_1 \to T_2$を$\kappa$-condenced setの射とする. $f$ monic in ${\bf Cond}_{<\kappa}$は任意の$S \in {\bf ED}_{<\kappa}$について$f(S) : T_1(S) \hookrightarrow T_2(S)$が単射となることと同値.
+  \item $f : T_1 \to T_2$を$\kappa$-condenced setの射とする.
+   $f$ epic in ${\bf Cond}_{<\kappa}$は任意の$S \in {\bf ED}_{<\kappa}$について$f(S) : T_1(S) \twoheadrightarrow T_2(S)$が全射となることと同値
+  \item 上の1, 2はcondenced setでも成り立つ. 
+  \item 左Kan拡張$Lan_{K} : {\bf Cond}_{<\kappa} \to {\bf Cond}$について, $f : X \to Y$が$f$epic in ${\bf Cond}_{<\kappa}$ならば$Lan_{K}(f) : Lan_{K}X \to Lan_{K}Y$もepic
+  \item 4に関して$Lan_{K} : {\bf Cond}_{<\kappa} \to {\bf Cond}_{< \kappa'}$でも成り立つ. 
+ \end{enumerate}
+ \end{lem}
+ \end{tcolorbox}
+ \begin{proof}
+ 
+ \underline{[1]の証明 }
+ $f$をmonic(左簡約可能)とする.
+$S \in {\bf ED}_{<\kappa}$とし,
+$s,t \in T_1(S)$で$f(S)(s)= f(S)(t)$とする. ($f(S) : T_1(S) \to T_2(S)$である)
+すると米田より$s,t : \underline{S} \to T_1$とみなせ, $f \circ s = f \circ t$であるので, $f$がmonicより$s=t$となる.
+
+逆に任意の$S \in {\bf ED}_{<\kappa}$について$f(S) : T_1(S) \hookrightarrow T_2(S)$が単射とする.
+$s,t : T \to T_1$かつ,$f \circ s = f \circ t$ならば, 任意の$S \in {\bf ED}_{<\kappa}$について$s(S) = t(S)$である. よって$s=t$である(Sheafで等しいとPresheafで等しいは同じ.  これはSheafificationの随伴性より)
+
+ \underline{[2]の証明 }
+$f$をepiとする. 
+$S \in {\bf ED}_{<\kappa}$と$b \in T_2(S)$について,
+$f(S)(c)=b$なる$c$の存在を示す. 
+sheafのepiの定義からある有限個の$\{h_i : A_i \to S \}_{i=1}^{n}$で$S=\cup f_i(A_i)$となる被覆と$a_i \in T_1(A_i)$があって, 
+$$
+T_2(h_i)(b) = f(A_i)(a_i)
+$$
+となる.
+$A:= A_1 \sqcup \cdots \sqcup A_n$, $h : h_1 \sqcup \cdots \sqcup h_n$, $a=(a_1, \ldots, a_n)\in T_{1}(A)$, 
+開被覆を$\{ h: A \to S \}$とすると
+$$
+T_2(h)(b)=f(A)(a) 
+$$
+となる. よって開被覆は初めから一つの場合に帰着できる.
+ 
+ すると$h : A \twoheadrightarrow S$は全射かつ$S \in { \bf ED}$から
+ $g : S \to A$で$h \circ g = id_{S}$となる.よって$i=1,2$で$T_i(g) \circ T_i(h) = id_{T_i(S)}$である.
+ よって以下の図式を得る.
+ \begin{equation*}
+ \xymatrix@C=80pt@R=30pt{
+T_1(S)\ar@{->}[r]^{f(S)}
+\ar@{->}[d]_{T_1(h)}
+&T_2(S)\ar@{->}[d]_{T_2(h)}
+ \\   
+T_1(A) \ar@{->}[r]^{f(A)}
+\ar@{->}[d]_{T_1(g)}
+&T_2(A)\ar@{->}[d]_{T_2(g)}
+\\
+T_1(S)\ar@{->}[r]^{f(S)}
+&T_2(S)
+ \\   
+}
+\end{equation*}
+これより
+$$
+b=  T_2(g)T_2(h)(b)
+=T_2(g)f(A)(a)
+ =f(S)T_1(g)(a)
+$$
+となり$ c = T_1(g)(a)$が欲しかったものである.
+逆に関しては[1]と同様である.
+
+ \underline{[3]の証明 }
+$f$ monicならば$f(S) : T_1(S) \to T_2(S)$が単射は同じ証明が回る.
+逆も$s,t: T\to T_1$を考えると, $\kappa$を止めた${\bf Cond}_{<\kappa}$で考えられることと${\bf Cond}_{<\kappa} \subset {\bf Cond}$からわかる. 
+
+$f: T_1 \to T_2$がepiとする. 
+すると$T_i = Lan_{K}T_{i, \kappa}$と
+$f_{\kappa}: T_{1, \kappa} \to T_{2, \kappa}$で$f = Lan_{K}(f_{\kappa})$となるものがある.
+$Lan_{K} : {\bf Cond}_{<\kappa} \to {\bf Cond}$はfully faithfullなので$f_{\kappa}$もepiとなる. 
+よって代入して全射が言える. 
+逆はpresheafの同型がSheafの同型になるので良い.
+
+ \underline{[4]の証明 }
+ $f_{\kappa}: T_{1, \kappa} \to T_{2, \kappa}$でepiとすると
+$\widetilde{S} \in {\bf ED}_{< \widetilde{\kappa}}$について
+$$
+Lan_{K}(f_{\kappa})(\widetilde{S}): 
+Lan_{K}T_{1, \kappa} (\widetilde{S}) = \colim_{\widetilde{S} \to S, |S|<\kappa}T_{1, \kappa}(S)
+\to 
+Lan_{K}T_{2, \kappa}(\widetilde{S}) = \colim_{\widetilde{S} \to S, |S|<\kappa}T_{2, \kappa}(S)
+$$
+である.
+今$f_{\kappa}$epicより$T_{1, \kappa}(S) \to T_{2, \kappa}(S)$は全射である.
+よって$Lan_{K}(f_{\kappa})(\widetilde{S} )$全射である.
+[3]からepiである.
+
+ \underline{[5]の証明 } [4]に同じ. 
+ \end{proof}
+
+ \subsubsection{{\bf Cond}の直積}
+  
+\ref{cor-Sch19-rem2.13}の有限直積の場合だけよく使うのでここにまとめておく. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+  \begin{lem}\cite[Lemma 3.6.2]{Bar22}
+\label{lem-ep-pullback}
+$f: S \to W$, $g : T \to W$をcondenced setの射とする.
+この時
+ $U  \in {\bf Set}^{ { \bf ED }^{op}}$を
+ $$
+ U(X) := S(X) \times_{W(X)} T(X) 
+ $$
+とおくと\ref{cor-Sch19-rem2.13}より$U$はcondenced setとなる.  %U \cong S \times _{W} T$となる.
+
+このとき$$U(\ast)_{top} \to S(\ast) \times_{W(\ast)} T(\ast)$$となる連続な全単射が存在する.
+%これは集合としては恒等写像に等しい. 
+
+さらに$f, g$がepi射であるとき直積の図式
+ \begin{equation*}
+ \xymatrix@C=80pt@R=30pt{
+U \ar@{->}[r]^{q}
+\ar@{->}[d]_{p}
+&T \ar@{->>}[d]_{g}
+\\
+S\ar@{->>}[r]^{f}
+&W
+ \\   
+}
+\end{equation*}
+について$W$は$p : U \to S, q: U \to T$のコイコライザーになる. 
+
+ \end{lem}
+  \end{tcolorbox}
+ \begin{proof}
+   \underline{前半の主張に関して }
+   \ref{cor-Sch19-rem2.13}により
+連続写像$f(\ast) : S(\ast) \to W(\ast)$ $g(\ast) : T(\ast) \to W(\ast)$についてその直積は
+ $$
+ X =  \{(s,t) \in S(\ast) \times T(\ast) | f(\ast)(s) = g(\ast)(t) \}
+ $$
+ で与えられる. 今$p : U \to S, q : U \to T$とすると, $p(\ast) : U(\ast)  \to S(\ast) , q(\ast)  : U (\ast) \to T(\ast) $なる連続写像で$f(\ast)\circ p(\ast) = g(\ast) \circ q(\ast)$であるので
+ $$
+ h : U(\ast)_{top} \to  X
+ $$
+ となる連続写像が与えられる.  これは集合としては全単射である.
+ 
+   \underline{後半の主張に関して }
+ Presheafとしての$p : U \to S, q: U \to T$のコイコライザーを$S \sqcup_{W}T$とする.
+ これが$W$と同型であることを示す. 
+$S \sqcup_{W}T$とは
+$X \in {\bf ED}$について
+$$
+(S \sqcup_{W}T)(X)
+=
+S(X) \sqcup T(X)/\sim
+$$
+である. ここで同値関係$\sim$は$S(X) \times_{W(X)} T(X)$で生成される同値関係である.
+もっと詳しく言うと
+\begin{itemize}
+\item $(x,1) \sim (y , 2)$は$x=p(X)(s,t)=s, y=q(X)(s,t)=t$となる$(s,t) \in S(X) \times_{W(X)} T(X) $が存在すること. つまり$g(X)(y)=f(X)(x)$となること. 
+\item $(x,1) \sim (x', 1)$は$f(X)(x)=g(X)(y)=f(X)(x')$なる$y \in T(X)$が存在すること.
+\item $(y,2) \sim (y' , 2)$は$g(X)(y)=f(X)(x)=g(X)(y')$なる$x \in S(X)$が存在すること.
+\end{itemize}
+とする. 
+これは$f, g$がepi射なのでwell-definedである. 
+今
+$$
+\pi(X): S(X) \sqcup T(X)/\sim \to W
+\quad
+\pi : (x,1) \mapsto f(x)
+\quad
+\pi (y,2) \mapsto g(y)
+$$
+とすると$\pi(X)$はwell-definedで$X$について自然である.
+よって$\pi(X)$が全単射であることを示せば良いがこれは同値関係のわりかたからすぐにわかる. 
+
+よってPresheafとして$W \cong S \sqcup_{W}T$である.
+これのsheafificationしたものがsheafとしての余極限だったのでsheafとしても$W \cong S \sqcup_{W}T$である. 
+ \end{proof}
+ 
+ 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+  \begin{lem}\cite[Lemma 3.6.2]{Bar22}
+\label{lem-ep-pullback}
+Condenced set の epi射はpullbackで保たれる
+  \end{lem}
+  \end{tcolorbox}
+ \begin{proof}
+ \ref{cor-Sch19-rem2.13}からCondenced setの直積はPresheafとしての直積である.
+ よって\ref{lem-cond-epi}より$X \in {\bf ED}$を代入して全射であることを見れば良くこれは明らかである.
+ \end{proof}
+
+ \subsubsection{qc}
+   \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{thm}\cite[Proposition 4.11.11]{Bar22}
+ \label{thm-qc-represent}
+condenced set $T$について 以下は同値.
+ \begin{enumerate}
+ \item　$T$がqc
+ \item　$X \in {\bf ED}$があって$\underline{X}\to T$なるepi射が存在する
+ \item　$X \in {\bf CHaus}$があって$\underline{X}\to T$なるepi射が存在する
+ \end{enumerate}
+ \end{thm}
+ \end{tcolorbox}
+ 
+ \begin{proof}
+
+\underline{ (1) $\Rightarrow$ (2)で $T \in {\bf Cond}_{< \kappa}$の場合 }
+$T$は$hom_{{\bf ED}_{<\kappa}}(\cdot, X)$の余極限でかける.
+(\ref{cor-colim-represent}参照). つまり
+ $$
+ T \cong  \colim_{(X,x) \in Ob(1 \downarrow T)} hom(\cdot, X)
+ $$
+ であった.
+ colimitはcoproductのcoequalizarであったので
+ $\sqcup_{i \in I}\underline{X_i} \twoheadrightarrow T $
+ となる小さな添字圏$I$が存在する.(\ref{thm-eq-pro}参照)
+よって$T$はqcであるので
+$$
+\sqcup_{i=1}^{n}\underline{X_i} \twoheadrightarrow T 
+$$ 
+がいえる.
+よってあとは
+$$
+\sqcup_{i=1}^{n}\underline{X_i}
+\cong 
+\underline{\sqcup_{i=1}^{n} X_i}
+$$
+が言えれば良い.
+これには2つの示し方がある. 
+
+\underline{[1]米田を使う方法.} これは任意のCondenced set$F$について自然な同型
+\begin{align*}
+\begin{split}
+hom_{{\bf Cond}_{< \kappa}}(\underline{X_1 \sqcup X_2}, F)
+& \cong  F(X_1 \sqcup X_2) \\
+& \cong F(X_1) \times F(X_2) \\
+& \cong hom_{{\bf Cond}_{< \kappa}} (\underline{X_1}, F)\times hom_{{\bf Cond}_{< \kappa}}(\underline{X_2}, F) \\
+& \cong hom_{{\bf Cond}_{< \kappa}}(\underline{X_1}\sqcup \underline{X_2}, F) \\
+\end{split}
+\end{align*}
+が存在するため米田の補題の系(\ref{cor-yoneda}参照)から同型が言える. 
+
+\underline{[2]地道に示す方法.} $S \in {\bf ED}_{<\kappa}$について, 
+$$
+hom_{{\bf ED}_{< \kappa}}(S, X_1) \sqcup hom_{{\bf ED}_{< \kappa}}(S, X_2) \to  hom_{{\bf ED}_{< \kappa}}(S, X_1 \sqcup X_2)
+$$
+が存在する. 単射性は明らか. 
+全射性は$f \in hom_{{\bf ED}_{< \kappa}}(S, X_1 \sqcup X_2)$について$S_1 := \beta(f^{-1}(X_1)_{dist})$, $S_2 := \beta(f^{-1}(X_2)_{dist})$とすると
+$\{S_i \to S\}_{i=1,2}$がcoveringとなり
+$f|_{S_{1}}$は$X_1$を経由する. $f|_{S_{2}}$も$X_2$を経由するので全射性が言える.
+
+\underline{(1) $\Rightarrow$ (2)で 一般の場合 }
+$T = Lan_{K}T_{< \kappa}$となる$T_{< \kappa}$をとる.
+すると$\underline{X} \twoheadrightarrow T_{< \kappa}$が存在する.
+\ref{lem-cond-epi}(4)より左Kan拡張を取ってもepi性は保たれる. 
+\footnote{$Lan_{K}\underline{X}=\underline{X}$は\ref{thm-Scholze-21516}(1)より. ここにはqc性は使われていないので循環論法にはなっていない}
+
+\underline{(2)$\Rightarrow$(1) かつ $T = \underline{X}$の場合 }
+%まず$X \in {\bf ED}$について$\underline{X}$はqcであることを示す. 
+epi射$f : \sqcup T_i \twoheadrightarrow \underline{X}$とする.
+$\sqcup T_i $の構成はpresheafとしての余極限$\sqcup_{Psh} T_i $のsheafification$(\sqcup_{Psh} T_i )^{\sharp}$であった.
+よって
+$$
+f(X) : (\sqcup T_i)(X) = (\sqcup_{Psh} T_i )^{\sharp}(X) \to \underline{X}(X)=hom_{{\bf ED}}(X,X)
+$$ 
+は全射である. 
+つまり$id_{X} \in  hom_{{\bf ED}}(X,X)$についてある$s \in (\sqcup T_i)(X)$があって, $f(X)(s)$となる.
+よって\ref{lem-stacks-sheafification}から
+あるcovering$\{h_k : X_k \to X\}_{k=1}^{n}$と
+$s_k \in (\sqcup_{Psh} T_i )(X_k)$
+があって
+$$
+\sharp(X_k)(s_k)= s|_{X_k}
+$$
+となる. 
+$s_k \in (\sqcup_{Psh} T_i) (X_k) = \sqcup_{set} T_{i}(X_k)$であるので, 
+集合の直和の定義から, 
+ある$i_k$があって$s_k \in T_{i_k}(X_k)$となる. 
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+T_{i_k}(X)\ar@{->}[r]^{f_{i_k}(X)}\ar@{->}[d]_{T_{i_k}(h_k)}
+&\underline{X}(X) \ar@{->}[d]_{h_k} \\
+T_{i_k}(X_k) \ar@{->}[r]^{f_{i_k}(X_k)}
+&\underline{X}(X_k) \\   
+}
+\end{equation*}
+という図式から$h_{k} = f_{i_k}(X_k)(s_k)$であることがわかる. 
+
+そこで
+$$
+\widetilde{f}:=\sqcup f_i : \widetilde{T}:=\sqcup_{k=1}^{n} T_{i_k} \to \underline{X}
+$$
+を考える. $\widetilde{T}$はPresheafとしての直和をsheafificationしたものである.
+これがsheafの全射であることを示せば良い.
+
+$S \in {\bf ED}$をとり$g \in \underline{X}(S) = hom_{{\bf ED}}(S,X)$を得る.\footnote{必要ならば強極限基数を止めれば良い.}
+$S_k$を$\beta((X_{k} \times_{X} S)_{dist})$とすると$S_k \to S$を得る.
+ある$c_k \in \widetilde{T}(S_k)$で
+$\widetilde{f}(S_k)(c_k) = g|_{S_k}$となるものが存在することを示す.
+
+今図式としては下の様になっている. 
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+S \ar@{->}[r]^{g}
+&X
+&
+\underline{X}(X_k) \ar@{->}[r]^{\circ a_k}
+&\underline{X}(S_k) \\
+S_k \ar@{->}[r]^{a_k} \ar@{->}[u]^{b_k}
+&X_k \ar@{->}[u]^{h_k}
+&
+T_{i_k}(X_k) \ar@{->}[r]^{T_{i_k}(a_k)} \ar@{->}[u]^{f_{i_k}(X_k)}
+&T_{i_k}(S_k) \ar@{->}[u]^{f_{i_k}(S_k)}\\   
+}
+\end{equation*}
+よって$d_k =(T_{i_k}(a_k))(s_k) \in T_{i_k}(X_k)$おくと
+$$
+g|_{S_{k}}
+=
+g \circ b_k
+=
+h_k \circ a_{k}
+=(\circ a_k)(f_{i_k}(X_k))(s_k)
+=
+(f_{i_k}(S_k))(T_{i_k}(a_k))(s_k)
+= (f_{i_k}(S_k))(d_k)
+$$
+である. $\sharp :T_k \to \sqcup_{Psh} T_{k} \to \widetilde{T}$\footnote{$\sqcup_{Psh} T_{k} $はPresheafとしての余積}であるので
+そこで$c_k:=\sharp(S_k)(d_k)$とおくと
+$g|_{S_{k}} = \widetilde{f}(S_k)(c_k)$となる. 
+
+\underline{(2)$\Rightarrow$(1) 一般の場合 }
+%次にepi射$\underline{X} \twoheadrightarrow T$ならば$T$qcをいう. 
+$\{ T_i \to T\}_{i \in I}$かつepi射$\sqcup T_i \twoheadrightarrow T$とする. 
+$X_i := T_i \times_{T} X_i$おく. 
+presheafとして
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+\sqcup_{Psh} X_i  \ar@{->}[r]\ar@{->}[d]
+%&\sqcup X_i  =(\sqcup_{Psh} X_i )^{\sharp} \ar@{->}[r]\ar@{->}[d]
+&\underline{X} \ar@{->}[d] \\
+\sqcup_{Psh} T_i \ar@{->}[r]
+%& \sqcup T_i  = (\sqcup_{Psh} T_i )^{\sharp}\ar@{->}[r]
+&T \\   
+}
+\end{equation*}
+は直積となっている. 
+これは各々$E \in {\bf ED}$を代入すればわかる.
+sheafificationは有限limと交換するので, 
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+%\sqcup_{Psh} X_i  \ar@{->}[r]\ar@{->}[d]
+\sqcup X_i  =(\sqcup_{Psh} X_i )^{\sharp} \ar@{->}[r]\ar@{->}[d]
+&\underline{X} \ar@{->>}[d] \\
+%\sqcup_{Psh} T_i \ar@{->}[r]
+\sqcup T_i  = (\sqcup_{Psh} T_i )^{\sharp}\ar@{->>}[r]
+&T \\   
+}
+\end{equation*}
+も直積となる. 
+$\sqcup T_i \twoheadrightarrow T$はepi射なので\ref{lem-ep-pullback}より$\sqcup X_i \twoheadrightarrow \underline{X}$もepi射である.
+よって$\underline{X}$はqcなので
+$\sqcup_{k=1}^{l} X_{i_k} \twoheadrightarrow \underline{X}$がepi射になる．
+よって$\sqcup_{k=1}^{l}T_i \twoheadrightarrow T$もepi射になる.
+ これは各々$E \in {\bf ED}$を代入して集合の全射を見れば良いからである(\ref{lem-ep-pullback}参照.)
+ \end{proof}
+ 
+  \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{thm}\cite[Proposition 4.12.3]{Bar22}
+ \label{thm-qs-monic}
+$X$をコンパクトハウスドルフ, $T$をcondenced set とする.
+$T$がqcで$f : T \hookrightarrow \underline{X}$なるmonic射があるならば, 
+$T  \cong \underline{Z}$となる閉集合$Z \subset X$が存在する. 
+%さらに$\underline{Z} = f(T)$である. 
+ \end{thm}
+ \end{tcolorbox}
+ \begin{proof}
+ $T$がqcなので$\pi : \underline{E} \twoheadrightarrow T$なる${\bf  ED}$がある. 
+ そこで$Z:= f(\ast)\circ{\pi(\ast)}(E)  \subset X$とおく. 
+ $Z$は閉集合である.
+ 
+すると$\widetilde{f} : T \to \underline{Z}$が$f$から誘導される.
+$S \in {\bf ED}$, $h \in T(S)$について
+$\pi(\widetilde{h}) = h$を取って
+$$
+\widetilde{f}(h):= f(S) \circ \pi(S)(\widetilde{h})
+$$
+とする.
+これは$f$がmonicなので$f(S)$が単射となることから$\widetilde{h}$の取り方によらない.
+また$\widetilde{f}$が自然であり, sheafの射になることもわかる. 
+$i : \underline{Z} \to \underline{X}$を包含写像とすると$i \circ \widetilde{f} = f$である
+ これより次の図式を得る
+ $$
+ \underline{E} \overset{\pi}{\twoheadrightarrow}
+ T \overset{\widetilde{f}}{\to}
+  \underline{Z} \overset{i}{\hookrightarrow}
+  \underline{X}
+ $$
+ $\widetilde{f}$がepiかつmonicを示せば良い.
+ 
+ \underline{monic性 }$\widetilde{f}(S)(g_1) = \widetilde{f}(S)(g_2)$ならば
+$i(S)$をかまして$f(S)(g_1) = f(S)(g_2)$を得る. $f(S)$は単射なので$g_1 = g_2$となる.
+
+ \underline{epi性 } $S \in {\bf ED}$, $k \in \underline{Z}(S) = hom_{{\bf Top}}(S, Z)$
+とする. $f(\ast)\circ{\pi(\ast)} : E \to Z$全射なので, $S \in {\bf ED}$から
+$E \to S \overset{k}{\to} Z$と分解する. 
+よってこの$E\to S$を$T(S)$に送ったものが全射性を与える.
+
+ \underline{ $\underline{Z}=f(T)$であること }
+これは[epi]の証明において, $S \in {\bf ED}$について$\underline{Z}(S) = hom_{{\bf Top}}(S, Z) = f(S)(T)$であることがわかる. 
+ \end{proof}
+
+ 
+ \subsubsection{qs}
+ 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{thm}\cite[Proposition 4.11.12]{Bar22}
+ \label{thm-qs}
+condenced set $T$について次は同値.
+\begin{enumerate}
+\item $T$がqs.
+\item $X_1, X_2 \in {\bf ED}$について$\underline{X_i} \to T$ならば$\underline{X_1}  \times_{T}\underline{X_2} \cong \underline{L}$となる$L \subset X_1 \times X_2$閉集合が存在する. 
+\item $X_1, X_2 \in {\bf ED}$について$\underline{X_i} \to T$ならば$\underline{X_1}  \times_{T}\underline{X_2} $はqc.
+\end{enumerate}
+%特に$T$が${\bf Cond}_{<\kappa}$でqsであることは$T$が${\bf Cond}$でqsであることと同値になる. 
+ \end{thm}
+ \end{tcolorbox}
+ \begin{proof}
+ (1)から(3)は明らか.
+ (3)から(1)について$S_1 \to T, S_2 \to T$qcとすると
+ \ref{thm-qc-represent}から
+ $X_1, X_2 \in {\bf ED}$とepi射$\underline{X_i} \twoheadrightarrow S_i$が存在する.
+ よって$\underline{X}_1 \times_{T} \underline{X_2} \to S_1 \times_{T} S_2$
+ を得るが, \ref{lem-ep-pullback}と\ref{lem-cond-epi}(2)よりこれはepi射になる.
+ (各々$S \in {\bf ED}$を代入して全射であることを示せば良い. がこれは直積が明示的に作れているので明らか.)
+ よって(2)の条件と \ref{thm-qc-represent}から $W\in {\bf ED}$とepi射$\underline{W} \to S_1 \times_{T} S_2$が作れてqcとなる. 
+ 
+ (2)から(3)は\ref{thm-qc-represent}より.
+ (3)から(2)について包含写像$i : \underline{X_1}  \times_{T}\underline{X_2} \hookrightarrow \underline{X_1} \times \underline{X_2} = \underline{X_1 \times X_2}$について, \ref{thm-qs-monic}を適応すれば良い. 
+ \end{proof}
+
+  \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-qs-sub}
+condensed setのmonic 射$f : S \hookrightarrow T$について, $T$がqsならば$S$もqs.
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$S_1 \to S, S_2 \to S$について
+$$
+S_1 \times_S S_2 \cong S_1 \times_T S_2
+$$
+であることが\ref{cor-Sch19-rem2.13}からわかるため, 欲しい結果が得られる. 
+\end{proof}
+
+\subsubsection{コンパクトハウスドルフ空間}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-CHaus-relation}
+$X$コンパクトハウスドルフ空間
+$\sim$を同値関係とし$L = \{ (x,y) | X \sim y\}$とする.
+$L \subset X \times X$が閉集合ならば$X/\sim$はコンパクトハウスドルフである
+\end{lem}
+\end{tcolorbox}
+
+%\begin{proof}
+%\ref{Str-prop2.20}から
+%$\pi \times \pi : X \times X \to X/\sim \times X /\sim$
+%は商写像である.
+%よって$\Delta_{X/\sim} \subset X/\sim \times X /\sim$が閉集合であることは
+%$$
+%L = (\pi \times \pi)^{-1}\Delta_{X/\sim}
+%$$
+%が閉集合であることと同値である. 
+%よって$X/\sim$はハウスドルフである. コンパクトは明らか．
+%\end{proof}
+\begin{proof}
+$X / \sim$がハウスドルフであることを示せば良い.
+$\tilde{x}, \tilde{y} \in X/ \sim$で$\tilde{x} \neq \tilde{y}$とする.
+$\pi(x) = \tilde{x}, \pi(y) = \tilde{y}$とすると$x \not \sim y$である.
+よって$(x,y) \not \in R$より$R$は閉集合であるので, $x \in U_x$m $y \in U_y$で
+$U_x \times U_y \subset X \times X \setminus R$と取れる.
+これより$\pi(U_x)$と$\pi(U_y)$が$\tilde{x}$と$\tilde{y}$を分離する開集合を与える. 
+\end{proof}
+
+
+   \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-cpthaus}
+$I$ small cofiltered category. \footnote{cofilteredとはfiltered categoryのopposite版である. filtered categoryはcoconeを持ちcolimに対応, cofiltered categoryはconeを持ちlimに対応する.}
+$F :  I \to {\bf Chaus}$関手に関して
+$\lim_{I}F(i)$が空ならば, ある$i \in I$があって$F(i)$も空である
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+対偶を示す. 
+任意の$i \in I$について$x_i \in Fi$とする, 
+$i \in I$について
+$$
+L_i := \{(z_j) \in \prod_{j \in I}{Fi} | z_i =x_i, \text{$h : i \to k$について$F(h)(z_i) = z_k$}\}
+$$
+(自分より小さいもののみを制御する．)
+すると
+$L_i$はclosedであり, 有限交差性を持つ.
+なぜなら$i_1, \ldots, i_k$についてcofilteredからある$j$があって
+$j \to i_1, j\to i_2, \ldots , j\to i_k$となるものがあるので, $x_j \in L_{i_1}\cap \cdots \cap L_{i_k}$となるからである. 
+よってチコノフの定理より$\prod_{j \in I}{Fi} $はコンパクトなので
+$\cap_{i \in I} L_I$は空ではない.
+そしてその元は$\lim_{I}F(i)$の元でもある.
+\end{proof}
+
+\subsubsection{弱ハウスドルフ空間(WH)}
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Lemma 1.3]{Str}
+\label{lem-weakhaus}
+$X$をWHとする 
+$W$ compact Hausdorff$\phi : W \to X$連続
+のとき$\phi(W)$はコンパクトハウスドルフ
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+$\phi(W)$がハウスドルフを示せば良い.
+$x,y \in \phi(W)$かつ$x \neq y$とする.
+コンパクトハウスドルフ空間は$T_4$なので
+$$
+\phi^{-1}(x) \subset U\quad
+\phi^{-1}(y) \subset V\quad
+U \subset V = \varnothing
+$$
+となる$W$の開集合$U,V$が取れる. 
+$\phi(U^{c})$は閉集合で
+$\left( \phi(W) \setminus \phi(U^c) \right) \cap \left( \phi(W) \setminus \phi(V^c) \right) = \varnothing$
+であり
+$$
+x \in \left( \phi(W) \setminus \phi(U^c) \right) \quad
+y \in \left( \phi(W) \setminus \phi(V^c) \right) 
+$$
+であるので上の二つの開集合が$x,y$を分離する.
+\end{proof}
+
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+
+\begin{lem}\cite[Lemma 3.3]{Str}
+\label{lem-weakhaus-2}
+$X : I \to {\bf CGWH}$関手
+$I$ small filtered category
+さらに$f: i \to j$について$Xf : X_i \to X_j$は連続な単射で$Xf(X_i) \subset X_j$は$X_j$で閉集合であるとする. 
+
+この時$\colim_{i \in I}X_i$はCGWH
+%\xr{もしかしたらcompactly generatedはいるかも.}
+\end{lem}
+\end{tcolorbox}
+証明は非常に長くなるのでAppendix\ref{subsubsec-CGWH-colim}にまとめておいた. 
+
+\subsection{\cite[Proposition 2.15, Theorem 2.16]{Sch19}(=定理\ref{thm-Scholze-21516}) (1)と(2)の証明}
+
+\begin{proof}[Proof of Theorem \ref{thm-Scholze-21516} (1)]
+$X$を$T_1$空間とする． 
+$|X| < cf(\kappa) \le \kappa$となる強極限基数を固定する.(これは\ref{lem-cofinal}より存在する.)
+$\underline{X} = hom_{{\bf ED}}(\cdot, X)$がCondenced setになることを示せば良い.
+つまり任意の$\kappa<\widetilde{\kappa}$となる強極限基数と$\widetilde{S} \in {\bf ED}_{< \widetilde{\kappa}}$について
+$$
+\underline{X}(\widetilde{S})=hom_{{\bf ED}}(\widetilde{S}, X)
+\cong
+\colim_{\widetilde{S} \to S, |S|<\kappa}hom_{{\bf ED}}(S,X)
+$$
+を示せば良い.
+
+集合の余極限の定義から
+$$
+\colim_{\widetilde{S} \to S, S \in {\bf ED}_{\kappa}}hom(S,X)
+=
+\{ (f_{S}, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa}\}/\sim
+$$
+である.
+$\{ (f_{S}, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa}\}
+$は命題\ref{prop-Sch19-2.9}により$cf(\kappa)$-filtered categoryになる. 
+ここで$(f_{S_1}, S_1) \sim (f_{S_2}, S_2)$とはある$f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa}$があって, 次が可換になることとなる.
+\begin{equation*}
+\xymatrix@C=60pt@R=20pt{
+\widetilde{S}\ar@{->}[r]^{\pi_S} \ar@/^20pt/[rr]^{\pi_{S_{1}}}\ar@{->}[rd]^{\pi_{S_2}}
+&S\ar@{->}[d]  \ar@{->}[r] \ar@{->}[rd]_{f_S}
+& S_1\ar@{->}[d]^{f_{S_1}}
+\\
+&S_2 \ar@{->}[r]_{f_{S_2}} 
+&X
+ \\   
+}
+\end{equation*}
+
+自然な写像
+\begin{equation}
+\Phi : \colim_{\widetilde{S} \to S, |S|<\kappa}hom(S,X)
+%=\{ (f_{S}, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, |S|<\kappa\}/\sim
+\to hom(\widetilde{S}, X)
+\quad
+\Phi(f_{S}, S):=  f_S \circ \pi_S \in hom(\widetilde{S}, X)
+\end{equation}
+が存在し$\sim$の取り方によらずwell definiedである.
+これが全単射であることを示す.
+
+\underline{[1] $\Phi$は単射 (ここに$T_1$は必要なし) }
+
+$\Phi(f_{S_1}, S_1) = \Phi(f_{S_2}, S_2)$とする.
+まず$S=S_1=S_2$として良いことを示す. 
+これは$S = \beta((S_1 \times S_2)_{dist})$とすると次の図式を得る
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+\widetilde{S}\ar@{-->}[r] \ar@/^30pt/[rrr]^{\pi_{S_{1}}}
+\ar@/^15pt/[rr]\ar@{->}[rrd]_{\pi_{S_2}}
+& S=\beta((S_1 \times S_2)_{dist})
+\ar@{->}[r] \ar@{->>}[r]\ar@{->}[rd]^{g_2}
+&S_1 \times S_2\ar@{->}[d]  \ar@{->}[r] 
+& S_1\ar@{->}[d]^{f_{S_1}}
+\\
+&
+&S_2 \ar@{->}[r]_{f_{S_2}} 
+&X
+ \\   
+}
+\end{equation*} 
+$\widetilde{S} \in {\bf ED}_{< \widetilde{\kappa}}$であったので, 
+$\widetilde{S} \to S$を誘導する.
+$(S_2,f_2) \sim (S, g_2)$であるので$S=S_1=S_2$として良い.
+
+$f_i := f_{S_i}$とかき
+$\Phi(f_1, S) = \Phi(f_2, S)$とする.
+つまり$f_1 \circ \pi = f_2 \circ \pi : \widetilde{S} \to X$とする. 
+$S' := \beta((Im \pi_{S'})_{dist})$とおくと次の図式を得る. 
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+\widetilde{S}\ar@{-->}[r]^{\pi_{S'}}
+\ar@{-->}[d]
+\ar@{->>}[rd]
+\ar@{->}[r]_{\pi_{S}}
+&S
+ \ar@/^5pt/[r]^{f_1}
+  \ar@/_5pt/[r]_{f_2}
+&X
+\\
+S' := \beta((Im \pi_{S})_{dist}) \ar@{->>}[r]
+&(Im \pi_{S'})\ar@{->}[u]
+&
+ \\   
+}
+\end{equation*}
+$\widetilde{S} \in {\bf ED}_{< \widetilde{\kappa}}$であったので, 
+$\pi_{S'} : \widetilde{S} \to S'$を誘導する.
+そこで$h : S' \to S$とすると
+$(f_1, S) \sim  (f_1 \circ h,S')$かつ
+$(f_2, S) \sim  (f_2 \circ h,S')$となる.
+あとは$f_1 \circ h = f_2 \circ h$を示せば良いが, これは$Im \pi_{S}$を経由するため明らかである. 
+
+\underline{[2] $\Phi$は全射 (ここに$T_1$が必要) }
+
+以下$f : \widetilde{S} \to X$とする. 
+段階を分けて証明する. 
+
+\underline{[2-1] } $x,y \in X$かつ$x \neq y$ならば, ある$S_{x, y} \in {\bf ED}_{<\kappa}$と$ \widetilde{S} \to S_{x,y}$が存在して
+$$
+F_{x,y} : \widetilde{S} \times_{S_{x,y}}\widetilde{S} 
+\longrightarrow
+\widetilde{S} \times_{S_{x,y}}\widetilde{S} 
+\overset{f \times f}{\longrightarrow}
+X \times X
+$$
+について$(x,y)\not \in Im F_{x,y}$となることを示す. 
+
+まず$(f_S, S) \in \{(f_S, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa} \}$について
+$$
+\lim_{(f_S, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa} }
+ \widetilde{S} \times_{S} \widetilde{S}
+ \cong 
+ \widetilde{S} 
+$$
+である. なぜならば
+$$ \widetilde{S} \times_{S} \widetilde{S}
+=
+\{ (z,w) \in \widetilde{S} \times \widetilde{S} | \pi_{S}(z) = \pi_{S}(w)\} \subset \widetilde{S} \times \widetilde{S}
+$$
+であるので, 
+$$
+\lim_{(f_S, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa} }
+= \cup_{(f_S, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa} } \widetilde{S} \times_{S} \widetilde{S}
+\subset \widetilde{S} \times \widetilde{S}
+$$
+となる. そこで$\widetilde{S} \to  \lim \widetilde{S} \times_{S} \widetilde{S}$を$x \mapsto (x,x)$として定義する. これは全単射である.
+\begin{itemize}
+\item 単射性は$\widetilde{S} \times \widetilde{S}$の中の元なので明らか.
+ \item 全射性に関しては, $( z, w )\in \lim_{(f_S, S) : f_S : S \to X, \pi_{S}: \widetilde{S} \to S, S \in {\bf ED}_{\kappa} }$ととる. 
+もし$z \neq w$ならば, $\widetilde{S}$はprofinite setなので$\widetilde{S} = \lim F_l$とdiscrete setの極限としてかけることより, ある$\phi : \widetilde{S} \to F$があって$\phi(z) \neq \phi(w)$となる. 
+よって$(z, w) \neq \widetilde{S} \times_{F} \widetilde{S}$となり矛盾. よって$z=w$とかける. 
+\end{itemize}
+以上より$\widetilde{S} \cong \lim \widetilde{S} \times_{S} \widetilde{S}$である.
+
+さて, 
+$$
+F_S : \widetilde{S} \times_{S} \widetilde{S} \to \widetilde{S} \times  \widetilde{S} \to X \times X
+\quad (z,w) \to (f(z), f(w))
+$$
+とおく. \underline{$X$が$T_1$なので}$(x,y)$はclosed. 
+よって$F_{S}^{-1}(x,y)$も$\widetilde{S} \times \widetilde{S}$内でclosedなのでコンパクトハウスドルフである.
+$\lim_{\widetilde{S} \to S} \widetilde{S} \times_{S} \widetilde{S} \cong \widetilde{S}$により
+$$\lim_{\widetilde{S} \to S}F_{S}^{-1}(x,y)  
+= \varnothing
+$$
+である. よって補題\ref{lem-cpthaus}よりある$S$があって$F_{S}^{-1}(x,y) $も空集合になる.
+
+以上より$S_{x,y}:=S$とおくと, $F_{S_{x,y}}^{-1}(x,y) $が空のため, $(x,y) \not \in Im(F_{S_{x,y}})$である.
+
+\underline{[2-2] } 
+ある$S_0 \in {\bf ED}_{<\kappa}$があって
+$$
+\widetilde{S} \times_{S_0} \widetilde{S}
+\underset{p_2}{\overset{p_1}{\to}}
+\widetilde{S}
+\overset{f}{\to} X
+$$
+とするとき$f \circ p_1 = f \circ p_2$となることを示す. 
+ここで$p_i$は第$i$射影となる.
+
+$S_0$を$\prod_{(x, y) \in X \times X, X \neq y}S_{x,y}$に離散位相を入れたStone Cechコンパクト化とする.
+すると$|S_0| < \kappa$である. 
+なぜならば$|X \times X| \le |X| < cf(\kappa)$であるので, 
+$\mu:=\sup|S_{x,y}| < \kappa$である.\footnote{もし$\sup|S_{x,y}| \ge  \kappa $ならば, $X \times X \to \kappa$を$(x,y) \mapsto |S_{x,y}|$と定義すれば共終部分集合が取れてしまい正則性に矛盾}
+よって命題\ref{prop-regular-cardinal}から
+$$
+|\prod_{(x, y) \in X \times X, X \neq y}S_{x,y}|
+\le 
+\mu^{|X \times X|}
+\le 
+\mu^{|X|}
+\le (2^{\mu})^{|X|}
+= 2^{\mu |X|}
+= 2^{\max \{\mu, |X|\} }
+< \kappa 
+$$
+である. 
+よって$S_0 \in {\bf ED}_{< \kappa}$である.
+
+$S \in {\bf ED}_{< \kappa}$であるので$\pi_{S_0} : S \to S_0$が誘導される. これが欲しいものであることを示す. 
+%とする.[2-2]を示すためには
+%$「$(z,w) \in \widetilde{S} \times_{S_0} \widetilde{S}$ならば$f(z)=f(w)$」を示せば良い.
+それには「$\pi_{S}(z) =\pi_{S}(w)$ならば$f(z) =f(w)$」を示せば良い.
+
+もし$\pi_{S}(z) =\pi_{S}(w)$かつ$f(z)  \neq f(w)$なる元があったとする. 
+すると$x = f(z), y = f(w)$とおけば以下の図式が可換になる. 
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+\widetilde{S} \times_{S_0} \widetilde{S}\ar@{->}[r]^{f \times f}
+\ar@{}[d]|{\bigcap} 
+&X \times X  \ar@{=}[d]
+\\
+\widetilde{S} \times_{S_{x,y}} \widetilde{S}\ar@{->}[r]^{F_{x,y}}
+& X \times X
+ \\   
+}
+\end{equation*}
+これは[2-1]の$(x,y) \not \in Im F_{x,y}$であったことに矛盾する.
+
+\underline{[2-3] 結論 }
+状況としては, $f : \widetilde{S} \to X$について, ある$S_0 \in {\bf ED}_{< \kappa}$があって
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+\widetilde{S} \ar@{->}[r]^{f}
+\ar@{->}[d]^{\pi_{S_0}}
+&X 
+\\
+S_0\ar@{-->}[ru]^{f_{S_0}}
+&
+ \\   
+}
+\end{equation*}
+となる. [2-2]から$\pi_{S_0}(z) = \pi_{S_0}(w)$ならば$f(z)=f(w)$が言えている. 
+よって商写像の性質から$f_{S_0} : S_0 \to X$を誘導する. 
+よって$f = f_{S_0} \circ \pi_{S_0} = \Phi(f_{S_0}, S_0)$あり全射性が言えた. 
+
+\underline{[3] $\underline{X}$が$T_1$になること.}
+qc condenced set$S \to \underline{X}$と$\ast \to \underline{X}$について
+$S\times_{X} \ast$がqcであること示す. 
+%ここで$\ast$というCondensed setは任意のED集合$S$について一点集合$\ast$を返すものである. 
+%つまり$\ast = hom(\cdot, \ast)$である. 
+
+\underline{[3-1] $Y \in {\bf ED}$で$S =\underline{Y}$となる場合 }
+適宜基数を取り替えて$Y \in {\bf ED}_{<\kappa}$として良い. 
+$x : \ast \to \underline{X}=hom_{{\bf ED}}(\cdot, X)$とする.  
+$hom_{{\bf Cond}}(\ast, \underline{X}) \cong \underline{X}(\ast) =X$であることに注意すれば, これは$x \in X$をとることに対応する. 
+
+$Q= Y \times_{X} \{ x\}$とすると次の図式を得る. 
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+Q= Y \times_{X} \{ x\} \ar@{->}[r]
+\ar@{->}[d]
+& \{ x\}\ar@{->}[d]
+\\
+Y\ar@{->}[r]^{f}
+&X
+ \\   
+}
+\end{equation*}
+\underline{$X$は$T_1$なので}, $\{ x\}$は閉集合であり. 
+$Q = Y \times_{X} \{ x\}=f^{-1}(x) \subset Y$は閉集合である.
+よって$Q$はコンパクトハウスドルフである. 
+$G : X \mapsto \underline{X} = hom(\cdot, X)$は${\bf Top}_{< \kappa} \to {\bf Cond}_{< \kappa}$への右随伴射であるので, 直積を交換する.
+よって
+$\underline{Q} = \underline{Y} \times_{\underline{X}} \ast$であり, \ref{thm-qc-represent}からqcとなる. 
+
+\underline{[3-2] $S$が一般の場合. }
+$S$がqcならば, \ref{thm-qc-represent}よりある$Y \in {\bf ED}$からのepi射$\underline{Y} \twoheadrightarrow S$が存在する．
+よって
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+\underline{Y} \times_{\underline{X}} \ast
+\ar@{->}[d]\ar@{->>}[r]
+&S\times_{\underline{X}} \ast \ar@{->}[d]\ar@{->}[r]
+&\ast \ar@{->}[d]
+\\
+\underline{Y}\ar@{->>}[r]
+&S\ar@{->}[r]
+&\underline{X}
+ \\   
+}
+\end{equation*}
+
+という図式が存在する. 
+補題\ref{lem-ep-pullback}から$\underline{Y} \times_{\underline{X}}\ast \to S\times_{\underline{X}} \ast $はepi射であるので, \ref{thm-qc-represent}により$S\times_{\underline{X}} \ast $もqcとなる.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm-Scholze-21516} (2)]
+$T$を$T_1$ condenced setとする. 
+$T(\ast)_{top}$が$T_1$空間であることを示す.
+$x \in T(\ast)_{top}$をとり$\{ x\}$が閉集合であることを示せば良い. 
+$T(\ast)_{top}$の位相の定義から, ある強極限基数$\kappa$があって任意の$S \in {\bf ED}_{< \kappa}$と$f \in T(S) = hom_{{\bf Cond}_{< \kappa}}(\underline{S}, T)$について
+$f(\ast)^{-1}(x)$が$S$上で閉であることを示せば良い .
+
+Condenced setの圏にsmall limitは存在するので, $x : \ast \to T$とみなし, $U = \underline{S} \times_{T} \ast $とする. 
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+U = \underline{S} \times_{T} \ast \ar@{->}[r]
+\ar@{->}[d]
+& \ast \ar@{->}[d]_{x}
+\\
+\underline{S} \ar@{->}[r]^{f}
+&T
+ \\   
+}
+\end{equation*}
+$T$は$T_1$なので, $U$はqcである.
+\ref{thm-qc-represent}より$W \in {\bf ED}$とepi射$\underline{W} \to U$が存在する.
+よって\ref{lem-ep-pullback}から
+$$
+W=\underline{W}(\ast)_{top} \to U(\ast)_{top}
+\to S \times_{T(\ast)_{top}} \ast = f^{-1}(x)
+$$
+となる連続な全射が存在する. 
+$W$コンパクトより$f^{-1}(x)$もコンパクト. $S$はコンパクトハウスドルフより$f^{-1}(x)$は閉集合である. 
+\end{proof}
+
+\subsection{\cite[Proposition 2.15, Theorem 2.16]{Sch19}(=定理\ref{thm-Scholze-21516})(3)の証明}
+
+\begin{proof}[Proof of Theorem \ref{thm-Scholze-21516} (3)]
+
+\underline{[1] (a)の証明 }
+$X$をコンパクトハウスドルフとする.
+$\underline{X}$は\ref{thm-qc-represent}からqcである.
+また$Y_i \in {\bf ED}$について\footnote{適宜基数$\kappa$を止めて考える. 以下同様.}$\underline{Y_i} \to \underline{X}$とすると
+$G : X \mapsto \underline{X}$は右随伴射なのでlimitを保つので
+$$
+\underline{Y_1} \times_{\underline{X}}\underline{Y_2}
+\cong  
+\underline{Y_1 \times_{X_1}Y_2}
+$$
+であり$Y_1 \times_{X_1}Y_2$はコンパクトハウスドルフより$\underline{Y_1} \times_{\underline{X}}\underline{Y_2}$はqcである. よって\ref{thm-qs}からqsである.
+
+\underline{[2] (b)の証明}
+示すことは$G : {\bf CHaus} \to {\bf qcqsCond}$, $X \to \underline{X}$と$X,Y \in {\bf CHaus}$について
+$$
+hom_{\bf CHaus} (X,Y) \cong 
+hom_{\bf qcqsCond}(\underline{X}, \underline{Y})
+$$
+が全単射であることである.
+これは$X,Y \in {\bf ED}_{< \kappa}$を止めれば
+$$
+hom_{\bf CHaus} (X,Y) \cong 
+hom_{\bf CHaus_{< \kappa}} (X,Y) \cong
+hom_{\bf Cond_{< \kappa}}(\underline{X}, \underline{Y})
+\cong hom_{\bf Cond}(\underline{X}, \underline{Y})
+$$
+よりわかる. \footnote{もしくはこんなことをしなくても, 単射は$\underline{X} \to \underline{Y}$の射に$\ast$入れれば明らか. 全射は$Cond_{< \kappa} \subset Cond$なので$\kappa$制限してよく米田の定理からわかる.}
+
+\underline{[3] (c)の証明}
+$G$がessentially surjectiveを示す. 
+
+$T$はqcなので$X \in {\bf ED}$でepi射$f : \underline{X} \to T$がある. %米田より$f \in T(X)$とみなせる)
+そして$T$はqsなので\ref{thm-qs}により
+$\underline{X} \times_{T} \underline{X} \cong \underline{L}$となる閉集合$L \subset X \times X$が存在する. 
+
+これより位相空間の同型
+$$
+L \cong  X(\ast) \times_{T(\ast)} X(\ast)=  \{ (x,y) \in X \times X | f(\ast)(x) = f(\ast)(y)\} \subset X \times X
+$$ 
+が存在する. $X(\ast) \times_{T(\ast)} X(\ast)$はコンパクトなので$X \times X$の中で閉集合である. 
+以下$L=\{ (x,y) \in X \times X | f(\ast)(x) = f(\ast)(y)\}$とみなす. 
+
+%$L$d$X \times X$のコンパクト集合となり, $X$コンパクトハウスドルフ空間のため, 閉集合となる. 
+%以上より
+%$$
+%L = \{ (x,y) \in X \times X | f(\ast)(x) = f(\ast)(y)\}
+%$$
+%となる. 
+$X$に同値関係を
+$$
+x \sim y \Leftrightarrow (x,y) \in L
+$$
+として入れる. $L$の上の表示から同値関係になる. 
+$L$は閉集合なので
+\ref{lem-CHaus-relation}から$X / \sim $はコンパクトハウスドルフである.
+
+よって次の二つの図式を得る.
+
+\begin{equation*}
+\xymatrix@C=80pt@R=30pt{
+L\ar@{->}[r]^{p_2}\ar@{->}[d]^{p_1}
+&X \ar@{->>}[d]^{\pi}
+&
+\underline{L}\ar@{->}[r]^{\underline{p_2}}
+\ar@{->}[d]^{\underline{p_1}}
+& \underline{X}\ar@{->>}[d]^{f}
+\\
+X \ar@{->>}[r]^{\pi}
+&X/\sim
+&
+ \underline{X} \ar@{->>}[r]_{f}
+& T
+ \\   
+}
+\end{equation*}
+左の図式はコイコライザーである. 
+右の図式は\ref{lem-ep-pullback}から直積でもありコイコライザーでもある. 
+%$T \mapsto T(\ast)_{top}$は左随伴射なのでコイコライザーを保つ. よって左の図式もコイコライザーである. 
+よって
+$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のコイコライザーが
+$\underline{X/\sim}$であることを示せば良い. \footnote{$X \mapsto \underline{X}$は右随伴射なのでcolimを保つとは限らず, この様なまどろっこしい証明になる.}
+
+まずPresheafとして$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のコイコライザー$V$が$\underline{X/\sim}$であることを示す. 
+これは$S \in {\bf ED}$について
+$$
+V(S) =hom(S, \underline{X})\sqcup hom(S, \underline{X})/\sim
+$$
+$(h_1,1) \sim (h_2,2) $は$h \in hom(S,L)$で
+$h_i = p_i \circ h $となるものが存在することと同値とする.\footnote{$(h_1,1) \sim (h_2,1)$は$(h_1,1) \sim (h',2) \sim (h_2,1)$なる$h'$が存在することとする. が今回は$(h_1,1)\sim (h_1,2)$が言えている. }
+$h = (h_1, h_2)$とかけるので
+任意の$s \in S$について$f(\ast)(h_1(s)) = f(\ast)(h_2(s))$となることと同値である. 
+$$
+V(S) \to hom(S,X/\sim)
+\quad
+(h_1,1) \mapsto \pi \circ h_1
+\quad
+(h_2,2) \mapsto \pi \circ h_2
+$$
+とすると, これはWell-definedである. 
+全射性は$S \in {\bf ED}$より, 単射性は
+$\pi \circ h_1 = pi \circ h_2$ならば$s \in S$について$f(\ast)(h_1(s)) = f(\ast)(h_2(s))$となるのでわかる. 
+
+以上よりPresheafとして$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のコイコライザーは$\underline{X/\sim}$である.
+それをsheafificationしたものが$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のsheafとしてのコイコライザーであったので, $\underline{X/\sim}$がそれに当たる.
+
+以上よりコイコライザーは唯一なので
+$T \cong \underline{X/\sim}$を得る. 
+(ちなみにcanonicalな写像は$\underline{f(\ast)} : \underline{X/\sim} \to T$である. )
+
+\end{proof}
+
+
+
+\subsection{\cite[Proposition 2.15, Theorem 2.16]{Sch19}(=定理\ref{thm-Scholze-21516})(4)と(5)の証明}
+
+\begin{proof}[Proof of Theorem \ref{thm-Scholze-21516} (4)]
+
+$X$をコンパクト生成weak Hausdorf(CGWH)とする.
+qs性を示す. \ref{thm-qs}から
+$Y_i \in {\bf ED}_{< \kappa}$かつ$\underline{Y}_{i} \to \underline{X}$となる$i=1,2$について, 
+$\underline{Y_1} \times_{\underline{X}} \underline{Y_2}$がqcであることを示せば良い. 
+
+$G : X \mapsto \underline{X} $は右随伴で極限と可換なので, 直積とも可換する.
+よって
+$\underline{Y_1 \times_{X} Y_2} \cong \underline{Y_1} \times_{\underline{X}} \underline{Y_2}$
+である.
+
+ここで$Y_1 \times_{X} Y_2$がコンパクトハウスドルフであることを示す. 
+$f_i : Y_i \to X$を連続写像とする. 
+$T := (f_1 \sqcup f_2)(Y_1 \sqcup Y_2)$とすると\ref{lem-weakhaus}から$T$はコンパクトハウスドルフである.
+そして$T = Im(f_1) \cup Im(f_2)$である. 
+よって
+$$
+Y_1 \times_{X} Y_2 = Y_1 \times_{T} Y_2
+$$
+となるので, $Y_1 \times_{X} Y_2$はコンパクトハウスドルフである
+
+以上より\ref{thm-qc-represent}から$\underline{Y_1 \times_{X} Y_2}$はqsになり, $\underline{X}$はqsとなる. 
+
+後半の主張「$\underline{X}$qsならば$X$WH」については(5)から従う. 
+ここで$\underline{X}$がqsならば$X$は$T_1$なので$\underline{X}(\ast)_{top} $は$X$と同相になる.\footnote{つまり$\kappa-cg$と$cg$の位相が同じになり基数$\kappa$に依存しなくなる. } 
+%$T= \underline{X}$とおくことで$X$がコンパクト生成空間であるので, $T(\ast)_{top}\cong X$となるのでweak Hausdorffが言える. (qsならば$T_1$なので位相は$\kappa$に依存しなくなる)
+%逆に$\underline{X}$がqsであるとする. 
+%$X$がweakHausdorfを示す. 
+%つまりコンパクトハウスドルフ空間からの任意の連続写像$f : K \to X$について$f(K)$が閉集合であることを示せば良い.離散位相のストーンチェックコンパクト化を考えることで$K \in {\bf ED}$として良い.
+
+\end{proof}
+\begin{proof}[Proof of Theorem \ref{thm-Scholze-21516} (5)]
+
+\underline{[1] $T$を$\underline{X}$の余極限でかく. }
+$T$をqs condences setとする.
+ある強極限基数$\kappa$をとって$T : {\bf ED}_{<\kappa}^{op} \to {\bf Set}$として良い
+すると\ref{cor-colim-represent}から
+%$$T \cong \colim_{Ob( \downarrow T) } hom_{{\bf ED}_{<\kappa}^{op}} (\cdot, X)
+$T$は$\underline{X}$の余極限でかける.
+
+この構成方法を詳しく見る.
+$J = 1\downarrow T$とする.これは次で定められる圏である.
+\begin{itemize}
+\item object $(X, x) \in {\bf ED}_{<\kappa}^{op} \times T(X)$ ($x : 1 \to TX$を$x \in T(X)$と見る)
+\item Morpshism $h : (X, x) \to (X', x') \in hom_{{\bf ED}_{<\kappa}^{op} } (X, X')$について, $h : X' \to X$かつ$T(h)(x)=x'$とする. (これは$T(h) : T(X) \to T(X')$があるからwell definedである.)
+\end{itemize}
+反変関手$M : J^{op} \to {\bf Set}^{{\bf ED}_{<\kappa}^{op} }$を
+\begin{itemize}
+\item object $(X, x)  \mapsto hom_{{\bf ED}_{<\kappa}} (\cdot, X)$
+\item Morpshism $h : (X, x) \to (X', x') \text{in $J^{op}$}$について, $h : X' \to X \text{in ${\bf ED}_{<\kappa}^{op}$}$より, $h : X \to X'$なる連続写像があるので
+$h \circ : hom_{{\bf ED}_{<\kappa}} (\cdot, X) \to hom_{{\bf ED}_{<\kappa}} (\cdot, X')$
+\end{itemize}
+として定める.\footnote{なぜ"in $J^{op}$"と書いているかというと方向がわからなくなるからである. }
+すると
+$T$は$M$の余極限%$T = \colim M(X,x)=\colim hom(\cdot, X)$, $u : M(X,x)=hom(\cdot, X) \Delta T$となる. 
+$$
+T \cong  
+\colim_{M : ( 1\downarrow T)^{op} \to {\bf Set }^{{\bf ED}_{<\kappa}^{op}}} M(X,x)
+=\colim_{M : ( 1\downarrow T)^{op}\to  {\bf Set }^{{\bf }_{<\kappa}^{op}}}
+hom_{ {\bf ED}_{<\kappa}}(\cdot, X)
+$$
+である.
+
+\underline{[2] $T$を$\underline{X} \subset T$となるものの余極限でかく }
+
+米田から$x \in T(X) \cong Nat(\underline{X}, T)$とみなせる. これは$S \in {\bf ED}_{< \kappa}$について
+$hom_{ {\bf ED}_{<\kappa}}(S, X) \to T(S)$を$f \mapsto f(x)$で定める自然変換である. 
+
+$T_{X,x}:= Im(x) \subset T$おく. 
+\underline{$T$はqsなので}, \ref{lem-qs-sub}から$T_{X,x}$もqs. $x : \underline{X} \twoheadrightarrow T_{X,x}$よりqcである. 
+よって\ref{thm-Scholze-21516} (3)から, $T_{X, x} \cong \underline{S_{X,x}}$となる
+コンパクトハウスドルフ空間$S_{X,x}$が存在する. 
+$( 1\downarrow T)^{op}$内の射について$h : (X,x) \to (X', x')$ 次の可換図式が成り立つ.
+\begin{equation*}
+\xymatrix@C=60pt@R=30pt{
+\underline{S_{X,x}}\ar@{}[r]|{\cong} 
+&T_{X, x} = Im(x) \ar@{}[d]|{\bigcap}
+&\underline{X} = hom (\cdot, X)\ar@{->}[l]_{x} \ar@{->}[d]^{h \circ }
+& (X, x)  \ar@{->}[d]^{h}
+\\
+\underline{S_{X',x'}}\ar@{}[r]|{\cong} 
+&T_{X', x'}= Im(')
+&\underline{X'} = hom (\cdot, X')\ar@{->}[l]^{x'}
+& (X' , x')
+ \\   
+&{\bf Cond}_{< \kappa}
+& 
+& ( 1\downarrow T)^{op}
+ \\   
+}
+\end{equation*}
+ここで$h : T_{X, x} \subset T_{X', x'}$というmonic射が存在するのは, 
+自然変換として$x = x \circ h$が成り立つからである.
+
+$f_{(X,x) \to (X' , x')}:  S_{X,x} \to S_{X', x'}$という連続な単射を得る. 
+そして$f_{(X,x) \to (X' , x')}(S_{X,x})$は閉集合である. 
+また$h_1,h_2 : (X,x) \to (X', x')$ならば$h_1 = h_2 : T_{X, x} \subset T_{X', x'}$である.\footnote{包含写像を当てているので} 特に$h_1 = h_2: S_{X,x} \to S_{X', x'}$である. 
+
+
+$$
+T \cong  
+\colim_{M : ( 1\downarrow T)^{op}\to  {\bf Set }^{{\bf }_{<\kappa}^{op}}}
+hom_{ {\bf ED}_{<\kappa}}(\cdot, X)
+\cong 
+\colim_{M : ( 1\downarrow T)^{op}\to  {\bf Set }^{{\bf }_{<\kappa}^{op}}}
+hom_{ {\bf ED}_{<\kappa}}T_{X,x}
+$$
+ある.
+よって$T_{X,x}= \underline{X} \subset T$の余極限で$T$を表すことができた. 
+
+\underline{[3] $T(\ast)$をコンパクトハウスドルフ空間の余極限で表す.}
+
+$F : T \mapsto T(\ast)_{top}$は左随伴でcolimと可換するので
+\begin{align*}
+\begin{split}
+T(\ast)_{top}
+&\cong 
+\colim_{S : ( 1\downarrow T)^{op} \to {\bf Top}}S_{X,x}
+\end{split}
+\end{align*}
+となる.
+ ここでこの余極限は次の余極限である
+ \begin{itemize}
+ \item $( 1\downarrow T)$のobject$(X,x)$について, $S(X,x) := S_{X,x}$
+ \item $( 1\downarrow T)^{op}$のmorphism $h : (X,x) \to (X',x') $について連続単射
+ $h : S_{X,x}=\underline{S_{X,x}}(\ast) \to S_{X',x'}=\underline{S_{X',x'}}(\ast)$を対応させる. 
+ \end{itemize}
+ 
+ $ ( 1\downarrow T)^{op}$がfiltered categoryになることを示す. 
+  $ ( 1\downarrow T)^{op}$で$h : (X,x) \to (X',x') $とは $h : X \to X'$連続写像と$T(h): T(X') \to T(X)$について$T(h)x' =x$となる組であることに注意しつつフィルター圏の定義を確かめる. 
+ \begin{itemize}
+\item $(X_1, x_1), (X_2,x_2) \in Ob(( 1\downarrow T)^{op})$について, 
+$$(X_1 \sqcup X_2 , (x_1,x_2)) \in {\bf ED}_{<\kappa} \times T(X_1 \sqcup X_2) \cong {\bf ED}_{<\kappa} \times T(X_1) \times T(X_2)$$
+とする.  
+$f_i : X_i \to X_1 \sqcup X_2$とすれば, これは連続写像で, $T(f_i) : T(X_1 \sqcup X_2) \to T(X_i)$は射影であるので, $f_i : (X_i,x_i) \to (X_1 \sqcup X_2 , (x_1,x_2)) $を得る. 
+\item $f, g : (X_1, x_1) \to (X_2,x_2) $ならば$f=g : S_{X_1, x_1} \to S_{X_2, x_2}$である.
+\end{itemize}
+
+以上より$T(\ast)$はコンパクトハウスドルフ空間の包含写像によるフィルター余極限でかけるので, \ref{lem-weakhaus}から$T(\ast)_{top} = \colim_{S : ( 1\downarrow T)^{op} \to {\bf Top}}S_{X,x}$はweak Hausdorffとなる．
+
+\end{proof}
+
+
+
+
+
+\newpage
+
+
+\renewcommand{\thesection}{\Alph{section}} \setcounter{section}{0}
+\section{発表で言及できなかった内容のまとめ}
+今回の発表で言及できなかった内容を下にまとめておく.
+
+
+\subsection{整列集合}
+
+\begin{tcolorbox}[colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}
+ $A$を集合とする. 関係$\le$が条件
+ \begin{enumerate}
+ \item (反射法則) $x \in A$, $x \le x$
+ \item (反対称法則) $x,y \in A$, $x \le x$ and $y \le x$ $\Rightarrow$ $x=y$
+ \item (推移法則) $x,y, z\in A$, $x \le y$ and $y \le z$ $\Rightarrow$ $x\le z$
+ \end{enumerate}
+を満たすとき, $\le$を(反射型)順序という.
+$x< y$を$x \neq y$かつ$x \le y$で定義する. 
+
+さらに$(A,<)$が整列集合とは次を満たすこととする. 
+ \begin{enumerate}
+ \item  $(A,<)$が全順序. つまり任意の$x, y \in A$について$x <y$か$y < x$のどちらかが成立する.
+ \item $B \subset A$なる部分"集合"について, 最小元が存在する. 
+ \end{enumerate}
+\end{dfn}
+ \end{tcolorbox}
+
+\subsection{位相空間CGWHについて}
+\label{subsec-CGWH}
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Definition 1.1 ,1.2]{Str}
+$X$を位相空間とし, $\mathfrak{B}$を$X$の閉集合系とする. 
+\begin{enumerate}
+\item $Y \subset X$が$k$-closedとは任意のコンパクトハウスドルフ空間$K$からの連続写像$u : K \to X$について$u^{-1}Y$が閉集合となるもの. 
+\item $k$-closed集合を$k\mathfrak{B}$と表す. $\mathfrak{B} \subset k \mathfrak{B}$である
+\item $kX$を$(X, k\mathfrak{B})$という位相空間とする. 
+\item $X$がコンパクト生成空間(CG)とは$X = kX$となる位相空間である.
+\item $X$がWeakly Hausdorff(WH)とは任意のコンパクトハウスドルフ空間$K$からの連続写像$u : K \to X$について$u(K)$が閉集合となるもの
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+\subsubsection{CGWHの例}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite{Str}
+$X$位相空間, $Y \subset X$部分集合とする.
+$Y$がsequentially closedであるとは
+任意の$y_n \in Y$かつ$y_n \to x$となるならば$x \in Y$となる.
+
+$X$がsequential spaceとはsequentially closed部分集合が閉集合となること. 
+\end{dfn}
+\end{tcolorbox}
+\begin{rem}
+sequentially closedならば$T_1$である. これは$y_n =x$という点列を考える
+
+第一可算集合(任意の点が可算開近傍系を持つ)ならばsequentially closed
+なぜならば, $Z$をsequentially closed集合としたら, $x \in \overline{Z}$について
+$y_n \to x$となる$Z$の点列で収束するものが可算開近傍系から作れるからである.
+
+特に距離空間はsequentially closed
+\end{rem}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop 1.6]{Str}
+sequentially spaceはCG
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$Y \subset X$をk-closed集合とする.
+$Y$がsequentially closedであることを示す.
+$y_n \in Y$かつ$y_n \to x$とおく. $x \in Y$を示せば良い.
+
+$K$を$\N$の一点コンパクト化とする.
+つまり$V \subset K$が開集合であるとは, $V \subset \N$または「$\infty \in V$かつ$K \setminus V$は有限集合」である. 
+
+$u : K \to X$を$u(n)=y_n, u(\infty)=x$とおく. 
+これは$y_n \to x$より連続写像になる. 
+よって$Y$はk閉集合より, $u^{-1}Y$は$\N \subset u^{-1}Y\subset K$となる閉集合.よって$K$の開集合の定義から $u^{-1}Y = K$. $x \in Y$となる. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop 1.7]{Str}
+locally compact Hausdorff ならばCGWH
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+ $X$locally compact Hausdorffとする.
+CGを示せば良い
+$Y \subset X$をk-closed集合とする.
+$\overline{Y} = Y$を示す.
+
+$x \in \overline{Y}$とする.
+$X$局所コンパクトより$x \in U$開集合で$K:= \overline{U}$がコンパクトとなるものがある.
+よって$j : K \to X$を考えると明らかに連続で, $Y$はk-closed集合より$K\cap Y = j^{-1}Y$は$K$での閉集合である.
+
+$x \in V \cap K$で$V$を$X$での開集合とする.
+すると$x \in V \cap U$より$x \in \overline{Y}$から
+$V \cap U \cap Y \neq\varnothing$となる.
+よって$V \cap (K \cap Y)\neq\varnothing$である.
+
+これより任意の$x$を含む"$K$での開集合$V \cap K$"について
+$(V \cap K) \cap  (K \cap Y) \neq \varnothing$である.
+これは閉包の定義から
+$K \cap Y$の"$K$での閉包"に$x$が属する．
+今$K\cap Y = j^{-1}Y$は$K$での閉集合であるので, $x \in K \cap Y$となる. 
+つまり$x \in Y$である. 
+\end{proof}
+
+
+\subsubsection{CGの性質}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Cor1.10]{Str}
+\label{Str-cor1.10}
+$X$CG, $Y$位相空間
+$f : X \to Y$連続は$f : X \to kY$が連続と同値
+
+特に$Y \mapsto kY$は忘却関手$X \mapsto X$の右随伴であり
+$$
+hom_{{\bf Top}}(X, Y) = hom_{{\bf CG}}(X, kY)
+$$
+である. 
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+閉集合系は$\mathfrak{B}_Y \subset k\mathfrak{B}_Y$である.
+よって右から左は自明である.
+
+$f : X \to Y$連続とする. $Z \subset Y$がk-closed として, $f^{-1}Z \subset X$が閉集合を示す.
+$X$CGなので$f^{-1}Z$がk-closedを示せば良い.
+$u : K \to X$をコンパクトハウスドルフ空間からの連続写像とする.
+$u^{-1}(f^{-1}Z )$が閉集合を示せば良い. これは$f \circ u : K \to X \to Y$は連続なので明らか.
+\end{proof}
+
+
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.1]{Str}
+\label{Str-prop2.1}
+$X$ CGかつ$\sim$同値関係ならば
+$X/\sim$もCG
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+$\pi : X \to X/\sim$を商写像とする. 
+$Z \subset X/\sim$をk-closedとする. $Z$が閉集合であることを示せば良い.
+
+\ref{Str-cor1.10}から
+$\pi : X \to k(X/\sim)$も連続であるので, $\pi^{-1}Z$は$X$の閉集合である.
+$\pi$は商写像なので, $Z$は閉集合である. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.2]{Str}
+\label{Str-prop2.2}
+$\{ X_i \}_{i \in I}$をCGの族とする. (ただし$I$は集合とする)
+この時
+$\sqcup X_i$もCG
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$Z \subset \sqcup X_i$をk-closedとする.
+$Z$が閉集合であることを示せば良い. 
+これは$\eta_i : X_i \to \sqcup X_i$を包含写像として, $Z_i := X_i \cap \eta_{i}^{-1}Z$としたとき
+$Z_i$が$X_i$で閉集合であることを示せば良い.
+$X_i$CGなので$Z_i$がk-closedであることを示せば良い
+
+これは$u : K \to X_i$をコンパクトハウスドルフ空間からの連続写像とすれば
+$u^{-1}Z_i = (\eta_i \circ u)^{-1}Z$であることから明らかである. 
+\end{proof}
+
+
+%以下位相空間$X,Y$について$X \times_0 Y$を\underline{位相空間の直積}とする
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Def 2.3]{Str}
+\label{Str-def-2.3}
+$X$, $Y$CGについてその直積
+$k(X \times Y)$を下で定める
+\begin{itemize}
+\item 集合としては$X \times Y$
+\item 位相としては$k(\mathfrak{B}_X \times \mathfrak{B}_Y)$とする.
+\end{itemize}
+%つまり$X \times Y = k(X \times_0 Y)$とする． 
+
+同様に$k(\prod X_i)$を積位相空間にk化したもので定める. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.4]{Str}
+$\{ X_i \}_{i \in I}$をCGの族とする.
+\begin{enumerate}
+\item $p_i : k(\prod X_i) \to X_i$を射影とすると, これは連続
+\item 任意のCGである$Y$について, $f : Y \to k(\prod X_i)$が連続であることは, 各$p_i \circ f $が連続と同値
+\end{enumerate}
+よって$k(\prod X_i)$は{\bf CG}の圏の直積となる.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+(1). \ref{Str-cor1.10}より
+$p_i : k(\prod X_i) \to X_i$が連続は, $\prod X_i$で連続であることと同じであるので.
+
+(2)については右から左のみ非自明. 
+$p_i \circ f $が連続であるとすると, $f : Y \to \prod X_i $は連続である.
+よって\ref{Str-cor1.10}よりk化した$k(\prod X_i)$でも連続となる. 
+\end{proof}
+
+
+
+最後に次の事実を証明なしで書いておく.
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop 2.20]{Str}
+\label{Str-prop2.20}
+$f : W \to X$, $g : Y \to Z$をCGの商写像とする時
+$f \times g :k( W \times Y) \to k(X \times Z)$も商写像である
+\end{prop}
+\end{tcolorbox}
+証明は連続写像の空間$C(X,Y)$を用いるのでかなり混みいる. 
+詳しくは\cite{Str}を参照してほしい. 
+
+
+\subsubsection{\ref{lem-weakhaus-2}の証明}
+\label{subsubsec-CGWH-colim}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.14]{Str}
+\label{Str-prop2.14}
+$X$をCGとする.
+$X$がweak hausdorffであることは
+$\Delta_X := \{ (x,x)| x \in X\}\subset X \times X$が$k(X \times X)$で閉集合であることと同値
+(つまり$\Delta_X$が普通の直積$X \times X$のk-closedであることと同値)
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+[1]$X$をWeak Hausdorffとする. 
+任意のコンパクトハウスドルフ空間からの連続写像
+$u = v \times w : K \to k(X \times X)$について
+$u^{-1}\Delta_X := \{a \in K | v(a)=w(a) \}$が$K$の閉集合であることを示せば良い.
+
+$a \not \in u^{-1}\Delta_X$とする.
+$a \in Z \subset  K \setminus u^{-1}\Delta_X$となる$K$の開集合の存在を示す
+$v(a) \neq w(a)$である. $X$は$T_1$なので
+$$
+U:= \{ b \in K | v(b) \neq w(a) \} = v^{-1}(X \setminus \{w(a)\})
+$$
+は$K$の開集合で$a$を含む.
+$K$はコンパクトハウスドルフ空間であるので
+$a \in V \subset \overline{V} \subset U$となる開集合$V$が存在する.
+$v : K \to X$は連続で\underline{$X$は弱Hausdorff}なので, $v(\overline{V}) \subset X$は閉集合である
+$U$の定め方から$w(a) \neq v(\overline{V})$なので, 
+$$
+a \in w^{-1}( X \setminus v(\overline{V}) ) =: Z
+$$
+であり,  $Z$は開集合である. 
+そして$Z\subset K \setminus u^{-1}\Delta_X$でありいえた.
+
+[2]$\Delta_X := \{ (x,x)| x \in X\}\subset X \times X$が$k(X \times X)$で閉集合であるとする. 
+任意のコンパクトハウスドルフ空間からの連続写像
+$u : K \to X$について$u(K)$が閉集合であることを示せば良い.
+\underline{$X$はCG}なので任意のコンパクトハウスドルフ空間からの連続写像$v : L \to X$について
+$v^{-1}u(K) \subset L$が閉集合であることを示せば良い.
+$$
+M := \{ (a,b) \in K \times L | u(a) =v(b)\}=K\times_{X}L \subset K \times L
+$$
+と定める. 
+すると定義から$M = (u \times v)^{-1}\Delta_{X}$であり, 
+$u \times v : K \times L \to k(X \times X)$は連続写像なので$M$は閉集合である. 
+射影$pr_{L} : K \times L \to L$は閉写像であるので
+$$
+v^{-1}u(K) = pr_{L}(M)
+$$
+であるので言えた. 
+\end{proof}
+
+
+\begin{cor}\cite[Cor2.21]{Str}
+\label{Str-cor2.21}
+$X$CG, $\sim$を$X$上の同値関係とする. 
+$X/\sim $がWHであることは, 
+$$
+R:= \{ (x,y)| x \sim y\} \subset X \times X
+$$
+としたとき$R$がk($X \times X)$上の閉集合であることと同値.
+(つまり$X$の通常の積位相でk-closedであることと同値)
+\end{cor}
+\begin{proof}
+$X/\sim $がWHであることは,
+$$
+\Delta_{X/\sim} \subset (X/\sim) \times (X/\sim)
+$$
+が$k((X/\sim) \times (X/\sim))$の閉集合であることと同値.
+ここで$\pi : X \to X/\sim$を商写像として
+$$
+\pi \times \pi : k(X \times X) \to \subset k((X/\sim) \times (X/\sim))
+$$
+とおくと\ref{Str-prop2.20}から商写像である.
+よって$\Delta_{X/\sim} $が$k((X/\sim) \times (X/\sim))$の閉集合であることは
+$$
+R = (\pi \times \pi )^{-1}\Delta_{X/\sim} 
+$$
+が$ k(X \times X)$の閉集合であることと同値である.
+\end{proof}
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-k-space}
+$X_i$位相空間とし$X = \sqcup X_{i}$
+とするとき
+$$
+kX = \sqcup kX_i
+$$
+
+特にk-closed集合の直和はk-closed.
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\pi_i : X_i \to X$は連続なので
+$\pi_i : kX_i \to kX$も連続である.
+示すことは$V \subset X$について
+$V$がk-closedであることは各々$\pi_{i}^{-1}V \subset X_i$がk-closedであることと同値であることである. 
+
+$V \subset X$がk-closedとする.
+すると, $\pi_{i}: kX_i \to kX$も連続より, $\pi_{i}^{-1}V \subset X_i$k-closedである.
+
+逆に $\pi^{-1}V \subset X_i$k-closedであるとする. 
+$u : K\to X$をコンパクトハウスドルフ空間からの連続写像とする. 
+$u(K) \subset X = \cup{i}\pi_{i}(X_i)$より
+$u(K)$コンパクトなので, $u(K) \subset \cup_{i=1}^{n}\pi_{i}(X_i)$である.
+よって
+これより
+$$
+u^{-1}(V)
+=\cup_{i=1}^{n}\{ k \in K | u(k) \in \pi_{i}( \pi^{-1}V_i) \}
+$$
+今$\pi_{i}^{-1}: \pi_{i}(X_i) \to X_i$を$(x_i, i) \mapsto x_i$で定めると同相写像になる．
+よって
+$$
+\{ k \in K | u(k) \in \pi_{i}( \pi^{-1}V_i) \}
+=
+(\pi_{i}^{-1}\circ u)(k) \in \pi^{-1}V_i
+$$
+$\pi_{i}^{-1}\circ u : K \to X_i$は連続なので， $\{ k \in K | u(k) \in \pi_{i}( \pi^{-1}V_i) \}$はk-closedとなり
+$u^{-1}(V)$もclosedとなる, 
+\end{proof}
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+
+\begin{lem}\cite[Lemma 3.3]{Str}{(=補題\ref{lem-weakhaus-2})}
+
+$X : I \to {\bf CGWH}$関手
+$I$ small filtered category
+さらに$f: i \to j$について$Xf : X_i \to X_j$は連続な単射で$Xf(X_i) \subset X_j$は$X_j$で閉集合であるとする. 
+
+この時$\colim_{i \in I}X_i$はCGWH
+%\xr{もしかしたらcompactly generatedはいるかも.}
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+以下$X$という位相空間について
+$k(X)$をk-closed閉集合を集めた位相空間とする. 
+
+
+$i,j \in I$について$f_{ik}:i \to k, f_{jk}j \to k$となる$k$を取り
+$$
+R_{ij}:= X_{i} \times_{X_{k}} X_{j} := \{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\}
+$$
+と定める. 
+これは$R_{ij}$は$k$の取り方によらない. 
+(なぜならば\underline{$Xf : X_i \to X_j$は単射}だから$k \to k'$となる射がある場合に同じことが示せる. また$R_{ii}= \Delta_{X_i}$となる)
+また
+$$
+R_{ij}=\{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\} = (f_{ik} \times f_{j})^{-1}\Delta_{X_k}
+$$
+であり$X_k$はCGWHなので\ref{Str-prop2.14}より$\Delta_{X_{k}} \subset X_k \times X_k$はk-closedである.
+これより\ref{Str-cor1.10}から, $f_{ik} \times f_{j} : k(X_i \times X_j) \to k(X_k \times X_k)$は連続なので
+$R_{ij}$は$X_i \times X_j$のk-closed集合である. 
+
+$Y :=\sqcup_{i \in I}X_{i}$とおき$\eta_i : X_i \to Y$を包含写像とする. 
+すると有限極限とフィルター余極限の交換から
+$Y \times Y $と$ \sqcup_{i,j} (X_i \times X_j) $は同相である. 
+よって
+%今\ref{Str-prop2.2}より$\sqcup_{i,j} k(X_i \times X_j)$はCGであるので
+$$
+R := \sqcup_{i,j \in I}R_{ij} \subset \sqcup_{i,j} (X_i \times X_j) \cong Y \times Y
+$$
+とすると$R_{ij}$はk-closedであるので\ref{lem-k-space}から$R$はk-closedである. 
+
+$x \sim y \Leftrightarrow (x,y) \in R$で2項関係を入れる.
+すると$\sim$は同値関係で
+$$
+\colim_{i \in I}X_i  \cong Y/\sim
+$$ 
+となる.
+同値関係になることは$R_{ij}:= \{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\}$であることを考えると
+\begin{enumerate}
+\item  $x \sim x$は$R_{ii}=X_{i} \times X_{i}$であるので
+\item $x \sim y$ならば$R_{ij} \cong R_{ji}$を$(x_i, x_j) \to (x_j, x_i)$であるので$y \sim x$
+\item $x \sim y, y \sim z$かつ$(x,y) \in R_{ij}, (y,z) \in R_{jk}$について, $i,j,k \to l$なる$l$をとると言える. 
+\end{enumerate}
+さらに$\colim_{i \in I}X_i  $の構成方法は$Y$に同値関係
+$(x_i, i)\sim_{c} (x_j, j)$を$i,j \to k$を取り$f_{ik}(x_i) = f_{jk}(x_j)$として入れるので, $Y/\sim$と同相である.
+
+\ref{Str-prop2.1}, \ref{Str-prop2.2}から$Y/\sim$はCGである.
+WHに関しては
+$R \subset Y \times Y$がk-closedなので\ref{Str-cor2.21}より言える.
+
+\end{proof}
+
+\subsubsection{h化}
+
+以下$\sim$を$X$上の同値関係とした時
+$$
+R_{\sim}= \{ (x,y)| x \sim y\} \subset X \times X
+$$
+で定める
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.22]{Str}
+$X$をCGとする.
+$$
+\mathcal{R}:=\{\sim | \text{$X$上の同値関係で$R_{\sim}$が$X \times X$閉} \}
+$$
+とおき
+$x \sim_{\min} y$を$(x,y) \in \cap_{\sim \in \mathcal{R}} R_{\sim}$で定める.
+このとき$\sim_{\min}$は$X$の同値関係であり, $X/\sim_{\min}$はCGWHとなる.
+
+さらに
+$$
+h : {\bf CG } \to {\bf CGWH}
+$$
+を$h(X) := X/\sim_{\min}$で定めれば, これは包含関手の左随伴射であり
+$$
+hom_{{\bf CGWH}}(h(X), Y) \cong hom_{{\bf CG}}(X, Y)
+$$
+となる. 
+つまり任意のCGWH空間$Y$への連続写像は$h(X)$を経由する
+
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+
+$\sim \in \mathcal{R}$について次の三つが成り立つ.
+\begin{enumerate}
+\item $(x,x) \in R_{\sim}$
+\item $(x,y)\in R_{\sim}$ならば$(y,x) \in R_{\sim}$
+\item $(x,y) \in R_{\sim}$かつ$(y,z) \in R_{\sim}$ならば$(x,z) \in R_{\sim}$
+\end{enumerate}
+以上より$\sim_{\min}$を
+$$
+x \sim_{\min} y
+\Leftrightarrow
+(x,y) \cap_{\sim \in \mathcal{R}} R_{\sim}
+$$
+で入れればこれは明らかに同値関係になる.
+そして$R_{\sim_{\min}}$は$X \times X$の閉集合なので$h(X)=X/\sim_{\min}$はWHである.
+
+CGWH空間$Y$への連続写像$f : X \to Y$を考える.
+$$
+R:= \{ (x, x') \in X \times X | f(x) = f(x')\}=(f \times f)^{-1}\Delta_{Y}
+$$
+とおくとこれは$X$の同値関係を定める.
+よって$R_{\sim_{\min}} \subset R$であることから
+$hX \to Y$を誘導し唯一性もわかる.  
+\end{proof}
+
+
+
+\subsubsection{圏{\bf CG}と{\bf CGWH}の性質.}
+以下は\cite{Fra}を参考にした. 
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ {\bf CG}は完備かつ余完備でカルテシアン閉である.
+ \begin{itemize}
+ \item $\lim$については位相の$\lim$をとった後に$k$-closedなものを付け加える
+ \item $\colim$はそのまま
+ \item $Y^{Z} = C(Y,Z)$で$C(Y,Z)$にはcompact open topologyのk化を入れる
+ \end{itemize}
+ また$ {\bf Top}\to { \bf CG }$を$X \mapsto kX$と言うk-closedな位相を付け足したものにする関手とするとこれは右随伴関手である. 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ {\bf CGWH}は完備かつ余完備でカルテシアン閉である.
+ \begin{itemize}
+ \item $\lim$についてはCGの$\lim$とする. 
+ \item $\colim$はCGの$\colim$を取った後にh化する. (閉な同値関係で一番小さいものでわる)
+ \item $Y^{Z} = C(Y,Z)$で$C(Y,Z)$にはcompact open topologyのk化を入れる
+ \end{itemize}
+  また$ {\bf CG}\to { \bf CGWH }$を$X \mapsto hX$と言うh化(閉な同値関係で一番小さいものでわる)に関手とするとこれは左随伴関手である. 
+\end{tcolorbox}
+
+なぜこれらがトポロジーで重要かというと次のクラスになっているからである.
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}
+圏$C$が"convenirnt category of topological space"とは次の条件を満たす{\bf Top}の部分圏とする.
+\begin{enumerate}
+\item $CW$-complexは$C$のObject
+\item 完備かつ余完備
+\item　カルテシアン閉
+\end{enumerate}
+  \end{dfn}
+\end{tcolorbox}
+
+上からすぐに次がわかる. 
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+{\bf CG} や {\bf CGWH}はconvenirnt category of topological space.
+\end{thm}
+\end{tcolorbox}
+
+ \subsection{圏論関係}
+ 
+ \subsubsection{米田の補題}
+ 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$\mathcal{D} $がlocally smallとする. 
+$K : \mathcal{D} \to {\bf Set}$が表現可能とは
+ある$r \in Ob(\mathcal{D})$があって$hom_{\mathcal{D}}(r, \cdot) \cong K$が自然同型となること
+\end{dfn}
+\end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}[米田の補題]
+$\mathcal{D} $がlocally smallとする. 
+$K : \mathcal{D} \to {\bf Set}$関手に関して
+$$
+y : Nat(hom_{\mathcal{D}}(r, \cdot), K) \cong Kr, \quad  \tau \mapsto\tau_{r}(id_{r})
+$$
+は全単射となる. 
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+$\tau \in Nat(hom_{\mathcal{D}}(r, \cdot), K) $について
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+r\ar@{->}[d]^{g}&
+hom_{\mathcal{D}}(r,r) \ar@{->}[d]^{g \circ}  \ar@{->}[r]^{\tau_r}
+ &Kr\ar@{->}[d]_{Kg}\\
+ d &
+hom_{\mathcal{D}}(r,d) \ar@{->}[r]^{\tau_d}
+& Kd\\   
+}
+\end{equation*}
+が成り立っている. 
+
+(全射)$g \in Kr$について$\tau_d : hom_{\mathcal{D}}(r,d) \to  Kd$を$f \mapsto K(f) (g)$で定めれば自然同型である.
+
+(単射)$\tau_{r}(id_{r}) = \tau'_{r}(id_{r})$ならば, $g \in hom_{\mathcal{D}}(r,d)$について$\tau_d(g)=\tau'_{d}(g)$は上の図式からわかる. ($\tau_r$の部分が等しいから!)
+
+\end{proof}
+
+同様に$hom_{\mathcal{D}}(\cdot, r) : C^{op} \to {\bf Set}$について次の米田が成り立つ
+$$
+y : Nat(hom_{\mathcal{D}}(\cdot, r), K) \cong Kr, \quad  \tau \mapsto\tau_{r}(id_{r})
+$$
+
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\label{cor-yoneda}
+$\mathcal{D} $がlocally smallとする. $r, r' \in Ob(\mathcal{D})$について
+$$
+\tau : hom_{\mathcal{D}}(r, \cdot) \cong hom_{\mathcal{D}}(r', \cdot)
+$$
+となる自然同型があるならば, $r \cong r'$
+\end{cor}
+\end{tcolorbox}
+\begin{proof}
+$f = \tau_{r}(id_r) \in hom_{\mathcal{D}}(r',r)$をとり, 
+$g = \tau_{r'}^{-1}(id_{r'})$
+とすると以下の図式を得る.
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+id_r \in hom_{\mathcal{D}}(r,r) \ar@{->}[r]^{\tau_{r}}
+& hom_{\mathcal{D}}(r',r) \ni f\\
+g \in hom_{\mathcal{D}}(r,r') \ar@{->}[r]^{\tau_{r'}} \ar@{->}[u]_{f \circ }
+& hom_{\mathcal{D}}(r',r') \ar@{->}[u]_{f \circ } \ni id_{r'}\\   
+}
+\end{equation*}
+よって一番左の図式により$f \circ g = id_{r}$となる.
+
+同じ議論を$r'$に行うと$f = (\tau_{r}^{-1})^{-1}(id_r)$に注意すると
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+id_{r'} \in hom_{\mathcal{D}}(r',r') \ar@{->}[r]^{\tau_{r'}^{-1}}
+& hom_{\mathcal{D}}(r,r') \ni g\\
+f \in hom_{\mathcal{D}}(r',r) \ar@{->}[r]^{\tau_{r}^{-1}} \ar@{->}[u]_{g\circ }
+& hom_{\mathcal{D}}(r,r) \ar@{->}[u]_{g \circ } \ni id_{r}\\   
+}
+\end{equation*}
+を得て, よって一番左の図式により$g \circ f= id_{r}$となる.
+よって$r \cong r'$となる. 
+\end{proof}
+
+\subsubsection{極限}
+ 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-eq-pro}
+余積とコイコライザーを持つ圏は余極限を持つ. 
+同様に積とイコライザーを持つ圏は極限を持つ. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+%$\colim$は余積とコイコライザーでかけることを思い出す. これは
+$G : I \to C$について$\colim$は
+$$
+f,g : \sqcup_{a\in Mor(I)} G(dom(a)) \to \sqcup_{i \in Ob(I)} Gi 
+$$
+$$
+f_{G(dom(a)) }=id_{G(dom(a))} : G(dom(a)) \to G(dom(a))
+\quad g_{G(dom(a))}=a : G(dom(a)) \to G(cod(a))
+$$
+のコイコライザーとなるため. 
+
+同様に$G : I \to C$について$\lim$は
+$$
+f,g : \prod_{i \in Ob(I)} Gi  \to \prod_{a\in Mor(I)} G(cod(a)) \to 
+$$
+$$
+f_{i}=id_{Gi} : Gi\to Gi
+\quad g_{i}=(a)_{i = dom(a)} : Gi\to G(cod(a))
+$$
+のイコライザーとなるため. 
+\end{proof}
+
+
+
+\subsubsection{フィルター圏・共終}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+圏$J$がフィルターであるとは以下の二つの条件を満たす空でない圏とする
+\begin{enumerate}
+\item $j, j' \in Ob(J)$についてある$j \to k, j' \to k$が存在する
+\item $a, b: j \to k$について, $u: k \to m$が存在して$ua = ub : j \to k \to m$
+\end{enumerate}
+
+$F : J \to C$がフィルター余極限とは$J$がフィルターなること.
+\end{dfn}
+\end{tcolorbox}
+
+
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[共終]
+\label{dfn-cofiinal-category}
+$L : I \to J$が共終とは$k \in Ob(J)$について$k \downarrow L$空でなく連結であること.
+わかりやすくいうと以下の2条件を満たすこと.
+\begin{enumerate}
+\item 任意の$y\in Ob(J)$についてある$x \in Ob(I)$があって$y \to L(x)$.
+\item  任意の$y\in Ob(J)$, $x, x' \in Ob(I)$についてある
+$$
+x=x_0 \leftarrow x_1 \to x_2 \cdots x_{2n-2} \leftarrow x_{2n-1} \to x_{2n}=x'
+$$
+の列があって, 次の可換図式が成り立つこと
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+& y\ar@{->}[ld]\ar@{->}[d]\ar@{->}[rd]
+&
+\\
+L(x_{2i-2})
+&L(x_{2i-1})\ar@{->}[l]\ar@{->}[r]
+&L(x_{2i}) \\   
+}
+\end{equation*}
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-cofinal-commute}
+$L : I \to J$が共終であり, 関手$F : J \to X$について$\colim_{i\in I}FL(i)$が存在する時, 
+$\colim_{j \in J} F(j)$も存在し, canonical map
+$$
+h : \colim_{i \in J}FL(i) \to \colim_{j \in J} F(j)
+$$
+は同型になる. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+[1]$\colim_{j \in J} F(j)$の存在
+$x= \colim_{i\in I}FL(i)$とする.
+すると$\mu : FL \to \Delta c$なる自然変換で普遍なものが存在する.
+
+$k \in J$について$u : k \to Li$なる$i$を選んで
+$$
+\tau_k : Fk \overset{Fu}{\to} FLi \overset{\mu_{i}}{\to} x
+$$
+とおく. 
+これは$i$の取り方によらない.
+これは次の図から明らかである.
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+& Fy\ar@{->}[ld]\ar@{->}[d]\ar@{->}[rd]
+&
+\\
+FL(x_{2i-2})\ar@{->}[rd]_{u_{x_{2i-2}}}
+&FL(x_{2i-1})\ar@{->}[l]\ar@{->}[r]\ar@{->}[d]^{u_{x_{2i-1}}}
+&FL(x_{2i}) \ar@{->}[ld]^{u_{x_{2i}}}\\   
+&x
+& \\   
+}
+\end{equation*}
+これより
+$\tau : F \to \Delta x$がcoconeとなる.
+こいつが普遍性を持つことを示せば良い.
+
+つまり$\lambda : F \to \Delta y$を別のcoconeとするとき, ある
+$f : x \to y$があって$\lambda = (\Delta f) \tau$を示せば良い.
+
+$\lambda L : FL \to \Delta y$という自然変換を得るので
+$u : FL \to \Delta x$の普遍性から
+ある一意的な射$f : x \to y$があって$\lambda L = (\Delta f) \mu $となる.
+よって
+$k \in J$について$u : k \to Li$を選べば
+$$
+((\Delta f)\tau)_{k}
+= 
+(\Delta f)_{x}\cdot \tau_k
+=
+(\Delta f)_{x} \cdot \mu_{i} \cdot Fu
+=\lambda_{Li}\cdot Fu
+=\lambda _{k} 
+$$
+となる. 
+よって言えた. 
+\end{proof}
+
+
+\subsubsection{随伴}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$A,X$をlocally small categoryとする.
+$(F,G,\varphi)$が$X$から$A$の随伴とは
+\begin{itemize}
+\item $F :X \to A$, $G : A \to X$となる関手
+\item $\varphi$は$x \in Ob(X), a \in Ob(A)$について
+$$
+\varphi_{x,a} : hom_{A}(Fx, a) \cong hom_{X}(x, Ga)
+$$
+が全単射になるものの族で$x,a$について自然である. 
+\end{itemize}
+このとき$F\dashv G$とかく.
+$F$は$G$の左随伴, $G$は $F$の右随伴という. 
+\end{dfn}
+\end{tcolorbox}
+
+
+\begin{rem}
+hom集合を使わずに定義す流のであれば, 
+任意の$f : Fx \to a$について右随伴射
+$\varphi f : x \to Ga$が唯一定まり, 
+\begin{equation}
+\label{eq-adjoint}
+\varphi(k \circ f) = Gk \circ \varphi f, \quad, \varphi(f \circ Fh) = \varphi f \circ h 
+\end{equation}
+が任意の$h : x' \to x$, $k : a \to a'$に成り立つ
+これは次の図からわかる
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+f \in hom_{A}(Fx, a) \ar@{->}[d] _{k} \ar@{->}[r]^{\varphi}&  
+hom_{X}(x, Ga) \ar@{->}[d]_{Gk}   & 
+f \in hom_{A}(Fx, a') \ar@{->}[d]^{Fh} \ar@{->}[r]^{\varphi} &
+hom_{X}(x, Ga') \ar@{->}[d]_{h} \\
+hom_{A}(Fx, a) 	\ar@{->}[r]^{\varphi} 	 &  
+hom_{X}(x, Ga)  & 
+hom_{A}(Fx', a)	\ar@{->}[r]^{\varphi} &
+hom_{X}(x', Ga) \\
+}
+\end{equation*}
+左随伴射$\varphi^{-1}$の言葉で書けば
+$$
+\varphi(g \circ h) = \varphi^{-1 g \circ Fk}, \quad, 
+\varphi^{-1}(Gk \circ g) = k \circ \varphi^{-1}g
+$$
+\end{rem}
+
+$a=Fx$の場合, 
+$$
+\varphi_{x,Fx} : hom_{A}(Fx, Fx) \cong hom(x, GFx)
+$$
+であるので, $\eta_x := \varphi_{x,Fx}(id_{Fx}) : x \to GFx$を得る.
+自然変換$\eta : I \to GF$を与える
+なぜなら\ref{eq-adjoint}から$h: x \to x'$について
+$$
+G(Fh) \circ \varphi(id_{Fx'}) 
+=
+\varphi( Fh \circ id_{Fx'})
+=
+\varphi(id_{Fx'} \circ Fh)
+=
+\varphi(id_{Fx}) \circ h
+$$
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+x \ar@{->}[d]^{h}\ar@{->}[r]_{\varphi}&
+ GFx\ar@{->}[d]^{G(Fh)}\\
+x'\ar@{->}[r]_{\varphi}& 
+GFx'\\   
+}
+\end{equation*}
+%これは$x \in Ob(X)$から$G$への普遍射となる.なぜなら, \ref{prop-yoneda-universe}$$G : hom_{ , a}$$
+%$f : Fx \to a$について$\varphi_{x,a} : hom_{A}(Fx, a) \cong hom(x, Ga)$より, $\varphi_{x,a}()$
+すると\ref{eq-adjoint}から$f : Fx \to a$について
+$$
+\varphi(f ) = \varphi(f \circ F(id_{x})) = Gf \circ  \varphi(id_x)= Gf \circ \eta_x
+$$
+となる.
+
+同様に$\varphi^{-1}_{Ga, a} :  hom_{X}(Ga, Ga) \cong hom_{A}(FGa, a)$
+$\epsilon_a = \varphi^{-1}_{Ga, a}(id_{Ga})$とおくと同様のことが成り立つ. 
+
+まとめると次になる. 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$A,X$をlocally small categoryとする.
+$(F,G,\varphi)$が$X$から$A$の随伴とする.
+\begin{enumerate}
+\item 上の$\eta_{x}$は$x$から$G$への普遍射, 自然変換$\eta : I \to GF$を与える. ここで$I, GF: X \to X$である.
+また$\varphi(f ) = Gf \circ \eta_x : x \to Ga$である.
+\item $\epsilon_a = \varphi^{-1}_{Ga,a}$とおくと, $F$から$a$への普遍射, 自然変換$\epsilon : FG \to I$を与える. また$\varphi^{-1}(g) = \epsilon_{a} \circ Fg:  Fx \to a$である.($g : x \to Ga$とする)
+\end{enumerate}
+$\eta$をunit, $\epsilon$をcounitという. 
+\end{lem}
+\end{tcolorbox}
+以下随伴$(F,G,\eta,\epsilon)$と言ったら
+\begin{itemize}
+\item $F :X \to A$, $G : A \to X$となる関手
+\item $\eta : I \to GF$をunit, $\epsilon : FG \to I$をcounitとする.
+\end{itemize}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$(F,G,\varphi)$を$X$から$A$の随伴であるとする. 
+$T : J \to A$が極限$\tau : \Delta (\lim T) \to T$を持つならば, 
+$GT$は極限$G\tau : \Delta (G \lim T) \to GT$と持つ.
+
+つまり右随伴射$G$について, $\lim (GT) \cong G(\lim T)$である.
+(right adjoint perverse limit)
+\end{cor}
+\end{tcolorbox}
+
+同様に左随伴射$F$について$\colim FT \cong F(\colim T)$である.
+\begin{proof}
+任意の$x \in X$について
+$$
+hom_{X}(x, \lim (GT) ) \cong 
+hom_{X}(x, G(\lim T)) 
+$$
+を示せば良い. これは以下から言える. 
+$$
+hom_{X}(x, G(\lim T)) 
+\cong
+hom_{A}(Gx, T) 
+\cong
+\lim  hom_{A}(Gx, T) )
+ \cong 
+\lim hom_{X}(x, GT)
+$$
+\end{proof}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-adjoint-fullyfaithfull}
+随伴$(F,G,\eta,\epsilon): X \to A$について以下が成り立つ
+\begin{enumerate}
+\item $G : A \to X$が忠実(faithfull)は任意の$a \in A$について$\epsilon_a$がエピと同値
+\item $G : A \to X$が充満(full)は任意の$a \in A$について$\epsilon_a$が分裂モニックと同値
+\item $G : A \to X$が充満忠実(fully faithfull)は任意の$a \in A$について$\epsilon_a : FG a \cong a$が同型と同値
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+%$a,c \in Ob(A)$と$f : a\to c$について$\varphi^{-1}(G  f)$を返すものを考える.
+$$
+\varphi^{-1} \circ G_{a, \cdot}:
+hom_{A}(a, \cdot)
+\to 
+hom_{X}(Ga, G\cdot)
+\to 
+hom_{A}(FGa, \cdot)
+$$
+%$\varphi^{-1}$は同型射より
+を考える. これは$\epsilon_a : FGa \to a$として$\epsilon_{a}^{*}$と同じである.
+$\varphi^{-1}$が全単射より 
+下の補題から
+「$\epsilon_{a}^{*}$エピ $\Leftrightarrow$ $\epsilon_{a}^{*} = \varphi^{-1} \circ G_{a, \cdot}$ モニック
+$\Leftrightarrow$ $ G_{a, \cdot}$ モニック $\Leftrightarrow$ $G : A \to X$が忠実(faithfull)」となる.
+\end{proof}
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$f: b \to a$について, $f^{*} : hom_{A} (a, \cdot) \to hom_{A}(b, \cdot)$を自然変換とする. 
+この時以下が成り立つ
+\begin{enumerate}
+\item $f^{*}$ モニック は$f$エピと同値
+\item $f^{*}$ エピは$f$が分裂モニックと同値
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+これは定義から直ちに従う. (言い換えているに過ぎない)
+
+\subsubsection{圏同値}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[圏同値]
+関手$S : A \to C$が圏同値であるとは
+ある関手$T : C \to A$と$ST \cong I_{C} : C \to C$かつ$TS \cong I : A \to A$なる自然同型が存在すること.
+
+この時$T$は$S$の左随伴でもあり右随伴でもある. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[随伴圏同値]
+随伴$(F,G,\eta,\epsilon): X \to A$について, $\eta : I \to GF$, $\epsilon : GF \to I$が共に自然同型である時, 
+$(F,G,\eta,\epsilon): X \to A$は随伴圏同値と呼ぶ. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-adjoint-equiv}
+関手$S : A \to C$について次は同値
+\begin{enumerate}
+\item $S : A \to C$は圏同値
+\item $(S,T,\eta,\epsilon): A\to C$が随伴圏同値となるような$T,\eta,\epsilon$が存在する
+\item $S$ fully faithfullかつ$c \in Ob(C)$についてある$a \in A$があって$c \cong Sa$.
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+$(2) \Rightarrow (1)$自明
+
+$(1) \Rightarrow (3)$
+$a, a' \in Ob(A)$について
+$$
+hom_{A}(a, a') \cong hom_{A}(a ,TSa') \overset{\varphi}{\cong} hom_{C}(Sa, Sa') 
+%hom_{A}(a, a') \overset{S}{\to} hom_{C}(Sa, Sa') \overset{\varphi}{\cong} hom_{A}(a ,TSa') \cong hom_{A}(a ,a') 
+$$
+によって全単射を得る. よってfully faithfull.
+任意の$c \in Ob(C)$について, $c \cong S(Tc)$より$a=Tc$とおけば良い.
+
+
+$(3) \Rightarrow (2)$
+$T : C \to A$を構成する
+$c \in Ob(C)$について$a \in A$があって$\nu_c : c \cong Sa$となるので, $Tc = a$とする.
+$f  : c \to c'$について, $S$はfully faithfullなので
+$$
+hom_{A}(a,a') \to hom_{C}(Sa, Sa') \cong hom_{C}(c, c')
+$$
+が全単射であり, $\nu_{c'}^{-1}\circ S(g) \circ \nu_{c}=f$となる$g$が一意に存在する.
+$T(f) = g$とおく.
+
+よって$S$が$T$の右随伴であることと, $\eta : I \to ST$と$\epsilon : TS \to I$なる自然同型が存在することとを示せば良い.
+\end{proof}
+
+
+
+\subsubsection{Kan拡張}
+\label{subsubsec-Kan}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$K : M \to C$, $T : M \to A$を関手とする.
+$K$に沿った$T$の右Kan拡張とは
+\begin{itemize}
+\item $R : C \to A$関手
+\item $\epsilon : RK \to T$自然変換
+\end{itemize}
+に二つくみ$(R, \epsilon : RK \to T)$であって, 
+任意の$S : C \to A, \alpha : SK \to T$について, $\alpha = \epsilon \cdot \sigma K : SK \to T$となる自然変換$\sigma : S \to R$が唯一存在すること. 
+
+このとき$R := Ran_{K}T$とかく. 
+\end{dfn}
+\end{tcolorbox}
+
+$\sigma \mapsto \epsilon \cdot \sigma K$によって自然な全単射
+$$
+Nat (S, R)=Nat (S, Ran_{K}T) \cong Nat(SK,T)
+$$
+となる.よってこれをかっこよくいうと次の補題を得る. 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$K : M \to C$を固定する. 
+任意の$T \in A^{M}$ ($T : M \to A$)について右Kan拡張
+$(R , \epsilon) := (Ran_{K}T \in A^C, \epsilon_T : RK \to T)$が存在すると仮定する.
+
+この時$\beta : A^M \to A^C$を
+\begin{itemize}
+\item $\beta T := Ran_{K}T$
+\item $\beta (g : T \to T')$について$\beta(g) : Ran_{K}T \to Ran_{K'}T$を, $S = Rank_{T}K :C \to A, \alpha =g\circ \epsilon_T : SK \to T$として, 唯一存在する自然変換
+$\beta(g):=\sigma :  Ran_{K}T \to Ran_{K}T'$で$\alpha =g\circ \epsilon_T  = \epsilon_T \cdots \beta(g)K$となるもの. 
+\end{itemize}
+で決めると, 
+$$
+F : A^C \to A^M \quad N :C\to A\mapsto N \circ K : M \to A 
+$$
+の右随伴, つまり
+$$
+hom_{A^M}(F(N), T) = Nat(NK,T)\cong hom_{A^C}(N, Ran_{K}T)=Nat (N, Ran_{K}T)
+$$
+となり, $\epsilon :  I \to Ran_{K} \circ F$はunitである. 
+\end{lem}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[点列極限としての右Kan拡張]
+\label{thm-Kan-extension}
+$K : M \to C$, $T : M \to A$を関手とする.
+任意の$c \in Ob(C)$について
+$$
+T \circ Q : (c \downarrow K) \to M \to A
+$$
+に関する極限$\lim T\circ Q$と$\mu: \Delta (\lim T\circ Q) \to TQ$が存在すると仮定する.
+
+このとき$R : C \to A$を
+\begin{itemize}
+\item $c \in Ob(C)$について, $Rc : = \lim (T \circ Q : (c \downarrow K) \to M \to A)$
+\item $g : c \to c'$について $Rg : Rc \to Rc'$となる射
+\end{itemize}
+とするとこれは関手になる
+
+さらに$\epsilon : RK \to T$について
+$\epsilon_{m} : RKm \to Tm$を次で定めるとこれは自然変換になる: 
+
+%(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km$,
+$RKm =\lim T\circ Q \in Ob(A)$と$\mu: \Delta RKm \to TQ$は定義から, 
+$(RKm , \mu_{x})$のくみ($x : Km \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{x} : RKm \to Tm  $, つまりA内で$\mu_{x} :  RKm\to Tm $
+\item $ TQ h  \circ \mu_{x'} = \mu_{(m,x)} :RKm \to  TQ(m,x) =Tm$, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+である. そこで$\epsilon_{m} := \mu_{ id_{Km}} : RKm \to Tm$と定義する.
+
+%$Q : (c \downarrow K) \to M $は$Q(m,x)=m$であるので, 
+%$\epsilon_{m}: RKm$
+%$c \in On(C)$について, その極限$a_c =\lim T\circ Q \in Ob(A)$と$\mu: \Delta (\lim T\circ Q) \to TQ$とは
+%\begin{enumerate}
+%\item $(a_c , \mu_{(x)})$のくみ($x : c \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+%\begin{itemize}
+%\item $\mu_{x} : a_c \to Tm  $, つまりA内で$\mu_{x} :  a_c  \to Tm $
+%\item $ TQ h  \circ \mu_{x} = \mu_{x} :a_c \to  TQm $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+%\end{itemize}
+
+
+そして$(R,\epsilon)$は$K$に沿った$T$の右Kan拡張となる. 
+
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+
+[0.]
+$Ob(c \downarrow K)$と$Q: (c \downarrow K) \to M $の定義について.
+
+\begin{itemize}
+\item $(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km$ %($x \in Ob(Km)$と思える. )
+\item Morphism $h : (m,x)  \to (m',x') \in Hom_{M}(m,m') $ を 
+$h: m \to m'$で$x'  = Kh \circ x$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+1 \ar@{->}[d] _{1}&c \ar@{=}[d]_{id_c}  \ar@{->}[r]^{x} & Km\ar@{->}[d]^{Kh} &m\ar@{->}[d]_{h}\\
+1&c\ar@{->}[r]_{x'} &Km'&m' \\   
+}
+\end{equation*}
+ここで$Q: (c \downarrow K) \to M $を以下で定める
+\begin{itemize}
+\item $(m,x) \in Ob(c \downarrow K )$について$Q(m.x) = m$
+\item $h : (m,x)  \to (m',x') \in Hom_{M}(m,m') $ について$Q(h) =h$
+\end{itemize}
+
+[1.] $R$が関手になること.
+$c \in On(C)$について, その極限$a_c =\lim T\circ Q \in Ob(A)$と$\mu: \Delta (\lim T\circ Q) \to TQ$とは
+\begin{enumerate}
+\item $(a_c , \mu_{(m,x)})$のくみ($x : c \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{(m,x)} : a_c \to Tm  $, つまりA内で$\mu_{(m,x)} :  a_c  \to Tm $
+\item $ TQ h  \circ \mu_{(m',x')} = \mu_{(m,x)} :a_c \to  TQ(m,x) $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+\item $(a' , \nu_{(m,x)})$の組($x : c \to Km $)で$h' : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\nu_{(m,x)} :  a' \to Tm $, つまりA内で$\nu_{(m,x)} : a' \to Tm $
+\item $  TQ h' \circ \nu_{(m',x')}=Th' \circ \nu_{(m',x')}=\nu_{(m,x)} :a '  \to  TQ(m,x) $
+%つまり$TQ h' (m,x)\circ \mu_{(m,x)} \circ  = \mu_{(m',x')}(Th(m)) =  \mu_{(m,x)} : Tm \to a'$
+\end{itemize}
+となるものについて, ある$f : a \to a_c$がただ一つ存在して,  $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について$\mu_{(m,x)} \circ f = \nu_{(m,x)}: a \to TQ(m,x)=Tm$となる.
+\end{enumerate}
+
+ここで, $x : c \to Km$なので, $m$の情報も持っているので$\mu_{x} : = \mu_x$と書くことにする. 
+すると$c \in On(C)$について, その極限$a_c =\lim T\circ Q \in Ob(A)$と$\mu: \Delta (\lim T\circ Q) \to TQ$とは
+\begin{enumerate}
+\item $(a_c , \mu_{(x)})$のくみ($x : c \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{x} : a_c \to Tm  $, つまりA内で$\mu_{x} :  a_c  \to Tm $
+\item $ TQ h  \circ \mu_{x} = \mu_{x} :a_c \to  TQm $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+\item $(a' , \nu_{x})$の組($x : c \to Km $)で$h' : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\nu_{x} : a' \to Tm $, つまりA内で$\mu_{x} : a' \to Tm $
+\item $  TQ h' \circ \mu_{x'}=Th' \circ \mu_{x}  :a '  \to  TQm$
+%つまり$TQ h' (m,x)\circ \mu_{(m,x)} \circ  = \mu_{(m',x')}(Th(m)) =  \mu_{(m,x)} : Tm \to a'$
+\end{itemize}
+となるものについて, ある$f : a \to a_c$がただ一つ存在して,  $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について$\mu_{x} \circ f = \nu_{x}: a \to Tm$となる.
+\end{enumerate}
+
+よって$g : c \to c'$について, 
+ その極限$a_c' =\lim T\circ Q \in Ob(A)$と$\mu': \Delta (\lim T\circ Q) \to TQ$を考える.
+ この時$x : c' \to Km $なる組について$\mu'_{m,x} : a_c' \to Tm$で$\mu_{m,x} : a_c' \to T_m $がある.
+ 
+ そこで$(x \circ g , m)$について($x \circ g : c \to Mm$で)
+ $\mu_{x\circ g} : a_c' \to Tm$で$\mu'_{x} : a_c' \to T_m $であるので, 
+ 普遍性から
+ $Rg : a_c \to a_c'$なる関手が存在する. 
+ そして以下が成り立つ. $x : c'\to Km$とする. 
+\begin{equation*}
+\xymatrix@C=40pt@R=20pt{
+Rc = \lim TQ  \ar@{->}[d]_{Rg}  \ar@{->}[r]^{\mu_{(x\circ g)}} & Tm\ar@{=}[d] \\
+Rc = \lim TQ' \ar@{->}[r]_{\mu'_{x}} &Tm \\   
+}
+\end{equation*}
+
+[2.] 自然変換$\epsilon : RK \to T$の定義. 
+$m \in M$について$\epsilon_m : RKm\to T m$で任意の$ h : m \to m'$について以下の図式が成り立つことをいう.  
+\begin{equation*}
+\xymatrix@C=40pt@R=20pt{
+RKm = \lim T Q_{Km}  \ar@{->}[d]_{RK h}  \ar@{->}[r]^{\epsilon_m} & Tm\ar@{->}[d]_{Th} \\
+RKm'= \lim TQ'_{Km'} \ar@{->}[r]_{\epsilon_m'} &T'm \\   
+}
+\end{equation*}
+を示せば良い.
+ここで$RKm =\lim T\circ Q \in Ob(A)$と$\mu: \Delta RKm \to TQ$とは
+$(RKm , \mu_{x})$のくみ($x : Km \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{x} : RKm \to Tm  $, つまりA内で$\mu_{x} :  RKm\to Tm $
+\item $ TQ h  \circ \mu_{x'} = \mu_{(m,x)} :RKm \to  TQ(m,x) =Tm$, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+である. 
+よって, $\epsilon_{m} := \mu_{ id_{Km}} : RKm \to Tm$とおけば良い .
+
+この時$h : m \to m'$について$g=Rh : Km \to Km$と置いて[1]の事実を用いると
+\begin{equation*}
+\xymatrix@C=100pt@R=30pt{
+RKm = \lim TQ  \ar@{->}[d]_{Rg}  \ar@{->}[r]^{\mu_{ id_{m} : Km\to Km} }
+\ar@{->}[rd]^{\mu_{Kh:  Km \to Km'}}
+& Tm\ar@{->}[d]^{Th} \\
+RKm' = \lim TQ' \ar@{->}[r]_{\mu_{ id_{m'} : Km' \to Km'}} &Tm' \\   
+}
+\end{equation*}
+となる. 
+よって自然変換も言える. 
+
+[3] 右Kan拡張であること. 
+
+$S : C \to A$と$\alpha : SK \to T$が存在したとする. 
+示すことは自然変化$ \sigma : S \to R$の唯一存在と$\alpha = \epsilon \cdot \sigma K : SK \to T$である. 
+
+[3-1], $\sigma : S \to R$の存在.
+これは$c \in Ob(C)$と$\sigma_c : Sc \to Rc$を作れば良い
+$f : c \to Km$に対する図式を考える.
+\begin{equation*}
+\xymatrix@C=100pt@R=20pt{
+Rc = \lim (T \circ Q : (c \downarrow K) \to M \to A) \ar@{->}[r]_{\mu_{f : c \to Km}}  
+& Tm \ar@{->}[r]^{Th}
+&Tm'  \\
+Sc\ar@{->}[r]_{Sf}  \ar@{->}[ru]
+& SKm \ar@{->}[r]_{SKm} \ar@{->}[u]_{\alpha_m} 
+&SKm' \ar@{->}[u]_{\alpha_m'} \\   
+}
+\end{equation*}
+これにより極限の定義から
+$\sigma_c : Sc \to Rc$が唯一存在する.
+なぜならば, $(c \downarrow K)$の写像$ h : (f, m) \to (f', m')$について($f: c \to Km, f' : c \to Km', h: m \to m', Kh \circ f =f'$)について上の可換図式がまわるからである. 
+
+[3-2] $\sigma$が自然になること.
+これは$g : c \to c'$について
+$\sigma_c' \circ Sg = Rg \circ\sigma_{c}$を示せば良い.
+$f' : c' \to Km$について
+\begin{equation*}
+\xymatrix@C=100pt@R=20pt{
+Rc  \ar@{->}[r]_{Rg}  
+\ar@/^20pt/[rr]^{\mu_{f' \circ g : c \to Km}} 
+& Rc'  \ar@{->}[r]^{\mu'_{f' : c' \to Km}} 
+&Tm  \\
+Sc\ar@{->}[r]_{Sg}  \ar@{->}[u]_{\sigma_c}
+\ar@/_20pt/[rr]_{S(f' \circ g)} 
+& Sc' \ar@{->}[r]_{Sf'} \ar@{->}[u]_{\sigma_{c'}}
+&SKm \ar@{->}[u]_{\alpha_m'} \\   
+}
+\end{equation*}
+$Rc'$の普遍性に帰着させる. 
+$$
+\mu_{f' \circ g : c \to Km}\circ \sigma_c
+=
+\alpha'_{m} \circ S(f' \circ g)
+=
+\mu'_{f' : c' \to Km} \circ ( \sigma_{c'}\circ Sg) : Sc \to Tm
+$$
+である. $f' : c' \to Km$についての極限を取れば
+$h : Sc  \to Rc'$で任意の$f'$について
+$\mu'_{f' : c' \to Km} \circ h  = \alpha'_{m} \circ S(f' \circ g) : Sc \to Tm$
+このような$h$はただ一つである. 
+よって
+$$
+\mu'_{f' : c' \to Km} \circ ( \sigma_{c'}\circ Sg) 
+=
+\mu'_{f' : c' \to Km} \circ h 
+ = \alpha'_{m} \circ S(f' \circ g)
+ =\mu_{f' \circ g : c \to Km}\circ \sigma_c
+ =
+\mu'_{f' : c' \to Km} \circ (Rg \circ \sigma_c)
+$$
+より普遍性の唯一性から$h = \sigma_{c'}\circ Sg = Rg \circ \sigma_c$である. 
+
+[3-3]  $\alpha = \epsilon \cdot \sigma K : SK \to T$について.
+示すことは, $m \in Ob(M)$について
+$$
+\alpha_{m} = \epsilon_{m} \cdot  \sigma_{Km}:SKm \to Tm
+$$
+である. 
+$c = Km$, $f = id_{Km} : c=Km \to Km$として
+[3.1]のような図式を考えると, 
+
+\begin{equation*}
+\xymatrix@C=160pt@R=20pt{
+Rc = \lim (T \circ Q : (c \downarrow K) \to M \to A) \ar@{->}[r]_{\mu_{id_{Km}: Km \to Km} = \sigma_{Km}}  
+& Tm  \\
+SKm\ar@{=}[r]_{Sf = Sid_{Km}}  \ar@{->}[u]_{\sigma_c = \sigma_{Km}}
+& SKm  \ar@{->}[u]_{\alpha_m}  \\   
+}
+\end{equation*}
+より言える. 
+
+[4]$\sigma : S \to R$の唯一性. 
+
+[2]において$f : c \to Km$, $c' =Km$, $f' = id_{Km}$とすると以下の図式を得る
+\begin{equation*}
+\xymatrix@C=100pt@R=20pt{
+Rc  \ar@{->}[r]_{Rf}  
+\ar@/^20pt/[rr]^{\mu_{ f : c \to Km}} 
+& RKm  \ar@{->}[r]_{\mu'_{id_{Km} : Km \to Km} = \epsilon_{m}} 
+&Tm  \\
+Sc\ar@{->}[r]_{Sf}  \ar@{->}[u]_{\sigma_c}
+\ar@/_20pt/[rr]_{Sf} 
+& SKm \ar@{=}[r]_{SKm} \ar@{->}[u]_{\sigma_{Km}}
+&SKm \ar@{->}[u]_{\alpha_m} \\   
+}
+\end{equation*}
+上の図式は全て可換で$\sigma_c: S_c \to Rc$が唯一であることがわかる.
+($Rc$が極限で$\mu_{ f : c \to Km} \circ h_c =\mu_{ f : c \to Km}\circ  h'_c$なら$h_c = h'_c$となる/)
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$M$がsmall, $A$が完備なら
+任意の$T : M \to A$は任意の$K : M \to C$に沿った右Kan拡張を持つ. 
+さらに$A^K$は右随伴を持つ
+
+特に$M$smallならば任意の$T : M \to {\bf Set}$は任意の$K : M \to C$に沿った右Kan拡張を持つ. 
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+任意の$c \in Ob(C)$について
+$$
+T \circ Q : (c \downarrow K) \to M \to A
+$$
+に関する極限$\lim T\circ Q$と$\mu: \Delta (\lim T\circ Q) \to TQ$が存在することを示せば良い.
+これは$M$を経由しているので存在する.
+%これは$(c \downarrow K) $がsmallであることを示せば良い.
+%%$(c \downarrow K) $は
+%\begin{itemize}
+%\item $(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km \in hom_{C}(c,Km)$ %($x \in Ob(Km)$と思える. )
+%\item Morphism $h : (m,x)  \to (m',x') \in Hom_{M}(m,m') $ で
+%$h: m \to m'$で$x'  = Kh \circ x$となるもの
+%\end{itemize}
+
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\ref{thm-Kan-extension}のように
+$K : M \to C$, $T : M \to A$を関手, 
+任意の$c \in Ob(C)$について
+$$
+T \circ Q : (c \downarrow K) \to M \to A
+$$
+に関する極限$\lim T\circ Q$と$\mu: \Delta (\lim T\circ Q) \to TQ$が存在すると仮定する.
+
+さらに$K : M \to C$がfully faithfullの場合, 
+$K$の$T$に沿ったKan拡張$R = Ran_{K}T$についての
+普遍射$\epsilon : RK \to T$は自然同型を与える
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+$m \in Ob(M)$について$\sigma_m : RKm \to Tm$が$A$上で自然な可逆を持つことを言えば良い. 
+$Ob(Km \downarrow K)$は$K$がfullyfaithfullであるので次のようにかける.
+\begin{itemize}
+\item $(m', Kh) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$Kh : Km \to Km'$($Km \to Km'$はfullyfaithfullよりこの形でかける) %($x \in Ob(Km)$と思える. )
+\item Morphism $H : (m_1, Kh_1)  \to (m_2,Kh_2) \in Hom_{M}(m_1,m_2) $ を 
+$H: m_1 \to m_2$で$ h_2 = H \circ h_1 $となるもの.
+\end{itemize}
+そこで$Kh : Km' \to $
+$$
+T \circ Q : (c \downarrow K) \to M \to A : (m' , Kh) \to Tm'
+$$
+である. 任意の$h : m \to m'$について, 
+$$
+Th : Tm \to Tm' 
+$$
+が定めるので, $\alpha_m :  Tm \to \lim TQ$が唯一存在する. 
+一方で$\sigma_m : id_{m} : m \to m$について$\lim TQ \to Tm$が定まる.
+$\sigma_m \circ \alpha_m = id_m$は唯一性のところから明らか. 
+逆については, 唯一性からでる. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$M$が$C$のfull sub categoryつまり包含関手$K : M \to C$がfullyfaithfullとする. 
+$T : M \to A$関手とする. 
+$c \in C$について
+$$
+(c\downarrow K) \to M \to A
+$$
+が$A$内に極限を持つとき$R : C \to A$があって
+$\epsilon : RK \cong T$である.
+
+特に恒等自然変換$1: RK \to T$とすると
+$(R,1)$は$T$の$K$に沿った右Kan拡張となる. 
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+$K : M \to C$, $T : M \to A$, $G :  A \to X$とする.
+$G$が左随伴を持つ時, $G$は右Kan拡張を保存する. 
+$$
+G \circ Ran_{K} T = Ran_{K}GT
+$$
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$$
+hom_{A}(Fx, a) \cong hom_{X}(x,Ga)
+$$
+により$H \in X^C, L \in A^C$について
+$$
+Nat(FH, L) \cong (H GL)
+$$
+がいえる.
+よって任意の$H \in X^C$について自然な全単射
+$$
+Nat(H, G\circ Ran_{K} T )
+\cong 
+Nat(FH, Ran_{K} T )
+\cong 
+Nat(FHK, T)
+\cong 
+Nat(HK, GT)
+\cong 
+Nat(H, Ran_{K}GT)
+$$
+が成り立つので, 同型が言える. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+\begin{thebibliography}{n}
+\bibitem[alg]{alg}
+alg-d 全ての概念はKan拡張である
+\url{https://alg-d.com/math/kan_extension/}
+\bibitem[Asg]{Asg}
+Dagur Asgeirsson
+\textit{The Foundations of Condensed Mathematics}
+\url{https://dagur.sites.ku.dk/files/2022/01/condensed-foundations.pdf}
+\bibitem[Bar22]{Bar22}
+Michael Barz \textit{Condensed Mathematics}
+\url{https://www.dropbox.com/scl/fi/xm2bs6jgtv9oaqir2slbt/condensed-final.pdf?rlkey=r1x82m3a135rfeec86jrjj79k&e=1&dl=0}
+\bibitem[Fra]{Fra}
+Martin Frankland \textit{Math 527 - Homotopy Theory
+Additional notes}
+\url{https://uregina.ca/~franklam/Math527/Math527_0204.pdf}
+\bibitem[Land]{Land}
+Marks Land
+\textit{CONDENSED MATHEMATICS}
+\url{https://www.markus-land.de/teaching/}
+\bibitem[Lep]{Lep}
+Florian Leptien
+\textit{Master thesis Condensed Mathematics}
+\bibitem[Sta]{Sta}
+Stacks Project \textit{Site and sheaves}
+\url{https://stacks.math.columbia.edu/download/sites.pdf}
+\bibitem[Stum]{Stum}
+Bernard Le Stum
+\textit{An introduction to condensed mathematics}
+\url{https://perso.univ-rennes1.fr/bernard.le-stum/bernard.le-stum/Enseignement_files/CondensedBook.pdf}
+\bibitem[Str]{Str}
+N. P. Strickland
+\textit{THE CATEGORY OF CGWH SPACES}
+\url{https://ncatlab.org/nlab/files/StricklandCGHWSpaces.pdf}
+\bibitem[Sch19]{Sch19}
+Peter Scholze
+\textit{Lectures on Condensed Mathematics}
+\url{https://www.math.uni-bonn.de/people/scholze/Condensed.pdf}
+\bibitem[SchClau]{SchClau}
+Peter Scholze, Dustin Clausen
+\textit{Masterclass in Condensed Mathematics}
+\url{https://www.math.ku.dk/english/calendar/events/condensed-mathematics/}
+\bibitem[Sha1]{Sha1}
+Shane Kelly \textit{Notes on the [HTT] proof of sheafification}
+\url{https://www.ms.u-tokyo.ac.jp/~kelly/Course2023-24DAG/Sheafification.pdf}
+\bibitem[Sha2]{Sha2}
+Shane Kelly
+\textit{Fast track guide to cardinals for use with Lurie’s Higher Topos Theory}
+\url{https://www.ms.u-tokyo.ac.jp/~kelly/pdfs/cardinalsFastTrack.pdf}
+\bibitem[Iwa22]{Iwa22}
+岩井雅崇　集合と位相まとめノート
+\url{https://x.gd/aDQt1}
+%https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf
+\bibitem[田中]{Tana}
+田中尚夫 公理的集合論　培風館
+\bibitem[マックレーン]{Mac}
+S. マックレーン 圏論の基礎 丸善出版
+\end{thebibliography}
+ 
+
+\end{document}
