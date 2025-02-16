@@ -18,7 +18,7 @@
 29. 'Positivity of tangent sheaves of projective klt varieties' [第29回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa29.html), 石川県政記念 しいのき迎賓館, 2023年12月4-8日. [PDF](https://masataka123.github.io/blog3/pdf/2023_12_05_29thSymposium_CG.pdf)
 30. 'Positivity of tangent sheaves of projective klt varieties' [Young Perspectives on Algebraic Geometry](http://www.jliumath.com/conferences/2023PAG.html), Academy of Mathematics and Systems Science, Chinese Academy of Sciences. 2023年12月9-11日.
 31. ''Complex projective manifolds satisfying Miyaoka's equality' [SCV, CR geometry and Dynamics](https://math.univ-cotedazur.fr/~stolo/conf/SCVCRDyn24.html), RIMS. 2024年11月25--29日.
-32. "Condensed sets and topological spaces (ショルツのレクチャーノート2章Appendixの解説) [Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home) 大阪公立大学. 2025年2月17--21日.  [原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_発表原稿.pdf)
+32. "Condensed sets and topological spaces (ショルツのレクチャーノート2章Appendixの解説) [Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home) 大阪公立大学. 2025年2月17--21日.  [原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)

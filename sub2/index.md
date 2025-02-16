@@ -27,9 +27,9 @@
 -[Remarks on Miyaoka's inequality for compact Kahler manifolds](https://masataka123.github.io/blog3/pdf/Miyaoka_inequality_kahler.pdf)
 'Minimal projective varieties satisfying Miyaoka's equality.' の補足です.
 -->
-- [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_セミナーノート.pdf)
+- [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
 2025年2月17日-21日開催の"Condensed mathematicsワークショップ"に向けてやっていた勉強会のまとめノートです. 
-当日の講演原稿は[こちら](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_発表原稿.pdf)にあります.
+当日の講演原稿は[こちら](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)にあります.
 
 
 # **報告集**
