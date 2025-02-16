@@ -1,10 +1,8 @@
 # **講演や集会参加の予定**
-- 2025年2月17--21日に大阪公立大学で開催される[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)で講演いたします. 
 - 2025年3月19日に[日本数学会2025年度年会](https://www.mathsoc.jp/activity/meeting/waseda25mar/index.html)函数論分科会特別講演で講演する予定です.
-- 2025年4月21--25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に(余裕があれば)参加するかもしれません. 
+- 2025年4月21--25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に参加します. 
 - 2025年5月14--16日に福岡工業大学で[Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka](https://masataka123.github.io/AG_SCV_2025/)を開催します. 
 - 2025年6月23--27日に北京大学で開催される"algebraic geometry conference about MMP, Fano varieties and related topics"で講演する予定です. 
-- 2025年7月14--18日にコロラド州立大学で開催される[2025 Summer Research Institute in Algebraic Geometry Week 1](https://sites.google.com/view/2025summerinstitute/home/week-1-july-14-18)に(余裕があれば)参加するかもしれません. 
 
 # **講演履歴**
 
@@ -20,6 +18,7 @@
 29. 'Positivity of tangent sheaves of projective klt varieties' [第29回複素幾何シンポジウム](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa29.html), 石川県政記念 しいのき迎賓館, 2023年12月4-8日. [PDF](https://masataka123.github.io/blog3/pdf/2023_12_05_29thSymposium_CG.pdf)
 30. 'Positivity of tangent sheaves of projective klt varieties' [Young Perspectives on Algebraic Geometry](http://www.jliumath.com/conferences/2023PAG.html), Academy of Mathematics and Systems Science, Chinese Academy of Sciences. 2023年12月9-11日.
 31. ''Complex projective manifolds satisfying Miyaoka's equality' [SCV, CR geometry and Dynamics](https://math.univ-cotedazur.fr/~stolo/conf/SCVCRDyn24.html), RIMS. 2024年11月25--29日.
+32. "Condensed sets and topological spaces (ショルツのレクチャーノート2章Appendixの解説) [Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home) 大阪公立大学. 2025年2月17--21日.  [原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_発表原稿.pdf)
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
