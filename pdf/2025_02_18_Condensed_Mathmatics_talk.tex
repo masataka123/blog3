@@ -162,11 +162,12 @@ Shane Kelly
 \section{\cite[Proposition 2.9]{Sch19}の準備}
 
 \subsection{基数}
+以下は\cite{Tana}に基づく.
 \subsubsection{順序数・基数の定義}
  
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}
+\begin{dfn}\cite[3.3節]{Tana}
 \begin{itemize}
 \item 集合$A$が推移的であるとは
 $x \in A$かつ$y \in x$ならば$y \in A$を満たすこと
@@ -187,6 +188,36 @@ $x \in A$かつ$y \in x$ならば$y \in A$を満たすこと
 \end{itemize}
 \end{exa}
 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}\cite[定理3.3.7]{Tana}
+\label{thm-tanaka-3.3.7}
+$\alpha, \beta$順序数について$\alpha \subset \beta$または$\beta \subset \alpha$
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+背理法による. 
+もし定理が成り立たないのであれば$\alpha, \beta$は$\in$での整列集合なので
+\begin{itemize}
+\item $x_0 \in \beta \setminus \alpha$なる$\in$での最小元
+\item $y_0 \in  \alpha \setminus \beta$なる$\in$での最小元
+\end{itemize}
+が存在する.
+$x_0 = \alpha \cap \beta$を示れば, $x_0=y_0$となり矛盾が示せる.
+
+$t \in \alpha \cap \beta$について
+$t \in \beta$かつ$x_0 \in \beta$なので, 全順序性から$t \in x_0$, $t =x_0$, $x_0 \in t$のどれかが成り立つ. 
+$t =x_0$ならば$x_0 \in \alpha$となり矛盾. $x_0 \in t$ならば推移性より$x_0 \in \alpha$となりこれも矛盾. よって$t \in x_0$となる. $\alpha \cap \beta \subset x_0$
+
+逆に$t \in x_0$について$x_0$は最小なので$t \not \in \beta \setminus \alpha$
+一方$x_0 \in \beta$より推移性から$t \in \beta$. よって$t \in \alpha$となり$x_0 \subset \alpha \cap \beta$.
+\end{proof}
+
+よって二つの順序数$\alpha, \beta$について$\alpha \le \beta$を$\alpha \subset \beta$で定義すると
+順序数のなすクラスにも整列順序の構造が入る. 
+
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
 \begin{thm}[整列可能定理]
@@ -200,7 +231,7 @@ $A\sim B$を$A$と$B$は同等という.
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[濃度・基数]
+\begin{dfn}\cite[4.1節]{Tana}[濃度・基数]
 \begin{itemize}
 \item 集合$A$についてその濃度を, $A$と同等な順序数のうち最小のものとする. つまり順序数$\alpha$で$A \sim \alpha$となるののの最小なものである
 \item 集合$A$の濃度を$|A|$として定義する. 定義から「$|A| \sim A$」かつ「任意の順序数$\beta$で$\beta \sim A$ならば$\beta \ge |A|$である. 」
@@ -213,7 +244,7 @@ $A\sim B$を$A$と$B$は同等という.
 
 \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[定義4.5.1]
+\begin{dfn}\cite[定義4.5.1]{Tana}
 全順序集合$(A,<)$とする. $B \subset A$が共終部分集合であるとは
 任意の$a \in A$についてある$b \in B$が存在して$a\le b$が成り立つこと.
 
@@ -225,7 +256,7 @@ $A \subset \alpha$なる共終部分集合で順序同型$(A, \in) \cong (\beta,
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[定義4.5.2]
+\begin{dfn}\cite[定義4.5.2]{Tana}
 \begin{itemize}
 \item 順序数$\alpha$と共終な最小の順序数を共終数といい$cf(\alpha)$と表す. 
 $cf(\alpha)$は基数となる.  
@@ -321,7 +352,7 @@ $J \subset \beth_{\beta}$なる共終集合について, $f: J \to \beta$を$j \
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[強極限基数]
+\begin{dfn}\cite[定義4.5.7]{Tana}[強極限基数]
 $\kappa$が非加算強極限基数(uncountable strong limit cardinal)であるとは
 \begin{enumerate}
 \item $\kappa$ uncountable
@@ -351,7 +382,7 @@ $\beth_{\omega}$は強極限的である.
  
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}
+\begin{dfn}\cite[3.1節]{Mac}
 $S : \mathcal{D} \to \mathcal{C}$関手, $c \in Ob(\mathcal{C})$とする.
 $c$から$S$への普遍射とは$r \in Ob(\mathcal{D})$と $u: c \to Sr$の組み$(r,u) \in Ob(\mathcal{D})\times hom_{\mathcal{C}}(c, S_r)$であって次の普遍性を満たすものである.
 
@@ -557,7 +588,7 @@ $\Phi([c_i , i])=c$となる.
 \subsubsection{コンマ圏}
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}
+\begin{dfn}\cite[2.6節]{Mac}
 $T :  \mathcal{E} \to \mathcal{C}$, $S : \mathcal{D} \to \mathcal{C}$関手として
 コンマ圏$(T \downarrow S)$を次のように定義する. 
 \begin{itemize}
@@ -653,7 +684,7 @@ $h: d \to d'$で$f'  = Sh \circ f$となるもの
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[左Kan拡張]
+\begin{dfn}[左Kan拡張]\cite[10.3節]{Mac}\cite[2.1節]{alg}
 $K : M \to C$, $T : M \to A$を関手とする.
 $K$に沿った$T$の左Kan拡張とは
 \begin{itemize}
@@ -857,7 +888,7 @@ $$
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{cor}
+\begin{cor}\cite[3.7節]{Mac}
 \label{cor-colim-represent}
 $\mathcal{D}$ small 
 $K : \mathcal{D}^{op} \to {\bf Set}$反変関手, つまり$K \in {\bf Set}^{\mathcal{D}^{op}}$とする.
@@ -2256,7 +2287,7 @@ S\ar@{->>}[r]^{f}
  \\   
 }
 \end{equation*}
-について$W$は$p : U \to S, q: U \to T$のコイコライザーになる. 
+について$W$は$p : U \to S, q: U \to T$のpushoutになる. 
 
  \end{lem}
   \end{tcolorbox}
@@ -2274,7 +2305,7 @@ S\ar@{->>}[r]^{f}
  となる連続写像が与えられる.  これは集合としては全単射である.
  
    \underline{後半の主張に関して }
- Presheafとしての$p : U \to S, q: U \to T$のコイコライザーを$S \sqcup_{U}T$とする.
+ Presheafとしての$p : U \to S, q: U \to T$のpushoutを$S \sqcup_{U}T$とする.
  これが$W$と同型であることを示す. 
 $S \sqcup_{U}T$とは
 $X \in {\bf ED}$について
@@ -3081,14 +3112,14 @@ X \ar@{->>}[r]^{\pi}
  \\   
 }
 \end{equation*}
-左の図式はコイコライザーである. 
-右の図式は\ref{lem-ep-pullback}から直積でもありコイコライザーでもある. 
+左の図式はpushoutである. 
+右の図式は\ref{lem-ep-pullback}から直積でもありpushoutでもある. 
 %$T \mapsto T(\ast)_{top}$は左随伴射なのでコイコライザーを保つ. よって左の図式もコイコライザーである. 
 よって
-$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のコイコライザーが
+$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のpushoutが
 $\underline{X/\sim}$であることを示せば良い. \footnote{$X \mapsto \underline{X}$は右随伴射なのでcolimを保つとは限らず, この様なまどろっこしい証明になる.}
 
-まずPresheafとして$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のコイコライザー$V$が$\underline{X/\sim}$であることを示す. 
+まずPresheafとして$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のpushout$V$が$\underline{X/\sim}$であることを示す. 
 これは$S \in {\bf ED}$について
 $$
 V(S) =hom(S, \underline{X})\sqcup hom(S, \underline{X})/\sim
@@ -3108,10 +3139,10 @@ $$
 全射性は$S \in {\bf ED}$より, 単射性は
 $\pi \circ h_1 = pi \circ h_2$ならば$s \in S$について$f(\ast)(h_1(s)) = f(\ast)(h_2(s))$となるのでわかる. 
 
-以上よりPresheafとして$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のコイコライザーは$\underline{X/\sim}$である.
-それをsheafificationしたものが$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のsheafとしてのコイコライザーであったので, $\underline{X/\sim}$がそれに当たる.
+以上よりPresheafとして$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のpushoutは$\underline{X/\sim}$である.
+それをsheafificationしたものが$\underline{p_1}, \underline{p_2} : \underline{L} \to \underline{X}$のsheafとしてのpushoutであったので, $\underline{X/\sim}$がそれに当たる.
 
-以上よりコイコライザーは唯一なので
+以上よりpushoutは唯一なので
 $T \cong \underline{X/\sim}$を得る. 
 (ちなみにcanonicalな写像は$\underline{f(\ast)} : \underline{X/\sim} \to T$である. )
 
@@ -3826,7 +3857,7 @@ $K : \mathcal{D} \to {\bf Set}$が表現可能とは
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{lem}[米田の補題]
+\begin{lem}[米田の補題]\cite[3.2節]{Mac}
 $\mathcal{D} $がlocally smallとする. 
 $K : \mathcal{D} \to {\bf Set}$関手に関して
 $$
@@ -3865,7 +3896,7 @@ $$
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{cor}
+\begin{cor}\cite[3.2節]{Mac}
 \label{cor-yoneda}
 $\mathcal{D} $がlocally smallとする. $r, r' \in Ob(\mathcal{D})$について
 $$
@@ -3943,7 +3974,7 @@ $$
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}
+\begin{dfn}\cite[9.1節]{Mac}
 圏$J$がフィルターであるとは以下の二つの条件を満たす空でない圏とする
 \begin{enumerate}
 \item $j, j' \in Ob(J)$についてある$j \to k, j' \to k$が存在する
@@ -3959,7 +3990,7 @@ $F : J \to C$がフィルター余極限とは$J$がフィルターなること.
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[共終]
+\begin{dfn}[共終]\cite[9.3節]{Mac}
 \label{dfn-cofiinal-category}
 $L : I \to J$が共終とは$k \in Ob(J)$について$k \downarrow L$が空でなく連結であること.
 わかりやすくいうと以下の2条件を満たすこと.
@@ -4051,7 +4082,7 @@ $$
 \subsubsection{随伴}
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}
+\begin{dfn}\cite[4.1節]{Mac}
 $A,X$をlocally small categoryとする.
 $(F,G,\varphi)$が$X$から$A$の随伴とは
 \begin{itemize}
@@ -4135,7 +4166,7 @@ $\epsilon_a = \varphi^{-1}_{Ga, a}(id_{Ga})$とおくと同様のことが成り
 まとめると次になる. 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{lem}
+\begin{lem}\cite[4.1節]{Mac}
 $A,X$をlocally small categoryとする.
 $(F,G,\varphi)$が$X$から$A$の随伴とする.
 \begin{enumerate}
@@ -4155,7 +4186,7 @@ $\eta$をunit, $\epsilon$をcounitという.
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{cor}
+\begin{cor}\cite[4.1節]{Mac}
 $(F,G,\varphi)$を$X$から$A$の随伴であるとする. 
 $T : J \to A$が極限$\tau : \Delta (\lim T) \to T$を持つならば, 
 $GT$は極限$G\tau : \Delta (G \lim T) \to GT$と持つ.
@@ -4187,7 +4218,7 @@ $$
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{thm}
+\begin{thm}\cite[4.3節]{Mac}
 \label{thm-adjoint-fullyfaithfull}
 随伴$(F,G,\eta,\epsilon): X \to A$について以下が成り立つ
 \begin{enumerate}
@@ -4230,7 +4261,7 @@ $f: b \to a$について, $f^{*} : hom_{A} (a, \cdot) \to hom_{A}(b, \cdot)$を�
 \subsubsection{圏同値}
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[圏同値]
+\begin{dfn}[圏同値]\cite[4.4節]{Mac}
 関手$S : A \to C$が圏同値であるとは
 ある関手$T : C \to A$と$ST \cong I_{C} : C \to C$かつ$TS \cong I : A \to A$なる自然同型が存在すること.
 
@@ -4240,7 +4271,7 @@ $f: b \to a$について, $f^{*} : hom_{A} (a, \cdot) \to hom_{A}(b, \cdot)$を�
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}[随伴圏同値]
+\begin{dfn}[随伴圏同値]\cite[4.4節]{Mac}
 随伴$(F,G,\eta,\epsilon): X \to A$について, $\eta : I \to GF$, $\epsilon : GF \to I$が共に自然同型である時, 
 $(F,G,\eta,\epsilon): X \to A$は随伴圏同値と呼ぶ. 
 \end{dfn}
@@ -4248,7 +4279,7 @@ $(F,G,\eta,\epsilon): X \to A$は随伴圏同値と呼ぶ.
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{thm}
+\begin{thm}\cite[4.4節]{Mac}
 \label{thm-adjoint-equiv}
 関手$S : A \to C$について次は同値
 \begin{enumerate}
@@ -4291,7 +4322,7 @@ $T(f) = g$とおく.
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{dfn}
+\begin{dfn}\cite[10.3節]{Mac}
 $K : M \to C$, $T : M \to A$を関手とする.
 $K$に沿った$T$の右Kan拡張とは
 \begin{itemize}
@@ -4312,7 +4343,7 @@ $$
 となる.よってこれをかっこよくいうと次の補題を得る. 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{lem}
+\begin{lem}\cite[10.3節]{Mac}
 $K : M \to C$を固定する. 
 任意の$T \in A^{M}$ ($T : M \to A$)について右Kan拡張
 $(R , \epsilon) := (Ran_{K}T \in A^C, \epsilon_T : RK \to T)$が存在すると仮定する.
@@ -4337,7 +4368,7 @@ $$
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{thm}[点列極限としての右Kan拡張]
+\begin{thm}[点列極限としての右Kan拡張]\cite[10.3節]{Mac}
 \label{thm-Kan-extension}
 $K : M \to C$, $T : M \to A$を関手とする.
 任意の$c \in Ob(C)$について
@@ -4595,7 +4626,7 @@ Sc\ar@{->}[r]_{Sf}  \ar@{->}[u]_{\sigma_c}
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{cor}
+\begin{cor}\cite[10.3節]{Mac}
 $M$がsmall, $A$が完備なら
 任意の$T : M \to A$は任意の$K : M \to C$に沿った右Kan拡張を持つ. 
 さらに$A^K$は右随伴を持つ
@@ -4623,7 +4654,7 @@ $$
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{cor}
+\begin{cor}\cite[10.3節]{Mac}
 \ref{thm-Kan-extension}のように
 $K : M \to C$, $T : M \to A$を関手, 
 任意の$c \in Ob(C)$について
@@ -4679,7 +4710,7 @@ $(R,1)$は$T$の$K$に沿った右Kan拡張となる.
 
  \begin{tcolorbox}
  [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
-\begin{thm}
+\begin{thm}\cite[10.3節]{Mac}
 $K : M \to C$, $T : M \to A$, $G :  A \to X$とする.
 $G$が左随伴を持つ時, $G$は右Kan拡張を保存する. 
 $$
