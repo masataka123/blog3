@@ -37,7 +37,7 @@
 - [コンパクト生成空間・コンパクト生成弱ハウスドルフ空間のまとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_CGWH.pdf)
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
--[公理的集合論と圏論まとめ]()
+- [公理的集合論と圏論まとめ]()
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 現在準備中.
 
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
