@@ -1,0 +1,3376 @@
+\documentclass[dvipdfmx,a4paper,11pt]{report}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % æ°å­¦ç¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref} 
+\setstretch{1.2}
+\usepackage{pgfplots}
+%\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{S}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\colim}{{\rm colim}}
+
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+\newtheorem{dfnthm}[thm]{定義・定理}
+\newtheorem{ques}[thm]{問題}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+  
+  \newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\title{公理的集合論と圏論}
+\author{岩井雅崇 (大阪大学)}
+\date{\today \, ver 1.00}
+%ここから本文．
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\chapter{公理的集合論}
+
+
+以下は\cite{Tana}の「田中尚夫 公理的集合論」をもとにした. 
+
+
+\subsection{全順序集合と整列集合}
+ \begin{tcolorbox}[colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}
+ $A$を集合とする. 関係$\le$が条件
+ \begin{enumerate}
+ \item (反射法則) $x \in A$, $x \le x$
+ \item (反対称法則) $x,y \in A$, $x \le x$ and $y \le x$ $\Rightarrow$ $x=y$
+ \item (推移法則) $x,y, z\in A$, $x \le y$ and $y \le z$ $\Rightarrow$ $x\le z$
+ \end{enumerate}
+を満たすとき, $\le$を(反射型)順序という
+\end{dfn}
+ \end{tcolorbox}
+ \begin{rem}
+  $A$を集合とする. 関係$<$が条件
+   \begin{enumerate}
+ \item (非反射法則) $x \in A$, $x < x$ではない. 
+ \item (推移法則) $x,y, z\in A$, $x < y$ and $y < z$ $\Rightarrow$ $x < z$
+ \end{enumerate}
+を満たすとき, $<$を(非反射型)順序という
+
+順序に関しては$\le$を定義しようが$<$を定義しようが同じである. 
+これは$x< y$を$x \neq y$かつ$x \le y$で定義する, もしくは逆を辿ることで同値である.
+
+以下$\le$を(反射型)順序, $<$を(非反射型)順序で表す. 
+ \end{rem}
+
+ 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+$(A,\le)$順序集合について, 次のように定義する
+\begin{itemize}
+\item $\le$が全順序とは, 任意の$x, y \in A$について$x <y$か$x=y$か$y < x$のどれかが成立することである. 
+\item $a \in A$について
+$$
+Seg(a) := \{ x \in A | x < a\}
+$$
+と定義し, $a$による始切片という.
+\item $a \in A$が$A$の極小元とは, 「任意の$x\in A$について$x<a$とならない」として定義する. 極大も同様.
+\item $a \in A$が$A$の最小元とは, 「任意の$x\in A$について$a\le x$」として定義する. 最大も同様.
+\item $a, b\in A$について, $b$が$a$の直後元とは, $a < b$かつ$a < x < b$なる$x \in A$が存在しないとして定義する. 
+\end{itemize}
+\end{tcolorbox}
+
+
+ \begin{tcolorbox}[colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}
+ $(A <_A)$, $(B, <_B)$を順序集合とする.
+ $f : A \to B$が順序を保存($x <_A y$と$f(x) <_B f(y)$が同値)し全単射である時, $f$は順序同型という. 順序同型の時 $(A <_A) \cong (B, <_B)$と表す. 
+ 
+ また$f$が単射の場合は$f : A \to B$を順序埋め込みという. 
+ \end{dfn}
+ \end{tcolorbox}
+ 
+  \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{lem}[定理3.1.6]
+ $(A,<_A)$が順序集合ならば, ある集合$(S, \subsetneq)$が存在して
+ $$
+ (A,<_A) \cong (S, \subsetneq)
+ $$
+ となる. ($(A, \le_A)$も同様)
+ \end{lem}
+ \end{tcolorbox}
+ \begin{proof}
+ $$
+ S := \{ Seg(a) \ a \in A\}
+ $$
+ とおく． $S \in P(A)$より集合である. (冪集合公理より集合の冪集合は集合!)
+ これで順序同型が言える. 
+ \end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}
+ $A$を集合とする. 
+ $(A,<)$が整列集合とは次を満たすこと\footnote{$A$が集合でない場合("クラス"の場合), 始切片が集合であることを仮定する.}
+ \begin{enumerate}
+ \item  $(A,<)$が全順序. つまり任意の$x, y \in A$について$x <y$か$y < x$のどちらかが成立する.
+ \item $B \subset A$なる部分"集合"について, 最小元が存在する. 
+ \end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{thm}[定理 3.2.2]
+ $(A,<)$が整列集合で, $\varphi(x)$を論理式とする
+ \begin{enumerate}
+ \item (最小元原理)$\{ x \in A | \varphi (x) \}$は空でなければ最小限を持つ.
+ \item (帰納法原理) 任意の$x \in A$について, 「任意の$y<x$が$\varphi(y)$ならば$\varphi(x)$」が言えるならば, 任意の$x \in A$について$\varphi(x)$が言える. (数学的帰納法の順序版)
+ \end{enumerate}
+ \end{thm}
+ \end{tcolorbox}
+ \begin{proof}
+ (1). $b \in \{ x \in A | \varphi (x)\}$をとって$Seg(b)$を考える. 空集合なら$b$が最小, 空でないなら整列集合より最小限が存在し, それが欲しいやつである.
+ 
+ (2). 背理法$\{ x \in A | \varphi (x)\text{を満たさない}\}$とすると, 最小元$b$があるが, それは仮定に矛盾する. 
+ \end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.2.4]
+\label{thm-tanaka-3.2.4}
+整列集合$(A,<)$とし$f : (A,<) \to (A,<)$が順序保存とする. 
+このとき$x \le f(x)$.
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+背理法 $\{ x \in A | f(x) <x \}$とし, 最小元を$b$とする. 
+仮定から$f(b) < b$であるので, 最小性より$f(b) \le f(f(b))$. $f$は順序を保存するので$b \le f(b)$となり矛盾する. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}[補題 3.2.5]
+整列集合$(A,<)$の始切片は元の集合と順序同型でない
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+ある$a \in A$で
+$f: (A,<) \cong (Seg(a), <|_{Seg(a)})$を仮定する. 
+よって$f(a) < a$である.
+一方\ref{thm-tanaka-3.2.4}から$a \le f(a)$となり矛盾.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}[定理 3.2.6]
+\label{thm-tanaka-3.2.6}
+整列集合$(A,<)$の異なる始切片は順序同型でない
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$a , b \in A$で$a < b$で$A=Seg(b)$として上の補題を使う.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}[定理 3.2.7]
+整列集合間の順序同型$(A,<_A) \to (B,<_B)$はただ一つ
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$f,g :  A \to B$の順序同型が二つあるとする.
+$a \in A$で$f(a) <_{B} g(a)$となるものがある. (必要ならば$f,g$を取りかえる)
+$f \circ g^{-1} : B \to B $は順序同型より\ref{thm-tanaka-3.2.4}から
+$$
+g(a) \le f \circ g^{-1} \circ g(a) = f(a)
+$$
+となり矛盾.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}[定理 3.2.8]
+\label{thm-tanaka-3.2.8}
+2つの整列集合$(A,<_A)$, $(B,<_B)$とする.
+「任意の$A$の始切片がある$B$の始切片に同型である」とする.
+
+この時$A$は$B$か$B$のある始切片に同型であるとする.
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+$$
+F := \{ (x,y) \in A \times B | Seg_A(x) \cong Seg_B (y)\}
+$$
+とする.
+
+$(x,y), (x,z) \in F$ならば$Seg_B (y)\cong Seg_B (z)$より\ref{thm-tanaka-3.2.4}から$y=z$.
+よって仮定から写像$f : A \to B$が定義できる.
+
+$F$は順序保存である.
+$a<_A b$で$f(a) \le_B f(b)$となるとすると,  
+$Seg_A(a) \cong Seg_B (f(a))$, 
+$Seg_A(b) \cong Seg_B (f(b))$, 
+$Seg_B (f(b)) \subset Seg_B (f(a))$となる. 
+よって
+$$
+g: Seg_{A}(b) \cong Seg_B (f(b)) \subset Seg_B (f(a)) \cong Seg_A(a)
+$$
+が定義できる. \ref{thm-tanaka-3.2.4}から$a \le g(a)$であるが, 行き先を見れば$g(a) < a$となり矛盾する.
+
+次に$y = f(a)$なる$y \in B$について, 任意の$z < y$ならば$z = f(b)$とかけることを示す. 
+$f$の定義から$\varphi : Seg_A(a) \cong Seg_B(y)$である. $z \in Seg_{B}(y)$なので$b \in Seg_A(a) $で$\varphi(b) =y$となるものが存在する. 
+よって$\varphi|_{Seg_A(b)}: Seg_A(b) \cong Seg_B(z)$を得る. 
+
+順序保存と整列性から$f$は単射である. 
+$f$が全射でない時, $B \setminus Im(f)$の最小元を$y_0 \in B$とおく. 
+このとき$Im(f) = Seg_{B}(y_0)$となる. 
+$f$が全射なら$f$は順序同型$f : A \to B$を与える.
+
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.2.8]
+2つの整列集合$(A,<_A)$, $(B,<_B)$について, 
+\begin{itemize}
+\item 順序同型
+\item ある一方が他方の始切片に同型
+\end{itemize}
+のどちらか一方が成り立つ
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+$(A, <_A)$が$(B,<_B)$や$(B, <_B)$のどの始切片とも順序同型でないと仮定して良い.
+
+まず$b \in B$について, ある$a \in A$があって$Seg_A(a) \cong Seg_B(b)$を示す.
+ もしそうでないなら$\{ b \in B | \text{上を満たさない}\}$に最小元$b_0$が存在する. 
+ 任意の$y <_B b_0$について, $Seg_B(y) \cong Seg_A(x)$なる$x \in A$があるので, \ref{thm-tanaka-3.2.8}から, $Seg_{B}(b_0) \cong A$または$Seg_{B}(b_0) \cong seg_{A}(a_0)$となるがどちらも矛盾．
+ 
+ よって任意の$b \in B$について, ある$a \in A$があって$Seg_A(a) \cong Seg_B(b)$なので\ref{thm-tanaka-3.2.8}から$B$は$A$の始切片と同型である.
+\end{proof}
+
+\subsection{順序数}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+\begin{itemize}
+\item クラス$A$が推移的であるとは
+$x \in A$かつ$y \in x$ならば$y \in A$を満たすこと
+\item クラスAが全順序とは任意の$x,y \in A$について$x \in y$か$x=y$か$y \in x$が成り立つこと
+\item 集合$A$が順序数とは$A$が推移的かつ全順序なること. 
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+順序数全体の集まりを$OR = \{ u | \text{$u$は順序数} \}$とする. 
+これは集合ではない. 
+
+\begin{exa}
+以下は順序数である. 
+\begin{itemize}
+\item $0 = \varnothing$
+\item $1 = 0 \cup \{ 0\} = \{ 0\} =\{ \varnothing\}$
+\item $2 = 1 \cup \{1\} = \{0,1 \}= \{\varnothing, \{ \varnothing\}\}$
+\end{itemize}
+\end{exa}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.3.5]
+\begin{itemize}
+\item $\alpha$順序数について, $(\alpha, \in )$は整列集合.
+\item $\alpha$順序数で$\beta \in \alpha$ならば$\beta = Seg_{(\alpha,\in )} (\beta)$
+\end{itemize}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+(1). $\alpha$は全順序集合なので, 整列性のみ示せば良い.
+$A \subset \alpha$を空でない集合とする.
+正則性定理「$A \not \varnothing$ならば$x \in A $で$x \cap A = \varnothing$」\footnote{正則性定理から任意の集合$x$について$x \not \in x$がいえる.　なぜなら「$x \in x$を仮定する. $A = \{x\}$とすると$t \in A$かつ$t \cap A=\varnothing$となるものがある. $t \in A$から$t=x$だが$x \in t \cap A=x \cap \{ x\} $となり矛盾」するので. つまり正則性定理によってラッセルのパラドックスを否定している. (そもそも集合ではない!)}から
+$x \in \alpha$が$A$の最小限を与える
+
+(2)
+$$
+ Seg_{(\alpha,\in )} (\beta)
+ := \{ x \in \alpha | x \in \alpha \text{ and } x \in \beta\}
+ =\{ x \in \alpha | x \in \beta\}
+ \beta
+$$
+途中$\beta \in \alpha$ならば$\beta \subset \alpha$を用いた.
+これは$x \in \beta$ならば$\beta \in \alpha$より推移的なので$x \in \alpha$となるからである.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.3.6]
+\label{thm-tanaka-3.3.6}
+$\alpha$順序数とする
+\begin{itemize}
+\item $x \in \alpha $について$x$は順序数
+\item $x \subset \alpha$かつ$x$が推移ならば$x \in \alpha$
+\end{itemize}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+(1) $x \subset \alpha$より$x$は全順序となる. 推移性を示す.
+$a \in b$かつ$b \in c$ on $a,b,c \in x$とする. 
+$a,c \in \alpha$であり
+$\alpha$は全順序なので
+$a \in c$, $a = c$, $c \in a$
+のどれかが成り立つ.
+後者二つならば, $a \in b \in a$か$a \in b \in c \in a$となるので矛盾\footnote{正則性定理から$a_1 \ni a_2 \ni \cdots$は"集合"においては成り立たない!}
+よって$a \in c$となる. 
+
+(2) $x \neq \alpha$とする.
+$z \in \alpha \setminus x$をとる.
+この時
+$$
+t \in x \text{ならば} t \in z
+$$
+となる. なぜなら
+$t \in x$かつ$x \in \alpha$より$t \in \alpha$で「$t\in z$か$t=z$か$z \in t$.
+$t=z$なら$z \in x$で矛盾.
+$z\in t$なら$z \in t$かつ$t \in x$で$x$推移的より$z \in x$となり矛盾.
+よって$t \in z$となる.
+特に$x$は$\alpha$内で有界である.
+
+$\alpha$は整列順序集合なので, $x \subset \alpha$の直後元$\beta \in \alpha$が存在する．\footnote{$(A,<)$の部分集合$B$について, その直後元$x$を「任意の$a \in B$で$a < x$であり, $y \in A$で$y <b$かつ任意の$a \in A$について$a <y$となるものは存在しない」として定義する.}
+
+よって$x = \beta$を示せば良い.
+直後元の定義より$t \in x$ならば$t<\beta$つまり$t\in \beta$なので$x \subset \beta$である．
+一方$t \in \beta$ならば$t < \beta$なので$t < a$なる$a \in x$が存在する
+つまり$t \in a$かつ$a \in x$なので$x$推移的なので$t \in x$となる. よって$x  = \beta$となる.
+
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.3.7]
+\label{thm-tanaka-3.3.7}
+$\alpha, \beta$順序数について$\alpha \subset \beta$または$\beta \subset \alpha$
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+背理法による. 
+もし定理が成り立たないのであれば$\alpha, \beta$は$\in$での整列集合なので
+\begin{itemize}
+\item $x_0 \in \beta \setminus \alpha$なる$\in$での最小元
+\item $y_0 \in  \alpha \setminus \beta$なる$\in$での最小元
+\end{itemize}
+が存在する.
+$x_0 = \alpha \cap \beta$を示れば, $x_0=y_0$となり矛盾が示せる.
+
+$t \in \alpha \cap \beta$について
+$t \in \beta$かつ$x_0 \in \beta$なので, 全順序性から$t \in x_0$, $t =x_0$, $x_0 \in t$のどれかが成り立つ. 
+$t =x_0$ならば$x_0 \in \alpha$となり矛盾. $x_0 \in t$ならば推移性より$x_0 \in \alpha$となりこれも矛盾. よって$t \in x_0$となる. $\alpha \cap \beta \subset x_0$
+
+逆に$t \in x_0$について$x_0$は最小なので$t \not \in \beta \setminus \alpha$
+一方$x_0 \in \beta$より推移性から$t \in \beta$. よって$t \in \alpha$となり$x_0 \subset \alpha \cap \beta$.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.3.8]
+順序数のクラスORは次を満たす
+\begin{itemize}
+\item(全順序性) $\alpha, \beta$順序数について$\alpha \in \beta$, $\alpha = \beta$, $\beta \in \alpha$
+\item (推移性) $\alpha$順序数かつ$\beta \in \alpha$ならば$\beta$も順序数
+\end{itemize}
+特に順序数のクラスORは$\in$で全順序になる. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$\alpha, \beta$順序数について\ref{thm-tanaka-3.3.7}から(必要ならば$\alpha$, $\beta$を取り替えることにより), $\alpha \subset \beta$がいえる. $\alpha \neq \beta$を仮定して良い.
+すると$\alpha$は推移的で$\alpha \subset \beta$より$\alpha \in \beta$となる.よって全順序性が言えた.
+
+\ref{thm-tanaka-3.3.6}より,  $\alpha$順序数かつ$\beta \in \alpha$ならば$\beta$順序数は前に示している. 
+\end{proof}
+
+以下順序数$\alpha, \beta$について$\alpha \in \beta$を$\alpha < \beta$と書くことにし
+$(OR, <)$で順序数のクラスの全順序クラスを考える.
+$\le$を$<$または$=$として入れる
+すると
+$$
+\alpha
+=
+\{\beta \in OR | \beta \in \alpha \}
+=
+\{ \beta | \beta< \alpha\}
+$$
+となる.
+このとき$\alpha \le \beta$は$\alpha \subset \beta$に対応する. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.3.12]
+順序数のクラス$(OR, <)$　は整列クラスである
+つまり次を満たす
+\begin{itemize}
+\item 任意の空でない集合$A \subset OR$について$< = \in$の最小元が存在
+\item 任意の始切片$Seg(\alpha)$は集合である
+\end{itemize}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+(1) 任意の空でない集合$A \subset OR$について正則性定理から
+$$
+\beta \in A, \beta \cap A = \varnothing
+$$
+が存在する. 
+これが$A$の$\in$における最小元である. 
+なぜなら$x < \beta$かつ$x \in A$なら$x \in \beta$であり$\beta \cap A = \varnothing$に矛盾するからである.
+
+(2) $\alpha \in OR$は集合で
+$$Seg(\alpha):= \{ \beta \in OR | \beta < \alpha\}
+=
+ \{ \beta \in OR | \beta \in  \alpha\}
+= \alpha
+$$であったので集合である.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+集合$x$について
+$$
+x + 1
+:= 
+x \cup \{ x\}
+$$
+と定める
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理 3.3.14, 3.3.16]
+順序数$\alpha$について, $\alpha + 1$は直後順序数である.
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$\alpha +1$が順序数となること.
+
+(推移性). $x \in y$かつ$y\in \alpha + 1=\alpha\cup \{ \alpha\}$とする. 
+$y \in \alpha$ならば$x \in \alpha \subset \alpha+1$. $y=\alpha$でも同じである.
+
+(全順序性)
+$x,y \in \alpha+1$ならば次の3通りが考えられる.
+\begin{enumerate}
+\item $x, y\in \alpha$
+\item $x \in \alpha$かつ$y = \alpha $(およびその入れ替え)
+\item $x = y= \alpha$
+\end{enumerate}
+どの場合でも$\in$に関して全順序性がいえる.
+
+$\alpha +1$が直後順序数となること.
+もし$\alpha < \beta < \alpha +1$ならば
+$\alpha \in \beta$かつ$\beta \in \alpha \cap \{ \alpha\}$なので
+どちらの場合も$\alpha \in \beta \in \alpha$か$\alpha \in \alpha$となり正則性定理から矛盾．
+よって直後である. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.3.17, 3.3.18]
+$A \subset OR$について
+\begin{itemize}
+\item $\cap A$や$\cup A$は順序数である
+\item $\cup A$は$A$の最小上界に等しい. ここで$\beta$が$A$の最小上界を
+「任意の$a\in A$について$a \le \beta$」かつ「任意の$a\in A$について$a \le \gamma$ならば$\beta \le \gamma$」として定める
+\end{itemize}
+特に任意の順序数の集合$A$について$\cup A +1$とすればそれは$A$のどの順序数よりも真に大きい順序数である. よっていくらでも大きい順序数は作れる. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$\cap A$については$A$の最小元がそれにあたる
+$\cup A$については順序数の定義を満たすことを示せば良い.
+
+$\beta = \cup_{\alpha \in A }\alpha$とおく.
+任意の$a\in A$について$a \subset \beta$より$a \le  \beta$である.
+一方「任意の$a\in A$について$a \le \gamma$ならば」を仮定する.
+$x \in \beta$について$x \in \alpha$なので, $x \in \alpha \in A$より$x \in \gamma$となる.
+$x$任意より$\beta \subset \gamma$となり$\beta \le \gamma$となる
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$\alpha$順序数について
+\begin{enumerate}
+\item $\alpha = 0$または$\beta+1$の形になる時, 第一種順序数という, そのクラスを$Suc(\alpha)$と表す. 
+\item 第一種順序数でないものを第二種順序数または極限数という. そのクラスを$Lim(\alpha)$と表す. 
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.3.20]
+極限数$\alpha$について, 任意の$\beta < \alpha$について, ある$\gamma$で$\beta < \gamma < \alpha$となる.
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+背理法. ある$\beta < \alpha$で任意の$\gamma$で$\gamma < \alpha$ならば$\gamma \le \beta$となるなら, それは定義から$\alpha=\beta+1$を意味する. 
+\end{proof}
+
+\subsection{整列集合の性質・自然数}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.4.5]
+\label{thm-tanaka-3.4.5}
+$(A,<)$が整列集合ならばある順序数$\beta$で$A \cong \beta$となる. 
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+\xr{少々時間がないので後で埋める. 超限帰納法を用いる.}
+\end{proof}
+
+無限公理「ある集合$a$で$\varnothing \in a$かつ$x \in a$ならば$x \cup \{ x\} \in a$」
+がある.
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.5.1]
+ある集合$a$で「$\varnothing \in a$かつ$x \in a$ならば$x \cup \{ x\} \in a$」となるものを仮定する.
+この時順序数$x$で
+$x \cup \{ x\} \subset Suc$がならば$x \in a$
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+背理法. 「$x \cup \{ x\} \subset Suc$だが$x \not \in a$」なるもので最小限を$\alpha$とする.
+すると
+\begin{itemize}
+\item $\alpha \cup \{\ \alpha\} \subset Suc$
+\item $\alpha \not \in a$
+\item $x \in \alpha$について$x \cup \{ x\} \subset Suc$ならば$x \in a$
+\end{itemize}
+となる.1番目の条件から$\alpha \in Suc$なので$\alpha = \beta \cup \{ \beta\}$とかける.
+$\beta \cup \{ \beta\} \subset Suc$なので3番目から$\beta \in a$である.
+よって$a$の定義から$\alpha \in a$となり矛盾.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+上の$a$をとって
+$$
+\omega:= \{x  \in a| x \cup \{ x\} \subset Suc\}
+$$
+を自然数の集合という.
+これは上の定理から$a$の取り方によらない. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.5.4]
+\begin{itemize}
+\item $\alpha \in \omega$ならば$\alpha + 1 \in \omega$
+\item $\omega$もまた順序数
+\end{itemize}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+(1). $\alpha \in \omega$ならば
+$\alpha  \cup \{ \alpha \} \subset Suc $なので
+\begin{itemize}
+\item $\alpha  \cup \{ \alpha \}  \in Suc $ ($\alpha \in Suc$なので)
+\item $(\alpha  \cup \{ \alpha \} ) \cup \{ \alpha  \cup \{ \alpha \} \}  \subset Suc $ （$\{ \alpha  \cup \{ \alpha \} \} \subset Suc$なので)
+\end{itemize}
+よって$\alpha  \cup \{ \alpha \}  \in \omega$である. 
+
+(2). $\omega \subset Suc \subset OR$よてち全順序性はOk.
+$x \in y$かつ$y \in \omega$とする. 
+$y \in \omega$より$y \cup \{ y\}\subset Suc$なので$x \in Suc$.
+$x \subset y$のため, $x \subset Suc$.
+以上より$x \cup \{ x\} \subset Suc$となるので$x \in \omega $
+\end{proof}
+
+これにより$0 \in \omega$などなどが言える． 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.5.8]
+$\omega$ は極限数
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+$\omega \in Suc$を仮定する. 
+$\omega$の定義から$\omega \subset Suc$より
+$\omega \cup \{ \omega\} \subset Suc$である.
+よって$\omega$の定義を用いて$\omega \in \omega$である.
+これは正則性公理に矛盾. 
+\end{proof}
+
+\subsection{順序数の演算}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+$(A,<_A), (B,<_B)$を全順序集合とする.
+$A \cap B=\varnothing$について
+$(A+B,<_{A+B})$を
+\begin{itemize}
+\item $A + B := A \cup B$
+\item $x < y$ iff 「$x<_A y$」 or 「$x \in A$かつ$y \in B$」 or 「$x<_B y$」
+\end{itemize}
+として定義する.
+
+
+$(A \times B,<_{A \times B})$を
+\begin{itemize}
+\item $A  \times B := A \times  B$
+\item $(x_1, y_1) < (x_2, y_2)$ iff 
+「$y_1<_B y_2$」 or 「$y_1 = y_2$かつ$x_1<_A x_2$」
+\end{itemize}
+として定義する.
+\end{tcolorbox}
+
+$A,B$が整列集合ならば$A +B$, $A \times B$も整列集合となる. 
+\ref{thm-tanaka-3.4.5}によって
+$\alpha, \beta$が順序数ならば
+$\alpha + \beta$, $\alpha \times \beta$に対応する順序数が取れる. 
+(整列集合に一回直して考える. )
+
+\begin{exa}
+$\omega \to \omega \setminus \{ 0\}$を$x \to x+1$とすれば
+$$
+1 + \omega =\omega
+$$
+となる.
+
+$\alpha$順序数について
+$$
+\alpha + 1
+\cong 
+(\alpha \cup \{ 1\}, <_{\alpha} + <_1)
+\cong
+\alpha \cup\{ \alpha\}
+$$
+となる. 
+特に$\alpha + 1 \neq \alpha$.
+よって和の交換法則は成り立たない. 
+
+ほか$\omega + \omega = \omega 2$や$2 \omega = \omega$など. 
+\end{exa}
+
+
+\begin{rem}
+順序数の演算については超限帰納法でも定義できる. 
+
+(1). $\alpha + \beta$について
+\begin{itemize}
+\item $\alpha + 0 = \alpha$
+\item $\alpha + (\beta+1) = (\alpha + \beta)+1$ $\beta \in Suc$のとき
+\item $\alpha + \beta = \sup\{ \alpha +\lambda | \lambda<\beta\}$
+　$\beta \not \in Suc$のとき
+\end{itemize}
+
+(2). $\alpha \beta$について
+\begin{itemize}
+\item $\alpha  0 = \alpha$
+\item $\alpha (\beta+1) = \alpha \beta)+\alpha$ $\beta \in Suc$のとき
+\item $\alpha + \beta = \sup\{ \alpha \lambda | \lambda<\beta\}$　$\beta \not \in Suc$のとき
+\end{itemize}
+\end{rem}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$\alpha, \beta$順序数の時$\alpha^{\beta}$を次のように定義する. 
+
+(1)
+$\lambda < \beta$について$\alpha_{\lambda}=\alpha$とおいて
+$$
+\prod_{\lambda <\beta}\alpha_{\lambda}
+:=
+\{ f : \beta \to \cup\{ a_{\lambda}
+|\lambda < \beta \text{and} f(\lambda) \in a_{\lambda}
+\}
+$$
+とし, その部分集合$U \subset \prod_{\lambda <\beta}\alpha_{\lambda}$で
+$$
+U
+=
+\{ f \in \prod_{\lambda <\beta}\alpha_{\lambda} | \text{$f$は有限個を除いて0}\}
+$$
+とする.
+$f,g \in U$について$f < g$を「$f \neq g$かつ
+$f(\xi) \neq g(\xi)$となる最大の$xi$について$f(\xi) < g(\xi)$」で定義する
+
+
+(2)超限帰納法の定義
+\begin{itemize}
+\item $\alpha^0 = 1$
+\item $\alpha^(\beta+1) = (\alpha^\beta)\alpha$ $\beta \in Suc$のとき
+\item $\alpha + \beta = \sup\{ \alpha^\lambda | \lambda<\beta\}$　$\beta \not \in Suc$のとき
+\end{itemize}
+\end{dfn}
+として定義する. 
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.10.5]
+順序数の演算法則
+\begin{itemize}
+\item $(\alpha + \beta) + \gamma = \alpha + (\beta + \gamma)$
+\item $(\alpha \beta)  \gamma = \alpha (\beta  \gamma)$
+\item $\alpha (\beta + \gamma)= (\alpha + \beta)  \gamma$
+\item $0 + \alpha = \alpha + 0 =\alpha$
+\item $\alpha 1 = 1\alpha = \alpha$
+\item $0  \alpha = \alpha  0 =0$
+\item $\alpha  + \beta = \alpha + \gamma$は$\beta= \gamma$に同値
+\item $\alpha  \beta = \alpha \gamma$は$\beta= \gamma$に同値 ($\alpha$>0)
+\item $\alpha^\beta = \alpha^\gamma$は$\beta= \gamma$に同値 ($\alpha$>1)
+\item $\alpha^{\beta\gamma} = \alpha^\beta  \alpha^\gamma$
+\item  $(\alpha^{\beta})^{\gamma} = \alpha^{\beta \gamma}$
+\item $\alpha  + \beta < \alpha + \gamma$は$\beta <\gamma$に同値
+\item $\alpha  + \gamma < \beta + \gamma$は$\alpha <\beta$に同値
+\item $\alpha <\beta$ならば$\alpha  + \gamma \le \beta + \gamma$
+\item $\alpha <\beta$ならば$\alpha  \gamma \le \beta \gamma$
+\item $\alpha <\beta$ならば$\alpha^\gamma \le \beta^\gamma$
+\item $\alpha^\beta< \alpha^\gamma$は$\beta<\gamma$に同値($\alpha$>1)
+\item $\alpha^\gamma< \beta^\gamma$は$\alpha<\beta$に同値
+\item $\beta \le 1$なら$\alpha^\beta \le \beta$
+\end{itemize}
+\end{thm}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.12.1]
+任意の順序数$\alpha, \beta$について$\beta>0$とするとき
+$$
+\alpha = \beta \gamma + \delta
+$$
+となる$\delta < \beta$と$\gamma \le \alpha$が存在する　．
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$\beta(\alpha + 1) > \alpha$なので
+$\alpha$は
+$(\beta \times (\alpha+1), <_{\in})$という順序集合のある始切片に等しい.
+それは$\gamma < \alpha + 1$と$\delta < \beta$を用いて
+$\beta \gamma + \delta$と表せれる. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理3.12.2]
+順序数$\alpha$で$\alpha>1$を仮定する．
+この時任意の順序数$\gamma >0$は
+$$
+\gamma = \alpha^{\beta_0}\alpha_{0} +  \alpha^{\beta_1}\alpha_{1} +\cdots \alpha^{\beta_n}\alpha_{n}
+$$
+となる$0 < \alpha_i < \alpha$と$\gamma \ge \beta_{0}>\beta_1>\cdots \beta_{n} \ge 0$が唯一に存在する． 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+"sketch" $\alpha^{\gamma}\ge \gamma$である. "$=$だったらこれで終わる. "
+そうでないなら$\alpha^{\nu} > \gamma$となる最小の順序数をとる. すると$\nu \in Suc$となる.
+よって$\nu = \beta_0 +1$となり
+$\alpha^{\beta_0} \le \gamma < \alpha^{\beta_0 +1}$となるので
+割り算を行うと
+$$
+\gamma = \alpha^{\beta_0} +  \eta_{0}
+$$
+とできる. これを繰り返せば良い. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[カントールの標準形]
+任意の順序数は
+$$
+\gamma = 
+\omega^{\beta_0}m_{0} +  \omega^{\beta_1}m_{1} +\cdots \omega^{\beta_n}m_{n}
+$$
+となる$m_i \in \N_{>0}$と$\gamma \ge \beta_{0}>\beta_1>\cdots \beta_{n} \ge 0$と唯一に表せられる. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[ユプシロン数]
+$\omega^{(n+1)}:=\omega^{\omega^{(n)}}$かつ$\omega^{1}=\omega$とする
+$$
+\epsilon_0 := \sup{ \omega^{n} | n \in \omega|}
+$$
+を最初のユプシロン数という. 
+\end{dfn}
+ユプシロン数は$\epsilon_0 = \omega^{\epsilon_0 }$を満たす. 
+\end{tcolorbox}
+
+\subsection{基数}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[整列可能定理]
+(選択公理を認めれば)任意の集合は整列可能である. 
+よって任意の集合は整列可能な順序構造をもち, それはある順序数と同型となる
+\end{thm}
+\end{tcolorbox}
+
+集合$A,B$について$A\sim B$を$A$から$B$への全単射が存在することで定義する. 
+$A\sim B$を$A$と$B$は同等という.
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[濃度・基数]
+\begin{itemize}
+\item 集合$A$についてその濃度を, $A$と同等な順序数のうち最小のものとする. つまり順序数$\alpha$で$A \sim \alpha$となるののの最小なものである
+\item 集合$A$の濃度を$|A|$として定義する. 定義から「$|A| \sim A$」かつ「任意の順序数$\beta$で$\beta \sim A$ならば$\beta \ge |A|$である. 」
+\item 集合の濃度を基数という. つまり順序数$\alpha$が基数であるとは, $\alpha = |A|$となる集合が存在することとする. 基数全体のクラスをCardと表す.
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+
+まず集合の濃度は一通りにきまる. 存在性は整列可能定理から. 唯一性は最小性から. $Card \subset OR$である. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理4.1.7]
+\begin{enumerate}
+\item $\kappa \in Card$ かつ$\alpha < \kappa$ならば$\alpha \not \sim \kappa$
+\item $x \in Card$ iff $x = |x|$
+\item $x \sim y$ iff $|x| = |y|$
+\item $\alpha$順序数ならば$|\alpha| \le \alpha$
+\item $x \subset y$なら$|x| \le |y|$
+\item $x \to y$ なる単射がある iff $|x| \le |y|$
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+(1). $\kappa = |A|$なる集合$A$があり, $\alpha  \sim \kappa$となるなら, 濃度の定義から$\alpha \ge |A| = \kappa$となり矛盾する.
+
+(2). $\Rightarrow$のみ示せば良い. 
+濃度の定義から$|x| \le x$である. 
+$x$は基数なのである集合$A$があって$x=|A|$となる. 
+基数の定義から「$x \sim A$」かつ「任意の順序数$\beta$で$\beta \sim A$ならば$\beta \ge x$」
+今$|x|\sim x$(基数の定義)かつ$x \sim A$であるので$|x| \sim A$であるので$|x| \ge x$である. 
+
+(3) $\Rightarrow$のみ示せば良い. 
+$x \sim y \sim |y|$より(2)と同様に基数の定義から$|y|\ge |x|$である. よって言えた/ 
+
+(4) (2)に同じ
+
+(5)  $\Rightarrow$ $y \sim |y|$より$x \sim z \subset |y|$なる集合$z$がある. 
+$z \subset |y|$なので, $(z, \in)$は整列集合であり, これよりある順序数で$f: \alpha \cong z$なるものが存在する. これより
+\begin{itemize}
+\item $|x| \le \alpha$. なぜなら$x \sim z$と最小性より.
+\item $\alpha \le |y|$. なぜなら$\beta \in \alpha$について$\beta \le f(\beta) \in z \subset y$であるので$\alpha \subset y$より$\alpha \le y$.
+\end{itemize}
+よって言えた. 
+
+(6)$\Rightarrow$は(5)より. 
+$\Leftarrow$は$x \sim |x| \subset |y| \sim y$より. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理4.1.8. 4.1.9.4.1.10]
+$\omega \in Card$
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+まず「任意の$n \in \omega$と任意の順序数$\beta$について$n \sim \beta$ならば$n=\beta$」を示す.(要は要素の個数が自然数を意味する．)
+数学的帰納法.$n=0$の時は空集合より良い. 
+$n+1\sim \gamma$とする. 
+$\gamma \ge \omega$なら$n+1 \sim \gamma +1$より$n\sim \gamma$となり$n=\gamma \ge \omega$となって矛盾．
+$\gamma <\omega$としてよく, $\gamma = \beta +1$となる. 
+$n+1 \sim \gamma +1$より$n\sim \beta$となり$n=\beta$となってok.
+
+$|\omega| \le \omega$は自明
+$|\omega| < \omega$ならば
+$|\omega| \sim \omega$かつ $|\omega| \in \omega$である.
+よって$|\omega| =\omega$で矛盾する. 
+よって$|\omega| =\omega$となる. 
+\end{proof}
+
+$A$集合に関して$|A| < |P(A)|$よりいくらでも大きい基数が作れる. また上の証明から$n=|n|$もいえる. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[有限基数・無限基数]
+\begin{itemize}
+\item $\omega$の要素を有限基数という.
+\item 有限基数でない基数を無限基数という. そのクラスをIncardで表す
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}
+$Incard \cong OR$
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+固有クラスで整列ならばORと同型であるので. (ここも超限帰納法の定理になる. )
+\end{proof}
+よって
+$F : OR \to Incard$となる同型射が存在する.
+$F_{0}= \omega$である. 
+$a \in OR$について$\aleph_{a}:=F(a)$とする. 
+$$
+\aleph_0 = \omega < \aleph_1 <\aleph_2 < \cdots < \aleph_{\omega}<\aleph_{\omega+1}<\cdots
+$$
+と続いていく. 
+$\aleph_1 $は非加算な最小の順序数と言える. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[ベキ基数]
+$$
+2^{\aleph_\alpha} := |P(\aleph_\alpha)|
+$$
+として定義する. 特に$|P(\omega)|=2^\aleph_0 $である. 
+\end{dfn}
+\end{tcolorbox}
+
+連続体仮説が言っていることは「$2^\aleph_0 = \aleph_1 $は肯定も否定もできないということである. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[基数の演算]
+$\kappa, \nu$を基数とし, $\kappa = |A|, \nu=|B|$となる集合をとる. 
+\begin{itemize}
+\item $\kappa + \nu := |A \cup B|$ ただし$A \cap B=\varnothing$となるようにとる
+\item $\kappa \nu := |A \times B|$
+\item $\kappa^{\nu} := |A^B|=|\{ f : B \to A\}|$
+\end{itemize}
+これは$A,B$の取り方によらない. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理4.1.7]
+\begin{enumerate}
+\item $\kappa + \lambda = \lambda + \kappa$, $\kappa \lambda = \lambda \kappa$
+\item $(\kappa + \lambda) +\nu  = \kappa  + (\lambda + \nu)$, $(\kappa \lambda)\nu  = \kappa(\lambda   \nu)$
+\item $\kappa  (\lambda + \nu) = \kappa  \lambda + \kappa \nu$
+\item $\kappa^{\lambda + \nu} = \kappa ^\lambda  \kappa^\nu$, 
+\item $(\kappa\lambda)^\nu = \kappa ^\nu  \lambda^\nu$, 
+\item $(\kappa^\lambda)^\nu = \kappa ^{ \lambda \nu}$, 
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+証明は集合の積などに帰着できることから. 
+
+また基数$\kappa$について$P(\kappa) \sim 2^{\kappa}$となる. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+$\kappa$無限基数ならば
+$\kappa\kappa = \kappa$
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+$\alpha \ge \omega$なる順序数について$\alpha \times \alpha \sim \alpha$を示せば良い.
+実際$\kappa$無限基数ならば
+$\kappa \times \kappa \sim \kappa$で$|\kappa \times \kappa|=\kappa\kappa$(定義)であるので$\kappa\kappa = \kappa$
+
+さて上が成り立たない最小の順序数を$\alpha$とする.
+$\alpha \neq \omega$である.
+$\alpha$が基数でなければ$|\alpha| < \alpha$なので$|\alpha| \sim \alpha$
+となるが$\alpha$の最小性より
+$$
+\alpha \times \alpha \sim |\alpha|\times |\alpha| \sim |\alpha|\sim \alpha
+$$
+で矛盾する.
+よって$\alpha$は基数として良い. 
+
+$\gamma \cong \alpha \times \alpha$なる順序数を考える. 
+$$
+\alpha =|\alpha| < |\alpha \times \alpha | = |\gamma| \le \gamma
+$$である. 
+よって$f: \alpha \cong Seg(\xi,\eta)_{\alpha \times \alpha}$となる$(\xi,\eta) \in \alpha \times \alpha $がある. 
+$\delta = (\xi+\eta) +1$とおくと$\delta<\alpha$かつ$f(\alpha) \subset \delta \times \delta $である. $\delta < \alpha$なので$\delta \times \delta \sim \delta$であるので, 
+$\alpha =|\alpha| \le \delta$で矛盾する. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理4.4.6]
+以下基数に関して次が成り立つ. 
+\begin{enumerate}
+\item $\kappa \le \lambda$ならば$\kappa +\nu\le \lambda+\nu$
+\item $\kappa \le \lambda$, $\mu \le \nu $ならば$\kappa +\mu \le \lambda+\nu$
+\item $\kappa \le \lambda$ならば$\kappa \nu\le \lambda\nu$
+\item $\kappa \le \lambda$, $\mu \le \nu $ならば$\kappa \mu \le \lambda\nu$
+\item $\kappa \le \lambda$ならば$\kappa^\nu\le \lambda^\nu$, $\mu^\kappa \le \mu^\lambda$
+\item $\kappa \le \lambda$, $\mu \le \nu $ならば$\kappa^\mu \le \lambda^\nu$
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[定理4.4.7]
+$\kappa$, $\lambda$を基数.
+どちらか一方は無限基数とする. 
+$$
+\kappa + \lambda
+=
+\kappa \lambda
+=
+\max\{ \kappa , \lambda\}
+$$
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+$0 < \lambda\le\kappa$かつ$\kappa$無限基数とすると
+\begin{itemize}
+\item $\kappa \le \kappa + \lambda \le \kappa+\kappa = \kappa2 \le \kappa\kappa=\kappa$
+\item $\kappa \le \kappa\lambda \le\kappa\kappa=\kappa$
+\end{itemize}
+よりいえた. 
+\end{proof}
+
+\subsection{正則基数と強極限基数}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[定義4.5.1]
+全順序集合$(A,<)$とする. $B \subset A$が共終部分集合であるとは
+任意の$a \in A$についてある$b \in B$が存在して$a\le b$が成り立つこと.
+
+順序数(基数)$\alpha, \beta$について$\beta$が$\alpha$と共終とは
+$A \subset \alpha$なる共終部分集合で$(A, \in) \cong (\beta, \in)$となること
+\end{dfn}
+\end{tcolorbox}
+
+%$\beta$が$\alpha$と共終である必要十分条件は$f : \beta \to \alpha$で$\alpha = \cup_{x \in\beta} f(x)$
+\begin{exa}
+$$
+A = \{ \alpha \in  \omega | \alpha = \beta + \beta\text{とかける}\}
+=\{ \text{偶数の集合}\}
+$$
+は$(\omega, <)$において共終である. 
+\end{exa}
+
+\begin{exa}
+$\aleph_0 = \omega$は$\aleph_{\omega}$と共終
+これは
+$$
+A = \{\aleph_i | i \in \omega \}
+$$
+とおけば良い 
+\end{exa}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[定義4.5.2]
+順序数$\alpha$と共終な最小の順序数を共終数といい$cf(\alpha)$と表す. 
+\end{dfn}
+\end{tcolorbox}
+$cf(\alpha)\le \alpha$である. 
+
+\begin{rem}
+定義から「任意の順序数$\beta$について, $A \subset \alpha$なる共終部分集合で$\beta \cong A$
+ならば$cf(\alpha) \le \beta$」である. 
+
+実はもっと強く「$A \subset \alpha$なる共終部分集合ならば$cf(\alpha) \le |A|$である.」
+なぜならば$(A, \in)$は整列集合であるので, $(\beta, \in) \cong (A, \in)$となる順序数$(\beta, \in)$が存在する.
+よって$cf(\alpha) \le \beta$である.
+これより$cf(\alpha)\to A$という単車が作れるので, $|cf(\alpha)| \le |A|$ . $cf(\alpha)$は基数なので
+$cf(\alpha) = |cf(\alpha)| \le |A|$
+\end{rem}
+
+\begin{exa}
+$cf(\omega) = \omega$.
+これは$cf(\omega) < \omega$ならばある自然数$n$で$n \to A$で$A \subset \omega$なる共終部分集合がある. しかしこれはmaxに+1したものを取れてしまい矛盾.
+
+$cf(\omega +1) = 1$. $\omega +1$の最大元を$x$として
+$cf(\alpha) \le 1$は$1 \to \{ x\}$とすれば良い. 0はあり得ないので,これでいえた
+
+$cf(\omega +\omega)=\omega$
+これは$A = \{ \omega +i\}$が共終部分集合になる. 
+
+$cf(\aleph_1)=\aleph_1$である
+\end{exa}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+順序数$\alpha$について$cf(\alpha)$は基数
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$\beta < cf(\alpha)$ならば$\beta \not \sim cf(\alpha)$を示す.
+
+背理法. もし存在するとすると$\beta \sim cf(\alpha)$より
+$f : \beta \to \alpha$なる単射で$f(\beta)$が$\alpha$の共終部分集合となる. 
+$$
+V= \{ x \in \beta| \gamma \le x \text{なる$\gamma$について} f(\gamma) \le f(x)\}
+$$
+とおく. 
+
+$f(V)$が$\alpha$の共終部分集合であることを示せれば, $cf(\alpha) \le \text{$V$と同型な順序数} \le \beta < cf(\alpha)$となり矛盾する.
+これは簡単で, $y \in \alpha$について
+$y \le f(x)$となる最小の$x \in \beta$をとると, $\gamma < x $について
+$f\gamma \le y < \le f(x) $となる. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[定義4.5.4]
+順序数$\alpha$について
+\begin{enumerate}
+\item $cf(\alpha) = \alpha$なる順序数を正則基数という.(上の定理より基数である)
+\item 正則でない基数を特異基数であるという. 
+\item 正則かつ極限数なる基数を弱到達不能基数という
+\item 基数$\kappa$で「任意の$\nu < \kappa$なる基数について$2^{\nu}<\kappa$」が成り立つ時, $\kappa$を強極限基数という. 
+\item $\aleph_0$より大きい強極限正則基数を強到達不能基数という. 
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+正則基数$\alpha$の同値な言い換えとして「部分集合$C \subset \alpha$が非有界ならば$|C| = \alpha$」とも言える.
+
+\begin{exa}
+\begin{enumerate}
+\item $\omega$や$\aleph_1$は正則基数である. よって弱到達不能基数.
+\item $\aleph_{\omega}$は特異基数である. 
+\item $cf(cf(\alpha))= cf(\alpha)$である. 
+\item $\aleph_0$は強極限基数. 
+\end{enumerate}
+\end{exa}
+
+\begin{thm}
+\begin{enumerate}
+\item 強到達不能基数ならば弱到達不能基数. 逆は一般連続体仮説を仮定すれば成り立つ
+\item 強到達不能基数の存在はZFCでは証明することはできない. 
+\end{enumerate}
+\end{thm}
+
+順序数$\alpha$について
+
+\begin{itemize}
+\item $\beth_0 = \aleph_0$
+\item $\beth_{\alpha+1}= 2^{\beth_{\alpha}}$
+\item $\beth_{\alpha}= \cup_{\beta < \alpha }2^{\beth_{\beta}}$ $\alpha$が極限数の時
+\end{itemize}
+と定義する
+$\beth_{\omega}$は強極限的である. 
+
+
+%\begin{rem}Lurieの$\infty$toposの本を見る限り, 「強到達不能基数」の存在は結構仮定するようである. \end{rem}
+
+
+\subsection{正則基数の性質}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}
+\label{prop-regular-cardinal}
+$\alpha$が正則ならば, $| I | <  \alpha, |S_i| < \alpha$について
+$ S = \cup_{i \in I}S_i$として$|S| < \alpha$
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$\mu := \sup |S_{i}|$とする.
+$\mu < \alpha$である.
+(もし$\mu \ge \alpha$ならば$I \to \alpha$で共終となるような写像が作れてしまうから)
+よって
+$$
+|S| =
+ |\cup_{i \in I}S_i |
+ \le 
+ | I | \cdot {\mu}
+= \max {|I|, \mu}
+< \alpha
+$$
+となり言えた. 
+\end{proof}
+
+
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[000E 3.7 Cofinality]{Sta}
+\label{lem-cofinal}
+$\kappa$を無限基数とする
+\begin{enumerate}
+\item $\kappa < cf(\alpha)$となる基数$\alpha$が存在する.
+\item $\kappa < cf(\alpha)$となる強極限基数が存在する.
+\end{enumerate}
+\end{lem}
+ \end{tcolorbox}
+ 
+\begin{proof}
+(1). $\alpha$を$|\alpha|>\kappa$となる順序数の中で一番小さいものとする.
+$\alpha$は極限数である. もしそうでなければ$\alpha = \beta +1$かつ$|\alpha|=|\beta|$となって最小性に矛盾するため.
+
+$cf(\alpha) \le \kappa$であるとする.この時$S \subset \alpha$で共終なもので$|S| \le \kappa$となるものが存在する.
+ここで$\beta \in S \subset \alpha$について$\beta < \alpha$より最小性から$|\beta| \le \kappa$
+よって$S$の共終性から
+$$
+|\alpha|
+=
+|\cup_{\beta \in S}\beta|
+\le 
+|S| |\beta|
+\le
+\kappa \kappa
+$$ 
+となるが, これは$\alpha$の取り方に矛盾する.
+
+また$\alpha$は基数となる. 
+なぜなら$\alpha\ge |\alpha| = || \alpha||$であるので$\alpha$の最小性より$\alpha =|\alpha| $となる. 
+
+(2)
+$\kappa < cf(\beta)$なる基数$\beta$をとり$\alpha = \beth_{\beta}$をとる.
+$cf(\beta) \le cf(\alpha )$を示せば良い.
+$J \subset \beth_{\beta}$なる共終集合について, $f: J \to \beta$を$j \in J$について$f(j)$を$j \in 2^{\gamma}$となる最小の$\gamma < \beta$と定義すれば, $J$は$\beta$の共終集合になる. 
+よって$cf(\beta) \le cf(\alpha )$となる. 
+
+\end{proof}
+
+\subsection{ユニバース}
+以下は[C. Barwick P.Haine Pyknoticobjects, I. Basic notions Subsection 1.2]の部分を参考にした. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[grothendieck Universe]
+$U$を集合とする. $U$がグロタンディーク宇宙とは次の4つが成り立つこと
+\begin{enumerate}
+\item $u \in U$かつ$t \in u$ならば$t \in U$
+\item $u \in U$ならば$P(u) \in U$
+\item $\varnothing \in U$
+\item $I \in U$かつ$u : I \to U$について$\cup_{i \in I} u_i \in U$
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}[SGA $4_1$ Expose I, Appendix]
+\begin{itemize}
+\item $\delta$が強到達不能基数とするとき, 
+$V_{\delta} := \{ V set |  |V| < \delta\}$
+はグロタンディーク宇宙となる.
+\item $V$がグロタンディーク宇宙で無限基数を含むならば, $V = V_{\delta}$となる強到達不能基数が存在する.
+\end{itemize}
+\end{prop}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[Axiom of Universe]
+以下の同値な公理を"Axiom of Universe"という
+\begin{enumerate}
+\item 任意の集合$x$についてそれを含むグロタンディーク宇宙$U$が存在する
+\item 任意の基数$\kappa$について強到達不能基数$\lambda$で$\kappa < \lambda$となるものが存在する. 
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+Axiom of UniverseはZFCで証明することはできない.
+
+グロタンディーク宇宙のいいところは$U$は集合なので, $U$の中で操作が容易にできることである.
+実際マックレーンでは$\omega$を含む宇宙を一つ固定し, $A \in U$なる集合を"小さい集合", クラスを$U$の部分集合としている. (これは公理的集合論(というかフォン・ノイマン＝ベルナイス＝ゲーデル集合論?)におけるクラスではない)
+これにより小さい集合からなる圏は小さくない. 
+
+\subsection{集合論のヒエラルキー}
+
+もう一つの宇宙としてフォン・ノイマン宇宙がある
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[Von Neumann Universe]
+順序数$\alpha$について$V_{\alpha}$を次で定義する
+\begin{itemize}
+\item $V_{0} = \varnothing$ 
+\item $V_{\alpha+1}:=P(V_{\alpha})$
+\item $V_{\alpha}= \cup_{\beta < \alpha} V_{\beta}$
+\end{itemize}
+そして
+$$
+V := \cup_{\alpha} V_{\alpha}
+$$
+をフォン・ノイマン宇宙という.
+\end{dfn}
+\end{tcolorbox}
+これは"クラス"というものになる. 
+
+%\begin{rem}
+%condensed setをグロタンディーク宇宙を用いて定義するか, colimを用いて定義するかは人によるらしい.
+%やはり集合論的なやばいところがここに来るのだろうか...(Lurieでもここは議論されている.)
+%\end{rem}
+
+
+
+\chapter{圏論}
+以下は\cite{Mac}から引用した.
+今回の内容で使われる道具は揃っていると思う. 
+
+\subsection{圏}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[メタ圏]
+集合論を使わない公理による圏論の基礎
+\begin{itemize}
+\item メタグラフは対象(object)$a,b,c,\ldots, $と射(arrow)$f,g,h,\ldots, $の組みで次を満たす.
+\begin{enumerate}
+\item ドメイン 射$f$について$a = dom(f)$を割り当てる
+\item コドメイン 射$f$について$n = cod(f)$を割り当てる
+\item $f : a \to b$とかく
+\end{enumerate}
+\item  メタ圏とはさらに二つの演算を持つメタグラフである.
+\begin{enumerate}
+\item 恒等射 $id_a : a \to a$を割り当てる.
+\item $cod f = dom g$ならば$g \circ f : dom(f) \to cod(g)$という合成射が割り当てられる.
+\end{enumerate}
+そしてこれらは次の演算の公理を満たす.
+\begin{enumerate}
+\item $h\circ (g \circ f) = (h\circ g) \circ f$
+\item $1_{b} \circ f = f, g \circ id_{b} = g$
+\end{enumerate}
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[圏]
+\begin{itemize}
+\item 有向グラフとは対象の集合$O$と射の集合$A$について, $A \rightrightarrows O$を上はdomをとることで, 下はcodをとることで定義する.
+$$
+A \times_{O} A := \{ (g,f) \in A \times A| dom g = cod f
+\}
+$$
+を合成可能な射の集合となる.
+\item 圏とはグラフに
+\begin{enumerate}
+\item 恒等射$O \to A, c \mapsto id_c$
+\item 合成射$ \circ : A \times_{O} A \to A, (g,f) \mapsto g \circ f$
+\end{enumerate}
+があって
+$$dom(id_a) = a = cod (id_a) \quad 
+dom(g \circ f ) = dom (f) \quad cod (g \circ f ) = cod (g), 
+$$
+となるものである.
+\item 圏$\mathcal{C}$とし, $b,c \text{ in } Ob(\mathcal{C})$についてhom集合を次で定める.
+$$
+hom(b,c) := \{ f | f \text{ in } Mor(\mathcal{C}), dom (f) = b, cod (f) = c\}
+$$
+\end{itemize}
+\end{dfn}
+ \end{tcolorbox}
+ 
+
+\subsection{関手・自然変換}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[関手]
+圏$\mathcal{B}, \mathcal{C}$について$T : \mathcal{B} \to\mathcal{C}$が関手であるとは
+\begin{itemize}
+\item $c \in Ob(\mathcal{B})$について$Tc \in Ob(\mathcal{C})$
+\item $f : b \to b'$について$Tf : Tb \to Tb'$.
+\item $T(1_{c}) = 1_{Tc}$ for any $c \in Ob(\mathcal{C})$
+\item $T(g \circ f) = T(g) \circ T(f)$ for any $f,g \in Mor(\mathcal{C})$
+\end{itemize}
+を満たすものである.
+\end{dfn}
+\end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$T : \mathcal{B} \to\mathcal{C}$ 関手において次を定義する
+\begin{itemize}
+\item $T$が同型であるとは$S : \mathcal{C} \to \mathcal{B}$で, $T \circ S$や$S \circ T$が恒等関手なること. 
+恒等関手$1_{\mathcal{C}} : \mathcal{C} \to \mathcal{C}$を$c \mapsto c$とする関手である($f$も同様)
+\item $T$が充満(full)とは任意の$b, b'$と$g \in hom(Tb, Tb')$についてある$f \in hom(b,b')$があって, $Tf =g$なること. つまり任意の$b, b'$について
+$$
+hom(b,b')
+\overset{T}{\longrightarrow}
+hom(Tb, Tb')
+$$
+が全射となること
+\item $T$が忠実(faithfull)とは, 任意の$b, b'$について
+$$
+hom(b,b')
+\overset{T}{\longrightarrow}
+hom(Tb, Tb')
+$$
+が単射となること
+\item $T$が忠実充満(fullyfaithfull)とは, 任意の$b, b'$について
+$$
+hom(b,b')
+\overset{T}{\longrightarrow}
+hom(Tb, Tb')
+$$
+が全単射となること
+\end{itemize}
+\end{dfn}
+ \end{tcolorbox}
+
+忠実充満(fullyfaithfull)でも同型とは限らない. なぜなら$\mathcal{B}$に$\mathcal{C}$からこないObjectが存在するかもしれないからである. 
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[自然変換]
+$S, T :  \mathcal{C} \to \mathcal{B}$ 関手において
+$\tau : S \to T$が自然変換とは, 任意の$c \in Ob(\mathcal{C})$について$\tau_c : Sc \to Tc$を割り当てる関数で, 次の図式を満たすものである.
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+c\ar@{->}[d]_{f}&Sc\ar@{->}[d]_{Sf}  \ar@{->}[r]^{\tau c} & Tc\ar@{->}[d]^{Tf} \\
+c'&Sc'\ar@{->}[r]_{\tau c'} & Tc'\\   
+}
+\end{equation*}
+これが成り立つ時$\tau_c : Sc \to Tc$は$c$において自然であるという. 
+
+任意の$c \in Ob(\mathcal{C})$で$\tau c$が可逆であるとき$\tau$は自然同型という. 
+\end{dfn}
+ \end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$f : a \to b$を射とする
+\begin{itemize}
+\item $f$が可逆とは$f' : b \to a$となる逆射が存在すること.この時$a,b$は同型といい$a \cong b$とかく.
+\item $f$がモニック(左簡約可能)とは「$f \circ g_1 = f \circ g_2$ならば$g_1 =g_2$」が成り立つこと.
+\item $f$がエピ(右簡約可能)とは「$g_1 \circ f  = g_2 \circ f $ならば$g_1 =g_2$」が成り立つこと.
+\item $g \circ f = id_{a}$である時, $g$を分裂エピ, $f$を分裂モニックという. 
+\item $t \in Ob(\mathcal{C})$は終対象とは任意の$a \in Ob(\mathcal{C})$について$a \to t$がただ一つ存在すること.
+\item $s \in Ob(\mathcal{C})$は始対象とは任意の$a \in Ob(\mathcal{C})$について$s\to a$がただ一つ存在すること.
+\item $0 \in Ob(\mathcal{C})$はヌル対象とは始対象かつ終対象なること. 
+\end{itemize}
+\end{dfn}
+ \end{tcolorbox}
+
+\begin{exa}
+Groupoidを全ての射が可逆な圏とする
+\end{exa}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$\mathcal{C}$を圏とする.
+$\omega$を含むGrothendieck宇宙$U$を定義を一つ固定する.  
+\begin{itemize}
+\item $\mathcal{C}$がsmallとは$Ob(\mathcal{C}), Mor(\mathcal{C})$が共に$U$の元となること
+\item $\mathcal{C}$がlocally smallとは任意の$c, c'$について$hom(c,c')$が$U$の元となること
+\item $\mathcal{C}$がlargeとはsmallでないこと. 
+\end{itemize}
+\end{dfn}
+\end{tcolorbox}
+\begin{rem}
+%\cite{Mac}の定義とは違うことに注意. 
+$V \in U$なる集合を"小さい集合", $V \subset U$なる集合を"クラス", それ以外の集合を大きい集合と呼んでいた. 
+なおGrothendieck宇宙は集合であり, 存在はZFCでは証明できない.(強到達基数の存在と同値なので,)
+\end{rem}
+
+\subsection{普遍性}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$S : \mathcal{D} \to \mathcal{C}$関手, $c \in Ob(\mathcal{C})$とする.
+$c$から$S$への普遍射とは$r \in Ob(\mathcal{D})$と $u: c \to Sr$の組み$(r,u) \in Ob(\mathcal{D})\times hom_{\mathcal{C}}(c, S_r)$であって次の普遍性を満たすものである.
+
+「任意の$d \in Ob(\mathcal{D})$と　$f : c\to Sd$について, ある唯一な写像$f' : r \to d \in hom_{\mathcal{D}}(r,d)$があって, $Sf' \circ u =f$」となる.
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+&c\ar@{=}[d]  \ar@{->}[r]^{u} & Sr\ar@{-->}[d]^{Sf'} &r\ar@{->}[d]_{f'}\\
+&c\ar@{->}[r]_{f} &Sd&d \\   
+}
+\end{equation*}
+\end{dfn}
+つまり$c \to Sd$なる射は$Sf' \circ u$の形に限り, この$f'$はただ一つに定まる. 
+ \end{tcolorbox}
+
+
+\begin{exa}
+完備化, 商体, 集合から自由群を作る操作などなど
+\end{exa}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}
+\label{prop-yoneda-universe}
+$S : \mathcal{D} \to \mathcal{C}$関手, $c \in Ob(\mathcal{C})$とする.
+$r \in Ob(\mathcal{D})$と $u: c \to Sr$の組み$(r,u) \in Ob(\mathcal{D})\times hom_{\mathcal{C}}(c, Sr)$
+を考える.
+$(r,u: c\to Sr)$が普遍射であることは, 
+$$
+S : hom_{\mathcal{D}}(r,d) \to hom_{\mathcal{D}}(c, Sd), f \mapsto Sf \circ u
+$$
+が任意の$d \in Ob(\mathcal{D})$について全単射になることと同値である. 
+
+そしてこの全単射は$d$において自然である.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+\underline{ $\Rightarrow$ の証明}
+"ある唯一な写像があって..."のところにより全単射は明らか.
+「$d$において自然である」については$g : d \to d'$, $f \in hom_{\mathcal{D}}(r,d) $について
+$Sg \circ(Sf \circ u) = S(g \circ f) \circ u$を示せば良い. がこれは関手性から明らかとなる. 
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+d\ar@{->}[d]_{g}
+&hom_{\mathcal{D}}(r,d) \ar@{->}[d]_{g}  \ar@{->}[r]^{S(\cdot)\circ u}
+ & hom_{\mathcal{C}}(c, Sd) \ar@{->}[d]^{Sg} \\
+d' 
+&hom_{\mathcal{D}}(r,d') \ar@{->}[r]_{S(\cdot)\circ u} 
+& hom_{\mathcal{C}}(c, Sd')\\   
+}
+\end{equation*}
+
+\underline{$\Leftarrow$  の証明}
+
+$\varphi_{r} : hom_{\mathcal{D}}(r,r) \to hom_{\mathcal{D}}(c, Sr)$なる同型によって$id_r \mapsto \varphi_r(id_r)$を得る. $u=\varphi_r(id_r)$である. 
+$d \in Ob(\mathcal{D})$と　$f : c\to Sd$をとる.
+$f' : r \to d$で$Sf' \circ u =f$となるものの存在を示す.
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+r\ar@{->}[d]^{\varphi_{d}^{-1}(f) }&
+hom_{\mathcal{D}}(r,r) \ar@{->}[d]^{\varphi_{d}^{-1}(f) \circ }  \ar@{->}[r]^{\varphi_{r} }
+ & hom_{\mathcal{C}}(c, Sr) \ar@{->}[d]\\
+ d &
+hom_{\mathcal{D}}(r,d) \ar@{->}[r]_{\varphi_{d} }
+& hom_{\mathcal{C}}(c, Sd)\\   
+}
+\end{equation*}
+%あとは詰将棋みたいな議論である. 
+$\varphi_{d}^{-1}(f) : r \to d$をとる. (これが$f'$である.)
+よって以下の等式を得る.
+$$
+f =  \varphi_{d}(\varphi_{d}^{-1}(f) \circ id_{r})
+= S(\varphi_{d}^{-1}(f)) \circ  \varphi_{r}(id_{r})
+= S(\varphi_{d}^{-1}(f)) \circ u
+$$
+
+\end{proof}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$\mathcal{D} $がlocally smallとする. 
+$K : \mathcal{D} \to {\bf Set}$が表現可能とは
+ある$r \in Ob(\mathcal{D})$があって$hom_{\mathcal{D}}(r, \cdot) \cong K$が自然同型となること
+\end{dfn}
+\end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}[米田の補題]
+$\mathcal{D} $がlocally smallとする. 
+$K : \mathcal{D} \to {\bf Set}$関手に関して
+$$
+y : Nat(hom_{\mathcal{D}}(r, \cdot), K) \cong Kr, \quad  \tau \mapsto\tau_{r}(id_{r})
+$$
+は全単射となる. 
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+$\tau \in Nat(hom_{\mathcal{D}}(r, \cdot), K) $について
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+r\ar@{->}[d]^{g}&
+hom_{\mathcal{D}}(r,r) \ar@{->}[d]^{g \circ}  \ar@{->}[r]^{\tau_r}
+ &Kr\ar@{->}[d]_{Kg}\\
+ d &
+hom_{\mathcal{D}}(r,d) \ar@{->}[r]^{\tau_d}
+& Kd\\   
+}
+\end{equation*}
+が成り立っている. 
+
+(全射)$g \in Kr$について$\tau_d : hom_{\mathcal{D}}(r,d) \to  Kd$を$f \mapsto K(f) (g)$で定めれば自然同型である.
+
+(単射)$\tau_{r}(id_{r}) = \tau'_{r}(id_{r})$ならば, $g \in hom_{\mathcal{D}}(r,d)$について$\tau_d(g)=\tau'_{d}(g)$は上の図式からわかる. ($\tau_r$の部分が等しいから!)
+
+\end{proof}
+
+同様に$hom_{\mathcal{D}}(\cdot, r) : C^{op} \to {\bf Set}$について次の米田が成り立つ
+$$
+y : Nat(hom_{\mathcal{D}}(\cdot, r), K) \cong Kr, \quad  \tau \mapsto\tau_{r}(id_{r})
+$$
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$\mathcal{D} $がlocally smallとする. 
+${\bf Set}^{\mathcal{D}}$を$K : \mathcal{D} \to {\bf Set}$となる関手ならなる圏とする.
+
+$E: {\bf Set}^{\mathcal{D}} \times \mathcal{D} \to \mathcal{D}$をevaluation functor
+\begin{itemize}
+\item $(K,r) \mapsto Kr$
+\item $(\tau :K\to K', f : r \to r') \mapsto  \tau_{Kr'} \circ Kf = Kf'\circ\tau_{Kr}:Kr \to K'r'$
+\end{itemize}
+
+$N: {\bf Set}^{\mathcal{D}} \times \mathcal{D} \to \mathcal{D}$を
+\begin{itemize}
+\item $(K,r) \mapsto  Nat(hom_{\mathcal{D}}(r, \cdot), K)$
+\end{itemize}
+とすると$y : N \to E$は自然同型を与える.
+
+\end{lem}
+ \end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[米田関手]
+$\mathcal{D} $がlocally smallとする. 
+$Y  : \mathcal{D}^{op} \to {\bf Set}^{\mathcal{D}}$ を
+\begin{itemize}
+\item $Y(r) := hom_{\mathcal{D}}(r, \cdot)$
+\item $Y(f:r\to r') := \circ f :hom_{\mathcal{D}}(r', \cdot)\to hom_{\mathcal{D}}(r, \cdot)  $
+\end{itemize}
+を米田関手という.
+$Y ' : \mathcal{D} \to {\bf Set}^{\mathcal{D}^{op}}$ も同様.
+\end{dfn}
+\begin{lem}
+米田関手$Y  : \mathcal{D}^{op} \to {\bf Set}^{\mathcal{D}}$はfullyfaithfull.
+\end{lem}
+\end{tcolorbox}
+
+ \begin{proof}
+示すことは$d,d' \in Ob(\mathcal{D})$について
+$$
+Y:
+hom_{\mathcal{D}} (d,d') \to 
+hom_{{\bf Set}^{\mathcal{D}^{op}}} ( hom_{\mathcal{D}}(d', \cdot), hom_{\mathcal{D}}(d, \cdot) )
+=
+Nat ( hom_{\mathcal{D}}(d', \cdot), hom_{\mathcal{D}}(d, \cdot) )
+$$
+$Y(f : d \to d') := \circ f : hom_{\mathcal{D}}(d', \cdot) \to  hom_{\mathcal{D}}(d, \cdot)$
+が全単射であることを示せば良い.
+ここで
+$$
+Nat ( hom_{\mathcal{D}}(d', \cdot), hom_{\mathcal{D}}(d, \cdot) )
+\cong
+hom_{\mathcal{D}}(d, d') 
+$$
+なる全単射が
+$ \circ f \mapsto   (\circ f) (id_d') = f$
+で与えられる. これで全単射が言えている. 
+\end{proof}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\label{cor-yoneda}
+$\mathcal{D} $がlocally smallとする. $r, r' \in Ob(\mathcal{D})$について
+$$
+\tau : hom_{\mathcal{D}}(r, \cdot) \cong hom_{\mathcal{D}}(r', \cdot)
+$$
+となる自然同型があるならば, $r \cong r'$
+\end{cor}
+\end{tcolorbox}
+\begin{proof}
+$f = \tau_{r}(id_r) \in hom_{\mathcal{D}}(r',r)$をとり, 
+$g = \tau_{r'}^{-1}(id_{r'})$
+とすると以下の図式を得る.
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+id_r \in hom_{\mathcal{D}}(r,r) \ar@{->}[r]^{\tau_{r}}
+& hom_{\mathcal{D}}(r',r) \ni f\\
+g \in hom_{\mathcal{D}}(r,r') \ar@{->}[r]^{\tau_{r'}} \ar@{->}[u]_{f \circ }
+& hom_{\mathcal{D}}(r',r') \ar@{->}[u]_{f \circ } \ni id_{r'}\\   
+}
+\end{equation*}
+よって一番左の図式により$f \circ g = id_{r}$となる.
+
+同じ議論を$r'$に行うと$f = (\tau_{r}^{-1})^{-1}(id_r)$に注意すると
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+id_{r'} \in hom_{\mathcal{D}}(r',r') \ar@{->}[r]^{\tau_{r'}^{-1}}
+& hom_{\mathcal{D}}(r,r') \ni g\\
+f \in hom_{\mathcal{D}}(r',r) \ar@{->}[r]^{\tau_{r}^{-1}} \ar@{->}[u]_{g\circ }
+& hom_{\mathcal{D}}(r,r) \ar@{->}[u]_{g \circ } \ni id_{r}\\   
+}
+\end{equation*}
+を得て, よって一番左の図式により$g \circ f= id_{r}$となる.
+よって$r \cong r'$となる. 
+\end{proof}
+
+\begin{exa}[余積]
+$\Delta : \mathcal{C} \to \mathcal{C}  \times \mathcal{C} $を対角関手とする.
+つまり$\Delta(a)=(a,a), \Delta(a)=(f,f)$とする.
+
+$(a,b) \in Ob(\mathcal{C}  \times \mathcal{C})$から$\Delta$への普遍射
+$r \in Ob(\mathcal{C})$と $u: (a,b) \to \Delta r = (r,r)$の組み$(r,u) \in Ob(\mathcal{C})\times hom((a,b), (r,r))$であって次の普遍性を満たすものである.
+「任意の$d \in Ob(\mathcal{C} )$と　$g : (a,b)\to \Delta d = (d,d)$について, ある唯一な写像$f : r \to d \in hom_{\mathcal{D}}(r,d)$があって, $(f,f) \circ u = g$」となる.
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+&(a,b)\ar@{=}[d]  \ar@{->}[r]^{u} & \Delta r = (r,r)\ar@{-->}[d]^{\Delta f= (f,f)} &r\ar@{->}[d]_{f}\\
+&(a,b)\ar@{->}[r]_{g} &\Delta d = (d,d)&d \\   
+}
+\end{equation*}
+これを余積という.
+
+もうちょい書き下すと, $i : a \to c, j: b\to c$があって, 
+「任意の$f : a \to d, g : b \to d$についてある$h : c \to d$があって, $f = h\circ i, g = h\circ j$となる」 この$c \in Ob(\mathcal{C})$は一意になる. 
+
+余積は次の圏ではこうなる
+\begin{itemize}
+\item 集合, 位相空間, Abelian group, $R$-modなら余積
+\item 群なら自由積
+\item 可換環ならテンソル積
+\end{itemize}
+\end{exa}
+
+\begin{exa}[コイコライザー]
+$\mathcal{C} $を圏とする. 
+$\downarrow \downarrow$という圏を
+\begin{itemize}
+\item Objectを0,1の二つの元
+\item morphismを$0 \overset{\to}{\to} 1$の二つの違った写像 (上の$u$, 下を$d$とする.)
+\end{itemize}
+とする.
+$\Delta: C \to C^{\downarrow \downarrow}$なるfunctorを下で定める. 
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+c\ar@{->}[d]^{r}&
+c \ar@{->}[d]^{r}\ar@{->}[r]\ar@{->}[r]  &
+ c \ar@{->}[d]^{r}\\
+ c' &
+c' \ar@{->}[r] \ar@{->}[r] \ar@{->}[r]& 
+c'\\   
+}
+\end{equation*}
+$f,g : a \to b in \mathcal{C}$を固定する.
+これは$(f,g) \in C^{\downarrow \downarrow}$の元を定める.
+つまり$0 \overset{\to}{\to} 1$の二つの違った写像 (上の$u$, 下を$d$とする.)において上に$f$を下に$g$を0を$a$,1に$b$を対応させる
+
+$(f,g) \in C^{\downarrow \downarrow}$から$\Delta: C \to C^{\downarrow \downarrow}$への普遍射とは
+$c \in Ob(\mathcal{C})$と
+$u: (f,g)\to \Delta c =(id_c,id_c)$の組み
+であって次の普遍性を満たすものである.
+
+「任意の$d \in Ob(\mathcal{C})$と　$F : (f,g)\to \Delta d =(id_d,id_d)$について, ある唯一な写像$F' : c \to d \in hom_{\mathcal{C}}(c,d)$があって, $(id_{F'}, id_{F'}) \circ u = F : (f,g)\to \Delta c =(id_c,id_c)$」となる.
+書き下すと
+任意の$F_{b} \circ g = F_{a} = F_b \circ f$となれば, ある$F': c \to d$があって
+$F ' \circ u_1  = f$, $F' \circ u_2 = g$となり, これはコイコライザーとなる. 
+\end{exa}
+
+\begin{exa}[余極限]
+$\mathcal{C}, \mathcal{J}$を圏とする. ($\mathcal{J}$を添字圏とする.)
+$\Delta : \mathcal{C} \to \mathcal{C}^{\mathcal{J}}$を対角関手とする　．
+つまり
+\begin{itemize}
+\item$c \in Ob(C)$について$\Delta c : \mathcal{J} \to \mathcal{C}$を任意のobjectを$c$に射を$id_c$の送るものとする
+\item  $f: c \to c'$について$\Delta f : \Delta c \to \Delta c'$となる自然変換を任意の$j \in Ob(\mathcal{J})$について$(\Delta f)_{j}=f : \Delta c(j) = c \to \Delta c' (j)=c' $ とする.
+\end{itemize}
+
+$\Delta : \mathcal{C} \to \mathcal{C}^{\mathcal{J}}$関手, 
+$F \in Ob(\mathcal{C}^{\mathcal{J}})$とする.
+$F$から$\Delta $への普遍射とは$r \in Ob(\mathcal{C})$と $u: F \to \Delta r$の組み
+であって次の普遍性を満たすものである.
+
+「任意の$d \in Ob(\mathcal{C})$と$f : F\to \Delta d$について, ある唯一な写像$f' : r \to d \in hom_{\mathcal{C}}(r,d)$があって, $\Delta f' \circ u =f$」となる.
+
+一つずつ噛み砕いていく.
+\begin{itemize}
+\item $u: F \to \Delta r$を与えることは$J$内の$k : 1\to 2$について$u_i : F(i) \to r$で$u_2 \circ F(k) = u_1 : F(1) \to r$を与えることである.
+\item $f : F\to \Delta d$を与えることは, $J$内の$k : 1\to 2$について$f_i : F(i) \to r$で$f_2 \circ F(k) = f_1 : F(1) \to d$を与えることである.
+\item  $\Delta f' \circ u =f$となるとは, 二つはどちらも自然変換なので, $j \in Ob(j)$について$f' \circ u_j = f_j$ということである.
+\end{itemize}
+以上より, $F$から$\Delta $への普遍射とは$r \in Ob(\mathcal{C})$と $u: F \to \Delta r$の組みで
+\begin{enumerate}
+\item $(r, u_j)$のくみで, $J$内の$k : 1\to 2$について$u_i : F(i) \to r$で$u_2 \circ F(k) = u_1 : F(1) \to r$が成り立ち, 
+\item 任意の$J$内の$k : 1\to 2$について$f_i : F(i) \to d$で$f_2 \circ F(k) = f_1 : F(1) \to d$が成り立つ$(d, f_j)$の組みについて,
+\item ある$f' : r \to d$が存在して, 任意の$j$について$f' \circ u_j = f_j$となる.
+\end{enumerate}
+よってこの$r \in Ob(\mathcal{C})$と $u: F \to \Delta r$の組み, 噛み砕くと,
+$(r, u_j : F(j) \to r)$の組みを$F$の余極限という. 
+\end{exa}
+以下をまとめるとこうなる. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[余積と余極限]
+$J$を有限圏, $F : J \to C$を関手とする.
+この時$\colim F$とは$c = \colim F \in Ob(C)$と$u : F \to \Delta c$で普遍性があるものである. 
+
+特に$J = {\bf 2} =\{ 1,2\}$で恒等射しか許さないものにすると
+$c=\colim F $と$u : F \to \Delta c$とは
+\begin{itemize}
+\item $u_i : F(i) \to c$かつ
+\item 任意に$a_i : F(i) \to d$について, ただ一つの$\eta : \colim F = c \to d$があって, $\eta \circ u_i = a_i$
+\end{itemize}
+となるものである. これは余積$F(1) \sqcup F(2)$のことである. 
+%特にこれより$\eta \circ u_i = \eta' \circ u_i$が全ての$i$で成り立つならば, $\eta = \eta'$となる. 
+\end{dfn}
+ \end{tcolorbox}
+
+\begin{exa}[極限]
+$\mathcal{C}, \mathcal{J}$を圏とする. ($\mathcal{J}$を添字圏とする.)
+$\Delta : \mathcal{C} \to \mathcal{C}^{\mathcal{J}}$を対角関手とする　．
+
+$\Delta : \mathcal{C} \to \mathcal{C}^{\mathcal{J}}$関手, 
+$F \in Ob(\mathcal{C}^{\mathcal{J}})$とする.
+$\Delta $から$F$への普遍射とは$r \in Ob(\mathcal{C})$と $u: \Delta r \to F$の組み
+であって次の普遍性を満たすものである.
+
+「任意の$d \in Ob(\mathcal{C})$と$f :\Delta d \to F$について, ある唯一な写像$f' : d \to r \in hom_{\mathcal{C}}(d,r)$があって, $u \circ \Delta f'  =f$」となる.
+
+
+噛み砕くと$r \in Ob(\mathcal{C})$と $u: \Delta r \to F $の組みで
+\begin{enumerate}
+\item $(r, u_j)$のくみで, $J$内の$k : 1\to 2$について$u_i : r \to F(i) $で$ u_2  = F(k) \circ u_1 : r \to F(2)$が成り立ち, 
+\item 任意の$J$内の$k : 1\to 2$について$f_i : d \to F(i) $で$f_2  =  F(k)\circ f_1 : d \to F(2) $が成り立つ$(d, f_j)$の組みについて,
+\item ある$f' : d \to r$が存在して, 任意の$j$について$ u_j \circ f' = f_j$となる.
+\end{enumerate}
+よってこの$r \in Ob(\mathcal{C})$と $u: \Delta r \to F$の組み, 噛み砕くと,
+$(r, u_j : r \to F(j))$の組みを$F$の極限という. 
+\end{exa}
+
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$\Delta : \mathcal{C} \to \mathcal{C}^{\mathcal{J}}$関手, 
+$F \in Ob(\mathcal{C}^{\mathcal{J}})$について, 
+$F$から$\Delta $への普遍射を, 
+$\colim F \in Ob(\mathcal{C})$と $\mu: F \to \Delta (\colim F)$で表す.
+
+また$c \in Ob(C)$について$Cone(F,c):= Nat(F,\Delta c)$としconeと呼ぶ.
+\end{dfn}
+\end{tcolorbox}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$F$から$\Delta $への普遍射を, 
+$\colim F \in Ob(\mathcal{C})$と $\mu: F \to \Delta (\colim F)$が存在するとき
+$$
+Cone(F,c) = Nat(F,\Delta c) \cong hom_{C}( \colim F , c)
+$$
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\eta \in  Nat(F,\Delta c)$を与えることは, 
+$(c, \eta_j : F(j) \to c)$で可換性が成り立つものを与えることと同じである.  
+
+よってそのようなものを与えたときに, 普遍性の定義から
+ある$ f:  \colim F \to c$が存在して, 任意の$j$について$f  \circ \mu_j = \eta_j$となる.
+ これはただ一つであるので全単射となる. 
+\end{proof}
+
+\subsection{フィルター圏}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+圏$J$がフィルターであるとは以下の二つの条件を満たす空でない圏とする
+\begin{enumerate}
+\item $j, j' \in Ob(J)$についてある$j \to k, j' \to k$が存在する
+\item $a, b: j \to k$について, $u: k \to m$が存在して$ua = ub : j \to k \to m$
+\end{enumerate}
+
+$F : J \to C$がフィルター余極限とは$J$がフィルターなること.
+\end{dfn}
+\end{tcolorbox}
+
+%\xr{とりあえず定理だけ書いておく. 証明は時間があったらのちほど}
+%\begin{thm}
+%有限余積+任意の有効全順序での余極限$\Rightarrow$フィルター余極限を持つ. 
+%\end{thm}
+
+
+\subsection{特別な極限}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-eq-pro}
+余積とコイコライザーを持つ圏は余極限を持つ. 
+同様に積とイコライザーを持つ圏は極限を持つ. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+%$\colim$は余積とコイコライザーでかけることを思い出す. これは
+$G : I \to C$について$\colim$は
+$$
+f,g : \sqcup_{a\in Mor(I)} G(dom(a)) \to \sqcup_{i \in Ob(I)} Gi 
+$$
+$$
+f_{G(dom(a)) }=id_{G(dom(a))} : G(dom(a)) \to G(dom(a))
+\quad g_{G(dom(a))}=a : G(dom(a)) \to G(cod(a))
+$$
+のコイコライザーとなるため. 
+
+同様に$G : I \to C$について$\lim$は
+$$
+f,g : \prod_{i \in Ob(I)} Gi  \to \prod_{a\in Mor(I)} G(cod(a)) \to 
+$$
+$$
+f_{i}=id_{Gi} : Gi\to Gi
+\quad g_{i}=(a)_{i = dom(a)} : Gi\to G(cod(a))
+$$
+のイコライザーとなるため. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-filter}
+$J$小さなフィルター圏, $P$有限圏ならば
+$$
+F : P \times J \to \text{{\bf Set}}
+$$
+について$\lim \colim F(p,j) \cong \colim \lim F(p,j)$
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+まずcanonical mapを構成する.
+それは
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+F(p,j)\ar@{->}[d]
+& \lim_{P} F(p,j)\ar@{-->}[d]\ar@{->}[l]\ar@{->}[r]
+&\colim_{J}\lim_{P} F(p,j)\ar@{-->}[d]
+\\
+\colim_{J}F(p,j)
+&\lim_{P}\colim_{J}F(p,j)\ar@{->}[l]
+&\lim_{P}\colim_{J}F(p,j)\ar@{=}[l] \\   
+}
+\end{equation*}
+
+
+よって$p \in P$を固定すると
+$\colim_{J}F(p,j) = \sqcup_{J} F(p,j)/\sim$
+とかける($\sim$は同値関係である)
+
+すると次の2条件は同値である.
+\begin{enumerate}
+\item $x \in F(p,j), x' \in F(p,j')$について$x \sim x'$
+\item $u : j \to k$, $u': j' \to k$があって$F(p,u)x = F(p,u')x$
+\end{enumerate}
+これは集合の余極限の構成がまさにそれだからである.,
+
+そこで$F(p,j)$の同値類を$(x,j)$と表す.この時$x \in F(p,j)$である.
+すると二つのことが言える
+\begin{itemize}
+\item $(x_1, j_2), (x_2, j_2)$について$j_1=j_2$として良い. これは$J$のフィルター圏の定義の１番目より
+\item $(x_1, j)\sim (x_2, j)$とはある$u : j \to k$があって$F(p,u)x_1 =F(p,u)x_2$である.
+ これは$J$のフィルター圏の定義の2番目より
+\end{itemize}
+
+$G : P \to {\bf Set}$について
+$$
+\lim_{P} G = Cone(1, G)=Nat(\Delta 1 , G)
+$$
+である.(\ref{thm-set-complete}参照)
+ここで$\tau \in Nat(\Delta 1 , G)$
+とは
+$\tau_p: 1 \to Gp$で$f : p \to p'$について$G(f) \circ \tau_p = \tau_{p'}$となるものである. 
+そこで$G(p):=\colim_{J}F(p,j)$とおく. すると$\tau$は
+$\tau_p = (y_p, k)$で$f : p \to p'$について$F(p,id_{k})y_p = y_{p'}$となるものである.
+すると
+$$
+y : \Delta 1 \to F(\cdot, k)
+\quad
+$$
+によって$y \in \lim_{p}F(p,k)=Nat(\Delta 1 , F(\cdot, k))$の元になる.
+よって
+$$
+\lim_{P} \colim_{J}F(p,j) \to \colim_{J} \lim_{P} F(p,j) 
+\quad
+\tau \mapsto [(y, k)]
+$$
+によって逆写像を得る. 
+
+\end{proof}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[共終]
+\label{dfn-cofiinal-category}
+$L : I \to J$が共終とは$k \in Ob(J)$について$k \downarrow L$空でなく連結であること.
+わかりやすくいうと以下の2条件を満たすこと.
+\begin{enumerate}
+\item 任意の$y\in Ob(J)$についてある$x \in Ob(I)$があって$y \to L(x)$.
+\item  任意の$y\in Ob(J)$, $x, x' \in Ob(I)$についてある
+$$
+x=x_0 \leftarrow x_1 \to x_2 \cdots x_{2n-2} \leftarrow x_{2n-1} \to x_{2n}=x'
+$$
+の列があって, 次の可換図式が成り立つこと
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+& y\ar@{->}[ld]\ar@{->}[d]\ar@{->}[rd]
+&
+\\
+L(x_{2i-2})
+&L(x_{2i-1})\ar@{->}[l]\ar@{->}[r]
+&L(x_{2i}) \\   
+}
+\end{equation*}
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-cofinal-commute}
+$L : I \to J$が共終であり, 関手$F : J \to X$について$\colim_{i\in I}FL(i)$が存在する時, 
+$\colim_{j \in J} F(j)$も存在し, canonical map
+$$
+h : \colim_{i \in J}FL(i) \to \colim_{j \in J} F(j)
+$$
+は同型になる. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+[1]$\colim_{j \in J} F(j)$の存在
+$x= \colim_{i\in I}FL(i)$とする.
+すると$\mu : FL \to \Delta c$なる自然変換で普遍なものが存在する.
+
+$k \in J$について$u : k \to Li$なる$i$を選んで
+$$
+\tau_k : Fk \overset{Fu}{\to} FLi \overset{\mu_{i}}{\to} x
+$$
+とおく. 
+これは$i$の取り方によらない.
+これは次の図から明らかである.
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+& Fy\ar@{->}[ld]\ar@{->}[d]\ar@{->}[rd]
+&
+\\
+FL(x_{2i-2})\ar@{->}[rd]_{u_{x_{2i-2}}}
+&FL(x_{2i-1})\ar@{->}[l]\ar@{->}[r]\ar@{->}[d]^{u_{x_{2i-1}}}
+&FL(x_{2i}) \ar@{->}[ld]^{u_{x_{2i}}}\\   
+&x
+& \\   
+}
+\end{equation*}
+これより
+$\tau : F \to \Delta x$がcoconeとなる.
+こいつが普遍性を持つことを示せば良い.
+
+つまり$\lambda : F \to \Delta y$を別のcoconeとするとき, ある
+$f : x \to y$があって$\lambda = (\Delta f) \tau$を示せば良い.
+
+$\lambda L : FL \to \Delta y$という自然変換を得るので
+$u : FL \to \Delta x$の普遍性から
+ある一意的な射$f : x \to y$があって$\lambda L = (\Delta f) \mu $となる.
+よって
+$k \in J$について$u : k \to Li$を選べば
+$$
+((\Delta f)\tau)_{k}
+= 
+(\Delta f)_{x}\cdot \tau_k
+=
+(\Delta f)_{x} \cdot \mu_{i} \cdot Fu
+=\lambda_{Li}\cdot Fu
+=\lambda _{k} 
+$$
+となる. 
+よって言えた. 
+\end{proof}
+
+
+\subsection{コンマ圏}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$T :  \mathcal{E} \to \mathcal{C}$, $S : \mathcal{D} \to \mathcal{C}$関手として
+コンマ圏$(T \downarrow S)$を次のように定義する. 
+\begin{itemize}
+\item Object $(e,d,f) \in Ob(\mathcal{E}) \times Ob(\mathcal{D}) \times Hom_{\mathcal{C}}(Te, Sd)$ , つまり$f : Te \to Sd$とする. s
+\item Morphism $(k,h) : (e,d,f)  \to (e',d',f') \in Hom_{\mathcal{E}}(e,e') \times Hom_{\mathcal{D}}(d,d') $ を $k : e \to e', h: d \to d'$で$f' \circ Tk = Sh \circ f$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+e \ar@{->}[d] _{k}&Te\ar@{->}[d]_{Tk}  \ar@{->}[r]^{f} & Sd\ar@{->}[d]^{Sh} &d\ar@{->}[d]_{h}\\
+e'&Te'\ar@{->}[r]_{f'} &Sd'&d' \\   
+}
+\end{equation*}
+\end{dfn}
+\end{tcolorbox}
+
+\begin{exa}
+$\mathcal{E}={\bf 1}$とする.
+$b \in Ob(\mathcal{C})$は
+$b :  {\bf 1} \to \mathcal{C}$という関手とみれる. 
+$S : \mathcal{D} \to \mathcal{C}$関手として
+コンマ圏$(b \downarrow S)$は次のようになる. 
+\begin{itemize}
+\item Object $(1,d,f) \in Ob(\mathcal{E}) \times Ob(\mathcal{D}) \times Hom_{\mathcal{C}}(b, Sd)$ , つまり$f : b \to Sd$とする. 
+\item Morphism $(1,h) : (1,d,f)  \to (1,d',f') \in Hom_{\mathcal{E}}(e,e') \times Hom_{\mathcal{D}}(d,d') $ を $1 : 1 \to 1, h: d \to d'$で$f' = f' \circ id_b = Sh \circ f$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+1 \ar@{->}[d] _{1}&b\ar@{=}[d]_{id_b}  \ar@{->}[r]^{f} & Sd\ar@{->}[d]^{Sh} &d\ar@{->}[d]_{h}\\
+1&b\ar@{->}[r]_{f'} &Sd'&d' \\   
+}
+\end{equation*}
+
+紛らわしいので１を消すと
+\begin{itemize}
+\item Object $(d,f) \in \times Ob(\mathcal{D}) \times Hom_{\mathcal{C}}(b, Sd)$ , つまり$f : b \to Sd$とする. 
+\item Morphism $h : (d,f)  \to (d',f') \in Hom_{\mathcal{D}}(d,d') $ を 
+$h: d \to d'$で$f'  = Sh \circ f$となるもの
+\end{itemize}
+
+\end{exa}
+
+
+
+\subsection{表現可能関手の余極限}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+$\mathcal{D}$ small 
+$K : \mathcal{D} \to {\bf Set}$関手とする.
+この時$K$は$hom_{\mathcal{D}}(d,\cdot)$の余極限としてかける
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$J$をコンマ圏$1 \downarrow K$とする.
+つまり,
+$1 \in Ob({\bf Set})$(1は１点集合のこと)
+$1 :  {\bf 1} \to {\bf Set}$という関手とみれる. 
+$K : \mathcal{D} \to {\bf Set}$関手として
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}) \times Hom_{{\bf Set}}(1, Sd)$ , つまり$x : 1 \to Kd$とする. 
+\item Morphism $h : (d,x)  \to (d',x') \in \times Hom_{\mathcal{D}}(d,d') $ を 
+$h: d \to d'$で$x'  = Kh \circ x$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+1 \ar@{->}[d] _{1}&1\ar@{=}[d] \ar@{->}[r]^{x} & Kd\ar@{->}[d]^{Kh} &d\ar@{->}[d]_{h}\\
+1&1\ar@{->}[r]_{x'} &Kd'&d' \\   
+}
+\end{equation*}
+もう少し噛み砕くと
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}) \times Kd$. $x \in Kd \in Ob({\bf Set})$である.
+\item Morphism $h : (d,x)  \to (d',x') \in \times Hom_{\mathcal{D}}(d,d')$ を
+$h: d \to d'$で, $Kh : Kd \to Kd'$は集合の写像になるので, $x' = Kh(x)$である. 
+\end{itemize}
+
+そこで反変関手$M : \mathcal{J}^{op} \to {\bf Set }^{\mathcal{D}}$を
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}) \times Kd$について$M(d,x) = hom_{\mathcal{D}}(d, \cdot)$
+\item Morpshim $h : (d,x)  \to (d',x') $(つまり$h : d \to d'$で$x' = Kh(x)$なるもの)について
+$Mh :  M(d',x) = hom_{\mathcal{D}}(d', \cdot) \to  M(d,x) = hom_{\mathcal{D}}(d, \cdot) $とする.
+\end{itemize}
+
+%${\bf Set}$は余完備\footnote{小さい圏からの関手に関しての余極限を持つ}なので, 
+示すことは$K \in Ob({\bf Set}^{\mathcal{D}})$が$M$の余極限であること, 
+つまり
+%$K \in Ob({\bf Set}^{\mathcal{D}})$と $u: M \to MK$の組み, 噛み砕くと,
+$(K, u_{(d,x)}: M(d,x) \to K)$の組で
+\begin{enumerate}
+\item $(K, u_{(d,x)}: M(d,x) \to K)$のくみで, $J$内の$h : (d,x)\to (d',x')$について$u_{(d',x')}  = u_{(d,x)} \circ M(h) : M(d',x) \to K)$が成り立ち, 
+\item $J$内の$h : (d,x)\to (d',x')$について$f_{d,x} : M(d,x) \to L$
+, $f_{d',x'} : M(d',x') \to L$で
+$f_{d',x'}  = f_{d,x}\circ M(h) : M(d',x) \to L$が成り立つ$(L, f_{d,x})$の組みについて,
+\item ある$f' : K \to L$が存在して, 任意の$j$について$f' \circ u_{d,x} = f_{d,x}$となる.
+\end{enumerate}
+であることを示せば良い.
+$u_{(d,x)} \in  Nat(M(d,x)=hom(d, \cdot) ,  K ) \cong Kd$より$u{(d,x)} = x$とすれば良い. 
+(つまり$u_{(d,x)}(d') : hom(d, d') \to  Kd'$を$f \mapsto Kf(x)$とする)
+すると$x' =hx$から$u_{(d',x')}  = u_{(d,x)} \circ M(h)$が従う.
+
+(2)については$(L, f_{d,x})$の組みについて, 
+自然変換$f : K \to L$を与えることは$d' \in Ob(\mathcal{D})$について$f_{d'} : Kd' \to Ld'$で可換性を満たすようなものを作れば良い. $f_{d,x} \in Nat( M(d,x), L)=Nat( hom(d,\cdot), L)\cong Ld$より, $f_{d,x}$は$Ld$の元とみなせる
+これは$a \in Kd'$について$f_{d,a}$を返せば良い. 
+自然性は米田の同型を追えば良い
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\label{cor-colim-represent}
+$\mathcal{D}$ small 
+$K : \mathcal{D}^{op} \to {\bf Set}$反変関手, つまり$K \in {\bf Set}^{\mathcal{D}^{op}}$とする. ($K$は前層)この時$K$は$hom_{\mathcal{D}}(\cdot, d)$の余極限でかける. 
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+$J$をコンマ圏$1 \downarrow K$とする.
+つまり,
+$1 \in Ob({\bf Set})$(1は１点集合のこと)
+$1 :  {\bf 1} \to {\bf Set}$という関手とみれる. 
+$K : \mathcal{D}^{op} \to {\bf Set}$関手として
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}^{op}) \times Hom_{{\bf Set}}(1, Sd)$ , つまり$x : 1 \to Kd$とする. 
+\item Morphism $h : (d,x)  \to (d',x') \in Hom_{\mathcal{D}^{op}}(d,d') $ を 
+$h: d \to d' in \mathcal{D}^{op}$で$x'  = Kh \circ x$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+1 \ar@{->}[d] _{1}&1\ar@{=}[d] \ar@{->}[r]^{x} & Kd\ar@{->}[d]^{Kh} &d\ar@{->}[d]_{h}\\
+1&1\ar@{->}[r]_{x'} &Kd'&d' \\   
+}
+\end{equation*}
+もう少し噛み砕くと
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}^{op}) \times Kd$. $x \in Kd \in Ob({\bf Set})$である.
+\item Morphism $h : (d,x)  \to (d',x') \in Hom_{\mathcal{D}^{op}}(d,d')$ を
+$h: d \to d' in \mathcal{D}^{op}$で, $Kh : Kd \to Kd'$は集合の写像になるので, $x' = Kh(x)$である. 
+\end{itemize}
+
+そこで関手$M : \mathcal{J}^{op} \to {\bf Set }^{\mathcal{D}^{op}}$を
+\begin{itemize}
+\item Object $(d,x) \in Ob(\mathcal{D}^{op}) \times Kd$について$M(d,x) = hom_{\mathcal{D}}(\cdot, d)$
+\item Morpshim $h : (d,x)  \to (d',x') in \mathcal{J}^{op} $について, 
+$h : (d',x') \to (d,x) in \mathcal{J}$より, 
+$h : d'  \to d in \mathcal{D}^{op}$で$x = Kh(x')$なるものがあり, 
+$h : d \to d' in \mathcal{D} $であるので, 
+$Mh :  M(d,x) = hom_{\mathcal{D}}( \cdot, d) \to  M(d',x) = hom_{\mathcal{D}}(\cdot, d') $て定義できる. 
+\end{itemize}
+
+ここで$J$はsmallとなる.
+ これは$|Ob(\mathcal{D})| < cf(\kappa) \le \kappa$となる基数$\kappa$をとると(この存在は\ref{lem-cofinal}から), $\sup_{d \in Ob(\mathcal{D})} |Kd| < \kappa$が言えるから. 
+
+示すことは$K \in Ob({\bf Set}^{\mathcal{D}^{op}})$が
+$M \in Psh(\mathcal{D}^{op},{\bf Set})^{\mathcal{J}^{op}}$の余極限
+$$
+K \cong  \colim_{M : \mathcal{J}^{op} \to {\bf Set }^{\mathcal{D}^{op}}}M(d,x)
+=\colim_{M : \mathcal{J}^{op} \to {\bf Set }^{\mathcal{D}^{op}}} hom_{\mathcal{D}}(\cdot, d)
+$$
+であることを示す. 
+$K \in Ob({\bf Set}^{\mathcal{D}^{op}})$と $u: M \to \Delta K$の組みで普遍なものがあることを示せば良い
+($\Delta K \in Psh(\mathcal{D}^{op},{\bf Set})^{\mathcal{J}^{op}}$に注意する)
+
+つまり
+%$K \in Ob({\bf Set}^{\mathcal{D}})$と $u: M \to MK$の組み, 噛み砕くと,
+$(K, u_{(d,x)}: M(d,x) \to K)$の組で
+\begin{enumerate}
+\item $(K, u_{(d,x)}: M(d,x) \to K)$のくみで, $J ^{op}$内の$h : (d,x)\to (d',x')$について
+$u_{(d,x)}  = u_{(d',x')} \circ M(h) : M(d ,x) \to K)$が成り立ち, 
+\item $J ^{op}$内の$h : (d,x)\to (d',x')$について$f_{d,x} : M(d,x) \to L$
+, $f_{d',x'} : M(d',x') \to L$で
+$f_{d,x}  = f_{d',x'}\circ M(h) : M(d,x) \to L$が成り立つ$(L, f_{d,x})$の組みについて,
+\item ある$f' : K \to L$が存在して, 任意の$j$について$f' \circ u_{d,x} = f_{d,x}$となる.
+\end{enumerate}
+であることを示せば良い.
+
+$u_{(d,x)} \in Nat(M(x, d)=hom_{\mathcal{D}}(\cdot, d), K) \cong Kd$
+より$u{(d,x)} = x$とすれば良い. 
+(つまり$u_{(d,x)}(c) : hom_{\mathcal{D}}(c, d) \to  Kc$を$f \mapsto (Kf)(x)$とする)
+$h : (d,x)  \to (d',x') in \mathcal{J}^{op} $について, 
+$h : d'  \to d in \mathcal{D}^{op}$で$x = Kh(x')$となる. 
+よって$u_{(d,x)}  = u_{(d',x')} \circ M(h) : M(d ,x) \to K$であることは, 
+任意の$c \in \mathcal{D}$, $f \in M(d ,x)(c) = hom_{\mathcal{D}}(c, d) $について
+$$
+u_{(d',x')} \circ M(h) (f)
+= u_{(d',x')} (h \circ f) 
+=K(h \circ f) (x')
+=Kf\circ Kh (x')
+Kf (x)=u_{(d,x)}(f) 
+$$
+となり言える. 
+
+(2)については$(L, f_{d,x})$の組みについて, 
+自然変換$f : K \to L$を与えることは$d' \in Ob(\mathcal{D})$について$f_{d'} : Kd' \to Ld'$で可換性を満たすようなものを作れば良い. $f_{d,x} \in Nat( M(d,x), L)=Nat( hom(\cdot,d), L)\cong Ld$より, $f_{d,x}$は$Ld$の元とみなせる
+これは$a \in Kd'$について$f_{d,a}$を返せば良い. 
+自然性は米田の同型を追えば良い
+\end{proof}
+
+\subsection{随伴と圏同値}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$A,X$をlocally small categoryとする.
+$(F,G,\varphi)$が$X$から$A$の随伴とは
+\begin{itemize}
+\item $F :X \to A$, $G : A \to X$となる関手
+\item $\varphi$は$x \in Ob(X), a \in Ob(A)$について
+$$
+\varphi_{x,a} : hom_{A}(Fx, a) \cong hom_{X}(x, Ga)
+$$
+が全単射になるものの族で$x,a$について自然である. 
+\end{itemize}
+このとき$F\dashv G$とかく.
+$F$は$G$の左随伴, $G$は $F$の右随伴という. 
+\end{dfn}
+\end{tcolorbox}
+
+\begin{rem}
+hom集合を使わずに定義す流のであれば, 
+任意の$f : Fx \to a$について右随伴射
+$\varphi f : x \to Ga$が唯一定まり, 
+\begin{equation}
+\label{eq-adjoint}
+\varphi(k \circ f) = Gk \circ \varphi f, \quad, \varphi(f \circ Fh) = \varphi f \circ h 
+\end{equation}
+が任意の$h : x' \to x$, $k : a \to a'$に成り立つ
+これは次の図からわかる
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+f \in hom_{A}(Fx, a) \ar@{->}[d] _{k} \ar@{->}[r]^{\varphi}&  
+hom_{X}(x, Ga) \ar@{->}[d]_{Gk}   & 
+f \in hom_{A}(Fx, a') \ar@{->}[d]^{Fh} \ar@{->}[r]^{\varphi} &
+hom_{X}(x, Ga') \ar@{->}[d]_{h} \\
+hom_{A}(Fx, a) 	\ar@{->}[r]^{\varphi} 	 &  
+hom_{X}(x, Ga)  & 
+hom_{A}(Fx', a)	\ar@{->}[r]^{\varphi} &
+hom_{X}(x', Ga) \\
+}
+\end{equation*}
+左随伴射$\varphi^{-1}$の言葉で書けば
+$$
+\varphi(g \circ h) = \varphi^{-1 g \circ Fk}, \quad, 
+\varphi^{-1}(Gk \circ g) = k \circ \varphi^{-1}g
+$$
+\end{rem}
+
+$a=Fx$の場合, 
+$$
+\varphi_{x,Fx} : hom_{A}(Fx, Fx) \cong hom(x, GFx)
+$$
+であるので, $\eta_x := \varphi_{x,Fx}(id_{Fx}) : x \to GFx$を得る.
+自然変換$\eta : I \to GF$を与える
+なぜなら\ref{eq-adjoint}から$h: x \to x'$について
+$$
+G(Fh) \circ \varphi(id_{Fx'}) 
+=
+\varphi( Fh \circ id_{Fx'})
+=
+\varphi(id_{Fx'} \circ Fh)
+=
+\varphi(id_{Fx}) \circ h
+$$
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+x \ar@{->}[d]^{h}\ar@{->}[r]_{\varphi}&
+ GFx\ar@{->}[d]^{G(Fh)}\\
+x'\ar@{->}[r]_{\varphi}& 
+GFx'\\   
+}
+\end{equation*}
+%これは$x \in Ob(X)$から$G$への普遍射となる.なぜなら, \ref{prop-yoneda-universe}$$G : hom_{ , a}$$
+%$f : Fx \to a$について$\varphi_{x,a} : hom_{A}(Fx, a) \cong hom(x, Ga)$より, $\varphi_{x,a}()$
+すると\ref{eq-adjoint}から$f : Fx \to a$について
+$$
+\varphi(f ) = \varphi(f \circ F(id_{x})) = Gf \circ  \varphi(id_x)= Gf \circ \eta_x
+$$
+となる.
+
+同様に$\varphi^{-1}_{Ga, a} :  hom_{X}(Ga, Ga) \cong hom_{A}(FGa, a)$
+$\epsilon_a = \varphi^{-1}_{Ga, a}(id_{Ga})$とおくと同様のことが成り立つ. 
+
+まとめると次になる. 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$A,X$をlocally small categoryとする.
+$(F,G,\varphi)$が$X$から$A$の随伴とする.
+\begin{enumerate}
+\item 上の$\eta_{x}$は$x$から$G$への普遍射, 自然変換$\eta : I \to GF$を与える. ここで$I, GF: X \to X$である.
+また$\varphi(f ) = Gf \circ \eta_x : x \to Ga$である.
+\item $\epsilon_a = \varphi^{-1}_{Ga,a}$とおくと, $F$から$a$への普遍射, 自然変換$\epsilon : FG \to I$を与える. また$\varphi^{-1}(g) = \epsilon_{a} \circ Fg:  Fx \to a$である.($g : x \to Ga$とする)
+\end{enumerate}
+$\eta$をunit, $\epsilon$をcounitという. 
+\end{lem}
+\end{tcolorbox}
+以下随伴$(F,G,\eta,\epsilon)$と言ったら
+\begin{itemize}
+\item $F :X \to A$, $G : A \to X$となる関手
+\item $\eta : I \to GF$をunit, $\epsilon : FG \to I$をcounitとする.
+\end{itemize}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-adjoint-fullyfaithfull}
+随伴$(F,G,\eta,\epsilon): X \to A$について以下が成り立つ
+\begin{enumerate}
+\item $G : A \to X$が忠実(faithfull)は任意の$a \in A$について$\epsilon_a$がエピと同値
+\item $G : A \to X$が充満(full)は任意の$a \in A$について$\epsilon_a$が分裂モニックと同値
+\item $G : A \to X$が充満忠実(fully faithfull)は任意の$a \in A$について$\epsilon_a : FG a \cong a$が同型と同値
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+%$a,c \in Ob(A)$と$f : a\to c$について$\varphi^{-1}(G  f)$を返すものを考える.
+$$
+\varphi^{-1} \circ G_{a, \cdot}:
+hom_{A}(a, \cdot)
+\to 
+hom_{X}(Ga, G\cdot)
+\to 
+hom_{A}(FGa, \cdot)
+$$
+%$\varphi^{-1}$は同型射より
+を考える. これは$\epsilon_a : FGa \to a$として$\epsilon_{a}^{*}$と同じである.
+$\varphi^{-1}$が全単射より 
+下の補題から
+「$\epsilon_{a}^{*}$エピ $\Leftrightarrow$ $\epsilon_{a}^{*} = \varphi^{-1} \circ G_{a, \cdot}$ モニック
+$\Leftrightarrow$ $ G_{a, \cdot}$ モニック $\Leftrightarrow$ $G : A \to X$が忠実(faithfull)」となる.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$f: b \to a$について, $f^{*} : hom_{A} (a, \cdot) \to hom_{A}(b, \cdot)$を自然変換とする. 
+この時以下が成り立つ
+\begin{enumerate}
+\item $f^{*}$ モニック は$f$エピと同値
+\item $f^{*}$ エピは$f$が分裂モニックと同値
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+これは定義から直ちに従う. (言い換えているに過ぎない)
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[圏同値]
+関手$S : A \to C$が圏同値であるとは
+ある関手$T : C \to A$と$ST \cong I_{C} : C \to C$かつ$TS \cong I : A \to A$なる自然同型が存在すること.
+
+この時$T$は$S$の左随伴でもあり右随伴でもある. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[随伴圏同値]
+随伴$(F,G,\eta,\epsilon): X \to A$について, $\eta : I \to GF$, $\epsilon : GF \to I$が共に自然同型である時, 
+$(F,G,\eta,\epsilon): X \to A$は随伴圏同値と呼ぶ. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+\label{thm-adjoint-equiv}
+関手$S : A \to C$について次は同値
+\begin{enumerate}
+\item $S : A \to C$は圏同値
+\item $(S,T,\eta,\epsilon): A\to C$が随伴圏同値となるような$T,\eta,\epsilon$が存在する
+\item $S$ fully faithfullかつ$c \in Ob(C)$についてある$a \in A$があって$c \cong Sa$.
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+$(2) \Rightarrow (1)$自明
+
+$(1) \Rightarrow (3)$
+$a, a' \in Ob(A)$について
+$$
+hom_{A}(a, a') \cong hom_{A}(a ,TSa') \overset{\varphi}{\cong} hom_{C}(Sa, Sa') 
+%hom_{A}(a, a') \overset{S}{\to} hom_{C}(Sa, Sa') \overset{\varphi}{\cong} hom_{A}(a ,TSa') \cong hom_{A}(a ,a') 
+$$
+によって全単射を得る. よってfully faithfull.
+任意の$c \in Ob(C)$について, $c \cong S(Tc)$より$a=Tc$とおけば良い.
+
+
+$(3) \Rightarrow (2)$
+$T : C \to A$を構成する
+$c \in Ob(C)$について$a \in A$があって$\nu_c : c \cong Sa$となるので, $Tc = a$とする.
+$f  : c \to c'$について, $S$はfully faithfullなので
+$$
+hom_{A}(a,a') \to hom_{C}(Sa, Sa') \cong hom_{C}(c, c')
+$$
+が全単射であり, $\nu_{c'}^{-1}\circ S(g) \circ \nu_{c}=f$となる$g$が一意に存在する.
+$T(f) = g$とおく.
+
+よって$S$が$T$の右随伴であることと, $\eta : I \to ST$と$\epsilon : TS \to I$なる自然同型が存在することとを示せば良い.
+\end{proof}
+
+\begin{exa}[骨格(skelton)]
+$A$を$C$のfull subcategoryとする.(subcategoryとは包含関手 $F : A \to C$が存在すること. 自動的に$F$はfaithfullである. )
+
+任意の$c \in Ob(C)$について, ある唯一の$a \in Ob(A)$が存在して$c \cong F(a)$となるとき, $A$を$C$の骨格という. 
+この時$F : A \to C$は圏同値を与える.
+これは定理\ref{thm-adjoint-equiv}の(3)の条件見れば良い. 
+
+例えば有限順序集の圏を$C$とし, 有限集合の圏を${\bf FinSet}$をおく.
+$C \to {\bf Finset }$なる関手を包含関手で定めれば, fullであることがわかる.
+$C$が${\bf FinSet}$の骨格であることは濃度(個数)を取れば良い. 
+\end{exa}
+
+
+\subsection{極限}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+圏$C$が(小)完備とは, 任意の小さな圏から任意の関手$F: J \to C$が極限を持つこと. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[{\bf Set}は完備]
+\label{thm-set-complete}
+任意の小さな圏から任意の関手$F: J \to {\bf Set}$は極限を持つ. 
+特にその極限は$\colim F = Cone(1 , F)=Nat(\Delta 1, F)$である. ここで $1$は一点集合である
+そして$\nu \colim  F \to F j$は$ \tau \in Nat(\Delta 1, F)$について$\tau_j \in Fj$を与える射である. 
+\end{thm}
+\end{tcolorbox}
+$\Delta : {\bf Set}\to {\bf Set}^{\mathcal{J}}$は対角関手であり$\Delta 1$は$J$の全てに1を返す関手である
+%$F \in Ob({\bf Set}^{\mathcal{J}})$
+%$F$から$\Delta$への普遍射を, $\colim F \in Ob({\bf Set})$と $\mu: F \to \Delta (\colim F)$で表す.
+
+\begin{proof}
+$J$ smallより
+$Cone(1 , F)=Nat(\Delta 1, F)$もまたsmallである. 
+これは$\tau \in Nat(\Delta 1, F)$について
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+j\ar@{->}[d]_{f}&\Delta 1(j)=1\ar@{=}[d]_{\Delta 1(f)}  \ar@{->}[r]^{\tau j} & Fj\ar@{->}[d]^{Ff} \\
+j'&\Delta 1(j')=1\ar@{->}[r]_{\tau j'} & Fj'\\   
+}
+\end{equation*}
+であり, $Fj \in Ob({\bf Set })$であるのでsmallなので, $\eta : J \to \cup_{j \in J} F(j)$とみなせるためである\footnote{グロタンディーク宇宙$U_{\kappa}$内で考えると, $U_{\kappa}$の元が小さいとなる. $|J| < \kappa$かつ$|F(j)| < \kappa$ならば$\kappa$は正則より$|(\cup_{j \in J} F(j))^{J}| < \kappa \times \kappa = \kappa$となるので$|Nat(\Delta 1, F)|< \kappa$.}
+
+あとは極限であることを示せば良い. これは任意の集合$X$と自然変換$ \tau  \Delta X \to F$について, 
+ある$f : X \to \colim F $が存在して, $\nu_{j} \circ \Delta f  = \tau_j$となること示せば良い.
+これは$ f : X \to Nat(\Delta 1, F)$を$x \in X$について$f(x)_j = \tau_{j}(x)$として定めれば良い. 
+\end{proof}
+ここで$Cone(X,F) = Nat(\Delta X , F) \cong hom(X, \lim F) = hom_{{\bf Set}} (X, Cone(1,F))$
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+$C$をlocally small categoryとする. 
+$hom (c , \cdot ) : C \to {\bf Set}$なる関手は極限を保存する
+\end{thm}
+\end{tcolorbox}
+同様に$hom ( \cdot, c)$は余極限$\colim$を保存する
+\begin{proof}
+$F: J \to {\bf Set}$とする. 
+$$
+Nat(\Delta  1, hom_{C}(c, F\cdot))
+\cong
+Nat(\Delta c, F)
+$$
+である.
+これは$Nat(\Delta  1, hom_{C}(c, F\cdot))$は
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+j\ar@{->}[d]_{h}&\Delta 1(j)=1\ar@{=}[d]_{\Delta 1(f)}  \ar@{->}[r] & hom_{C}(c, Fj)\ar@{->}[d]^{Fh} \\
+j'&\Delta 1(j')=1\ar@{->}[r]  &  hom_{C}(c, Fj')\\   
+}
+\end{equation*}
+で与えられ, $Nat(\Delta c, F)$は
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+j\ar@{->}[d]_{h}&\Delta c(j)=c\ar@{=}[d]_{\Delta c(f)}  \ar@{->}[r]^{\tau j} & Fj\ar@{->}[d]^{Fh} \\
+j'&\Delta c(j')=c\ar@{->}[r]_{\tau j'} & Fj'\\   
+}
+\end{equation*}
+で与えられることからわかる. 
+よって
+$$
+Cone(1, hom_{C}(c, F\cdot)
+=
+Nat(\Delta  1, hom_{C}(c, F\cdot))
+\cong
+Nat(\Delta c, F)
+=
+Cone(c,F)
+$$
+であるので,
+$$
+Cone(X,hom_{C}(c, F\cdot)) \cong
+hom_{{\bf Set}} (X, Cone(1, hom_{C}(c, F\cdot))\cong 
+hom_{{\bf Set}} (X, Cone(c,F)) \cong
+hom_{{\bf Set}} (X, hom_{C}(c, \lim F))
+$$
+となる.
+$Cone(X,hom_{C}(c, F\cdot)) \cong hom_{{\bf Set}} (X, Y)$
+となる$Y$こそが$\lim hom_{C}(c, F \cdot)$であったので, 
+$\lim hom_{C}(c, F\cdot) \cong hom_{C}(c, \lim F)$となる. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$(F,G,\varphi)$を$X$から$A$の随伴であるとする. 
+$T : J \to A$が極限$\tau : \Delta (\lim T) \to T$を持つならば, 
+$GT$は極限$G\tau : \Delta (G \lim T) \to GT$と持つ.
+
+つまり右随伴射$G$について, $\lim (GT) \cong G(\lim T)$である.
+(right adjoint perverse limit)
+\end{cor}
+\end{tcolorbox}
+
+同様に左随伴射$F$について$\colim FT \cong F(\colim T)$である.
+\begin{proof}
+任意の$x \in X$について
+$$
+hom_{X}(x, \lim (GT) ) \cong 
+hom_{X}(x, G(\lim T)) 
+$$
+を示せば良い. これは以下から言える. 
+$$
+hom_{X}(x, G(\lim T)) 
+\cong
+hom_{A}(Gx, T) 
+\cong
+\lim  hom_{A}(Gx, T) )
+ \cong 
+\lim hom_{X}(x, GT)
+$$
+\end{proof}
+
+
+\subsection{Kan拡張}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$K : M \to C$, $T : M \to A$を関手とする.
+$K$に沿った$T$の右Kan拡張とは
+\begin{itemize}
+\item $R : C \to A$関手
+\item $\epsilon : RK \to T$自然変換
+\end{itemize}
+に二つくみ$(R, \epsilon : RK \to T)$であって, 
+任意の$S : C \to A, \alpha : SK \to T$について, $\alpha = \epsilon \cdot \sigma K : SK \to T$となる自然変換$\sigma : S \to R$が唯一存在すること. 
+
+このとき$R := Ran_{K}T$とかく. 
+\end{dfn}
+\end{tcolorbox}
+
+$\sigma \mapsto \epsilon \cdot \sigma K$によって自然な全単射
+$$
+Nat (S, R)=Nat (S, Ran_{K}T) \cong Nat(SK,T)
+$$
+となる.よってこれをかっこよくいうと次の補題を得る. 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+$K : M \to C$を固定する. 
+任意の$T \in A^{M}$ ($T : M \to A$)について右Kan拡張
+$(R , \epsilon) := (Ran_{K}T \in A^C, \epsilon_T : RK \to T)$が存在すると仮定する.
+
+この時$\beta : A^M \to A^C$を
+\begin{itemize}
+\item $\beta T := Ran_{K}T$
+\item $\beta (g : T \to T')$について$\beta(g) : Ran_{K}T \to Ran_{K'}T$を, $S = Rank_{T}K :C \to A, \alpha =g\circ \epsilon_T : SK \to T$として, 唯一存在する自然変換
+$\beta(g):=\sigma :  Ran_{K}T \to Ran_{K}T'$で$\alpha =g\circ \epsilon_T  = \epsilon_T \cdots \beta(g)K$となるもの. 
+\end{itemize}
+で決めると, 
+$$
+F : A^C \to A^M \quad N :C\to A\mapsto N \circ K : M \to A 
+$$
+の右随伴, つまり
+$$
+hom_{A^M}(F(N), T) = Nat(NK,T)\cong hom_{A^C}(N, Ran_{K}T)=Nat (N, Ran_{K}T)
+$$
+となり, $\epsilon :  I \to Ran_{K} \circ F$はunitである. 
+\end{lem}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[点列極限としての右Kan拡張]
+\label{thm-Kan-extension}
+$K : M \to C$, $T : M \to A$を関手とする.
+任意の$c \in Ob(C)$について
+$$
+T \circ Q : (c \downarrow K) \to M \to A
+$$
+に関する極限$\lim T\circ Q$と$\mu: \Delta (\lim T\circ Q) \to TQ$が存在すると仮定する.
+
+このとき$R : C \to A$を
+\begin{itemize}
+\item $c \in Ob(C)$について, $Rc : = \lim (T \circ Q : (c \downarrow K) \to M \to A)$
+\item $g : c \to c'$について $Rg : Rc \to Rc'$となる射
+\end{itemize}
+とするとこれは関手になる
+
+さらに$\epsilon : RK \to T$について
+$\epsilon_{m} : RKm \to Tm$を次で定めるとこれは自然変換になる: 
+
+%(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km$,
+$RKm =\lim T\circ Q \in Ob(A)$と$\mu: \Delta RKm \to TQ$は定義から, 
+$(RKm , \mu_{x})$のくみ($x : Km \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{x} : RKm \to Tm  $, つまりA内で$\mu_{x} :  RKm\to Tm $
+\item $ TQ h  \circ \mu_{x'} = \mu_{(m,x)} :RKm \to  TQ(m,x) =Tm$, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+である. そこで$\epsilon_{m} := \mu_{ id_{Km}} : RKm \to Tm$と定義する.
+
+%$Q : (c \downarrow K) \to M $は$Q(m,x)=m$であるので, 
+%$\epsilon_{m}: RKm$
+%$c \in On(C)$について, その極限$a_c =\lim T\circ Q \in Ob(A)$と$\mu: \Delta (\lim T\circ Q) \to TQ$とは
+%\begin{enumerate}
+%\item $(a_c , \mu_{(x)})$のくみ($x : c \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+%\begin{itemize}
+%\item $\mu_{x} : a_c \to Tm  $, つまりA内で$\mu_{x} :  a_c  \to Tm $
+%\item $ TQ h  \circ \mu_{x} = \mu_{x} :a_c \to  TQm $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+%\end{itemize}
+
+
+そして$(R,\epsilon)$は$K$に沿った$T$の右Kan拡張となる. 
+
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+
+[0.]
+$Ob(c \downarrow K)$と$Q: (c \downarrow K) \to M $の定義について.
+
+\begin{itemize}
+\item $(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km$ %($x \in Ob(Km)$と思える. )
+\item Morphism $h : (m,x)  \to (m',x') \in Hom_{M}(m,m') $ を 
+$h: m \to m'$で$x'  = Kh \circ x$となるもの
+\end{itemize}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+1 \ar@{->}[d] _{1}&c \ar@{=}[d]_{id_c}  \ar@{->}[r]^{x} & Km\ar@{->}[d]^{Kh} &m\ar@{->}[d]_{h}\\
+1&c\ar@{->}[r]_{x'} &Km'&m' \\   
+}
+\end{equation*}
+ここで$Q: (c \downarrow K) \to M $を以下で定める
+\begin{itemize}
+\item $(m,x) \in Ob(c \downarrow K )$について$Q(m.x) = m$
+\item $h : (m,x)  \to (m',x') \in Hom_{M}(m,m') $ について$Q(h) =h$
+\end{itemize}
+
+[1.] $R$が関手になること.
+$c \in On(C)$について, その極限$a_c =\lim T\circ Q \in Ob(A)$と$\mu: \Delta (\lim T\circ Q) \to TQ$とは
+\begin{enumerate}
+\item $(a_c , \mu_{(m,x)})$のくみ($x : c \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{(m,x)} : a_c \to Tm  $, つまりA内で$\mu_{(m,x)} :  a_c  \to Tm $
+\item $ TQ h  \circ \mu_{(m',x')} = \mu_{(m,x)} :a_c \to  TQ(m,x) $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+\item $(a' , \nu_{(m,x)})$の組($x : c \to Km $)で$h' : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\nu_{(m,x)} :  a' \to Tm $, つまりA内で$\nu_{(m,x)} : a' \to Tm $
+\item $  TQ h' \circ \nu_{(m',x')}=Th' \circ \nu_{(m',x')}=\nu_{(m,x)} :a '  \to  TQ(m,x) $
+%つまり$TQ h' (m,x)\circ \mu_{(m,x)} \circ  = \mu_{(m',x')}(Th(m)) =  \mu_{(m,x)} : Tm \to a'$
+\end{itemize}
+となるものについて, ある$f : a \to a_c$がただ一つ存在して,  $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について$\mu_{(m,x)} \circ f = \nu_{(m,x)}: a \to TQ(m,x)=Tm$となる.
+\end{enumerate}
+
+ここで, $x : c \to Km$なので, $m$の情報も持っているので$\mu_{x} : = \mu_x$と書くことにする. 
+すると$c \in On(C)$について, その極限$a_c =\lim T\circ Q \in Ob(A)$と$\mu: \Delta (\lim T\circ Q) \to TQ$とは
+\begin{enumerate}
+\item $(a_c , \mu_{(x)})$のくみ($x : c \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{x} : a_c \to Tm  $, つまりA内で$\mu_{x} :  a_c  \to Tm $
+\item $ TQ h  \circ \mu_{x} = \mu_{x} :a_c \to  TQm $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+\item $(a' , \nu_{x})$の組($x : c \to Km $)で$h' : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\nu_{x} : a' \to Tm $, つまりA内で$\mu_{x} : a' \to Tm $
+\item $  TQ h' \circ \mu_{x'}=Th' \circ \mu_{x}  :a '  \to  TQm$
+%つまり$TQ h' (m,x)\circ \mu_{(m,x)} \circ  = \mu_{(m',x')}(Th(m)) =  \mu_{(m,x)} : Tm \to a'$
+\end{itemize}
+となるものについて, ある$f : a \to a_c$がただ一つ存在して,  $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について$\mu_{x} \circ f = \nu_{x}: a \to Tm$となる.
+\end{enumerate}
+
+よって$g : c \to c'$について, 
+ その極限$a_c' =\lim T\circ Q \in Ob(A)$と$\mu': \Delta (\lim T\circ Q) \to TQ$を考える.
+ この時$x : c' \to Km $なる組について$\mu'_{m,x} : a_c' \to Tm$で$\mu_{m,x} : a_c' \to T_m $がある.
+ 
+ そこで$(x \circ g , m)$について($x \circ g : c \to Mm$で)
+ $\mu_{x\circ g} : a_c' \to Tm$で$\mu'_{x} : a_c' \to T_m $であるので, 
+ 普遍性から
+ $Rg : a_c \to a_c'$なる関手が存在する. 
+ そして以下が成り立つ. $x : c'\to Km$とする. 
+\begin{equation*}
+\xymatrix@C=40pt@R=20pt{
+Rc = \lim TQ  \ar@{->}[d]_{Rg}  \ar@{->}[r]^{\mu_{(x\circ g)}} & Tm\ar@{=}[d] \\
+Rc = \lim TQ' \ar@{->}[r]_{\mu'_{x}} &Tm \\   
+}
+\end{equation*}
+
+[2.] 自然変換$\epsilon : RK \to T$の定義. 
+$m \in M$について$\epsilon_m : RKm\to T m$で任意の$ h : m \to m'$について以下の図式が成り立つことをいう.  
+\begin{equation*}
+\xymatrix@C=40pt@R=20pt{
+RKm = \lim T Q_{Km}  \ar@{->}[d]_{RK h}  \ar@{->}[r]^{\epsilon_m} & Tm\ar@{->}[d]_{Th} \\
+RKm'= \lim TQ'_{Km'} \ar@{->}[r]_{\epsilon_m'} &T'm \\   
+}
+\end{equation*}
+を示せば良い.
+ここで$RKm =\lim T\circ Q \in Ob(A)$と$\mu: \Delta RKm \to TQ$とは
+$(RKm , \mu_{x})$のくみ($x : Km \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$について
+\begin{itemize}
+\item $\mu_{x} : RKm \to Tm  $, つまりA内で$\mu_{x} :  RKm\to Tm $
+\item $ TQ h  \circ \mu_{x'} = \mu_{(m,x)} :RKm \to  TQ(m,x) =Tm$, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+である. 
+よって, $\epsilon_{m} := \mu_{ id_{Km}} : RKm \to Tm$とおけば良い .
+
+この時$h : m \to m'$について$g=Rh : Km \to Km$と置いて[1]の事実を用いると
+\begin{equation*}
+\xymatrix@C=100pt@R=30pt{
+RKm = \lim TQ  \ar@{->}[d]_{Rg}  \ar@{->}[r]^{\mu_{ id_{m} : Km\to Km} }
+\ar@{->}[rd]^{\mu_{Kh:  Km \to Km'}}
+& Tm\ar@{->}[d]^{Th} \\
+RKm' = \lim TQ' \ar@{->}[r]_{\mu_{ id_{m'} : Km' \to Km'}} &Tm' \\   
+}
+\end{equation*}
+となる. 
+よって自然変換も言える. 
+
+[3] 右Kan拡張であること. 
+
+$S : C \to A$と$\alpha : SK \to T$が存在したとする. 
+示すことは自然変化$ \sigma : S \to R$の唯一存在と$\alpha = \epsilon \cdot \sigma K : SK \to T$である. 
+
+[3-1], $\sigma : S \to R$の存在.
+これは$c \in Ob(C)$と$\sigma_c : Sc \to Rc$を作れば良い
+$f : c \to Km$に対する図式を考える.
+\begin{equation*}
+\xymatrix@C=100pt@R=20pt{
+Rc = \lim (T \circ Q : (c \downarrow K) \to M \to A) \ar@{->}[r]_{\mu_{f : c \to Km}}  
+& Tm \ar@{->}[r]^{Th}
+&Tm'  \\
+Sc\ar@{->}[r]_{Sf}  \ar@{->}[ru]
+& SKm \ar@{->}[r]_{SKm} \ar@{->}[u]_{\alpha_m} 
+&SKm' \ar@{->}[u]_{\alpha_m'} \\   
+}
+\end{equation*}
+これにより極限の定義から
+$\sigma_c : Sc \to Rc$が唯一存在する.
+なぜならば, $(c \downarrow K)$の写像$ h : (f, m) \to (f', m')$について($f: c \to Km, f' : c \to Km', h: m \to m', Kh \circ f =f'$)について上の可換図式がまわるからである. 
+
+[3-2] $\sigma$が自然になること.
+これは$g : c \to c'$について
+$\sigma_c' \circ Sg = Rg \circ\sigma_{c}$を示せば良い.
+$f' : c' \to Km$について
+\begin{equation*}
+\xymatrix@C=100pt@R=20pt{
+Rc  \ar@{->}[r]_{Rg}  
+\ar@/^20pt/[rr]^{\mu_{f' \circ g : c \to Km}} 
+& Rc'  \ar@{->}[r]^{\mu'_{f' : c' \to Km}} 
+&Tm  \\
+Sc\ar@{->}[r]_{Sg}  \ar@{->}[u]_{\sigma_c}
+\ar@/_20pt/[rr]_{S(f' \circ g)} 
+& Sc' \ar@{->}[r]_{Sf'} \ar@{->}[u]_{\sigma_{c'}}
+&SKm \ar@{->}[u]_{\alpha_m'} \\   
+}
+\end{equation*}
+$Rc'$の普遍性に帰着させる. 
+$$
+\mu_{f' \circ g : c \to Km}\circ \sigma_c
+=
+\alpha'_{m} \circ S(f' \circ g)
+=
+\mu'_{f' : c' \to Km} \circ ( \sigma_{c'}\circ Sg) : Sc \to Tm
+$$
+である. $f' : c' \to Km$についての極限を取れば
+$h : Sc  \to Rc'$で任意の$f'$について
+$\mu'_{f' : c' \to Km} \circ h  = \alpha'_{m} \circ S(f' \circ g) : Sc \to Tm$
+このような$h$はただ一つである. 
+よって
+$$
+\mu'_{f' : c' \to Km} \circ ( \sigma_{c'}\circ Sg) 
+=
+\mu'_{f' : c' \to Km} \circ h 
+ = \alpha'_{m} \circ S(f' \circ g)
+ =\mu_{f' \circ g : c \to Km}\circ \sigma_c
+ =
+\mu'_{f' : c' \to Km} \circ (Rg \circ \sigma_c)
+$$
+より普遍性の唯一性から$h = \sigma_{c'}\circ Sg = Rg \circ \sigma_c$である. 
+
+[3-3]  $\alpha = \epsilon \cdot \sigma K : SK \to T$について.
+示すことは, $m \in Ob(M)$について
+$$
+\alpha_{m} = \epsilon_{m} \cdot  \sigma_{Km}:SKm \to Tm
+$$
+である. 
+$c = Km$, $f = id_{Km} : c=Km \to Km$として
+[3.1]のような図式を考えると, 
+
+\begin{equation*}
+\xymatrix@C=160pt@R=20pt{
+Rc = \lim (T \circ Q : (c \downarrow K) \to M \to A) \ar@{->}[r]_{\mu_{id_{Km}: Km \to Km} = \sigma_{Km}}  
+& Tm  \\
+SKm\ar@{=}[r]_{Sf = Sid_{Km}}  \ar@{->}[u]_{\sigma_c = \sigma_{Km}}
+& SKm  \ar@{->}[u]_{\alpha_m}  \\   
+}
+\end{equation*}
+より言える. 
+
+[4]$\sigma : S \to R$の唯一性. 
+
+[2]において$f : c \to Km$, $c' =Km$, $f' = id_{Km}$とすると以下の図式を得る
+\begin{equation*}
+\xymatrix@C=100pt@R=20pt{
+Rc  \ar@{->}[r]_{Rf}  
+\ar@/^20pt/[rr]^{\mu_{ f : c \to Km}} 
+& RKm  \ar@{->}[r]_{\mu'_{id_{Km} : Km \to Km} = \epsilon_{m}} 
+&Tm  \\
+Sc\ar@{->}[r]_{Sf}  \ar@{->}[u]_{\sigma_c}
+\ar@/_20pt/[rr]_{Sf} 
+& SKm \ar@{=}[r]_{SKm} \ar@{->}[u]_{\sigma_{Km}}
+&SKm \ar@{->}[u]_{\alpha_m} \\   
+}
+\end{equation*}
+上の図式は全て可換で$\sigma_c: S_c \to Rc$が唯一であることがわかる.
+($Rc$が極限で$\mu_{ f : c \to Km} \circ h_c =\mu_{ f : c \to Km}\circ  h'_c$なら$h_c = h'_c$となる/)
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$M$がsmall, $A$が完備なら
+任意の$T : M \to A$は任意の$K : M \to C$に沿った右Kan拡張を持つ. 
+さらに$A^K$は右随伴を持つ
+
+特に$M$smallならば任意の$T : M \to {\bf Set}$は任意の$K : M \to C$に沿った右Kan拡張を持つ. 
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+任意の$c \in Ob(C)$について
+$$
+T \circ Q : (c \downarrow K) \to M \to A
+$$
+に関する極限$\lim T\circ Q$と$\mu: \Delta (\lim T\circ Q) \to TQ$が存在することを示せば良い.
+これは$M$を経由しているので存在する.
+%これは$(c \downarrow K) $がsmallであることを示せば良い.
+%%$(c \downarrow K) $は
+%\begin{itemize}
+%\item $(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km \in hom_{C}(c,Km)$ %($x \in Ob(Km)$と思える. )
+%\item Morphism $h : (m,x)  \to (m',x') \in Hom_{M}(m,m') $ で
+%$h: m \to m'$で$x'  = Kh \circ x$となるもの
+%\end{itemize}
+
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\ref{thm-Kan-extension}のように
+$K : M \to C$, $T : M \to A$を関手, 
+任意の$c \in Ob(C)$について
+$$
+T \circ Q : (c \downarrow K) \to M \to A
+$$
+に関する極限$\lim T\circ Q$と$\mu: \Delta (\lim T\circ Q) \to TQ$が存在すると仮定する.
+
+さらに$K : M \to C$がfully faithfullの場合, 
+$K$の$T$に沿ったKan拡張$R = Ran_{K}T$についての
+普遍射$\epsilon : RK \to T$は自然同型を与える
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+$m \in Ob(M)$について$\sigma_m : RKm \to Tm$が$A$上で自然な可逆を持つことを言えば良い. 
+$Ob(Km \downarrow K)$は$K$がfullyfaithfullであるので次のようにかける.
+\begin{itemize}
+\item $(m', Kh) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$Kh : Km \to Km'$($Km \to Km'$はfullyfaithfullよりこの形でかける) %($x \in Ob(Km)$と思える. )
+\item Morphism $H : (m_1, Kh_1)  \to (m_2,Kh_2) \in Hom_{M}(m_1,m_2) $ を 
+$H: m_1 \to m_2$で$ h_2 = H \circ h_1 $となるもの.
+\end{itemize}
+%そこで$Kh : Km' \to $
+$$
+T \circ Q : (c \downarrow K) \to M \to A : (m' , Kh) \to Tm'
+$$
+である. 任意の$h : m \to m'$について, 
+$$
+Th : Tm \to Tm' 
+$$
+が定めるので, $\alpha_m :  Tm \to \lim TQ$が唯一存在する. 
+一方で$\sigma_m : id_{m} : m \to m$について$\lim TQ \to Tm$が定まる.
+$\sigma_m \circ \alpha_m = id_m$は唯一性のところから明らか. 
+逆については, 唯一性からでる. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$M$が$C$のfull sub categoryつまり包含関手$K : M \to C$がfullyfaithfullとする. 
+$T : M \to A$関手とする. 
+$c \in C$について
+$$
+(c\downarrow K) \to M \to A
+$$
+が$A$内に極限を持つとき$R : C \to A$があって
+$\epsilon : RK \cong T$である.
+
+特に恒等自然変換$1: RK \to T$とすると
+$(R,1)$は$T$の$K$に沿った右Kan拡張となる. 
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+$K : M \to C$, $T : M \to A$, $G :  A \to X$とする.
+$G$が左随伴を持つ時, $G$は右Kan拡張を保存する. 
+$$
+G \circ Ran_{K} T = Ran_{K}GT
+$$
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$$
+hom_{A}(Fx, a) \cong hom_{X}(x,Ga)
+$$
+により$H \in X^C, L \in A^C$について
+$$
+Nat(FH, L) \cong (H GL)
+$$
+がいえる.
+よって任意の$H \in X^C$について自然な全単射
+$$
+Nat(H, G\circ Ran_{K} T )
+\cong 
+Nat(FH, Ran_{K} T )
+\cong 
+Nat(FHK, T)
+\cong 
+Nat(HK, GT)
+\cong 
+Nat(H, Ran_{K}GT)
+$$
+が成り立つので, 同型が言える. 
+\end{proof}
+
+左Kan拡張に関しても同様である. 
+以下事実をまとめておく. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[左Kan拡張]
+$K : M \to C$, $T : M \to A$を関手とする.
+$K$に沿った$T$の左Kan拡張とは
+\begin{itemize}
+\item $L : C \to A$関手
+\item $\epsilon :  T \to LK$自然変換
+\end{itemize}
+に二つくみ$(L, \epsilon : LK \to T)$であって, 
+任意の$S : C \to A, \alpha :  T \to SK $について, $\alpha = \sigma K \circ \epsilon:  T \to SK$となる自然変換$\sigma : L \to S$が唯一存在すること. 
+
+このとき$L := Lan_{K}T$とかく. 
+\end{dfn}
+\end{tcolorbox}
+
+$\sigma \mapsto \epsilon \cdot \sigma K$によって自然な全単射
+$$
+Nat (L, S)=Nat (Lan_{K}T, S) \cong Nat(T, SK)
+$$
+となる.よってこれをかっこよくいうと次の補題を得る. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-leftkan-adjoint}
+$K : M \to C$を固定する. 
+任意の$T \in A^{M}$ ($T : M \to A$)について左Kan拡張
+$(L, \epsilon) := (Lan_{K}T \in A^C, \epsilon_{T}: T \to LK)$
+が存在すると仮定する.
+
+この時$\beta : A^M \to A^C$を
+\begin{itemize}
+\item $\beta T := Lan_{K}T$
+\item $\beta (g : T \to T')$について$\beta(g) : Lan_{K}T \to Lan_{K'}T$を, 
+$S = Lan_{K}T' : C \to A, \alpha =g\circ \epsilon_T : T \to SK = Lan_{K}T' K$として, 唯一存在する自然変換
+$\beta(g):=\sigma :  Lan_{K}T \to Lan_{K}T'$で$\alpha =g\circ \epsilon_T  = \beta(g)K \cdot \epsilon_T $となるもの. 
+\end{itemize}
+で決めると, 
+$$
+F : A^C \to A^M \quad N :C\to A\mapsto N \circ K : M \to A 
+$$
+の左随伴, つまり
+$$
+Nat (Lan_{K}T, N)
+=
+ hom_{A^C}(Lan_{K}T, N)
+ \cong
+ hom_{A^M}(T, F(N)) = Nat(T,NK)
+$$
+となり, $\epsilon :  I \to Ran_{K} \circ F$はunitである. 
+\end{lem}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}[点列極限としての左Kan拡張]
+\label{thm-Kan-extension}
+$K : M \to C$, $T : M \to A$を関手とする.
+任意の$c \in Ob(C)$について
+$$
+T \circ P : (K \downarrow c ) \to M \to A
+$$
+に関する余極限$\colim T\circ P$と$\mu:  TP \to \Delta (\lim T\circ P)$が存在すると仮定する.
+
+このとき$L : C \to A$を
+\begin{itemize}
+\item $c \in Ob(C)$について, $Lc : = \colim (T \circ P : (K \downarrow c ) \to M \to A)$
+\item $g : c \to c'$について $Lg : Lc \to Lc'$となる射
+\end{itemize}
+とするとこれは関手になる
+
+さらに$\epsilon : T \to RK $について
+$\epsilon_{m} :  Tm \to RKm$を次で定めるとこれは自然変換になる: 
+
+%(m,x) : Ob(c \downarrow K)$は$m \in Ob(M)$かつ$x : c \to Km$,
+$LKm =\colim T\circ P \in Ob(A)$と$\mu: TP \to \Delta TPm$は定義から, 
+$(LKm , \mu_{x})$のくみ($x : Km \to Km $), $Ob(c \downarrow K )$内の$h : (m,x)\to (m',x')$
+($x' : Km' \to Km$)について
+\begin{itemize}
+\item $\mu_{x} :  Tm \to  RKm  $, つまりA内で$\mu_{x} :   Tm  \to RKm$
+\item $  \mu_{x} \circ TP h = \mu_{x'} : TQ(m',x') =Tm' \to RKm $, 
+%つまり$TQ h \circ \mu_{(m',x')} (a_c) = Th (\mu_{(m,x)}(a_c)) \mu_{(m,x)} : a_c\to  Tm $となる.
+\end{itemize}
+である. そこで$\epsilon_{m} := \mu_{ id_{Km}} : Tm \to RKm $と定義する.
+
+そして$(L,\epsilon)$は$K$に沿った$T$の左Kan拡張となる. 
+\end{thm}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\label{cor-leftkan-small}
+$M$がsmall, $A$が完備なら
+任意の$T : M \to A$は任意の$K : M \to C$に沿った左Kan拡張を持つ. 
+さらに$A^K$は左随伴を持つ
+
+特に$M$smallならば任意の$T : M \to {\bf Set}$は任意の$K : M \to C$に沿った左Kan拡張を持つ. 
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+\ref{thm-Kan-extension}のように
+$K : M \to C$, $T : M \to A$を関手, 
+任意の$c \in Ob(C)$について
+$$
+T \circ P : (K \downarrow c) \to M \to A
+$$
+に関する極限$\colim T\circ P$と$\mu:  TP \to \Delta (\lim T\circ Q)$が存在すると仮定する.
+
+さらに$K : M \to C$がfully faithfullの場合, 
+$K$の$T$に沿ったKan拡張$L = Lan_{K}T$についての
+普遍射$\epsilon : T \to LK$は自然同型を与える
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}
+$M$が$C$のfull sub categoryつまり包含関手$K : M \to C$がfullyfaithfullとする. 
+$T : M \to A$関手とする. 
+$c \in C$について
+$$
+( K \downarrow c) \to M \to A
+$$
+が$A$内に極限を持つとき$L : C \to A$があって
+$\epsilon :  \cong T \cong LK$である.
+
+特に恒等自然変換$1: RK \to T$とすると
+$(L,1)$は$T$の$K$に沿った右Kan拡張となる. 
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+$K : M \to C$, $T : M \to A$, $G :  A \to X$とする.
+$G$が右随伴を持つ時, $G$は左Kan拡張を保存する. 
+$$
+G \circ Lan_{K} T = Lan_{K}GT
+$$
+\end{thm}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{thebibliography}{n}
+\bibitem[alg]{alg}
+alg-d 全ての概念はKan拡張である
+\url{https://alg-d.com/math/kan_extension/}
+\bibitem[Asg]{Asg}
+Dagur Asgeirsson
+\textit{The Foundations of Condensed Mathematics}
+\url{https://dagur.sites.ku.dk/files/2022/01/condensed-foundations.pdf}
+\bibitem[Bar22]{Bar22}
+Michael Barz \textit{Condensed Mathematics}
+\url{https://www.dropbox.com/scl/fi/xm2bs6jgtv9oaqir2slbt/condensed-final.pdf?rlkey=r1x82m3a135rfeec86jrjj79k&e=1&dl=0}
+\bibitem[Fra]{Fra}
+Martin Frankland \textit{Math 527 - Homotopy Theory
+Additional notes}
+\url{https://uregina.ca/~franklam/Math527/Math527_0204.pdf}
+\bibitem[Land]{Land}
+Marks Land
+\textit{CONDENSED MATHEMATICS}
+\url{https://www.markus-land.de/teaching/}
+\bibitem[Lep]{Lep}
+Florian Leptien
+\textit{Master thesis Condensed Mathematics}
+\bibitem[Sta]{Sta}
+Stacks Project \textit{Site and sheaves}
+\url{https://stacks.math.columbia.edu/download/sites.pdf}
+\bibitem[Stum]{Stum}
+Bernard Le Stum
+\textit{An introduction to condensed mathematics}
+\url{https://perso.univ-rennes1.fr/bernard.le-stum/bernard.le-stum/Enseignement_files/CondensedBook.pdf}
+\bibitem[Str]{Str}
+N. P. Strickland
+\textit{THE CATEGORY OF CGWH SPACES}
+\url{https://ncatlab.org/nlab/files/StricklandCGHWSpaces.pdf}
+\bibitem[Sch19]{Sch19}
+Peter Scholze
+\textit{Lectures on Condensed Mathematics}
+\url{https://www.math.uni-bonn.de/people/scholze/Condensed.pdf}
+\bibitem[SchClau]{SchClau}
+Peter Scholze, Dustin Clausen
+\textit{Masterclass in Condensed Mathematics}
+\url{https://www.math.ku.dk/english/calendar/events/condensed-mathematics/}
+\bibitem[Sha1]{Sha1}
+Shane Kelly \textit{Notes on the [HTT] proof of sheafification}
+\url{https://www.ms.u-tokyo.ac.jp/~kelly/Course2023-24DAG/Sheafification.pdf}
+\bibitem[Sha2]{Sha2}
+Shane Kelly
+\textit{Fast track guide to cardinals for use with Lurie’s Higher Topos Theory}
+\url{https://www.ms.u-tokyo.ac.jp/~kelly/pdfs/cardinalsFastTrack.pdf}
+\bibitem[Iwa22]{Iwa22}
+岩井雅崇　集合と位相まとめノート
+\url{https://x.gd/aDQt1}
+%https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf
+\bibitem[田中]{Tana}
+田中尚夫 公理的集合論　培風館
+\bibitem[マックレーン]{Mac}
+S. マックレーン 圏論の基礎 丸善出版
+\end{thebibliography}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{n}
+\bibitem[alg]{alg}
+alg-d 全ての概念はKan拡張である
+\url{https://alg-d.com/math/kan_extension/}
+\bibitem[Iwa22]{Iwa22}
+岩井雅崇　集合と位相まとめノート
+\url{https://x.gd/aDQt1}
+%https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf
+\bibitem[田中]{Tana}
+田中尚夫 公理的集合論　培風館
+\bibitem[マックレーン]{Mac}
+S. マックレーン 圏論の基礎 丸善出版
+\end{thebibliography}
+ 
+
+\end{document}

@@ -19,6 +19,14 @@
 
 - Masataka Iwai, Shin-ichi Matsumura, Niklas Müller 'Minimal projective varieties satisfying Miyaoka's equality.'  [arXiv](https://arxiv.org/abs/2404.07568)
 
+# **報告集**
+1. '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
+2. 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
+3.  'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' 都の西北代数幾何学シンポジウム2021報告集 [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
+4. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' 第69回幾何学シンポジウム 予稿(報告集) [PDF](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
+5. 'チャーン類の不等式と構造定理' 日本数学会2025年度年会 函数論分科会 特別講演 アブストラクト [PDF](https://masataka123.github.io/blog3/pdf/2025_01_日本数学会_homepage.pdf)
+
+
 # **ノート**
 勉強したことなどをまとめた自分用のノートです. (自分用ですがホームページにおいていると便利なのであげることにしました.) 
 間違っている可能性は大いにあるので注意してください. 
@@ -37,19 +45,12 @@
 - [コンパクト生成空間・コンパクト生成弱ハウスドルフ空間のまとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_CGWH.pdf)
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
-- [公理的集合論と圏論まとめ]()
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 現在準備中.
+- [公理的集合論と圏論まとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_set_category.pdf)
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 現在修正加筆中で未完成です. 
 
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成です. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 現在修正加筆中で未完成です. 
 
-
-# **報告集**
-1. '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
-2. 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
-3.  'On the structure of a log smooth pair in the equality case of the Bogomolov-Gieseker inequality' 都の西北代数幾何学シンポジウム2021報告集 [PDF](https://masataka123.github.io/blog3/pdf/2021_10_31.pdf)
-4. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' 第69回幾何学シンポジウム 予稿(報告集) [PDF](https://masataka123.github.io/blog3/pdf/2022_07_20_Geometry_Symp_2022.pdf)
-5. 'チャーン類の不等式と構造定理' 日本数学会2025年度年会 函数論分科会 特別講演 アブストラクト [PDF](https://masataka123.github.io/blog3/pdf/2025_01_日本数学会_homepage.pdf)
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
