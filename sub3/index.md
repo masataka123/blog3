@@ -79,6 +79,7 @@
 8. "New developments in Kobayashi–Hitchin correspondence and Higgs bundles", 大阪公立大学, 2024年8月5--9日. (大阪大学 糟谷久矢氏, 大阪公立大学 橋本義規氏, 東北大学 宮武夏雄氏との共同主催) [Link](https://masataka123.github.io/Kobayashi_Hitchin/)
 9. "Workshop on Algebraic Geometry over complex number field or in positive characteristic -Around positivity of tangent sheaves and anti-canonical divisors- " 大阪公立大学, 2024年9月17--20日. (大阪公立大学 江尻祥氏, 大阪公立大学 小池貴之, 九州大学 佐藤謙太氏, 大阪公立大学 松澤陽介氏, 東北大学 松村慎一氏との共同主催) [Link](https://masataka123.github.io/tangent_anticanonical/)
 10. "2024年度 多変数関数論冬セミナー " 大阪大学, 2024年12月13--15日. (大阪大学 松本佳彦氏との共同主催) [Link](https://masataka123.github.io/2024scvwinter/)
+11. "Condensed mathematicsワークショップ" 大阪公立大学. 2025年2月17--21日. (東京大学 榎園誠氏, 新潟大学 橋詰健太氏, 大阪公立大学 松澤陽介氏 との共同主催) [Link](https://sites.google.com/view/condmathomu/home) 
 
 
 ## **学内・学外セミナー**

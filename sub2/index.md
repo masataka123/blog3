@@ -29,10 +29,13 @@
 -->
 
 - [Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendix 発表原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
-2025年2月17日-21日開催の"Condensed mathematicsワークショップ"での, Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendixの発表原稿です. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)での, Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendixの発表原稿です. 
+
+- [コンパクト生成空間・コンパクト生成弱ハウスドルフ空間のまとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_CGWH.pdf)
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
-2025年2月17日-21日開催の"Condensed mathematicsワークショップ"に向けてやっていた勉強会のまとめノートです. 内容を追加していく予定です. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 
 
 # **報告集**
 1. '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)

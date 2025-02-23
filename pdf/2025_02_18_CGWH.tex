@@ -1,0 +1,1680 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % æ°å­¦ç¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref} 
+\setstretch{1.2}
+\usepackage{pgfplots}
+%\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{S}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\colim}{{\rm colim}}
+
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+\newtheorem{dfnthm}[thm]{定義・定理}
+\newtheorem{ques}[thm]{問題}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+  
+  \newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\title{compact生成空間・compact生成弱Hausdorff空間まとめ}
+\author{岩井雅崇 (大阪大学)}
+\date{\today \, ver 1.00}
+%ここから本文．
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\section{compact生成空間・compact生成弱Hausdorff空間まとめ}
+compact生成空間(CG)やcompact生成弱Hausdorff空間(CGWH)の基本的な性質を\cite{Str}を読んでまとめた. 
+位相空間の基礎的な用語に関しては\cite{Iwa22}を参照のこと.
+
+\subsection{CGWH space まとめ}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Definition 1.1 ,1.2]{Str}
+$X$を位相空間とし, $\mathfrak{B}$を$X$の閉集合系とする. 
+\begin{enumerate}
+\item $Y \subset X$が$k$-closedとは任意のcompact Hausdorff空間$K$からの連続写像$u : K \to X$について$u^{-1}Y$が閉集合となるもの. 
+\item $k$-closed集合を$k\mathfrak{B}$と表す. $\mathfrak{B} \subset k \mathfrak{B}$である.
+\item $kX$を$(X, k\mathfrak{B})$という位相空間とする. 
+\item $X$がcompact生成空間(CG)とは$X = kX$となる位相空間である.
+\item $X$が弱Hausdorff(WH)とは任意のcompact Hausdorff空間$K$からの連続写像$u : K \to X$について$u(K)$が閉集合となるもの
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+\begin{rem}
+Hausdorffならば弱Hausdorff.
+なぜならばHausdorff空間のcompact集合は閉集合なので.
+
+弱Hausdorffならば, $T_1$空間.これは一点集合からの射を考えれば良い.
+\end{rem}
+
+\begin{rem}
+k-closedと同様にk-openも定められる. 
+\cite{Str}ではk-closedで議論をしているが, k-openでも議論は同じである.
+\end{rem}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Lemma 1.3]{Str}
+\label{lem-weakhaus}
+$X$をWHとする. 
+\begin{enumerate}
+\item $W$ compact Hausdorff, $\phi : W \to X$連続
+のとき$\phi(W)$はcompact Hausdorff.
+\item $Y \subset X$がk-closedであることは任意のcompact Hausdorff空間$K \subset X$について$K \cap Y$が$K$で閉であることと同値.
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+(1).
+$\phi(W)$がHausdorffを示せば良い.
+$x,y \in \phi(W)$かつ$x \neq y$とする.
+compact Hausdorff空間は$T_4$なので
+$$
+\phi^{-1}(x) \subset U\quad
+\phi^{-1}(y) \subset V\quad
+U \subset V = \varnothing
+$$
+となる$W$の開集合$U,V$が取れる. 
+$\phi(U^{c})$は閉集合で
+$\left( \phi(W) \setminus \phi(U^c) \right) \cap \left( \phi(W) \setminus \phi(V^c) \right) = \varnothing$
+であり
+$$
+x \in \left( \phi(W) \setminus \phi(U^c) \right) \quad
+y \in \left( \phi(W) \setminus \phi(V^c) \right) 
+$$
+であるので上の二つの開集合が$x,y$を分離する.
+(2)は(1)からすぐでる.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite{Str}
+$X$位相空間, $Y \subset X$部分集合とする.
+$Y$がsequentially closedであるとは
+任意の$y_n \in Y$かつ$y_n \to x$となるならば$x \in Y$となる集合のこととする.
+
+$X$がsequential spaceとはsequentially closed部分集合が閉集合となること. 
+\end{dfn}
+\end{tcolorbox}
+\begin{rem}
+sequentially closedならば$T_1$である. これは$y_n =x$という点列を考えるれば良い. 
+
+第一可算集合(任意の点が可算開近傍系を持つ)ならばsequentially closed.
+なぜならば, $Z$をsequentially closed集合としたら, $x \in \overline{Z}$について
+$y_n \to x$となる$Z$の点列で収束するものが可算開近傍系から作れるからである.
+特に距離空間はsequentially closedである. 
+\end{rem}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop 1.6]{Str}
+sequentially spaceはCG
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$Y \subset X$をk-closed集合とする.
+$Y$がsequentially closedであることを示す.
+$y_n \in Y$かつ$y_n \to x$とおく. $x \in Y$を示せば良い.
+
+$K$を$\N$の一点compact化とする.
+つまり$V \subset K$が開集合であるとは, $V \subset \N$または「$\infty \in V$かつ$K \setminus V$は有限集合」である. 
+
+$u : K \to X$を$u(n)=y_n, u(\infty)=x$とおく. 
+これは$y_n \to x$より連続写像になる. 
+よって$Y$はk-closedより, $u^{-1}Y$は$\N \subset u^{-1}Y\subset K$となる閉集合.よって$K$の開集合の定義から $u^{-1}Y = K$. $x \in Y$となる. 
+
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop 1.7]{Str}
+locally compact Hausdorff ならばCGWH.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+ $X$をlocally compact Hausdorffとする.
+CGを示せば良い. 
+$Y \subset X$をk-closed集合とする.
+$\overline{Y} = Y$を示す.
+
+$x \in \overline{Y}$とする.
+$X$ locally compactより$x \in U$開集合で$K:= \overline{U}$がcompactとなるものがある.
+よって$j : K \to X$を考えると明らかに連続で, $Y$はk-closed集合より$K\cap Y = j^{-1}Y$は$K$での閉集合である.
+
+$x \in V \cap K$で$V$を$X$での開集合とする.
+すると$x \in V \cap U$より$x \in \overline{Y}$から
+$V \cap U \cap Y \neq\varnothing$となる.
+よって$V \cap (K \cap Y)\neq\varnothing$である.
+
+これより任意の$x$を含む"$K$での開集合$V \cap K$"について
+$(V \cap K) \cap  (K \cap Y) \neq \varnothing$である.
+これは閉包の定義から
+$K \cap Y$の"$K$での閉包"に$x$が属する．
+今$K\cap Y = j^{-1}Y$は$K$での閉集合であるので, $x \in K \cap Y$となる. 
+つまり$x \in Y$である. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Lemma 1.8]{Str}
+$K$をcompact Hausdorff空間とする.
+$u : K \to (X,\mathfrak{B})$連続は$u : K \to (X,k\mathfrak{B})$連続と同値.
+\end{lem}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Cor1.9]{Str}
+$kX =k(kX)$である. 特に$kX$はCG.
+\end{lem}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Cor1.10]{Str}
+\label{Str-cor1.10}
+$X$をCG, $Y$を位相空間とする. 
+$f : X \to Y$連続は$f : X \to kY$が連続と同値. 
+特に$Y \mapsto kY$は忘却関手$X \mapsto X$の右随伴であり
+$$
+hom_{{\bf Top}}(X, Y) = hom_{{\bf CG}}(X, kY).
+$$
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+閉集合系は$\mathfrak{B}_Y \subset k\mathfrak{B}_Y$である.
+よって右から左は自明である.
+
+$f : X \to Y$連続とする. $Z \subset Y$がk-closed として, $f^{-1}Z \subset X$が閉集合を示す.
+$X$はCGなので$f^{-1}Z$がk-closedを示せば良い.
+$u : K \to X$をcompact Hausdorff空間からの連続写像とする.
+$u^{-1}(f^{-1}Z )$が閉集合を示せば良い. これは$f \circ u : K \to X \to Y$は連続なので明らか.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop1.11]{Str}
+$X$をCG, $Y$位相空間とする. 
+$f : X \to Y$連続は, 
+任意のcompact Hausdorff空間からの連続写像$u : K \to X$について$f \circ u : K \to Y$が連続になることと同値.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+左から右は明らか, 右から左に関しては, 
+$Z \subset Y$閉集合に関して, $f^{-1}Z$がk-closedを示せば良く, 上の証明と同じ議論で言える. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop1.12]{Str}
+$\mathfrak{A} \subset \mathfrak{B} \subset P(X)$を$X$の閉集合系とする. 
+この時$k\mathfrak{A} \subset k\mathfrak{B}$.
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$Z \in k\mathfrak{A} $とする. $Z \in k \mathfrak{B}$を示せば良い. 
+つまり$u : K \to (X, \mathfrak{B})$をcompact Hausdorff空間からの連続写像
+について$u^{-1}Z$が$K$の閉集合であることを示せば良い. 
+$u : K \to (X, \mathfrak{A})$も連続なので明らか.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.1]{Str}
+\label{Str-prop2.1}
+$X$をCGとし, $\sim$を$X$の同値関係とすると
+$X/\sim$もCG.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+$\pi : X \to X/\sim$を商写像とする. 
+$Z \subset X/\sim$がk-closedとする. $Z$が閉集合であることを示せば良い.
+\ref{Str-cor1.10}から
+$\pi : X \to k(X/\sim)$も連続であるので, $\pi^{-1}Z$は$X$の閉集合である.
+$\pi$は商写像なので, $Z$は閉集合である. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.2]{Str}
+\label{Str-prop2.2}
+$\{ X_i \}_{i \in I}$をCGの族とする. (ただし$I$は集合とする)
+この時
+$\sqcup X_i$もCG.
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$Z \subset \sqcup X_i$をk-closedとする.
+$Z$が閉集合であることを示せば良い. 
+これは$\eta_i : X_i \to \sqcup X_i$を包含写像として, $Z_i := X_i \cap \eta_{i}^{-1}Z$としたとき
+$Z_i$が$X_i$で閉集合であることを示せば良い.
+$X_i$はCGなので$Z_i$がk-closedであることを示せば良い.
+
+これは$u : K \to X_i$をcompact Hausdorff空間からの連続写像とすれば
+$u^{-1}Z_i = (\eta_i \circ u)^{-1}Z$であることから明らかである. 
+\end{proof}
+
+以下, 位相空間$X,Y$について$X \times_0 Y$を\underline{位相空間の直積}とする.
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Def 2.3]{Str}
+\label{Str-def-2.3}
+$X$, $Y$をCGとして, その直積
+$X \times Y$を下で定める.
+\begin{itemize}
+\item 集合としては$X \times Y$.
+\item 位相としては$k(\mathfrak{B}_X \times \mathfrak{B}_Y)$とする.
+\end{itemize}
+つまり$X \times Y = k(X \times_0 Y)$とする．  同様に$\prod X_i$を積位相空間にk化したもの, つまり$k(\prod_0 X_i)$で定める. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.4]{Str}
+$\{ X_i \}_{i \in I}$をCGの族とする.
+\begin{enumerate}
+\item $p_i : \prod X_i \to X_i$を射影とすると, これは連続.
+\item 任意のCGである$Y$について, $f : Y \to \prod X_i $が連続であることは, 各$p_i \circ f $が連続と同値.
+\end{enumerate}
+よって$\prod X_i$は{\bf CG}の圏の直積となる.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+(1). \ref{Str-cor1.10}より
+$p_i : \prod X_i \to X_i$が連続は, $\prod_0 X_i$で連続であることと同じであるので.
+
+(2)については右から左のみ非自明. 
+$p_i \circ f $が連続であるとすると, $f : Y \to \prod_0 X_i $は連続である.
+よって\ref{Str-cor1.10}よりk化した$k(\prod_0 X_i)$でも連続となる. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Lem 2.5]{Str}
+\label{Str-lem2.5}
+$X$をcompact位相空間, $Y$を位相空間, $y \in Y$とする.
+$X \times \{ y\} \subset U$なる$X \times_0 Y$の開集合$U$が存在する時,
+$Y$の$y$を含む開集合$V$で$X \times_{0} V \subset U$となる.
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+$(x,y ) \in U$より積位相の定義から$(x,y) \in U_x \times V_x$がある.
+$\cup_{x \in X} U_x  = X$より$X$はcompactだから有限個でおおえる.
+$X = \cup_{i=1}^{n} U_{x_i}$とし$V:= \cap_{i=1,\ldots, n} V_{x_i}$とすれば良い. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.6]{Str}
+$X$がlocally compact Hausdorff, $Y$がCGならば
+$X \times_0 Y = X \times Y$.
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+$Z \subset X \times_0 Y$がk-closedとする. 
+$Z$が$X$と$Y$の"積位相"で閉集合であることを示せば良い.
+
+$(x,y) \not \in Z$について$(x,y) \in U \times V$なる$X,Y$の開集合で$(U\times V) \cap Z =\varnothing$であるものが存在することを示す．
+$$
+i_y : X \to X \times Y \quad x' \mapsto (x',y)
+$$
+とする. これは連続写像で, $i_{y}^{-1}Z \subset X$はk-closed集合かつ
+$X$がCGであることより, $i_{y}^{-1}Z \subset X$は閉集合.
+$X$は局所compactかつ$x \not \in i_{y}^{-1}Z $より, $x \in U \subset X$なる開集合で$\overline{U}$compactかつ$\overline{U} \cap i_{y}^{-1}Z = \varnothing$となるものがある.
+よって
+$$
+(\overline{U} \times \{ y\})\cap Z = \varnothing
+$$
+となる. 
+
+そこで
+$$
+V:= \{ y' \in Y | (\overline{U} \times \{ y' \}) \cap Z = \varnothing\}
+$$
+とおく.$y \in V$である. この$V$が$Y$で開集合であることを示せば良い.
+それには$u : K \to Y$をcompact Hausdorff空間からの連続写像について$u^{-1}V$が開集合であることを示せば良い.
+$$
+1 \times u : \overline{U} \times K \to X \times Y
+$$
+とする. 
+$Z \subset X$はk-closedなので, 
+$Z' := (1 \times u)^{-1}Z$は$\overline{U} \times K$上の閉集合である. 
+$\overline{U} \times K$はcompactなので, $Z'$もまたcompact, 
+$pr_2(Z') \subset K$はcompact, 特に$K$Hausdorffなので$pr_2(Z') \subset K$は閉集合である.
+(ただし$pr_2 : \overline{U} \times K \to K$を第二射影とする.)
+$$
+pr_2(Z') = (u^{-1}V)^c
+$$
+であることに注意すれば$u^{-1}V$は開集合である. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.7]{Str}
+$X,Y$がどちらも第一加算ならば, $X \times_0 Y$も第一加算.
+特に$X \times_0 Y = X \times Y$.
+\end{prop}
+\end{tcolorbox}
+\begin{proof}
+これは可算近傍系の直積を取れば良い.
+最後に関しては第一加算はCGより明らか. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}\cite[Def 2.8]{Str}
+$X,Y$をCGとする.
+$u : K \to X$をcompact Hausdorff空間からの連続写像, $U \subset Y$開集合として
+$$
+W(u,K,U)
+:=
+\{f : X \to Y \text{連続写像}| f \circ u(K) \subset U \}
+$$
+とする. 
+$u$が包含写像で$K \subset X$であるときは$W(u,K,U) = W(K,U)$とかく.
+
+$C_0(X,Y)$を$W(u,K,U)$を開集合とする位相で一番小さいものとする(つまり準開基とする位相)
+これをcompact-open topologyという.
+
+また$C(X,Y) = kC_0(X,Y)$とする.
+\end{dfn}
+\end{tcolorbox}
+
+\begin{rem}
+$Z \subset Y$ならば$C(X,Z) =\cap_{x \in X} W(\{ x\},Z)^c$より$C(X,Y)$内の閉集合である.
+\end{rem}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}\cite[Lemma 2.10]{Str}
+$X,Y,Z,W$をCGとする. 
+$g : Y \to Z$, $f : W\to X$を連続写像とする. 
+$$
+g_{*} : C(X,Y) \to C(X,Z) \quad t \mapsto g \circ t
+$$
+$$
+f^{*} : C(X,Y) \to C(W,Y) \quad t \mapsto t \circ f
+$$
+はともに連続である.
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+(1)$u : K \to X$をcompact Hausdorff空間からの連続写像, $U \subset Z$開集合とするとき
+$$
+g_{*}^{-1}W(u,K,U)
+=\{ t : X \to Y | g \circ t \circ u(K) \subset U\}
+=W(u,K,g^{-1}U)
+$$
+であることからk化する前の位相において連続である.
+よって\ref{Str-cor1.10}よりk化しても連続である. 
+
+(2) $u : K \to W$をcompact Hausdorff空間からの連続写像, $U \subset Y$開集合とするとき
+$$
+{f^{*}}^{-1}W(u,K,U)
+=\{ t : X \to Y | t \circ f \circ u(K) \subset U\}
+=W(fu,K,U)
+$$
+であることから(1)と同様. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.11]{Str}
+\label{Str-prop2.11}
+$X,Y$をCGとする. 
+$$
+ev: X \times  C(X,Y) \to Y \quad (x,f) \mapsto f(x)
+$$
+$$
+inj_{X,Y}: Y \to C(X,X \times Y) \quad y \mapsto (inj(y) : x \mapsto (x,y))
+$$
+はともに連続である. 
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+(1)injについて. 
+\ref{Str-cor1.10}から$inj : Y \to C_0(X,X \times Y)$で連続であることを示せば良い.
+\begin{itemize}
+\item $u : K \to X$をcompact Hausdorff空間からの連続写像, 
+\item $U \subset X \times Y$を開集合
+\end{itemize}
+とするとき, 
+$inj^{-1}W(u,K,U)$が$Y$での開集合であることを示せば良い.
+$Y$はCGより
+\begin{itemize}
+\item $v : L \to Y$をcompact Hausdorff空間からの連続写像
+\end{itemize}
+として$v^{-1} inj^{-1}W(u,K,U)$が$L$の開集合であることをしめせば良い.
+
+$$
+u \times v : K \times L \to X \times Y
+$$
+は連続である. よって
+$$ \{ l \in L | K \times \{ l\} \subset (u \times v)^{-1}U \}
+$$
+は$K$がcompactなので\ref{Str-lem2.5}から開集合である. 
+\begin{align*}
+\begin{split}
+v^{-1} inj^{-1}W(u,K,U)
+&=\{ l \in L | inj(v(l)) \in W(u,K,U) \} \\
+&= \{ l \in L | inj(v(l)) (uK) \subset U \} \\
+&=\{ l \in L |  u(K) \times \{v(l) \}\subset U\}\\
+&= \{ l \in L | K \times \{ l\} \subset (u \times v)^{-1}U \}
+\end{split}
+\end{align*}
+であるので$L$の開集合であることが言えた. 
+
+(2) evについて.
+ $U \subset Y$を開集合とする.
+ $ev^{-1}(U) \subset X \times C(X,Y)$が開集合であることを示すには, 
+ \begin{itemize}
+\item $u=v\times w : K \to X \times C(X,Y)$をcompact Hausdorff空間からの連続写像, 
+\end{itemize}
+ として,  $V:=u^{-1} (ev^{-1}U) \subset K$が開集合であることを示せば良い.
+ すると定義から
+ $$
+V= u^{-1}(ev^{-1}U )
+=\{a \in K | w(a)(v(a))  \in U\}
+ $$
+ となる. ($w(a) : X\to Y$であることに注意.)
+ 
+ $a \in V$について, $a \in Z_a \subset V$なる$K$の開近傍の存在を示す. 
+ $w(a) \circ v : K \to X \to Y$は連続かつ$K$がcompact Hausdorffなので, 
+ $a \in L \subset (w(a) \circ v)^{-1}U $となるcompact集合$L$が取れる.
+ $w(a)(v(L)) \subset U$であるので定義から
+ $$
+ w(a) \in W(v,L,U) \subset C(X,Y)
+ $$
+ となる. 
+ $w : K \to C(X,Y)$で連続なので, $a \in w^{-1}(W(v,L,U))$は$K$の開近傍である.
+ よって
+ $$
+ a \in L \cap w^{-1}(W(v,L,U))
+ $$
+ を得る. この$Z_a := L \cap w^{-1}(W(v,L,U))$が欲しいものである.
+ 実際$a \in Z_a$は明らか, $Z_a$が開集合も上からわかる. $ Z_a\subset V$は以下のように示される: 
+ 任意の$b \in Z_a$について$w(b) \in W(v,L,U) $から$w(b) v(L) \subset U$であり, $b \in L$より
+ $w(b)(v(b)) \in U$となるので$V$の上の定義から$b \in V$となる.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.１2]{Str}
+\label{Str-prop2.12}
+$X,Y,Z$をCGとする. 
+$$
+adj: C(X, C(Y,Z)) \to C(X \times Y, Z)  \quad f \mapsto (adj(f) : (x,y) \mapsto f(x)(y))
+$$
+は同相である. 
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+$$
+D(X,Y):=\{ f : X \to Y| \text{$f$は集合としての写像}\}
+$$
+とおく.
+次の"集合の写像としての"全単射が存在する.
+\begin{enumerate}
+\item $f : X \to D(Y,Z)$
+\item $g : X \times Y \to Z$
+\end{enumerate}
+上から下への対応は$g(x,y) =f(x)(y)$である.
+
+$g(x,y)$が連続になるには次の二つの条件が満たされなければならない. 
+\begin{enumerate}
+\item $f(x) : Y \to Z$が任意の$x \in X$で連続.
+\item $f : X \to C(X,Y)$が連続.
+\end{enumerate}
+なぜならば$f$が上の(1)(2)を満たされている場合, 
+$$
+g : X \times Y \overset{f \times 1}{\longrightarrow}C(Y,Z) \times Y  \overset{ev }{\longrightarrow} Y
+$$
+であるので, \ref{Str-prop2.11}から$g$は連続となる. 
+逆に$g$が連続なら, (1)は明らかで
+$$
+f : X \overset{inj}{\longrightarrow}C(Y,X \times Y)  \overset{inj}{\longrightarrow} C(Y,Z)
+$$
+より\ref{Str-prop2.11}から(2)もわかる. 
+
+以上より$adj: C(X, C(Y,Z)) \to C(X \times Y, Z) $は集合としての全単射である. 
+同相になることに関しては2通りの証明がある.
+
+[1](地道にやる方法)
+$$
+ev : X \times C(X, C(Y,Z)) \to C(Y,Z) \quad ev : Y \times C(Y \times Z) \to Z
+$$
+は\ref{Str-prop2.11}から連続であった, 
+よって
+$$
+g = ev \circ (1_{Y} \times ev) : Y \times X \times C(X,C(Y,Z)) \to Z
+$$
+は連続である. 
+よって$g :  (Y \times X )\times C(X,C(Y,Z)) \to f$が連続なので
+$f : C(X,C(Y,Z)) \to C(X \times Y, Z)$は連続である.
+これは$f(h)(x,y) = g((x,y), h) = ev((x,y), h) =h(x)(y)$なので$f = adj$であり連続である.
+
+逆に
+$$
+ev : Y \times X \times C(X\times Y, Z) \to Z
+$$
+は連続であったので,
+evのadjointである$X \times C(X \times Y , Z) \to C(Y,Z)$も連続である.
+よって
+$C(X \times Y , Z) \to C(X, C(Y,Z))$も連続である.
+
+[2](米田を使う方法)
+$adj_{X,Y,Z}: C(X, C(Y,Z)) \to C(X \times Y, Z) $とかく
+任意の位相空間$W$について
+\begin{align*}
+\begin{split}
+C(W, C(X, C(Y,Z)))
+&\overset{adj_{W,X,C(Y,Z)}}{\longrightarrow} 
+C(W\times X , C(Y,Z))\\
+&\overset{adj_{W\times X,Y,Z}}{\longrightarrow} 
+C(W\times X  \times Y,Z))\\
+&\overset{adj_{W,X\times Y,Z}}{\longleftarrow} 
+C(W, C(X \times Y,Z))\\
+\end{split}
+\end{align*}
+上は$W$によって自然な同型なので米田から同相が言える. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+ $C$を圏とし直積を持つとする. 
+ 関手$\times Y : C \to C$を
+ \begin{itemize}
+ \item Object $X \mapsto X \times Y$
+ \item Morphism $\varphi \mapsto \varphi \times  id_{Y}$
+ \end{itemize}
+ とする.
+
+対象$Y,Z$について
+ 冪対象$Z^Y$とは関手$ \times Y$から$Z$への普遍射として定義する. 
+つまり
+ \begin{enumerate}
+ \item $Z^Y \in Ob(C)$と$eval : \times Y(Z^Y) = Z^Y \times Y \to Z$への組みであって
+ \item 任意の$X \in Ob(X)$と$f: \times Y(X) = X \times Y \to Z$について, ある$\lambda f : X \to Y^{Z}$で$f = eval \circ (\lambda \times id_Y) : X \times Y \to Z$となるものが一つ存在する.
+ \end{enumerate}
+$\lambda f$を$f$のカリー化(転置)という. 
+
+この時関手$Z \to Z^Y$は$\times Y$の右随伴であり
+$$
+hom_C(X \times Y, Z) \cong hom(X,X^Y)
+$$
+で与えられる. 
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+
+
+\begin{dfn}
+圏はcartesian closedとは次の三つを満たすこととする. 
+\begin{enumerate}
+\item 終対象を持つ. 
+\item 二つの対象$X,Y$について直積$X \times Y$が存在する. 
+\item $Y,Z$の冪対象$Z^Y$が存在する. 
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}\cite[Prop2.１2]{Str}
+${\bf CG}$の圏はcartesian closedである. 
+\begin{enumerate}
+\item 終対象は一点集合. 
+\item 二つの対象$X,Y$について, 直積$X \times Y$を当てる. 
+\item $Y,Z$の冪対象$Z^Y :=C(Y,Z)$が存在し, 以下が成り立つ. 
+$$
+hom(X \times Y, Z) \cong hom(X,Z^Y)=hom(X,C(Y,Z))
+$$
+\end{enumerate}
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.１3]{Str}
+$X$がcompact Hausdorff, $Y$が距離空間ならば
+$C(X,Y)$は
+$$
+d(f,g) = \max_{x \in X} d_Y\{f(x), g(x)\}
+$$
+という距離空間となる.
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+$d(f,g) $がWell-definedなのは(つまり$X$内で最大値を持つことは), $X$がcompact Hausdorff空間であるからわかる. 
+
+今$C(X,Y)$には二つの位相がある.($\xi$や$\chi$を$X$の開集合系とする.)
+\begin{enumerate}
+\item $\xi$を$C(X,Y)$のcompact開位相とした$k \xi$.
+\item 距離$d(f,g)$に関する距離位相$\chi$. 
+\end{enumerate}
+よって$k \xi = \chi$を示せば良い.
+$\chi = k \chi$なので
+$\xi \subset \chi$かつ$\chi \subset \xi$を示せば良い.
+(実は$\xi = \chi = k\xi$がわかる.)
+
+$\xi \subset \chi$について.
+$u : K \to X$をcompact Hausdorff空間からの連続写像, $U \subset Y$開集合とする. 
+$W(u,K,U)=
+\{f : X \to Y \text{連続}| f \circ u(K) \subset U \}$
+が$\chi$の元であることを示せば良い. 
+$$
+h : K \to \R \quad a \to d(f \circ u(a), U^c)
+$$
+は連続な正値連続関数より$h(K) > \epsilon >0$なる$\epsilon$が取れる. 
+$$
+B(\epsilon/3 , f) := \{ g \in C(X,Y) | d(f,g) < \epsilon/3\}
+$$
+とすると, $B(\epsilon/3 , f) \subset W(u,K,U)$が言える. 
+
+$ \chi \subset k \xi$について. 
+$B(\epsilon , f) \subset C(X,Y)$をとる. 
+すると$\cup_{y \in Y}f^{-1}B(\epsilon/3 , y)$は$X$の開被覆になる.\footnote{$B(\epsilon, y) := \{ z \in Y | d_{Y}(y,z) < \epsilon\}$とする. }
+$X$はcompactなので
+$X = \cup_{i=1}^{n}f^{-1}B(\epsilon/3 , y_i)$とできる. 
+$$
+K_i := f^{-1}\overline{B(\epsilon/3 , y_i)}
+\quad
+U_i := B(\epsilon/2 , y_i)
+$$
+とする. 
+$K_i$はcompactかつ$f(K_i) \subset U_i$である.
+
+$N:= \cap_{i=1}^{n}W(f, K_i, U_i)$とする. 
+$N \subset B(\epsilon , f) $を示せば良い.
+これは$g \in N, x \in X$について$d(f(x),g(x))<\epsilon$を示せば良い.
+$x \in K_i$なる$i$をとると$f(x), g(x) \in B(y_i , \epsilon/3)$であるので言えた.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.14]{Str}
+\label{Str-prop2.14}
+$X$をCGとする.
+$X$が弱hausdorffであることは
+$\Delta_X := \{ (x,x)| x \in X\}\subset X \times X$が$X \times X$で閉集合であることと同値.
+(つまり$\Delta_X$が普通の直積$X \times_0 X$のk-closedであることと同値)
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+
+[1]$X$をWeak Hausdorffとする. 
+任意のcompact Hausdorff空間からの連続写像
+$u = v \times w : K \to X \times X$について
+$u^{-1}\Delta_X := \{a \in K | v(a)=w(a) \}$が$K$の閉集合であることを示せば良い.
+
+$a \not \in u^{-1}\Delta_X$とする.
+$a \in Z \subset  K \setminus u^{-1}\Delta_X$となる$K$の開集合$Z$の存在を示す. 
+$v(a) \neq w(a)$であり, $X$は$T_1$なので
+$$
+U:= \{ b \in K | v(b) \neq w(a) \} = v^{-1}(X \setminus \{w(a)\})
+$$
+は$K$の開集合で$a$を含む.
+$K$はcompact Hausdorff空間であるので
+$a \in V \subset \overline{V} \subset U$となる開集合$V$が存在する.
+$v : K \to X$は連続で\underline{$X$は弱Hausdorff}なので, $v(\overline{V}) \subset X$は閉集合である
+$U$の定め方から$w(a) \neq v(\overline{V})$. よって$Z:=w^{-1}( X \setminus v(\overline{V}) )$とすると
+$$
+a \in w^{-1}( X \setminus v(\overline{V}) ) = Z
+$$
+であり,  $Z$は開集合である. 
+そして$Z\subset K \setminus u^{-1}\Delta_X$でありいえた.
+
+[2]$\Delta_X := \{ (x,x)| x \in X\}\subset X \times X$が$X \times X$で閉集合であるとする. 
+任意のcompact Hausdorff空間からの連続写像
+$u : K \to X$について$u(K)$が閉集合であることを示せば良い.
+\underline{$X$はCG}なので任意のcompact Hausdorff空間からの連続写像$v : L \to X$について
+$v^{-1}(u(K)) \subset L$が閉集合であることを示せば良い.
+$$
+M := \{ (a,b) \in K \times L | u(a) =v(b)\}=K\times_{X}L \subset K \times L
+$$
+と定める. 
+すると定義から$M = (u \times v)^{-1}\Delta_{X}$であり, 
+$u \times v : K \times L \to X \times X$は連続写像なので$M$は閉集合である. 
+$$
+v^{-1}(u(K)) = pr_{L}(M)
+$$
+であり, 射影$pr_{L} : K \times L \to L$は閉写像であるので言えた. 
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}\cite[Cor2.15]{Str}
+\label{Str-cor2.15}
+$X,Y$をCGWHとする. 
+$f,g : X \to Y$連続ならば, 
+$$
+ker(f,g)=\{x \in X | f(x)=g(x) \}= (f, g)^{-1}\Delta_{Y}
+$$
+は閉集合である.
+\end{cor}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}\cite[Cor2.16]{Str}
+\label{Str^cor2.16}
+$X_i$がCGWH, $I$を添字集合とするとき
+$\prod_i X_i$はCGWH.
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+CGは明らか. WHを示す.
+\ref{Str-prop2.14}より$\Delta_{X}$が$\prod_i X_i$の位相でclosedを示せば良い.
+しかしこれは$p_i : X \to X_i$として
+$$
+\Delta_X = \cap_{i} (p_i \times p_i)^{-1}\Delta_{X_i}
+$$
+より明らかである.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.17]{Str}
+\label{Str-prop2.17}
+$X,Y$をCGとする. 
+$\sim$を$X$上の同値関係とする. 
+$X \times Y$上の同値関係を
+$$
+(x_1,y_1) \sim (x_2, y_2) \Leftrightarrow
+x_1 \sim x_2 \text{ and } y_1 = y_2 
+$$
+で入れるとき, 自然な全単射
+$$
+(X \times Y)/\sim \to (X/\sim) \times Y
+$$
+は同相である. 
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+$q : X \to X/\sim$, $q' : X \times Y \to (X \times Y)/\sim$を商写像とする.
+すると$q \times 1 : X \times Y \to (X/\sim)\times Y$によってWell-definedな連続写像
+$$
+\overline{q \times 1} : (X \times Y)/\sim \to (X/\sim) \times Y
+$$
+を得る.
+
+一方\ref{Str-prop2.12}から$q' :  X \times Y \to (X \times Y)/\sim$のadjoint
+$ X \to C(Y , (X \times Y)/\sim)$を得る. これより$q^{\sharp} : X/\sim \to C(Y , (X \times Y)/\sim)$を得る. 
+これのadjointをとって
+$$
+(X/\sim) \times Y \to (X \times Y)/\sim
+$$
+となる連続写像を得る. これらが同相写像を与える.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop 2.20]{Str}
+\label{Str-prop2.20}
+$f : W \to X$, $g : Y \to Z$をCG間の商写像とする時
+$f \times g : W \times Y \to X \times Z$も商写像である. 
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+$f : W \to X$を商写像とする時, $w \sim w'$を$f(w) = f(w')$として定めれば, 
+位相空間として$X \cong W/\sim$となる. 
+よって
+$$
+f \times g = (id_X \times g) \circ (f \times id_Y):
+W \times Y \to X \times Y \to X \times Z
+$$
+は\ref{Str-prop2.17}より連続写像である.
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}\cite[Cor2.21]{Str}
+\label{Str-cor2.21}
+$X$をCG, $\sim$を$X$上の同値関係とする. 
+$X/\sim $がWHであることは, 
+$$
+R:= \{ (x,y)| x \sim y\} \subset X \times X
+$$
+としたとき$R$が$X \times X$上の閉集合であることと同値.
+(つまり$X$の通常の積位相でk-closedであることと同値.)
+\end{cor}
+\end{tcolorbox}
+\begin{proof}
+$X/\sim $がWHであることは,
+$$
+\Delta_{X/\sim} \subset (X/\sim) \times (X/\sim)
+$$
+が閉集合であることと同値.
+ここで$\pi : X \to X/\sim$を商写像として
+$$
+\pi \times \pi : X \times X \to (X/\sim) \times (X/\sim)
+$$
+とおくと\ref{Str-prop2.20}から商写像である.
+よって$\Delta_{X/\sim} $が閉集合であることは
+$$
+R = (\pi \times \pi )^{-1}\Delta_{X/\sim} 
+$$
+が閉集合であることと同値である.
+\end{proof}
+
+以下$\sim$を$X$上の同値関係とした時
+$$
+R_{\sim}= \{ (x,y)| x \sim y\} \subset X \times X
+$$
+で定める.
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}\cite[Prop2.22]{Str}
+$X$をCGとする.
+$$
+\mathcal{R}:=\{\sim | \text{$X$上の同値関係で$R_{\sim}$が$X \times X$閉} \}
+$$
+とおき
+$x \sim_{\min} y$を$(x,y) \in \cap_{\sim \in \mathcal{R}} R_{\sim}$で定める.
+このとき$\sim_{\min}$は$X$の同値関係であり, $X/\sim_{\min}$はCGWHとなる.
+
+さらに
+$$
+h : {\bf CG } \to {\bf CGWH}
+$$
+を$h(X) := X/\sim_{\min}$で定めれば, これは包含関手の左随伴射であり
+$$
+hom_{{\bf CGWH}}(h(X), Y) \cong hom_{{\bf CG}}(X, Y)
+$$
+となる. 
+つまり任意のCGWH空間$Y$への連続写像は$h(X)$を経由する
+
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+
+[1]$\sim \in \mathcal{R}$について次の三つが成り立つ.
+\begin{enumerate}
+\item $(x,x) \in R_{\sim}$
+\item $(x,y)\in R_{\sim}$ならば$(y,x) \in R_{\sim}$
+\item $(x,y) \in R_{\sim}$かつ$(y,z) \in R_{\sim}$ならば$(x,z) \in R_{\sim}$
+\end{enumerate}
+以上より$\sim_{\min}$を
+$$
+x \sim_{\min} y
+\Leftrightarrow
+(x,y) \cap_{\sim \in \mathcal{R}} R_{\sim}
+$$
+で入れればこれは明らかに同値関係になる.
+そして$R_{\sim_{\min}}$は$X \times X$の閉集合なので$h(X)=X/\sim_{\min}$はWHである.
+
+[2]CGWH空間$Y$への連続写像$f : X \to Y$を考える.
+$$
+R:= \{ (x, x') \in X \times X | f(x) = f(x')\}=(f \times f)^{-1}\Delta_{Y}
+$$
+とおくとこれは$X$の同値関係を定める.
+よって$R_{\sim_{\min}} \subset R$であることから
+$hX \to Y$を誘導し唯一性もわかる.  
+\end{proof}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{cor}\cite[Cor2.23, Prop2.24]{Str}
+{\bf CGWH}の圏は次の性質を満たす.
+\begin{enumerate}
+\item 完備かつ余完備.
+\item cartesian closed.
+\end{enumerate}
+\end{cor}
+\end{tcolorbox}
+
+{\bf CGWH}の圏は局所compact Hausdorff空間も含む. よって多様体は含まれる.  
+次の節でCWcomplexも含むことを示す. 
+
+
+\begin{rem}
+一般に圏論$C$に直積とイコライザー($ker(f,g)$)をもてば
+完備である.
+これは$F : J \to C$について
+$$
+s, t : \prod_{i  \in Ob(I)}F(i) \to\prod_{f \in Mor(C)} F(cod(f))
+\quad s=(F(f) \circ \pi_{dom(f)}) _{f \in Mor(C)}
+\quad t=(\pi_{cod(f)})_{ \in Mor(C)}
+$$
+で定めれば, このイコライザーが極限を与える.
+
+例えば$f : Y\to X$, $g : Z\to X$についてその直積$Y\times_{X}Z$は
+$$
+s, t :\prod_{i  \in Ob(I)}F(i)=X \times Y \times Z \to X \times X =\prod_{f \in Mor(C)} F(cod(f))
+$$
+$$
+ s(x,y,z) =  (f(y), g(z))
+\quad t(x,y,z)=(x,x)
+$$
+であるのでこれらのイコライザーは
+$$
+ker(s,t)=\{(x,y,z)\in X \times Y \times Z | (f(y), g(z))=(x,x) \}
+$$
+である. これは$Y \times_{X}Z=\{(y,z)\in Y \times Z |f(y)=g(z)\}$に等しい. 
+\end{rem}
+
+\begin{proof}
+
+[1]完備なること. 
+\label{Str^cor2.16}より直積$\prod_{i \in I}X_i$はCGWHである. 
+そして$f,g : X \to Y$について
+イコライザー$ker(f,g) \subset X$は\ref{Str-cor2.15}は閉集合でありCGWHである.
+極限は通常の積位相$\prod_{i \in I}X_i$のk化したやつの部分空間である.(集合としては$\lim$と同じ)
+
+[2].余完備なること.
+\ref{Str-prop2.2}より余直積$\sqcup_{i \in I}X_i$はCGである.
+よって$h(\sqcup_{i \in I}X_i)$は\ref{Str-prop2.1}からCGでありWHである.
+そして$f,g : X \to Y$についてコイコライザー
+$$
+cok(f,g)=h(Y \sqcup Y/\sim)
+$$
+であったのでCGWHとなる.
+特に余極限は通常の$\colim$のh化である. 
+
+[3]cartesian closedなること.
+終対象は一点集合, 直積の存在は[1]より
+よってあとは冪対象の存在である.
+
+これは$Y,Z$をCGWHについて$C(Y,Z)$がCGWHを示せば良い.
+WHのみ非自明である. 
+$\Delta_{C(Y,Z)} \subset C(Y,Z)\times C(Y,Z)$が閉集合であることを示せば良い.
+それは$ev_y : C(Y,Z) \to Y$を$f\mapsto f(y)$で定めると, \ref{Str-prop2.11}から連続である. 
+すると
+$$
+\Delta_{C(Y,Z)} = \cap_{y \in Y}(ev_y \times ev_y)^{-1}\Delta_{Z}
+$$
+であるので閉集合である. 
+\end{proof}
+
+\subsection{CW複体}
+以下はnlab\url{https://ncatlab.org/nlab/show/CW+complex}を参考にした. 
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+\begin{enumerate}
+\item $D^n$を$\R^n$の閉単位球(closed unit ball), つまり$D^n = \{x \in \R^n | ||x|| \le 1 \}$とする. 位相は$\R^n$の部分位相を入れる. 
+\item $S^{n-1}$を$\R^n$の単位球面(closed unit ball), つまり$S^{n-1} = \{x \in \R^n | ||x|| =1 \}$とする. 位相は$\R^n$の部分位相を入れる. 
+\item $i_n : S^{n-1} \hookrightarrow D^n$を包含連続写像とする. 
+\end{enumerate}
+また$S^{-1} = \varnothing$, $S^0 := \ast \sqcup \ast$と約束する.
+\end{dfn}
+\end{tcolorbox}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[single cell attachment]
+$X$を位相空間とする. 
+$X$のn-cell attachmentとは, ある連続写像$\phi : S^{n-1} \to X$に関する位相空間としてのpushout $X \sqcup_{\phi}D^{n}$とする. 
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+S^{n-1} \ar@{->}[r]_{\phi} \ar@{->}[d]_{i_n}&X \ar@{->}[d]\\
+D^{n} \ar@{->}[r] &X \sqcup_{\phi}D^{n} \\   
+}
+\end{equation*}
+
+\end{dfn}
+\end{tcolorbox}
+
+\begin{exa}
+$X=D^n$かつ$\phi = i_n : S^{n-1} \to D^n$の時, 
+$X \sqcup_{\phi}D^{n} = S^{n}$となる. 
+\end{exa}
+
+\begin{exa}
+$\phi  : S^{-1} = \varnothing \to X$の時, 
+$X \sqcup_{\phi}D^{0} = X \sqcup \ast$となる. 
+\end{exa}
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[attachment many cells at once]
+\label{dfn-attach-many}
+$I$を集合とし, $\{ \phi_{i} : S^{n_{i}-1} \to X \}_{i \in I}$を連続写像の族とする.
+ 
+ $\sqcup_{i \in I} \phi_i : \sqcup_{i \in I} S^{n_{i}-1} \to X$と$\sqcup_{i \in I}i_{n_i} : \sqcup_{i \in I} S^{n_{i}-1} \to \sqcup_{i \in I} D^{n_{i}} $に関する位相空間としてのpushoutを, "attachment many cells at once"といい$X \sqcup_{(\phi_i)_{i \in I}} D^{n_{i}} $と書く.  
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+\sqcup_{i \in I} S^{n_{i}-1}  \ar@{->}[r]_{\sqcup_{i \in I} \phi_i } \ar@{->}[d]_{\sqcup_{i \in I}i_{n_i}}&X \ar@{->}[d]\\
+ \sqcup_{i \in I} D^{n_{i}}  \ar@{->}[r] &X \sqcup_{(\phi_i)_{i \in I}}D^{n_{i}} \\   
+}
+\end{equation*}
+\end{dfn}
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[Relative CW complex]
+$X$を位相空間とする.
+$X$のRelative CW complexとは連続写像$f :X \to Y$と
+位相空間の列
+$$
+X = X_{-1} \hookrightarrow X_{0}\hookrightarrow X_{1}\hookrightarrow \cdots
+$$
+であって次を満たすものである. 
+\begin{enumerate}
+\item $X_{k} \hookrightarrow X_{k+1}$は\ref{dfn-attach-many}での"attachment many cells at once"である. 
+つまりある $\sqcup_{i \in I} \phi_i : \sqcup_{i \in I} S^{n_{i}-1} \to X_{k}$があって, $X_{k+1} = X_{k} \sqcup_{(\phi_i)_{i \in I}}  D^{n_{i}} $となる. 
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+\sqcup_{i \in I} S^{n_{i}-1}  \ar@{->}[r]_{\sqcup_{i \in I} \phi_i } \ar@{->}[d]_{\sqcup_{i \in I}i_{n_i}}&X_k \ar@{->}[d]\\
+ \sqcup_{i \in I} D^{n_{i}}  \ar@{->}[r] &X_{k+1} \\   
+}
+\end{equation*}
+\item $Y = \colim_{k \in \N} X_k$である. 
+\end{enumerate}
+
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+\sqcup_{i \in I} S^{n_{i}-1}  \ar@{->}[r]_{\sqcup_{i \in I} \phi_i } \ar@{->}[d]_{\sqcup_{i \in I}i_{n_i}}&X \ar@{->}[d]\\
+ \sqcup_{i \in I} D^{n_{i}}  \ar@{->}[r] &X \sqcup_{(\phi_i)_{i \in I}} D^{n_{i}} \\   
+}
+\end{equation*}
+\end{dfn}
+\end{tcolorbox}
+
+\begin{exa}
+$X = \varnothing$の時$X=X_{-1} = X_0 = \varnothing$, $X_1 =Y$とすれば良い. 
+\end{exa}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}[CW複体]
+$X$がCW複体であるとは, 位相空間の列
+$$
+\varnothing = X_{-1} \hookrightarrow X_{0}\hookrightarrow X_{1}\hookrightarrow \cdots
+$$
+があって次を満たすものである. 
+\begin{enumerate}
+\item $X_{k} \hookrightarrow X_{k+1}$は, ある $\sqcup_{i \in I} \phi_i : \sqcup_{i \in I} S^{k} \to X_{k}$があって, $X_{k+1} = X_{k} \sqcup_{(\phi_i)_{i \in I}} D^{k+1} $となる. 
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+\sqcup_{i \in I} S^{k}  \ar@{->}[r]_{\sqcup_{i \in I} \phi_i } \ar@{->}[d]_{\sqcup_{i \in I}i_{k}}&X_k \ar@{->}[d]\\
+ \sqcup_{i \in I} D^{k+1}  \ar@{->}[r] &X_{k+1} \\   
+}
+\end{equation*}
+\item $X = \colim_{k \in \N} X_k = \cup_{k \in \N} X_k$である. 
+\end{enumerate}
+
+有限CW複体とはある有限の$n_0$があって$X = X_{n_0}$となることとする.
+また$X_n$をn-skeltonという. 
+
+CW複体間のcellular map$f : X \to Y$とは$f : X \to Y$連続写像で任意の$n \in \N$で$f(X_n) \subset  Y_n$となるものとする. 
+\end{dfn}
+\end{tcolorbox}
+
+%$X_{-1} = \varnoting$である.
+%$X_0 = X_{-1} \sqcup_{(\phi_i)_{i \in I_0}} \sqcup_{i \in I_0} D^{0} =  \sqcup_{i \in I_0} \ast$となる. 
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{prop}
+$X$をCW複体とする. 
+%このとき$X$はCGWHである. 
+\begin{enumerate}
+\item $X$はparacompactハウスドルフ.
+\item $X$はCG. 特に$X$はCGWH.
+\end{enumerate}
+\end{prop}
+\end{tcolorbox}
+実は正規であることもわかっている.
+\begin{proof}(sketch)
+
+(1). $n$による帰納法. $n=-1$なら$X_{-1} = \varnothing$より. 
+$X_{n-1}$がそうだとすると, $h : \sqcup S^{n-1} \hookrightarrow \sqcup D^{n}$は包含写像で$h(\sqcup S^{n-1}) \subset \sqcup D^{n}$は閉集合なので, $X_{n-1} \to X_{n}$も包含写像で像は閉集合(closed map)となる. 
+paracompact Hausdorff空間のclosed mapでのpushoutはparacompact Hausdorffである\footnote{\url{https://ncatlab.org/nlab/show/CW-complexes+are+paracompact+Hausdorff+spaces}}ので, $X_{n}$もそうなる. 
+
+(2) $X$は$D^{n}$というCG空間のcolimでかけているため. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+
+[0] CW複体を低次元の場合にかきくだす. 
+$X_{-1} = \varnoting$より, 
+$$X_0 = X_{-1} \sqcup_{(\phi_i)_{i \in I_0}} \sqcup_{i \in I_0} D^{0} =  \sqcup_{i \in I_0} \ast$$
+とかける. 
+よって
+$$
+X_1 =  X_0 \sqcup_{(\phi_i)_{i \in I_0}} \sqcup_{i \in I_0} D^{1}
+= (\sqcup_{i \in I_0} \ast)\sqcup_{(\phi_i)_{i \in I_1}} \sqcup_{i \in I_0} D^{1}
+$$
+となる． ここで$i_1 : S_0 = \ast \sqcup \ast \to D^1$である. 
+
+[1] ハウスドルフ性の証明. 
+$n$に関する数学的帰納法で示す.
+
+[1-1] $n=1$の時.  $x, y \in X_1 = X_0\sqcup_{(\phi_i)_{i \in I_1}} \sqcup_{i \in I_0} D^{1}$とする. 
+$x \in X_0$の場合は$\{ x\}$が$X_0$の開集合になり, 
+
+
+%$x, y \in X$とする. すると$x, y \in X_{n}$となる$n \in \N$が取れる.
+%そこで$x \in X_n$となるような最小の$n$をとる.
+%(1). $y \not \in X_n$の時. この時は
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%
+\end{proof}
+
+
+
+
+\subsection{CG, CGWHの圏論的性質}
+以下は\cite{Fra}を参考にした
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ {\bf CG}は完備かつ余完備でカルテシアン閉である.
+ \begin{itemize}
+ \item $\lim$については位相の$\lim$をとった後に$k$-closedなものを付け加える. 
+ \item $\colim$はそのまま. 
+ \item $Y^{Z} = C(Y,Z)$で$C(Y,Z)$にはcompact open topologyのk化を入れる. 
+ \end{itemize}
+ また$ {\bf Top}\to { \bf CG }$を$X \mapsto kX$と言うk-closedな位相を付け足したものにする関手とするとこれは右随伴関手である. 
+\end{tcolorbox}
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ {\bf CGWH}は完備かつ余完備でカルテシアン閉である.
+ \begin{itemize}
+ \item $\lim$についてはCGの$\lim$とする. 
+ \item $\colim$はCGの$\colim$を取った後にh化する(閉な同値関係で一番小さいものでわる). 
+ \item $Y^{Z} = C(Y,Z)$で$C(Y,Z)$にはcompact open topologyのk化を入れる. 
+ \end{itemize}
+  また$ {\bf CG}\to { \bf CGWH }$を$X \mapsto hX$というh化する関手とするとこれは左随伴関手である. 
+\end{tcolorbox}
+
+なぜこれらがトポロジーで重要かというと次のクラスになっているからである.
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+ \begin{dfn}
+圏$C$が"convenirnt category of topological space"とは次の条件を満たす{\bf Top}の部分圏とする.
+\begin{enumerate}
+\item $CW$-complexは$C$のObject.
+\item 完備かつ余完備.
+\item カルテシアン閉.
+\end{enumerate}
+  \end{dfn}
+\end{tcolorbox}
+
+上からすぐに次がわかる. 
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{thm}
+{\bf CG} や {\bf CGWH}はconvenirnt category of topological space.
+\end{thm}
+
+\end{tcolorbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+\subsection{compact生成空間の補足.}
+
+以下${\bf CHaus} $をcompact Hausdorff空間からなる圏とする.
+$\kappa$を基数とした時. ${\bf CHaus} _{<\kappa}$を濃度が$\kappa$未満のcompact Hausdorff空間からなる圏とする.
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$X$を位相空間とする.
+$X$がcompact生成　(compactly generated)であるとは, 
+次の同値な条件を満たすこととする.
+\begin{enumerate}
+\item 任意の位相空間$Y$と集合としての射$f : X \to Y$について$f$が連続写像であることは, 任意のcompact Hausdorff空間$S$からの連続写像$g : S \to X$について$f \circ g : S \to Y$は連続になる
+\item $\sqcup_{f: S \to X : conti, S \in {\bf CHaus}} S\to X$は商写像になる.
+\item $U \subset X$について, 任意のcompact Hausdorff空間$S$からの連続写像$g : S \to X$について$g^{-1}(U)$が開集合になるならば, $U$は$X$の開集合である.
+\end{enumerate}
+\end{dfn}
+\end{tcolorbox}
+
+${\bf CG} $をcompact生成空間からなる圏とする.
+$$
+cg : {\bf Top} \to {\bf CG}
+$$
+という関手を位相空間$X$について位相空間$X^{cg}$を
+$$
+\sqcup_{f: S \to X : conti, S \in {\bf CHaus}} S\to X^{cg}
+$$
+が商写像となる位相空間として定義する. 
+すると$cg$は$Forget : {\bf CG} \to {\bf Top}$
+の右随伴射になる.
+つまりcompact生成空間$X$と位相空間$Y$について
+$$
+hom_{{\bf Top}}(X,Y) \cong hom_{{\bf CG}}(X,Y^cg)
+$$
+となる.
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{dfn}
+$\kappa$を強極限基数とする. 
+$X$位相空間に関して$X^{\kappa-cg}$という位相を
+$$
+\sqcup_{f: S \to X : conti, S \in {\bf CHaus}_{< \kappa}} S\to X^{\kappa-cg}
+$$
+が商写像となるように入れる. 
+
+つまり$u \subset X^{\kappa-cg}$が開であることは, 任意の$S \in {\bf CHaus}_{< \kappa}$と$f : S \to X$連続について$f^{-1}(U)$が開であるとして定義する. 
+\end{dfn}
+\end{tcolorbox}
+
+上の位相に関して, ${\bf CHaus}_{< \kappa}$の部分は${\bf Profin}_{< \kappa}$や${\bf ED}_{< \kappa}$に
+変えることができる. 
+これは${\bf CHaus}$の間の連続写像$f : X \to Y$について, $f$が全射ならば$f$は常に閉写像なので商写像になることからわかる.
+ 
+ \subsection{compact Hausdorff空間の補足}
+
+ \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-CHaus-relation}
+$X$compact Hausdorff空間
+$\sim$を同値関係とし$L = \{ (x,y) | X \sim y\}$とする.
+$L \subset X \times X$が閉集合ならば$X/\sim$はcompact Hausdorffである
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+\ref{Str-prop2.20}から
+$\pi \times \pi : X \times X \to X/\sim \times X /\sim$
+は商写像である.
+よって$\Delta_{X/\sim} \subset X/\sim \times X /\sim$が閉集合であることは
+$$
+L = (\pi \times \pi)^{-1}\Delta_{X/\sim}
+$$
+が閉集合であることと同値である. 
+よって$X/\sim$はHausdorffである. compactは明らか．
+\end{proof}
+\begin{proof}[より簡単な証明]
+$X / \sim$がHausdorffであることを示せば良い.
+$\tilde{x}, \tilde{y} \in X/ \sim$で$\tilde{x} \neq \tilde{y}$とする.
+$\pi(x) = \tilde{x}, \pi(y) = \tilde{y}$とすると$x \not \sim y$である.
+よって$(x,y) \not in R$より$R$は閉集合であるので, $x \in U_x$m $y \in U_y$で
+$U_x \times U_y \subset X \times X \setminus R$と取れる.
+これより$\pi(U_x)$と$\pi(U_y)$が$\tilde{x}$と$\tilde{y}$を分離する開集合を与える. 
+\end{proof}
+
+
+ 
+   \begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-cpthaus}
+$I$ small cofiltered category. \footnote{cofilteredとはfiltered categoryのopposite版である. filtered categoryはcoconeを持ちcolimに対応, cofiltered categoryはconeを持ちlimに対応する. (めちゃくちゃややこしい)}
+$F :  I \to {\bf Chaus}$関手に関して
+$\lim_{I}F(i)$が空ならば, ある$i \in I$があって$F(i)$も空である
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+対偶を示す. 
+任意の$i \in I$について$x_i \in Fi$とする, 
+$i \in I$について
+$$
+L_i := \{(z_j) \in \prod_{j \in I}{Fi} | z_i =x_i, \text{$h : i \to k$について$F(h)(z_i) = z_k$}\}
+$$
+(自分より小さいもののみを制御する．)
+すると
+$L_i$はclosedであり, 有限交差性を持つ.
+なぜなら$i_1, \ldots, i_k$についてcofilteredからある$j$があって
+$j \to i_1, j\to i_2, \ldots , j\to i_k$となるものがあるので, $x_j \in L_{i_1}\cap \cdots \cap L_{i_k}$となるからである. 
+よってチコノフの定理より$\prod_{j \in I}{Fi} $はcompactなので
+$\cap_{i \in I} L_I$は空ではない.
+そしてその元は$\lim_{I}F(i)$の元でもある.
+\end{proof}
+
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{CGWH空間の余極限の補足}
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+\begin{lem}
+\label{lem-k-space}
+$I$を集合とし, $i \in I$について$X_i$位相空間とする. 
+$X = \sqcup X_{i}$とするとき$kX = \sqcup kX_i$.
+
+特にk-closed集合の直和はk-closed.
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\pi_i : X_i \to X$は連続なので
+$\pi_i : kX_i \to kX$も連続である.
+示すことは$V \subset X$について
+$V$がk-closedであることは各々$\pi_{i}^{-1}(V) \subset X_i$がk-closedであることと同値であることである. 
+
+$V \subset X$がk-closedとする.
+すると, $\pi_{i}: kX_i \to kX$も連続より, $\pi_{i}^{-1}V \subset X_i$もk-closedである.
+
+逆に $\pi^{-1}(V) \subset X_i$がk-closedであるとする. 
+$u : K\to X$をcompact Hausdorff空間からの連続写像とする. 
+$u(K) \subset X = \cup_{i \in I}\pi_{i}(X_i)$より
+$u(K)$はcompactなので, $u(K) \subset \cup_{i=1}^{n}\pi_{i}(X_i)$である.
+よって
+これより
+$$
+u^{-1}(V)
+=\cup_{i=1}^{n}\{ k \in K | u(k) \in \pi_{i}( \pi^{-1}(V_i)) \}
+$$
+今$\pi_{i}^{-1}: \pi_{i}(X_i) \to X_i$を$(x_i, i) \mapsto x_i$で定めると同相写像になる．
+よって
+$$
+\{ k \in K | u(k) \in \pi_{i}( \pi^{-1}(V_i)) \}
+=
+(\pi_{i}^{-1}\circ u)(k) \in \pi^{-1}(V_i)
+$$
+$\pi_{i}^{-1}\circ u : K \to X_i$は連続なので， $\{ k \in K | u(k) \in \pi_{i}( \pi^{-1}(V_i)) \}$はk-closedとなり
+$u^{-1}(V)$もclosedとなる, 
+\end{proof}
+
+
+\begin{tcolorbox}
+ [colback = white, colframe = green!35!black, fonttitle = \bfseries,breakable = true]
+
+\begin{lem}\cite[Lemma 3.3]{Str}
+\label{lem-weakhaus-2}
+$I$ small filtered categoryとし, $X : I \to {\bf CGWH}$を関手とする． 
+さらに$f: i \to j$について$Xf : X_i \to X_j$は連続な単射で$Xf(X_i) \subset X_j$は$X_j$で閉集合であるとする. 
+この時$\colim_{i \in I}X_i$はCGWHである. 
+%\xr{もしかしたらcompactly generatedはいるかも.}
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+%以下$X$という位相空間について$k(X)$をk-closed閉集合を集めた位相空間とする. 
+
+
+$i,j \in I$について$f_{ik}:i \to k, f_{jk}j \to k$となる$k$を取り
+$$
+R_{ij}:= X_{i} \times_{X_{k}} X_{j} := \{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\}
+$$
+と定める. 
+これは$R_{ij}$は$k$の取り方によらない. 
+(なぜならば\underline{$Xf : X_i \to X_j$は単射}だから$k \to k'$となる射がある場合に同じことが示せる. また$R_{ii}= \Delta_{X_i}$となる)
+また
+$$
+R_{ij}=\{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\} = (f_{ik} \times f_{j})^{-1}\Delta_{X_k}
+$$
+であり$X_k$はCGWHなので\ref{Str-prop2.14}より$\Delta_{X_{k}} \subset X_k \times X_k$はk-closedである.
+これより\ref{Str-cor1.10}から, $f_{ik} \times f_{j} : k(X_i \times X_j) \to k(X_k \times X_k)$は連続なので
+$R_{ij}$は$X_i \times X_j$のk-closed集合である. 
+
+$Y :=\sqcup_{i \in Ob(I)}X_{i}$とおき$\eta_i : X_i \to Y$を包含写像とする. 
+すると有限極限とフィルター余極限の交換から
+$Y \times Y $と$ \sqcup_{i,j} (X_i \times X_j) $は同相である. 
+よって
+%今\ref{Str-prop2.2}より$\sqcup_{i,j} k(X_i \times X_j)$はCGであるので
+$$
+R := \sqcup_{i,j \in I}R_{ij} \subset \sqcup_{i,j} (X_i \times X_j)  \cong Y \times Y
+$$
+とすると$R_{ij}$はk-closedであるので\ref{lem-k-space}から$R$はk-closedである. 
+
+$x \sim y$という2項関係を, $(x,y) \in R$であることとして定める. 
+すると$\sim$は同値関係で
+$$
+\colim_{i \in I}X_i  \cong Y/\sim
+$$ 
+となる.
+同値関係になることは$R_{ij}:= \{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\}$であることを考えると
+\begin{enumerate}
+\item  $x \sim x$は$R_{ii}=X_{i} \times X_{i}$であるので. 
+\item $x \sim y$ならば$R_{ij} \cong R_{ji}$を$(x_i, x_j) \to (x_j, x_i)$であるので$y \sim x$. 
+\item $x \sim y, y \sim z$かつ$(x,y) \in R_{ij}, (y,z) \in R_{jk}$について, $i,j,k \to l$なる$l$をとると言える. 
+\end{enumerate}
+さらに$\colim_{i \in I}X_i  $の構成方法は$Y$に同値関係
+$(x_i, i)\sim_{c} (x_j, j)$を$i,j \to k$を取り$f_{ik}(x_i) = f_{jk}(x_j)$として入れるので, $\colim_{i \in I}X_i $と$Y/\sim$は同相である.
+
+\ref{Str-prop2.1}, \ref{Str-prop2.2}から$Y/\sim$はCGである.
+WHに関しては
+$R \subset Y \times Y$がk-closedなので\ref{Str-cor2.21}より言える.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+
+\begin{proof}
+$i,j \in I$について$f_{ik}:i \to k, f_{jk}j \to k$となる$k$を取り
+$$
+R_{ij}:= X_{i} \times_{X_{k}} X_{j} := \{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\}
+$$
+と定める. 
+これは$R_{ij}$は$k$の取り方によらない. 
+(なぜならば\underline{$Xf : X_i \to X_j$は単射}だから$k \to k'$となる射がある場合に同じことが示せる)
+
+$X_k$はHausdorffより$\{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\}$はclosed
+よって
+$R := \sqcup_{i,j \in I}R_{ij}, Y :=\sqcup_{i \in I}X_{i}$とおき
+$x \sim y \Leftrightarrow (x,y) \in R$で2項関係を入れる.
+
+すると$\sim$は同値関係で
+$$
+\colim_{i \in I}X_i  \cong Y/\sim
+$$ 
+となる.
+同値関係になることは$R_{ij}:= \{ (x_i, x_j) | f_{ik}(x_i) = f_{jk}(x_j)\}$であることを考えると
+\begin{enumerate}
+\item  $x \sim x$は$R_{ii}=X_{i} \times X_{i}$であるので
+\item $x \sim y$ならば$R_{ij} \cong R_{ji}$を$(x_i, x_j) \to (x_j, x_i)$であるので$y \sim x$
+\item $x \sim y, y \sim z$かつ$(x,y) \in R_{ij}, (y,z) \in R_{jk}$について, $i,j,k \to l$なる$l$をとると言える. 
+\end{enumerate}
+さらに$\colim_{i \in I}X_i  $の構成方法は$Y$に同値関係
+$(x_i, i)\sim_{c} (x_j, j)$を$i,j \to k$を取り$f_{ik}(x_i) = f_{jk}(x_j)$として入れるので, $Y/\sim$と同じである.
+
+商写像$\pi : Y=\sqcup_{i \in I}X_{i} \to Y/\sim$とする．
+あと示すことは任意のcompact Hausdorff空間からの連続写像$g : Z \to Y/\sim$
+について$g(Z)$が閉集合であることである.
+\begin{equation*}
+\xymatrix@C=25pt@R=20pt{
+Y \times_{Y/\sim}Z \ar@{->}[d]_{q}  \ar@{->}[r]^{p}
+ & Y=\sqcup_{i \in I}X_{i}\ar@{->}[d]^{\pi} \\
+Z \ar@{->}[r]_{g} 
+& Y/\sim \\   
+}
+\end{equation*}
+そこで$\pi^{-1}(g(Z))$が閉集合であることを示せば良い.
+ここで$\pi$は全射なので
+$$
+\pi^{-1}(g(Z))
+=
+p(q^{-1}(Z))
+=
+p(Y \times_{Y/\sim}Z )
+$$
+である.よって$p(Y \times_{Y/\sim}Z )$が$Y = \sqcup X_i$内で閉集合を示せば良い.
+それは各包含写像$k_i : X_i \to Y$に関して$k_{i}^{-1}(p(Y \times_{Y/\sim}Z ))$が閉集合であることを示せば良い.
+ここで
+$$
+Y \times_{Y/\sim}Z := \{(y,z) | \pi(y)=g(z) \} \subset Y \times Z
+$$
+であることを考えれば
+$$
+k_{i}^{-1}(p(Y \times_{Y/\sim}Z ))
+=
+\{(x_i,z) | \pi \circ k_{i}(x)=g(z) \} \subset X_i \times Z
+$$
+
+\end{proof}
+
+\bibitem[alg]{alg}
+alg-d 全ての概念はKan拡張である
+\url{https://alg-d.com/math/kan_extension/}
+\bibitem[Asg]{Asg}
+Dagur Asgeirsson
+\textit{The Foundations of Condensed Mathematics}
+\url{https://dagur.sites.ku.dk/files/2022/01/condensed-foundations.pdf}
+\bibitem[Bar22]{Bar22}
+Michael Barz \textit{Condensed Mathematics}
+\url{https://www.dropbox.com/scl/fi/xm2bs6jgtv9oaqir2slbt/condensed-final.pdf?rlkey=r1x82m3a135rfeec86jrjj79k&e=1&dl=0}
+\bibitem[Fra]{Fra}
+Martin Frankland \textit{Math 527 - Homotopy Theory
+Additional notes}
+\url{https://uregina.ca/~franklam/Math527/Math527_0204.pdf}
+\bibitem[Land]{Land}
+Marks Land
+\textit{CONDENSED MATHEMATICS}
+\url{https://www.markus-land.de/teaching/}
+\bibitem[Lep]{Lep}
+Florian Leptien
+\textit{Master thesis Condensed Mathematics}
+\bibitem[Sta]{Sta}
+Stacks Project \textit{Site and sheaves}
+\url{https://stacks.math.columbia.edu/download/sites.pdf}
+\bibitem[Stum]{Stum}
+Bernard Le Stum
+\textit{An introduction to condensed mathematics}
+\url{https://perso.univ-rennes1.fr/bernard.le-stum/bernard.le-stum/Enseignement_files/CondensedBook.pdf}
+\bibitem[Str]{Str}
+N. P. Strickland
+\textit{THE CATEGORY OF CGWH SPACES}
+\url{https://ncatlab.org/nlab/files/StricklandCGHWSpaces.pdf}
+\bibitem[Sch19]{Sch19}
+Peter Scholze
+\textit{Lectures on Condensed Mathematics}
+\url{https://www.math.uni-bonn.de/people/scholze/Condensed.pdf}
+\bibitem[SchClau]{SchClau}
+Peter Scholze, Dustin Clausen
+\textit{Masterclass in Condensed Mathematics}
+\url{https://www.math.ku.dk/english/calendar/events/condensed-mathematics/}
+\bibitem[Sha1]{Sha1}
+Shane Kelly \textit{Notes on the [HTT] proof of sheafification}
+\url{https://www.ms.u-tokyo.ac.jp/~kelly/Course2023-24DAG/Sheafification.pdf}
+\bibitem[Sha2]{Sha2}
+Shane Kelly
+\textit{Fast track guide to cardinals for use with Lurie’s Higher Topos Theory}
+\url{https://www.ms.u-tokyo.ac.jp/~kelly/pdfs/cardinalsFastTrack.pdf}
+\bibitem[Iwa22]{Iwa22}
+岩井雅崇　集合と位相まとめノート
+\url{https://x.gd/aDQt1}
+%https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf
+\bibitem[田中]{Tana}
+田中尚夫 公理的集合論　培風館
+\bibitem[マックレーン]{Mac}
+S. マックレーン 圏論の基礎 丸善出版
+
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{thebibliography}{n}
+\bibitem[Fra]{Fra}
+Martin Frankland \textit{Math 527 - Homotopy Theory
+Additional notes}
+\url{https://uregina.ca/~franklam/Math527/Math527_0204.pdf}
+\bibitem[Str]{Str}
+N. P. Strickland
+\textit{THE CATEGORY OF CGWH SPACES}
+\url{https://ncatlab.org/nlab/files/StricklandCGHWSpaces.pdf}
+\bibitem[Iwa22]{Iwa22}
+岩井雅崇　集合と位相まとめノート
+\url{https://x.gd/aDQt1}
+\end{thebibliography}
+ 
+
+\end{document}
