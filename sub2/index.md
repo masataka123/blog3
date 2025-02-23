@@ -13,20 +13,23 @@
 
 # **プレプリント**
 
-- Masataka Iwai, Shin-ichi Matsumura. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' [arXiv](https://arxiv.org/abs/2205.10613) 
+- Masataka Iwai, Shin-ichi Matsumura. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' [arXiv](https://arxiv.org/abs/2205.10613) [Remark](https://masataka123.github.io/blog3/pdf/Torus_fibration_c2=0.pdf)
 
 - Masataka Iwai, Shin-ichi Matsumura, Guolei Zhong 'Positivity of tangent sheaves of projective varieties -- the structure of MRC fibrations.'  [arXiv](https://arxiv.org/abs/2309.09489)
 
 - Masataka Iwai, Shin-ichi Matsumura, Niklas Müller 'Minimal projective varieties satisfying Miyaoka's equality.'  [arXiv](https://arxiv.org/abs/2404.07568)
 
-# **Note**
-- [Remarks on minimal compact Kahler manifolds with vanishing second Chern class](https://masataka123.github.io/blog3/pdf/Torus_fibration_c2=0.pdf)
- 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.'の補足です. 
- 
+# **ノート**
+勉強したことなどをまとめた自分用のノートです. (自分用ですがホームページにおいていると便利なのであげることにしました.) 
+間違っている可能性は大いにあるので注意してください. 
+
 <!--
 -[Remarks on Miyaoka's inequality for compact Kahler manifolds](https://masataka123.github.io/blog3/pdf/Miyaoka_inequality_kahler.pdf)
 'Minimal projective varieties satisfying Miyaoka's equality.' の補足です.
 -->
+
+- [位相空間論まとめ](https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf)
+位相の演義を担当した際に定義などを勉強し直しました. なお単語帳のために作ったので証明は書いてないです. 
 
 - [Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendix 発表原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)での, Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendixの発表原稿です. 
@@ -34,8 +37,12 @@
 - [コンパクト生成空間・コンパクト生成弱ハウスドルフ空間のまとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_CGWH.pdf)
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
+-[公理的集合論と圏論まとめ]()
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 現在準備中.
+
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成です. 
+
 
 # **報告集**
 1. '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
