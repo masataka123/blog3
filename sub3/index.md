@@ -1,5 +1,4 @@
 # **講演や集会参加の予定**
-- 2025年3月19日に[日本数学会2025年度年会](https://www.mathsoc.jp/activity/meeting/waseda25mar/index.html)函数論分科会特別講演で講演する予定です.
 - 2025年4月21--25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に参加します. 
 - 2025年5月14--16日に福岡工業大学で[Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka](https://masataka123.github.io/AG_SCV_2025/)を開催します. 
 - 2025年6月23--27日に北京大学で開催される"algebraic geometry conference about MMP, Fano varieties and related topics"で講演する予定です. 
@@ -19,6 +18,7 @@
 30. 'Positivity of tangent sheaves of projective klt varieties' [Young Perspectives on Algebraic Geometry](http://www.jliumath.com/conferences/2023PAG.html), Academy of Mathematics and Systems Science, Chinese Academy of Sciences. 2023年12月9-11日.
 31. ''Complex projective manifolds satisfying Miyaoka's equality' [SCV, CR geometry and Dynamics](https://math.univ-cotedazur.fr/~stolo/conf/SCVCRDyn24.html), RIMS. 2024年11月25--29日.
 32. "Condensed sets and topological spaces (ショルツのレクチャーノート2章Appendixの解説) [Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home) 大阪公立大学. 2025年2月17--21日.  [原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
+33. "チャーン類の不等式と構造定理", [日本数学会2025年度年会](https://www.mathsoc.jp/activity/meeting/waseda25mar/index.html)函数論分科会特別講演, 早稲田大学, 2025年3月19日 [アブストラクト](https://masataka123.github.io/blog3/pdf/2025_01_日本数学会_homepage.pdf)
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
