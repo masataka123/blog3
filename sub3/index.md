@@ -1,7 +1,7 @@
 # **講演や集会参加の予定**
 - 2025年4月21--25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に参加します. 
 - 2025年5月14--16日に福岡工業大学で[Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka](https://masataka123.github.io/AG_SCV_2025/)を開催します. 
-- 2025年6月23--27日に北京大学で開催される"algebraic geometry conference about MMP, Fano varieties and related topics"で講演する予定です. 
+- 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 
 
 # **講演履歴**
 
