@@ -11,6 +11,13 @@
 - [チェス盤1](https://masataka123.github.io/blog3/sub6/7_chess1/)
 - [チェス盤2](https://masataka123.github.io/blog3/sub6/8_chess2/)
 - [100人の囚人問題](https://masataka123.github.io/blog3/sub6/9_100prisoner/)
+- [可算無限人の囚人問題](https://masataka123.github.io/blog3/sub6/10_prisoner2/)
+- [ドブル](https://masataka123.github.io/blog3/sub6/11_dobble/)
+- [タイル1](https://masataka123.github.io/blog3/sub6/12_tile1/)
+- [タイル2](https://masataka123.github.io/blog3/sub6/13_tile2/)
+- [点と直線](https://masataka123.github.io/blog3/sub6/14_line_and_point/)
+- [Zagier's one sentence proof](https://www.jstor.org/stable/2323918?seq=1)
+
 # **その他**
 
 ## プログラミング
