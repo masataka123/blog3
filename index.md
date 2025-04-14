@@ -47,6 +47,7 @@ layout: default
 - [Research Map](https://researchmap.jp/Masataka_iwai)
 - 所属学会: 日本数学会 (会員番号: 11981)
 
+
 制度上(おそらく)私は修士・博士の学生を持つことができないので, 注意してください. 
 
 
