@@ -20,4 +20,4 @@
 余談だが私の研究室にはポケモンのドブルだけでなくポケモンのぬいぐるみがいっぱいあるので, ぜひ覗いてほしい. 
 ちなみにポケモンのぬいぐるみの他にダッフィーフレンズや東方のチルノのぬいぐるみもあるのだが, あんまりバレてない. チルノはポケモンだと思われているようだ. 
 
-![](https://masataka123.github.io/blog3/picture/dobble.jpg )
+![](https://masataka123.github.io/blog3/picture/dobble.jpg)
