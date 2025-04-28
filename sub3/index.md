@@ -1,5 +1,4 @@
 # **講演や集会参加の予定**
-- 2025年4月21--25日にIBS-CCGで開催される[Progress in Complex Geometry](https://ccg.ibs.re.kr/event/2025-0421-0424/)に参加します. 
 - 2025年5月14--16日に福岡工業大学で[Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka](https://masataka123.github.io/AG_SCV_2025/)を開催します. 
 - 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 
 
@@ -80,7 +79,8 @@
 9. "Workshop on Algebraic Geometry over complex number field or in positive characteristic -Around positivity of tangent sheaves and anti-canonical divisors- " 大阪公立大学, 2024年9月17--20日. (大阪公立大学 江尻祥氏, 大阪公立大学 小池貴之, 九州大学 佐藤謙太氏, 大阪公立大学 松澤陽介氏, 東北大学 松村慎一氏との共同主催) [Link](https://masataka123.github.io/tangent_anticanonical/)
 10. "2024年度 多変数関数論冬セミナー " 大阪大学, 2024年12月13--15日. (大阪大学 松本佳彦氏との共同主催) [Link](https://masataka123.github.io/2024scvwinter/)
 11. "Condensed mathematicsワークショップ" 大阪公立大学. 2025年2月17--21日. (東京大学 榎園誠氏, 新潟大学 橋詰健太氏, 大阪公立大学 松澤陽介氏 との共同主催) [Link](https://sites.google.com/view/condmathomu/home) 
-
+12. "Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka"
+福岡工業大学. 2025年5月14--16日 (京都大学 井上 瑛二氏, 九州大学 日下部 佑太氏, 福岡工業大学 野瀬 敏洋氏, 東北大学 松村 慎一氏 との共同主催) [Link](https://masataka123.github.io/AG_SCV_2025/)
 
 ## **学内・学外セミナー**
 5. 大阪大学幾何セミナー世話人, 大阪大学, 2023年度 20件 [2023年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rirekiThisY.cgi)
