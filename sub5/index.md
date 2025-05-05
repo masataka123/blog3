@@ -78,7 +78,7 @@ Takayama60で初めて全員集合するので何年後かに期待である.
 - [Tomohiro Hayase](https://thayafluss.notion.site/main)
 
 ## 大阪大学のメンバー(元阪大も含む)
-授業とかシステムとかわからないことを聞きまくっているので, 大阪大学のメンバーにはお世話になりすぎていて, 足を向けて寝られないですね. わからないことは人に聞こう!
+授業とかシステムとかわからないことを聞きまくっているので, 大阪大学のメンバーにはお世話になりまくっている. わからないことは人に聞こう.
 
 - [Hisashi Kasuya](https://sites.google.com/site/hisashikasuyamath/home)
 - [Yoshihiko Matsumoto](http://www4.math.sci.osaka-u.ac.jp/~matsumoto/)
