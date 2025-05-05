@@ -39,6 +39,8 @@ layout: default
 2. 余接ベクトル束が正値性を持つ代数多様体の構造. 数値的小平次元が1以下の余接ベクトル束がネフな代数多様体に関して, アバンダンス予想が正しいことを示し, その場合の代数多様体の構造を明らかにした.
 3. 第2チャーン類と構造定理. Miyaoka-Yau不等式のような第2チャーン類に関する不等式をいくつか示し, さらにその等号が成立するときの代数多様体の構造を明らかにした. 
 
+大阪大学の[スタッフのページ](http://www.math.sci.osaka-u.ac.jp/staff/iwai.html)にも詳しく書きました.
+
 ## **事務関連情報**
 - [オフィスアワー](https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo4/gijiroku/attach/1342526.htm) 月曜16:00-17:00 (部屋に来る場合は事前にメール等で連絡してくれると助かります.)
 - [Google Scholar](https://scholar.google.com/citations?hl=ja&user=ZTKnR6QAAAAJ)
