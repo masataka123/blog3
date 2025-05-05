@@ -21,6 +21,9 @@
 
 # **その他**
 
+## 写真
+- [研究室の写真](https://masataka123.github.io/blog3/sub6/picture_room/)
+
 ## プログラミング
 なぜかときたまプログラミングをする時があります. 
 全く上手くはないです. そして実用的なプログラミングは全くできないです. 
@@ -50,9 +53,9 @@ print(count)
 ## 別表神社のマイマップ
 -  [別表神社の地図](https://drive.google.com/open?id=1JxWpfm2hv-z9RfYKFUQWAVUPeHI&usp=sharing)
 
-別表神社を旧社格, つまり官幣大社, 国幣大社などで分類をしました. Google mapで地道な作業で作ってます. 友人には高評価です。(ちなみに下の神社もこのマイマップの中にあります.)
+別表神社を旧社格, つまり官幣大社, 国幣大社などで分類をしました. Google mapで地道な作業で作ってます. 友人には高評価です。下の神社は東方風神録に出てくる諏訪大社下社秋宮. 
 
-![](https://masataka123.github.io/blog3/picture/5.jpg )
+![](https://masataka123.github.io/blog3/picture/5.jpg)
 
 ## このホームページについて
 - [GitHubを使ってMarkdown文書を５ステップでホームページとして公開する方法](https://qiita.com/MahoTakara/items/3800e9dc83b530d0a050)
@@ -63,4 +66,6 @@ print(count)
 Markdownの書き方については以下を参照。
 - [Markdownの書き方](https://help.docbase.io/posts/13697#image)
 - [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
+
+
 

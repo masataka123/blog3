@@ -16,7 +16,7 @@
 
 ## その他お世話になった・お世話になっている人たち
 
-### チーム高山研
+## チーム高山研
 今や関西関東, 西東, 北南に散らばっている. 
 高山研全員で揃って何かをすることもなく, みんな好き勝手に行動している気がする. 
 それこそが高山研出身者が代数・幾何・解析にばらけている理由かもしれない. 
@@ -32,7 +32,7 @@ Takayama60で初めて全員集合するので何年後かに期待である.
 - [Yuta Watanabe](https://sites.google.com/view/yuta-watanabe-math-webpage)
 - Yongpan Zou
 
-### 函数論
+## 函数論
 函数論に所属しているほとんどの人は「私は函数論の人ではないんで...」と言う. 
 
 私が学生の時は「函数論は無くなる」と予想していたが, 今は若手も多くいて消える気配はなく, むしろ再興するのではないかと思う. 次世代の函数論を天下統一する人は誰なのだろうか? 私は予想屋である. 
@@ -50,14 +50,14 @@ Takayama60で初めて全員集合するので何年後かに期待である.
 - [Yoshihiko Matsumoto](http://www4.math.sci.osaka-u.ac.jp/~matsumoto/)
 - [Shun Sugiyama](https://researchmap.jp/shun-sugiyama)
 
-### Condensed mathematicsセミナー
+## Condensed mathematicsセミナー
 2024年度にショルツのCondensed mathematicsのセミナーを月一回やってた. かなり鍛えられた. 
 
 - [Yohsuke Matsuzawa](https://sites.google.com/brown.edu/yohsukematsuzawa/home)
 - [Makoto Enokizono](https://sites.google.com/site/enokizono000makoto/home)
 - [Kenta Hashizume](https://sites.google.com/view/hashizumekenta/)
 
-### 同期
+## 同期
 我々の同期は(意外と?)失踪せずに, うまく就職している. しぶとい. 
 
 - [Kouichi Taira](https://sites.google.com/view/the-home-page-of-kouichi-taira/home)
@@ -68,7 +68,7 @@ Takayama60で初めて全員集合するので何年後かに期待である.
 - [Hiroyoshi Tamori](https://www.mathsci.shibaura-it.ac.jp/tamori/index.html)
 - [Masaru Nagaoka](https://researchmap.jp/masaru_nagaoka)
 
-### 先輩後輩
+## 先輩後輩
 このホームページを博士2年に作ったときにリンクを貼る許可をもらった. 
 
 - [Takahiro Saito](https://www.math.chuo-u.ac.jp/~takahiro/)
@@ -77,7 +77,7 @@ Takayama60で初めて全員集合するので何年後かに期待である.
 - [Michiya Mori](https://www.ms.u-tokyo.ac.jp/~mmori/index.html)
 - [Tomohiro Hayase](https://thayafluss.notion.site/main)
 
-### 大阪大学のメンバー(元阪大も含む)
+## 大阪大学のメンバー(元阪大も含む)
 授業とかシステムとかわからないことを聞きまくっているので, 大阪大学のメンバーにはお世話になりすぎていて, 足を向けて寝られないですね. わからないことは人に聞こう!
 
 - [Hisashi Kasuya](https://sites.google.com/site/hisashikasuyamath/home)
