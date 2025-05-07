@@ -21,7 +21,6 @@
 ![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6202.jpeg)
 
 
-
 # **コメント**
 
 ## 研究室の構造
