@@ -1,27 +1,28 @@
-# 研究室の写真
+# **研究室の写真**
+
+## 部屋の中
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6188.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6190.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6201.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6194.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6196.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6195.jpeg)
+
+## 本棚
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6203.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6200.jpeg)
+
+## 外からの様子
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6197.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6198.jpeg)
+
+## 全体写真
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6192.jpeg)
+![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6202.jpeg)
 
 
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6186.jpeg)
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_5652.jpeg)
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6164.jpeg)
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_5809.jpeg)
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_6166.jpeg)
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_5811.jpeg)
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_5818.jpeg)
-![](https://masataka123.github.io/blog3/sub6/picture_room/IMG_5812.jpeg)
 
-# 周囲の反応
-
-- 可愛い.
-- 先生ってポケポケしてます?
-- ダッフィーフレンズにしか目がいかない. 
-- まあおかしい人だと思われるけど, 別に辞めさせられることはないんじゃないですかね. 
-- "深淵をのぞく時、深淵もまたこちらをのぞいているのだ"という感じがしていいですね.
-- 癖がすごい
-- 趣味が出過ぎている
-- 岩井さんってポケモンのアニメ見てます?
-
-# コメント
+# **コメント**
 
 ## 研究室の構造
 阪大の研究室の扉の一部分は透明なガラスでできていて, 外から中の様子が見れる.
@@ -61,7 +62,7 @@
 私の家は曹洞宗である. なので神棚があるのは完全に私の趣味である. 
 神棚には天照大神・氏神神社(住んでる場所の神社)・崇敬神社(推し神社)の三つのお神札が必要で, 毎年新しいものにいただく必要がある.
 
-崇敬神社(推し神社)は諏訪大社である. そう東方風神録の聖地である. 東方風神録きっかけで初めて神社巡りをしたのが諏訪大社である. 神社ガチ勢の友人の影響もあって, 学生時代にいろんな神社仏閣に行った. 
+崇敬神社(推し神社)は諏訪大社である. そう東方風神録の聖地である. 初めて神社巡りをしたのが諏訪大社である. その後神社ガチ勢の友人の影響もあって, 学生時代にいろんな神社仏閣に行った. 
 
 
 ## 歌川国芳
@@ -77,9 +78,33 @@ pdfの方が持ち運びが楽であるし, 本を置く理由があまり見当
 ...と書いていて思ったが, ぬいぐるみの方が場所をとっている気がする. 
 
 ## モルック
-さらば青春の光のYouTube見てたら欲しくなった. 今は全然使ってない. 
+[さらば青春の光のYouTube](https://www.youtube.com/channel/UCNvcNd31bA-XERO6LGy4blw)見てたら欲しくなった. 今は全然使ってない. 
 
 ## カレンダーの変遷
 - 2023年 うさぎ
 - 2024年 スプラトゥーン3
 - 2025年 ポケモン
+
+## 桜井政博様のお言葉
+やる気が出ないことに対して, 深く考えても意味はないです.
+今すぐやれ. 
+
+[とにかくやれ!! 【仕事の姿勢】](https://www.youtube.com/watch?v=JV3KOJ_Z4Vs)より抜粋. 一部省略. 
+
+## クラークの3法則
+
+1. 高名だが高齢の科学者が「それは可能である」と言った場合、その主張はほぼ確実に正しい。彼が「それは不可能である」と言った場合、その主張はほぼ確実に間違っている。
+2. 物事の可能性の限界を測る唯一の方法は、その限界を少しだけ超えて不可能の領域に踏み込むことである。
+3. 十分に高度な科学技術は、魔法と区別できない。
+
+[十三機兵防衛圏](https://13sar.jp)で知った. 
+
+# **周囲の反応**
+- 可愛い.
+- 先生ってポケポケしてます?
+- ダッフィーフレンズにしか目がいかない. 
+- まあおかしい人だと思われるけど, 別に辞めさせられることはないんじゃないですかね. 
+- "深淵をのぞく時、深淵もまたこちらをのぞいているのだ"という感じがしていいですね.
+- 癖がすごい
+- 趣味が出過ぎている
+- 岩井さんってポケモンのアニメ見てます?
