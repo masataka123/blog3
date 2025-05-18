@@ -52,6 +52,7 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 
 ## Condensed mathematicsセミナー
 2024年度にショルツのCondensed mathematicsのセミナーを月一回やってた. かなり鍛えられた. 
+集会のホームページの[Condensed mathematicワークショップ](https://sites.google.com/view/condmathomu/home)に講演者全員の講演ノートがある. 汗と涙の結晶なので, ぜひとも有効活用してほしい. また色んな人に広めてほしい. 
 
 - [Yohsuke Matsuzawa](https://sites.google.com/brown.edu/yohsukematsuzawa/home)
 - [Makoto Enokizono](https://sites.google.com/site/enokizono000makoto/home)
@@ -187,24 +188,34 @@ IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演
 - [渡邉究先生のYouTubeチャンネル](https://www.youtube.com/channel/UCRcK-UYSCi8uk5SQChka7hA) 中央大学の渡邉究先生のYouTubeチャンネル. 3年次の代数の授業内容をYouTubeで学ぶことができる. プロの数学者の授業を日本語で無償で受けられるとはいい時代になったなあと思う. 一つの動画が10-20分程度なのも嬉しい. 
 
 ## 数学に関する動画
-- [evima lab](https://www.youtube.com/c/evimalab) evimaさん([Atcoder](https://atcoder.jp))のYoutube. 1回の動画時間が短い割に面白く, 毎回「そーなのかー」と感心する限りである. あとゆっくりでチルノと魔理沙なのはちょっと意外である. (普通は霊夢と魔理沙. あとアイコンは魔理沙の帽子を被ったチルノかな？）
+- [evima lab](https://www.youtube.com/c/evimalab) evimaさん([Atcoder](https://atcoder.jp))のYoutube. 1回の動画時間が短い割に面白く, 毎回「そーなのかー」と感心する限りである. あとゆっくりでチルノと魔理沙なのはちょっと意外である. (普通は霊夢と魔理沙. あとアイコンは魔理沙の帽子を被ったチルノだと思う）
 - [TED-Ed](https://www.youtube.com/user/TEDEducation?app=desktop&hl=ja&client=mv-google&gl=JP) 数学以外も豊富にある. riddle系の動画は結構数学が強めである. 
 - [Numberphile](https://www.youtube.com/@numberphile) Charlie FeffermanやJames Maynardが出てる回がある. 
 - [3Blue1Brown](https://www.youtube.com/c/3blue1brown)
 - [Kyoto-U OCW](https://www.youtube.com/channel/UCR6RTNmSsSe0gpbiz9wlcCA) 一時消えそうになったが多くの人の声により存続した. Haconの[Generic vanishing](https://www.youtube.com/watch?v=wkeBot5XcUg&list=PL6YRiWyfIQWp81KGy7XWcIJMwmlmnyw52)や[Boundedness](https://www.youtube.com/watch?v=2kUFPZohOYU)
 の動画もここにある. 
 
-## その他の役に立つ情報
-- [志学数学 -研究の諸段階 発表の工夫-](https://www.amazon.co.jp/志学数学-研究の諸段階-発表の工夫-シュプリンガー数学クラブ-伊原/dp/4621061593) 伊原康隆先生の本. 数学を志すならば読んでほしい. 良い本なのでここでも勧めることにした. 東大の河東先生の[書評](https://mathsoc.jp/publication/tushin/1004/kawahigashi.pdf)も面白い. 
+## 数学者のホームページ
+- [Jean-Pierre Demailly](https://www-fourier.ujf-grenoble.fr/~demailly/)
+Jean-Pierre Demailly先生のホームページ. 2022年にお亡くなりになった後でも残っている. 論文とか本とかよく引用するのでずっと残っていてほしい.
 - [What's new](https://terrytao.wordpress.com)
-Terence Tao様のホームページ. Career advice, On writingとか結構いいこと書いている.
+Terence Tao先生のホームページ. Career advice, On writingとか結構いいこと書いている.
 - [河東先生のホームページ](https://www.ms.u-tokyo.ac.jp/~yasuyuki/index.html)
 東京大学の河東先生のホームページ. [セミナーの準備のしかたについて](https://www.ms.u-tokyo.ac.jp/~yasuyuki/sem.htm)はあまりにも有名である. (私には真似できないが...) また[どうでもよい記事](https://www.ms.u-tokyo.ac.jp/~yasuyuki/misc.htm)というページが面白くとても参考になる.
 2024年に河東先生の本[数学者の思案](https://www.iwanami.co.jp/book/b646698.html)が出版された. 
+- [松尾先生のホームページ](https://www.math.nagoya-u.ac.jp/~shinichiroh/) 名古屋大学 松尾先生のホームページ. 私と松尾先生は(多分)面識はない. ただ[雑記帳](https://www.math.nagoya-u.ac.jp/~shinichiroh/notebook.html)の内容がかなり面白くためになるものが多いのでここに書いた. 
+
+## その他の役に立つ情報
+- [志学数学 -研究の諸段階 発表の工夫-](https://www.amazon.co.jp/志学数学-研究の諸段階-発表の工夫-シュプリンガー数学クラブ-伊原/dp/4621061593) 伊原康隆先生の本. 数学を志すならば読んでほしい. 良い本なのでここでも勧めることにした. 東大の河東先生の[書評](https://mathsoc.jp/publication/tushin/1004/kawahigashi.pdf)も面白い. 
 - [JREC-IN](https://jrecin.jst.go.jp/seek/SeekTop) [日本数学会公募情報](https://www.mathsoc.jp/office/kobo/)
 お仕事探しにお世話になる. あとは各種メーリス(代数幾何・幾何学・函数論などなど)で出てくる公募情報を常に見る必要がある. 
 - [Springer Link](https://link.springer.com)
 所属している大学によっては, Springerの本のpdfが無料で手に入れられる(かも)
+- [数学の現在 e・i・π ](https://www.utp.or.jp/book/b307189.html) 学生から「ちょっと踏み込んだ内容が知りたい」という質問が多くあったので, この本を勧めることにした. 確かに学部2,3年の人が自分の分野を選ぶのにこの本は参考になると思う. []((思い通りにいかなかった私が言うのもなんだかなあとは思うが...))[続編](https://www.utp.or.jp/book/b10134035.html)も出る予定らしい. 
+- [選択公理と同値な命題](http://alg-d.com/math/ac/) alg-d様のホームページ. 役に立つかはわからないが, 見ていて楽しい. またAmazonで[全ての概念はKan拡張である](https://www.amazon.co.jp/全ての概念はKan拡張である-alg-d/dp/B09L9QSXY8)という本が発売中である. かなり良い本である. 
+- [Euler Getter](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/EG/) 安田健彦先生が作ったゲーム. ちょっとやったが全然勝てない. Euler Getterに関しては安田先生の本である[ゲームで大学数学入門](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)でも取り上げられている. 学問の扉という授業をする際に非常にお世話になった. 
+
+## まとめ集
 - [Fanography](https://www.fanography.info)
 3次元Fanoの分類まとめ. 
 - [Database of Ring Theory](https://ringtheory.herokuapp.com)
@@ -212,8 +223,4 @@ Terence Tao様のホームページ. Career advice, On writingとか結構いい
 - [π-Base](https://topology.jdabbs.com)
 位相空間まとめ.
 - [Graded Ring Database](https://grdb.co.uk)
-- [数学の現在 e・i・π ](https://www.utp.or.jp/book/b307189.html) 学生から「ちょっと踏み込んだ内容が知りたい」という質問が多くあったので, この本を勧めることにした. 確かに学部2,3年の人が自分の分野を選ぶのにこの本は参考になると思う. []((思い通りにいかなかった私が言うのもなんだかなあとは思うが...))
-- [選択公理と同値な命題](http://alg-d.com/math/ac/) alg-d様のホームページ. 役に立つかはわからないが, 見ていて楽しい. またAmazonで[全ての概念はKan拡張である](https://www.amazon.co.jp/全ての概念はKan拡張である-alg-d/dp/B09L9QSXY8)という本が発売中である. かなり良い本である. 
-- [Euler Getter](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/EG/) 安田健彦先生が作ったゲーム. ちょっとやったが全然勝てない. Euler Getterに関しては安田先生の本である[ゲームで大学数学入門](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)でも取り上げられている. 学問の扉という授業をする際に非常にお世話になった. 
-
 

@@ -7,11 +7,8 @@ layout: default
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
 ## **ニュース**
-- 2024年4月に新しい論文を出しました.[arXiv](https://arxiv.org/abs/2404.07568) 松村 慎一 氏, Niklas Müller 氏との共同研究です. 
-
-- 2025年5月14--16日に福岡工業大学で[Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka](https://masataka123.github.io/AG_SCV_2025/)を開催します. 
-
 - 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 
+
 
 <!--
 - 2023年度秋冬学期 大阪大学理学部数学科 幾何学基礎２（位相空間論）演義 を担当します. [Link](https://masataka123.github.io/2023_winter_generaltopology/)

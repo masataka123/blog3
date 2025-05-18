@@ -1,6 +1,10 @@
-# **講演や集会参加の予定**
-- 2025年5月14--16日に福岡工業大学で[Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka](https://masataka123.github.io/AG_SCV_2025/)を開催します. 
+# **出張予定**
 - 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 
+- 2025年9月22--26日に東北大学で開催される[Conference on Several Complex Variables -L2 estimates and extensions-](https://takahiro-ina.github.io/sendai2025/)に参加する予定です.
+- 2025年11月26--29日に新潟大学で開催される[第2回新潟若手代数・幾何シンポジウム]()で講演する予定です.
+- 2025年12月1--4日に金沢で開催される[第３１回複素幾何シンポジウム（金沢）２０２５]()に参加する予定です.
+- 2025年12月19--21日(予定)に九州大学で開催される[多変数函数論冬セミナー]()に参加する予定です. 
+- 多変数関数論冬セミナーの前後で, 「岡多様体かつ(または)CampanaのSpecial多様体」に関する勉強会の開催を検討しています. 
 
 # **講演履歴**
 
@@ -80,10 +84,10 @@
 10. "2024年度 多変数関数論冬セミナー " 大阪大学, 2024年12月13--15日. (大阪大学 松本佳彦氏との共同主催) [Link](https://masataka123.github.io/2024scvwinter/)
 11. "Condensed mathematicsワークショップ" 大阪公立大学. 2025年2月17--21日. (東京大学 榎園誠氏, 新潟大学 橋詰健太氏, 大阪公立大学 松澤陽介氏 との共同主催) [Link](https://sites.google.com/view/condmathomu/home) 
 12. "Mini-workshop on Algebraic Geometry and Several Complex Variables in Fukuoka"
-福岡工業大学. 2025年5月14--16日 (京都大学 井上 瑛二氏, 九州大学 日下部 佑太氏, 福岡工業大学 野瀬 敏洋氏, 東北大学 松村 慎一氏 との共同主催) [Link](https://masataka123.github.io/AG_SCV_2025/)
+福岡工業大学. 2025年5月14--16日 (京都大学 井上瑛二氏, 九州大学 日下部佑太氏, 福岡工業大学 野瀬敏洋氏, 東北大学 松村慎一氏 との共同主催) [Link](https://masataka123.github.io/AG_SCV_2025/)
 
 ## **学内・学外セミナー**
-5. 大阪大学幾何セミナー世話人, 大阪大学, 2023年度 20件 [2023年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rirekiThisY.cgi)
-8. 大阪大学幾何セミナー世話人, 大阪大学, 2024年度
+5. 大阪大学幾何セミナー世話人, 大阪大学, 2023--2024年度  [2023年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rirekiThisY.cgi) [2024年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2024)
+8. 大阪大学幾何セミナー世話人, 大阪大学, 2025年度 (大阪大学 濱中翔太氏, 大阪大学 松本佳彦氏との共同主催)
 
 [](# **その他** 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  )
