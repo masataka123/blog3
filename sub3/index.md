@@ -1,8 +1,7 @@
 # **出張予定**
-- 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 
 - 2025年9月22--26日に東北大学で開催される[Conference on Several Complex Variables -L2 estimates and extensions-](https://takahiro-ina.github.io/sendai2025/)に参加する予定です.
 - 2025年11月26--29日に新潟大学で開催される[第2回新潟若手代数・幾何シンポジウム]()で講演する予定です.
-- 2025年12月1--4日に金沢で開催される[第３１回複素幾何シンポジウム（金沢）２０２５]()に参加する予定です.
+- 2025年12月1--4日に金沢で開催される[第３１回複素幾何シンポジウム（金沢）２０２５](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa31.html)に参加する予定です.
 - 2025年12月19--21日(予定)に九州大学で開催される[多変数函数論冬セミナー]()に参加する予定です. 
 - 多変数関数論冬セミナーの前後で, 「岡多様体かつ(または)CampanaのSpecial多様体」に関する勉強会の開催を検討しています. 
 
@@ -22,6 +21,7 @@
 31. ''Complex projective manifolds satisfying Miyaoka's equality' [SCV, CR geometry and Dynamics](https://math.univ-cotedazur.fr/~stolo/conf/SCVCRDyn24.html), RIMS. 2024年11月25--29日.
 32. "Condensed sets and topological spaces (ショルツのレクチャーノート2章Appendixの解説) [Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home) 大阪公立大学. 2025年2月17--21日.  [原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
 33. "チャーン類の不等式と構造定理", [日本数学会2025年度年会](https://www.mathsoc.jp/activity/meeting/waseda25mar/index.html)函数論分科会特別講演, 早稲田大学, 2025年3月19日 [アブストラクト](https://masataka123.github.io/blog3/pdf/2025_01_日本数学会_homepage.pdf)
+34. "Inequalities for the second Chern class and structure theorems" [Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html), 北京大学, 2025年6月26日. 
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)

@@ -22,7 +22,7 @@
 # **その他**
 
 ## 写真
-- [研究室の写真](https://masataka123.github.io/blog3/sub6/picture_room/)
+- [研究室の写真 (before 2025/06)](https://masataka123.github.io/blog3/sub6/picture_room/)
 
 ## プログラミング
 なぜかときたまプログラミングをする時があります. 
