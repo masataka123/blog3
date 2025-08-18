@@ -104,7 +104,7 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 - [Sébastien Boucksom](http://sebastien.boucksom.perso.math.cnrs.fr)
 - [Yohan Brunebarbe](https://www.math.u-bordeaux.fr/~ybrunebarbe/index.html)
 - [Benoît Cadorel](https://www.normalesup.org/~bcadorel/en.html)
-- [junyan Cao](https://sites.google.com/site/junyancao/)
+- [Junyan Cao](https://sites.google.com/site/junyancao/)
 - [Benoît Claudon](https://perso.univ-rennes1.fr/benoit.claudon/)
 - [Jean-Pierre Demailly](https://www-fourier.ujf-grenoble.fr/~demailly/)
 - [Ya Deng](https://ydeng.perso.math.cnrs.fr)
