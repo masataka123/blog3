@@ -127,11 +127,11 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 
 ## 研究集会の情報
 - [Upcoming conferences](http://math.stanford.edu/~vakil/conferences.html)
-Vakil様のホームページ. 世界の研究集会の情報が載っている.
+Vakil先生のホームページ. 世界の研究集会の情報が載っている.
 [](- [List of Conferences](http://yuyamatsumoto.com/conf.html)
-東京理科大学の松本様のホームページ. 主に日本の研究集会の情報が載っている.)
+東京理科大学の松本先生のホームページ. 主に日本の研究集会の情報が載っている.)
 - [Conferences & Seminars](https://ryokanda.net/conferences.html?lang=ja)
-大阪公立大学の神田様のホームページ . 主に日本の研究集会の情報が載っている. 
+大阪公立大学の神田先生のホームページ . 主に日本の研究集会の情報が載っている. 
 - [日本数学会幾何学分科会](http://geom.math.se.tmu.ac.jp/modules/piCal/)
 日本数学会幾何学分科会のホームページ. 幾何学に関する研究集会情報が載っている.
 - [CIRM](https://www.cirm-math.com) フランス・マルセイユにある数学研究所. 
@@ -192,7 +192,7 @@ ArXivへの投稿の仕方を毎回忘れる.
 CIRMで行われた集会の動画が見れる. 
 - [Institut Fourier](https://www.youtube.com/channel/UCf75JOnCeY9uFajrDw1g4-w) 
 Institut Fourierで行われた集会の動画が見れる. 
-- [Birational Geometry Seminar 2023](https://www.math.ucla.edu/~jmoraga/BGS2023) [Birational Geometry Seminar 2024](https://www.math.ucla.edu/~jmoraga/BGS2024) Joaquín Moraga様主催の代数幾何学セミナー. セミナー動画がたくさん残っているのが嬉しい.
+- [Birational Geometry Seminar 2023](https://www.math.ucla.edu/~jmoraga/BGS2023) [Birational Geometry Seminar 2024](https://www.math.ucla.edu/~jmoraga/BGS2024) Joaquín Moraga先生主催の代数幾何学セミナー. セミナー動画がたくさん残っているのが嬉しい.
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
 CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. ([Fourierの5連続講演](https://www.youtube.com/playlist?list=PL0E0n75oNCDk5tuV-t2_K56sEfLd0Od8H)でも良いと思う.) Foliationの論文書くときに参考になった.
 - [ZAG seminar](https://www.maths.ed.ac.uk/cheltsov/zag/) 
@@ -236,7 +236,7 @@ Terence Tao先生のホームページ. Career advice, On writingとか結構い
 - [Springer Link](https://link.springer.com)
 所属している大学によっては, Springerの本のpdfが無料で手に入れられる(かも)
 - [数学の現在 e・i・π ](https://www.utp.or.jp/book/b307189.html) 学生から「ちょっと踏み込んだ内容が知りたい」という質問が多くあったので, この本を勧めることにした. 確かに学部2,3年の人が自分の分野を選ぶのにこの本は参考になると思う. 続編[数学の現在π × i](https://www.utp.or.jp/book/b10134038.html)も出た.  なんと指導教官の高山先生も文章を書いていた. 
-- [選択公理と同値な命題](http://alg-d.com/math/ac/) alg-d様のホームページ. 役に立つかはわからないが, 見ていて楽しい. またAmazonで[全ての概念はKan拡張である](https://www.amazon.co.jp/全ての概念はKan拡張である-alg-d/dp/B09L9QSXY8)という本が発売中である. かなり良い本である. 
+- [選択公理と同値な命題](http://alg-d.com/math/ac/) alg-d氏のホームページ. 役に立つかはわからないが, 見ていて楽しい. またAmazonで[全ての概念はKan拡張である](https://www.amazon.co.jp/全ての概念はKan拡張である-alg-d/dp/B09L9QSXY8)という本が発売中である. かなり良い本である. 
 - [Euler Getter](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/EG/) 安田健彦先生が作ったゲーム. ちょっとやったが全然勝てない. Euler Getterに関しては安田先生の本である[ゲームで大学数学入門](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)でも取り上げられている. 学問の扉という授業をする際に非常にお世話になった. 
 
 ## まとめ集
