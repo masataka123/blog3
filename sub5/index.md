@@ -80,6 +80,12 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 - [Michiya Mori](https://www.ms.u-tokyo.ac.jp/~mmori/index.html)
 - [Tomohiro Hayase](https://thayafluss.notion.site/main)
 
+<!---
+ホームページ作ったときに, 研究室317や318にいた人に「リンク貼っていいですか?」って言って許可をもらいました.
+ 自分の研究室は326だったが, 修士博士時代は大学に遊びに行っていたので, 遊び場の317や318の人と喋ることが多かった. 
+ 318は一時期トランプと飲み会しかやってなかった部屋である. 作用素環の荒野さんがさまざまな分野の人と仲が良く, その影響もあって318にはいろんな分野の人が遊びに来ていたのである.  今あのメンバーで荒野の会をやればかなり盛り上がる研究集会になると思う. そういえば真言宗大谷派の大谷裕さんが318にいたことに, 大谷さんが卒業してから気づいた. 318飲み会に大谷さんがいたことがあったし, お土産を勝手に食べたのも覚えてる. もうちょいお布施しておけばよかったかなあ...
+--->
+
 ## 大阪大学のメンバー(元阪大も含む)
 授業とかシステムとかわからないことを聞きまくっているので, 大阪大学のメンバーにはお世話になりまくっている. わからないことは人に聞こう.
 
@@ -93,12 +99,27 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 - [Shohei Nakamura](https://researchmap.jp/pokopoko)
 - [Kento Fujita](http://www.math.sci.osaka-u.ac.jp/eng/staff_fujita.html)
 
-<!---
-ホームページ作ったときに, 研究室317や318にいた人に「リンク貼っていいですか?」って言って許可をもらいました.
- 自分の研究室は326だったが, 修士博士時代は大学に遊びに行っていたので, 遊び場の317や318の人と喋ることが多かった. 
- 318は一時期トランプと飲み会しかやってなかった部屋である. 作用素環の荒野さんがさまざまな分野の人と仲が良く, その影響もあって318にはいろんな分野の人が遊びに来ていたのである.  今あのメンバーで荒野の会をやればかなり盛り上がる研究集会になると思う. そういえば真言宗大谷派の大谷裕さんが318にいたことに, 大谷さんが卒業してから気づいた. 318飲み会に大谷さんがいたことがあったし, お土産を勝手に食べたのも覚えてる. もうちょいお布施しておけばよかったかなあ...
---->
-
+## よく見る研究者のページ
+これはほぼ自分用. 
+- [Sébastien Boucksom](http://sebastien.boucksom.perso.math.cnrs.fr)
+- [Yohan Brunebarbe](https://www.math.u-bordeaux.fr/~ybrunebarbe/index.html)
+- [Benoît Cadorel](https://www.normalesup.org/~bcadorel/en.html)
+- [junyan Cao](https://sites.google.com/site/junyancao/)
+- [Benoît Claudon](https://perso.univ-rennes1.fr/benoit.claudon/)
+- [Jean-Pierre Demailly](https://www-fourier.ujf-grenoble.fr/~demailly/)
+- [Ya Deng](https://ydeng.perso.math.cnrs.fr)
+- [Stéphane Druel](https://druel.perso.math.cnrs.fr)
+- [Daniel Greb](https://www.esaga.uni-due.de/daniel.greb/publications/)
+- [Henri Guenancia](https://hguenancia.perso.math.cnrs.fr/index.html)
+- [Andreas Höring](https://math.univ-cotedazur.fr/~hoering/)
+- [Stefan Kebekus](https://cplx.vm.uni-freiburg.de/research/)  どうもValue Distribution Theory をleanで確立しているらしい. [Project VD](https://github.com/kebekus/ProjectVD?tab=readme-ov-file)
+- [Jie Liu](http://www.jliumath.com/miscellaneou_en.html)
+- [Wenhao Ou](https://sites.google.com/site/wenhaooumath/home)
+- [Jorge Vitório Pereira](https://w3.impa.br/~jvp/)
+- [Christian Schnell](https://www.math.stonybrook.edu/~cschnell/)
+- [Behrouz Taji](https://web.maths.unsw.edu.au/~btaji/)
+- [Xiaojun Wu](https://xiaojun-wu-0127.github.io)
+- [Mingchen Xia](https://mingchenxia.github.io/home/)
 # **役に立つかもしれないリンク集**
 勝手にリンクを貼っているので, 怒られたり都合が悪くなれば消します. 
 他にもいい情報があれば教えてください. 
@@ -130,6 +151,7 @@ Vakil様のホームページ. 世界の研究集会の情報が載っている.
 - [複素幾何学の諸問題](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/170380) [複素幾何学の諸問題2](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/268311)
 高山茂晴先生によって開かれた集会のサーベイ. 個人的には[高木寛通先生のサーベイ](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/170575)に毎回助けられている. このサーベイはかなりわかりやすい. 
 - [RIMS 数学入門公開講座 バックナンバー](https://www.kurims.kyoto-u.ac.jp/ja/special-01.back.html)
+- [大沢健夫先生の論文・著作等リスト](https://mathbh.nobody.jp/math/ohsawa/top.html)
 
 ## 日本のセミナー情報
 - [大阪大学数学教室セミナー予定表](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 過去のセミナーの履歴は[このページ](http://www.math.sci.osaka-u.ac.jp/seminar/)の"セミナー案内履歴"からみることができます.
@@ -213,11 +235,13 @@ Terence Tao先生のホームページ. Career advice, On writingとか結構い
 お仕事探しにお世話になる. あとは各種メーリス(代数幾何・幾何学・函数論などなど)で出てくる公募情報を常に見る必要がある. 
 - [Springer Link](https://link.springer.com)
 所属している大学によっては, Springerの本のpdfが無料で手に入れられる(かも)
-- [数学の現在 e・i・π ](https://www.utp.or.jp/book/b307189.html) 学生から「ちょっと踏み込んだ内容が知りたい」という質問が多くあったので, この本を勧めることにした. 確かに学部2,3年の人が自分の分野を選ぶのにこの本は参考になると思う. []((思い通りにいかなかった私が言うのもなんだかなあとは思うが...))[続編](https://www.utp.or.jp/book/b10134035.html)も出る予定らしい. 
+- [数学の現在 e・i・π ](https://www.utp.or.jp/book/b307189.html) 学生から「ちょっと踏み込んだ内容が知りたい」という質問が多くあったので, この本を勧めることにした. 確かに学部2,3年の人が自分の分野を選ぶのにこの本は参考になると思う. 続編[数学の現在π × i](https://www.utp.or.jp/book/b10134038.html)も出た.  なんと指導教官の高山先生も文章を書いていた. 
 - [選択公理と同値な命題](http://alg-d.com/math/ac/) alg-d様のホームページ. 役に立つかはわからないが, 見ていて楽しい. またAmazonで[全ての概念はKan拡張である](https://www.amazon.co.jp/全ての概念はKan拡張である-alg-d/dp/B09L9QSXY8)という本が発売中である. かなり良い本である. 
 - [Euler Getter](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/EG/) 安田健彦先生が作ったゲーム. ちょっとやったが全然勝てない. Euler Getterに関しては安田先生の本である[ゲームで大学数学入門](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)でも取り上げられている. 学問の扉という授業をする際に非常にお世話になった. 
 
 ## まとめ集
+- [The Stacks project](https://stacks.math.columbia.edu/browse) 
+代数幾何ならほぼなんでも書いている. なおStacks Projectは論文で引用して良い. 
 - [Fanography](https://www.fanography.info)
 3次元Fanoの分類まとめ. 
 - [Database of Ring Theory](https://ringtheory.herokuapp.com)
