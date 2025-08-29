@@ -3,9 +3,10 @@
 - 2025年9月24--26日: 東北大学で開催される[Conference on Several Complex Variables -L2 estimates and extensions-](https://takahiro-ina.github.io/sendai2025/)に参加する予定です.
 - 2025年11月26--29日: 新潟大学で開催される[第2回新潟若手代数・幾何シンポジウム](https://sites.google.com/view/niigatawakate2025/ホーム)で"第2チャーン類の不等式 -宮岡-Yau不等式と宮岡の不等式- "の講演する予定です.
 - 2025年12月1--4日: 金沢で開催される[第３１回複素幾何シンポジウム（金沢）２０２５](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa31.html)に参加する予定です.
-- 2025年12月17--18日(予定): 九州大学で[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)を開催します. 
-- 2025年12月19--21日(予定): 九州大学で開催される[2025年度 多変数函数論冬セミナー]()に参加する予定です. 
-
+- 2025年12月8日: 大阪大学の[代数幾何学セミナー](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi)で講演する予定です. 
+- 2025年12月17--18日: 九州大学で[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)を開催します. 
+- 2025年12月19--21日: 九州大学で開催される[2025年度 多変数函数論冬セミナー]()に参加する予定です. 
+- 2026年1月26--30日: 大阪大学で[Workshop on Algebraic Geometry and Complex Geometry in Osaka](https://masataka123.github.io/AGCG_Osaka_2026/)を開催します. 
 
 # **講演履歴**
 
