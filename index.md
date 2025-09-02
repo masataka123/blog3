@@ -8,13 +8,15 @@ layout: default
 
 
 ## **ニュース**
+- 2026年1月26--30日に大阪大学南部ホールにて[Workshop on Algebraic Geometry and Complex Geometry in Osaka](https://masataka123.github.io/AGCG_Osaka_2026/)を開催します. 皆さんのご参加お待ちしております.
 - 2025年7月14日に新しい論文[The Miyaoka-Yau inequality for singular varieties with big canonical or anticanonical divisors](https://arxiv.org/abs/2507.08522)をアップロードしました. 大阪大学 陣内智史氏と University of Science and Technology of China (USTC) Shiyu Zhang氏との共同研究です. 
 - 東北大学 松村慎一氏とIBS-CCG Guolei Zhong氏との共同研究[Positivity of tangent sheaves of projective varieties -- the structure of MRC fibrations](https://arxiv.org/abs/2309.09489)がAlgebraic Geometryにアクセプトされました. 
 
 
+
 <!--
 - 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 
-- 2024年12月13--15日に集会を開きます [2024年度 多変数関数論冬セミナー](https://masataka123.github.io/2024scvwinter/) 皆さんのご参加お待ちしております.
+
 -->
 
 ## **基本的な情報**
