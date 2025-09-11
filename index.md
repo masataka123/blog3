@@ -28,7 +28,7 @@ layout: default
 - 住所: 〒560-0043　大阪府豊中市待兼山町１-１
 - 部屋番号: 大阪大学 豊中キャンパス 理学部本館 B-401
 
-![](https://masataka123.github.io/blog3/picture/4.jpg )
+![](https://masataka123.github.io/blog3/picture/6.jpg )
 
 ## **研究内容**
 - 初めまして岩井雅崇(いわいまさたか)と申します.
