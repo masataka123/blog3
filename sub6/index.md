@@ -25,12 +25,6 @@
 - [研究室の写真 (at 2025/08)](https://masataka123.github.io/blog3/sub6/picture_room_2/)
 - [研究室の写真 (before 2025/06)](https://masataka123.github.io/blog3/sub6/picture_room/)
 
-## プログラミング
-なぜかときたまプログラミングをする時があります. 
-全く上手くはないです. そして実用的なプログラミングは全くできないです. 
-
-- [コンウェイのGame of Life](https://masataka123.github.io/blog3/sub6/conway/)
-- [いろんなソート](https://masataka123.github.io/blog3/sub6/sort/)
 
 ## 競技プログラミング
 2018年4月から始めた. 言語はPython3です. ただ現在は興味失ってやっていません.
@@ -51,6 +45,13 @@ while x!=0:
 print(count)
 ```
 
+## プログラミング
+なぜかときたまプログラミングをする時があります. 
+全く上手くはないです. そして実用的なプログラミングは全くできないです. 
+
+- [コンウェイのGame of Life](https://masataka123.github.io/blog3/sub6/conway/)
+- [いろんなソート](https://masataka123.github.io/blog3/sub6/sort/)
+
 ## 別表神社のマイマップ
 -  [別表神社の地図](https://drive.google.com/open?id=1JxWpfm2hv-z9RfYKFUQWAVUPeHI&usp=sharing)
 
@@ -68,5 +69,14 @@ Markdownの書き方については以下を参照。
 - [Markdownの書き方](https://help.docbase.io/posts/13697#image)
 - [Markdown記法 チートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
 
+## 名言集
 
+- [とにかくやれ!! 【仕事の姿勢】](https://www.youtube.com/watch?v=JV3KOJ_Z4Vs)
+- [丸山ゴンザレス : 精神状態を保つための秘訣](https://www.youtube.com/watch?v=2jceYEcTn44)
+- [【魂の授業】パチンコをやらない君達へ向けて岡野さんが”特別授業”を開講！！【鬼越トマホーク】](https://www.youtube.com/watch?v=Ug54PDqRRA0)
 
+最後に関して, 私はパチンコを進めているわけではない(パチンコや競馬をやったことないです). が何かどうも研究に通ずるところがある. 気のせいだろうか. 
+
+## 年齢の求め方
+(今の西暦)-(自分が生まれた西暦)で年齢が求められる. (実際には生まれた月によって, この公式が使えない日も出てくる.)
+これは博士の時に同期から教えてもらった. 
