@@ -120,6 +120,8 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 - [Behrouz Taji](https://web.maths.unsw.edu.au/~btaji/)
 - [Xiaojun Wu](https://xiaojun-wu-0127.github.io)
 - [Mingchen Xia](https://mingchenxia.github.io/home/)
+
+
 # **役に立つかもしれないリンク集**
 勝手にリンクを貼っているので, 怒られたり都合が悪くなれば消します. 
 他にもいい情報があれば教えてください. 
