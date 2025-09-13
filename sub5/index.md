@@ -196,7 +196,10 @@ ArXivへの投稿の仕方を毎回忘れる.
 CIRMで行われた集会の動画が見れる. 
 - [Institut Fourier](https://www.youtube.com/channel/UCf75JOnCeY9uFajrDw1g4-w) 
 Institut Fourierで行われた集会の動画が見れる. 
-- [Birational Geometry Seminar 2023](https://www.math.ucla.edu/~jmoraga/BGS2023) [Birational Geometry Seminar 2024](https://www.math.ucla.edu/~jmoraga/BGS2024) Joaquín Moraga先生主催の代数幾何学セミナー. セミナー動画がたくさん残っているのが嬉しい.
+- [Birational Geometry Seminar 2023](https://www.math.ucla.edu/~jmoraga/BGS2023) 
+- [Birational Geometry Seminar 2024](https://www.math.ucla.edu/~jmoraga/BGS2024)
+- [Birational Geometry Seminar 2025](https://www.math.ucla.edu/~jmoraga/BGS2025)
+Joaquín Moraga先生主催の代数幾何学セミナー. セミナー動画がたくさん残っているのが嬉しい.
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
 CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. ([Fourierの5連続講演](https://www.youtube.com/playlist?list=PL0E0n75oNCDk5tuV-t2_K56sEfLd0Od8H)でも良いと思う.) Foliationの論文書くときに参考になった.
 - [ZAG seminar](https://www.maths.ed.ac.uk/cheltsov/zag/) 
