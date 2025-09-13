@@ -98,6 +98,8 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 - [Toru Sera](https://sites.google.com/view/torusera)
 - [Shohei Nakamura](https://researchmap.jp/pokopoko)
 - [Kento Fujita](http://www.math.sci.osaka-u.ac.jp/eng/staff_fujita.html)
+- [Takahiro Oba](https://researchmap.jp/takahiro_oba?lang=en)
+
 
 ## よく見る研究者のページ
 これはほぼ自分用. 
