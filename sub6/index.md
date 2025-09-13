@@ -18,7 +18,7 @@
 - [点と直線](https://masataka123.github.io/blog3/sub6/14_line_and_point/)
 - [1111....](https://masataka123.github.io/blog3/sub6/15_111/)
 - [Zagier's one sentence proof](https://masataka123.github.io/blog3/sub6/16_Zagier/)
-
+- [ライツアウト](https://masataka123.github.io/blog3/sub6/17_lightsout/)
 # **その他**
 
 ## 写真
