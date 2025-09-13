@@ -6,7 +6,7 @@
 [操作] 
 図1のように上も右も白であるような黒のタイルを選び, それを白タイルに変えて, その上も右も黒のタイルに変える.
 
-![](https://masataka123.github.io/blog3/picture/knot.jpg)
+![](https://masataka123.github.io/blog3/picture/kont.jpg)
 
 
 
