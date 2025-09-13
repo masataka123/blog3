@@ -1,6 +1,6 @@
 #  ライツアウト
 
-![](lightsout_jp.jpg)
+![](https://masataka123.github.io/blog3/picture/lightsout_jp.jpg)
 
 ## コメント
 これも[安田先生の本](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)から. [ライツアウト](https://ja.wikipedia.org/wiki/ライツアウト)を数学的に扱うとはさすが安田先生である. 
