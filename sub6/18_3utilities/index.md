@@ -1,6 +1,6 @@
 #  三つの家と三つの施設
 
-[マグカップ](https://ja.wikipedia.org/wiki/マグカップ)の側面に次のような図がある. 
+以下の図が[マグカップ](https://ja.wikipedia.org/wiki/マグカップ)の側面に描かれている.
 
 ![](https://masataka123.github.io/blog3/picture/utilities_1.jpg)
 
