@@ -21,6 +21,23 @@
 - [ライツアウト](https://masataka123.github.io/blog3/sub6/17_lightsout/)
 - [三つの家と三つの施設](https://masataka123.github.io/blog3/sub6/18_3utilities/)
 
+## 数学パズルの引用文献
+せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)
+これらの本を読んだり動画を見たりしたら, なんか賢くなった気がする. そーなのかー
+
+### 本
+- [とっておきの数学パズル](https://www.amazon.co.jp/とっておきの数学パズル-ピーター-ウィンクラー/dp/4535786399)
+- [続・とっておきの数学パズル](https://www.amazon.co.jp/続・とっておきの数学パズル-ピーター・ウィンクラー/dp/4535786429?language=ja_JP)
+- [ゲームで大学数学入門-](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)
+- [天書の証明](https://www.amazon.co.jp/天書の証明-原書6版-蟹江-幸博/dp/4621306960)の29章にも証明がある. [えびまラボ](https://www.youtube.com/watch?v=T5oqEUDcfjY)
+- [ピーター・フランクルの中学生でも分かる大学生にも解けない数学](https://www.amazon.co.jp/ピーター・フランクルの中学生でも分かる大学生にも解けない数学問題集%E3%80%881〉-ピーター-フランクル/dp/4535782628)
+- [蟻本](https://www.amazon.co.jp/プログラミングコンテストチャレンジブック-第2版-～問題解決のアルゴリズム活用力とコーディングテクニックを鍛える～-秋葉拓哉/dp/4839941068)
+- [アルゴリズムパズル](https://www.oreilly.co.jp/books/9784873116693/)
+
+### 動画
+- [えびまラボ](https://www.youtube.com/@evimalab)
+- [3Blue1Brown](https://www.youtube.com/@3blue1brown)
+- [TED-Ed: Can You Solve This Riddle?](https://www.youtube.com/playlist?list=PLJicmE8fK0EiFRt1Hm5a_7SJFaikIFW30)
 
 # **その他**
 
