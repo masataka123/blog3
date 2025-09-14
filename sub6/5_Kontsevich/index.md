@@ -17,3 +17,6 @@
 その後学祭にも問題を出すために上のように改良した. なおこの問題は今も研究室の前に飾っている. 
 ![](https://masataka123.github.io/blog3/sub6/picture_room_2/IMG_8577.jpeg)
 
+## コメント2
+[とっておきの数学パズル](https://www.amazon.co.jp/とっておきの数学パズル-ピーター-ウィンクラー/dp/4535786399)にも似たような問題がある(問題8.5) これは[コンウェイの兵隊](https://ja.wikipedia.org/wiki/コンウェイの兵隊)と呼ばれている. 
+私は[中村先生](https://sites.google.com/site/ynakamuraagmath/home)のTAをしているときに, このコンウェイの兵隊の問題を教えてもらった.

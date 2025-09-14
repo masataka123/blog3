@@ -20,8 +20,8 @@
 - [Zagier's one sentence proof](https://masataka123.github.io/blog3/sub6/16_Zagier/)
 - [ライツアウト](https://masataka123.github.io/blog3/sub6/17_lightsout/)
 - [三つの家と三つの施設](https://masataka123.github.io/blog3/sub6/18_3utilities/)
-- [1 + √2]()
-- [郵便]()
+- [1 + √2](https://masataka123.github.io/blog3/sub6/19_1+sqrt2/)
+- [宅配便の箱](https://masataka123.github.io/blog3/sub6/20_yuubin/)
 
 ## 数学パズルの引用文献
 せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)
