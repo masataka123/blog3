@@ -41,6 +41,14 @@
 - [3Blue1Brown](https://www.youtube.com/@3blue1brown)
 - [TED-Ed: Can You Solve This Riddle?](https://www.youtube.com/playlist?list=PLJicmE8fK0EiFRt1Hm5a_7SJFaikIFW30)
 
+## 他の数学者による数学パズル
+勝手にリンクを貼っているので, 怒られたり都合が悪くなれば消します. 
+
+- [Martin Deraux](https://www-fourier.univ-grenoble-alpes.fr/~deraux/puzzle/)
+- [Shuho Kanda](https://shuhokanda.com/mathematical-puzzles/)
+- [Junnosuke Koizumi](https://jkoizumi144.com/puzzles.html)
+
+
 # **その他**
 
 ## 写真
