@@ -32,11 +32,6 @@
 勉強したことなどをまとめた自分用のノートです. (自分用ですがホームページにおいていると便利なのであげることにしました.) 
 間違っている可能性は大いにあるので注意してください. 
 
-<!--
--[Remarks on Miyaoka's inequality for compact Kahler manifolds](https://masataka123.github.io/blog3/pdf/Miyaoka_inequality_kahler.pdf)
-'Minimal projective varieties satisfying Miyaoka's equality.' の補足です.
--->
-
 - [位相空間論まとめ](https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf)
 位相の演義を担当した際に定義などを勉強し直しました. なお単語帳のために作ったので証明は書いてないです. 
 
@@ -47,11 +42,12 @@
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
 - [公理的集合論と圏論まとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_set_category.pdf)
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 現在修正加筆中で未完成です. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 公理的集合論の最初の方を付け足したいので未完成です. 
 
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 現在修正加筆中で未完成です. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. これは自分のためにもまとめていきたいです. 
 
+- [研究ノート](https://drive.google.com/drive/folders/1QVU1NtuIfcaAJNI3a0pOb2R1CnA8Qt5Z?usp=share_link)これは自分用. 自分しか見れない. PCに置くよりここにおいた方が(自分が)見る可能性が高まると思ったので, ここにリンクを貼ることにした. 
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
