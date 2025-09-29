@@ -47,7 +47,6 @@
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成. ただこれは自分のためにもまとめていきたいです. 
 
-- [研究ノート](https://drive.google.com/drive/folders/1QVU1NtuIfcaAJNI3a0pOb2R1CnA8Qt5Z?usp=share_link)これは自分用. 自分しか見れない. PCに置くよりここにおいた方が(自分が)見る可能性が高まると思ったので, ここにリンクを貼ることにした. 
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
