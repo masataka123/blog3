@@ -45,7 +45,7 @@
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 公理的集合論の最初の方を付け足したいので未完成です. 
 
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. これは自分のためにもまとめていきたいです. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成. ただこれは自分のためにもまとめていきたいです. 
 
 - [研究ノート](https://drive.google.com/drive/folders/1QVU1NtuIfcaAJNI3a0pOb2R1CnA8Qt5Z?usp=share_link)これは自分用. 自分しか見れない. PCに置くよりここにおいた方が(自分が)見る可能性が高まると思ったので, ここにリンクを貼ることにした. 
 
