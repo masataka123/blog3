@@ -85,8 +85,6 @@ print(count)
 ## 別表神社のマイマップ
 -  [別表神社の地図](https://www.google.com/maps/d/u/0/edit?mid=1YEjE9WqBGWXVR8Qu5QQFkH24T0lZ3ZY&usp=sharing)
 
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1YEjE9WqBGWXVR8Qu5QQFkH24T0lZ3ZY&ehbc=2E312F" width="640" height="480"></iframe>
-
 別表神社を旧社格, つまり官幣大社, 国幣大社などで分類をしました. Google mapで地道な作業で作ってます. 友人には高評価です。下の神社は東方風神録に出てくる諏訪大社下社秋宮. 
 
 ![](https://masataka123.github.io/blog3/picture/5.jpg)
