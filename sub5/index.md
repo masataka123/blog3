@@ -243,6 +243,7 @@ Terence Tao先生のホームページ. Career advice, On writingとか結構い
 - [数学の現在 e・i・π ](https://www.utp.or.jp/book/b307189.html) 学生から「ちょっと踏み込んだ内容が知りたい」という質問が多くあったので, この本を勧めることにした. 確かに学部2,3年の人が自分の分野を選ぶのにこの本は参考になると思う. 続編[数学の現在π × i](https://www.utp.or.jp/book/b10134038.html)も出た.  なんと指導教官の高山先生も文章を書いていた. 
 - [選択公理と同値な命題](http://alg-d.com/math/ac/) alg-d氏のホームページ. 役に立つかはわからないが, 見ていて楽しい. またAmazonで[全ての概念はKan拡張である](https://www.amazon.co.jp/全ての概念はKan拡張である-alg-d/dp/B09L9QSXY8)という本が発売中である. かなり良い本である. 
 - [Euler Getter](http://www4.math.sci.osaka-u.ac.jp/~takehikoyasuda/jp/EG/) 安田健彦先生が作ったゲーム. ちょっとやったが全然勝てない. Euler Getterに関しては安田先生の本である[ゲームで大学数学入門](https://www.amazon.co.jp/ゲームで大学数学入門-スプラウトからオイラー-ゲッターまで-安田-健彦/dp/4320113446)でも取り上げられている. 学問の扉という授業をする際に非常にお世話になった. 
+- [Mathematics Genealogy Project](https://www.mathgenealogy.org) 師匠の師匠が誰なのかがわかる. 見てて面白い. ちなみに私は載っていない. 悲しい. 
 
 ## まとめ集
 - [The Stacks project](https://stacks.math.columbia.edu/browse) 
