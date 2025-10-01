@@ -22,8 +22,10 @@ layout: default
 ## **岩井のところでセミナーを志望される方**
 
 [研究室紹介](https://masataka123.github.io/blog3/sub0)のページをご覧ください.
+
 - 修士1年以上で私の研究室を希望する方
 - 学部4年に私のところでセミナーを志望する方
+
 向けの情報を載せました. 
 
 ## **基本的な情報**
@@ -39,6 +41,7 @@ layout: default
 
 
 ## **事務関連情報**
+
 - [大阪大学のスタッフのページ](http://www.math.sci.osaka-u.ac.jp/staff/iwai.html)
 - [オフィスアワー](https://www.mext.go.jp/b_menu/shingi/chukyo/chukyo4/gijiroku/attach/1342526.htm) 月曜16:00-17:00 (部屋に来る場合は事前にメール等で連絡してくれると助かります.)
 - [Google Scholar](https://scholar.google.com/citations?hl=ja&user=ZTKnR6QAAAAJ)
