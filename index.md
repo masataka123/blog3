@@ -53,6 +53,8 @@ layout: default
 大阪大学 豊中キャンパス 理学部・南部ホールへのアクセスやランチマップをまとめました. 
 阪大で研究集会する時にお使いください. 
 
+- [理学研究科・理学部へのアクセス(柴原阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_science_shibahara_en.pdf)
+- [理学研究科・理学部へのアクセス(石橋阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_science_ishibashi_en.pdf)
 - [南部ホールへのアクセス(柴原阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_nambu_shibahara_en.pdf)
 - [南部ホールへのアクセス(石橋阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_nambu_ishibashi_en.pdf)
 - [ランチマップ(PDF)](https://masataka123.github.io/blog3/pdf/20251005_access/lunch_map.pdf)
