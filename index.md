@@ -49,15 +49,17 @@ layout: default
 - [Research Map](https://researchmap.jp/Masataka_iwai)
 - 所属学会: 日本数学会 (会員番号: 11981)
 
-## **アクセス**
+## **アクセス・ランチマップ**
 大阪大学 豊中キャンパス 理学部・南部ホールへのアクセスやランチマップをまとめました. 
-阪大で研究集会する時にお使いください. 
+全て英語で書いたので, 阪大で国際研究集会する時にお使いください. 
 
 - [理学研究科・理学部へのアクセス(柴原阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_science_shibahara_en.pdf)
 - [理学研究科・理学部へのアクセス(石橋阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_science_ishibashi_en.pdf)
 - [南部ホールへのアクセス(柴原阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_nambu_shibahara_en.pdf)
 - [南部ホールへのアクセス(石橋阪大前から)](https://masataka123.github.io/blog3/pdf/20251005_access/access_nambu_ishibashi_en.pdf)
-- [ランチマップ(PDF)](https://masataka123.github.io/blog3/pdf/20251005_access/lunch_map.pdf)
+- [ランチマップ(南部ホール版 PDF)](https://masataka123.github.io/blog3/pdf/20251005_access/lunch_map.pdf)
+- [ランチマップ(E404教室版 PDF)](https://masataka123.github.io/blog3/pdf/20251005_access/lunch_map_E404.pdf)
 - [ランチマップ(Google mymap)](https://www.google.com/maps/d/edit?mid=1B7egM_vT4mLeZgtXCt88ys5hColf05I&usp=sharing)
 
+ランチマップのPDFはホームが南部ホールかE404教室かで微妙に表記が違います. 
 
