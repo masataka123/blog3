@@ -150,8 +150,8 @@ Vakil先生のホームページ. 世界の研究集会の情報が載ってい�
 - [Oberwolfach](https://www.mfo.de) ドイツにあるオーバーヴォルファッハ数学研究所. 集会が終わった後にレポートを作ってくれるのは嬉しい. 
 - [ENCOUNTER with MATHEMATICS](https://www.math.chuo-u.ac.jp/ENCwMATH/) ブルバキセミナーの日本版. 
 - [岡シンポジウム](http://www.nara-wu.ac.jp/omi/oka_symposium.html) 講義録が残っているのが嬉しい. ちょくちょく読んでいる.
-- [雑誌「数学」の論説](https://mathsoc.jp/publication/dbase/sugaku/index.html)
-日本数学会が創刊している雑誌「数学」の論説が見れる. ほぼ全て電子化されているらしく, [こちら](https://www.jstage.jst.go.jp/browse/sugaku/list/-char/ja)のページで詳細検索もできる. 
+- [雑誌「数学」の論説](https://www.mathsoc.jp/publications/sugaku/dbase/)
+日本数学会が創刊している雑誌「数学」の論説が見れる. ほぼ全て電子化されているらしく, [こちら](https://www.jstage.jst.go.jp/browse/sugaku/-char/ja/)のページで詳細検索もできる. 
 - [複素幾何学の諸問題](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/170380) [複素幾何学の諸問題2](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/268311)
 高山茂晴先生によって開かれた集会のサーベイ. 個人的には[高木寛通先生のサーベイ](https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/170575)に毎回助けられている. このサーベイはかなりわかりやすい. 
 - [RIMS 数学入門公開講座 バックナンバー](https://www.kurims.kyoto-u.ac.jp/ja/special-01.back.html)
@@ -165,7 +165,6 @@ Vakil先生のホームページ. 世界の研究集会の情報が載ってい�
 - [RIMSセミナー一覧](https://www.kurims.kyoto-u.ac.jp/ja/seminar-02.html)
 - [東京大学大学院数理科学研究科ホームページ・セミナー情報](https://www.ms.u-tokyo.ac.jp/index-j.html)
 - [東北大学幾何セミナー](https://sites.google.com/site/aobageometry/tohoku-university-geometry-group)
-
 
 ## 日本の集中講義情報
 - [大阪大学集中講義](http://www.math.sci.osaka-u.ac.jp/seminar/)
@@ -185,9 +184,9 @@ ArXivへの投稿の仕方を毎回忘れる.
 - [SCImago Journal Rank](https://www.scimagojr.com/journalrank.php?category=2601)
 論文のランキングみたいなもの. 他にもオーストラリア数学会が出してる[Journal Rankings](https://www.austms.org.au/Rankings/AustMS_final_ranked.html)のもあるが, これはちょっと間違っているようにも思う(代数分野がかなり低い評価になってる気がする). 論文のランキングは人によって意見が異なるようだ.
 - [ChatGPT](https://chat.openai.com/auth/login) これのおかげでメールの返信や論文作成など, 英語・日本語問わず文章作成のストレスが格段に減ったと思う. 「適当にChat GPTに投げてそれをちょっと編集してメール返信!」が多くなったと思う. 
-- [DeepL翻訳](https://www.deepl.com/ja/translator) [Google翻訳](https://translate.google.co.jp/?hl=ja) これなしで英語のメールは書けなくなった. 翻訳が使いやすい.
 - [Hyper Collocation](https://hypcol.marutank.net/ja/)
 論文書くときにお世話になっている. 数学の論文を書くなら, [Trzeciak "Writing Mathematical Pepers in English"](https://ems.press/books/standalone/11)もいい本だと思う. 
+- [DeepL翻訳](https://www.deepl.com/ja/translator) [Google翻訳](https://translate.google.co.jp/?hl=ja) 
 - [Poster作成の方法](http://math.shinshu-u.ac.jp/~nu/html/texmacros/makeaposter/) ポスター発表をしなければならなくなった時に同僚の世良先生に教えてもらった. 結果1日でポスターを作れた. 
 
 
@@ -198,6 +197,7 @@ CIRMで行われた集会の動画が見れる.
 Institut Fourierで行われた集会の動画が見れる. 
 - Birational Geometry Seminar [2023](https://www.math.ucla.edu/~jmoraga/BGS2023) [2024](https://www.math.ucla.edu/~jmoraga/BGS2024) [2025](https://www.math.ucla.edu/~jmoraga/BGS2025)
 Joaquín Moraga先生主催の代数幾何学セミナー. セミナー動画がたくさん残っているのが嬉しい.
+- [Tsinghua Algebraic Geometry Seminar](https://ymsc.tsinghua.edu.cn/info/1053/1730.htm) Birkar先生とJia Jia先生による代数幾何学セミナー. これもセミナー動画が残っている. ちなみにWeChatで中国の代数幾何学グループに参加できれば, Jia Jia先生が開催直前に通知してくれる.
 - [Foliation Theory and Complex Geometry](https://www.chairejeanmorlet.com/2020-1-pereira-rousseau.html)
 CIRMで開かれる(はずだった)プログラム. 2021年現在singular Beauville-Bogomolov decompositionの一番わかりやすい解説動画が見れる. ([Fourierの5連続講演](https://www.youtube.com/playlist?list=PL0E0n75oNCDk5tuV-t2_K56sEfLd0Od8H)でも良いと思う.) Foliationの論文書くときに参考になった.
 - [ZAG seminar](https://www.maths.ed.ac.uk/cheltsov/zag/) 
