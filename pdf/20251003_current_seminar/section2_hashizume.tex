@@ -1,0 +1,2944 @@
+%\documentclass[dvipdfmx,a4paper,12pt]{amsart}
+\documentclass[dvipdfmx,a4paper,11pt]{article} %titleとe-mailをコメントアウトする．
+
+
+%%% Packages %%%
+\setlength{\lineskip}{0pt}
+
+% --- 和文フォント設定 (ゴシックを使うなら) ---amsartを使う時はコメントアウト
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf}          % min10を避けるため
+\usepackage{pxrubrica}    % 和文ルビ
+
+% --- 基本パッケージ ---
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{pgfplots}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+% --- 数学関連 ---
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{amscd,dsfont,bigdelim,braket,physics,mathrsfs,bm}
+
+% --- 書式・リスト関連 ---
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+% --- コメント・取消線など ---
+\usepackage{comment}
+\usepackage[normalem]{ulem} % \emph の下線化を抑止（cancelと共存）
+
+% --- URL・文字コード ---
+\usepackage{url}
+% \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要、pdflatexなら有効に
+
+% --- showkeys（常に表示） ---
+\usepackage{showkeys}
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
+}
+% --- hyperrefは最後に読み込む ---
+\usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+
+%%% レイアウト調整 %%%
+%%% レイアウト調整（geometryに統一） %%%
+\usepackage[
+  top=30mm,        % 上余白
+  bottom=30mm,     % 下余白
+  left=25mm,       % 左余白
+  right=25mm,      % 右余白
+  headheight=12pt, % ヘッダー高さ（必要なら）
+  headsep=10mm,    % ヘッダーと本文の間
+  footskip=32pt,   % 本文とフッターの距離
+  includehead,     % ヘッダー分も高さに含める
+  includefoot      % フッター分も高さに含める
+]{geometry}
+
+%%% 行間調整（適宜 1.2 などに変更） %%%
+\usepackage{setspace}
+\setstretch{1.1}
+
+% --- 段落設定 --- 文字の行間ならここを変更する
+\setlength{\parskip}{5pt}   % 段落間のスペース
+\setlength{\parindent}{0pt}   % 段落先頭の字下げをなくす
+
+
+%%% 追加（重複なし）パッケージ・設定 %%%
+
+% --- 目次の体裁調整 ---
+%\usepackage{tocloft}
+%\renewcommand{\contentsname}{目次} % 日本語化
+%\setlength{\cftbeforesecskip}{0pt}
+%\setlength{\cftbeforesubsecskip}{0pt}
+%\setlength{\cftbeforesubsubsecskip}{0pt}
+
+% --- セクション見出しの体裁調整 ---
+%\usepackage{titlesec}
+%\titleformat*{\section}{\Large\bfseries}
+%\titleformat*{\subsection}{\large\bfseries}
+%\titlespacing*{\section}{0pt}{1.5ex plus .2ex minus .2ex}{0.8ex plus .1ex}
+%\titlespacing*{\subsection}{0pt}{1.0ex plus .2ex minus .2ex}{0.5ex plus .1ex}
+
+% --- ヘッダー／フッター設定 ---
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\rhead{岩井 雅崇}
+%\lhead{大阪大学 数学専攻}
+%\cfoot{\thepage}
+
+
+% -- enumerate, itemize行間設定
+\usepackage{enumitem} % デフォルト設定
+\setlist[itemize]{itemsep=3pt, parsep=0pt}
+\setlist[enumerate]{itemsep=3pt, parsep=0pt}
+% "変更する際は右を使う" \setlength{\parskip}{0cm} % 段落間\setlength{\itemsep}{5pt} % 項目間
+
+% --- tcolorbox 設定 ---%\begin{tcolorbox}[mybox]と使う
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true
+  }
+}
+
+% --- TikZ 設定 ---
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, fit, calc, backgrounds}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+% --- footnote がページをまたがない設定 ---
+\interfootnotelinepenalty=10000
+
+% --- 目次に表示する階層の深さ ---
+\setcounter{tocdepth}{2}
+
+% --- 日本語目次---
+\usepackage{pxjahyper}
+
+%--newtheorem%--newcommand----
+
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{eg}[thm]{Example} 
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+\numberwithin{equation}{section}
+\newtheorem{case}{Case}
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\renewcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Coker}[0]{\operatorname{Coker}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\Ext}[0]{\mathscr{E}\!\textit{xt}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+\newcommand{\polar}{\beta}
+  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{Z}_+}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\renewcommand{\tr}{\hspace{-0.8ex}>}
+
+
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\newcommand{\illegible}[1]{\textcolor{red}{[ILLEGIBLE: #1]}}
+
+\title{まとめ} 
+\author{Masataka IWAI}
+%\address{Department of Mathematics, Graduate School of Science, Osaka City University 3-3-138, Sugimoto, Sumiyoshi-ku Osaka, 558-8585Japan} 
+%\email{{\tt masataka.math@gmail.com}}
+%\email{{\tt masataka.math@gmail.com, masataka@sci.osaka-cu.ac.jp}}
+\date{\today, version 0.01}
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+\begin{document}
+
+
+
+
+
+%2025/8/12
+% [page 1]
+
+%2025/8/12 \quad 木寫諸さん担当分
+
+\section*{Notation}
+\begin{itemize}
+    \item \(\Omega \subset \mathbb{R}^n\) : non-empty open subset
+    \item \(K \subset \Omega\) : compact subset %\quad [Ru.1.46] or 松澤2025-07-02, 7.3
+    \item \(\mathcal{D}_K := \{\varphi : \Omega \to \mathbb{C} \mid \varphi \in C^\infty(\Omega), \ \mathrm{Supp} \ \varphi \subset K\}\)
+    \item \(\mathcal{D}(\Omega) := \bigcup_{K \subset \Omega: \ \mathrm{cpt}} \mathcal{D}_K\) test functionの空間
+    \item \(\varphi \in \mathcal{D}(\Omega), \ N \in \mathbb{Z}_{\ge 0}\)について, 
+    \[
+    \|\varphi\|_N := \max \{ |D^\alpha \varphi(x)| \mid x \in \Omega, \ \alpha \in \N^n, \ \text{s.t.} \ |\alpha| := \sum_{i=1}^n \alpha_i \le N \}
+    \]
+    \item \(\forall f \in C^\infty(\Omega), \ N \in \mathbb{Z}_{\ge 0}, \ \alpha \in \N^n, \ \text{s.t.} \ |\alpha| = \alpha_1 + \dots + \alpha_n \le N\)について, 
+    \[
+    P_N(f) := \max \{ |D^\alpha f(x)| \mid |\alpha| \le N \}
+    \]
+    \[
+    V_N := \{ f \in C^\infty(\Omega) \mid P_N(f) \le \tfrac{1}{N} \}
+    \]
+    \item \(\tau_K\) : \(\mathcal{D}_K\)上の位相で, \(\{V_N\}_{N=1}^\infty\)とその平行移動で定められるもの. 
+    \item \(\beta\) : convex  balanced \(0 \in W \subset \mathcal{D}(\Omega)\)であって, 任意のコンパクト集合$K \subset \Omega$について
+    \(\mathcal{D}_K \cap W \in \tau_K\)となる$W$からなる集合族. 
+        \item \(\tau\) : \(\beta\)の平行移動によって定められる\(\mathcal{D}(\Omega)\)上の位相
+    \item \(\mathcal{D}'(\Omega) := \{ \varphi : \mathcal{D}(\Omega) \to \mathbb{C} \mid \varphi' \text{連続な線形写像} \}\) この元を超関数(distribution)という. 
+\end{itemize}
+
+\begin{thebibliography}{n}
+\bibitem[Rud]{Rud}
+W. Rudin. \textit{Functional analysis.} 2nd edn. International Series in Pure and Applied Mathematics. McGraw-Hill, Inc., New York. (1991.)
+\bibitem[NO]{NO}
+J. Noguchi, T.Ochiai \textit{Geometric Function Theory in Several Complex Variables} Translations of Mathematical Monographs
+Volume: 80; 1990; 282 pp
+\end{thebibliography}
+ 
+ \cite[Chapter 1, 3, 6]{Rud}, \cite[Chapter 3]{NO}を主に参考にしている.
+ 
+\section*{ルベーグ測度の定義の復習}
+% [page 3]
+\subsection*{ Borel measure （ボレル測度）}
+
+%\subsection*{背景}
+%\begin{itemize}
+   % \item 測度を定義するには，まず「どの集合に対して測度を割り当てるか」という \(\sigma\)-代数を決めます。
+    %\item Borel \(\sigma\)-代数は，\(\mathbb{R}^n\) の開集合（あるいは閉集合）から始めて，可算回の和・共通部分・補集合の操作で生成される集合族です。
+%\end{itemize}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+Borel \(\sigma\)-代数を
+\[
+\mathcal{B}(\mathbb{R}^n) := \sigma(\{\text{開集合 in } \mathbb{R}^n\})
+\]
+と定める. ここで$ \sigma(\{\text{開集合 in } \mathbb{R}^n\})$とは可算回の和・共通部分・補集合の操作で生成される集合族をさす.
+
+$\mu$がBorel measure とは，   \(\mathcal{B}(\mathbb{R}^n)\) 上に定義された測度, つまり$\mu(\varnothing)=0$かつ完全加法性を持つ写像$\mu : \mathcal{B}(\mathbb{R}^n) \to [0, \infty]$とする. 
+\end{defn}
+\end{tcolorbox}
+%例えば，Borel measure \(\mu\) は\[\mu : \mathcal{B}(\mathbb{R}^n) \to [0, \infty]\]で，\(\sigma\)-加法性を持ちます。
+%\subsection*{標準例}Borel Lebesgue measure は，後で出てくる Lebesgue measure を Borel \(\sigma\)-代数に制限したもの。
+
+% [page 4]
+\subsection*{Lebesgue measure （ルベーグ測度）}
+
+Borel 集合だけでは， 測度を割り当てたい集合が足らない. 例えば，カントール集合やさらに病的な集合の取り扱いに限界があLebesgue measure は，Borel \(\sigma\)-代数を測度に関して完備化（completion）して得られるより大きな集合族に定義される.
+
+\begin{enumerate}
+    \item 外測度 \(m^*\) を定義する：
+    \[
+    m^*(E) := \inf \left\{ \sum_{k=1}^\infty |I_k| \ \middle| \ E \subset \bigcup_{k=1}^\infty I_k, \ I_k \ \text{は区間} \right\}
+    \]
+    （\(|I_k|\) は区間の長さ）
+    \item ルベーグ可測集合：集合 \(E\) が Lebesgue measurable であるとは，
+    \[
+    m^*(A) = m^*(A \cap E) + m^*(A \cap E^c) \quad \text{for all} \ A \subset \mathbb{R}^n
+    \]
+    が成り立つこと。
+    \item この可測集合族 \(\mathcal{L}\) 上に，\(m(E) := m^{**}(E)\) を定義する。
+\end{enumerate}
+\begin{tcolorbox}[mybox]
+\begin{defn}
+Lebesgue measure \(m\) は，
+\[
+m : \mathcal{L} \to [0, \infty]
+\]
+で，\(\mathcal{L}\) は全ての Lebesgue measurable 集合を含む。
+\end{defn}
+\end{tcolorbox}
+\(\mathcal{L}\) は \(\mathcal{B}(\mathbb{R}^n)\) を含み， 測度に関して完備（零集合の部分集合も全て含む）である.
+
+Borel measure と Lebesgue measure の違いは以下の通り. 
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3} % 行間を少し広げる（任意）
+\begin{tabular}{|c|c|c|}
+\hline
+項目 & Borel measure & Lebesgue measure \\ \hline
+定義域 &
+\shortstack[c]{Borel $\sigma$-代数\\$\mathcal{B}(\mathbb{R}^n)$} &
+\shortstack[c]{Lebesgue measurable\\集合族 $\mathcal{L}$} \\ \hline
+構成方法 &
+\shortstack[c]{開集合から生成される\\最小の $\sigma$-代数上の測度} &
+\shortstack[c]{外測度から\\Carathéodory の方法で構成} \\ \hline
+完備性 &
+\shortstack[c]{一般には完備でない\\（零集合の部分集合を含まない場合がある）} &
+\shortstack[c]{完備\\（零集合の部分集合も可測）} \\ \hline
+関係 &
+\shortstack[c]{Lebesgue measure の Borel 部分制限が\\Borel Lebesgue measure} &
+\shortstack[c]{Lebesgue measure は\\Borel measure の完備化} \\ \hline
+\end{tabular}
+\end{center}
+
+
+
+% [page 5]
+\subsection*{符号付き測度}
+\((X, \mathcal{A})\) を可測空間とする.
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\(\nu : \mathcal{A} \to [-\infty, +\infty]\) が次の条件を満たすとき, 符号付き測度(signed measure)という. 
+\begin{enumerate}
+    \item \(\nu(\varnothing) = 0\).
+    \item \(\nu\) は可算加法性を持つ：
+    任意の互いに素な可測集合列 \(\{E_k\}_{k=1}^\infty\) に対して
+    \[
+    \nu\left( \bigcup_{k=1}^\infty E_k \right) = \sum_{k=1}^\infty \nu(E_k)
+    \]
+    が成り立つ。ただし，和の右辺では
+    \(\sum_{k=1}^\infty \nu(E_k)^+ + \sum_{k=1}^\infty \nu(E_k)^-\) の少なくとも一方は有限とする. 
+    （ここで \(x^+ = \max(x,0), \ x^- = \max(-x,0)\)）であることを仮定し，\(+\infty - \infty\) の不定形が出ないと仮定する)
+\end{enumerate}
+\end{defn}
+\end{tcolorbox}
+(2)に関しては,  測度の値が不定形になるのを避ける目的がある. つまり\(+\infty\) と \(-\infty\) を同時に取らないようにする. 
+
+重要な定理としては以下がある. 
+\begin{itemize}
+    \item \textbf{Hahn 分解定理}：  
+    任意の signed measure \(\nu\) に対し，\(X\) は可測集合 \(P\)（正集合）と \(N\)（負集合）に分割でき，
+    \[
+    \nu(E) \ge 0 \ (E \subset P), \quad \nu(E) \le 0 \ (E \subset N)
+    \]
+    \item \textbf{Jordan 分解定理}：  
+    \(\nu\) は互いに素な非負測度 \(\nu^+\)（正部分）と \(\nu^-\)（負部分）を用いて
+    \[
+    \nu = \nu^+ - \nu^-
+    \]
+    と一意に表される（\(\nu^+, \nu^-\) は互いに素な台を持つ）.
+\end{itemize}
+
+
+\subsection*{符号付き測度における可積分関数の定義}
+
+非負可測関数 \(f \ge 0\) に対しては，非負測度のときと同様に
+\[
+\int_X f \, d\nu := \int_X f \, d\nu^+ - \int_X f \, d\nu^-
+\]
+とします。ただし右辺が \(\infty - \infty\) という不定形にならないようにする. つまり少なくとも一方の積分が有限でなければならない. 
+
+一般の実可測関数 \(f\) については
+\[
+f = f^+ - f^-, \quad f^+ = \max(f,0), \quad f^- = \max(-f,0)
+\]
+と分解し，\(f\) が \(\nu\) に関して可積分であるとは
+\[
+\int_X f^+ \, d\nu^+ + \int_X f^+ \, d\nu^- + \int_X f^- \, d\nu^+ + \int_X f^- \, d\nu^- < \infty
+\]
+すなわち \(|f|\) が \(\nu\) に関して可積分であることとする. 
+
+この条件の下で
+\[
+\int_X f \, d\nu := \int_X f \, d\nu^+ - \int_X f \, d\nu^-
+\]
+が有限の値として定義される. 
+
+複素可測関数の場合 \(f = u + iv\) と実部 \(u\) と虚部 \(v\) をそれぞれ符号付き測度に関して可積分とすることで積分を定義する. 
+
+\section*{関数解析で出てくる定理}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}[Banach-Steinhaus theorem, 一様有界性定理]
+\(X\) をBanach 空間（完備ノルム空間, さらに局所凸位相ベクトル空間でも良い）,   
+\(Y\) をノルム空間（完備でなくてもよい）とする. 
+\(\mathcal{F} \subset C(X,Y)\) を連続線形作用素の族とする。
+
+任意の$x \in X$について
+\(\sup_{T \in \mathcal{F}} \|T(x)\|_Y < \infty\)ならば, 
+\[
+\sup_{T \in \mathcal{F}} \|T\|_{\mathrm{op}}= 
+\sup_{T \in \mathcal{F}} \sup_{|| x || \le 1}\|T (x)\|:
+< \infty
+\]
+である. つまり作用素ノルムが一様に有界である. 
+\end{thm}
+\end{tcolorbox}
+つまり, 点ごとの有界性%（各 \(x\) に対して像の大きさが有界）  
+から, 作用素全体の一様有界性がいえる. %（ノルムの上限が有限）
+
+%重要な注意：
+%- 完備性（バナッハ空間であること）が必要。非完備な空間では成り立たない例がある。
+%- この定理は連続線形作用素の族にのみ適用可能。
+%- 局所凸空間に対しては Baire の類別定理を使って同様の主張が成立。
+
+\begin{tcolorbox}[mybox]
+\begin{defn}[Baire space, 第一類, 第二類]
+$X$を位相空間とする.
+\begin{itemize}
+\item $X$がBaire spaceとは, 「開集合の可算族$U_n$で, 各$U_n$がdenceならば, $\bigcap U_n$もdence」となる空間のこと. 同値な言い換えとして, 「$F_{n}^{\circ}=\varnothing$となる可算個の閉集合について, $(\bigcup F_n)^{\circ} = \varnothing$となる. 」
+\item $X$が第一類とは, 可算個の疎集合(閉包の内部が空集合)の和でかける集合のこと. 
+\item$X$が第二類とは, 第一類ではないこと. 
+\end{itemize}
+定義から$X$がBaire空間とは「任意の空でない開集合が$X$において第二類である」と同値である. 
+\end{defn}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[mybox]
+\begin{thm}[Baire の範疇定理, Baire category theorem]
+$X$を完備距離空間または局所コンパクトハウスドルフ空間とする. 
+この時, $X$はBaire spaceである. 
+\end{thm}
+\end{tcolorbox}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+結論：
+少なくとも一つの \(F_n\) は内部が空でない（内部に開集合を含む）。
+
+言い換え：
+- 完備距離空間は「第1類集合（meagre set）」の可算和では覆えない。
+- 「第1類集合」とは、内部が空な閉集合の可算和のこと。
+
+% [page 25]
+\textbf{位相空間論的形}
+
+より一般に：  
+\(X\) が局所コンパクトハウスドルフ空間かつ Baire 空間であるなら、任意の可算個の稠密開集合の交わりは稠密である：
+\[
+\bigcap_{n=1}^\infty U_n \ \text{は稠密}, \quad U_n \ \text{稠密開集合}.
+\]
+バナッハ空間や完備距離空間は Baire 空間の例。
+
+\textbf{Banach–Steinhaus との関係}  
+Banach–Steinhaus（一様有界性原理）は、この Baire の類別定理を使って証明されます。
+
+ざっくり言うと：
+1. 点ごとの有界性 \(\Rightarrow\) 「大きさがある閾値を超えない集合」が可算和で \(X\) を覆う。
+2. Baire の類別定理により、その中の1つが内部を持つ。
+3. 線形性と連続性を使って、内部がある集合の条件が空間全体に広がる。
+4. これにより作用素ノルムが一様有界になる。
+
+% [page 26]
+\section*{全体像}
+
+\subsection*{1. Baireの類別定理（Baire category theorem）}
+\textbf{主張}：
+完全距離空間（バナッハ空間，フレシェ空間など）はBaire空間．
+
+すなわち：
+\begin{itemize}
+\item nowhere dense（内部が空な閉集合）の可算和では空間全体を覆えない．
+\item 稠密開集合の可算交わりは稠密．
+\end{itemize}
+
+\subsection*{2. フレシェ空間は第2類}
+\begin{itemize}
+\item フレシェ空間は「局所凸＋距離化可能＋完備」な位相ベクトル空間．
+\item よって完備距離空間 $\Rightarrow$ Baire空間 $\Rightarrow$ 第1類ではない $\Rightarrow$ 第2類．
+\end{itemize}
+
+\subsection*{3. Banach–Steinhaus（Uniform Boundedness Principle）}
+\textbf{主張}：
+$X$ をフレシェ空間，$Y$ を局所凸空間とし，
+\[
+\mathcal{F} \subset L(X,Y) \ (\text{連続線形作用素群})
+\]
+が点ごと有界なら，
+\[
+\sup_{T \in \mathcal{F}} p_Y(Tx) \ \text{は一様に有界}
+\]
+（ここで $p_Y$ は $Y$ の任意の連続半ノルム）
+
+\textbf{証明の流れ}：
+\begin{enumerate}
+\item 各 $n$ について
+\[
+E_n = \{x \in X : \sup_{T \in \mathcal{F}} p_Y(Tx) \le n \}
+\]
+と定義．
+
+\item 点ごと有界性 $\Rightarrow X = \bigcup_n E_n$．
+
+\item 各 $E_n$ は閉集合．
+
+\item $X$ はBaire空間（第2類）なので，ある $E_N$ が内部を持つ．
+
+\item 線形性＋内部の点のスカラー倍不変性により，実は $E_N = X$．
+
+\item よって一様有界性が成立．
+\end{enumerate}
+
+\noindent
+\textbf{図式}：
+\[
+\text{Baireの類別定理}
+\quad\Downarrow\quad
+\text{（完備距離空間はBaire空間）}
+\]
+\[
+\text{フレシェ空間はBaire空間}
+\quad\Downarrow\quad
+\text{（Baire空間は第1類でない）}
+\]
+\[
+\text{フレシェ空間は第2類}
+\quad\Downarrow\quad
+\text{（内部を持つ集合の存在が保証される）}
+\]
+\[
+\text{Banach–Steinhaus定理（フレシェ空間でも成立）}
+\]
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% [page 2]
+\section{Calculus with Distributions}
+以下$\Omega \subset \R^n$上の積分に関してはルベーク測度$dx$を入れる. 
+$f : \Omega \to \C$が可積分とは, 上の意味で可積分とする. 
+また$f$がlocally integrable(局所可積分)とは, 任意のコンパクト集合$K \subset \Omega$で可積分となること, つまり$\int_{K}||f|| dx < + \infty$とする. 
+\begin{tcolorbox}[mybox]
+\begin{defn}{\cite[6.11]{Rud}}
+\label{defn-H-1}
+\(f : \Omega \to \mathbb{C}\) : locally integrableとする. 
+\(\Lambda_f : \mathcal{D}(\Omega) \to \mathbb{C}\)という写像を, 
+任意の$\varphi \in \mathcal{D}(\Omega))$について, 
+\[
+\Lambda_f(\varphi) := \int_\Omega f(x) \varphi(x) \, dx
+\]
+と定義する. 
+
+すると, 任意のコンパクト集合\(K \subset \Omega\)について, 
+\(C_K := \int_K |f(x)| \, dx\)とすれば, 任意の 
+\(\varphi \in \mathcal{D}_K\)について, 
+\[
+|\Lambda_f(\varphi)| \le \int_K |f(x)| \cdot |\varphi(x)| \, dx \le \left( \int_K |f(x)| \, dx \right) \cdot \max_{x \in K} |\varphi(x)| = C \|\varphi\|_{0}
+\]
+となる. よって\cite[Theorem 6.8]{Rud}または\ref{prop-M-8.11}から,  \(\Lambda_f \in \mathcal{D}'(\Omega)\)である. (もっと強くfinite orderをもちorder 0の超関数である. )
+\end{defn}
+\end{tcolorbox}
+
+以下, \(\Lambda_f\) と\(f\)を同一視する. 
+
+\begin{rem}
+ \(\mu\) をBorel measureまたはpositive measureで任意のコンパクト集合$K \subset \Omega$について
+\(\mu(K) < \infty\)となるものとする. 
+この時\(\Lambda_\mu : \mathcal{D}(\Omega) \to \mathbb{C}\)を
+\[
+\Lambda_\mu(\varphi) := \int \varphi \, d\mu.
+\]
+として定義するとこれも\(\Lambda_\mu \in \mathcal{D}'(\Omega)\)である. (もっと強くfinite orderをもちorder 0の超関数である. ).上と同様に \(\Lambda_\mu\) と \(\mu\)を同一視する.
+\end{rem}
+
+
+
+% [page 7]
+\begin{tcolorbox}[mybox]
+\begin{defn}{\cite[6.12]{Rud}}
+\label{defn-H-3}
+\(\alpha \in (\N)^n\) と\(\Lambda \in \mathcal{D}'(\Omega)\)について,  
+\(D^\alpha \Lambda : \mathcal{D}(\Omega) \to \mathbb{C}\)を任意の$\varphi \in \mathcal{D}(\Omega)$について, 
+\[
+(D^\alpha \Lambda)(\varphi) := (-1)^{|\alpha|} \Lambda(D^\alpha \varphi) 
+\]
+とすることで定義する. この時\(D^\alpha \Lambda \in \mathcal{D}'(\Omega)\)である.
+ 
+実際$\C$線形であり, 任意のコンパクト集合 \(K \subset \Omega\)について, \cite[Theorem 6.8]{Rud}から
+ある\(C \in \mathbb{R}_{>0}\)と\(N \in \N\) があって, 任意の \(\varphi \in \mathcal{D}_K\)について\(|\Lambda(\varphi)| \le C \|\varphi\|_N\)が成り立つ. よって任意の \(\varphi \in \mathcal{D}_K\)について
+\[
+|(D^\alpha \Lambda)(\varphi)| = |\Lambda(D^\alpha \varphi)| \le C \|D^\alpha \varphi\|_N \le C \|\varphi\|_{N + |\alpha|}.
+\]
+となるので超関数となる. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+\label{rem-H-4}
+任意の \(\alpha, \beta \in \N^n\)について \(D^\alpha D^\beta \Lambda = D^{\alpha + \beta} \Lambda = D^\beta D^\alpha \Lambda\)となる. 
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}{$\cite[6.13]{Rud}$}
+\label{lem-H-5}
+\(f : \Omega \to \mathbb{C}\) を$C^N$級のlocally integrable 関数とする.
+この時, 任意の$\alpha \in \N^n$について, \(D^\alpha \Lambda_f = \Lambda_{D^\alpha f}\) 
+が成り立つ. 
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+ \(N\)による帰納法. 
+\(\alpha = (\alpha_1, \dots, \alpha_n) \in \N^n\)で\(|\alpha| \le N\)を固定する. 
+すると\(1 \le i \le n\) で \(\alpha_i \neq 0\)となるものがある. 
+ \(\beta := (\alpha_1, \dots, \alpha_i - 1, \dots, \alpha_n) \in \N^n\)とする. 
+
+% [page 8]
+$\varphi \in \mathcal{D}(\Omega)$とする. 
+\(\mathrm{Supp} \ \varphi\)はコンパクトなので,  \(f\varphi \in C^N(\Omega)\)
+となる. よって
+\[
+\int_\Omega \frac{\partial}{\partial x_i} \big( (D^\beta f) \cdot \varphi \big) \, dx = 0,
+\]
+がいえる. 
+%\(\because (D^\beta f) \cdot \varphi\) はリーマン積分可能なので（ルベーグ積分 = リーマン積分）、  \(\mathrm{Supp}(D^\beta f) \cdot \varphi\) を長方形たちの disjoint union で被覆してそれぞれの長方形の領域で \(\frac{\partial}{\partial x_i}((D^\beta f) \cdot \varphi)\) のリーマン積分を逐次積分で \(x_i\) だけ先に積分して計算すると 0 になる。
+以上より, 
+\begin{align}
+0 &= \int_{\Omega} (D^{\alpha} f)\,\varphi\,dx
+   + \int_{\Omega} (D^{\beta} f)\,\frac{\partial\varphi}{\partial x_i}\,dx \notag \\[6pt]
+&= \Lambda_{D^{\alpha} f}(\varphi)
+   + (-1)\Bigl(\frac{\partial}{\partial x_i}\Lambda_{D^{\beta} f}\Bigr)(\varphi)
+   \tag*{\text{(\ref{defn-H-1}, \ref{defn-H-3})}} \\[6pt]
+&= \Lambda_{D^{\alpha} f}(\varphi)
+   + (-1)\Bigl(\frac{\partial}{\partial x_i}D^{\beta}\Lambda_f\Bigr)(\varphi)
+   \tag*{\text{(induction hypothesis)}} \\[6pt]
+&= \Lambda_{D^{\alpha} f}(\varphi)
+   - (D^{\alpha}\Lambda_f)(\varphi)
+   \tag*{\text{(\ref{rem-H-4})}}
+\end{align}
+となり, $\Lambda_{D^{\alpha} f}(\varphi) = (D^{\alpha}\Lambda_f)(\varphi)$となるので言えた. 
+\end{proof}
+
+\begin{ex}{\cite[6.11]{Rud}}
+\label{ex-H-6}
+Lem \ref{lem-H-5} は一般の \(f\) では成り立たない. 
+$f \not \in C^0(\Omega)$で$D \Lambda_f \neq \Lambda_{D f}$となる例を挙げる. 
+
+\(\Omega := (-1,1)\) とし, \(f : \Omega \to \mathbb{C}\)を
+\[
+ f(x) := \begin{cases} 1 & (x \ge 0) \\ 0 & (x < 0) \end{cases}
+ \]
+とする.
+% [page 10]
+ \(f\) は原点以外で \(C^1\) より, 
+\[
+\Lambda_{\frac{d}{dx} f}(\varphi) := 
+\int_\Omega \frac{d}{dx} f \cdot \varphi \, dx
+= \lim_{\varepsilon \to +0} \int_{-1}^{-\varepsilon} \left( \frac{d}{dx} f \right) \varphi \, dx 
++ \lim_{\delta \to +0} \int_{\delta}^1 \left( \frac{d}{dx} f \right) \varphi \, dx
+= 0 
+\]
+(原点以外で$\frac{d}{dx} f(x) = 0$となるので.)一方で
+\[
+\left( \frac{d}{dx} \Lambda_f \right)(\varphi) = - \int_\Omega f \cdot \left( \frac{d}{dx} \varphi \right) dx = - \int_0^1 \frac{d}{dx} \varphi \, dx
+= - (\varphi(1) - \varphi(0)) = \varphi(0)
+\]
+よって\(\Lambda_{\frac{d}{dx} f} \neq \frac{d}{dx} \Lambda_f \)である. 
+\end{ex}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}{\cite[6.15]{Rud}}
+\label{defn-H-7}
+\(\Lambda \in \mathcal{D}'(\Omega)\), \(f \in C^\infty(\Omega)\)について, 
+\(f \Lambda : \mathcal{D}(\Omega) \to \mathbb{C}\)を
+\((f \Lambda)(\varphi) := \Lambda(f \varphi)\)と定義する.
+\end{defn}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}{$\cite[6.15]{Rud}$}
+\label{lem-H-8}
+\(\Lambda \in \mathcal{D}'(\Omega)\), \(f \in C^\infty(\Omega)\)について, 
+\(f \Lambda \in \mathcal{D}'(\Omega)\)である. 
+\end{lem}
+\end{tcolorbox}
+ここで$(f \Lambda)(\varphi ):=\Lambda (f \varphi)$である. 
+% [page 11]
+\begin{proof}
+\(\Lambda \in \mathcal{D}'(\Omega)\)なので, 
+\cite[Thm 6.8]{Rud}より,
+任意のコンパクト集合 \(K \subset \Omega\)
+についてある\(C >0\) と\(N \in \N\)があって, 
+\[
+|\Lambda(\varphi)| \le C \|\varphi\|_N
+\]
+が任意の\(\varphi \in \mathcal{D}_K\)で成り立つ. 
+よって, 任意の \(\varphi \in \mathcal{D}_K\)について, 
+$f \varphi \in \mathcal{D}_K$なので, 
+\[
+|\Lambda(f\varphi)| \le C \|f\varphi\|_N
+= C \max \{ |D^\alpha(f\varphi)(x)| \mid x \in K, \ |\alpha| \le N \}.
+\]
+となる. ここでLeibniz ruleによって, 
+\[
+D^\alpha(f\varphi) = \sum_{\alpha' + \alpha'' = \alpha} C_{\alpha',\alpha''} \cdot D^{\alpha'} f \cdot D^{\alpha''} \varphi
+\quad (\exists C_{\alpha',\alpha''} \in \mathbb{Z}_{\ge 0}).
+\]
+とかける.($C_{\alpha',\alpha''}$は二項係数みたいなもの) 
+\(C' := \max \{ C_{\alpha',\alpha''} \mid |\alpha' + \alpha''| \le N \}\)とすると. 
+任意の \(x \in \Omega\),  \(\alpha \in \N^n\) で \(|\alpha| \le N\)なものについて
+\begin{align*}
+|D^{\alpha}(f\varphi)(x)|
+&= \left| \sum_{\alpha' + \alpha'' = \alpha} 
+   C_{\alpha',\alpha''} D^{\alpha'} f(x)\, D^{\alpha''}\varphi(x) \right| \\[6pt]
+&\leq C' \cdot \sum_{\alpha' + \alpha'' = \alpha} 
+   |D^{\alpha'} f(x)| \cdot \|\varphi\|_{N} \\[6pt]
+&\leq C' \cdot (N+1)^n \cdot 
+   \max \{ |D^{\alpha'} f(x)| \mid x \in K,\, |\alpha'|\leq N \} \cdot \|\varphi\|_{N}
+\end{align*}
+よってある$M>0$があって, 任意の \(\varphi \in \mathcal{D}_K\)について 
+$$|\Lambda(f\varphi)| \le C \|f\varphi\|_N \le CM \|\varphi\|_N$$
+となる. \cite[Thm 6.8]{Rud}から\(f\Lambda \in \mathcal{D}'(\Omega)\)である. 
+\end{proof}
+
+% [page 12]
+\begin{tcolorbox}[mybox]
+\begin{lem}{$\cite[6.15]{Rud}$}
+\label{lem-H-9}
+\(\Lambda \in \mathcal{D}'(\Omega)\), \(f \in C^\infty(\Omega)\)とする. 
+ \(g_1, g_2 \in C^\infty(\Omega)\), \(\alpha \in \N^n\)について, 
+\[
+D^\alpha(g_1 g_2) 
+:= \sum_{\alpha_1 + \alpha_2 = \alpha} C_{\alpha_1,\alpha_2} \, D^{\alpha_1} g_1 \, D^{\alpha_2} g_2
+\]
+であるとする. ここで\(C_{\alpha_1,\alpha_2}\) は\(\alpha_1\) と \(\alpha_2\)にのみ依存する自然数である. 
+この時
+\[
+D^\alpha(f\Lambda) = \sum_{\alpha_1 + \alpha_2 = \alpha} C_{\alpha_1,\alpha_2} \, (D^{\alpha_1} f) \cdot (D^{\alpha_2} \Lambda)
+\]
+が成り立つ. 
+%\((D^\alpha(f\Lambda))(\varphi) \mapsto (-1)^{|\alpha_2|} \Lambda\big( (D^{\alpha_1} f) \cdot D^{\alpha_2} \varphi \big)\]
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+ \(\overrightarrow{u} \in \mathbb{R}^n\)について, 
+ \(\overrightarrow{u} \cdot \overrightarrow{x} := u_1 x_1 + \cdots + u_n x_n\) とする.
+ すると, 
+\[
+D^\alpha \left( e^{\overrightarrow{u} \cdot \overrightarrow{x}} \right) = \overrightarrow{u}^\alpha e^{\overrightarrow{u} \cdot \overrightarrow{x}}
+\]
+となる. ここで$\overrightarrow{u}^{\alpha}:=u_{1}^{\alpha_1} \cdots u_{n}^{\alpha_n}$である. 
+これは\( \frac{\partial}{\partial x_1} e^{u_1 x_1 + \cdots + u_n x_n} = u_1 e^{\overrightarrow{u} \cdot \overrightarrow{x}}\)を繰り返し適応すればわかる. 
+よって
+\[
+D^\alpha(e^{\overrightarrow{u} \cdot \overrightarrow{x}} \cdot e^{\overrightarrow{v} \cdot \overrightarrow{x}}) = 
+\sum_{\beta \le \alpha} C_{\alpha-\beta,\beta} D^{\alpha-\beta} e^{\overrightarrow{u} \cdot \overrightarrow{x}} \cdot D^\beta e^{\overrightarrow{v} \cdot \overrightarrow{x}}
+\]
+となる. 
+% [page 13]
+
+[補足] 例えば, $n=1$の時に, \(\frac{\partial^2}{\partial x} \left( e^{u x} \cdot e^{v x} \right)
+= D^2 e^{u x} \cdot e^{v x} + 2 D e^{u x} \cdot D e^{v x} + e^{ux} \cdot D^2 e^{v x}
+\)
+となることから. この例においては, \(C_{\alpha-\beta,\beta}\) は
+\(C_{2,0} = 1, \quad C_{1,1} = 2, \quad C_{0,2} = 1\)となる. )
+以上よりこの例においては, 
+\[
+(x+y)^\alpha = \sum_{\beta \le \alpha} C_{\alpha-\beta,\beta} \, x^{\alpha-\beta} y^\beta
+\]
+という二項展開に対して,  \(C_{\alpha-\beta,\beta} := \binom{\alpha}{\beta}\) となる. \qed
+
+% [page 14]
+以上より
+\begin{align*}
+\vec{u}^{\alpha}
+&= \bigl(\vec{v} + (-\vec{v} + \vec{u})\bigr)^{\alpha} \\[6pt]
+&= \sum_{\beta \leq \alpha} C_{\alpha-\beta,\beta}\,
+   \vec{v}^{\alpha-\beta} \cdot (-\vec{v} + \vec{u})^{\beta} \\[6pt]
+&= \sum_{\beta \leq \alpha} C_{\alpha-\beta,\beta}\,
+   \vec{v}^{\alpha-\beta} \times
+   \sum_{\gamma \leq \beta} C_{\beta-\gamma,\gamma}\,
+   (-1)^{|\beta-\gamma|}\vec{v}^{\beta-\gamma}\vec{u}^{\gamma} \\[6pt]
+&= \sum_{\gamma \leq \alpha} (-1)^{|\gamma|}\,
+   \vec{v}^{\alpha-\gamma}\vec{u}^{\gamma}
+   \times \sum_{\gamma \leq \beta \leq \alpha}
+   (-1)^{|\beta|} C_{\alpha-\beta,\beta} C_{\beta-\gamma,\gamma}
+\end{align*}
+以上より, 
+\[
+ \sum_{r \le \beta \le \alpha} (-1)^{|\beta|} C_{\alpha-\beta,\beta} C_{\beta-\gamma,\gamma} = 
+\begin{cases}
+(-1)^{|\alpha|}, & \gamma = \alpha \\
+0, & \text{otherwise}
+\end{cases}
+\]
+となる.
+% [page 15]
+よって\(D^\beta \left( \varphi D^{\alpha-\beta} f \right)\)にLeibnitz ruleを使って, 
+\begin{align*}
+\sum_{\beta \le \alpha} 
+  (-1)^{|\beta|} C_{\alpha-\beta,\beta} D^\beta \bigl(\varphi \, D^{\alpha-\beta} f \bigr)
+&= \sum_{\beta \le \alpha} 
+   (-1)^{|\beta|} C_{\alpha-\beta,\beta} 
+   \sum_{\gamma \le \beta \le \alpha} 
+   C_{\beta-\gamma, \gamma} (D^\gamma \varphi) (D^{\alpha-\gamma} f) \\[6pt]
+&= \sum_{\gamma \le \alpha}  
+   \sum_{\gamma \le \beta \le \alpha} 
+   (-1)^{|\beta|}C_{\alpha-\beta,\beta} C_{\beta-\gamma, \gamma} 
+   (D^\gamma \varphi) (D^{\alpha-\gamma} f) \\[6pt]
+&= (-1)^{|\alpha|} (D^\alpha \varphi)\, f
+\end{align*}
+となる. よって
+\begin{align*}
+D^\alpha(f\Lambda)(\varphi)
+&= (-1)^{|\alpha|} (f\Lambda)(D^\alpha \varphi) = (-1)^{|\alpha|} \Lambda(f \cdot D^\alpha \varphi) = \Lambda\big( (-1)^{|\alpha|} f \cdot D^\alpha \varphi \big) \\[6pt]
+&= \sum_{\beta \le \alpha} 
+   (-1)^{|\beta|} C_{\alpha-\beta,\beta}
+   \Lambda\big( D^\beta(\varphi \cdot D^{\alpha-\beta} f) \big) \\[6pt]
+&= \sum_{\beta \le \alpha} 
+   C_{\alpha-\beta,\beta} \, (D^\beta \Lambda)\big( \varphi \cdot D^{\alpha-\beta} f \big) \\[6pt]
+&= \sum_{\beta \le \alpha} 
+   C_{\alpha-\beta,\beta} \, \big[ (D^{\alpha-\beta} f) \cdot (D^\beta \Lambda) \big](\varphi)
+\end{align*}
+となりいえた. 
+\end{proof}
+
+
+% [page 17]
+\section{Weak $*$-topology}
+以下は\cite[3.8-3.14]{Rud}の内容. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}%{\cite[6.15]{Rud}}
+\label{lem-H-10}
+\(X\)を集合,  \(\mathscr{F}\)を位相空間$Y_f$への写像\(f : X \to Y_f\)のなす(空でない)集合族とする. 
+\[
+\tau := \left\{ \bigcup_{i \in I} \bigcap_{f \in \mathscr{F}} f^{-1}(V_{i, f}) \ \middle|\ V_{i, f} \subset Y_f \ \text{open}, \ \text{有限個の$f$を除いて} V_{i, f}= Y_f \  \right\}
+\]
+とすると, \(\tau\)は任意の$f \in \mathscr{F}$が連続となる最弱の$X$上の位相である.
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+[位相であること]
+\(\varnothing = f^{-1}(\varnothing) \cap \bigcap_{g \neq f} g^{-1}(Y_g)  \in \tau\)
+ \(X= \bigcap_{f \in \mathscr{F}}f^{-1}(Y_f) \in \tau\).  
+また \(\tau\) はunion$\cup$で閉じている.  
+
+以上より, $i=1,2$について
+\(W_i := \bigcup_{j_i \in I_i} \bigcap_{f \in \mathscr{F}} f^{-1}(V_{j_i, f})\in \tau \)
+とした場合, $W_1 \cap W_2 \in \tau$を示せば良い. 
+\begin{align*}
+W_1 \cap W_2 
+&= \left(\bigcup_{j_1 \in I_1} \bigcap_{f \in \mathscr{F}} f^{-1}(V_{j_1, f}) \right)
+\cap 
+\left( \bigcup_{j_2 \in I_2} \bigcap_{f \in \mathscr{F}} f^{-1}(V_{j_2, f}) \right)\\
+&= 
+\bigcup_{j_1 \in I_1, j_2 \in I_2} 
+\left( \bigcap_{f \in \mathscr{F}} \big( f^{-1}(V_{j_1, f}) \cap f^{-1}(V_{j_2, f}) \big) 
+\right)
+\in \tau
+\end{align*}
+よって\(\tau\) は$X$の位相である. 
+
+% [page 18]
+[$f$が連続なること]
+任意の\(f \in \mathscr{F}\)と任意の開集合\(V \subset Y_f\) について, 
+\(f^{-1}(V) = f^{-1}(V)\cap \bigcap_{g \neq f}  g^{-1}(Y_g) \in \tau\)より
+\(f\)は連続
+
+[最弱なること]
+\(\tau'\) を\(X\)の位相で, 全ての\(f \in \mathscr{F}\)が連続となるものとする. 
+この時\(f^{-1}(V) \in \tau'\)となる. 
+\(\tau\)は「\(f \in \mathscr{F}\)かつ開集合\(V \subset Y_f\)とした時の\(f^{-1}(V)\)たち」で生成されているので, 
+\( \tau' \supset \tau\)となる.
+よって$\tau$が一番小さい. 
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}%{\cite[6.15]{Rud}}
+\label{defn-H-11}
+\ref{lem-H-10}における\(\tau\)を
+\underline{\emph{weak topology on \(X\) induced by \(\mathscr{F}\)}}や, \emph{\(\mathscr{F}\)-topology of \(X\)}と言う. 
+\end{defn}
+\end{tcolorbox}
+日本語だと多分"弱位相"だと思う. 
+以下，\(X\)を$\C$-ベクトル空間,  \(\mathscr{F}\)を線型写像$X \to \C$のなす集合族とする. 
+(もちろん$\R$でも良い)
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 3.10]{Rud}$}
+\label{thm-H-12}
+%\textbf{Thm 12} ([Ru.3.10 Thm])  
+\(X\) を\(\mathbb{C}\)-ベクトル空間とし, 
+\(X'\)を線型写像$X \to \C$のなす集合族とする. 
+(つまり"ベクトル空間"の双対空間$\{f : X \to \C | \text{$f$は線型}\}$の部分集合.)
+$X'$がseparating, つまり任意の \( x \neq y \in X\)について, ある\(f \in X'\)があって\(f(x) \neq f(y)\)であると仮定する. 
+
+\(\tau'\)を\ref{defn-H-11}における$X'$-topologyとする. 
+この時\((X, \tau')\)はlocally convex 位相ベクトル空間で, 
+$X'$は"位相ベクトル空間"の双対空間$\{f : X \to \C | \text{$f$は線型かつ連続}\}$となるものが存在する. 
+\end{thm}
+\end{tcolorbox}
+
+% [page 19]
+\begin{proof}
+(1).\((X, \tau')\)はlocally convex 位相ベクトル空間なることを示す. 
+\(\mathbb{C}\)はHausdorffより, \((X, \tau')\)もそう. よって$T_1$.
+(ここにseparatingを使う.)
+さらに \(\tau'\)は平行不変, 
+つまり任意の\(W \in \tau'\), \(x \in X\)について, \(W + x \in \tau'\)である. 
+これは\(
+W = \bigcup_{r \in \Gamma} \left( \bigcap_{f \in X'} f^{-1}(V_{\gamma, f}) \right)\)とすると, 
+\( W + x = \bigcup_{r \in \Gamma} \left( \bigcap_{f \in X'} f^{-1}(V_{\gamma, f} + f(x)) \right)\)
+となるので. 
+
+また
+ \(\forall f_1, \dots, f_k \in X'\),  \(\forall r_i \in \mathbb{R}_{>0}\)とし
+\begin{equation}
+\label{eq-thm-H-12}
+V := \{ x \in X \mid |f_i(x)| < r_i, \ 1 \le i \le k \}
+\end{equation}
+とおくと, このような$V$たち全体が$\tau'$のlocal baseとなる. 
+$V$はconvex balancedなので,  \((X, \tau')\)はlocally convex.
+
+次に足し算が連続なることを見る. 
+上のような\( V\) について, 
+\(\frac{1}{2}V + \frac{1}{2}V \subset V\)である. 
+\(T : X \times X \to X\) を\(T(x,y):-x+y\)
+とすると, $T(\frac{1}{2}V \times \frac{1}{2}V ) \subset V$である. 
+$V$全体は0のlocal baseとなるので, これは$T$が$(0,0) \in X$で連続であることを意味する. 
+$\tau'$の平行不変性より$T$は連続となる. 
+
+スカラー倍が連続なることを見る. 
+\(S : \mathbb{C} \times X \to X\)を\(S(\alpha, x):=\alpha x\)とする. 
+ \(\alpha x \in U\)となる\(U \in \tau'\)をとる. 
+ すると(\ref{eq-thm-H-12})と言う形の\(V'\)で, 
+  \(V' + \alpha x \subset U\)かつ
+\[
+V' := \{ z \in X \mid |f_i(z)| < r'_i, \ 1 \le i \le k' \}
+\]
+となるものが存在する. 
+すると, 開集合\(V'' \in \tau'\)と\(\exists \varepsilon \in \mathbb{R}_{>0}\) があって次を満たすようにとれる.  
+\begin{itemize}
+\item  任意の\(1 \le i \le k'\)と\(\forall y \in V''\)について, \(|\alpha| \, |f_i(y)| < \frac{r'_i}{2}\).
+\item \(\varepsilon \cdot \max \{ |f_i(z)| \mid z \in V'', \ 1 \le i \le k' \} < \frac{r'_i}{2}\).
+\end{itemize}
+今\(\widetilde{V} := (\alpha - \varepsilon, \alpha + \varepsilon) \times (V'' + x) \)
+とおくと, $\mathbb{C} \times X$の開集合である. 
+さらに\((\alpha, x) \in \widetilde{V}\)であり, 任意の
+\((\beta, y) \in \widetilde{V}\)と\(1 \le i \le k'\)について, 
+\[
+|f_i(\beta y - \alpha x)| \le
+ |\beta - \alpha| |f_i(y)| + |\alpha| |f_i(y - x)| 
+ < \frac{r'_i}{2} + \frac{r'_i}{2} = r'_i
+\]
+よって, $S(\widetilde{V}) \subset V \subset U$となる. 
+これは$S$が$(\alpha, x)$で連続であることを意味する. よって$S$は連続,
+以上より\((X, \tau')\)はlocally convex 位相ベクトル空間.
+
+% [page 21]
+(2). $X'$は双対空間なることを示す. 
+\( X^* \)を\( (X, \tau') \)の双対空間, つまり$\{f : (X, \tau') \to \C | \text{$f$は線型かつ連続}\}$とする. 
+示すことは,  \( X^* = X' \)である. 
+\ref{lem-H-10}より, 任意の\(f \in X'\)について,  \(f\)は連続である. よって\( X^* \supset X'\)である. 
+
+逆の包含を示す. \( g \in X^* \)とする. 
+\(g\)は連続なので, $g : X \to \C$の$0 \in X$での連続性から, 
+\[
+V'' = \{ z \in X \mid |g_j(z)| < t_j \ \text{for} \ 1 \le j \le \ell \}
+\]
+とかける$V''$であって, 任意の$ z \in V''$について,  \(|g(z)| < 1\)となるものが存在する..
+
+この時 \(\bigcap_{j=1}^\ell \Ker{g_j} \subset \Ker{g}\)である. これを示す
+\( z \in \bigcap_{j=1}^\ell \Ker{g_j} \)とする 
+任意の\( \alpha \in \mathbb{R}_{>0}\)について, \(\alpha z \in V''\)であるので, $V''$の取り方から
+\(\alpha |g(z)| = |g(\alpha z)| < 1\)となる. $\alpha$は任意だったので, $g(z) = 0$となる. 
+
+さて, \( \pi : X \to \mathbb{C}^\ell \) を\(\pi(x) := (g_1(x), \dots, g_\ell(x))\)とする. 
+任意の\(\pi(z) = \pi(z')\)となる\(\forall z, z' \in X\)について, \(\bigcap_{j=1}^\ell \Ker{g_j} \subset \Ker{g} \)
+なので, \(g(z) = g(z')\)となる. 
+$X / \Ker{\pi} \cong \mathrm{Im} (\pi)$を考慮すると, \(g\) は\(\operatorname{Im}(\pi)\)上の$\C$への線型写像\(\widetilde{g}\) を誘導する. 
+$\mathrm{Im}(\pi) \subset \mathbb{C}^\ell$なので, 
+$u_i : \mathbb{C}^\ell \to \C$を第$i$番目の射影とすると, 
+ある\(\alpha_1, \dots, \alpha_\ell \in \mathbb{C}\)があって, 
+\[
+\widetilde{g} = \sum_{j=1}^\ell \alpha_j u_j 
+\]
+とかける. よって, 
+\(
+g = \widetilde{g} \circ \pi = \sum_{j=1}^\ell \alpha_j g_j \in X'
+\)
+となり\(X^* \subset X'\)となる. 以上より\(X^* = X'\)である. 
+\end{proof}
+
+% [page 22]
+\begin{tcolorbox}[mybox]
+\begin{defn}{\cite[3.14]{Rud}}
+\label{defn-H-13}
+%Def 13 (Weak \( * \)-topology. [Ru. 3.14])
+\(X\) を位相ベクトル空間とし, \(X^*\)をその双対空間, つまり$X^*:=\{f : X \to \C | \text{$f$は線型かつ連続}\}$とする. 
+$x \in X$について, 
+\[
+ev_x : X^{*} \hookrightarrow \C 
+\quad 
+f \mapsto ev_x(f) := f(x)
+\]
+とする. 
+これにより$X \to \{ ev_x \in \widetilde{X} \mid x \in X \} \subset \{F: X^{*} \to \C | \text{$F$は線型}\}$と言う写像が得られる. 
+以後この写像によって$X \subset \{F: X^{*} \to \C | \text{$F$は線型}\}$と同一視をする.
+この時 \(X\)はseparatingである.(\(f \neq  g\in X^{*}\)は, ある$x \in X$があって\(f(x) \ne g(x)\)と同値に注意).
+
+\ref{thm-H-12}により$X^{*}$には位相$\tau$で, $(X^*, \tau)^{*}=X$となるものが誘導される.
+この位相を\(X^{*}\)の\underline{weak \( * \)-topology}と言う. 
+\ref{thm-H-12}により, \((X^*, \tau)\)はlocally convex 位相ベクトル空間である. 
+\end{defn}
+\end{tcolorbox}
+[注意] $X \to \{ ev_x \in \widetilde{X} \mid x \in X \}$は単射ではない. 
+例えば$0 < p < 1$とした時の\( X = L^p((0,1)) \) に関して, $X^*=\{0\}$となる. 
+なので$X \to \{ ev_x \in \widetilde{X} \mid x \in X \} \subset \{F: X^{*} \to \C | \text{$F$は線型}\}$も単射ではない. 
+($X \subset \{F: X^{*} \to \C | \text{$F$は線型}\}$と同一視しているが, これは厳密には包含ではない)
+
+$X$がlocally convex 位相ベクトル空間であるならば, Hahn-Banachの定理から単射性が言える. 上の例はconvexではない. 
+
+\begin{tcolorbox}[mybox]
+\begin{defn}{\cite[6.16]{Rud}}
+\label{defn-H-14}
+%Def 14 ([Ru. 6.16])
+\ref{defn-H-13}のように, 超関数の空間\(\mathcal{D}'(\Omega)\)にはweak \( * \)-topologyを入れる. 
+%\(\mathcal{D}(\Omega)\) and its dual sp. \(\mathcal{D}'(\Omega)\), we get the 
+これによって,  \(\mathcal{D}'(\Omega)\)はlocally convex 位相ベクトル空間となりその双対空間が \(\mathcal{D}(\Omega)\)となる. 
+\end{defn}
+\end{tcolorbox}
+以後\(\mathcal{D}'(\Omega)\) にはweak \( * \)-topologyを入れて考える.
+
+
+
+\begin{rem}{\cite[6.16]{Rud}}
+\label{rem-H-15} %Rem 15 ([Ru. 6.16])
+\(\{\Lambda_i\}_{i=1}^\infty\)を超関数の列とする. 
+この時, weak \( * \)-topologyで\(\displaystyle \lim_{i \to \infty} \Lambda_i = \Lambda\) であることは, 
+任意の$\varphi \in \mathcal{D}(\Omega))$について, \(\lim_{i \to \infty} \Lambda_i(\varphi) = \Lambda(\varphi)
+\)となることと同値である. 
+\end{rem}
+
+% [page 23]
+%\(\boxed{\text{例1}}\) \quad \( X = L^p((0,1)) \) or \(\mathbb{C}\)
+%\(\Rightarrow X^\dagger = \{ L^p(0,1) \to \mathbb{R} \mid \text{linear} \} \) は \(0\) しかない。
+%\(\Rightarrow X \longrightarrow X^{**}\) is not inj.
+%"locally convex" でない \(\Rightarrow\) (Hausdorff).
+%locally convex Hausdorff top. vec. sp. (Hahn–Banach)
+%(\(L^p\)-spaces for \(0 < p < 1\), Keith Conrad, (Takayama \(L^{2/p}\)?))
+
+% [page 24]
+% [page 27]
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.17]{Rud}$}
+\label{thm-H-16}
+%\text{Thm 16 ([Ru. 6.17 Thm])}
+$\{\Lambda_i\}_{i=1}^\infty$超関数の列とし, 
+任意の$\varphi \in \mathcal{D}(\Omega)$について, 
+極限\(\lim_{i \to \infty} \Lambda_i(\varphi) \)が$\C$の値として存在すると仮定する.
+
+このとき, \[
+\Lambda : \mathcal{D}(\Omega) \to \mathbb{C}, \quad \Lambda(\varphi) := \lim_{i \to \infty} \Lambda_i(\varphi)
+\]
+と定めると, これは連続である (つまり, $\Lambda \in \mathcal{D}'(\Omega)$である).
+さらに任意の$\alpha \in \N^n$について, $\mathcal{D}'(\Omega)$上で
+\(\lim_{i \to \infty} D^\alpha \Lambda_i = D^\alpha \Lambda\)
+が成り立つ. 
+\end{thm}
+\end{tcolorbox}
+証明はBanach-Steinhausの定理(一様有界性の定理)を真似る.
+
+\begin{proof}
+$\Lambda$が$\mathbb{C}$線型は明らか. 
+よって, $\Lambda$が連続を示す. 
+これには\cite[Thm 6.6]{Rud}および\ref{prop-M-8.9}から, 
+任意のコンパクト集合$K \subset \Omega$について, $\Lambda|_{\mathcal{D}_K} : \mathcal{D}_K \to \C$が連続を示せば良い. 
+これは任意の$\varepsilon >0$について, あるopen$0 \in \widehat{V} \subset \mathcal{D}_K $で
+$\Lambda|_{\mathcal{D}_K} (\widehat{V})  \subset B(0, \varepsilon) $となるものが存在することを示せば良い. 
+
+$\varepsilon >0$とする. 
+open ball $B(0,\varepsilon) \subset \mathbb{C}$について, 
+\[
+E := \bigcap_{i=1}^\infty \Lambda_i^{-1}(
+\overline{B(0,\tfrac{\varepsilon}{3})}).
+\]
+を考える. 
+任意の$\varphi \in \mathcal{D}_K$について, 
+$\lim_{i \to \infty} \Lambda_i(\varphi)$が存在するので, 
+$\{\Lambda_i(\varphi)\}_{i=1}^\infty$はbounded.
+よってある$m \in \N$があって, 任意の$i \in \N$について, 
+$\Lambda_i(\varphi) \in m B(0, \tfrac{\varepsilon}{3})=B(0,\tfrac{m \varepsilon}{3}))$ となる.
+$\Lambda_i$ は線型なので, 任意の$i \in \N$について,
+$\varphi \in m (\Lambda_i^{-1}(B(0,\tfrac{\varepsilon}{3})))$である. 
+以上より, 
+$$
+\mathcal{D}_K = \bigcup_{m=1}^\infty m E
+$$
+である. 
+
+ここで$\mathcal{D}_K$は完備距離空間なので, Baire の範疇定理からBaire 空間である. 
+つまり$E$は内点を持つ.
+内点 $x_0 \in E$ とその開近傍$V \subset E$をとる. 
+すると$ V - x_0$ は $0$の開近傍である. 
+よって任意の$v \in V - x_0$と任意の$i \in \N$について, 
+$v+x_0, x_0 \in E$なので, 
+\[
+|\Lambda_i(v)| 
+= |\Lambda_i(v+x_0 - x_0)| 
+\le |\Lambda_i(v+x_0)| + |\Lambda_i(x_0)| 
+\le \tfrac{2}{3} \varepsilon
+<\varepsilon
+\]
+よって, $|\Lambda(v)| = \lim_{i \to \infty} |\Lambda_i(v)| < \varepsilon$である. 
+これより, $\widehat{V} := V - x_0$とおくと,  
+$0 \in \widehat{V} \subset \mathcal{D}_K $で
+$\Lambda|_{\mathcal{D}_K} (\widehat{V})  \subset B(0, \varepsilon)$となる. 
+よって$0 \in \mathcal{D}_K$で連続である. 
+
+$\mathcal{D}_K$の平行移動性を使って, 
+$\Lambda|_{\mathcal{D}_K}$も連続であり. $\Lambda \in \mathcal{D}'(\Omega)$である. 
+また\ref{defn-H-3}から
+\(
+\lim_{i \to \infty} D^\alpha \Lambda_i = D^\alpha \Lambda
+\)である. 
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.18]{Rud}$}
+\label{thm-H-17}
+%\text{Thm 17 ([Ru. 6.18 Thm])} \\
+$\mathcal{D}'(\Omega)$ 上で
+$\lim_{i \to \infty} \Lambda_i = \Lambda$かつ, 
+$C^\infty(\Omega)$上で$\lim_{i \to \infty} g_i = g$ in $C^\infty(\Omega)$と仮定する.
+このとき$\mathcal{D}'(\Omega)$上で
+\(
+\lim_{i \to \infty} g_i \Lambda_i = g \Lambda
+\)である. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+示すことは, 「任意の$\varphi \in \mathcal{D}(\Omega)$について, 
+$\lim_{i \to \infty} (g_i \Lambda_i)(\varphi) = (g \Lambda)(\varphi)$」である.
+
+$\varphi \in \mathcal{D}(\Omega)$を固定し, $K := \mathrm{Supp}\,\varphi$とする. $K$はコンパクトである. 
+$\varepsilon \in \mathbb{R}_{>0}$とすると, 次が成り立つ.
+\begin{itemize}
+\item Thm \ref{thm-H-16}と同じ議論から,  あるopen $0 \in V \subset \mathcal{D}_K$ があって, 
+$\Lambda_i(V) \subset B(0,\tfrac{\varepsilon}{2})$である. 
+\item 任意の$i \in \N$について, $g_i \varphi \in \mathcal{D}_K$である. よって$\lim_{i \to \infty} g_i \varphi = g \varphi$である. これより$i \gg 0$について, $g_i \varphi - g \varphi \in V$である.
+\item $\lim_{i \to \infty} \Lambda_i = \Lambda$より, 
+\(
+\lim_{i \to \infty} \Lambda_i(g \varphi) = \Lambda(g \varphi),
+\)
+よって$ i \gg 0$について
+\(
+|\Lambda_i(g \varphi) - \Lambda(g \varphi)| < \tfrac{\varepsilon}{2}.
+\)
+である.
+\end{itemize}
+以上よりこれらを合わせて, 
+\[|(g_i \Lambda_i)(\varphi) - (g \Lambda)(\varphi)| 
+= |\Lambda_i(g_i \varphi) - \Lambda(g \varphi)|
+\le |\Lambda_i(g_i \varphi) - \Lambda_i(g \varphi)| + |\Lambda_i(g \varphi) - \Lambda(g \varphi)|
+< \tfrac{\varepsilon}{2} + \tfrac{\varepsilon}{2} = \varepsilon.
+\]
+よって任意の$\varphi \in \mathcal{D}(\Omega)$について, 
+$\lim_{i \to \infty} (g_i \Lambda_i)(\varphi) = (g \Lambda)(\varphi)$
+となりいえた.
+\end{proof}
+
+%2025/8/22
+% [page 1]
+
+\section{Localization}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}{\cite[Def 6.19]{Rud}}
+\label{defn-H-18}%\textbf{Def 18 [Ru. 6.19]} \\
+\(\Lambda_1, \Lambda_2 \in \mathcal{D}'(\Omega)\)と, 
+\(W \subset \Omega\) open について, 
+\underline{"\(\Lambda_1 = \Lambda_2 \text{ in } W\)"}を任意の $\varphi \in \mathcal{D}(W)$
+について, \( \Lambda_1(\varphi) = \Lambda_2(\varphi) \)であることとして定める.
+\end{defn}
+\end{tcolorbox}
+
+\begin{ex}
+\label{ex-H-19}
+\(W \subset \mathbb{R}^n\)をopen,  \(f:\)を \(\Omega\)上の 局所可積分(locally integrable)関数とする.
+
+(1) \(\Lambda_f = 0 \text{ in } W\)であることは, 「任意の$\varphi \in \mathcal{D}(W)$について, 
+\( \Lambda_f(\varphi) = \int_W f \varphi \, dx= 0 \)」と同値である. 
+これは\( f|_W \equiv 0 \) almost everywhereと同値である. 
+
+(2) \(\mu \) (Borel) measureとする.   
+\(\Lambda_\mu = 0 \text{ in } W\)であることは, 「任意の$\varphi \in \mathcal{D}(W)$について, 
+\(\Lambda_\mu(\varphi) = \int_W \varphi \, d\mu = 0 \) 」と同値である. 
+これは任意のBorel set$E \subset W$について\(\mu(E)=0\)と同値である. 
+\end{ex}
+% [page 2]
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.20]{Rud}$}
+\label{thm-H-20}%\textbf{Def 18 [Ru. 6.19]} \\
+%\textbf{Thm 20 (Partition of unity) [Ru 6.20 Thm]} 
+\(\Gamma\)を\(\mathbb{R}^n\)の開集合族で
+\(\bigcup_{U \in \Gamma} U = \Omega\)となるものとする. 
+このときtest functionの族\(\{\psi_i\}_{i=1}^\infty\)であって次を満たすものがある.  
+\begin{enumerate}[label=$(\alph*)$]
+\item  ある$U_i \in \Gamma$があって, \(\operatorname{Supp}\psi_i \subset U_i \).
+\item 任意の \(x \in \Omega\)について,  $x \in \operatorname{Supp}\psi_i $となる$i \in\ \N$は有限個で
+\(\sum_{i=1}^\infty \psi_i(x) = 1\)である. 
+\item 任意のコンパクト集合\(K \subset \Omega \)について, ある\(m \in \N\)とopen\(W \supset K\)があって,  
+任意の$i > m$について\(\psi_i |_W = 0 \).  
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+%\includegraphics[width=0.5\textwidth]{page02-fig1.png}  
+
+% [page 3]
+\begin{proof}
+\(P_1, P_2, \dots, P_i, \dots\)を\(\Omega\)上の有理数点とする. 
+任意の \(P_i\)について,  \(r_i \in \mathbb{Q}_{>0}\) で\(B(P_i, r_i) \subset U\)となる$U \in \Gamma$が存在するような$r_i$を一つ固定する. 
+任意の\(i \in \N\)について
+\(C^\infty\)関数 \(\varphi_i: \Omega \to [0,1]\)で, 
+$B(P_i, \tfrac{r_i}{2})$上で\(\varphi_i \equiv 1\)かつ\(B(P_i, r_i)\)の外で\(\varphi_i \equiv 0\)となるものが存在する.
+%(\(F_i: \mathbb{R} \to [0,1]\); \(C^\infty\) func, で \(F(x) = 1 \, (x \le (\tfrac{r_i}{2})^2)\) かつ  \(F_i(x) = 0 \, (x \ge (r_i)^2)\) なるものを作り, \(\varphi_i:\mathbb{R}^n \to [0,1]\) を  \(\varphi_i(x) := F_i(\|x - P_i\|^2)\) とおけばよい.)
+
+そこで \(\psi_1 := \varphi_1\), \(\psi_{i+1} := \varphi_{i+1} \cdot \prod_{k=1}^i (1-\varphi_k)\)とする.
+ \(\{\psi_i\}_{i=1}^\infty\)が(a), (b), (c)を満たすことを示す.
+
+[(a)]
+任意の \(i \in \N\)について, ある$U \in \Gamma$であって, 
+ \(\operatorname{Supp}\psi_i \subset B(P_i, r_i) \subset U\)となる.
+ 
+ [(c)]
+任意の\(x \in B(P_i, \tfrac{r_i}{2})\)について, $\psi_i (x)=1$
+であるので, $\ell>i$ならば 
+\[
+\psi_\ell(x) = \varphi_\ell(x) \prod_{k=1}^{\ell -1} (1-\varphi_k(x)) = 0.
+\]
+よって任意のコンパクト集合\( K \subset \Omega\) について, ある\( m \in \N\)があって,   
+\(W := \bigcup_{i=1}^m B(P_i, \tfrac{r_i}{2}) \supset K\). 
+となる. よって上により,  任意の$ i > m$について, \(\psi_i|_W = 0\). 
+
+% [page 4]
+[(b)]
+上より, \(\sum_{i=1}^\infty \psi_i(x)\)は有限和である.
+任意の \(\ell\)について,  \[\sum_{i=1}^\ell \psi_i = 1 - \prod_{i=1}^\ell (1-\varphi_i)\]であることを示す.
+\(\ell=1\) のときはよく, 
+一般のときは
+\[
+\sum_{i=1}^\ell \psi_i = (1-\prod_{i=1}^{\ell-1}(1-\varphi_i)) + \varphi_\ell \prod_{i=1}^{\ell-1}(1-\varphi_i)
+= 1 - (1 - \varphi_{\ell})\prod_{i=1}^{\ell-1} (1-\varphi_i).
+= 1 - \prod_{i=1}^\ell (1-\varphi_i).
+\]
+より言える. 
+以上より任意の\(x \in \Omega\)について, \(x \in B(P_\ell, \tfrac{r_\ell}{2})\)となる\(\ell\)を固定すれば, 
+$j > \ell$ならば$\psi_{j}(x)=0$であることと, $j=l$ならば$\varphi_j(x)=0$であることより, 
+\[
+\sum_{i=1}^\infty \psi_i(x) 
+= \sum_{i=1}^\ell \psi_i(x) + \sum_{j>\ell} \psi_j(x)
+= 1 - \prod_{i=1}^\ell (1-\varphi_i(x)) = 1.
+\]
+となる. よっていえた.
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.21]{Rud}$}
+\label{thm-H-21}
+%\textbf{Thm 21 ([Ru. 6.21 Thm])}  
+\(\Gamma\)を\(\mathbb{R}^n\)の開集合族で
+\(\bigcup_{U \in \Gamma} U = \Omega\)となるものとする. 
+任意の \(W \in \Gamma\)について, ある \(\Lambda_W \subset \mathcal{D}'(W)\)があって, 
+張り合わせ条件「\(W \cap W' \neq \varnothing\)ならば \(\Lambda_W = \Lambda_{W'} \text{ in } W \cap W'\)」を満たすとする.
+
+このとき\(\Lambda \in \mathcal{D}'(\Omega)\)がただ一つ存在して, 任意の$W \in \Gamma$について
+ \(\Lambda = \Lambda_W \text{ in } W \)となる. 
+\end{thm}
+\end{tcolorbox}
+% [page 5]
+
+\begin{proof}
+Theorem \ref{thm-H-20}により, １の分割
+\(\{\psi_i\}_{i=1}^\infty\)が取れる.   
+\ref{thm-H-20}(a)より, 任意の\(i \in \N\)について, ある\(W_i \in \Gamma\)で, \(\operatorname{Supp}\psi_i \subset W_i\)となるものを固定する. 
+ \(\Lambda: \mathcal{D}(\Omega) \to \mathbb{C}\)を
+\[
+\Lambda(\varphi) := \sum_{i=1}^\infty \Lambda_{W_i}(\varphi \psi_i).
+\]
+と定義する. \ref{thm-H-20}(c)より, これは有限和である. 
+よって \(\Lambda\)はwell-definedかつ\(\mathbb{C}\)線型である.
+
+\begin{tcolorbox}[mybox]
+\begin{claim}
+\(\Lambda\) は連続である. 特に\(\Lambda \subset \mathcal{D}'(\Omega)\).  
+\end{claim}
+\end{tcolorbox}
+\begin{proof}
+\cite[Thm 6.6]{Rud}, \ref{prop-M-8.9}より,  $\lim_{i \to \infty} \varphi_i = 0$なる列\(\{\varphi_i\}_{i=1}^\infty\)について, 
+$\lim_{i \to \infty} \Lambda(\varphi_i)=0$を示せば良い. 
+\cite[Thm 6.5]{Rud}, \ref{thm-M-8.7}より, コンパクト集合\(\exists K \subset \Omega\)で,  \(\{\varphi_i\}_{i=1}^\infty \subset \mathcal{D}_K\) かつ 任意の$N \in \N$について\(\lim_{i,j \to \infty} \|\varphi_i - \varphi_j\|_N = 0\)を仮定して良い. 
+
+\ref{thm-H-20}(c)より, ある \(m \in \mathbb{Z}_{>0}\)で, 
+\[
+\Lambda(\varphi_i) = \sum_{j=1}^m \Lambda_{W_j}(\varphi_i \psi_j) 
+\]
+となる. 
+よって,  任意の $j$について\(\varphi_i \psi_j \to 0\)であるので, \cite[Thm 6.6]{Rud}, \ref{prop-M-8.9}から
+任意の$j$について, \(\Lambda_{W_j}(\varphi_i \psi_j) \to 0\)となる. 
+これは, \( \lim_{i \to \infty} \Lambda(\varphi_i) = 0\)を意味する よって連続.
+
+[補足]
+「$j$について\(\varphi_i \psi_j \to 0\)」について. 
+\(K_j := \operatorname{Supp} \psi_j\)はコンパクトなので, 
+\(\operatorname{Supp} \varphi_i \psi_j \subset K \cap K_j\)となる. 
+よって掛け算
+\(\mathcal{D}_K \times \mathcal{D}_{K_j} \to \mathcal{D}_{K \cap K_j} \)は連続なので,   
+$\mathcal{D}_{K \cap K_j}$上で
+\(\varphi_i \psi_j \to 0 \)となる
+これは$\mathcal{D}(W_j)$上で\( \varphi_i \psi_j \to 0 \)となる. 
+\end{proof}
+% [page 6]
+
+% [page 7]
+
+さて任意の$W \in \Gamma$について, 
+ \(\Lambda = \Lambda_W \text{ in } W \)を示す.   
+\(\varphi \in \mathcal{D}(W)\)をとる. ある\(m \in \N\)で
+\(\operatorname{Supp}\varphi \subset \bigcup_{i=1}^m W_i\)となるものを固定する. 
+すると  
+\(\Lambda(\varphi) = \sum_{i=1}^m \Lambda_{W_i}(\varphi \psi_i)\)
+である. よって$\Lambda_W = \Lambda_{W_i} \text{ in } W \cap W_i $であることから, 
+\[
+\Lambda (\varphi)
+= \sum_{i=1}^m \Lambda_{W_i}(\varphi \psi_i)
+= \sum_{i=1}^m \Lambda_{W}(\varphi \psi_i)
+ = \Lambda_W(\varphi).
+\]
+となる. よっていえた.
+
+\(\Lambda\) が唯一なことを示す. 
+もし \(\Lambda' \in \mathcal{D}'(\Omega)\) で, 任意の$W \in \Gamma$で
+ \(\Lambda' = \Lambda_W \text{ in } W \)であるとする. 
+すると任意の\(\varphi \in \mathcal{D}(\Omega)\)について, 
+\[
+\Lambda(\varphi) = \Lambda'(\sum_{i=1}^\infty \varphi \psi_i) 
+= \sum_{i=1}^\infty \Lambda'(\varphi \psi_i) 
+= \sum_{i=1}^\infty \Lambda_{W_i}(\varphi \psi_i) = \Lambda(\varphi).
+\]
+となる. ここで上は有限和に注意する. 以上より
+\(\Lambda' = \Lambda.\)である. 
+\end{proof}
+
+% [page 8]
+
+\section{Supports of Distributions}  
+
+\begin{tcolorbox}[mybox]
+\begin{defn}{\cite[Def 6.22]{Rud}}
+\label{defn-H-22}
+%\textbf{Def 22 ([Ru. 6.22])}  
+\(\Lambda \in \mathcal{D}'(\Omega)\), \(W \subset \Omega\) openとする. 
+ \underline{“\(\Lambda\) vanishes in \(W\)”}を\(\Lambda = 0 \text{ in } W\)として定義する.   
+(つまり, 任意の$\varphi \in \mathcal{D}(W)$について\(\Lambda(\varphi) = 0\)ということ)  
+
+さらに
+\(V := \bigcup_{\Lambda \text{ vanishes in } W} W\).  
+として, \underline{support of \(\Lambda\)} を\(\Omega \setminus V\)として定義する. .  
+\end{defn}
+\end{tcolorbox}
+
+\begin{ex}
+\label{ex-H-23}
+\(f: \Omega \to \mathbb{C}\)連続とすると, 
+Ex \ref{ex-H-19}(1)より, 任意の \(W \subset \Omega\) openについて
+\[
+\Lambda_f = 0 \text{ in } W \iff f|_W = 0 \text{ almost everywhere } \iff f|_W \equiv 0.
+\]
+であるので. \( \operatorname{support} \ \Lambda_f = \operatorname{Supp} f \)となる. 
+
+ここで\(f\) の 連続性は必要である. 
+例えば\(f:\mathbb{R} \to \mathbb{C}\) を\(f(x) = \begin{cases}1 & (x \in \mathbb{Q}) \\ 0 & (x \notin \mathbb{Q})\end{cases}\) は  
+\(\Lambda_f = 0 \text{ in } \mathbb{R}\) より \(\operatorname{Supp} \Lambda_f = \varnothing\) だが \(\operatorname{Supp} f = \mathbb{R}\) である. 
+\end{ex}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.23]{Rud}$}
+\label{thm-H-24}
+%\textbf{Thm 24 ([Ru. 6.23 Thm])}  
+\(\Lambda \in \mathcal{D}'(\Omega)\)かつ, \(W := \bigcup_{\Lambda \text{ vanishes in } \omega} \omega\).  
+とする. 
+このとき \(\Lambda\) vanishes on \(W\).  つまり \(W\) は \(\Lambda\) が消える最大の開集合である.
+\end{thm}
+\end{tcolorbox}
+% [page 9]
+ちなみに\ref{thm-H-24}(sheaf condition)からでもしたがう.
+
+\begin{proof}
+\(\Gamma:\) を開集合 \(\omega \subset \Omega\)で$\omega$上で \(\Lambda\)が消えるものの集合とする. .  
+すると \(\Gamma\)に付随した１の分割\(\{\psi_i\}_{i=1}^\infty\)が取れる. 
+よって\ref{thm-H-20}(c)より, 任意の \(\varphi \in \mathcal{D}(\Omega)\)について, \(\varphi = \sum_{i=1}^\infty \varphi \psi_i\) は有限和である. 
+今ある\(\omega_i \in \Gamma\)があって,  \(\varphi \psi_i \in \mathcal{D}(\omega_i)\) 
+であるので, 
+\[
+\Lambda(\varphi) = \sum_{i=1}^\infty \Lambda(\varphi \psi_i) = 0
+\]
+となる. よって, 
+\(\Lambda\) vanishes in \(W\)である. 
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.24]{Rud}$}
+\label{thm-H-25}
+%\textbf{Thm 25 ([Ru. 6.24 Thm])}  
+\(\Lambda \in \mathcal{D}'(\Omega)\).  
+\(S_\Lambda := \operatorname{Supp} \Lambda\).  
+このとき次が成り立つ. 
+\begin{enumerate}[label=$(\alph*)$]
+\item 任意の \( \varphi \in \mathcal{D}(\Omega)\) について, 
+\(\operatorname{Supp}\varphi \cap S_\Lambda = \varnothing\)ならば, \(\varphi \Lambda = 0\)である.
+\item \(S_\Lambda = \varnothing\) ならば\(\Lambda = 0\)  
+\item  \(\psi \in C^\infty(\Omega)\)で\(S_{\Lambda} \subset V \subset \Omega\)となる開集合$V$上で\(\psi \equiv 1\) となるものについて,  \(\psi \Lambda = \Lambda.\)  
+\item  \(S_\Lambda \subset \Omega\)がコンパクトならば,  \(\Lambda\) はfinite orderを持つ. 
+つまりある \(C \in \mathbb{R}_{>0}\) と \(N \in \mathbb{Z}_{\ge 0}\) があって, 任意の$\varphi \in \mathcal{D}(\Omega)$について, \(|\Lambda(\varphi)| \le C \|\varphi\|_N \)となる. 
+そして, \(\Lambda\)は \(C^\infty(\Omega)\)上の連続線型関数に一意に拡張する．  
+%(したがって, \(N\) が \(\varphi\) によらずにとれる. finite order である.)
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+% [page 11]
+
+\begin{proof}
+
+[(a)]
+ \(W := \Omega \setminus S_\Lambda\)とする. 
+ \ref{thm-H-24}から,  \(\varphi \Lambda\) vanishes in \(W\)である. 
+ 今\(W' := \Omega \setminus \operatorname{Supp}\varphi\)とおくこれは開集合であり,  \(\varphi|_{W'} = 0\)である. 
+ よって,  \(\varphi \Lambda\) vanishes in \(W'\)d絵ある. 
+
+これより \(\bigcup_{\varphi \Lambda \text{ vanishes in } \omega} \omega \supset W \cap W' = \Omega\)であるので. 
+ \ref{thm-H-24}から,   \(\varphi \Lambda\) vanishes in \(\Omega\)である. つまり, \(\varphi \Lambda = 0\).
+
+[(b)]  \ref{thm-H-24}から従う.
+
+[(c)]$1_{\Omega}$を$\Omega$の特性関数とする. 
+ \(\psi - 1_\Omega\)は \(S_\Lambda\)と交わらないsupportを持つ. 
+ よって(a)から, \(\psi \Lambda = 1_\Omega \Lambda = \Lambda\) となる.
+  
+[(d)]\(S_\Lambda\) コンパクトとする. 
+\ref{thm-H-20}(c)から, 
+ある \( \psi \in \mathcal{D}(\Omega)\) であって, 
+ \(\operatorname{Im}(\psi) \subset [0,1]\) かつ \(\psi|_{S_\Lambda} \equiv 1\)となるものがある. 
+\(K := \operatorname{Supp}\psi\)とおく. $K\supset S_\Lambda$である.  
+
+\cite[Thm 6.8]{Rud}または\ref{prop-M-8.11}から,
+ある\(N \in \mathbb{Z}_{\ge 0}\) と\(\exists C \in \mathbb{R}_{>0}\) があって, 任意の
+$\tilde{\varphi} \in \mathcal{D}_K$について
+\[
+|\Lambda(\tilde{\varphi})| \le C \|\tilde{\varphi}\|_N
+ \]
+である. 
+また \(C' \in \mathbb{R}_{>0}\) で 任意の\(\varphi \in \mathcal{D}(\Omega)\)について, 
+\(\|\psi \varphi\|_N \le C' \|\varphi\|_N \) となる. 
+以上より \ref{thm-H-25}(c)から
+\[
+|\Lambda(\varphi)| 
+= 
+|(\psi \Lambda)(\varphi)| 
+= |\Lambda(\psi \varphi)| 
+\le C \|\psi \varphi\|_N 
+\le CC' \|\varphi\|_N
+\]  
+よって,  \(\Lambda\) はfinite orderである. 
+
+さて \(\tilde{\Lambda}: C^\infty(\Omega) \to \mathbb{C}\) を
+\[
+\tilde{\Lambda}(f) := \Lambda(\psi f) \quad (f \in C^\infty(\Omega)).
+\]
+として定義する. 
+ \(f \in \mathcal{D}(\Omega)\)ならば, \ref{thm-H-25}(c)から
+\[
+\tilde{\Lambda}(f) = \Lambda(\psi f) = (\psi \Lambda)(f) = \Lambda(f) 
+\]  
+よって,\(\tilde{\Lambda}\) は\(\Lambda\)の拡張である.
+そして \(\tilde{\Lambda}\)は$\mathbb{C}$線型である.  
+
+あとは \(\tilde{\Lambda}\) が連続を示せば良い. 
+ \cite[Thm 1.32]{Rud}または\ref{prop-M-7.4}から\(C^\infty(\Omega)\) は距離化可能なので, 
+「\(f_i \to 0\) ならば,  \(\tilde{\Lambda}(f_i) \to 0\)」を示せば良い. 
+\ref{prop-M-7.3}から, 任意の \(\alpha \in \N^n\)について, \(\Omega\)のコンパクト集合上一様に \(D^\alpha f_i \to 0\) である
+よってある \(C_\alpha\) があって
+\[
+|D^\alpha(\psi f_i)(x)| = 
+|\sum_{\alpha'+\alpha''=\alpha} D^{\alpha'}\psi(x)\cdot D^{\alpha''}f_i(x)| 
+\le C_\alpha \|\psi\|_{|\alpha|} \cdot \max\{|D^{\alpha''}f_i(x)| \mid \alpha''\le \alpha, x\in K\}.
+\]
+となる. ここで$K:= \mathrm{Supp}(\psi)$である.
+よって, 任意の \( N \in \N\)についてある \( C_N\) があって
+\[
+\|\psi f_i\|_N \le 
+C_N \max \{ |D^\alpha f_i(x)| : |\alpha|\le N, x \in K\}.
+\]
+である. \(K\)上で\(D^\alpha f_i \to 0\)であるので, 
+任意の$N \in \N$について, \(\lim_{i \to \infty} \|\psi f_i\|_N = 0\) である.
+よって, 
+\(\psi f_i \to 0.\) である.  \cite[Thm 6.6]{Rud}より, $\Lambda$は連続なので, 
+\(\Lambda(\psi f_i) \to 0\)となる. 
+よって
+\( \tilde{\Lambda}(f_i) = \Lambda(\psi f_i) \to 0.\)であり\(\tilde{\Lambda}\)は連続である.
+
+
+% [page 13]
+あとは唯一性のみである. 
+\(\tilde{\Lambda}'\)を \(\Lambda\)の拡張とする. 
+任意のコンパクト集合 \( K' \subset \Omega\)について, \ref{thm-H-20}(c)より
+ ある\( \psi' \in \mathcal{D}(\Omega)\) で\(\psi'|_{K'} \equiv 1\)となるものがある. 
+よって任意の \(f \in C^\infty(\Omega)\)について
+\(\psi f \in \mathcal{D}(\Omega)\) かつ \(f \equiv \psi f\) on \(K\)である. 
+ \(\mathcal{D}(\Omega) \subset C^\infty(\Omega)\)はdenceであり, 
+\[
+\tilde{\Lambda} - \tilde{\Lambda}': C^\infty(\Omega) \to \mathbb{C}
+\quad
+f \mapsto \tilde{\Lambda}(f) - \tilde{\Lambda}'(f)
+\]は連続なので, 
+\((\tilde{\Lambda}-\tilde{\Lambda}')^{-1}(0)\)は閉集合で \(\mathcal{D}(\Omega)\)を含む.
+よって, \( (\tilde{\Lambda}-\tilde{\Lambda}')^{-1}(0) = C^\infty(\Omega)\), であり\(\tilde{\Lambda} = \tilde{\Lambda}'.\).  
+\end{proof}
+
+
+% [page 14]
+
+\begin{tcolorbox}[mybox]
+\begin{lem}{$\cite[Lem 3.9]{Rud}$}
+\label{lem-H-2.1}
+%\textbf{Lem 1 ([Ru. Lem 3.9])}  
+\(X\)を\(\mathbb{C}\)上のベクトル空間, 
+\(\Lambda, \Lambda_1, \dots, \Lambda_n\)を線形関数とする
+このとき以下は同値
+\begin{enumerate}
+\item ある\(r_1,\dots,r_n \in \mathbb{C}\)であって\(\Lambda = \sum_{i=1}^n r_i \Lambda_i\).  
+\item ある \(r \in \mathbb{R}_{>0}\)があって, 任意の$x \in X$について, \(|\Lambda(x)| \le r \max_{i \le n} \{|\Lambda_i(x)|\}\).
+\item  \(\Ker{\Lambda} \subset \bigcap_{i=1}^n \Ker{\Lambda_i}.\)  
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+上に関してはもちろん$\R$上でも良い.
+
+\begin{proof}
+(1) \(\implies\) (2)は\(r := n \cdot \max_{i\le n}|r_i|\) とすればよい.  
+(2) \(\implies\) (3)は自明.
+
+(3) \(\implies\) (1)を示す. 
+\(\pi :=(\Lambda_1,\dots,\Lambda_n): X \to \mathbb{C}^n\), つまり$\pi(x):=(\Lambda_1(x), \dots, \Lambda_n(x))$とする. 
+(3)より,  \(\pi(x) = \pi(y)\) ならば,  \(\Lambda(x) = \Lambda(y)\)である.
+よって $\pi$は$\operatorname{Im}(\pi)  \subset \C^n$上の線形関数\(\hat{\Lambda} : \operatorname{Im}(\pi)  \to \C \)を誘導する. 
+よってある\( r_1,\dots,r_n\) があって, 
+\(\hat{\Lambda} = r_1 z_1 + \cdots + r_n z_n\) とかける. (ここで\(z_1,\dots,z_n\) は\(\mathbb{C}^n\)の座標関数である.)
+以上より, \( \Lambda = \hat{\Lambda} \circ \pi = r_1 \Lambda_1 + \cdots + r_n \Lambda_n.\)となりいえた. 
+\end{proof}
+
+% [page 15]
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.25]{Rud}$}
+\label{thm-H-2.2}
+%\textbf{Thm 2 ([Ru. 6.25 Thm])}  
+\(\Lambda \in \mathcal{D}'(\Omega)\)とし, \(p \in \Omega\)について
+\(\delta_p \in \mathcal{D}'(\Omega)\) を\(\delta_p(\varphi) := \varphi(p)\) として定義する. 
+\(\operatorname{Supp}\Lambda = \{p\}\) かつ\(\Lambda\) はorder\(N\)を持つと仮定する. 
+このとき\(\Lambda = \sum_{|\alpha|\le N} C_\alpha D^\alpha \delta_p\)とかけるような$C_\alpha \in \C$が存在する. 
+
+逆に任意の\(p \in \Omega\)について,  \(\sum_{|\alpha|\le N} C_\alpha D^\alpha \delta_p\)  
+の形のdistributionのサポートは \(p\) か \(\varnothing\) である. $($後者は \(C_\alpha = 0\)の時のみに起こる$)$.  
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+逆に...の部分は明らか, 最初の部分を示す.  
+
+\(p=0 \in \Omega\)として良い. 
+%(\(\Lambda' \in \mathcal{D}'(-p+\Omega)\)について, \(\varphi'(x):=\varphi(x+p)\)と\(\Lambda'(\varphi) := \Lambda(\varphi(\cdot+p))\), ).  
+「任意の\(\alpha, |\alpha|\le N\)について\(D^\alpha \varphi(0)=0\)となる$\varphi \in \mathcal{D}(\Omega)$について, 
+\(\Lambda(\varphi)=0\)である」ことを示せば良い.
+なぜならば, $D^\alpha \varphi(0)=(D^\alpha \delta_0)(\varphi)$なので, もしこれが成り立てば, \(\Ker{\Lambda} \subset \bigcap_{|\alpha|\le N} \Ker{D^\alpha \delta_0}\)であるので, \ref{lem-H-2.1}から成り立つ. 
+
+
+「任意の\(\alpha, |\alpha|\le N\)について\(D^\alpha \varphi(0)=0\)」となる$\varphi \in \mathcal{D}(\Omega)$を固定する. 
+任意の\(\ \eta \in \mathbb{R}_{>0}\)について, ある\( \epsilon \in \mathbb{R}_{>0}\)があって, 
+\[
+\max \{ |D^\alpha \varphi(x)| : |\alpha|=N, x \in K \} \le \eta.
+\]
+となる. ここで  \(K:=\overline{B(0,\epsilon)}\) である
+% [page 16]
+
+この時, 任意の \( x \in K\)について, 
+\begin{equation}
+\label{eq-thm-H-2}
+|D^\alpha \varphi(x)| \le \eta n^{N-|\alpha|} |x|^{N-|\alpha|},
+\end{equation}
+が成り立つことを示す. 
+$\alpha$による(降下方向への)帰納法
+ \(|\alpha|=N\) の場合は\(\eta\)の定義より.  
+一般に\(x = (x_1,\dots,x_n) \in K\)について, 
+\begin{align*}
+D^\alpha \varphi(x) 
+&= D^\alpha \varphi(x_1,\dots,x_n) - D^\alpha \varphi(x_1,\dots,x_{n-1},0) \\
+&+ D^\alpha \varphi(x_1,\dots,x_{n-1},0) - D^\alpha \varphi(x_1,\dots,x_{n-2},0,0) \\
+&+ \cdots + D^\alpha \varphi(x_1,0,\dots,0) - D^\alpha \varphi(0,\dots,0) \\
+&= \sum_{i=1}^n \int^{x_i}_{0} \frac{\partial}{\partial t_i} D^\alpha \varphi(x_1,\dots,x_{i-1},t_i,0,\dots,0)\,dt_i.
+\end{align*}
+であるので, これを用いて, 
+\begin{align*}
+ |D^\alpha \varphi(x)| 
+ &\le \sum_{i=1}^n \int^{|x_i|}_{0} \eta n^{N-(|\alpha|+1)} |x|^{N-(|\alpha|+1)} \,dt_i.\\
+&= \eta n^{N-(|\alpha|+1)} |x|^{N-(|\alpha|+1)} (|x_1|+\cdots+|x_n|) \\
+&\le \eta n^{N-(|\alpha|+1)} |x|^{N-(|\alpha|+1)} (n \sqrt{x_1^2+\cdots+x_n^2})\\
+&=\eta n^{N-|\alpha|} |x|^{N-|\alpha|}.
+\end{align*}
+よって(\ref{eq-thm-H-2})がいえた. 
+
+さて\(\psi \in \mathcal{D}(\mathbb{R}^n)\) 
+で\(\psi|_{B(0,\tfrac{1}{2})} \equiv 1\)かつ\(B(0,1)\)の外で\(\psi \equiv 0\)となるものをとる. 
+そして, 任意の\(0 <  r \le 1\)について, \(\psi_r \in \mathcal{D}(\mathbb{R}^n)\) を
+\(\psi_r(x) := \psi(\tfrac{x}{r})\)と定義する. 
+この時, ある$\varepsilon>0$と$C=C(n,N)$があって, 任意の\(0 <  r < \epsilon\)について,  
+\begin{equation}
+\label{eq2-thm-H-2}
+\|\psi_r \varphi\|_N \le \eta C \|\varphi\|_N 
+\end{equation}
+であることを示す. 
+
+二項定理から
+\[
+D^\alpha(\psi_r \varphi)(x) 
+= \sum_{\beta \le \alpha} C_{\alpha \beta} 
+\frac{1}{r^{|\alpha|-|\beta|}} (D^{\alpha-\beta}\psi)(\tfrac{x}{r}) \cdot (D^\beta \varphi)(x).
+\]
+である. 
+%\(\operatorname{Supp} \psi_r \varphi \subset B(0,r).\)に注意すると, 
+$r < \varepsilon$とすると, $\operatorname{Supp} \psi_r \varphi  \subset B(0,r) \subset K$であることに注意すると
+% [page 17]
+\begin{align*}
+\max_{x \in \mathbb{R}^n} |D^\alpha (\psi_r \varphi)(x)|
+&\le 
+C_1 \frac{1}{r^{|\alpha|-|\beta|}} \max_{x \in \mathbb{R}^n} 
+\Big(|D^{\alpha-\beta}\psi(\tfrac{x}{r})| \cdot |D^\beta \varphi(x)|\Big)\\
+&= 
+C_1 \frac{1}{r^{|\alpha|-|\beta|}} 
+\max_{x \in B(0,r)} \Big(|D^{\alpha-\beta}\psi(\tfrac{x}{r})| \cdot |D^\beta \varphi(x)|\Big)\\
+&\le 
+C_1 \max_{x \in B(0,r)} \max_{\beta \le \alpha} 
+\Big( |D^{\alpha-\beta}\psi(\tfrac{x}{r})| 
+\cdot \eta n^{N-|\alpha|} |x|^{N-|\alpha|} \cdot \frac{1}{r^{|\alpha|-|\beta|}} \Big) \\
+&\le 
+C_1 \max_{x \in B(0,r)}
+\Big( |D^{\alpha-\beta}\psi(\tfrac{x}{r})| 
+\cdot \eta n^{N-|\beta|} \cdot  (\tfrac{x}{r})^{N-|\beta|}\Big) \\
+&\le 
+\eta C_1 n^N \max_{\beta \le \alpha} \max_{x \in K}  |D^{\alpha-\beta}\psi(\tfrac{x}{r})| 
+\end{align*}
+以上より(\ref{eq2-thm-H-2})がいえた.
+%\(\implies \|\psi_r \varphi\|_N \le \eta C_1 n^N\). (\(\exists C = C(n,N) > 0\) s.t.)\(\|\psi_r \varphi\|_N \le \eta C \|\varphi\|_N \quad \forall r < \epsilon.\)
+一方 \(\Lambda\)はorder \(N\)を持つので, ある\(C'\)があって, 
+任意の$\varphi \in \mathcal{D}_{B(0,1)}$について
+\[
+|\Lambda(\varphi)| \le C' \|\varphi\|_N 
+\]
+である. よって, 任意の$\varepsilon <1$と\(\varphi' \in \mathcal{D}_{B(0,\epsilon)}\)について
+\(|\Lambda(\varphi')| \le C' \|\varphi'\|_N\).  
+である. 
+
+以上の議論をまとめると次がわかる:
+任意の$\eta>0$について, 
+\( \epsilon \in \mathbb{R}_{>0}\)があって, 
+\[
+\max \{ |D^\alpha \varphi(x)| : |\alpha|=N, x \in K \} \le \eta.
+\]
+となる. ここで  \(K:=\overline{B(0,\epsilon)}\) である
+そして, $\eta$によらない$C, C'$があって
+\[
+|\Lambda(\varphi)| = |\Lambda(\psi_r \varphi)| 
+\le C' \|\psi_r \varphi\|_N \le \eta CC' \|\varphi\|_N.
+\]
+である. $CC' \|\varphi\|_N.$は$\eta$によらないので, 
+\(|\Lambda(\varphi)| = 0\)である. よって\(\Lambda(\varphi) = 0.\)  となる.
+\end{proof}
+
+%2025/9/16
+
+% [page 1]
+
+\section{Distributions as Derivatives}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 3.2]{Rud}$}
+\label{thm-H-2.3}
+%\textbf{Thm 3} (Hahn--Banach thm., [Ru., 3.2 Thm])
+\(X\) $\R$ベクトル空間, \(M \subset X\) 部分空間として次を仮定する.
+\begin{itemize}
+\item あるmap\(p : X \to \mathbb{R}\) で
+ \(p(x+y) \leq p(x)+p(y)\) \& \(p(tx) = t p(x).\ (\forall t \geq 0)\)となるものが存在する．
+ (これに \(p(x)=0 \Leftrightarrow x=0\) が加わると semi-norm)
+\item ある線型写像\(f : M \to \mathbb{R}\) で, 任意の\(x \in M\)に関して\(f(x) \leq p(x)\).
+\end{itemize}
+この時ある\(\Lambda : X \to \mathbb{R}\) という線型写像で\(\Lambda|_M \equiv f\)かつ任意の \(x \in X\)について以下を満たすものが存在する
+\[
+ -p(-x) \leq \Lambda(x) \leq p(x).
+\]
+\end{thm}
+\end{tcolorbox}
+
+この主張において$p$はseminormでなくても良い.　よって$p(x)<0$となる点があっても良い. 
+
+\begin{proof}
+\[
+S := \Biggl\{ (X',\Lambda') \ \Biggm| \
+\begin{array}{l}
+ X' \subset X ; X' \supset M  \text{となる部分空間} . \\
+ \Lambda' : X' \to \mathbb{R} \text{ となる線型写像で} \Lambda'|_M \equiv f \text{ かつ} \\
+ -p(-x') \leq \Lambda'(x') \leq p(x') \quad (\forall x' \in X') \text{となるものがある.}
+\end{array}
+\Biggr\}
+\]
+
+\(S\) に順序\(\leq\)''を
+\[
+ (X_1,\Lambda_1) \leq (X_2,\Lambda_2) \Longleftrightarrow X_1' \subset X_2' \text{ かつ } \Lambda_2|_{X_1} \equiv \Lambda_1,
+\]
+として入れると, 
+ \(S\) は帰納的集合になり, Zornの補題より, 極大元
+  \((\widetilde{X}, \widetilde{\Lambda})\) がある. 
+
+% [page 2]
+よって次の主張を示せば良い. 
+\begin{tcolorbox}[mybox]
+\begin{claim}
+\(\widetilde{X} = X.\)
+\end{claim}
+\end{tcolorbox}
+\(\widetilde{X} \neq X.\) とし, \(y \in X \setminus \widetilde{X}\)をとる. 
+この時任意の\( x,x' \in \widetilde{X}.\)において, 
+\[
+ \widetilde{\Lambda}(x) + \widetilde{\Lambda}(x') = \widetilde{\Lambda}(x+x') \leq p(x+x') \leq p(x-y) + p(x'+y)
+\]
+である. 
+よって, \( \widetilde{\Lambda}(x) - p(x-y) \leq p(x'+y) - \widetilde{\Lambda}(x').\)であるので, 
+$x'$を固定すれば, 左のsupが存在する.
+\[
+\alpha:= \sup \{ \widetilde{\Lambda}(x) - p(x-y) \mid x \in X\}
+\]
+とおく. 
+任意の\(x,x' \in \widetilde{X}\)について, 
+\[ 
+\widetilde{\Lambda}(x) - p(x-y) \leq \alpha \leq p(x'+y) - \widetilde{\Lambda}(x')
+\]
+
+今\(\widetilde{X}' := \widetilde{X} + \mathbb{R}y\) かつ, 
+\(\widetilde{\Lambda}' : \widetilde{X}' \to \mathbb{R} ; \ \widetilde{\Lambda}'(x+ty) := \widetilde{\Lambda}(x) + t\alpha.\)とする. 
+この時  \(\widetilde{\Lambda}' : \widetilde{X}' \to \mathbb{R}\) は線型写像で \(\widetilde{\Lambda}'|_M \equiv f\)である. 
+さらに, 任意の\(x+tg \in \widetilde{X}'\)について, 
+\begin{itemize}
+\item \(t=0\) ならば\(\widetilde{\Lambda}'(x) = \widetilde{\Lambda}(x) \leq p(x+ty).\)
+\item \(t>0\) ならば$\alpha \leq p(x+y)-\widetilde{\Lambda}(x)$に注目して
+\[\widetilde{\Lambda}'(x+ty) = \widetilde{\Lambda}(x) + t\alpha = t\bigl(\widetilde{\Lambda}(\tfrac{1}{t}x) + \alpha \bigr) \leq t p(\tfrac{1}{t}x+y) = p(x+ty).
+\]
+\item \(t<0\) ならば,  \(t=-|t|,\)かつ\(\widetilde{\Lambda}(x)-p(x-y)\leq \alpha\)に注目して, 
+\[
+ \widetilde{\Lambda}'(x-|t|y) = |t|(\widetilde{\Lambda}(\tfrac{1}{|t|}x) - \alpha) \leq |t| \, p(\tfrac{1}{|t|}x-y) = p(x+ty).
+\]
+\end{itemize}
+以上より,任意の$x+ty\in \widetilde{X}'$ について, 
+\( \widetilde{\Lambda}'(x+tg) \leq p(x+tg) \)であるので, 
+\(\ (\widetilde{X}',\widetilde{\Lambda}') \in S \) かつ\((\widetilde{X}',\widetilde{\Lambda}') \geq (\widetilde{X},\widetilde{\Lambda}) \)
+である. 
+しかし, \(\widetilde{X}' \neq \widetilde{X}\)なので, これは
+\(\widetilde{X},\widetilde{\Lambda})\) が極大元に矛盾する, 
+よって\( \widetilde{X}=X.\)
+\end{proof}
+
+% [page 3]
+
+\begin{tcolorbox}[mybox]
+\begin{thm}{$\cite[Thm 6.26]{Rud}$}
+\label{thm-H-2.4}
+%\textbf{Thm 4} ([Ru. 6.26 Thm])
+\(\Lambda \in \mathcal{D}'(\Omega)\)かつ \(K \subset \Omega\)コンパクトとする．
+この時ある \(f : \Omega \to \C\)連続関数と \(\alpha \in \N^n\)があって, 
+任意の\(\varphi \in \mathcal{D}_K\)について, 
+\[
+ \Lambda(\varphi) = (-1)^{|\alpha|} \int_{\Omega} f\cdot (D^{\alpha}\varphi)\, dx
+\]
+\end{thm}
+\end{tcolorbox}
+なお上の$\alpha$については, 
+\cite[Thm6.8]{Rud}によってある\( C>0,  N \in \mathbb{Z}_{\geq 0}\)で
+\(\Lambda(\varphi) \leq C \|\varphi\|_N \ (\forall \varphi \in D_K)\) 
+となるものが存在するが, その$N$を取ってきて
+\(\alpha = (N+2,\ldots,N+2)\)と定める.
+
+\begin{proof}
+\(
+Q := \{ (x_1,\ldots,x_n) \in \mathbb{R}^n \mid 0 \leq x_i \leq 1 \ \text{for } \forall i \},
+\)
+ととる. $0 \in\Omega$として良い. 
+%平行移動して$0 \in K \subset \Omega$とする.
+またスケール変換して,\(K \subset (-\tfrac{1}{2},\tfrac{1}{2})^n.\)として良い. 
+
+$K$を平行移動して  $K \subset Q^\circ$とする. 
+そして\(K \not\subset (-\tfrac{1}{2},\tfrac{1}{2})^n\) かつ\(K \not\ni (0,\ldots,0)\)を仮定する. 
+
+\(
+T := \frac{\partial}{\partial x_1}\frac{\partial}{\partial x_2}\cdots \frac{\partial}{\partial x_n}.
+\)とし任意の \(y=(y_1,\ldots,y_n)\in Q,\)について, 
+\[
+ Q(y) := [0,y_1] \times [0,y_2] \times \cdots \times [0,y_n]
+ \]
+とする. 
+任意の \(\varphi \in D_{Q} \subset D(\mathbb{R}^n)\)と \(x=(x_1,\ldots,x_n)\in Q,\)について平均値の定理よりある\(\alpha \in (0,1)\)があって
+\begin{align*}
+|\varphi(x)|
+&=
+\biggl| \frac{\varphi(x_1,\ldots,x_i,\ldots,x_n) - \varphi(x_1,\ldots,0,\ldots,x_n)}{1- 0} \biggr| \\
+&\le \biggl| \frac{\varphi(x_1,\ldots,x_i,\ldots,x_n) - \varphi(x_1,\ldots,0,\ldots,x_n)}{x_i - 0} \biggr| \\
+&= \biggl| \frac{\partial}{\partial x_i} \varphi(x_1,\ldots,\alpha x_i,\ldots,x_n) \biggr| \\
+\end{align*}
+となる. 
+% [page 5]
+よって
+\begin{equation}
+\label{eq1-thm-H-2.4}
+ \max_{x \in Q} |\varphi(x)| \leq \max_{x \in Q} \bigl| \tfrac{\partial}{\partial x_i}\varphi(x)\bigr| \quad (\forall i)
+ \end{equation}
+さらに
+\begin{equation}
+\label{eq2-thm-H-2.4}
+\varphi(y) = \int_{Q(y)} T\varphi \, dx = T\Bigl( \int_{Q(y)} \varphi \, dx \Bigr) 
+\end{equation}
+
+\cite[Thm 6.8]{Rud}よりある\(C>0\) と \( N \in \mathbb{Z}_{\geq 0}\) があって
+\[
+|\Lambda(\varphi)| \leq C \|\varphi\|_N \quad (\forall \varphi \in D_K).
+\]
+である. よって
+(\ref{eq1-thm-H-2.4})と(\ref{eq2-thm-H-2.4})より
+\begin{align*}
+|\Lambda(\varphi)| 
+\leq C \|\varphi\|_N 
+& \underset{(\ref{eq1-thm-H-2.4} )}{\leq} C \cdot \max_{x \in Q} |(T^N \varphi)(x)| 
+= C \cdot \max_{y \in Q} \Bigl| \int_{Q(y)} (T^{N+1}\varphi)\, dx \Bigr| \\
+&\leq C \cdot \max_{y \in Q} \int_{Q(y)} |T^{N+1}\varphi| \, dx 
+\leq C \int_Q |T^{N+1}\varphi| \, dx.
+\end{align*}
+よって
+\begin{equation}
+\label{eq3-thm-H-2.4}
+|\Lambda(\varphi)| \leq C \int_Q |T^{N+1}\varphi| \, dx
+\end{equation}
+である. 
+(\ref{eq2-thm-H-2.4})から \(T^{N+1} : \mathcal{D}_K \to \mathcal{D}_K\) は単射.
+よって$\mathrm{Im}(T^{N+1}) \subset \mathcal{D}_K$上において, 
+線型写像\(\Lambda_1 := \Lambda \circ (T^{N+1})^{-1} : \mathrm{Im}(T^{N+1})  \to \mathbb{R}\)を定義することができる. 
+$\mathrm{Im}(T^{N+1}) \subset \mathcal{D}_K$上で\(\Lambda_1 \circ T^{N+1} = \Lambda.\)である. 
+
+$\varphi \in \mathrm{Im}(T^{N+1}) $について, (\ref{eq3-thm-H-2.4})より
+\[
+\Lambda_1(\varphi) \leq |\Lambda_1(\varphi)| \leq C \int_K |\varphi| \, dx \quad (\forall \varphi \in \mathcal{D}_K).
+\]
+よってHahn-Banachの定理\ref{thm-H-2.4}を
+\((\mathrm{Im}(T^{N+1}) \subset L^1(K), \Lambda_1, C \int |\cdot| dx)\)に適応して, 
+ある \( G : L^1(K) \to \mathbb{R}\) で  \(G|_{\mathrm{Im}(T^{N+1})} \equiv \Lambda_1\) かつ
+\[
+G(\varphi) \leq C \int_K |\varphi| \, dx \quad (\forall \varphi \in L^1(K)).
+\]
+となるものがある. 
+よってある$K$上のbounded Borel関数\(g \)であって, 
+\(G(\varphi) = \int_K g\varphi \, dx \)となる. 
+そして,  \(\Lambda = \Lambda_1 \circ T^{N+1}\)であるので, 任意の$\varphi \in \mathcal{D}_K$について, 
+\[
+\Lambda(\varphi)
+ = \int_K g \cdot (T^{N+1}\varphi)\, dx
+\]
+である. 
+そこで, $g$を$\R^n$上の関数に0拡張する　(つまり$g(x)=0 (\forall x \notin K)$とする.)
+ \(f : \mathbb{R}^n \to \mathbb{R}\)を
+\[
+f((x_1,\ldots,x_n)) := \int_{-\infty}^{x_1}\cdots \int_{-\infty}^{x_n} g(x)\, dx_1 \cdots dx_n.
+\]
+として定義する. 
+これはLesbegue微分定理からほとんど至るところ微分可能である. 
+ライプニッツ則から任意の$i$について
+\(\frac{\partial}{\partial x_i}(f \cdot (T^{N+1}\varphi)) 
+= \Bigl(\frac{\partial}{\partial x_i} f\Bigr)\cdot (T^{N+1}\varphi) + f\cdot \Bigl(\frac{\partial}{\partial x_i} T^{N+1}\varphi\Bigr).\)
+である. よって任意の\(\varphi \in \mathcal{D}_K\)について, 
+%\begin{align*}
+%\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty} f\cdot \Bigl(\frac{\partial}{\partial x_i} T^{N+1}\varphi \Bigr)\, dx
+%&+ \int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty} \frac{\partial}{\partial x_i}(f \cdot T^{N+1}\varphi)\, dx \\
+%&= \int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty} \Bigl(\frac{\partial}{\partial x_i} f\Bigr)(T^{N+1}\varphi)\, dx \\
+%&=  \int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty} 
+%\Bigl[ f(x) \cdot T^{N+1}\varphi (x)\Bigr]_{-\infty}^{\infty}\, dx_1 \cdots dx_{i-1} dx_{i+1}\cdots dx_n 
+%\end{align*}
+%よってこれより任意の$i$について
+\[ \int_K f\cdot \Bigl(\frac{\partial}{\partial x_i} T^{N+1}\varphi\Bigr)\, dx
+= - \int_K \Bigl(\frac{\partial}{\partial x_i} f\Bigr)\cdot (T^{N+1}\varphi)\, dx
+\]
+となる. 以上より
+\begin{align*}
+\Lambda(\varphi) 
+&= \int_K g \cdot (T^{N+1}\varphi)\, dx 
+= \int_K \Bigl(\frac{\partial}{\partial x_1}\frac{\partial}{\partial x_2}\cdots \frac{\partial}{\partial x_n} f \Bigr) \cdot \Bigl( T^{N+1}\varphi\Bigr)\, dx \\
+&= - \int_K \Bigl(\frac{\partial}{\partial x_2}\cdots \frac{\partial}{\partial x_n} f\Bigr)\cdot \Bigl(\frac{\partial}{\partial x_1} T^{N+1}\varphi\Bigr)\, dx \\
+& = (-1)^n \int_K f\cdot \frac{\partial}{\partial x_1}\frac{\partial}{\partial x_2}\cdots \frac{\partial}{\partial x_n} T^{N+1}\varphi \, dx \\
+&= (-1)^{N+2} \int_K (-1)^{n+N+2}f\cdot T^{N+2}\varphi \, dx.
+\end{align*}
+よってこの$(-1)^{n+N+2}f$がほしいものである. 
+\end{proof}
+
+
+%2025/09/26 橋詰さん
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.27 ]{Rud}
+\label{thm-H-2.5}
+% [page 1]
+%\textbf{Thm 5 ([Ru. 6.27 Thm])}
+ \(\Lambda \in \mathcal{D}'(\Omega)\),  \(V \subset \Omega \subset \mathbb{R}^n\) open.
+  \(K \subset \Omega\)をコンパクト集合とする. 
+\(\mathrm{Supp}\,\Lambda \subset K\)かつ\(K \subset V\)かつ \(\Lambda\) がorder \(N\)を持つと仮定する.
+
+この時ある \( \{f_\beta\} \subset in C^{0}(\Omega)\)で,  \(\beta = (\beta_1, \ldots, \beta_n)\)は\(\beta_i \leq N+2\)となるmulti-indexで,  
+ \(\mathrm{Supp}\,f \subset V\)かつ
+\[
+\Lambda = \sum_\beta D^\beta \Lambda f_\beta,
+\]
+となるものが存在する
+\end{thm}
+\end{tcolorbox}
+\begin{proof}
+ \(W \subset \Omega^i\) open で
+  \(K \subset W \subset \overline{W} \subset V\) かつ \(\overline{W}\)コンパクトなものを取る
+
+\ref{thm-H-2.4} を \(\Lambda\) と \(W\)に適応すると, 
+\(\Lambda\) のorderは\(N\)であるので,  
+ある\( \alpha = (N+2,\ldots,N+2)\) と \(f: \Omega \to \mathbb{C}\)連続があって
+\begin{equation}
+\label{eq-thm-H-2.4}
+\Lambda(\phi) = (-1)^{|\alpha|}
+ \int_\Omega f \cdot (D^\alpha \phi) \, dx \quad (\forall \phi \in \mathcal{D}(W))
+\end{equation}
+となる. 
+そこで \(g \in C_0^\infty(\Omega)\) で \(g|_{\overline{W}} \equiv 1\) かつ \(\mathrm{Supp}\,g \subset V\)となるものを考えることで,\(\mathrm{Supp}\,f \subset V\)と仮定して良い.  
+( \(f\) を \(fg\)に取り替える.)
+
+\(\psi \in C^\infty(\Omega)\) で, \(\psi|_K \equiv 1\) かつ \(\mathrm{Supp}\,\psi \subset W\)のものを固定する. 
+\ref{thm-H-25}(c)から\(\Lambda = \psi \Lambda\)である. 
+
+
+% [page 2]
+任意の \(\phi \in \mathcal{D}(\Omega)\)について(\ref{eq-thm-H-2.4})から
+\begin{align*}
+\Lambda(\phi) = \psi \Lambda(\phi) 
+&= \Lambda(\psi \phi) = (-1)^{|\alpha|} \int_\Omega f (D^\alpha (\psi \phi)) dx \\
+&= (-1)^{|\alpha|} \int_\Omega f \cdot \sum_{\beta \leq \alpha} C_{\alpha \beta} D^{\alpha - \beta} \psi \, D^\beta \phi \, dx \\
+&= \sum_{\beta \leq \alpha} \int_\Omega \big( (-1)^{|\alpha|} C_{\alpha \beta} f D^{\alpha - \beta} \psi \big) D^\beta \phi \, dx
+\end{align*}
+
+よって\( f_\beta := (-1)^{|\alpha| - |\beta|} C_{\alpha \beta} f D^{\alpha - \beta} \psi \)とおくと
+\[
+\Lambda(\phi) = \sum_{\beta \leq \alpha} (-1)^{|\beta|} \int_\Omega f_\beta D^\beta \phi \, dx 
+= \sum_{\beta \leq \alpha} (D^\beta \Lambda_{f_\beta})(\phi). 
+\]
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.28]{Rud}
+\label{thm-H-2.6}
+%\textbf{Thm 6 ([Ru. 6.28 Thm])}
+\(\Lambda \in \mathcal{D}'(\Omega)\)とする.
+この時任意の \(\alpha\); multi-indexについて, ある\(g_\alpha \in C_0(\Omega)\)があって次を満たすものが存在する. 
+\begin{itemize}
+\item 任意のコンパクト集合\( K \subset \Omega\) について,  \(\{\alpha \in \N^n \mid \mathrm{Supp}\, g_\alpha \cap K \neq \varnothing \}\) は有限集合
+\item \(\Lambda = \sum_\alpha D^\alpha \Lambda g_\alpha\).
+\end{itemize}
+さらに \(\Lambda\)が有限のorderを持つならば, 有限個の$g_{\alpha}$を除いて\(g_\alpha \equiv 0\) となるように取れる. 
+\end{thm}
+\end{tcolorbox}
+つまり, 超関数は$D^\alpha$と$\Lambda g_\alpha$で形式的にかける. 
+\begin{proof}
+次のclaimを先に示す. 
+\begin{tcolorbox}[mybox]
+\begin{claim}
+任意の$i =1, 2, \ldots, $について, ある\(Q_i \subset V_i \subset \Omega\) 
+となるコンパクト集合\(Q_i\)とopen \(V_i\)があって, 任意のコンパクト集合$K \subset \Omega$について, \(\{ i\in \N \mid V_i \cap K \neq \varnothing \}\) は有限集合となるようにできる. 
+\end{claim}
+\end{tcolorbox}
+\begin{proof}
+% [page 3]
+\ref{lem-M-7.2}より 
+\[ K_1 \subset K_2 \subset \cdots \subset K_i \subset \cdots \subset \Omega\]
+となるコンパクト集合列$K_i$　で\(K_i \subset \mathrm{int}(K_{i+1})\)かつ \(\Omega = \bigcup_{i=1}^\infty \mathrm{int}(K_i)\)となるものが存在する.
+
+ \(K_0 := \varnothing\), 
+\(Q_1 := K_1, \quad V_1 := \mathrm{int}(K_2)\)
+とする. 
+以下帰納的に
+\[
+Q_i := K_i \setminus \mathrm{int}(K_{i-1}), \quad V_i := \mathrm{int}(K_{i+1}) \setminus K_{i-2} \quad (i \geq 2).
+\]
+と定義する. (要は$V_i$は三つ飛ばしにする.)
+すると
+\begin{itemize}
+\item \(Q_i \subset V_i\) (理由は\(K_i \subset \mathrm{int}(K_{i+1}\) かつ \(K_{i-2} \subset \mathrm{int}(K_{i-1})\)なので.)
+\item \(Q_i\);コンパクト (理由は\(K_i\)コンパクトかつ\(Q_i \subset K_i\)closedなので)
+\item \(V_i\) open. 
+\item \(\Omega = \bigcup_i Q_i \)  (理由は帰納法から, $\bigcup_{i=1}^n Q_i = K_n$が言えるから)
+\end{itemize}
+任意の\(K\)について, ある\(m\) があって, \(K \subset \bigcup_{i=1}^m \mathrm{int}(K_i) = \mathrm{int}(K_m) \subset K_m\).
+よって\(K \cap V_{m'} = \varnothing\) が \(m' > m+2\)で成り立ち, 
+\(\{ i \in \N \mid V_i \cap K \neq \varnothing \} \subset \{1, \ldots, m+1\}\)は有限である. 
+%\(\therefore Q_i \subset V_i \subset \Omega \ (i=1,2,\ldots)\) are the desired sets. //
+\end{proof}
+% [page 4]
+
+\ref{thm-H-20}と同じ議論より($Q_i$上で1でsupportが$V_i$に入る$C^\infty$級関数を構成する\footnote{$C^\infty$級関数として構成できるのも\ref{thm-H-20}の1の分割を使う}ことで), 
+ある$\psi_i \ge 0$となる\(\{\psi_i\}_{i \in \N} \subset \mathcal{D}(\Omega)\) であって次を満たすものが存在する. 
+\begin{itemize}
+\item 任意の$i \in \N$について\(\mathrm{Supp}\,\psi_i \subset V_i\)
+\item  任意の$ x \in \Omega$について, \(\sum_{i=1}^\infty \psi_i(x) = 1\). ただし左は有限和である.  
+\item 任意の$i \in \N$について, ある\(W_i \supset Q_i\)open があって,  \(\{ j \in \N \mid \psi_j|_{W_i} \neq 0 \}\) は有限集合
+\end{itemize}
+
+すると\(\Lambda = \sum_{i=1}^\infty \psi_i \Lambda\)である. \ref{thm-H-2.5}より, 任意の \( i \in \N\)について, ある$V_i$上の連続関数の有限集合族\(\{ f_{i,\alpha} \}_\alpha\)があって, 
+\[
+\psi_i \Lambda = \sum_\alpha D^\alpha \Lambda f_{i,\alpha}.
+\]
+とかける. そこで, 
+\(
+g_\alpha := \sum_{i=1}^\infty f_{i,\alpha}.
+\)
+とおく. 
+
+任意の\( x \in \Omega\)について,  \(V_i\)の構成から, \(\{ i \in \N \mid x \in V_i  \}\)
+は有限集合である. よって\(g_\alpha(x) = \sum_{i=1}^\infty f_{i,\alpha}(x)\) は有限和である. 
+つまり, \( g_\alpha \in C_0(\Omega)\).
+
+\begin{tcolorbox}[mybox]
+\begin{claim}
+任意のコンパクト集合 \(K \subset \Omega\) について
+ \(\{ \alpha \in \N^n \mid \mathrm{Supp}\,g_\alpha \cap K \neq \varnothing \}\)は有限集合.
+\end{claim}
+\end{tcolorbox}
+\begin{proof}
+ \(\{V_i\}\)の構成から,  \(\{ i \in \N\mid V_i \cap K \neq \varnothing \}\)は有限集合である.
+よって, 
+\[ \mathrm{Supp}\, g_\alpha \cap K \subset \bigcup_{V_i \cap K \neq \varnothing} \mathrm{Supp}\, f_{i,\alpha} \cap K\]
+となる. 
+
+\(\{ f_{i,\alpha} \}_\alpha\)は有限個で, 考える$i$も有限個なので, 
+%よってある\( M \in \mathbb{Z}_{\geq 0}\)があって, 任意の\(i \in \N\) について,  \(V_i \cap K \neq \varnothing\), if \(f_{i,\alpha}\) is defined then \(|\alpha| \leq M\).
+ある\( M \in \mathbb{Z}_{\geq 0}\)があって, 
+任意の\(|\alpha'| > M\)となる\(\alpha'\)について,  \(\mathrm{Supp}\, g_{\alpha'} \cap K = \varnothing\)となる. 
+\(\{ \alpha \in \N^n \mid \mathrm{Supp}\, g_\alpha \cap K \neq \varnothing \}\)は有限集合. 
+\end{proof}
+
+
+% [page 5]
+任意の\(\phi \in \mathcal{D}(\Omega)\)について
+\begin{align*}
+\Lambda(\phi) &= \Lambda\big(\sum_i \psi_i \phi\big) 
+= \sum_i (\psi_i \Lambda)(\phi) \\
+&= \sum_i \big(\sum_\alpha D^\alpha \Lambda f_{i,\alpha}\big)(\phi) \\
+&= \sum_\alpha (D^\alpha \Lambda g_\alpha)(\phi) = \big(\sum_\alpha D^\alpha \Lambda g_\alpha\big)(\phi),
+\end{align*}
+よって\(\ \Lambda = \sum_\alpha D^\alpha \Lambda g_\alpha\)となる. 
+\end{proof}
+
+\section{Convolutions}
+
+\textit{記法}
+
+\begin{itemize}
+\item \(\mathcal{D} := \mathcal{D}(\mathbb{R}^n), \ \mathcal{D}' := \mathcal{D}'(\mathbb{R}^n),\)
+\item  \(u : \mathbb{R}^n \to \mathbb{C}\),  \(x \in \mathbb{R}^n\)について
+\[ \widetilde{u} : \mathbb{R}^n \to \mathbb{C}, \ \widetilde{u}(x) = u(-x),\]
+\[ \tau_x u : \mathbb{R}^n \to \mathbb{C}, \ \tau_x u(y) = u(y-x).\]
+\end{itemize}
+任意の\( u,v : \mathbb{R}^n \to \mathbb{C}\)について, convolution \(u \ast v\) を次で定める:
+\[
+u \ast v : \mathbb{R}^n \to \mathbb{C}, \quad (u \ast v)(x) := \int_{\mathbb{R}^n} u(y) v(x-y) dy
+\]
+この積分$u \ast v$は, ほとんど至ることころの$x \in \R^n$でLebesgue積分\(\int_{\mathbb{R}^n} u(y)v(x-y)dy\)
+が考えられる時にのみ定義される.
+このとき, 定義から
+\[
+\int_{\mathbb{R}^n} u(y) v(x-y) dy 
+= \int_{\mathbb{R}^n} u(y) \tau_x \widetilde{v}(y) dy 
+= \Lambda_u(\tau_x \widetilde{v}).
+\]
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}%\cite[Theorem 6.28]{Rud}
+\label{defn-H-2.7}
+任意の \(u \in \mathcal{D}', \ \phi \in \mathcal{D}, \ x \in \mathbb{R}^n\)について, 
+\[
+(u \ast \phi)(x) := u(\tau_x \widetilde{\phi}).
+\]
+と定める. $u \ast \phi : \R^n \to \C$である. 
+\end{defn}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}%\cite[Theorem 6.28]{Rud}
+\label{defn-H-2.8}
+%\textbf{Def 8.}  
+任意の \(u \in \mathcal{D}', \ \phi \in \mathcal{D}, \ x \in \mathbb{R}^n\)について, 
+\[
+(\tau_x u)(\phi) := u(\tau_{-x} \phi)
+\]
+と定義する. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+次が成り立つ. 
+\[
+\int_{\mathbb{R}^n} \tau_x u(y) v(y) dy 
+= \int_{\mathbb{R}^n} u(y) \cdot \tau_{-x} v(y) dy
+= \Lambda_u(\tau_{-x} v).
+\]
+また\cite[Theorem 6.8]{Rud}から, \(\ \tau_x u \in \mathcal{D}' \)でもある. 
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.30]{Rud}
+\label{thm-H-2.10}
+%\textbf{Thm 10 ([Ru. 6.30 Thm])}  
+ \(u \in \mathcal{D}'\), \(\phi, \psi \in \mathcal{D}\)とする時次が成り立つ. 
+\begin{enumerate}[label=$(\alph*)$]
+\item $x \in \R^n$について,  \(\ \tau_x(u \ast \phi) = (\tau_x u) \ast \phi = u \ast (\tau_x \phi)\)
+\item  \(\ u \ast \phi \in C^\infty\). 任意の$\alpha \in \N^n$について 
+\(D^\alpha (u \ast \phi) = (D^\alpha u) \ast \phi = u \ast (D^\alpha \phi) \) 
+\item \( u \ast (\phi \ast \psi) = (u \ast \phi) \ast \psi \) 
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+
+[(a)] \(\ \tau_x(u \ast \phi)(y) = (u \ast \phi)(y-x) = u(\tau_{y-x} \widetilde{\phi})\).
+
+\[
+(\tau_x u) \ast \phi (y) = (\tau_x u)(\tau_y \widetilde{\phi}) = u(\tau_{-x}(\tau_y \widetilde{\phi})) 
+= u(\tau_{y-x} \widetilde{\phi}).
+\]
+以上より, \(u \ast (\tau_x \phi)(y) = u(\tau_y (\tau_x \widetilde{\phi})) = u(\tau_y \tau_{-x} \widetilde{\phi}) = u(\tau_{y-x} \widetilde{\phi})\)  となるので言える. 
+
+[(b)]
+\(D^\alpha (\tau_x \widetilde{\phi}) = (-1)^{|\alpha|} \tau_x (\widetilde{D^\alpha \phi})\) 
+%\hfill \(\phi(x-y)\) \(\xrightarrow{\text{def}}\)  
+であるので, 
+\begin{align*}
+(D^\alpha u) \ast \phi (x) 
+&= (D^\alpha u)(\tau_x \widetilde{\phi}) 
+= (-1)^{|\alpha|} u(D^\alpha (\tau_x \widetilde{\phi})) \\
+&= u(\tau_x (\widetilde{D^\alpha \phi})) = (u \ast (D^\alpha \phi))(x),
+\end{align*}
+よって(b)の中辺と右辺は等しい
+%\(\  (D^\alpha u) \ast \phi = (u \ast D^\alpha \phi)\).\bigskip
+
+今\(e \in \mathbb{R}^n\); unit vectorとし,  \(r \in \mathbb{R} \setminus \{ 0\}\)について
+ $
+ \eta_r = \frac{1}{r} (\tau_0 - \tau_{re})
+ $
+ とする.  %\footnote{ここちょっとわからん. $ \eta_r =-\frac{1}{r} (\tau_0 - \tau_{-re})$とすれば, $\eta_r(\phi)(x) =\frac{\phi(x+re) - \phi(x)}{r}$で普通の微分が出るのでこっちの方がいいのでは？}
+ \[\eta_r(\phi)(x) = \frac{\phi(x) - \phi(x-re)}{r}
+ = \frac{\phi(x - re) - \phi(x)}{-r}
+ \]
+である.
+(a)より\(\eta_r(u \ast \phi) = u \ast (\eta_r(\phi)) \)であるので, 
+方向微分を考えることで, 
+\[\eta_r(\phi) \to D_e \phi \quad (r \to 0)\]
+が\(\mathcal{D}\)上で言える. 
+よって任意の\(x \in \mathbb{R}^n\)について, \(\mathcal{D}\)上で
+\[ \tau_x (\widetilde{\eta_r(\phi)}) \to \tau_x (D_e \phi) \quad (r \to 0) \]
+となる. 
+以上より$r=-t$にして
+\begin{align*}
+ &\lim_{t \to 0} \frac{(u \ast \phi)(x+te) - (u \ast \phi)(x)}{t}
+= \lim_{r \to 0} (\eta_{r}(u \ast \phi))(x)\\
+&= \lim_{r \to 0} u \ast (\eta_r(\phi))(x) 
+= \lim_{r \to 0} u(\tau_x \widetilde{(\eta_r(\phi))}) \\
+&= u(\tau_x \widetilde{(D_e \phi)})
+= (u \ast (D_e \phi))(x).
+\end{align*}
+これより議論を繰り返して\(u \ast \phi \in C^\infty\)と(b)の中辺と左辺は等しいことがわかる.
+
+% [page 8]
+
+[(c)] 任意の\(x \in \mathbb{R}^n\)について, 次が成り立つ
+\begin{itemize}
+\item \((u \ast (\phi \ast \psi))(x) 
+= \tau_{-x}((u \ast (\phi \ast \psi)))(0) 
+\underset{(a)}{=} (u \ast (\tau_{-x}(\phi \ast \psi)))(0)
+= (u \ast (\phi\ast \tau_{-x}\psi))(0) \)
+\item \( ((u \ast \phi) \ast \psi)(x) = \tau_{-x}(((u \ast \phi) \ast \psi))(0) 
+= (((u \ast \phi) \ast \tau_{-x}\psi))(0).\)
+\end{itemize}
+以上より \((u \ast (\phi \ast \psi))(0) = ((u \ast \phi) \ast \psi)(0).\)を示せば良い.
+
+\[
+(\widetilde{\phi \ast \psi})(t) 
+= \int_{\mathbb{R}^n} \phi(y) \psi(t-y) dy
+= \int_{\mathbb{R}^n} \phi(s-t) \psi(-s) ds 
+= \int_{\mathrm{Supp}\,\psi} \phi(s-t)\psi(-s) ds
+\]
+%\[= \int_{\mathrm{Supp}\,\psi} \phi(s-t)\psi(-s) ds.\]
+であるので, 
+\begin{equation}
+\label{eq-1-thm-H-2.10}
+ (u \ast (\phi \ast \psi))(0) 
+ = u\Big( \int_{\mathrm{Supp}\,\psi} \phi(s-t)\psi(-s) ds \Big)
+ =\int_{\mathrm{Supp}\,\psi} (u(\tau_s \widetilde{\phi})) \psi(-s) ds.
+\end{equation}
+
+さて, \(\int_{\mathrm{Supp}\,\psi} \phi(s-\cdot)\psi(-s) ds\) の部分をリーマン積分として解釈する. 
+今 \(r \in \mathbb{R}_{\geq 0}\)で \(\mathrm{Supp}\,\psi \subset [-r,r]^n\)となるものを一つ固定する. 
+任意の\( \ell \in \mathbb{Z}_{>0}\)と\(k = (k_1,\ldots,k_n) \in \{0,\ldots,\ell-1\}^n\)について
+\[
+\Delta_k := \prod_{i=1}^n \big[-r+2r\frac{k_i}{\ell}, \ -r+2r\frac{k_i+1}{\ell}\big].
+\]
+と定義する.
+% [page 9]
+ \(F_k(t) := \int_{\Delta_k} \phi(s-t) ds.\)とする. 
+ すると次が言える
+ \begin{itemize}
+ \item \(\mathrm{Supp}\,F_k \subset [-r,r]^n \setminus \mathrm{Supp}\,\phi,\) そして, $\mathrm{Supp}\,F_k $はコンパクトかつ \(\ell\) と \(k\)によらない. 
+ \item \( \ F_k \in C^\infty\)  なぜならば, 
+\(\ \mathrm{Supp}\,F_k\)コンパクトで \(\phi \in C^\infty\)であるので, 微分と積分が交換できるから. 特に\(D^\alpha F_k(t) = (-1)^{|\alpha|} \int_{\Delta_k} D^\alpha \phi(s-t) ds \Big)\).
+ \end{itemize}
+よって\(F_k \in \mathcal{D}\)である.
+これより, 中間値の定理を$n$回使うことで
+ある \( x_k \in \Delta_k\) であって, 
+\begin{equation}
+\label{eq-4-thm-H-2.10}
+F_k(t) = \phi(x_k - t) \cdot \Big(\tfrac{2r}{\ell}\Big)^n,
+\end{equation}
+となるものが存在する. よって
+\begin{equation}
+\label{eq-3-thm-H-2.10}
+\int_{\mathrm{Supp}\,\psi} \phi(s-t)\psi(-s)ds 
+= \lim_{\ell \to \infty} \sum_{k \in \{0,\ldots,\ell-1\}^n} \phi(x_k - t)\psi(-x_k)\Big(\tfrac{2r}{\ell}\Big)^n
+= \lim_{\ell \to \infty} \sum_{k \in \{0,\ldots,\ell-1\}^n} \psi(-x_k) F_k(t).
+\end{equation}
+よって, \( \mathrm{Supp}\,F_k\) は \(\ell, k\) に依らないコンパクト集合上に含まれていて,  
+コンパクト集合上での各点収束は一様収束が同じなので, $\mathcal{D}$上の収束と同じである. 
+つまり 
+\begin{equation}
+\label{eq-2-thm-H-2.10}
+\lim_{\ell \to \infty} \sum_k \psi(-x_k) F_k(t) 
+= \int_{\mathrm{Supp}\,\psi} \phi(s-t)\psi(-s) ds
+\quad
+\text{in $\mathcal{D}$}
+\end{equation}
+である.
+% [page 11]
+以上より
+\begin{align*}
+(u \ast (\phi \ast \psi))(0) 
+&\underset{\eqref{eq-1-thm-H-2.10}}{=} u\Big( \int_{\mathrm{Supp}\,\psi} \phi(s-t)\psi(-s) ds \Big) \\
+&\underset{\eqref{eq-2-thm-H-2.10}}{=}  u\Big( \lim_{\ell \to \infty} \sum_k \psi(-\chi_k) F_k(t) \Big) \\
+&\underset{\eqref{eq-3-thm-H-2.10}}{=} \lim_{\ell \to \infty} \sum_k \psi(-\chi_k) u(F_k(t))
+\end{align*}
+
+一方でリーマン積分の定義から, 
+\begin{align*}
+((u \ast \phi) \ast \psi)(0) 
+&\underset{\eqref{defn-H-2.7}}{=} \int_{\mathrm{Supp}\,\psi} (u(\tau_s \phi)) \cdot \psi(-s) ds\\
+&\underset{\eqref{eq-2-thm-H-2.10}}{=}\lim_{\ell \to \infty} \sum_k u(\tau_{x_k}\phi) \psi(-x_k) \Big(\tfrac{2r}{\ell}\Big)^n\\
+&= \lim_{\ell \to \infty} \sum_k u(\phi(x_k - t)) \psi(-x_k) \Big(\tfrac{2r}{\ell}\Big)^n \\
+&\underset{\eqref{eq-4-thm-H-2.10}}{=} \lim_{\ell \to \infty} \sum_k \psi(-x_k) u(F_k(t))\\
+\end{align*}
+よって
+\( (u \ast (\phi \ast \psi))(0) = ((u \ast \phi) \ast \psi)(0)\) がいえて(c)の主張もいえた. 
+\end{proof}
+
+\begin{rem}
+\ref{thm-H-2.10}の別証明
+% [page 12]
+\(G(s,t) := \phi(s-t)\psi(-s)\)
+とおくとある
+\( K \subset \mathbb{R}^n\) があって, 任意の \( s \in \mathbb{R}^n\)について
+\(\mathrm{Supp}\,(t \mapsto G(s,t)) \subset K\)である. 
+よって\ref{thm-H-2.4}から
+ある\( f \in C^0, \ \alpha\)とmulti-index $\alpha$があって
+\[
+u\Big(\int_{\mathbb{R}^n} G(s,t) ds\Big)
+= \int_{\mathbb{R}^n} (-1)^{|\alpha|} f \cdot D^\alpha \Big(\int_{\mathbb{R}^n} G(s,t) ds\Big) dt,
+\]
+\[ 
+u(G(s,t)) = \int_{\mathbb{R}^n} (-1)^{|\alpha|} f \cdot D^\alpha G(s,t) \, dt.
+\]
+となるものが存在する. このサポートがコンパクトなので, 微分と積分を交換するためいえた.
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}\cite[Definition 6.31]{Rud}
+\label{defn-H-2.11}
+%\textbf{Def 11 (approximate identity, [Ru. 6.31 Def])}  
+$h_j \in \mathcal{D}$の列\(\{ h_j \}_{j \geq 1}\)が"approximate identity" on \(\mathbb{R}^n\) を持つとは, ある\(h \in \mathcal{D}\)で\(h \geq 0\) かつ \(\int_{\mathbb{R}^n} h(x) dx = 1\)となるものがあって, 任意の$j \in \N$について
+\[
+h_j(x) = j^n h(jx) \quad (j=1,2,3,\ldots)
+\]
+が成り立つこととする. 
+\end{defn}
+\end{tcolorbox}
+% [page 1]
+%20251003
+\begin{tcolorbox}[mybox]
+\begin{lem}%\cite[Definition 6.31]{Rud}
+\label{lem-H-2.12}
+\(\{h_j\}_{j \ge 1}\) "approximate identity" on \(\mathbb{R}^n\)を持つとする.  
+\(f \in C^0\)について, 任意の$t  \in \R^n$ について
+ $$
+ \lim_{j \to \infty} (f * h_j)(t) = f(t)
+ $$
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+任意の \( j \in \N\)について\(K_j := \tfrac{1}{j} \, \Supp h\)とおくと
+\[
+(f \ast h_j)(t) = (h_j \ast f)(t) :
+= \int_{\R^n} (j^n h(jx)) \cdot f(t-x)\, dx
+\]
+今"approximate identity" より
+\(\int_{\R^n} j^n h(jx)\, dx = \int_{\R^n} h(y)\, dy = 1.\) よって
+\[
+m_j :=\inf \{ f(t-x) \mid x \in K_j \} \le (f \ast h_j)(t) \le \sup \{ f(t-x) \mid x \in K_j \}=:M_j
+\]
+よって
+$$
+m_j=
+\int_{\R^n} (j^n h(jx))\cdot m \, dx
+\le (f \ast h_j)(t) \le 
+\int_{\R^n} (j^n h(jx))\cdot M \, dx
+=M_j
+$$
+$f$は連続なので, $\lim_{j \to \infty}M_j-m_j =0$よって
+%Since both hand sides go to \(f(t)\) (\(j \to \infty\)), \\
+%we have 
+\(\lim_{j \to \infty} (f \ast h_j)(t) = f(t).\)
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}\cite[Theorem 6.32]{Rud}
+\label{lem-H-2.13}
+%\textbf{Thm 13} \; ([Ru. 6.32 Thm]) \\
+\(\{h_j\}_{j \ge 1}\) "approximate identity" on \(\mathbb{R}^n\)を持つとする.  
+\(\Phi \in \mathcal{D}, \; u \in \mathcal{D}'\). \\
+
+次が成り立つ
+\begin{enumerate}[label=$(\alph*)$]
+\item  \(\lim_{j \to \infty} \Phi * h_j = \Phi \) in \( \mathcal{D} \)
+\item \(\lim_{j \to \infty} u * h_j = u\) in \( \mathcal{D}'\)
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+
+[(a)]
+$\mathrm{Cone}(\Supp h):=\{sx | x \in \mathrm{Supp}(h), s \in [0,1] \}$とする. これは$h \in \mathcal{D}$よりコンパクトである. 
+$\Supp h_j  = \frac{1}{j}\Supp h \subset \mathrm{Cone}(\Supp h)$である.
+よって任意の\( j \in \N\)について
+ \[
+ \Supp(\Phi \ast h_j) \subset \Supp \Phi + \Supp h_j \subset \Supp \Phi + \mathrm{Cone}(\Supp h).
+ \]
+ である.( \(x \in \Supp \Phi\) かつ\(t-x \in \Supp h_j\)ならば, \(\Phi(x)h_j(t-x) \neq 0\) であることに注意)
+よって任意の\( j \in \N\), multi-index\( \alpha\), $\Phi \in \mathcal{D}$のサポートがコンパクトなので, 
+\[
+\Supp (D^\alpha (\Phi \ast  h_j)) 
+= \Supp (D^\alpha \Phi * h_j) 
+\subset \Supp \Phi + \mathrm{Cone}(\Supp h)
+\]
+となる. 
+任意の$ t \in \Supp \Phi + \mathrm{Cone}(\Supp h)$について, \ref{lem-H-2.12}より
+ \(\lim_{j \to \infty} (\Phi * h_j)(t) = \Phi(t)\) となるので
+ $\mathcal{D}$の収束がいえる. 
+
+[(b)]
+\(\{h_j\}_{j \ge 1}\) "approximate identity" on \(\mathbb{R}^n\)を持つので, 
+ \(\{\widetilde{h}_j\}_{j \ge 1}\)も同じ性質を持つ. 
+ よって
+\begin{align*}
+u(\Phi) 
+&\underset{\ref{lem-H-2.12}}{=} \lim_{j \to \infty} u(\widetilde{h_j} \ast \Phi) \underset{\ref{thm-H-2.10} (b)}{=} \lim_{j \to \infty} (u \ast \widetilde{\widetilde{h}_j  \ast \Phi})(0) \\
+&= \lim_{j \to \infty} (u \ast (h_j \ast \widetilde{\Phi}))(0) 
+\underset{\ref{thm-H-2.10} (c)}{=}\lim_{j \to \infty} ( (u \ast h_j) \ast \widetilde{\Phi})(0) \\
+&= \lim_{j \to \infty} \int_{\R^n} (u \ast h_j)(s) \, \widetilde{\Phi}(-s) \, ds 
+= \lim_{j \to \infty} \int_{\R^n} (u \ast h_j)(s) \, \Phi(-s) \, ds \\
+&= \lim_{j \to \infty}  \Lambda_{u \ast h_j}(\Phi).
+\end{align*}
+が成り立つので, いえた. (\( \mathcal{D}'\)の位相は各点収束位相である)
+
+\end{proof}
+
+% [page 3]
+
+\begin{tcolorbox}[mybox]
+\begin{defn}\cite[Definition 1.44]{Rud}
+\label{defn-H-2.14}
+%\textbf{Def 14 (top. on \(C^0(\Omega)\), [Ru. I.44])}
+\(\Omega \subset \R^n\) open,  
+\(C^0(\Omega)\) \(\Omega\)上の連続関数の集合とする. \\
+
+\(C^0(\Omega)\)の位相を次で定義する:
+ \[K_1 \subset K_2 \subset \cdots \subset K_n \subset \cdots \subset \Omega\]
+ というコンパクト集合の列を一つとる. 
+ \ref{lem-M-7.2}によって,  \(n=1,2,\cdots\)について, 
+\[
+V_n := \{ f \in C^0(\Omega) \mid \sup_{x \in K_n} |f(x)| < \tfrac{1}{n} \}
+\]
+とおくと,  \(V_n \, (n=1,2,\cdots)\) が$0$のlocal baseとなる\(C^0(\Omega)\) の位相が存在する. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.33]{Rud}
+\label{thm-H-2.15}
+%\textbf{Thm 15 ([Ru. 6.33 Thm])}
+\begin{enumerate}[label=$(\alph*)$]
+\item \(u \in \mathcal{D}'\) について, \(L : \mathcal{D} \to C^\infty\)を
+\[
+L(\varphi) := u \ast \varphi 
+\]
+%\quad (\in C^\infty \;\; \text{by Thm 10(b)}).
+とする. ($u \ast \varphi  \in C^\infty$は\ref{thm-H-2.10}より)
+この時\(L\) は連続な線型写像で任意の\(\varphi \in D\) と \(x \in \R^n\)について
+\begin{equation}
+\label{eq-thm-H-2.15}
+\tau_x(L(\varphi)) = L(\tau_x \varphi) 
+\end{equation}
+\item 逆に連続な線型写像\(L : D \to C^0(\R^n)\)が(\ref{eq-thm-H-2.15})を満たすならば, 
+\(u \in \mathcal{D}'\) で \(L(\varphi) = u \ast \varphi\)となるものがただ一つ存在する. 
+特に \(\Im(L) \subset C^\infty\).
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+
+[(a)]
+(\ref{eq-thm-H-2.15})は\ref{thm-H-2.10}(a)より. 
+線形も明らか.  よって\(L\)が連続を示せば良い.
+$C^\infty$はlocally convexなので, \ref{prop-M-8.9}より
+任意のコンパクト集合$K \subset \R^n$について$L|_{\mathcal{D}_{K} } : \mathcal{D}_{K} \to C^\infty$が連続を言えば良い.
+
+\(\mathcal{D}_{K}\) と \(C^\infty\) は\(F\)-space (\ref{defn-M-1.4}参照)なのでclosed graph theorem (\ref{thm-H-closedgraph})より
+$$
+\{ (x, L x) \in \mathcal{D}_{K}\} \subset \mathcal{D}_{K} \times C^\infty
+$$
+がclosedを示せば良い. 
+よって
+\begin{itemize}
+\item \(\varphi_i \to \varphi\) in \(\mathcal{D}_{K}\) かつ
+\item \(L(\varphi_i) = u \ast  \varphi_i \to f  \) in  \(C^\infty\)
+\end{itemize}
+が成り立つ時に,  \(u \ast \varphi = f\)が成り立つことを示せば良い. 
+
+これは$x \in \R^n$について
+\[
+f(x) 
+= \lim_{i \to \infty} (u \ast \varphi_i)(x)
+\underset{\ref{defn-H-2.7}}{=} \lim_{i \to \infty} u(\tau_x \widetilde{\varphi_i})
+= u \left( \lim_{i \to \infty} \tau_x \widetilde{\varphi_i} \right)
+\underset{\text{$\tau_x \widetilde{\varphi_i} \to \tau_x \widetilde{\varphi}$ in $\mathcal{D}$}}{=} u(\tau_x \varphi) 
+= (u \ast \varphi)(x) 
+\]
+が成り立つのでいえた.
+
+[(b)]
+ \(u :\mathcal{D} \to \C\)を \(u(\varphi) := (L(\varphi))(0)\)で定める. 
+
+まず\(u \in \mathcal{D}'\)を示す. 
+\(u\) が線形かつ
+\(u(\varphi) = \mathrm{ev}_0 \circ L \circ \widetilde{\varphi}\)である.
+以上より
+\[
+\widetilde{\cdot} :\mathcal{D} \to \mathcal{D}
+\quad
+\text{and}
+\quad
+\mathrm{ev}_0: C^0(\R^n) \to \C
+\]
+が連続を示せば良い. 
+ \(\widetilde{\cdot}\)が連続は明らか.
+ $\mathrm{ev}_0$の連続性も$0 \in C^0(\R^n)$で連続を示せばよく(平行移動で不変だから), これは
+  \(0 \in U \subset \C\) openについて, ある\(N \in \Z_{\ge 0}\) があって, 
+  \(\mathrm{ev}_0(V_n) \subset U\) となることより言える. 
+  よって\(u\) は連続でいえた.
+
+次に\( \varphi \in \mathcal{D}\)について\(L(\varphi) = u \ast \varphi\)を示す.
+(\ref{eq-thm-H-2.15})より
+\begin{equation}
+\label{eq2-thm-H-2.15}
+(L(\varphi))(x) 
+\underset{\text{def}}{=} (\tau_{-x}(L(\varphi)))(0)
+\underset{(\ref{eq-thm-H-2.15})}{=}  (L(\tau_{-x} \varphi))(0) 
+\underset{\text{def}}{=}  u(\widetilde{\tau_{-x}\varphi})
+= u(\tau_x \widetilde{\varphi}) 
+\underset{\ref{defn-H-2.7}}{=}  (u \ast \varphi)(x).
+\end{equation}
+よっていえた.
+
+このような \(u\)がただ一つであることを示す.
+\(u, u' \in D'\) で \(L(\varphi) = u \ast \varphi = u' \ast\varphi\)であるとすると
+\[
+(L(\varphi))(0) = (u \ast \varphi)(0) = u(\widetilde{\varphi}).
+\]
+となる. よって同様にして\(L(\varphi)(0) = u'(\widetilde{\varphi}).\)であるので言えた. 
+\end{proof}
+
+closed Graph Theoremとは以下のものである.
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 2.15]{Rud}
+\label{thm-H-closedgraph}
+$\Gamma : X \to Y$が$F$ space上の線型写像とする,
+$G:= \{ (x, \Gamma x) \in X\} \subset X \times Y$が閉集合ならば, $\Gamma$は連続. 
+\end{thm}
+\end{tcolorbox}
+
+
+
+
+
+% [page 1]
+
+\begin{tcolorbox}[mybox]
+\begin{defn}\cite[Definition 6.34]{Rud}
+\label{defn-H-3.1}
+%\textbf{Def 1 ([Ru, 6.34 Def])}
+
+\( u \in \mathcal{D}' \) で,  \(\mathrm{Supp}\, u \)がコンパクトとする. 
+\ref{thm-H-25}, \cite[Theorem 6.32]{Rud}により
+ある連続線型汎函数
+\[
+\widetilde{u} \in (C^\infty)':= \{\varphi : C^{\infty} \to \C \mid \text{$\varphi$ 連続線型} \}
+\]
+があって,   \( \widetilde{u}|_{\mathcal{D}} = u\)となるものがある. 
+(以下, \(\widetilde{u}\) も \(u\)とかく.)
+
+このとき任意の
+\( \varphi \in C^\infty \)について,  \( u \ast \varphi : \mathbb{R}^n \to \mathbb{C} \) を
+\[
+ (u \ast \varphi)(x) := u(\tau_x \widetilde{\varphi}) 
+\]
+として定義する. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}[\(\widetilde{u}\)の構成のおさらい]
+\label{rem-H-3.2}
+\( u \in \mathcal{D}' \) で,  \(\mathrm{Supp}\, u \)がコンパクトとする. 
+\(\widetilde{u}\)の構成は次のとおり(詳しくは\ref{thm-H-25}参照のこと.)
+
+ \(\psi \in \mathcal{D}'\) で, \(\psi|_{\mathrm{Supp}\, u} \equiv 1\)なものをとる.
+すると任意の\( f \in C^\infty,\)について. \(u(\psi f)\) は \(\psi\)に依存しないことが言える.
+よって,  
+\[
+\widetilde{u}(f) := u(\psi f).
+\]
+と定める. \ref{thm-H-25}, \cite[Theorem 6.32]{Rud} から次が言える.
+
+\begin{itemize}
+\item[(a)] 任意の\( f \in C^\infty\)について.  \(\mathrm{Supp}\, f \cap \mathrm{Supp}\, u = \varnothing\) ならば \(\widetilde{u}(f) = 0.\)
+特に\(f, g \in C^\infty\)で\( f = g \)が\(\mathrm{Supp}\, u\)上で成り立つならば, 
+\(\widetilde{u}(f) = \widetilde{u}(g)\)が成り立つ.
+\item[(b)] \(\mathrm{Supp}\, u = \varnothing\) ならば\(\widetilde{u} = 0.\)
+\end{itemize}
+\end{rem}
+
+% [page 2]
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.35]{Rud}
+\label{thm-H-3.3}
+% [page 2]\textbf{Thm 3 ([Ru, 6.35 Thm])}
+\( u \in \mathcal{D}' \) で,  \(\mathrm{Supp}\, u \)がコンパクトとする. 
+\( \varphi \in C^\infty \), \( \psi \in \mathcal{D} \)
+について次が成り立つ. 
+\begin{enumerate}[label=$(\alph*)$]
+\item \( \tau_x(u \ast \varphi) = (\tau_x u) \ast \varphi = u \ast(\tau_x \varphi) \quad (\forall x \in \mathbb{R}^n) \)
+\item \( u \ast\varphi \in C^\infty \) and \( D^\alpha (u \ast \varphi) = (D^\alpha u) \ast\varphi = u \ast (D^\alpha \varphi) \),
+\item \( u \ast \psi \in \mathcal{D} \),
+\item \( u \ast (\varphi * \psi) = (u \ast \varphi) \ast \psi = (u \ast \psi) \ast \varphi \)
+\end{enumerate}
+\end{thm}
+
+\end{tcolorbox}
+\( \varphi \in \mathcal{D} \)の場合は, (サポートコンパクトの仮定なしに), \ref{thm-H-2.10}で言えている. 
+そのため証明もコンパクトサポートの場合に帰着させる.
+\bigskip
+
+\begin{proof}
+
+(a)と(b)は\ref{thm-H-2.10}, \cite[Theorem 6.30]{Rud}と同じ
+((a)は定義に基づいた計算, (b)も同じ)
+
+[(c)]
+非自明なのはサポートがコンパクトなること.
+ \[
+ \mathrm{Supp}(\tau_x \widetilde{\psi}) 
+ = \overline{ \{ t \in \R^n \mid \tau_x \widetilde{\psi}(t)=\psi(x-t)=0\}} =
+ \{x\} - \mathrm{Supp}\, \psi.
+ \]
+である. 
+ただし$ \{x\} - \mathrm{Supp}\psi:= \{ x - t \mid t\in \mathrm{Supp}\,\psi\}$とする. 
+よって$x \in \R^n$について,
+\[
+ \mathrm{Supp}\, u \cap ( \{x\} - \mathrm{Supp}\, \psi) = \varnothing
+ \Rightarrow 
+\ (u \ast  \psi)(x) = u(\tau_x \widetilde{\psi}) = 0 
+\]
+である. 以上より
+\( \mathrm{Supp}(u \ast  \psi) \subset \mathrm{Supp}\, u + \mathrm{Supp}\, \psi \)である.
+よって$\mathrm{Supp}(u \ast  \psi) $はコンパクトであり. \( u \ast \psi \in \mathcal{D}\)である. 
+
+[(d)]
+示すことは, 任意の$x \in \R^n$について
+\[(u \ast (\varphi \ast \psi))(x) = ((u \ast \varphi) \ast \psi )(x) = ((u \ast \psi) \ast \varphi)(x) \]
+である. 
+まず$x=0$に帰着できることを示す. 
+これは\ref{thm-H-2.10}(c)の証明と同じである. 
+実際\ref{thm-H-2.10}(c)において
+\begin{itemize}
+\item \((u \ast (\varphi \ast \psi))(x) 
+= \tau_{-x}((u \ast (\varphi \ast \psi)))(0) 
+= (u \ast (\tau_{-x}(\varphi \ast \psi)))(0)
+= (u \ast (\varphi\ast \tau_{-x}\psi))(0) \)
+\item \( ((u \ast \varphi) \ast \psi)(x) = \tau_{-x}(((u \ast \varphi) \ast \psi))(0) 
+= (((u \ast \varphi) \ast \tau_{-x}\psi))(0).\)
+\end{itemize}
+を示した. (これは定義に基づいた計算なので, 今の状況でも成り立つ)
+また$(\tau_{-x} \psi)(-t):=\psi(x - t)$であるので
+\[
+((u \ast \varphi) \ast \psi)(x)
+\underset{\text{def}}{=} \int_{\mathbb{R}^n} (u \ast \varphi)(t) \cdot \psi(x - t)\, dt
+= \int_{\mathbb{R}^n} (u \ast \varphi)(t)\cdot  (\tau_{-x} \psi)(-t)\, dt
+= (u \ast (\varphi \ast (\tau_{-x} \psi)))(0).
+\]
+となる.
+よって, \(\varphi\) , \(\psi\) を \(\tau_{-x} \varphi\) , \(\tau_{-x} \psi\) に適宜置き換えることで, 
+ \(x = 0\)を仮定して良い.
+ 
+以下, 証明のために次を定義する
+\begin{itemize}
+\item[(1)]  \(W \subset \mathbb{R}^n\)をbounded open で\(W = -W \supset \mathrm{Supp}\, u\)となるもの
+\item[(2)]  \(W' \subset \mathbb{R}^n\)を bounded open \(W' = -W'\) かつ \(W' \supset W + \mathrm{Supp}\, \psi\)となるもの.
+\item[(3)] \(\varphi_0 \in \mathcal{D}\)で,  \(W'\)上で\(\varphi_0 = \varphi\) となるもの. この時$W' = -W'$上で \(\widetilde{\varphi_0} = \widetilde{\varphi}\)である. 
+\end{itemize}
+
+任意の \(x \in W\)について, 
+\begin{equation}
+\label{eq-thm-H-3.3}
+t \notin \{x\} - \mathrm{Supp}\, \psi
+\Rightarrow
+\psi(x - t) = 0
+ \end{equation}
+ よって
+\[
+ (\varphi \ast \psi)(x)
+\underset{\text{def}}{=} \int_{\mathbb{R}^n} \varphi(t)\, \psi(x - t)\, dt
+\underset{(\ref{eq-thm-H-3.3})}{=} \int_{x - \mathrm{Supp}\, \psi} \varphi(t)\, \psi(x - t)\, dt
+\underset{\text{(3)}}{=}  \int_{x - \mathrm{Supp}\, \psi} \varphi_0(t)\, \psi(x - t)\, dt
+\underset{}{=} (\varphi_0 \ast \psi)(x).
+\]
+となる. 
+\( W = -W \)となるので, $W$上で \( \varphi \ast \psi = \varphi_0 \ast \psi \)となる. 
+\(-W \supset \mathrm{Supp}\, u\)より, 
+\begin{equation}
+\label{eq3-thm-H-3.3}
+(u \ast (\varphi \ast \psi))(0) 
+\underset{\ref{rem-H-3.2}(a)}{=} 
+(u \ast (\varphi_0 \ast \psi))(0).
+\end{equation}
+一方で
+\[
+((u \ast \varphi) \ast \psi)(0)
+\underset{}{=}
+ \int_{\mathbb{R}^n} u(\tau_t \widetilde{\varphi}) \psi(-t) \, dt
+\underset{(\ref{eq-thm-H-3.3})}{=}
+  \int_{-\mathrm{Supp}\, \psi} 
+ u(\tau_t \widetilde{\varphi}) \psi(-t) \, dt.
+\]
+\(W'\) と\(\varphi_0\)の構成から
+任意の\( t \in \mathrm{Supp}\, \psi\)について
+\(\varphi|_{\{ -t\} + W} \equiv \varphi_0|_{ \{ -t\} + W}\)である. 
+よって
+$\tau_t \widetilde{\varphi}|_W \equiv \tau_t \widetilde{\varphi_0}|_W$である.
+以上より
+\begin{equation}
+\label{eq4-thm-H-3.3}
+ ((u \ast \varphi) \ast \psi)(0) 
+ \underset{\ref{rem-H-3.2}}{=} 
+  ((u \ast \varphi_0) \ast \psi)(0).
+\end{equation}
+(c)の証明で \(\mathrm{Supp}(u \ast \psi) \subset \mathrm{Supp}\, u + \mathrm{Supp}\, \psi,\)であることがわかっているので,
+\begin{align}
+\begin{split}
+\label{eq5-thm-H-3.3}
+((u \ast \psi) \ast \varphi)(0)
+&= \int_{\mathbb{R}^n} (u \ast \psi)(t) \varphi(-t) \, dt \\
+&\underset{(c)}{=} \int_{\mathrm{Supp}\, u + \mathrm{Supp}\, \psi} (u \ast \psi)(t) \varphi(-t) \, dt \\
+&\underset{\text{(3)}}{=}  \int_{\mathrm{Supp}\, u + \mathrm{Supp}\, \psi} (u \ast \psi)(t) \varphi_0(-t) \, dt
+= ((u \ast \psi) \ast \varphi_0)(0).
+\end{split}
+\end{align}
+よって(\ref{eq3-thm-H-3.3})-(\ref{eq5-thm-H-3.3})により, $\varphi$を$\varphi_0$に取り替えることで,  $\varphi \in \mathcal{D}$を仮定して良い.
+その場合は, \ref{thm-H-2.10}, \cite[Theorem 6.30 (c)]{Rud}で言えている. 
+\end{proof}
+
+% [page 5]
+
+\begin{tcolorbox}[mybox]
+\begin{defn}\cite[Definition 6.36]{Rud}
+\label{defn-H-3.4}
+%\textbf{Def 4 ([Ru, 6.36 Def])}
+\( u, v \in \mathcal{D}' \) で
+\(\mathrm{Supp}\, u\) または \(\mathrm{Supp}\, v\) がコンパクトであるとする. 
+このとき
+ \( L : \mathcal{D} \to C^\infty \)を
+\[
+L(\varphi) := u \ast (v \ast \varphi) \quad (\varphi \in \mathcal{D}).
+\]
+として定義する. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+\label{rem-H-3.5}
+%\textbf{Rem 5}
+ \(L\) は well-definedである. 
+ もし\(\mathrm{Supp}\, u\) がコンパクトならば, \(u \in (C^\infty)'\) である. 一方\ref{thm-H-2.10}より$v \ast \varphi \in C^{\infty}$なのでwell-definedである. 
+もし \(\mathrm{Supp}\, v\)がコンパクトならば, \ref{thm-H-3.3}から \(v \ast \varphi \in \mathcal{D}\)なので, well-defined.
+
+また任意の \(x \in \mathbb{R}^n\)について, \(\tau_x L = L \tau_x\)である.
+これは
+$$
+(\tau_x L )(\varphi) 
+:=\tau_x (L (\varphi))
+= \tau_x ( u \ast (v \ast \varphi))
+\underset{\ref{thm-H-2.10}, \ref{thm-H-3.3}}{=}
+u \ast (v \ast (\tau_x \varphi))
+=
+L(\tau_x \varphi)
+=:
+(L\tau_x  )(\varphi) 
+$$
+となるからである. 
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-H-3.6}
+%\textbf{Lem 6}
+汎関数 \( \mathcal{D} \to \C \)を\( \varphi \mapsto (L(\widetilde{\varphi}))(0) \) で定まると, これはdistributionである. 
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+線形は自明. 連続であることを示せば良い
+
+この汎函数は
+ \((\,\widetilde{\,}\,): \mathcal{D} \to \mathcal{D}\),
+\(L: \mathcal{D} \to C^\infty\) , \(\mathrm{ev}_0 : C^\infty \to \mathbb{C}.\)
+の合成である.
+よって,  \((\,\widetilde{\,}\,)\) が連続より.
+ \(\mathrm{ev}_0 \circ L\) が連続を言えば良い.
+ 
+ [1. \(\mathrm{Supp}\, v\) コンパクトの場合]
+\ref{thm-H-2.15}より, \(\varphi \mapsto v \ast \varphi\)は連続. 
+また, \ref{thm-H-3.3}(c)から
+%v \ast \varphi \in \mathcal{D}_{\mathrm{Supp}\, v + \mathrm{Supp}\, \varphi} \subset \mathcal{D}\]
+ $v \ast \varphi  \in \mathcal{D}$. 
+よって\ref{thm-H-2.15}(a)より \(L \)は連続. 
+そして, \ref{thm-H-2.15}の証明から \(\mathrm{ev}_0 \)は連続. よってOK.
+
+ [2. \(\mathrm{Supp}\, u\) コンパクトの場合]
+\(\mathrm{ev}_0 \circ L\) は次の二つの合成である.
+\begin{itemize}
+\item
+\(\mathcal{D} \ni \varphi \mapsto v \ast \varphi \in C^\infty \)
+これは\ref{thm-H-2.15}(a)より連続. 
+\item\(
+C^\infty \ni f \mapsto u(\widetilde{f}) \in \mathbb{C},\) これは\ref{thm-H-25}より連続. 
+\end{itemize}
+以上より\(\mathrm{ev}_0 \circ L\)は連続である. 
+\end{proof}
+%補足: 上の証明は本質的には場合分けなしでよい.
+
+\begin{tcolorbox}[mybox]
+\begin{defn}\cite[Definition 6.36]{Rud}
+\label{defn-H-3.7}
+%\textbf{Def 7 (cf. [Ru, 6.36 Def])}
+\( u, v \in \mathcal{D}' \) で
+\(\mathrm{Supp}\, u\) または \(\mathrm{Supp}\, v\) がコンパクトであるとする. 
+\( u \ast v : \mathcal{D} \to \mathbb{C} \) を, 
+\[
+(u \ast v)(\varphi) := (L(\widetilde{\varphi}))(0) \quad (\varphi \in \mathcal{D}).
+\]
+として定義する. 
+\ref{lem-H-3.6}より \( u \ast v \in \mathcal{D}'\)である. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}%\cite[Definition 6.36]{Rud}
+\label{rem-H-3.8}
+%\textbf{Rem 8}
+\ref{thm-H-2.15}(b)の議論から, \(u \ast v\) は
+\[
+(u \ast v) \ast \varphi = L(\varphi) \quad \text{for } \forall \varphi \in \mathcal{D}.
+\]
+を満たす唯一のdistributionである. 
+
+\begin{proof}
+$\Lambda$を$\Lambda\ast \varphi = L(\varphi) $となる超関数とする時, 
+\begin{align}
+\begin{split}
+\label{eq-rem-H-3.8}
+(\Lambda \ast \varphi)(x)
+\underset{\text{def}}{=} \Lambda(\tau_x \widetilde{\varphi})
+=\Lambda(\widetilde{ \tau_{-x} \varphi})
+\underset{\ref{defn-H-3.7}}{=} L(\tau_{-x} \varphi)(0) \underset{\ref{rem-H-3.5}}{=}
+\tau_{-x} L( \varphi)(0) \\
+\end{split}
+%&= L( \varphi)(x) =((u \ast v) \ast \varphi)(x)
+\end{align}
+以上より
+$$
+\Lambda (\widetilde{\varphi})
+\underset{\text{def}}{=}
+(\Lambda \ast \varphi)(0)
+\underset{\ref{eq-rem-H-3.8}}{=}
+L( \varphi)(0)
+=((u \ast v) \ast \varphi)(0)
+\underset{\text{def}}{=}
+(u \ast v)(\widetilde{\varphi})
+$$
+となり$\Lambda=u \ast v$となる. 
+\end{proof}
+\end{rem}
+
+% [page 7]
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.37]{Rud}
+\label{thm-H-3.7}
+%\textbf{Thm 9 ([Ru, 6.37 Thm])}
+以下\(\Lambda \in \mathcal{D}'\)について,  \( S_\Lambda := \mathrm{Supp}\, \Lambda \) と略記する. 
+
+\( u, v, w \in \mathcal{D}' \)について次が成り立つ. 
+\begin{enumerate}[label=$(\alph*)$]
+\item \(S_u\) か \(S_v\) がcptならば,  \(u \ast v = v \ast u.\)
+\item\(S_u\) か \(S_v\) がcptならば,  \(S_{u \ast v} \subset S_u + S_v.\)
+\item  \(S_u, S_v, S_w\) のどれか二つがcptならば,  \((u \ast v) \ast w = u \ast (v \ast w).\)
+\item 任意のmulti-index\( \alpha\)について, 
+\[
+D^\alpha u = (D^\alpha \delta) \ast u
+\]
+である. ここで \(\delta\) はDiracの超関数\(\left(\delta(f) :=  f(0)\right).\)とする. 
+特に\(u = \delta \ast u\)である. 
+\item \(S_u\) か \(S_v\) がcptならば, 任意のmulti-index\( \alpha\)について, 
+\[
+D^\alpha (u \ast v) = (D^\alpha u) \ast v = u \ast (D^\alpha v).
+\]
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+
+[(a)]\(\varphi, \psi \in \mathcal{D}\)について, 
+\[
+(u \ast v) \ast (\varphi \ast \psi)
+\underset{\ref{rem-H-3.8}, \ref{defn-H-3.4}}{=} u \ast (v \ast (\varphi \ast \psi))
+\underset{\ref{thm-H-3.3}(d)}{=} u \ast ((v \ast \varphi) \ast \psi)
+\underset{\ref{thm-H-3.3}(d)}{=} u \ast (\psi \ast (v \ast \varphi))
+\]
+\end{proof}
+
+\end{document}
