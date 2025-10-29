@@ -23,6 +23,13 @@
 - [1 + √2](https://masataka123.github.io/blog3/sub6/19_1+sqrt2/)
 - [宅配便の箱](https://masataka123.github.io/blog3/sub6/20_yuubin/)
 
+## いちょう祭まちかね祭の展示用
+いちょう祭まちかね祭での数学科の展示, [まちかね山の数学教室](http://www.math.sci.osaka-u.ac.jp/event/machikaneyama/)
+で用いたもの. 上のパズルをもう少し簡単にした.
+
+- [A3ポスター用](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
+- [A4配布用](https://masataka123.github.io/blog3/pdf/20251003_current_seminar/gakusai_A4.pdf)
+
 ## 数学パズルの引用文献
 せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)
 これらの本を読んだり動画を見たりしたら, なんか賢くなった気がする. そーなのかー
