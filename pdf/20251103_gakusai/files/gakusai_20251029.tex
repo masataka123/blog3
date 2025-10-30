@@ -142,112 +142,15 @@
 %% \title[タイトルの略称]{タイトル}
 
 
+% 影もグラデーションも使わない block に
+\setbeamertemplate{blocks}[default]
+\setbeamercolor{block title}{fg=white,bg=blue!70!black}
+\setbeamercolor{block body}{bg=blue!7} % 薄色の単色
+% （影を使っているなら）↓も併用
+% \setbeamertemplate{blocks}[rounded][shadow=false]
+
+
 \begin{document}
-
-
-\begin{frame}
-\frametitle{コイン 1}
-テーブル上に10個の硬貨が一列に並んでいる. 
-その硬貨の額は1円か5円か10円である. 
-
-あなたと私の二人で次のルールの下, 以下のゲームを行う.
-
- \begin{block}{ルール1}
-\begin{itemize}
-\item 列のうち左端か右端の硬貨を取る. その後次の人に手番をわたす.
-\item とった硬貨の総額が多い方が勝ち. 同じであれば引き分け. 
-\end{itemize}
-   \end{block}
-
-ゲームに"負けたくない"あなたなら先手・後手どちらを選べば良いだろうか?
-またその際どのような戦略を取れば良いだろうか?
-\end{frame}
-
-
-\begin{frame}
-\frametitle{コイン 2}
-テーブル上に25個の1円玉がある.
-あなたと私の二人で次のルールの下, 以下のゲームを行う.
-
- \begin{block}{ルール}
-\begin{itemize}
-\item テーブルの上の1円玉から, 1枚か2枚か3枚のコインを取る. その後次の人に手番をわたす.
-\item 最後の1円玉を取った人が負け.
-\end{itemize}
-   \end{block}
-
-ゲームに"負けたくない"あなたなら先手・後手どちらを選べば良いだろうか?
-またその際どのような戦略を取れば良いだろうか?
-
-\end{frame}
-
-\begin{frame}
-\frametitle{コイン 2'}
-テーブル上に25個の1円玉がある.
-あなたと私の二人で次のルールの下, 以下のゲームを行う.
-
- \begin{block}{ルール}
-\begin{itemize}
-\item テーブルの上の1円玉から, \underline{1枚か3枚か4枚}のコインを取る. その後次の人に手番をわたす.
-\item 最後の1円玉を取った人が負け.
-\end{itemize}
-   \end{block}
-
-ゲームに"負けたくない"あなたなら先手・後手どちらを選べば良いだろうか?
-またその際どのような戦略を取れば良いだろうか?
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{コイン 3}
-1円玉が表向きに$5 \times 5$の正方形に並んでいる. 次の操作を考える. 
- \begin{block}{操作}
-\begin{itemize}
-\item 縦か横に連続する3枚の1円玉を同時にひっくり返す.
-\end{itemize}
-   \end{block}
- この操作を何回かして全ての1円玉を裏向きにできるか?
-\end{frame}
-
-\begin{frame}
-\frametitle{$1 + \sqrt{2}$}
-$(1 + \sqrt{2})^{2015}$の小数第100位を求めよ.
-\end{frame}
-
-
-\begin{frame}
-\frametitle{$11111\cdots $}
-$p$を2や5でない素数とする. 
-$11111\cdots 111$という1が何個か並んだ形の$p$の倍数が存在することを示せ.
-
-\vspace{20pt}
-例えば...
-\begin{itemize}
-  \item $p=3$の場合は111は3の倍数.
-  \item $p=7$の場合は111111は7の倍数.
-  \item $p=11$の場合は11は11の倍数.
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{ドブル}
-7色(赤, 橙, 黄, 緑, 青, 藍, 紫) のペンと7枚のカードある. 次のルールを考える.
-\begin{enumerate}
-    \setlength{\parskip}{0cm} 
-  \setlength{\itemsep}{0cm} 
-\item どのカードにも相異なる3 色の$\bullet$印がある.
-\item どの2 枚のカードを取っても, 1 つだけ共通する色の$\bullet$印がある.
-\end{enumerate}
-上のルール2 つを満たすように色ペンを使ってカードに$\bullet$印を書くことはできるだろうか?
-
-\vspace{20pt}
-{\footnotesize
-[補足] これをゲームにしたのがドブルである. ドブルで使うカードには, どんな2枚のカードを取っても共通する絵柄が必ず一つのみある. 
-}
-
-\end{frame}
 
 
 
@@ -311,6 +214,41 @@ $11111\cdots 111$という1が何個か並んだ形の$p$の倍数が存在す�
 
 
 
+
+
+\begin{frame}
+\frametitle{ドブル}
+7色(赤, 橙, 黄, 緑, 青, 藍, 紫) のペンと7枚のカードある. 次のルールを考える.
+\begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item どのカードにも相異なる3 色の$\bullet$印がある.
+\item どの2 枚のカードを取っても, 1 つだけ共通する色の$\bullet$印がある.
+\end{enumerate}
+上のルール2 つを満たすように色ペンを使ってカードに$\bullet$印を書くことはできるだろうか?
+
+\vspace{20pt}
+{\footnotesize
+[補足] これをゲームにしたのがドブルである. ドブルで使うカードには, どんな2枚のカードを取っても共通する絵柄が必ず一つのみある. 
+}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{$11111\cdots $}
+$p$を2や5でない素数とする. 
+$11111\cdots 111$という1が何個か並んだ形の$p$の倍数が存在することを示せ.
+
+\vspace{20pt}
+例えば...
+\begin{itemize}
+  \item $p=3$の場合は111は3の倍数.
+  \item $p=7$の場合は111111は7の倍数.
+  \item $p=11$の場合は11は11の倍数.
+  \end{itemize}
+\end{frame}
+
+
 \begin{frame}
 \frametitle{2010年大阪大学理系第3問}
 $l,m,n$を3以上の整数とする. 等式
@@ -336,5 +274,100 @@ $$
 \end{center}
 \end{figure}
 \end{frame}
+
+
+%2025/10/31追加
+\begin{frame}
+\frametitle{コイン 1}
+テーブル上に10個の硬貨が一列に並んでいる. 
+その硬貨の額は1円か5円か10円である. 
+
+あなたと私の二人で次のルールの下, 以下のゲームを行う.
+
+ \begin{block}{ルール}
+\begin{itemize}
+\item 列のうち左端か右端の硬貨を取る. その後次の人に手番をわたす.
+\item テーブル上の硬貨がなくなった時, とった硬貨の総額が多い方が勝ち. 同じであれば引き分け. 
+\end{itemize}
+   \end{block}
+
+ゲームに"負けたくない"あなたなら先手・後手どちらを選べば良いだろうか?
+またその際どのような戦略を取れば良いだろうか?
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=80mm]{coin1.png}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{コイン 2}
+テーブル上に25個の1円玉がある.
+あなたと私の二人で次のルールの下, 以下のゲームを行う.
+
+ \begin{block}{ルール}
+\begin{itemize}
+\item テーブルの上の1円玉から, 1枚か2枚か3枚のコインを取る. その後次の人に手番をわたす. 
+\item 最後の1円玉を取った人が負け.
+\end{itemize}
+   \end{block}
+
+ゲームに"負けたくない"あなたなら先手・後手どちらを選べば良いだろうか?
+またその際どのような戦略を取れば良いだろうか?
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=80mm]{coin2.png}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{コイン 2'}
+テーブル上に25個の1円玉がある.
+あなたと私の二人で次のルールの下, 以下のゲームを行う.
+
+ \begin{block}{ルール}
+\begin{itemize}
+\item テーブルの上の1円玉から, \underline{1枚か3枚か4枚}のコインを取る. その後次の人に手番をわたす.
+\item 最後の1円玉を取った人が負け.
+\end{itemize}
+   \end{block}
+
+ゲームに"負けたくない"あなたなら先手・後手どちらを選べば良いだろうか?
+またその際どのような戦略を取れば良いだろうか?
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{コイン 3}
+1円玉が裏向きに$5 \times 5$の正方形に並んでいる. 次の操作を考える. 
+ \begin{block}{操作}
+\begin{itemize}
+\item 縦か横に連続する3枚の1円玉を同時にひっくり返す.
+\end{itemize}
+   \end{block}
+ この操作を何回かして全ての1円玉を表向きにできるか?
+ 
+ \begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=80mm]{coin3.png}
+\end{center}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{$1 + \sqrt{2}$}
+$(1 + \sqrt{2})^{2015}$の小数第100位を求めよ.
+\end{frame}
+
+
 
 \end{document}
