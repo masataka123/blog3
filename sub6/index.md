@@ -29,6 +29,7 @@
 
 - [A3ポスター用](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
 - [A4配布用](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
+- [問題の解説](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4_解説書_ホームページ用.pdf)
 
 ## 数学パズルの引用文献
 せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)
