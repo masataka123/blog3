@@ -31,6 +31,12 @@
 - [A4配布用](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
 - [問題の解説](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4_解説書_ホームページ用.pdf)
 
+展示の解説もよく使うのであげておいた．
+
+- [正多面体](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
+- [シャボン膜](https://masataka123.github.io/blog3/pdf/20251103_gakusai/シャボンまく.pdf)
+- [カルキンウィルフツリー](https://masataka123.github.io/blog3/pdf/20251103_gakusai/カルキンウィルフツリー.pdf)
+
 ## 数学パズルの引用文献
 せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)
 これらの本を読んだり動画を見たりしたら, なんか賢くなった気がする. そーなのかー
