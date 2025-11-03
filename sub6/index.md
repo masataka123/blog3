@@ -34,7 +34,7 @@
 展示の解説もよく使うのであげておいた．
 
 - [正多面体](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
-- [シャボン膜](https://masataka123.github.io/blog3/pdf/20251103_gakusai/シャボンまく.pdf)
+- [シャボン膜](https://masataka123.github.io/blog3/pdf/20251103_gakusai/シャボン.pdf)
 - [カルキンウィルフツリー](https://masataka123.github.io/blog3/pdf/20251103_gakusai/カルキンウィルフツリー.pdf)
 
 ## 数学パズルの引用文献
