@@ -108,7 +108,7 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 - [Benoît Cadorel](https://www.normalesup.org/~bcadorel/en.html)
 - [Junyan Cao](https://sites.google.com/site/junyancao/)
 - [Benoît Claudon](https://perso.univ-rennes1.fr/benoit.claudon/)
-- [Jean-Pierre Demailly](https://www-fourier.ujf-grenoble.fr/~demailly/)
+- [Jean-Pierre Demailly](https://www-fourier.univ-grenoble-alpes.fr/~demailly/) どうも最近ホームページが変わったらしい. 
 - [Ya Deng](https://ydeng.perso.math.cnrs.fr)
 - [Stéphane Druel](https://druel.perso.math.cnrs.fr)
 - [Daniel Greb](https://www.esaga.uni-due.de/daniel.greb/publications/)
@@ -225,8 +225,9 @@ IMU(International Mathematical Union)のYouTubeチャンネル. ICM2022の講演
 の動画もここにある. 
 
 ## 数学者のホームページ
-- [Jean-Pierre Demailly](https://www-fourier.ujf-grenoble.fr/~demailly/)
+- [Jean-Pierre Demailly](https://www-fourier.univ-grenoble-alpes.fr/~demailly/) 
 Jean-Pierre Demailly先生のホームページ. 2022年にお亡くなりになった後でも残っている. 論文とか本とかよく引用するのでずっと残っていてほしい.
+と思ったら2025年にページが変わっていた. 一瞬びびった. なので必要なpdfは保存することにした. 
 - [What's new](https://terrytao.wordpress.com)
 Terence Tao先生のホームページ. Career advice, On writingとか結構いいこと書いている.
 - [河東先生のホームページ](https://www.ms.u-tokyo.ac.jp/~yasuyuki/index.html)
