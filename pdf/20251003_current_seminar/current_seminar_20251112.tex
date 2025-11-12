@@ -38,10 +38,10 @@
 % \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要、pdflatexなら有効に
 
 % --- showkeys（常に表示） ---
-\usepackage{showkeys}
-\renewcommand*{\showkeyslabelformat}[1]{%
-  \fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
-}
+%\usepackage{showkeys}
+%\renewcommand*{\showkeyslabelformat}[1]{%
+ %\fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
+%}
 % --- hyperrefは最後に読み込む ---
 \usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
 
@@ -254,6 +254,6 @@
 
 
 \include{section1_matsuzawa}
-\include{section2_hashizume_20251029} %20251029までのもの
-
+\include{section2_hashizume} 
+%\include{section3_enokizono_20251118} 
 \end{document}
