@@ -1,0 +1,461 @@
+%\documentclass[dvipdfmx,a4paper,12pt]{amsart}
+\documentclass[dvipdfmx,a4paper,11pt]{report} %titleとe-mailをコメントアウトする．
+
+
+%%% Packages %%%
+\setlength{\lineskip}{0pt}
+
+% --- 和文フォント設定 (ゴシックを使うなら) ---amsartを使う時はコメントアウト
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf}          % min10を避けるため
+\usepackage{pxrubrica}    % 和文ルビ
+
+% --- 基本パッケージ ---
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{pgfplots}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+% --- 数学関連 ---
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{amscd,dsfont,bigdelim,braket,physics,mathrsfs,bm}
+
+% --- 書式・リスト関連 ---
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+% --- コメント・取消線など ---
+\usepackage{comment}
+\usepackage[normalem]{ulem} % \emph の下線化を抑止（cancelと共存）
+
+% --- URL・文字コード ---
+\usepackage{url}
+% \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要、pdflatexなら有効に
+
+% --- showkeys（常に表示） ---
+\usepackage{showkeys}
+\renewcommand*{\showkeyslabelformat}[1]{%
+ \fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
+}
+% --- hyperrefは最後に読み込む ---
+\usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+
+%%% レイアウト調整 %%%
+%%% レイアウト調整（geometryに統一） %%%
+\usepackage[
+  top=30mm,        % 上余白
+  bottom=30mm,     % 下余白
+  left=25mm,       % 左余白
+  right=25mm,      % 右余白
+  headheight=12pt, % ヘッダー高さ（必要なら）
+  headsep=10mm,    % ヘッダーと本文の間
+  footskip=32pt,   % 本文とフッターの距離
+  includehead,     % ヘッダー分も高さに含める
+  includefoot      % フッター分も高さに含める
+]{geometry}
+
+%%% 行間調整（適宜 1.2 などに変更） %%%
+\usepackage{setspace}
+\setstretch{1.1}
+
+% --- 段落設定 --- 文字の行間ならここを変更する
+\setlength{\parskip}{5pt}   % 段落間のスペース
+\setlength{\parindent}{0pt}   % 段落先頭の字下げをなくす
+
+
+%%% 追加（重複なし）パッケージ・設定 %%%
+
+% --- 目次の体裁調整 ---
+%\usepackage{tocloft}
+%\renewcommand{\contentsname}{目次} % 日本語化
+%\setlength{\cftbeforesecskip}{0pt}
+%\setlength{\cftbeforesubsecskip}{0pt}
+%\setlength{\cftbeforesubsubsecskip}{0pt}
+
+% --- セクション見出しの体裁調整 ---
+%\usepackage{titlesec}
+%\titleformat*{\section}{\Large\bfseries}
+%\titleformat*{\subsection}{\large\bfseries}
+%\titlespacing*{\section}{0pt}{1.5ex plus .2ex minus .2ex}{0.8ex plus .1ex}
+%\titlespacing*{\subsection}{0pt}{1.0ex plus .2ex minus .2ex}{0.5ex plus .1ex}
+
+% --- ヘッダー／フッター設定 ---
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\rhead{岩井 雅崇}
+%\lhead{大阪大学 数学専攻}
+%\cfoot{\thepage}
+
+
+% -- enumerate, itemize行間設定
+\usepackage{enumitem} % デフォルト設定
+\setlist[itemize]{itemsep=3pt, parsep=0pt}
+\setlist[enumerate]{itemsep=3pt, parsep=0pt}
+% "変更する際は右を使う" \setlength{\parskip}{0cm} % 段落間\setlength{\itemsep}{5pt} % 項目間
+
+% --- tcolorbox 設定 ---%\begin{tcolorbox}[mybox]と使う
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true
+  }
+}
+
+% --- TikZ 設定 ---
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, fit, calc, backgrounds}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+% --- footnote がページをまたがない設定 ---
+\interfootnotelinepenalty=10000
+
+% --- 目次に表示する階層の深さ ---
+\setcounter{tocdepth}{2}
+
+% --- 日本語目次---
+\usepackage{pxjahyper}
+
+%--newtheorem%--newcommand----
+
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{eg}[thm]{Example} 
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+\numberwithin{equation}{section}
+\newtheorem{case}{Case}
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\renewcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Coker}[0]{\operatorname{Coker}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\Ext}[0]{\mathscr{E}\!\textit{xt}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+\newcommand{\polar}{\beta}
+  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{Z}_+}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\renewcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\newcommand{\illegible}[1]{\textcolor{red}{[ILLEGIBLE: #1]}}
+
+\title{カレントセミナーのノート} 
+\author{岩井雅崇}
+%\address{Department of Mathematics, Graduate School of Science, Osaka City University 3-3-138, Sugimoto, Sumiyoshi-ku Osaka, 558-8585Japan} 
+%\email{{\tt masataka.math@gmail.com}}
+%\email{{\tt masataka.math@gmail.com, masataka@sci.osaka-cu.ac.jp}}
+\date{\today, version 0.01}
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+\begin{document}
+\begin{thebibliography}{n}
+\bibitem[Rud]{Rud}
+W. Rudin. \textit{Functional analysis.} 2nd edn. International Series in Pure and Applied Mathematics. McGraw-Hill, Inc., New York. (1991.)
+\bibitem[NO]{NO}
+J. Noguchi, T.Ochiai \textit{Geometric Function Theory in Several Complex Variables} Translations of Mathematical Monographs
+Volume: 80; 1990; 282 pp
+\end{thebibliography}
+ 
+\cite[Chapter 3]{NO}を参考にしている. 
+
+\section{Current}
+
+$M$ 2nd countable$m$次元$C^\infty$級多様体とする. 
+
+\textbf{Recall}
+$M \subset \R^m$の時$C^{\infty}(M)$には次の位相を次で入れていた. 
+
+$K_1 \subset K_2 \subset \cdots \subset M$というコンパクト集合であって
+$$
+K_i \subset K_{i+1}^{\circ} \quad \text{and} \quad M = \bigcup K_{i}^{\circ} 
+$$ 
+となるものを一つ固定し, $f \in C^{\infty}(M)$について, $N \in \N$として
+$$
+P_{N}(f) := \max\{|D^{\alpha} f(x)| \mid |\alpha| \le N \& x \in K_{N} \}
+$$
+$$
+V_{N} := \max\{ f \in C^{\infty}(M) \mid P_N (f) < \frac{1}{N}\}
+$$
+を$0$のopen baseとするような位相を入れていた.
+
+$K \subset M$コンパクトに対して
+$$
+\mathcal{D}_{K}(M):=
+\{ \phi \in C^{\infty}(M) \mid \Supp(\phi) \subset K\} \subset C^{\infty}(M)
+$$
+に対して相対位相を入れて
+$$
+\mathcal{D}(M):= \bigcup_{K \subset M \mid \text{$K$ cpt}} \mathcal{D}_{K}(M)
+\cong 
+\varinjlim_{K} \mathcal{D}_{K}(M)
+$$
+このcolimitはlocally convex vector spaceでのcolimitである. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-E-1}
+ \begin{enumerate}
+\item  $U, U'\subset \R^m$ を開集合とする.  $U \cong U'$を微分同相とする時, $C^{\infty}(U) \cong C^{\infty}(U')$である. ここでこの同型は位相$\C$ベクトル空間の同型である
+\item $M \subset \R^m$ 開集合とし, $M = \bigcup U_i$を可算個の開被覆とする時
+$$
+C^{\infty}(M) \hookrightarrow \prod C^{\infty}(U_i)
+\quad
+f \mapsto \{ f|_{U_i}\}  
+$$
+とすると, $C^{\infty}(M)$の位相はこの直積位相$\prod C^{\infty}(U_i)$によって引き起こされる位相となる. 
+特に
+$$
+C^{\infty}(M)  \cong \mathrm{Eq}(\prod C^{\infty}(U_i) \rightrightarrows \prod C^{\infty}(U_i \cap U_j) )
+$$
+という位相$\C$ベクトル空間の同型を得る. 
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+
+(1). 以下$K_1 \subset K_2 \subset \cdots \subset U$というコンパクト集合で$C^{\infty}(U)$の位相を誘導するものを一つ固定する. 
+$\Phi : U' \to U, (x_1, \ldots, x_m)\mapsto (y, \ldots, y_m)$を微分同相写像とする. 
+すると$K'_{i}:=\Phi(K_i)$によって, $C^{\infty}(U')$の位相を誘導する.
+$V_{N}, V'_{N}$を上の通りとする. 
+
+さてその引き戻し
+$$
+\Phi^{*} : C^{\infty}(U) \rightarrow C^{\infty}(U')
+\quad
+f(y) \mapsto f \circ \Phi(x)=f (y (x))
+$$
+が位相$\C$ベクトル空間の同型を誘導することを示す. 
+
+$f \in C^{\infty}(U)$についてchain ruleより, $|\alpha | \le N'$について
+\begin{equation}
+\label{eq-lem-E-1}
+D_{x}^{\alpha}f \circ \Phi(x)
+:=
+\sum_{|\beta| \le N'} (D_{y}^{\beta} f) (y(x)) \cdot \Phi_{\alpha \beta}(x)
+\end{equation}
+である. 
+
+$\Phi$が$0$の近傍で連続であることを示せば良い. 
+任意の$N'$について, $K_{N'}$コンパクトなので, $K_{N'}$上では$|\Phi_{\alpha \beta}(x)| \le C_{N'}$となる$C_{N'}$が取れる. 
+よって$N' \cdot \frac{1}{N} \cdots C_{N'} < \frac{1}{N'}$となる$N$をとれば, 
+$f \circ \Phi \in \Phi^{*}(V_N)$について
+$$
+|D_{x}^{\alpha}f \circ \Phi(x)|
+\underset{(\ref{eq-lem-E-1})}{\le}
+\sum_{|\beta| \le N} \underbrace{|(D_{y}^{\beta} f) (y(x))|}_{<\frac{1}{N}} \cdot |\Phi_{\alpha \beta}(x)|
+\le N' \cdot \frac{1}{N} \cdot C_{N'} < \frac{1}{N}
+$$
+よって「任意の$N'>0$について, ある$N>0$があって, $\Phi^{*}(V_N)  \subset V'_{N'}$である」ため$\Phi$は$0$の近傍で連続である. 
+
+(2) $M = \bigcup_{i=1}^{\infty} U_i$とする. 
+各$U_i$で
+$$
+K_{i1} \subset K_{i2} \subset \cdots \subset U_i
+$$
+で$U_i = \bigcup_{j} K_{ij}^{\circ} $となるコンパクト列をとる.
+そこで$K_N := \bigcup_{i=1}^{N}K_{i, N}$とすると
+$$
+K_{1} \subset K_{2} \subset \cdots \subset M
+$$
+であって, $K_i \subset K_{i+1}^{\circ}$ かつ$M=\bigcup K_{i}^{\circ}$となる. 
+
+さて$\prod C^{\infty}(U_i)$の$0$でのlocal baseは
+$$
+\{ 
+V_{\bm{i}, \bm{N}}:=V_{i_1, N_{i_1}} \times V_{i_2, N_{i_2}} \times \cdots \times V_{i_l, N_{i_l}} \times 
+\prod_{i \neq i_k} C^{\infty}(U_i) \mid i_1 < i_2 < \cdots <i_l, N_{i_k} \in \N
+\}
+$$
+となる形のものである. 
+ここで
+\begin{itemize}
+\item $\bm{i}:=(i_1, i_2, \ldots, i_{l}), \bm{N}:=(N_{i_1}, N_{i_2},\ldots, N_{i_l})$と定める. 
+\item $V_{i, N}:= \{ f \in C^{\infty}(U_i) \mid P_{N}(f) < \frac{1}{N}\}$である(ここの定義での$ P_{N}(f) $には$K_{i, N}$をつかう.)
+\end{itemize}
+
+一方で$V_{N}:= \{ f \in C^{\infty}(M) \mid P_{N}(f) < \frac{1}{N}\}$(ここの定義での$ P_{N}(f) $には$K_{iN}$をつかう.)であり, これは$C^{\infty}(M)$の0でのlocal baseである. 
+以上より, 次の二つを示せば良い.
+\begin{itemize}
+\item 任意の$\bm{i}, \bm{N}$について, ある$N$があって, $V_N \subset V_{\bm{i}, \bm{N}} \cap  C^{\infty}(M)$が成り立つ. 
+\item 任意の$N$について, ある$\bm{i}, \bm{N}$があって, $V_N \supset V_{\bm{i}, \bm{N}} \cap  C^{\infty}(M)$が成り立つ. 
+\end{itemize}
+
+
+\begin{align*}
+V_N &:= 
+\left\{ f \in C^{\infty}(M) \mid x \in K_{N}:=\bigcup_{i=1}^{N}K_{i, N}, |\alpha| \le N, |D_\alpha f(x)|<\frac{1}{N}\right\} \\
+&\underset{\text{def}}{=}
+\left( V_{1, N} \times V_{2, N} \times \cdots \times V_{N, N} \times 
+\prod_{i > N} C^{\infty}(U_i)  \right) \cap C^{\infty}(M) \\
+&\underset{\text{def}}{=} V_{(1,2, \ldots, N), (N, \ldots, N)} \cap C^{\infty}(M) \\
+\end{align*}
+である. これより二つ目の主張が正しいことがいえる.
+一つ目の主張は任意の$\bm{i}, \bm{N}$について, 
+$$
+V_{\max\{\bm{i}, \bm{N}\} }\subset V_{\bm{i}, \bm{N}} \cap C^{\infty}(M)
+$$
+なので言える. 
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-2}
+$M$ 2nd countable$m$次元$C^\infty$級多様体とする. 
+$C^\infty(M)$に位相を次のように入れる.
+
+まず$M = \bigcup_{l=1}^{\infty} U_i $で$U_i \subset \mathbb{R}^m $となるcountable open coverを一つ固定する. 
+そして, 
+\[
+C^\infty(M) \hookrightarrow \prod_i C^\infty(U_i) \quad 
+f \longmapsto (f|_{U_i})
+\]
+による部分位相を$C^\infty(M)$に入れる. 
+つまり,
+\[
+C^{\infty}(M)  \cong \mathrm{Eq}(\prod C^{\infty}(U_i) \rightrightarrows \prod C^{\infty}(U_i \cap U_j) )
+\]
+となるように入れる. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+\ref{defn-E-2}による位相の定義において, $U_i$の取り方によらない.
+\end{rem}
+
+\begin{proof}
+別の$U'_j$をとると細分$U_i \cap U'_j$が取れる.
+よって次の図式が考えられる. 
+  \[
+\xymatrix@C=50pt@R=20pt{
+C^{\infty}(M) \ar@{^{(}-_>}[r] \ar@{^{(}-_>}[rd]
+&\prod C^{\infty}(U_i) \ar@{^{(}-_>}[rd]
+&   \\
+ &\prod C^{\infty}(U'_j)  \ar@{^{(}-_>}[r] & \prod C^{\infty}(U_i \cap U'_j)  \\
+}
+\]
+そこで"相対位相の直積は相対位相になる"ので,   
+\ref{lem-E-1}より言える.
+\end{proof}
+
+これにより
+$$
+C^{\infty} : (U \underset{open}{\subset} M) \mapsto C^{\infty}(U)
+$$
+は$\C$ベクトル空間のsheafとなる. 
+よって$K \subset M$に対して
+$$
+\mathcal{D}_{K}(M) := \{ \phi \in C^{\infty}(M) \mid \Supp(\phi) \subset K\}
+$$
+として$C^{\infty}(M)$の部分位相を入れる. 
+$$
+\mathcal{D}(M):= \bigcup_{K \subset M \mid \text{$K$ cpt}} \mathcal{D}_{K}(M)
+\cong 
+\varinjlim_{K} \mathcal{D}_{K}(M)
+$$
+このcolimitはlocally convex vector spaceでのcolimitである. 
+
+[指摘]
+このcolimは存在する？
+やっぱりSection 1でやったような位相の入れ方にもう一回戻る?
+$\varinjlim_{K} \mathcal{D}_{K}(M)$については次回再考. 
+
+
+
+\end{document}
