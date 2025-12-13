@@ -1,8 +1,4 @@
 # **出張予定**
-- 2025年11月19--20日: 新潟大学で開催される[The 3rd Niigata Algebra Symposium](http://mathweb.sc.niigata-u.ac.jp/~hoshi/NiigataAlgebraSymposium.html)で"第2チャーン類の不等式と構造定理"の講演をする予定です.
-- 2025年11月26--29日: 新潟大学で開催される[第2回新潟若手代数・幾何シンポジウム](https://sites.google.com/view/niigatawakate2025/ホーム)で"第2チャーン類の不等式 -宮岡-Yau不等式と宮岡の不等式- "の講演をする予定です.
-- 2025年12月1--4日: 金沢で開催される[第３１回複素幾何シンポジウム（金沢）２０２５](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa31.html)に参加する予定です.
-- 2025年12月8日: 大阪大学の[代数幾何学セミナー](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi)で"第2チャーン類の不等式 -宮岡-Yau不等式と宮岡の不等式- "の講演をする予定です.
 - 2025年12月17--18日: 九州大学で[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)を開催します. 
 - 2025年12月19--21日: 九州大学で開催される[2025年度 多変数函数論冬セミナー](https://kusakabe.github.io/2025scvwinter/)に参加する予定です. 
 - 2026年1月26--30日: 大阪大学で[Workshop on Algebraic Geometry and Complex Geometry in Osaka](https://masataka123.github.io/AGCG_Osaka_2026/)を開催します. 
@@ -24,6 +20,8 @@
 32. "Condensed sets and topological spaces (ショルツのレクチャーノート2章Appendixの解説) [Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home) 大阪公立大学. 2025年2月17--21日.  [原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
 33. "チャーン類の不等式と構造定理", [日本数学会2025年度年会](https://www.mathsoc.jp/activity/meeting/waseda25mar/index.html)函数論分科会特別講演, 早稲田大学, 2025年3月19日 [アブストラクト](https://masataka123.github.io/blog3/pdf/2025_01_日本数学会_homepage.pdf)
 34. "Inequalities for the second Chern class and structure theorems" [Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html), 北京大学, 2025年6月26日. 
+35.  "Inequalities for the second Chern class and structure theorems" [The 3rd Niigata Algebra Symposium](http://mathweb.sc.niigata-u.ac.jp/~hoshi/NiigataAlgebraSymposium.html) 新潟大学,  2025年11月20日.
+36. "Inequalities for the second Chern class -Miyaoka-Yau inequality and Miyaoka's inequality-" [第2回新潟若手代数・幾何シンポジウム](https://sites.google.com/view/niigatawakate2025/ホーム) 新潟大学, 2025年11月28日
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
@@ -62,6 +60,7 @@
 12. 'Miyaoka type inequality for terminal weak Fano varieties.' 複素解析幾何セミナー, 東京大学, 2023年6月26日
 13. ‘Abundance theorem for minimal projective varieties satisfying Miyaoka's equality’, Sun Yat-Sen University, 2024年05月16日
 14. '数学の勉強法・研究の進め方・専門の決め方について' [What is セミナー](https://sites.google.com/view/handai-what-is-seminar/), 大阪大学, 2025年1月16日. [PDF](https://masataka123.github.io/blog3/pdf/2025_0116_What_is_seminar.pdf)
+15. "Inequalities for the second Chern class -Miyaoka-Yau inequality and Miyaoka's inequality-" [代数幾何学セミナー](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 大阪大学, 2025年12月8日.
 
 ### **2018年4月から2022年3月まで**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)

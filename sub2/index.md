@@ -11,7 +11,7 @@
 8. Masataka Iwai, Chen Jiang, Haidong Liu. 'Miyaoka type inequality for terminal threefolds with nef anti-canonical divisors.' SCIENCE CHINA Mathematics. (2024) DOI: https://doi.org/10.1007/s11425-023-2230-6  [arXiv](https://arxiv.org/abs/2303.00268) [Article Link](https://link.springer.com/article/10.1007/s11425-023-2230-6) 
 9. Sho Ejiri, Osamu Fujino, Masataka Iwai 'Positivity of extensions of vector bundles.' Mathematische Zeitschrift. 306, 47 (2024). DOI: https://doi.org/10.1007/s00209-023-03428-x [arXiv](https://arxiv.org/abs/2307.05022) [Article Link](https://link.springer.com/article/10.1007/s00209-023-03428-x)
 10. Masataka Iwai, Shin-ichi Matsumura, Guolei Zhong 'Positivity of tangent sheaves of projective varieties -- the structure of MRC fibrations.'  [arXiv](https://arxiv.org/abs/2309.09489) to appear in Algebraic Geometry
-11. Masataka Iwai, Shin-ichi Matsumura, Niklas Müller 'Minimal projective varieties satisfying Miyaoka's equality.'  [arXiv](https://arxiv.org/abs/2404.07568) to appear in Proceedings of the London Mathematical Society.
+11. Masataka Iwai, Shin-ichi Matsumura, Niklas Müller 'Minimal projective varieties satisfying Miyaoka's equality.' Proceedings of the London Mathematical Society. [arXiv](https://arxiv.org/abs/2404.07568) [Article Link](https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms.70104)  DOI: https://doi.org/10.1112/plms.70104
 
 
 # **プレプリント**
@@ -42,7 +42,7 @@
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
 - [公理的集合論と圏論まとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_set_category.pdf)
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 公理的集合論の最初の方を付け足したいので未完成です. 
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 公理的集合論の最初の方に付け足したい(がいつやるかわかりません)
 
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成. ただこれは自分のためにもまとめていきたいです. 
