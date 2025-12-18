@@ -50,6 +50,10 @@
 - [超関数・カレントノート](https://masataka123.github.io/blog3/pdf/20251003_current_seminar/current_seminar_20251118.pdf)
 現在進行形(2025年)で行われている超関数・カレントセミナーのノート. chatGPTでTex化して日本語化した. そして全体を見返していないので, 誤字がいっぱいあるのはご了承ください. 時間を見つけ次第, 誤字を無くしていきます. (ここにおいているのは私が誤字を見つけるためです.)
 
+- [Campana Special variety まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_04_2025_1218.pdf) [Campana-Winkelman 15 まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_Winkelman_2025_1218.pdf) 
+これらは[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)のためにまとめたもの. Campana先生の論文は至る所アイデアが散逸しているのでまとめるのが大変だった. 
+ただCampana先生, Peternell先生の論文は読んでて本当に面白い. 華やかな論文が多いイメージである. 
+
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
 - Masataka Iwai, Takahito Kashiwabara, Ichiro Sato and Ryosuke Yano. ‘Earthquake-network in Japan based on Abe-Suzuki model and its characteristics.’ DOI: 10.13140/RG.2.2.12494.61766

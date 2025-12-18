@@ -1,0 +1,3454 @@
+%\documentclass[dvipdfmx,a4paper,12pt]{amsart}
+\documentclass[dvipdfmx,a4paper,11pt]{article} %titleとe-mailをコメントアウトする．
+
+
+%%% Packages %%%
+\setlength{\lineskip}{0pt}
+
+% --- 和文フォント設定 (ゴシックを使うなら) ---amsartを使う時はコメントアウト
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf}          % min10を避けるため
+\usepackage{pxrubrica}    % 和文ルビ
+
+% --- 基本パッケージ ---
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{pgfplots}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+% --- 数学関連 ---
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{amscd,dsfont,bigdelim,braket,physics,mathrsfs,bm}
+
+% --- 書式・リスト関連 ---
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+% --- コメント・取消線など ---
+\usepackage{comment}
+\usepackage[normalem]{ulem} % \emph の下線化を抑止（cancelと共存）
+
+% --- URL・文字コード ---
+\usepackage{url}
+% \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要, pdflatexなら有効に
+
+% --- showkeys（常に表示） ---
+%\usepackage{showkeys}
+%\renewcommand*{\showkeyslabelformat}[1]{%
+ % \fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
+%}
+% --- hyperrefは最後に読み込む ---
+\usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+
+%%% レイアウト調整 %%%
+%%% レイアウト調整（geometryに統一） %%%
+\usepackage[
+  top=30mm,        % 上余白
+  bottom=30mm,     % 下余白
+  left=25mm,       % 左余白
+  right=25mm,      % 右余白
+  headheight=12pt, % ヘッダー高さ（必要なら）
+  headsep=10mm,    % ヘッダーと本文の間
+  footskip=32pt,   % 本文とフッターの距離
+  includehead,     % ヘッダー分も高さに含める
+  includefoot      % フッター分も高さに含める
+]{geometry}
+
+%%% 行間調整（適宜 1.2 などに変更） %%%
+\usepackage{setspace}
+\setstretch{1.1}
+
+% --- 段落設定 --- 文字の行間ならここを変更する
+\setlength{\parskip}{5pt}   % 段落間のスペース
+\setlength{\parindent}{0pt}   % 段落先頭の字下げをなくす
+
+
+%%% 追加（重複なし）パッケージ・設定 %%%
+
+% --- 目次の体裁調整 ---
+\usepackage{tocloft}
+%\renewcommand{\contentsname}{目次} % 日本語化
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+
+% --- セクション見出しの体裁調整 ---
+%\usepackage{titlesec}
+%\titleformat*{\section}{\Large\bfseries}
+%\titleformat*{\subsection}{\large\bfseries}
+%\titlespacing*{\section}{0pt}{1.5ex plus .2ex minus .2ex}{0.8ex plus .1ex}
+%\titlespacing*{\subsection}{0pt}{1.0ex plus .2ex minus .2ex}{0.5ex plus .1ex}
+
+% --- ヘッダー／フッター設定 ---
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\rhead{岩井 雅崇}
+%\lhead{大阪大学 数学専攻}
+%\cfoot{\thepage}
+
+% -- enumerate, itemize行間設定
+\usepackage{enumitem} % デフォルト設定
+\setlist[itemize]{itemsep=3pt, parsep=0pt}
+\setlist[enumerate]{itemsep=3pt, parsep=0pt}
+% "変更する際は右を使う" \setlength{\parskip}{0cm} % 段落間\setlength{\itemsep}{5pt} % 項目間
+
+% --- tcolorbox 設定 ---%\begin{tcolorbox}[mybox]と使う
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true
+  }
+}
+
+%--緑枠自動化
+\AtBeginEnvironment{prop}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{prop}{\end{tcolorbox}}
+\AtBeginEnvironment{lem}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{lem}{\end{tcolorbox}}
+\AtBeginEnvironment{thm}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{thm}{\end{tcolorbox}}
+\AtBeginEnvironment{defn}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{defn}{\end{tcolorbox}}
+\AtBeginEnvironment{cor}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{cor}{\end{tcolorbox}}
+\AtBeginEnvironment{ques}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{ques}{\end{tcolorbox}}
+\AtBeginEnvironment{conj}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{conj}{\end{tcolorbox}}
+
+
+% --- TikZ 設定 ---
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, fit, calc, backgrounds}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+% --- footnote がページをまたがない設定 ---
+\interfootnotelinepenalty=10000
+
+% --- 目次に表示する階層の深さ ---
+\setcounter{tocdepth}{2}
+
+% --- 日本語目次---
+\usepackage{pxjahyper}
+
+%--newtheorem%--newcommand----
+
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{eg}[thm]{Example} 
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+\numberwithin{equation}{section}
+\newtheorem{case}{Case}
+
+
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\renewcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Coker}[0]{\operatorname{Coker}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\Ext}[0]{\mathscr{E}\!\textit{xt}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+\newcommand{\polar}{\beta}
+  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{Z}_+}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\renewcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+
+
+\title{CampanaのSpecial vaeirtyまとめ}
+\author{Masataka IWAI}
+%\address{Department of Mathematics, Graduate School of Science, Osaka City University 3-3-138, Sugimoto, Sumiyoshi-ku Osaka, 558-8585Japan} 
+%\email{{\tt masataka.math@gmail.com}}
+%\email{{\tt masataka.math@gmail.com, masataka@sci.osaka-cu.ac.jp}}
+
+
+
+\date{\today, version 0.01}
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+\begin{document}
+
+
+
+\maketitle
+%
+\begin{abstract}
+CampanaのSpecial varietyを要約します
+\end{abstract}
+%
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+\section*{はじめに}
+\cite{Cam04}の要約書です. 
+\cite{Cam04}のわかったところだけ要約・解説を加えてます. 
+またClaire Voisinのサーベイ\cite{Voi}"Fibrations in algebraic geometry and applications"の内容も適宜つけ加えております.
+
+%なお\cite{Cam04}や\cite{KO75}をchat GPTに和訳させたpdfを持っています. ただ著作権的にかなりまずいので, ほしい方は岩井に連絡してください.
+
+\subsection{用語に関して}
+
+%用語に関してnormal reduced irreducible complex space in Fujiki's classに限定する.
+出てくる解析空間の性質に関して, 必要な理由としては以下の通り. 
+\begin{itemize}
+\item おそらくreduced・irreducibleでない場合はreduced化や既約成分や取ればその場合に帰着できる(と思う).
+あとreduced・irreducibleでない場合にmeromorphic map, fibrationをどう定義すればいいかちょっとわからない. 
+\item normalはmeromorphic map $\varphi : X \dashrightarrow Y$の不確定点がcodimension 2以上になることを使ってるので必要. これは1章のneat fibrationなどを考えるときに必要だと思う. 
+\item コンパクトに関してはKodaira-Iitaka次元を考えるので必要. 
+\item Fujikiはcore mapの構成に必要. 理由はChow-Barlet空間(サイクルの空間)の既約成分がコンパクトになる必要があり, コンパクト+Fujikiの二つの条件は必要(Fujikiの定理). 
+\item smoothに関しては$\Omega_{X}^{p}$など余接束を考えるときに必要である. 他にもこの論文でsmoothを仮定しているものがあるが, 多分それはKLT(Kawamata Log terminal)まで拡張できると思う(該当する部分があれば書いていく. )
+\end{itemize}
+
+以下このまとめに出てくる解析空間は\underline{reducedかつirreducible}とする. 
+また射(morphism) $f : X \to Y$とは全て正則写像のことを指す. 
+
+\begin{defn}\cite[Definition 2.1]{Uen75}
+\(X, Y\) を解析空間とする. 
+$f : X \to Y$がproper modificationであるとは
+\begin{itemize}
+\item $f$ proper(コンパクトの逆像がコンパクト)かつ全射
+\item denceでない解析的部分集合 $M \subset X, N \subset Y$が存在して, $f : X \setminus M \to Y \setminus N$は双正則である.
+\end{itemize}
+$X, Y$がコンパクトのときは単にmodificationという. 
+\end{defn}
+
+
+\begin{defn}\cite[Definition 2.2]{Uen75}
+\label{defn-Ueno-2.2}
+\(X, Y\) を解析空間とし, $P(Y)$を$Y$の冪集合とする. 
+$\varphi : X \to P(Y)$がmeromorphic mapとは
+\begin{itemize}
+\item グラフ$G_{\varphi} :=\{ (x, y) \in X \times Y\mid y \in \varphi(x) \} $が$X \times Y$の既約な解析的集合である. 
+\item 射影$p : G_{\varphi} \to X$がproper modificationである.  
+\end{itemize}
+以下meromorphic mapを$\varphi : X \dashrightarrow Y$とかく. 
+
+また不確定点$I(\varphi)$を$p : G_{\varphi} \setminus p^{-1}(I(\varphi)) \to X \setminus I(\varphi)$が双正則になる最小の解析的集合とする. ($X,Y$がnormalだとcodimension 2以上の集合になる. \cite[Theorem 2.5]{Uen75})
+\end{defn}
+
+
+\begin{rem}
+\label{rem-Ueno-2.2}
+%上の定義は本来の定義のものと違う. \cite[Definition 2.2]{Uen75}での定義は次のとおり. 
+上の定義はわかりづらいが, 次と同値である. 
+
+ある$X \times Y$の既約な解析的集合$G \subset X \times Y$が存在して, $p : G \to X$がproper modificationである. 
+
+対応としては次のとおり.
+\begin{itemize}
+\item meromorphic map $\varphi$について, $G:=G_{\varphi}$を対応させる.
+\item  既約な解析的集合$G \subset X \times Y$について$\varphi(x):=q (p^{-1}(x)) \in P(Y)$を対応させる. ただし$q : G \to Y$を射影とする． 
+\end{itemize}
+
+そのためHironakaの特異点解消(不確定点除去)を用いると次が言える. 
+
+任意のmeromorphic map $\varphi : X \dashrightarrow Y$について, ある複素多様体$\widetilde{X}$, 
+proper modification $\pi : \widetilde{X} \to X$, 射$\widetilde{\varphi} : \widetilde{X} \to Y$
+があって次の図式を満たす. 
+
+   \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X} \ar@{->}[r]^{\widetilde{\varphi}}\ar@{->}[d]^{\pi} &Y\\
+X \ar@{-->}[ru]^{\varphi}  & \\
+}
+\]
+
+\end{rem}
+
+
+\begin{defn}\cite[Definition 2.6, 2.7]{Uen75}
+\label{defn-Ueno-2.2}
+\(X, Y\) を解析空間とし, $\varphi : X \dashrightarrow Y$をmeromorphic map, $G \subset X \times Y$をそのグラフとする. 
+\begin{itemize}
+\item $y \in Y$について, $p(q^{-1}(y)) \subset X$を$y$のファイバーという. $\varphi^{-1}(y)$や$X_y$とかく. 
+\item $q : G \to Y$が全射であるとき, $\varphi : X \dashrightarrow Y$をdominant(or generically surjective)であるという. 
+\item $q : G \to Y$がproper modificationであるとき, $\varphi : X \dashrightarrow Y$をbimeromophicであるという. 
+\end{itemize}
+\end{defn}
+ファイバーの定義は文献によって少し異なるかもしれない(\cite{Cam04}の定義と違うふうに定義した).
+
+\begin{ex}
+\label{ex-projection}
+$$
+\varphi : \C\mathbb{P}^2 \to \C\mathbb{P}^1 
+\quad
+[x:y:z] \mapsto [y:z] 
+$$
+とする. すると不確定点は$I(\varphi)=\{(1:0:0) \}$である．
+これの特異点解消(不確定点除去)は$ \C\mathbb{P}^2$を$(1:0:0)$でblow up
+$\pi : F_1 \to \C\mathbb{P}^2 $して次の図式を得る. 
+   \[
+\xymatrix@C=50pt@R=20pt{
+F_1 \ar@{->}[r]^{\widetilde{\varphi}}\ar@{->}[d]^{\pi} &\C\mathbb{P}^1\\
+\C\mathbb{P}^2 \ar@{-->}[ru]^{\varphi}  & \\
+}
+\]
+$F_1 \cong \mathbb{P}(\mathcal{O}_{\C\mathbb{P}^1}\oplus \mathcal{O}_{\C\mathbb{P}^1}(1))$というHirzebruch surfaceであり, $\widetilde{\varphi} : F_1 \to \C\mathbb{P}^1$は$\C\mathbb{P}^1$束の構造を持つ. よって任意の$(y:z) \in \C\mathbb{P}^1$について
+$\varphi^{-1}((y:z))$は$(1:0:0)$と$(0 : y : z)$を通るline($\cong \C\mathbb{P}^1$)となる. 
+\end{ex}
+
+
+\begin{defn}
+$X$を解析空間とする.
+ 
+ \begin{itemize}
+\item ある性質Pがgeneralな$x \in X$で成り立つ(general point $x \in X$で成り立つ)とは, ある真の解析集合$Z \subset X$があって, 任意の$x \in X \setminus Z$で性質Pが成り立つこととする. 
+\item ある性質Pがvery generalな$x \in X$で成り立つ(or very general point $x \in X$で成り立つ)とは, ある可算個の真の解析集合$Z_i \subset X$があって, 任意の$x \in X \setminus \cup_{i \in \N} Z_i$で性質Pが成り立つこととする.
+\end{itemize} 
+\end{defn}
+
+\begin{defn}\cite[Definition 3.3]{Uen75}, \cite[Subsection 1.1.2]{Cam04}
+\(X, Y\) を解析空間とし, $\varphi : X \dashrightarrow Y$をmeromorphic mapとする. 
+$\varphi$がfibrationであるとは次の二つの条件を満たすこととする.
+\begin{itemize}
+\item $q : G \to Y$がproperかつ全射である(特に$\varphi : X \dashrightarrow Y$はdominantである.)
+\item general point $y\in Y$について, $X_y$が連結である.
+\end{itemize}
+\end{defn}
+$X, Y$がコンパクトならば, $q : G \to Y$がproperという条件は自動的に満たされる. 
+%\(X, Y\) がコンパクトでない場合の定義がなかったが, おそらくその場合は一つ目の条件を「$q : G \to Y$がproper 全射である」に変えればいいと思う. 
+
+\begin{lem}
+\label{lem-fibration}
+\(X, Y\) を解析空間でnormalであると仮定する. 
+このときmeromorpshic map $\varphi : X \dashrightarrow Y$がfibrationならば
+$q : G \to Y$はproper, 全射, ファイバー連結(with connected fiber)である. 
+
+特に射 $\varphi : X \rightarrow Y$がfibrationであることは, proper, 全射, ファイバー連結と同値である. 
+\end{lem}
+
+\begin{rem}
+普通fibrationと言ったら\ref{lem-fibration}での定義が普通である. 
+ただ\cite{Cam04}では"general point $y\in Y$について, $X_y$が既約である"と定義していた. 
+これあんまり聞いたことがないので, 多分間違っている(or 一般的でない)と思う. 
+\end{rem}
+
+\begin{proof}
+示すことは"$q : G \to Y$の任意のファイバーが連結である"こと. 
+$q$がproperなので, Stein 分解が取れる. 
+   \[
+\xymatrix@C=50pt@R=20pt{
+G  \ar@{->}[r]^{u}\ar@{->}[rd]_{q} &Y' \ar@{->}[d]^{v} \\
+  &Y \\
+}
+\]
+$u : G \to Y'$はファイバー連結であり, $v: Y'\to Y$はfiniteである. 
+よって$ y \in Y$について
+$v^{-1}(y)$の個数は, $q^{-1}(y)$の連結成分の個数と一致する. 
+
+$q$は一般の点においてファイバーが連結であるので, $v : Y' \to Y$は一般の点$y \in Y$において同型になる. 
+つまり, $v : Y' \to Y$はbimeromorphicである. 
+よってZariski main Theoremより$Y$がnormalなので, $v$はファイバー連結である.
+$v$はfiniteなので, $v$は双正則写像になる. 
+よって$q$はファイバー連結になる. 
+(実際には$Y$のnormal性で十分である. )
+\end{proof}
+
+
+\begin{lem}(cf. \cite[Lemma 1.15]{Deb01})
+\label{lem-rigidity}
+\(X, Y, Z\) をnormal 解析空間, 
+ $f : X \dashrightarrow Y, g : X \dashrightarrow Z$をfibrationとする. 
+
+\begin{itemize}
+\item 一般の$z \in Z$について$f(g^{-1}(z))$が一点集合ならば, fibration $h : Z \dashrightarrow Y$で$h\circ g=f$となるものが存在する. 
+\item $f, g$が正則写像で任意の$z \in Z$について$f(g^{-1}(z))$が一点集合ならば, fibration $h : Z \to Y$で$h\circ g=f$となるものが存在する. 
+\end{itemize}
+
+   \[
+\xymatrix@C=50pt@R=20pt{
+Z \ar@/^1pc/@{-->}[rr]^{\exists h}& X  \ar@{-->}[l]^{g}\ar@{-->}[r]_{f} &Y\\
+}
+\]
+\end{lem}
+\begin{proof}
+証明は\cite[Lemma 1.15]{Deb01}に同じ. 
+特異点解消をとって, 以下の図式を得る. 
+  \[
+\xymatrix@C=50pt@R=20pt{
+Z & X  \ar@{-->}[l]^{g}\ar@{-->}[r]^{f} &Y\\
+ & \widetilde{X}  \ar@{->}[lu]^{\widetilde{g} \text{ fibration}}\ar@{->}[ru]_{\widetilde{f}  \text{ fibration }} \ar@{->}[u]^{\pi } &\\
+}
+\]
+そこで$\widetilde{f}, \widetilde{g}$のグラフ$G(\widetilde{g}, \widetilde{f}):= \{ (\widetilde{g}(x), \widetilde{f}(x)) \mid x \in X\} \subset Z \times Y$をとって次の図式をえる． 
+  \[
+\xymatrix@C=50pt@R=20pt{
+Z & G( \widetilde{g}, \widetilde{f})  \ar@{->}[l]^{p}\ar@{->}[r]^{q} &Y\\
+ & \widetilde{X}  \ar@{->}[u]^{(\widetilde{f}, \widetilde{g}) } &\\
+}
+\]
+\ref{rem-Ueno-2.2}から, この$p : G(\widetilde{g}, \widetilde{f}) \to Z$がproper modificationであることを示せば良い. 
+
+任意の$z \in Z$について, 
+$$
+p^{-1}(z):= \{ (z, y) \in Z \times Y \mid \exists x \in  \widetilde{X} s.t. z =\widetilde{g}(\widetilde{x}), y =\widetilde{f}(\widetilde{x})\}=\{ z \} \times \widetilde{f}(\widetilde{g}^{-1}(z))
+$$
+である.これよりproperがわかる. 
+仮定から, 真の解析的集合$W \subset Z$で, 任意の$z \in Z \setminus W$について, $\widetilde{f}(\widetilde{g}^{-1}(z))$が一点集合となるものが存在する. 
+よって\ref{lem-fibration}の証明から$p : G(\widetilde{g}, \widetilde{f}) \setminus p^{-1}(W) \to Z \setminus W$はファイバー連結で, ファイバーは一点なので, 双正則である. よって$p$はmodificationである. 
+
+最後の主張は$W = \varnothing$と取れることからわかる. 
+\end{proof}
+
+\section{1. Orbifold base of a fibration}
+以下\underline{断りがなければ} 
+\begin{center}
+complex manifold(複素多様体) = smooth reduced and irreducible complex space
+\end{center}
+である.
+また出てくる解析空間は
+\begin{center}
+compact normal reduced and irreducible complex space
+\end{center}
+とする. つまりコンパクト・normalは常に仮定する.
+
+\subsection{Fibrations \cite[1.1]{Cam04}}
+%\cite[Example 1.1]{Cam04}がmotivationにある. 
+
+\begin{ex}
+\cite[Example 1.1]{Cam04}
+\label{ex-Cam04-1.1}
+$E$ を 楕円曲線 , \(C\) を超楕円曲線とし
+$X_0 := E \times \C\mathbb{P}^1$ とする.
+ \(t\) を \(E\) 上の位数 \(2\)の変換($a \in E$を位数2の元として, $t : E \to E$を$x \mapsto x + a$とする)
+ \(h\) を\(C\) 上のinvolution, つまり次数2の finite射 $C\to \C\mathbb{P}^1$から誘導されるinvolutionとする． 
+ 
+  \(\tilde{X} := E \times C\) とし, $\tilde{X}$上の
+involution $j := t \times h$とおいて, \(X := \tilde{X}/j\) とおく. 
+
+すると \(X_0\) も \(X\) もgeneral fiberが $E$ であるような $\C\mathbb{P}^1$ への自然な fibration をもつ.
+
+  \[
+\xymatrix@C=50pt@R=20pt{
+\tilde{X} := E \times C \ar@{->}[r]\ar@{->}[d] & X_0 := E \times \C\mathbb{P}^1 \ar@{->}[d]^{\text{gen. fib. $E$}}\\
+X := \tilde{X}/j \ar@{->}[r]^{\text{gen. fib. $E$}}& \C\mathbb{P}^1 \\
+}
+\]
+
+よって, $X_0$と$X$は，上記の情報だけからは区別することができず, Kodaira次元， 基本群， Kobayashi pseudo-metricなどが以下のように異なる. 
+%および（適切な (E) の選び方に対する）arithmetics のレベルでは本質的に異なっている.具体的には
+\begin{itemize}
+\item $\kappa(X_0) = - \infty$, $\pi_{1}(X_0) = \Z^2$, $K_{\mathrm{Kob}, X_0} \equiv 0$. ちなみにspecialである. 
+\item $\kappa(X) =1$, $\pi_{1}(X)$は指数2の部分群に$\Z^2 \times \pi_1(C)$を含む(特にalmost Abelianになり得ない), $K_{\mathrm{Kob}, X} \not \equiv 0$
+\footnote{$\tilde{X} \to X$がetaleなので. $X \to Y$ etaleならば$K_{\mathrm{Kob}, Y}(p,q)=\inf K_{\mathrm{Kob}, X}(\tilde{p}, \tilde{q})$となる. $\tilde{p}$などは$p$の逆像である.}), ちなみにnonspecialであり, $X \to \C\mathbb{P}^1 $がcore mapを与える. 
+\end{itemize}
+
+ただfibration\(f : X \to \C\mathbb{P}^1\) に関してmultiple fiber を考慮に入れれば, $X \to \C\mathbb{P}^1 $の base は本当の意味での \(\C\mathbb{P}^1\) ではなく， general typeの orbifold \(C/h\) であるとみなせる. 
+\end{ex}
+%上の図において, $f : \tilde{X}/j \to \C\mathbb{P}^1 $とする. 
+\begin{lem}
+\label{lem-Cam04-1.1}
+\begin{enumerate}
+\item $f$はgeneral type $B$へのdominant射 \( f: X \to B \)を持たない.
+\item \( D \subset \C\mathbb{P}^1 \) を$C \to \C\mathbb{P}^1$のbranched divisorとする. 
+このとき$D$の次数は\( 6 \)であり,  \( f : X\to \C\mathbb{P}^1\)は$D$上で2重のmultiple fiberを持つ
+\item $\pi : C \times E \to X$を商写像とする.
+ このとき\( \pi^{*}f^* K_{\C\mathbb{P}^1}(\frac{1}{2} D)=\mathrm{pr}_1^* K_C \) である. 
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+(1) \( f  : X\to \C\mathbb{P}^1\)のfiberは楕円曲線であるので, 
+曲面の分類から\( \kappa(X)=1 \) である. 
+よってgeneral type曲面へのdominant射は存在しない.
+
+今 \( \phi : X \to B \)を種数2以上の射影代数曲線 \( B \)へのdominant 射とする. 
+$f$のfiberは楕円曲線なので, 任意の$x \in \C\mathbb{P}^1$について$\phi(f^{-1}(x))$は$B$上の点となる. 
+(楕円曲線から$B$への射は存在し得ない). 
+よって\ref{lem-rigidity}から, $\C\mathbb{P}^1 \twoheadrightarrow B$という射が作れるが, それはあり得ない. 
+
+(2) Hurwitzの公式から
+$$2\cdot 2 -  2 = 2\cdot( -2)+\sum_{q: \text{$C \to \C\mathbb{P}^1$の分岐点}}(e_q -1)
+$$で$e_q=2$より, 分岐点の個数は$6$個である. 
+よって$\deg D = 6$である. 
+また\( j = (t \times h)  \) は固定点を持たないので, 
+ \( f \) は局所的に \( f \circ \pi : C \times E \to \C\mathbb{P}^1 \)と同じである. 
+ よって$p \in D$について\( f \circ q \)はmultiples fiber \( 2E \times p\)を持つ. 
+ 
+(3)  \( r : C \to \C\mathbb{P}^1 \) を商写像とすると,  Hurwitzの公式から
+\( K_C = r^* K_{\C\mathbb{P}^1}(\tfrac{1}{2} D) \)となり言える. 
+\end{proof}
+
+
+
+\subsection{Neat fibrations. Prepared fibrations. \cite[1.1.3.]{Cam04}}
+
+\begin{defn}\cite[Definition 1.2]{Cam04}
+$f : X \to Y$を複素多様体上のfibrationとする. 
+
+\begin{itemize}
+\item  \(X\) 上の既約 Weil divisor \(D\) について, その像 \(f(D)\) の
+\(Y\) における codimension が \(2\) 以上であるとき，
+\(D\) は \(f\)\emph{-exceptional} であると言う.
+\item  \(X\) から 複素多様体\(X'\) への bimeromorphic 正則写像
+\(u : X \to X'\) が存在して，
+\begin{center}
+$X$上の \(f\)-exceptional divisor $D$は全て
+ \(u\)-exceptional である
+\end{center}
+とき，\(f : X \to Y\) は \emph{neat} であると言う.
+  \[
+\xymatrix@C=50pt@R=20pt{
+X  \ar@{->}[d]^{u}\ar@{->}[r]^{f} &Y\\
+ X' &\\
+}
+\]
+\item \(f\) が \emph{prepared} であるとは, normal crossing divisor \(D \subset Y\)があって, 
+ \(f^{-1}(D) \subset X\) も normal crossings divisor かつ
+ $f : X \setminus f^{-1}(D) \to Y \setminus D$がsmoothとなること.
+\end{itemize}
+\end{defn}
+Divisorがnormal crossing とは局所的に$z_1\cdots z_k=0$という零点でかけることである. 
+
+\begin{rem}
+neatやpreparedはこの後に出てくる証明を簡単にするために必要な概念である. 
+実際次の補題から, 
+逆に証明に興味がなければ, 上の概念は無視して良い.
+\end{rem}
+
+\begin{lem}\cite[Lemma 1.3]{Cam04}
+\label{lem-Cam04-1.3}
+任意のコンパクトnormal解析空間上のfibration \(f_0 : X_0 \dashrightarrow Y_0\) について, ある
+複素多様体$X, Y$からのbimeromorphic map $u : X \dashrightarrow X$, $v: Y \dashrightarrow Y_0$および 
+fibration $f : X \to Y$が存在して, $f$はneat かつpreparedであり, 
+任意の$f$-exceptional divisorは$u$-exceptionalである. 
+  \[
+\xymatrix@C=50pt@R=20pt{
+X  \ar@{->}[d]^{u}\ar@{->}[r]^{f} &Y \ar@{->}[d]^{v}\\
+ X_0\ar@{-->}[r]^{f_0} & Y_0\\
+}
+\]
+\end{lem}
+要するに何か証明するときは, resolutionをとって, neat かつpreparedを仮定して良い. 
+
+\begin{proof}
+Hironakaの特異点解消によって, $X_0, Y_0$をsmoothとして良い. また$f_0 : X_0 \to Y_0$を射にして良い. 
+neat fibrationに関しては次の手順で構成する.
+\begin{enumerate}
+\item $f_0$のflatteningをとる. つまり,  \(  X_1 \to X_0,  Y_1 \to Y_0 \)がprojectiveかつbimeromorphicで \( f_1 : X_1 \to Y_1\)がflatとなるものをとる. 
+\item \( Y_2 \to Y_1\)をresolutionとする
+\item \( X_1 \times_{Y_1}  Y_2\)の既約成分で$X_1$をdominantする成分を取り, そのresolutionしたものを$u_2: X_2 \to X_1$とする.
+\end{enumerate}
+ \[
+\xymatrix@C=50pt@R=20pt{
+X_2  \ar@{->}[r]^{f_2}\ar@{->}[d]^{u_2}_{\text{bir}} &Y_2 \ar@{->}[d]^{\text{bir}} \\
+X_1 \ar@{->}[r]^{f_1}_{\text{flat}}\ar@{->}[d]_{\text{bir}} &Y_1\ar@{->}[d]^{\text{bir}} \\
+X_0  \ar@{->}[r]_{f}& Y_0\\
+}
+\]
+$X_2, Y_2$はsmoothである. 
+よってあとは \( f_2 : X_2 \to Y_2 \)がneatであることを言えば良い. 
+\( D \subset X_2\)で$f_2$で潰されるとする. 
+$X_2 \to X$で潰されることを示す. 
+
+もし$D$が$u$で潰されないとすると, 
+$u(D)\subset X_1$は$f_1 : X_1 \to Y_1$で潰される. 
+しかしそれは\( f_1\) がflatなのであり得ない.
+なぜなら
+$f_1 : u(D) \to f_1(u(D))$に関して, \cite[Thm 2.1.18]{SCV7}や\cite[Prop 2.2.11]{SCV7}より
+\begin{align*}
+\dim_x u(D) 
+& \underset{\text{常に成り立つ}}{\le} 
+\dim_{f_1(x)}f_1(u(D)) + \dim_x u(D)|_{f_1^{-1}f_1(x)} \\
+& \underset{u(D)|_{f_1^{-1}f_1(x)} \subset f_1^{-1}f_1(x)}{\le} 
+\dim_{f_1(x)}f_1(u(D)) + \dim_x f_1^{-1}f_1(x) \\
+& \underset{\text{flatならばequidimensional(open)}}{=} 
+\dim_{f_1(x)}f_1(u(D)) + \dim X - \dim Y\\
+\end{align*}
+よって$\dim_x u(D) =\dim X -1$より$\dim Y - 1 \le \dim_{f_1(x)}f_1(u(D)) $を得る. 
+
+$f_2 : X_2 \to Y_2$のsmoothにならないlocusを$Z_2 \subset Y_2$とする. 
+この$Z_2$がnormal crossingになるようにresolution $Y \to Y_2$をとって, $f: X \to Y$と上と同様に, 
+ \( X_2 \times_{Y_2}  Y\)の既約成分で$X_2$をdominantする成分を取り, そのresolutionしたものを$X \to X_2$とすれば, $f$はpreparedになる. これはneatである. 
+\end{proof}
+
+\subsection{Multiplicity divisor of a fibration. \cite[1.1.4]{Cam04}}
+
+\begin{defn}
+\label{defn-Cam04-1.1.4}
+\(f : X \to Y\) をコンパクト複素多様体の間のfibration とする. 
+\(Y\) の任意の既約 divisor \(D\) に対し，
+\[
+f^*(D) := \sum_{j \in J(f,D)} m_*(f,D_j)\, D_j + R
+\]
+と書く.
+ここで 
+\begin{itemize}
+\item \(j \in J(f,D)\) について,  $D_j \subset f^*(D)$ の 既約成分で，
+\(f (D_j) = D\) となるもの
+\item \(R\) は \(f\)-exceptional である, つまり$f(R)$はcosimension 2以上となるものとする. 
+\end{itemize}
+そこで
+\[
+m(f,D) := \inf\{\,m_*(f,D_j) \mid j \in J(f,D)\,\}
+\]
+と定め \emph{multiplicity} と呼ぶ. 
+
+ \(f\) の \emph{multiplicity divisor}  \(\Delta(f)\) を\(\mathbb{Q}\)-divisor として次のように定める：
+\[
+\Delta(f) = \sum_{D \subset Y} \left(1 - \frac{1}{m(f,D)}\right) D,
+\]
+ここで \(D\) は \(Y\) 上のすべての既約 Weil divisor を動く.
+\end{defn}
+
+$D$が\(\mathbb{Q}\)-divisor とは
+$$
+D = \sum a_i D_i
+$$
+で$D_i$がdivisorかつ$a_i \in \Q$となるものである. 
+
+\begin{ex}
+\ref{ex-Cam04-1.1}
+でのfibration 
+$$f: X := \tilde{X}/j =E \times C/t \times h\to C/h=\C \mathbb{P}^1 $$
+について$\Delta(f) $を計算する. 
+\ref{lem-Cam04-1.1}からある次数 6 のdivisor $D \subset \C \mathbb{P}^1$があって, 
+$f: X \to \C \mathbb{P}^1 $は$D$上の点で2重のmultiple fiberを持つ.
+
+$D = \sum_{i=1}^{6}[p_i]$とし, $F_i := f^{-1}(p_i)$を集合論的な逆像とすると
+$$
+f^{*}[p_i] = 2[F_i]
+\quad
+m(f, [p_i])=2
+$$
+であるので
+$$
+\Delta(f) = \sum_{\{p\} \subset \C \mathbb{P}^1} \left(1 - \frac{1}{m(f,[p])}\right) [p]
+=\sum_{i=1}^{6}\left(1 - \frac{1}{2}\right)[p_i]
+=\sum_{i=1}^{6}\frac{1}{2}[p_i]
+$$
+となる. 
+ここで
+$$
+\deg(K_{\C\mathbb{P}^1}+ D)
+= -2 + \frac{6}{2} = 1
+$$
+である. よって$K_{\C\mathbb{P}^1}+ D$はampleである. 
+
+実はこの$f : X\to \C\mathbb{P}^1$が後のcore mapの例になっている. 
+つまり　以下がわかる. 
+\begin{itemize}
+\item $f$のfiberは楕円曲線(特にspecial)
+\item $f$のbaseは, divisorを組に考えると$(\C\mathbb{P}^1, D)$. これは$K_{\C\mathbb{P}^1}+ D$がampleなのでlog general type. 
+\end{itemize}
+
+\end{ex}
+
+
+\subsection{Orbifold base of a fibration. \cite[1.2.2]{Cam04}}
+
+\begin{defn}\cite[Definition  1.5, 1.6]{Cam04}
+\(f : X \to Y\) をコンパクト複素多様体の間のfibration とし, 
+\(\Delta(f)\) を \(f\) の multiplicity divisor とする.
+このとき \((Y/\Delta(f))\) を \(f\) の \emph{orbifold base} と呼ぶ.
+
+\((Y/\Delta(f))\) を orbifold baseとする.
+その \emph{(ログ)標準束} を \(Y\) 上の \(\mathbb{Q}\)-divisor
+\[
+K_{Y/\Delta(f)} := K_Y + \Delta(f)
+\]
+として定める.
+またその Kodaira次元 を次で定める. 
+\[
+\kappa(Y/\Delta) := \kappa(Y, K_Y + \Delta)
+\]
+\end{defn}
+
+\begin{rem}
+$D$を$Y$上の$\Q$-divisorとする. 
+divisorとの組$(Y, D)$を
+"Orbifold"と呼ぶのはCampanaぐらいで, 普通は"log pair"と呼ぶと思う(\cite{KM98}参照)
+\end{rem}
+
+
+\begin{defn}\cite[Section 1]{Laz04}\cite[Remark 2.3.17]{Fuj20}
+コンパクト複素多様体$Y$とそのdivisor $L$について, Kodaira-Iitaka 次元 $\kappa (L)$を
+$$
+\kappa(L):= \limsup_{m \to \infty}\frac{\log h^0(Y, L^{\otimes m})}{ \log m}
+\in \{- \infty, 0, 1, \ldots, \dim Y \}
+$$
+と定義する.
+また$\kappa(L) = \dim Y$となるdivisor $L$を巨大(big)と言う. 
+
+%$Y$$D$を$\Q$-divisorとする. 
+%$(Y, D)$がlog general typeであるとは
+\end{defn}
+"雑に"にいえば$m \gg 0$について
+$$
+h^0(Y, L^{\otimes m}) = O(m^{\kappa(L)})
+$$
+が(だいたい)成り立つ.
+$\kappa(L)$は$h^0(Y, L^{\otimes m})$の増大度を表している. 
+$\kappa(L)=-\infty$とは大域切断が全くないことを言う.
+
+\begin{ex}
+$C$を次元1の滑らかな射影代数曲線とする.
+\begin{itemize}
+\item $\kappa(K_X) = - \infty \Leftrightarrow \deg K_X <0 \Leftrightarrow X \cong \C\mathbb{P}^1$ 
+\item $\kappa(K_X) = 0 \Leftrightarrow \deg K_X =0 \Leftrightarrow X  \text{は楕円曲線}$ 
+\item $\kappa(K_X) = 1 \Leftrightarrow \deg K_X >0 \Leftrightarrow X \text{の種数$g \ge 2$}$ 
+\end{itemize}
+\end{ex}
+
+\subsection{The Kodaira dimension of a fibration. \cite[1.3]{Cam04}}
+
+\begin{defn}\cite[Definition 1.7]{Cam04}
+コンパクトnormal解析空間 \(X, Y\) の間の
+fibration \(f : X \dashrightarrow Y\) に対して
+\[
+\kappa(Y,f) := \inf\{\kappa(\widetilde{Y}/\Delta(\widetilde{f}))\},
+\]
+と定める.
+ここでinfは$f$と双有理なfibration $\widetilde{f} : \widetilde{X} \to \widetilde{Y}$をうごく. 
+つまりinfは
+\begin{itemize}
+\item $\widetilde{X}, \widetilde{Y}$ コンパクト複素多様体
+\item bimeromorphic map $\widetilde{X} \to X, \widetilde{Y} \to Y$
+\item fibration $\widetilde{f} : \widetilde{X} \to \widetilde{Y}$
+\end{itemize}
+であって次の図式が可換になるものを全て動く. 
+  \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X}  \ar@{->}[d]\ar@{->}[r]^{\widetilde{f}} &\widetilde{Y} \ar@{->}[d]\\
+ X\ar@{-->}[r]^{f} & Y\\
+}
+\]
+
+$X, Y$をコンパクト複素多様体, \(f : X \to Y\) をfibrationとする. 
+\[
+\kappa(Y,f) = \kappa\bigl(Y, K_Y + \Delta(f)\bigr)
+\]
+が成り立つとき，\(f\) が \emph{admissible} であると言う. 
+\end{defn}
+
+この$\kappa(Y,f) $は"bimeromorhic invariant"である. つまり
+コンパクト解析空間 \(X', Y'\)の間のfibration $f' : X \dashrightarrow Y'$と
+bimeromorphic map $X' \to X, Y' \to Y$で次の図式が可換になるとする. 
+  \[
+\xymatrix@C=50pt@R=20pt{
+X'  \ar@{->}[d]\ar@{->}[r]^{f'} &Y'\ar@{->}[d]\\
+ X\ar@{-->}[r]^{f} & Y\\
+}
+\]
+このとき$\kappa(Y,f)  = \kappa(Y',f') $である. 
+
+\begin{ex}
+$f = id$でも$\kappa(X, id) \neq \kappa(K_X)$であることがありうる. 
+実際 \cite{Keum08}によりnormal 曲面$X$(KLT singularityを持つ)であって
+\begin{itemize}
+\item $K_X$がbig. つまり$\kappa(K_X)=2$
+\item あるresoluion $\pi : \widetilde{X} \to X$があって$\kappa(K_{\widetilde{X}}) = 1$.
+\end{itemize}
+となるものが存在する. 
+この場合
+$$
+\kappa(X, id) \underset{\text{def}}{\le} \kappa(K_{\widetilde{X}})  = 1 \neq 2 = \kappa(K_X)
+$$
+である. 
+これが起こりうる理由は, あるeffective divisor $E, G$で
+$$
+K_{\widetilde{X}} \sim_{\Q} \pi^{*}K_X + E-G
+$$
+と書くときに$G \neq 0$となることから由来している. 
+
+逆に言うとこういった異常なことは$X$が複素多様体の場合は起こり得ない(もっと強くcanonicalでもいいと思う. Campanaもcanonicalぐらいなら大丈夫だと論文で何度も言及している.)
+
+この例は次のことも言っている
+\begin{center}
+$K_X$がbigでも, $X$がgeneral type (あるresolution $\widetilde{X}\to X$があって$K_{\widetilde{X}}$がbig) とは限らない.
+\end{center}
+
+\end{ex}
+
+\subsection{Generically finite maps. Statement of main result. \cite[1.3.2]{Cam04}}
+
+\begin{thm}\cite[Theorem 1.8, 1.14]{Cam04}
+\label{thm-Cam04-1.8}
+コンパクト normal 解析空間のfibration $f, f'$からなる
+可換図式
+\[
+\xymatrix{
+X' \ar[d]_{f'} \ar[r]^{u} & X \ar[d]^{f} \\
+Y' \ar[r]_{v} & Y
+}
+\]
+を考える.
+
+\begin{enumerate}
+\item さらに \(u,v\) が bimeromorphic であるとき
+  \begin{enumerate}
+  \item \(\kappa\bigl(Y/\Delta(f \circ u)\bigr) = \kappa\bigl(Y/\Delta(f)\bigr)\) かつ
+        \(\kappa\bigl(Y'/\Delta(f')\bigr) \le \kappa\bigl(Y/\Delta(f)\bigr)\) が成り立つ.
+  \item さらに \(\kappa(Y) \ge 0\) ならば，上記の不等式は実は等式となり，
+        \(\kappa\bigl(Y/\Delta(f)\bigr) = \kappa(Y,f)\) が成り立つ.
+  \end{enumerate}
+\item \(u,v\) が generically finite かつ 全射 であると仮定すると，
+  \begin{enumerate}
+  \item \(\kappa(Y',f') \ge \kappa(Y,f)\).
+  \item \(u\) が étale であり，かつ \(X,X'\) が smooth であるときは，
+        \(\kappa(Y',f') = \kappa(Y,f)\).
+  \end{enumerate}
+  \item \(\kappa(Y) \ge 0\) と仮定する.
+\end{enumerate}
+\end{thm}
+証明は見たかんじ係数の計算だけである. 
+
+\begin{cor}[1.13]
+コンパクト normal 解析空間 \(X, Y\) の間の
+fibration \(f : X \dashrightarrow Y\) に対して
+\begin{itemize}
+\item $\widetilde{X}, \widetilde{Y}$ コンパクト複素多様体
+\item bimeromorphic map $\widetilde{X} \to X, \widetilde{Y} \to Y$
+\item fibration $\widetilde{f} : \widetilde{X} \to \widetilde{Y}$で$f$はneat, prepared, addmisible
+\end{itemize}
+であって次の図式が可換になるものがあって, 
+  \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X}  \ar@{->}[d]\ar@{->}[r]^{\widetilde{f}} &\widetilde{Y} \ar@{->}[d]\\
+ X\ar@{-->}[r]^{f} & Y\\
+}
+\]
+次の等式を満たすものが存在する.
+$$
+\kappa(Y, f) = \kappa(\widetilde{Y}, \widetilde{f}) = \kappa(\widetilde{Y}/\Delta(\widetilde{f}))
+$$
+
+%つまり$\kappa(Y, f)$のinfをattainする$\widetilde{f} : \widetilde{X} \to \widetilde{Y}$が存在する. 
+\end{cor}
+
+
+\begin{proof}
+$\kappa(Y, f)=\inf\{\kappa(\widetilde{Y}/\Delta(\widetilde{f}))\}$なので, infを達成する$f' : X' \to Y'$が存在する. 
+すると
+\begin{equation}
+\label{eq-inf}
+\kappa(Y, f)\underset{\text{bimero inv.}}{=}\kappa(Y', f') \underset{\text{def}}{\le} \kappa(Y' / \Delta(f'))\underset{\text{infを達成}}{=}\kappa(Y, f)
+\end{equation}
+であることがわかる
+
+\ref{lem-Cam04-1.3}を適応して, あるneatかつpreparedな$\widetilde{f}: \widetilde{X} \to \widetilde{Y}$で次を可換にするものが存在する. 
+  \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X} \ar@{->}[d]^{\text{bimero}}\ar@{->}[r]^{\widetilde{f}} &\widetilde{Y} \ar@{->}[d]^{\text{bimero}}\\
+ X'\ar@{->}[r]^{f'} & Y'\\
+}
+\]
+\ref{thm-Cam04-1.8}より
+$$
+\kappa(Y, f)\underset{\text{bimero inv.}}{=}
+\kappa(\widetilde{Y}, \widetilde{f})
+\underset{\text{def}}{\le} 
+\kappa(\widetilde{Y}/\Delta(\widetilde{f})) 
+\underset{\ref{thm-Cam04-1.8} (1)}{\le} 
+\kappa(Y'/ \Delta(f')) \underset{\ref{eq-inf}}{=}
+\kappa(Y, f)
+$$
+であるので$\kappa(Y, f) = \kappa(\widetilde{Y}, \widetilde{f}) = \kappa(\widetilde{Y}/\Delta(\widetilde{f}))$である. 定義からaddmisibleである. 
+\end{proof}
+
+
+
+\subsection{The sheaf of differential forms determined by a fibration. \cite[1.4]{Cam04}}
+
+
+\begin{defn}\cite[Definition 1.19]{Cam04}
+\label{defn-Cam04-1.19}
+\(X\) をコンパクト複素多様体, $Y$を$p$次元コンパクト normal 解析空間とする. 
+\(f : X \dashrightarrow Y\) をfibrationとする. 
+
+\(Y_0 \subset Y\) を$Y$のregular locusとして, 
+\(\Omega_X^p\) のrank \(1\) subsheaf
+\(F_f\) を，
+$$
+F_f := (f^*(K_{Y_0}))^{sat} \subset \Omega_X^p
+$$
+として定まる. ここでsatとは$\Omega_{X}^{p}$でのsaturationである.
+そして$\kappa(f)$を
+$$
+\kappa(f) := \kappa(X, F_f)
+$$
+として定める. これは$f$の"bimeromorphic invariant"である. 
+\end{defn}
+$f^*(K_{Y_0})$の定義についてはresolutionを次にとる
+  \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X} \ar@{->}[d]_{\pi \text{ bimero}}\ar@{->}[rd]^{\widetilde{f}} &\\
+ X\ar@{-->}[r]^{f'} & Y\\
+}
+\]
+そして$f^*(K_{Y_0}):= (\pi_{*}(\widetilde{f}^{*}K_{Y_0}) )^{\vee\vee}$として定める. 
+
+\begin{defn}
+$X$を解析空間, $\mathcal{F}$をtorsion free sheafとする.
+$\mathcal{G} \subset \mathcal{F}$の$\mathcal{G}$でのsaturationを
+$$
+\mathcal{G}^{sat}:= (\mathrm{Ker} : \mathcal{F} \to (\mathcal{F}/\mathcal{G})/\mathrm{Tor})
+$$
+として定義する. 
+\end{defn}
+
+色々と$\kappa(f)$など出てきてややこしいが結局は次が言える.
+\begin{prop}\cite[Proposition 1.25]{Cam04}
+\label{prop-Cam04-1.25}
+$X$ コンパクト複素多様体とし, 
+\(f : X \dashrightarrow Y\) を fibration とする.
+このとき
+\begin{enumerate}
+\item \(\kappa(f) = \kappa(Y,f)\),
+\item \(Y\) が smooth で \(f\) が neat であれば，
+      \(\kappa(f) = \kappa(Y/\Delta(f))\).
+\end{enumerate}
+\end{prop}
+
+つまりはこう言うことである
+\begin{tcolorbox}[mybox]
+$f : X \dashrightarrow Y$ コンパクト normal 解析空間の写像とする
+\begin{itemize}
+\item $X$がsmoothならば, \(\kappa(Y,f) = \kappa(f) \),
+\item $X, Y$ smoothかつ$f$ neat ならば\(\kappa(f) = \kappa(Y/\Delta(f))\).
+\item $f$ addmissibleならば\(\kappa(Y,f) = \kappa(Y/\Delta(f))\).
+\end{itemize}
+また任意のコンパクト normal 解析空間の写像$f : X \to Y$について, ある
+\begin{itemize}
+\item $\widetilde{X}, \widetilde{Y}$ コンパクト複素多様体
+\item bimeromorphic map $\widetilde{X} \to X, \widetilde{Y} \to Y$
+\item fibration $\widetilde{f} : \widetilde{X} \to \widetilde{Y}$で$f$はneat, prepared, addmisible
+\end{itemize}
+であって次の図式が可換になるものがあって, 
+  \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X}  \ar@{->}[d]\ar@{->}[r]^{\widetilde{f}} &\widetilde{Y} \ar@{->}[d]\\
+ X\ar@{-->}[r]^{f} & Y\\
+}
+\]
+次の等式を満たすものが存在する.
+$$
+\kappa(Y, f) = \kappa(\widetilde{Y}, \widetilde{f}) = \kappa(\widetilde{Y}/\Delta(\widetilde{f}))
+=\kappa(\widetilde{f}) 
+$$
+要するにresolutionとれば全ての量は一致する. 
+\end{tcolorbox}
+
+
+以下\ref{prop-Cam04-1.25}の証明
+
+\begin{defn}\cite[Definition 1.20, 1.21]{Cam04}
+\(X, Y\) をコンパクト複素多様体, $Y$を$p$次元, 
+\(f : X \rightarrow Y\) をfibrationとする. 
+\[
+F(f) := f^*(K_Y) \otimes \mathcal{O}_X\bigl([f^*(\Delta(f))]\bigr)
+\]
+と定める.
+ここで$\Q$-divisor $D= \sum a_i D_i$について 
+$$
+[D]:= \sum [a_i]D_i
+$$と定める. 
+
+\(S \subset X\) 上の effective divisor について
+\begin{itemize}
+\item \(f(S) \ne Y\) 
+\item \(T \subset f(S)\) となる既約divisorについて, ある既約divisor $S' \subset f^{-1}(T)$があって
+$$
+S ' \neq S \quad \text{and} \quad f(S')=T
+$$
+を満たすとき, \(S\) は \(f\) の fiber 上に \emph{partially supported} されていると言う.
+\end{itemize}
+\end{defn}
+partially supportedはわかりづらいが, 次の状況で使う.
+$f : X \to Y$をfibrationとする. 既約divisor $D \subset Y$について
+$$ 
+f^{*}D = m_1D_1 + m_2 D_2 + (\text{$f$-exceptional})
+$$ 
+となっているとする. ここで$m_1 <m_2$は整数, $f(D_i)=D$とする. 
+このとき$D_1, D_2$はともにpartially supportedである. 
+
+%このとき
+%$$
+%m(f, D):= m_1 \quad \text{and} \quad 
+%\Delta(f) = \left(1 - \frac{1}{m_1}\right) D
+%$$
+%となる. 
+%このとき
+%$$
+%f^{*}(K_Y + \Delta(f)) = m_2 \left(1 - \frac{1}{m_1}\right) D_2 + ($f$-exceptional)
+%$$
+%であり, $$
+
+
+\begin{prop}\cite[Proposition 1.22, 1.23, 1.24]{Cam04}
+\(X, Y\) をコンパクト複素多様体, 
+\(f : X \rightarrow Y\) をfibrationとする. 
+
+\begin{enumerate}
+\item  \(S\) を \(f\) の fiber 上に partially supported されている\(X\) 上の divisorとする.  \(L\) を \(Y\) 上の 直線束とすると, 
+ sheaf の自然な射
+\[
+L \subset f_*\bigl(f^*(L) + S\bigr)
+\]
+は同型射である.
+\item あるcodimension が少なくとも \(2\) であるような Zariski 閉集合 \(A \subset Y\) が存在して，
+\[
+(X - B) := f^{-1}(Y - A)
+\]
+上では \(F(f) + S'\) と \(F_f\) が自然に同型である.
+ここで \(S'\) は \(f\) の fiber 上に partially supported されているある\(X\) 上の divisorとする.
+\item 
+\(m>0\) を十分大きく可除な整数とする.
+このとき(2)での \(F(f)+S'\) と \(F_f\) の \((X-B)\) 上での自然な同型は，
+\[
+H^0\bigl(X,F_f^{\otimes m}\bigr)
+ \hookrightarrow H^0\bigl(X,m(F(f)+S')\bigr)
+ \simeq H^0\bigl(Y,m(K_Y + \Delta(f))\bigr)
+\]
+と言う単射に拡張される. 
+%という自然な単射の形で\(m\)-乗の level の断面にまで拡張される.
+さらに　もし \(f\) が neat ならば， この単射は同型である.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+(1). 
+$Y$上で局所的な話なので, $Y$は座標近傍で\(L\) を自明と仮定してよい. 
+示すべきことは 
+\[ f_*\bigl(\mathcal{O}_X(S)\bigr) \simeq \mathcal{O}_Y
+\] である.
+
+あるeffective divisor \(T \subset Y\) で\(S \subset f^*(\mathcal{O}_Y(T))\) となるものをとる. 
+$T=(t=0)$とみなして良い. 
+$\mathcal{O}_Y(T)$のlocal sectionは$T$で極を持つ有理型関数なので, 
+$f^*(\mathcal{O}_Y(T))$のlocal sectionは\(Y\) 上の正則関数\(u\) を用いて
+\(f^*(u/t)\) 
+とかける. 
+
+さて, $f_*\bigl(\mathcal{O}_X(S)\bigr)$のlocal section $s$ をとる. 
+$s$は$S$でのみ極を持つ有理型関数である.
+ \(S \subset f^*(\mathcal{O}_Y(T))\) より
+ $ s = f^*(u/t)$
+ とかける. 今$S$はpartially supported なのである$S'\subset X$ divisorで，
+$S ' \neq S, f(S')=T$となるものがある. 
+ よって
+ $$
+ s|_{S'} = f^*(u/t)|_{S'}
+ $$
+ である. 
+$ s|_{S'}$は$S'$で極を持たないので, $u$は$t$を割り切らないといけない(そうでないと $s|_{S'}$は$S'$で極を持ってしまう)
+よって$s$は$\mathcal{O}_Y$のlocal sectionになる(つまり極を持たない)
+
+(2). 
+\begin{center}
+$A :=$
+ (\(\Supp \Delta(f)\) の特異点集合) $\cup$
+(全ての\(f\)-exceptional divisor の$f$の像)
+\end{center}
+として定める. これは$A$のcodimension 2以上集合である.
+
+%示すことは\(F(f)  = f^*(K_Y) \otimes \mathcal{O}_X\bigl([f^*(\Delta(f))]\bigr) \) と \(F_f\)が同型であること. 
+%既約divisor\(T \subset Y\) について二つの場合にわける
+%[2-1]. $T \cap \Delta(f)^{c} \neq\varnothing$ の場合この場合$T$のgeneralなpoint上で$f$はsmoothであるので, $T \setminus A$上で
+
+$S'$を以下のように定める. 
+\(\Delta_i \subset \Delta(f)\) について, %で$f$が滑らかになる部分を考える. 
+$$
+f^{*}\Delta_i = \sum_{j}m_{ij} D_{ij} + R_i
+$$
+とする. $f(D_{ij})=\Delta_i$, $R_i$は$f$-exceptionalとする.
+また$m_i = \inf_{j} {m_{ij}}$とする.  
+$$
+\Delta(f) = \left( 1 - \frac{1}{m_i}\right)\Delta_i + (others)
+$$
+となる. 
+一般点 \(x \in D_{ij}\) と$y =f(x) \in \Delta_i $の座標近傍を以下のようにとる: 
+\[
+(x) = (x_1,\dots,x_n),\qquad
+(y) = (y_1,\dots,y_p),\qquad
+f(x) = (y_1 := x_1^{m_{ij}}, y_2 := x_2,\dots,y_p := x_p)
+\]
+ここで$D_{ij}=(x_1=0), \Delta_i = (y_1=0)$である. 
+このとき
+\begin{itemize}
+\item $f^{*}(K_Y)$のlocal sectionは$f^{*}(dy_1 \wedge \cdots \wedge dy_p)=x_{1}^{m_{ij} - 1}dx_1 \wedge \cdots \wedge dx_p$である. 
+\item $\Delta(f) = \left( 1 - \frac{1}{m_i}\right)\Delta_i $であるので, 
+$f^{*}(\Delta(f))$のlocal sectionは
+$$f^{*}\left(\frac{1}{{y_1}^{1 - \frac{1}{m_i}}}\right) = x_{1}^{-m_{ij} + \frac{m_{ij}}{m_i}}$$ 
+\end{itemize}
+以上より
+\([f^*(K_Y + \Delta(f))]\)
+は
+\[
+f^{*}(dy_1 \wedge \cdots \wedge dy_p) \cdot f^{*} \left(\frac{1}{{y_1}^{1 - \frac{1}{m_i}}}\right) 
+= 
+x_1^{\frac{m_{ij}}{m_i}-1} dx_1 \wedge \cdots \wedge dx_p
+\]
+で生成される.
+そこで
+$$
+S' = \sum_{j} (m_{ij}/m_i)-1]D_{ij}
+$$
+とすると, $S'$はpartially supportedとなり, 
+\([f^*(K_Y + \Delta(f))] + S'\)のlocal sectionは$dx_1 \wedge \cdots \wedge dx_p$
+であり, $F_{f}$と一致する.  ($F_{f}$はsaturationをとっているので$dx_1 \wedge \cdots \wedge dx_p$で生成される. )
+
+以下
+\(f^*(K_Y + \Delta(f))] + S' \) と \(F_f\)の(divisorとしての)差が$X \setminus B = f^{-1}(Y \setminus A)$上で0であることを示す. 
+既約divisor$D \subset X$について, $D$が$f$-exceptionalならば$D \subset B$より, $D$は$f$-exceptionalでないとして良い. 
+$f(D) \not \subset \Delta(f)$ならば$D$の一般点で$f$はsmoothなので, そもそも$f^{*}K_{Y}=F_{f}$である. 
+$f(D) \subset \Delta(f)$ならば$S'$の取り方から言える. \footnote{ここCampanaの証明も雰囲気しか言っていないので, なんて言えばいいかわからない. いい言い方があれば教えてください.}
+
+(3) $m$が十分大きいと$\Q$-divisorを整数係数にできる. (1)より
+\[
+H^0\bigl(X,m(F(f)+S')\bigr) \simeq
+H^0\bigl(Y, f_{*}\mathcal{O}_{Y}(m(F(f)+S'))\bigr) \underset{(1)}{\simeq} 
+H^0\bigl(Y,m(K_Y + \Delta(f))\bigr)
+\]
+である. 以上より
+$$
+H^0(X \setminus B, F_{f}^{\otimes m}) \underset{(2)}{\simeq} 
+H^0(Y \setminus A , m(K_Y + \Delta(f)))
+\underset{\text{Hartogs}}{\simeq} 
+H^0(Y, m(K_Y + \Delta(f)))
+\underset{\text{上の同型}}{\simeq} H^0\bigl(X,m(F(f)+S')\bigr)
+$$
+となる. これより制限写像を用いて$H^0(X, F_{f}^{\otimes}) \hookrightarrow H^0\bigl(X,m(F(f)+S')\bigr)$を得る. 
+
+$f$がneatの場合, ある複素多様体$X'$へのbimeromorphic map $u : X \to X'$があって, \(u(B)\) が codimension \(2\) 以上の Zariski 閉集合 になる. 
+よって
+ \[
+\xymatrix@C=50pt@R=20pt{
+H^0(X', F_{f'}^{\otimes m}) \ar@{->}[d]^{u^{*} }\ar@{->}[r]^{ \text{isom}} &H^0(X' \setminus u(B), F_{f'}^{\otimes m})\ar@{->}[d]^{u^{*} \text{isom}}\\
+H^0(X, F_{f}^{\otimes m}) \ar@{->}[r]^{f} & H^0(X \setminus B, F_{f}^{\otimes m}) \\
+}
+\]
+という図式が成り立ち 特に$H^0(X, F_{f}^{\otimes m}) \to H^0(X \setminus B, F_{f}^{\otimes m})$は全射(同型)になる.よっていえた.
+\end{proof}
+
+\begin{proof}[\ref{prop-Cam04-1.25}の証明]
+(2)は(1)の言い換え. 
+(1)は$f$をneatかつaddmisibleと仮定してよく, 
+$$
+\kappa(Y, f) \underset{\text{addmisible}}{=}\kappa(Y/\Delta(f))
+\underset{\text{neat}}{=}\kappa(f)
+$$
+となりわかる. 
+\end{proof}
+
+\section{Special fibrations and general type fibrations}
+
+\subsection{Special or general type fibrations. \cite[2.1]{Cam04}}
+
+\begin{defn}
+コンパクト解析空間が "in Fujiki class  $C$" であるとは, コンパクト Kähler 多様体と bimeromorphic であること. 
+\end{defn}
+%以下\underline{2-7章に限っては断りがなければ, Fujiki classであること}を仮定する. \footnote{8章のKobayashi-Ochiaiの話は\cite{KO75}自体がK\"ahler関係なくわかっているので, Fujikiでなくても良い. 他はFujiki(K\"ahler)がほぼほぼ必要(だと思う). ただし代数次元$a(X)$の話に限ってはFujikiは不要かもしれない. }
+
+\begin{defn}
+\label{defn-Cam04-special}
+\(f : X \dashrightarrow Y\) を fibration とし，\(X,Y\) はコンパクト解析空間 とする.
+\begin{enumerate}
+\item fibration \(f : X \dashrightarrow Y\) が \emph{general type} であるとは，\(\kappa(Y,f)=\dim(Y)>0\) が成り立つこと. 
+\item \(X\) が \emph{special} であるとは, general type meromorphic fibration \(f : X \dashrightarrow Y\) を持たないこと. 
+\item fibration \(f : X \dashrightarrow Y\) が \emph{special} であるとは, その一般ファイバーが special であることをいう.
+\end{enumerate}
+\end{defn}
+定義からspecialはbimeromorphicな性質である. 
+
+この定義だとspecialがわかりづらい. が, 逆に"specialでない"の方がわかりやすい. 
+\begin{tcolorbox}[mybox]
+コンパクト normal 解析空間 $X$ が\underline{specialではない}とは, 
+\begin{itemize}
+\item $\widetilde{X}, \widetilde{Y}$ コンパクト複素多様体
+\item bimeromorphic map $\widetilde{X} \to X$
+\item fibration $\widetilde{f} : \widetilde{X} \to \widetilde{Y}$で$f$はneat, prepared, addmisibleかつ$\dim \widetilde{Y} >0$
+\end{itemize}
+なものであって, 
+$$
+\dim Y= \kappa(\widetilde{Y}/\Delta(\widetilde{f})) $$
+となるものが存在すること. (上の量は $\kappa(\widetilde{Y}, \widetilde{f}) $や$\kappa(\widetilde{f})$と一致する. )
+\end{tcolorbox}
+
+\begin{ex}\cite[Example 2.3]{Cam04}
+以下に special 多様体 のいくつかの例を挙げる（ほとんどの証明には後で展開する道具が必要なので，後で与える）.
+
+\begin{enumerate}
+\item[0.] 
+コンパクト解析空間 $X$ がgeneral typeならばspecial ではない. 
+ここで$X$がgeneral typeとはあるresolution $\widetilde{X} \to X$があって, $K_{\widetilde{X}}$がbigであること. これは$id : \widetilde{X} \to \widetilde{X}$がgeneral type 射になるから. 
+\item[1.] $X$がリーマン面(滑らかな射影代数曲線)であるとき以下は同値
+\begin{itemize}
+\item $X$がspecial
+\item 種数が \(0\) または \(1\) 
+\item Kodaira次元 が高々 \(0\) 
+\item  基本群 が abelian
+\item Kobayashi hyperbolic ではない.
+\end{itemize}
+これは射影代数曲線の間の有理写像は正則写像になるから. 
+\item[2.] rationally connected (有理連結, RC)ならば special. 
+ここで解析空間 $X$がrationally connected であるとは, 「一般の$x, y \in X$についてある有理曲線$f : \C\mathbb{P}^1 \to X$が存在して$x, y \in \C\mathbb{P}^1$」となること. 
+証明は$H^0(X, \Omega_{X}^{p})=0$からわかる(\ref{cor-Cam04-2.28})
+よって特に$\C\mathbb{P}^n$やFano多様体はspecial.
+\item[3.] \(\kappa(K_X)=0\)となる 多様体は special (\ref{thm-Cam04-5.1}). 
+特に\(c_1(X)=0\) ならばspecial (この場合は別証明がある \ref{cor-Cam04-2.28}) よってトーラスはspecial.
+\item[4.] special 多様体は, 弱い意味で rationally connected であるか，あるいは Kodaira次元 が \(0\) である 多様体から構成される\footnote{\xr{\cite[Section 6.5]{Cam04} に説明があるが, よくわからんかった.}}
+%これら二つの型のファイバーを持つ fibration の適当な合成によって構成される.正確な記述は 6.5 節を見よ.
+\item[5.] 任意の \(d>0\) と \(k\in\{-\infty,0,\dots,d-1\}\) に対して，次元 \(d\) かつ Kodaira次元 \(k\) を持つ special 射影多様体 が存在する. (\ref{ex-Cam04-2.19}) 
+よって小平次元とspecial多様体は関係がほぼほぼない. 
+\item[6.] $\C$-dominableならばspecial. ここで解析空間 $X$が$\C$-dominambleとは非退化な  射 \(\mathbb C^n \rightarrow X\) が存在すること\footnote{非退化とは微分写像が全射な点が存在すること. 同値な条件として, 写像が正則である点において submersive であること. これはサードの定理から全射(dominant)と同値になる. 実はdominant rational map\(\mathbb C^n \dashrightarrow X\)が存在すればspecialである. } これはKobayashi-Ochiaiの定理(の拡張版)からわかる. (\ref{thm-Cam04-8.2})
+\item[6'.] Oka多様体ならば$\C$-dominableなので, specialである. 
+ \item[7.] $-K_X$がnef, もしくは$T_X$がpsefならばspecial. もっと強く$T_X$がgenerically nefならばspecial. 
+ 証明はMatsumura-Qing 25参照
+\item[8.] 代数次元が \(0\)(すなわち\(a(X)=0\))である 多様体 \(X\) も special である. 
+これは次の定理から. \footnote{\xr{この証明もよくわからなかった. fibrationの族の極大をとるっぽい議論である.}}
+\begin{thm}\cite[Theorem 2.4]{Cam04}
+$X$をコンパクト normal 解析空間 in Fujiki's classとする. 
+\(a_X : X \dashrightarrow \operatorname{Alg}(X)\) を \(X\) の algebraic reduction とする.
+このとき \(a_X\) の一般ファイバーは special である.
+\end{thm}
+
+\end{enumerate}
+
+\end{ex}
+
+
+\subsection{Special fibrations dominate general type fibrations. Statements. \cite[2.2]{Cam04}}
+
+
+\begin{thm}\cite[Theorem 2.6]{Cam04}
+\label{thm-Cam04-2.6}
+$X, Y, V, Z$をコンパクト normal 解析空間 とする. 
+\begin{itemize}
+\item \(h : V \dashrightarrow Z\)を一般ファイバーは special となるfibration 
+\item  \(f : X \dashrightarrow Y\) を general type fibration
+\item \(g : V \dashrightarrow X\) を meromorphic dominant map
+\end{itemize}
+とする. このときある \(k : Z \dashrightarrow Y\) が存在して
+\(
+f \circ g = k \circ h
+\)
+が成り立つ.
+\[
+\xymatrix@C=50pt@R=20pt{
+V \ar@{-->}[r]^{g \text{ dominant}} \ar@{-->}[d]_{h \text{ special}} & X \ar@{-->}[d]^{f \text{ gen.type}} \\
+Z \ar@{-->}[r]_{\exists k} & Y
+}
+\]
+\end{thm}
+ 使い方としては\(V=X\) の場合よく使う. ただ証明はかなり込み入る. (途中Chow-Barlet spaceが出てきてかなりよくわからなかった. )
+ 
+ \begin{prop}\cite[Proposition 2.10]{Cam04}
+ $X, Y, Z, Y'$をコンパクト normal 解析空間 とする. 
+ \label{prop-Cam04-2.10}
+ \begin{itemize}
+ \item \(f : X \dashrightarrow Y\) を general type fibration とする.
+ \item \(j : Z \dashrightarrow X\) を meromorphic map, \(f\circ j : Z \dashrightarrow Y\) dominant.
+ \item \(f\circ j = g \circ h\) を \(f\circ j\) の Stein 分解とし，\(h : Z \dashrightarrow Y'\) は fibration \(g : Y' \dashrightarrow Y\) は(generically?) finite とする.
+ \end{itemize}
+
+このとき \(h\) は general type fibration である.
+
+\[
+\xymatrix@C=80pt@R=20pt{
+Z \ar@{-->}[rd]^{f \circ j \text{ dominant}} \ar@{-->}[r]^{j}   \ar@{-->}[d]_{h \text{ fibration}} & X \ar@{-->}[d]^{f \text{ gen.type}} \\
+Y' \ar@{-->}[r]_{g \text{ finite}} & Y
+}
+\]
+\end{prop}
+これは$\Delta(f \circ j) \ge \Delta(f)$であることを用いて示す. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{thm}[2.7]
+\begin{itemize}
+\item \(h : X\dashrightarrow Z\)を一般ファイバーは special となるfibration 
+\item  \(f : X \dashrightarrow Y\) を general type fibration
+\end{itemize}
+とする. このときある \(k : Z \dashrightarrow Y\) が存在して
+\(
+f = k \circ h
+\)
+が成り立つ. 
+\[
+\xymatrix@C=50pt@R=20pt{
+X \ar@{-->}[d]_{h \text{special}} \ar@{-->}[dr]^{f \text{gen.type}} & \\
+Z \ar@{-->}[r]_{\exists k} & Y
+}
+\]
+\end{thm}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+これらを認めると次がわかる. \footnote{実際は論理展開が逆で2.9などを示してから, 上の2.6を示す. }
+\begin{lem}\cite[Lemma 2.9, 2.17]{Cam04}
+$X, X', Y, Z$をコンパクト normal 解析空間 とする. 
+\label{lem-Cam04-2.9}
+\begin{enumerate}
+\item \(g : X' \dashrightarrow X\) を dominant meromorphic mapとする.
+\(X'\) が special ならば, \(X\) も special である
+\item $X, X'$がspecialならば, $X \times X'$もspecial.
+\item \(f : X \dashrightarrow Y\) を special fibration, \(j : Z \dashrightarrow X\) meromophic mapで \(f\circ j : Z \dashrightarrow Y\) がdominantとなるものとする. 
+もし\(Z\) が special ならば, \(X\) も special である.
+\[
+\xymatrix@C=70pt@R=20pt{
+X  \ar@{-->}[dr]^{f \text{ special}} & \\
+Z  \ar@{-->}[r]_{ f \circ j\text{ dominant}} \ar@{-->}[u]_{j}& Y
+}
+\]
+\end{enumerate}
+\end{lem}
+\begin{proof}
+(1). $X$がspecialでないとすると, $f : X \dashrightarrow Y$ general type fibration
+で$\dim Y>0$となるものがある.  
+\ref{thm-Cam04-2.6}を$V=X', Z=pt$に対して適応すれば, $f$は定数写像となる. 
+よって$\dim Y=0$となり矛盾. 
+
+(2). $X \times X'$がspecialでないとすると, $f : X \times X'\dashrightarrow Y$ general type fibaration 
+で $\dim Y>0$となるものがある.  
+\ref{thm-Cam04-2.6}を$V=X'\times X \to Z=X'$に対して適応すれば, $k : X' \to Y$を誘導する. 
+よって$j : X' \to X \times X'$を$a \in X$のある点をとって$x' \mapsto (a, x')$と定義すれば次の図式を得る. 
+\[
+\xymatrix@C=70pt@R=20pt{
+X'  \ar@{-->}[rd]_{ k= f \circ j \text{ dominant}}  \ar@{->}[r]^{j} & X \times X'  \ar@{-->}[d]^{ f \text{ gen. type}}  \\
+& Y
+}
+\]
+よって\ref{prop-Cam04-2.10}を用いて$X' \dashrightarrow Y'$という$\dim Y'=\dim Y >0$のgeneral type fbrationを作れ, $X'$がspecialであることに矛盾する. 
+
+
+
+(3). $X$がspecialでないとすると, $h : X \dashrightarrow T$ general type fibaration で $\dim T>0$となるものがある.  
+\ref{thm-Cam04-2.6}から$g : Y \dashrightarrow T$が存在する. 
+
+\[
+\xymatrix@C=70pt@R=20pt{
+X  \ar@{-->}[dr]^{f \text{ special}} \ar@{-->}[r]^{h \text{ gen.type} } & T \\
+Z  \ar@{-->}[r]_{ f \circ j\text{ dominant}} \ar@{-->}[u]^{j}& Y \ar@{-->}[u]^{ \exists g  }
+}
+\]
+
+すると$g \circ  f \circ j : Z \dashrightarrow T$がdominantなので, \ref{prop-Cam04-2.10}を用いて
+$h' : Z \dashrightarrow T'$ general type fibaration で $\dim T'=\dim T>0$となるものがある.  これは$Z$がspecialであることに矛盾する. 
+\end{proof}
+
+\begin{ex}\cite[Example 2.19]{Cam04}
+\label{ex-Cam04-2.19}
+任意の \(d>0\) および \(k\in\{-\infty,0,\dots,d-1\}\) に対して，次元 \(d\) かつ Kodaira次元 が \(k\) である special 射影多様体 $X_{d, k}$が存在する
+特にspecial 多様体はKodaira 次元とほぼほぼ関係がない. 
+
+\(k=-\infty\) の場合は \(\C\mathbb P^d\) をとればよいので, 以下\(k\geq 0\) とする. 
+\(P := \C\mathbb P^{d-k+1}\times \C\mathbb P^k\) 上の線形系
+\[
+X_{d, k} \in |\mathcal{O}_P(d-k+2,m)|
+\]
+の一般元で$pr_2 : X_{d, k} \to \C\mathbb P^k$に関してsection $\sigma : \C\mathbb P^k \to X_{d, k} $が存在するものを取る. \footnote{これの存在は$\varphi: \C^k \to \C^{d-k-1}$で$F(\varphi(w), w)=0$となるものが存在すれば良いと思う. 多分sectionと書いているが, rational section $\C\mathbb P^k \dashrightarrow X_{d, k}$のことだと思う.}
+
+$X_{d, k}$は$F(z, w)$で$z \in \C\mathbb P^{d-k+1}$に関して$d-k+2$次, $w \in \C\mathbb P^k$に関して$m$次の斉次代数方程式を使って
+$$
+X_{d, k} = \{ (z, w) \in P \mid F(z, w)=0\}
+$$
+となるものである. 
+これはadjunction formula $K_D\sim (K_X + D)|_{D}$を使えば
+$$
+K_{X_{d, k}} \sim (m-k-1)pr_{2}^{*}H_{\C\mathbb P^k}\}
+$$
+となるので$\kappa(K_{X_{d, k}})= k$となる. 
+
+$X_{d, k}$がspecialなのは, 
+\begin{itemize}
+\item $pr_2 : X_{d, k} \to \C\mathbb P^k$のfiberは$\C\mathbb P^{d-k+1}$内の$d-k+2$次の零点集合なので, $c_1=0$でありspecial. よって$pr_2 : X_{d, k} \to \C\mathbb P^k$はspecial fibration
+\item $pr_2 \circ \sigma : \C\mathbb P^k \dashrightarrow \C\mathbb P^k$はdominant
+\item $\C\mathbb P^k$はspecial (rationally connected)
+\end{itemize}
+なので\ref{lem-Cam04-2.9} (3)よりspecialが言える. 
+
+\end{ex}
+
+
+\begin{rem}[2.18]
+\(Y\) が special, \(f : X \dashrightarrow Y\) が special fibrationでも\(X\) が special であるとは限らない
+（例えば \ref{ex-Cam04-1.1}参照）
+ただ$f$のファイバーが rationally connected であるときは成り立つ（\ref{prop-Cam04-3.28}）.
+\end{rem}
+
+
+\subsection{A uniqueness result. \cite[2.4]{Cam04}}
+
+\ref{thm-Cam04-2.6}から次がわかる. \footnote{\xr{\cite[Corollary 2.20]{Cam04}では$X$がFujiki classであることを仮定していたが, これ必要な理由がわからない.}}
+\begin{cor}\cite[Corollary 2.20]{Cam04}
+\label{cor-Cam04-2.20}
+$X$をnormal コンパクト 解析空間in Fujiki classとする. 
+\(X\) 上に定義された fibration $f : X \dashrightarrow Y$であって special かつ general type であるものは(bimeromorphicを除いて)高々一つしか存在しない. 
+\end{cor}
+
+そのような fibration $f : X \dashrightarrow Y$は 
+\begin{itemize}
+\item \(X\) 上の最小の special fibration かつ
+\item\(X\) 上の最大の general type fibration 
+\end{itemize}
+である. 後々(3章)でわかるが$X$がsmoothの場合は存在しcore mapという. つまり
+\begin{center}
+Core map =  special かつ general type である fibration
+\end{center}
+ということがわかる. 
+
+\subsection{A result on almost holomorphic maps. \cite[2.5]{Cam04}}
+
+\begin{defn}\cite[Definition 2.21]{Cam04}
+\(f : X \dashrightarrow Y\) をnormal コンパクト 解析空間のdominant fibrationとする.
+ \(f\) の不定値集合を \(I(f)\) とする. 
+ 
+ \(f( I(f) )  \neq Y\) であるとき，\(f\) を \emph{almost holomorphic} であると言う.
+\end{defn}
+正確にいうと, \(G_{f}\subset X\times Y\) を \(f\) のグラフとし, $p : G_f \to X, q : G_f \to Y$を射影としたときに
+\[
+f( I(f) ) := q(p^{-1}(I(f)))
+\]
+とする. 
+
+\begin{ex}
+MRC fibration, Core map, Shafarevich mapなど, Chow-Barlet space(cycle space)を使って作るmapは大概almost holomorphicである. (なのでCampanaが作ったmapはほぼalmost holomorphicである．)
+
+\ref{ex-projection}におけるfibration
+$$
+\varphi : \C\mathbb{P}^2 \to \C\mathbb{P}^1 
+\quad
+[x:y:z] \mapsto [y:z] 
+$$
+はalmost holomorpshicではない. 
+\end{ex}
+
+\begin{thm}\cite[Theorem 2.22]{Cam04}
+\(f : X \dashrightarrow Y\) を general type fibration とする. 
+
+\(X\in C\) が smooth (もっと強くKLT)であるならば,  \(f\) は almost holomorphic である.
+特に \(Y\) が曲線であれば，\(f\) は正則写像である.
+\end{thm}
+
+\begin{rem}\cite[Remark 2.23]{Cam04}
+\label{rem-Cam04-2.23}
+$X$がsmoothでない場合はなりたたない. 
+$Y$を$K_Y$がbigな射影多様体とする(例えば種数2以上のリーマン面)など.
+
+$X$を1点$v$の$Y$上のprojective coneとする. 
+$\pi : \widetilde{X} \to X$を$v$でのblowupとすると$\widetilde{\varphi} : \widetilde{X} \to Y$は$\C\mathbb{P}^1$-束になる
+   \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X}\ar@{->}[r]^{\widetilde{\varphi} \text{ $\C\mathbb{P}^1$-束 }}\ar@{->}[d]_{\pi} &Y\\
+X\ar@{-->}[ru]_{\varphi}  & \\
+}
+\]
+すると$\varphi : X \dashrightarrow Y$はgeneral type fibrationである. 
+しかし上の\ref{ex-projection}と同じ理由でalmost holomorphicではない.
+
+この例は次の理由で非常によく出てくる. 
+\begin{itemize}
+\item $X$はrationally chain connected (有理曲線の和で繋げる)が, rationally connected (有理曲線で繋げる)ではない. \footnote{smooth(もっと強くKLT)ならばrationally chain connectedと rationally connectedは同値である. めちゃくちゃ非自明な結果である. (Kollar-Miyaoka-Mori, Hacon-Mckernan \cite{HM07}など)}
+\item $X$はLCやそれより悪い特異点を持つ (上の場合はKLTではない)
+\item $X$のcore mapは定数写像だが, $X$はspecialではない. (3章参照)
+\end{itemize}
+\end{rem}
+
+\begin{proof}
+\(\pi : \widetilde{X}\to X\) を$f$のresolutionとし, 
+\(\widetilde{f} := f\circ u : \widetilde{X} \to Y\) を誘導される正則写像とする. 
+
+\(f\) が almost holomorphic でないと仮定する. 
+すると\(\pi\) の例外因子のある既約成分 \(V \subset\mathrm{Ex}(\pi)\) が存在して，
+\begin{itemize}
+\item $\widetilde{f}(V)=Y$　かつ
+\item $\pi : V \to Z=\pi(V)\subset I(f)$
+\end{itemize}
+となるものが存在する. 
+
+今$X$がsmooth(より強くKLT)であれば,　\cite{HM07}より$z \in Z$について$\pi^{-1}(z)$はrationally connectedである. 
+特に$\pi$はspecial fibrationである. 
+
+よって\ref{thm-Cam04-2.6}と\ref{prop-Cam04-2.10}を用いて
+$h : Z \dashrightarrow Y$で$h \circ \pi = \widetilde{f}$というmeromorphic mapが存在する. 
+これは$Z=\pi(V) \subset I(f)$に矛盾する($Z$のgeneral pointで$f$が定義されてしまう!)
+\end{proof}
+
+
+\subsection{General type fibrations and Bogomolov sheaves. \cite[2.6]{Cam04}}
+
+\begin{defn}\cite[Definition 2.24]{Cam04}
+$X$を複素多様体 in Fujiki classとする. 
+\(p>0\) とし， rank 1 subsheaf \(F \subset \Omega_X^p\) であって \(\kappa(X,F)=p\) を満たすものを，\(X\) 上の（\(p\)-次元の）\emph{Bogomolov sheaf} と呼ぶ.
+\end{defn}
+
+\begin{rem}
+Bogomolov-Sommese 消滅定理から, 
+任意のrank 1 subsheaf \(F \subset \Omega_X^p\) について$\kappa(X, F) \le p$が成り立つ.
+%(解析的な証明は\cite{Dem01}参照)
+Bogomolov sheafはその等号が成り立つものだとわかる. 
+
+また\(f : X\dashrightarrow Y\)が general type であれば，\(F_f:= (f^{*}K_{Y_0})^{sat} \subset \Omega_{X}^{\dim Y}\) は \(X\) 上の Bogomolov sheaf である. 
+これは
+$$
+\kappa(X, F_f)
+\underset{\text{def} \ref{defn-Cam04-1.19}}{=}
+\kappa(f)
+\underset{\ref{prop-Cam04-1.25}}{=}
+\kappa(Y, f)
+\underset{\text{general type}}{=}\dim Y
+$$
+\end{rem}
+
+\begin{thm}\cite[Theorem 2.25]{Cam04}
+\label{thm-Cam04-2.25}
+$X$を複素多様体 in Fujiki class, 
+\(F \subset \Omega_X^p\) を Bogomolov sheaf とする. 
+
+このとき\(m>0\) を十分大きく割り切れる整数として， 線形系 \(|L^{\otimes m}|\) によって定まる fibration を \(f_F : X \dashrightarrow Y_F\) とおく. %\(f\) が holomorphic であると仮定してよい.
+このとき
+\[
+F = f_F^*(K_{Y_F})
+\]
+が \(Y_F\) の一般点において成り立つ.
+\end{thm}
+
+
+projectiveの場合はBogomolov 79の結果である. 
+$p=1$のときはCastelnuovo-de Franchisの定理だと思う. あとでこの証明を\cite{Voi}のサーベイに基づいた解説を入れる. 以下は\cite{Cam04}の証明を原論文そのまま載せた. (がこれでわかんですかね??)
+
+\begin{proof}
+Bogomolov 79の covering trick を用いることで，\(m=1\) の場合に帰着できるので，これを扱う.
+
+\(F\) の解析的に独立な（すなわち，それらが定める線形系は Stein 分解を除けば \(f_F\) であり， したがって像が \(p\)-次元である）\((p+1)\) 個のセクション \(s_i\)（\(i=0,\dots,p\)）を取ることができる.\(F\) の階数が 1 であることから，ある meromorphic \(y_i\)（\(i=1,\dots,p\)）が存在して
+\[
+s_i = y_i s_0
+\]
+と書ける.
+Hodge 理論により，\(X\) 上の正則\(p\)-form \(s_i\)（\(i=0,\dots,p\)）はいずれも閉形式である.したがって
+\[
+ds_0 = 0,\qquad dy_i \wedge s_0 = 0,\quad i=1,\dots,p
+\]
+を得る.
+最後の等式は簡単な代数的議論から， ある meromorphic \(g\) が \(X\) 上に存在して
+\[
+s_0 = g\,(dy_1\wedge \cdots \wedge dy_p)
+\]
+と書けることを示す.最初の等式は， ある meromorphic  \(h\) が \(Y\) 上存在して \(g = f^*(h)\) となることを示す.よって主張が従う. なお，同じ議論は \(i>0\) に対しても適用できる.
+\end{proof}
+
+
+よって上の定理から次の二つがわかる. 
+\begin{thm}\cite[Theorem 2.26]{Cam04}
+$X$を複素多様体 in Fujiki classとする. 
+\(X\) 上の Bogomolov sheaf \(F \subset \Omega_{X}^p\)と, general type fibration \(f : X\dashrightarrow Y\)のあいだには次のような対応がある. 
+\begin{enumerate}
+\item \(f : X\dashrightarrow Y\)が general type であれば，\(F_f:= (f^{*}K_{Y_0})^{sat} \subset \Omega_{X}^{\dim Y}\) は \(X\) 上の Bogomolov sheaf である.
+\item \(F \subset \Omega_{X}^p\)  が \(X\) 上の Bogomolov sheaf であれば，\(f_F : \dashrightarrow Y\) は general type fibration である.
+\end{enumerate}
+\end{thm}
+
+\begin{thm}\cite[Theorem 2.27]{Cam04}
+\label{thm-Cam04-2.27}
+$X$を複素多様体 in Fujiki classとする.
+$X$がspecial であることと，\(X\) 上に Bogomolov sheaf が存在しないことは同値である.
+\end{thm}
+
+specialであることははbimeromorphic invariantなので, specialを次のように定義しても良い
+\begin{defn}[Specialの別の言い換え]
+$X$を複素多様体 in Fujiki classとする. 
+
+ \(X\) がspecialとはBogomolov sheafが存在しないこと, 同値的に
+任意の\(p>0\) , rank 1 subsheaf \(F \subset \Omega_X^p\) について, \(\kappa(X,F)<p\)であることとして定義する.
+
+$X$がnormal コンパクト 解析空間でFujiki classであるときは, あるresolution $\widetilde{X} \to X$があって, $\widetilde{X}$がspecialであるとして定義する. これはresolutionの取り方によらない. 
+\end{defn}
+
+\begin{cor}\cite[Corollary 2.28]{Cam04}
+\label{cor-Cam04-2.28}
+$X$を複素多様体 in Fujiki classとする. 
+\begin{enumerate}
+\item $X$がrationally connected ならばspecial
+\item $X$がさらにK\"ahlerであり\(c_1(X)=0\) ならばspecial. 
+\end{enumerate}
+\end{cor}
+(2)については, より弱い条件 \(\kappa(K_X)=0\) だけでも \(X\) が special であるのに十分である.
+\begin{proof}
+(1) rationally connected ならば$H^0(X, \Omega_{X}^{p})=0$であるため (例えば\cite{Deb01}参照).
+
+(2). $\alpha$をK\"ahler classとする. \(c_1(X)=0\)ならば$\Omega_{X}^{p}$は$\alpha^{n-1}$-semistableである. 
+つまり任意のtorsion free sheaf $\mathcal{E} \subset \Omega_{X}^{p}$について
+$$
+\frac{c_1(\mathcal{E}) \alpha^{n-1}}{\rk \mathcal{E}} \le \frac{c_1(X)\alpha^{n-1}}{n}=0
+$$
+が言える. 
+rank 1 subsheaf \(F \subset \Omega_X^p\) とする. 
+もし$\kappa(F) \ge 0$ならば$c_1(F)=0$となるので, $\kappa(F) =0$となる. 
+\end{proof}
+
+\begin{rem}
+\cite{Cam95} では
+$$
+\kappa^+(X) := \sup\{ \kappa(X, F) \mid F \subset \Omega_X^p\}
+$$
+を定義している. 定義から$\kappa^+(X) \le 0$ならばspecialである. 
+よってRCや$c_1=0$ならば$\kappa^+(X)\leq 0$なので\ref{cor-Cam04-2.28}が言える. 
+が$\kappa^{+}(X)$を使っているのはCampanaかPeternellくらいなのであまり気にしなくても良い\footnote{最近のCampanaのサーベイでは$\kappa^{++}$というものもある. }
+
+(2)の証明を洗練すると
+\begin{itemize}
+\item 任意のtorsion free sheaf $\mathcal{E} \subset \Omega_{X}^{p}$について$c_1(\mathcal{E}) \alpha^{n-1} \le 0$
+\end{itemize}
+という仮定がなりたてば$X$はspecialであることがわかる.
+この仮定は
+「$T_X$がgenerically nef」と同値である(\cite{IM22}, \cite{IMZ23}など参照)
+例えば$-K_X$ nefだったり$T_X$がpsefならば$T_X$がgenerically nefになる. (\cite{Ou17}, \cite{IMZ23}など参照)
+つまり以下が成り立つ. 
+\begin{center}
+$-K_X$ nef or $T_X$ psef
+$\Rightarrow $ $T_X$ generically nef
+$\Rightarrow $ $X$ special
+\end{center}
+
+\end{rem}
+
+
+\subsection{\ref{thm-Cam04-2.25}の証明の補足}
+以下は\cite{Voi}のサーベイ1章の内容を引用した.
+ただこの証明がわかりやすいというわけではない. 
+また以下は\underline{コンパクト K\"ahler 多様体についての主張}である. 
+\begin{thm}\cite[Theorem 1.7  (Iitaka)]{Voi}
+\label{thm-Voi-1.7}
+$X$をコンパクト K\"ahler 多様体, $L$を直線束とする. 
+
+あるfibration
+\[
+\phi_L : X \dashrightarrow Y
+\]
+で次を満たすものが存在する
+\begin{enumerate}
+\item \(\dim Y = \kappa(X,L).\)
+\item \(\tilde{\phi}_L : \tilde{X} \to Y, \ \tau : \tilde{X} \to X\) を \(\phi_L.\)の不確定点解消とし, \(\tilde{\phi}_L\) のgeneral fiberを$F$とする.  
+ \(\tau^*L|_{F}\) の Iitaka 次元は\(0\)となる.
+\[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X} \ar@{->}[r]^{\tilde{\phi}_L} \ar@{->}[d]_{ \tau} &Y \\
+X \ar@{-->}[ru]_{\phi_L} & 
+}
+\]
+\end{enumerate}
+さらにこのfibrationは$Y$のbimeromorphicを除いて一意である.
+この$\phi_L : X \dashrightarrow Y$をIitaka fibrationという. 
+\end{thm}
+
+
+\begin{lem}\cite[Lemma 1.10]{Voi}
+ \label{lem-Voi-1.10}
+\(X\) をコンパクト Kähler 多様体 とする. 
+\(\alpha, \beta \in H^0(X,\Omega_X^1)\) を二つの1次独立な 1-formで
+\[\alpha \wedge \beta = 0 \text{ in } H^0(X,\Omega_X^2)\]
+であるものとする.
+
+このとき, 種数\(2\)以上の射影代数曲線\(C\), 
+射\(\phi : X \to C\), $C$上の正則 1-form \(\alpha_0,\beta_0\) があって, 
+ \[
+ \alpha = \phi^*\alpha_0 \quad \text{and} \quad \beta = \phi^*\beta_0
+ \]
+ となる. 
+ より一般に \(g\)個の$X$上の1次独立な  \((1,0)\)-form \(\alpha_i\)で, 
+  \[\alpha_i \wedge \alpha_j = 0 \text{ in } H^0(X,\Omega_X^2)
+  \]
+  を満たすならば,  種数\(g\)以上の射影代数曲線\(C\),射\(\phi : X \to C\)があって, 
+  $\alpha_i$は$C$上の正則 1-formの引き戻しになる. 
+\end{lem}
+
+\begin{proof}
+$X$はコンパクトK\"ahlerなので, 正則1次形式ならば, $\overline{\partial}$-closedでharmonicになり, $d$-closedである.
+2つの1-form
+\(\alpha, \beta\) は各点で平行である, つまりある
+rational/meromorphic \(f\) があって, 
+ \[\alpha = f\beta\]
+ とかける.
+ これは可縮な近傍をとってドラームコホモロジーを見れば良い. 
+正則 1-formは$d$-closedなので, \(d\alpha=df \wedge \beta = 0\)となる. 
+よって\(df\)もまた\(\alpha, \beta\)と各点で平行である.
+
+ そこで\(f : X \dashrightarrow \C\mathbb{P}^1\)を考える. %(要は$x \mapsto (\alpha(x) : \beta(x))$)
+ すると, $f$のfiber上で \(\alpha\)と\(\beta\)は消えている. 
+ そこで次を考える.
+ \begin{itemize}
+ \item \(\tilde{f} : \tilde{X} \to \C\mathbb{P}^1\) を$f$のresolution
+ \item \(F : \tilde{X} \to C\),  \(r : C \to \C\mathbb{P}^1\) を$\widetilde{f}$の Stein 分解
+ \item   \(\tilde{\alpha}, \tilde{\beta}\)を \(\alpha, \beta\) の引き戻しとする. これは閉正則1次形式であり, \(F|_{U} U : \to C\)のヤコビ行列の階数が最大となる locus $U$上では
+ \(F^*\Omega_C \subset \Omega_{\tilde{X}}\)のsectionとなる. 
+ \end{itemize}
+ \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X}\ar@{->}[rd]^{\widetilde{f}}\ar@{->}[r]^{F} \ar@{->}[d]^{\pi} & C \ar[d]^{r} \\
+X\ar@{-->}[r]^{f}& \C\mathbb{P}^1
+}
+\]
+
+今\(\tilde{X}\) 上のK\"ahler form $\omega$で$F$のfiberで体積が1となるものをとって
+$$
+\alpha_0 := F_*\omega^{d-1}\wedge \tilde{\alpha}
+$$
+とする.
+すると $\alpha_0$は$C$上の正則1次形式であり\(\tilde{\alpha} = F^*\alpha_0\)　となる.
+よって, \(g(C) \ge 2\)である. $C$は有理曲線を含まないので, 
+\(F \circ \pi^{-1}: X \to C\) は正則写像となる. (\cite[1.1節参照]{KM98})
+\end{proof}
+\begin{thm}\cite[Theorem 1.13. Bogomolov and Campana]{Voi}
+ \label{thm-Voi-1.13}
+\(X\)をコンパクト Kähler 多様体,  \(L \subset \Omega_X^k\)を(saturatedとは限らない)直線束とする.
+
+\(\kappa(L) \ge k\)ならば, あるmeromorohic map \(\phi : X \dashrightarrow B,\)があって, 
+ \(B\) は$k$次元の射影多様体であり, 
+\(L\) はある$X$のZariski open上で\(\phi^*K_B \subset \Omega_X^k\)と一致する. 
+\end{thm}
+
+\begin{rem}\cite[Remark 1.14]{Voi}
+ \(B\)はgeneral typeであるとは限らない. 
+ただ \(\phi\) が"general type in the sense of Campana"である. 
+理由としては
+ \(\phi^*K_B \subset \Omega_X^k\)がsaturatedとは限らないから. 
+ $L$ の saturation \(L\) の方がIitaka次元が\(\phi^*K_B\)より大きくなる. 
+\end{rem}
+
+% [page 7]
+
+\begin{rem}\cite[Remark 1.15]{Voi}
+\ref{thm-Voi-1.13}から,  \(L\) は"generically"に
+ランク \(k\)の部分層 \(F\subset  \Omega_X\)を用いて\(\bigwedge^k F\) に等しいことがわかる. ($F=\phi^*\Omega_B \subset  \Omega_X$とする.)
+\end{rem}
+
+\begin{proof}
+Step1. 
+$L$のIitaka fibrationが\(0 \ne s_0,\dots,s_N \in H^0 (X, L)\)で与えれる場合を考える. 
+そのdominant meromorohic map \(\phi : X \dashrightarrow B \subset \mathbb{P}^{N}\) で \(\dim B = k\)なものがある. 
+\(H^0(X, L) \subset H^0(X, \Omega_X^k)\)によって, ある正則$k$形式$\alpha_i$があって, 
+$$
+s_i = \alpha_i \text{ in } H^0(X, \Omega_X^k)
+$$
+するとあるmeromorohic map \(\phi_i\)で \(\alpha_i = \phi_i \alpha_0\) となる. ($\phi_i =\frac{s_i}{s_0}$である)
+
+\ref{lem-Voi-1.10}と同様に, $X$はコンパクトK\"ahlerより \(d\alpha_i=d\alpha_0=0\). 
+よって\(d\phi_i \wedge \alpha_0 = 0\). 
+以上より
+$$
+\mathcal{F}:=(d\phi_1, \ldots, d\phi_N) \subset \Omega_{X}
+$$
+とすると, これは$X$の一般点で\(\Omega_X\)の rank \(k\)の部分束である. 特に\(\mathcal{F}=\phi^*\Omega_B\)がgeneral pointで成り立つ.
+さて次の線形代数の事柄を思い出す.
+\begin{lem}\cite[Lemma 1.16]{Voi}
+ \(W\)をベクトル空間, \(0 \ne u \in \wedge^k W\)とする
+このとき
+\[V := \{v \in W,\, v\wedge u = 0\} \subset W\]
+は次元$k$以下である. 
+
+さらに$\dim V=k$であることは, \(u\) が\(\wedge^k V\)のgeneratorであること(つまり\(u\) が分解可能)と同値である.
+\end{lem}
+よって$X$のgeneral pointで, \(L\)と
+\(\wedge^k(\phi^*\Omega_B) = \phi^*\Omega_B^k,\)
+が一致する. 
+
+Step2. 一般の場合. %これはCampanaの論文\cite{Cam04}の方法を用いる.
+$s \in H^0(X, L^{\otimes N})$について, 
+%In general (and this is the case considered by Campana), we use the well-known but important fact that given a line bundle \(L\) on \(X\) and a section \(s\) of \(L^{\otimes N},\) there exists a 
+generically finite dominant map \(r : X' \to X\)と \(s' \in H^0(X', r^*L)\) であって, 
+ \[ r_*(\mathrm{div}\,s') = \mathrm{div}\,s.\]
+ となるものが存在する. 
+ これは$X$の位数$N$で \(\mathrm{div}\,s.\)に沿って分岐するcyclic coverをとって, それをresolutionしたものとして構成する. 
+ 
+ これを繰り返すと次をえる
+ \begin{itemize}
+ \item generically finite cover \(r : X' \to X\)
+ \item \(r^*L \subset \Omega_{X'}^k\) と\(r^*L\)のIitaka fibraitonが\(H^0(X', r^*L)\)で与えられる.
+ \item (Step 1の議論から) \(\phi' : X' \dashrightarrow Y'\)で\(Y'\)は$k$次元の射影多様体で,  \(r^*L=\phi'^*\Omega_{Y'}^k\) が\(X'\)のgeneral pointで成り立つ. 
+ \item $\phi_{L} : X \dashrightarrow Y$を$L$のIitaka fibrationとする. 
+ \end{itemize}
+ $s \in Y$をgeneral pointとしたとき, \(r^{-1}(X_s)\)の既約成分上において, 
+ \(r^*L\) は Iitaka次元 \(0\) である. よって次の可換図式をえる. 
+\[
+\xymatrix{
+X' \ar@{-->}[r]^{\phi'=\phi_{|r^*L|}} \ar[d]_{r \text{ gen. fin.}} & Y' \ar[d]^{r'} \\
+X \ar@{-->}[r]_{\phi_L} & Y
+}
+\]
+そして\(L = \phi_{L}^{*}\Omega_Y^k\)が\(X\)のgeneral pointで成り立つ. 
+\end{proof}
+
+
+\section{3. The core.}
+
+3章の内容はChow-Barlet spaceやFujikiの定理を使うので, コンパクト性・Fujiki性は必要である. 
+
+\subsection{Construction of the core + Appendixの内容 }
+\label{subsec-Cam04-Appendix}
+
+\begin{defn}\cite[Definition 3.1]{Cam04}
+\label{defn-Cam04-3.1}
+\(X\) をコンパクト normal 解析空間 in Fujiki classとする．
+\(A:=A(X)\subset Chow(X)\) を \(X\) の special subvariety 全体からなる族とする．
+
+これは \(Z\)-regular である．\(T(A)\) をその成分の族（\cite[Prop 2.4]{Cam04a}）とし，
+\(c_X : X\dashrightarrow C(X)\) を \(X\) の \(T(A)\)-quotient とする．
+この almost holomorphic fibration を \(X\) の \emph{core} と呼ぶ．
+\end{defn}
+
+Chow-Barlet space $Chow(X)$については\cite[8章]{SCV7}参照(ただこれも難しい)
+ラフに言えば次のとおりである. 
+\begin{itemize}
+\item $Chow(X)$は$X$のcycle (subvariety + $\alpha$) のなす空間 (Chow-Barlet space)　ここにコンパクト Fujikiがいると思う. (Fujikiの定理から$Chow(X)$の既約成分がコンパクトになるから)
+\item $A:=A(X)\subset Chow(X)$は　\(X\) の special subvariety 全体からなる族とする．
+\item $T(A)$はquotientがうまくいくように付け足す. この部分で$X$がsingularだとうまくいかない \ref{ex-Cam04-3.2}参照.
+\item \(c_X : X\dashrightarrow C(X)\)はほぼほぼ"同値関係による商写像". つまりvery generalな点$x, y \in X$で$x \sim y$を「$x$と$y$が$Z_1, \ldots, Z_l \in T(A)$となる$X$のsubvarietyで結ばれる」として定義したときの商写像にちかい\footnote{Shafarevich mapとかMRC fibrationなどがまさにそれ. 実はCampanaの構成もこれに近い. }
+\item $c_X$はspecial fibrationの中で最小($\dim C(X)$が小さい)ものである.
+\end{itemize}
+ただこの構成を見たがやっぱりよくわからなかった. 
+
+上の\ref{defn-Cam04-3.1}の主張において, \cite{Cam04a} で用いられている用語に関しては次のとおり. \footnote{Horingの修士論文\url{https://math.univ-cotedazur.fr/~hoering/hoering-dea.pdf}も参照. ２章がほぼ\cite{Cam04a}の内容だった}
+
+\begin{thm}\cite[1.1]{Cam04a} 
+\(X\) をコンパクト連結 normal 複素空間とし, \(S \subset Chow(X)(X)\) を \(X\) の Chow Scheme の部分集合であって，\(X\) の covering family とする．
+
+\(R(S)\) を \(S\) によって \(X\) 上に誘導される同値関係と書く．
+つまり\(x,y \in X\) が同値であるとは，\(S\) によりパラメータ付けられた \(X\) の解析的サイクルの族の有限個のメンバーの連結な和の中に \(x,y\) が含まれていることとする. 
+
+このとき， "general fiber"が \(R(S)\) の同値類となるような fibration
+\[
+q_S : X \dashrightarrow X_S
+\]
+が存在する．さらに \(q_S\) は almost holomorphic であり, bimeromorphicを除いて一意である．
+ \(q_S\) を \(X\) の \(S\)-quotient と呼ぶ．
+\end{thm}
+
+"general fiber"に関しては"very general fiber"だと思う.\footnote{\cite{Cam04}においてはgeneralをvery generalの意味で使っていた. これは流石にまずいと思う. } 
+
+\begin{defn}\cite[Definition 2.1]{Cam04a}
+\(S\) を 解析空間,  \(A \subset S\) を部分集合とする. 
+既約 な Zariski 閉部分集合 \(T \subset S\) に対して, \(A \cap T\) が \(T\) の一般点を含む, あるいは \(T\) の Zariski 閉真部分集合の可算和に含まれているとき, \(A\) は（\(S\) において）\(Z\)-regular であると言う.
+後者の場合には, \(A\) は \(T\) において "first Zariski category" であるとも言う.
+\end{defn}
+
+\begin{prop}\cite[Propsition 2.4]{Cam04a}
+\(A \subset S\) を \(Z\)-regular とする.
+このとき, \(S\) の Zariski 閉既約部分集合 \(S_i\) からなる可算（あるいは有限）族が存在して, 次をみたす: 
+\begin{enumerate}
+\item 各 \(i\) について, \(A_i := A \cap S_i\) は \(S_i\) の一般点を含む.
+\item \(A\) は \(A_i\) 全体の和である.
+\end{enumerate}
+ この族 \((S_i)\) が irredundant, つまり \(i\ne j\) ならば \(S_i\subset S_j\) でも \(S_j\subset S_i\) でもない, という意味で互いに包含関係をもたないならば, この族は一意である.
+
+このとき, \(S_i\) たちを \(A\) の component と呼ぶ.
+\end{prop}
+
+
+\begin{thm}\cite[Theorem 2.5]{Cam04a}
+\(X\) をコンパクト normal 解析空間 in Fujiki class, \(A \subset \mathcal{C}(X)\) を \(Z\)-regular とする. 上のように \(A\) の components の族を \(T := T(A)\) とする. （もし \(T\) が covering でなければ, これに \(X\) の点からなる族を加える）.
+
+\(q_A := q_T : X \dashrightarrow X_T := X_A\) を \(X\) の \(T\)-quotient とする.
+\(t \in A\) で, \(V_t\) が \(q_T\) のある一般 fiber \(F\) と交わるものとする.
+このとき \(V_t\) は \(F\) に含まれている. 写像 \(q_T\) を \(X\) の \(A\)-reduction と呼ぶ.
+\end{thm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+
+\begin{defn}[3.1]
+\(X \in \mathcal{C}\) を正規とし，\(A \subset C(X)\) を Z-regular とする．
+\(A\) が stable であるとは，次の 2 条件を満たすことをいう．
+\begin{description}
+\item[(stab1)] 上での定義 2.4 の意味で，\(A\) の covering既約 component \(T\) に対し，\(q_T : X \dashrightarrow X_T\) のgeneral fiberが \(A\) に属する．
+\item[(stab2)] \(V \subset X\) を部分多様体とし，\(f : V \to W\) をgeneral fiber \(V_w\) が \(A\) に属する fibration とする．さらに \([W'] \in A\) かつ \(f(W') = W\) を満たす部分多様体 \(W' \subset V\) が存在するとき，\([V] \in A\) である．（言い換えると：\(V\) が \(A\) に属するとは，\(V\) が底空間 \(W\) の上に，fiberが \(A\) に属し，横断的な部分多様体 \(W'\) もまた \(A\) に属するような fibration になっていることである．）
+\end{description}
+言葉の濫用として，\(X\) の部分多様体 \(Z\) が \(A\) に属するとは，この部分多様体をパラメータ付ける点 \([Z] \in C(X)\) が \(A\) に属することをいうことにする．
+\end{defn}
+
+
+\begin{thm}[3.2]
+\(X \in \mathcal{C}\) とし，\(A_P(X) \subset C(X)\) を 2.2 のように定める．このとき次が成り立つ．
+\begin{enumerate}
+\item \(P\) が special である性質であり，かつ \(X\) が滑らかなとき，\(A_P\) は stable である．
+\item \(P\) が \(\pi_1(\hat V_t)_X \in \mathcal{G}\) であるという性質であるとき，\(A_P\) は stable である．ここで \(\mathcal{G}\) は群（同型類）の族であって，\cite{Ca99} の意味で stable であるものとする（例えば有限群や可解群のなす類などがその例である）．
+\end{enumerate}
+\end{thm}
+
+\begin{thm}[3.3]
+\(X \in \mathcal{C}\) を正規とし，\(A \subset C(X)\) を Z-regular かつ stable とする．2.5 で定義したように，\(q_A : X \dashrightarrow X_A\) を \(X\) の \(A\)-reduction とする．このとき，\(q_A\) のgeneral fiberは \(A\) に属する．
+\end{thm}
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Construction of the core as the lowest special fibration. \cite[3.1]{Cam04}}
+\ref{defn-Cam04-3.1}におけるcore map\(c_X : X \dashrightarrow C(X)\)は$X$がsingularの場合はよくわからない. 
+
+\begin{ex}\cite[Example 3.2]{Cam04}
+\label{ex-Cam04-3.2}
+\ref{rem-Cam04-2.23}の通り
+$X$を$K_Y$がbigな射影多様体$Y$(例えば種数2以上のリーマン面)のprojective coneとする. 
+$\pi : \widetilde{X} \to X$を$v$でのblowupとすると$\widetilde{\varphi} : \widetilde{X} \to Y$は$\C\mathbb{P}^1$-束になる
+   \[
+\xymatrix@C=50pt@R=20pt{
+\widetilde{X}\ar@{->}[r]^{\widetilde{\varphi} \text{ $\C\mathbb{P}^1$-束}}\ar@{->}[d]_{\pi} &Y\\
+X\ar@{-->}[ru]^{\varphi}  & \\
+}
+\]
+すると次がわかる.
+\begin{itemize}
+\item $X$のcore map $c_X  :  X \dashrightarrow C(X)$は定数写像である. これは$X$の任意の点が有理曲線の和で結べ, 有理曲線はspecialであるので.
+\item $\widetilde{X}$のcore map $c_{\widetilde{X}} : \widetilde{X} \dashrightarrow C(\widetilde{X})$は$\widetilde{\varphi}: \widetilde{X} \to Y$である. $Y$がgeneral typeで$\widetilde{\varphi}$のファイバーが$\C\mathbb{P}^1$ (特にspecial)であるので. 
+\item $X$はspecialではない. $\widetilde{X}$がspecialではないので.
+\end{itemize}
+特にこの例が言っているのは
+\begin{center}
+$c_X$のファイバーはspecialではない. 
+\quad \text{and} \quad
+$0 = \dim C(X) \neq \dim C(\widetilde{X}) =1$
+\end{center}
+である. 
+\end{ex}
+
+ただしこのようなことは$X$がsmoothなら起こり得ない. 
+\begin{thm}\cite[Theorem 3.3]{Cam04}
+\label{thm-Cam04-3.3}
+$X$を複素多様体 in Fujiki classとし, \(c_X : X\dashrightarrow C(X)\) を \(X\) の core mapとする．
+このとき次が成り立つ．
+\begin{enumerate}
+\item \(c_X\) の一般ファイバーは special である．特に$c_X$はspecial fibration
+\item \(F\) を \(c_X\) のvery generalファイバーとし，\(Z\subset X\) を \(F\) と交わる \(X\) の special subvariety とする．このとき \(Z\) は \(F\) に含まれる． %このようなファイバー \(F\) を \(c_X\)-general と呼ぶ．
+\item 写像 \(c_X\) は almost holomorphic である．
+\end{enumerate}
+\end{thm}
+要はcore mapは"specialな部分多様体を潰したmapで$\dim C(X)$が一番小さいもの"という感じである.
+証明は\cite{Cam04}や\cite{Cam04a}を参照. "stability"などが出てくる.
+
+\begin{rem}\cite[Remark 3.4]{Cam04}
+\ref{thm-Cam04-5.8}から, core mapはgeneral type fibrationであることがわかる. 
+多分上の結果は$X$がsmoothでなくてもKLTでも成り立つはず??
+\end{rem}
+
+
+relativeな状況においてもcore mapも存在する. 
+
+\begin{thm}\cite[Theorem 3.8]{Cam04}
+$X, Y$をコンパクト normal 解析空間 in Fujiki class, 
+\(f : X\dashrightarrow Y\) fibrationとする.
+ 
+このとき 2 つの fibration \(c_f : X\dashrightarrow C(f)\) と \(g_f : C(f)\dashrightarrow Y\) によって
+\[
+f=g_f\circ c_f
+\]
+と一意に分解される．
+ここで \(y\in Y\) を一般点とするとき， 制限 \(c_f : X_y\dashrightarrow C(f)_y\) は \(X_y\) の core である．
+この分解\(f=g_f\circ c_f\) を \(f\) の core と呼ぶ．
+
+\[
+\xymatrix{
+X\ar@{-->}[rd]_{f} \ar@{-->}[r]^{c_f} & C(f)  \ar@{-->}[d]^{g_f} \\
+& Y
+}
+\]
+
+\end{thm}
+
+
+\subsection{Functoriality properties. \cite[3.2]{Cam04}}
+
+一般に$X$がnormalだとcore mapはbimeromorphic invariantではない. 
+\ref{ex-Cam04-3.2}がその例である. 
+しかし$X$がsmoothならbimeromorphic invariantである.
+\begin{defn}
+$X$を複素多様体 in Fujiki classとするとき, 
+core map $c_X : X \dashrightarrow C(X)$として
+$$
+\mathrm{ess}(X) := \dim C(X)
+$$
+とおき, $X$の essential dimensionと呼ぶ. 
+\end{defn}
+$X$がsmoothのとき, 
+$\dim \mathrm{ess}(X)=0$は$X$はspecialであることと同値であり, $\dim \mathrm{ess}(X)=\dim X$は$X$がgeneral typeであることと同値である. (\ref{thm-Cam04-5.5}参照).
+
+
+\begin{thm}\cite[Theorem 3.9]{Cam04}
+\label{thm-Cam04-3.9}
+$X$を複素多様体 in Fujiki classとする. 
+\(c_X : X\dashrightarrow C(X)\) をその core とし，\(a_X : X\dashrightarrow A(X)\) をその algebraic reduction とする． 
+
+このとき \(c_X=b_X\circ a_X\) を満たす \(c_X\) の分解\(b_X : A(X)\dashrightarrow C(X)\) が存在する．
+特に，\(C(X)\) は常に Moishezon である．
+\end{thm}
+証明は$a(X)=0$ならばspecialであることから.\footnote{very general fiberに関してridigity lemma \ref{lem-rigidity}を使う(と思う) なお\ref{thm-Cam04-3.9}では$X$ normalとなっていたが, 多分smoothの間違いだと思う.}
+これより bimeromorphic modelで取り替えて$C(X)$はprojectiveと仮定して良い. 
+
+\begin{prop}\cite[Proposition 3.10]{Cam04}
+\label{prop-Cam04-3.10}
+$X, Z$を複素多様体 in Fujiki classとする. 
+$h : Z \dashrightarrow X$ meromorphic mapで $h(Z)$ が ある $c_X$-general fiber と交わると仮定する．
+
+このとき，自然な meromorphic map
+\[
+c_h : C(Z) \dashrightarrow C(X)
+\]
+であって
+\[
+c_h \circ c_Z = c_X \circ h
+\]
+をみたすものが存在する．
+
+\[
+\xymatrix{
+Z\ar@{-->}[d]^{h} \ar@{-->}[r]^{c_Z}& C(Z)  \ar@{-->}[d]^{c_h} \\
+X \ar@{-->}[r]^{c_X}& C(Z)  
+}
+\]
+\end{prop}
+
+\begin{proof}
+一般点 $z \in Z$ に対して，
+$V_z :=h( c_{Z}^{-1}c_Z(z)) \subset X$を考える. 
+すると, $V_Z$は\ref{lem-Cam04-2.9}よりspecialで, 仮定から, $c_X$-general fiber $F$と交わる. 
+よってcore mapの性質(2)より$V_z \subset F$ が従う．
+\ref{lem-rigidity}から$c_h$ の存在が得られる．
+\end{proof}
+
+\begin{cor}\cite[Corollary 3.11]{Cam04}
+\label{cor-Cam04-3.11}
+$h : Z \dashrightarrow X$ を上の\ref{prop-Cam04-3.10}の仮定をみたす写像とする．
+このとき$c_h$は次の場合に存在する．
+\begin{enumerate}
+\item 写像 $c_X \circ h : Z \dashrightarrow C(X)$ が全射である場合．
+\item $Z_t \subset X$が$t \in T$でパラメトライズされていて, $c_X(Z_t)$ たちが $C(X)$ を被覆するような部分多様体族 $(Z_t)_{t \in T}$ の general member である場合．
+\item $Z \subset X$が, ある fibration $\psi : C(X) \dashrightarrow Y$ に対し $\psi \circ c_X$ の general fiber である場合． このとき $c_Z$ は単に $c_X$ の $Z$ への restriction になる．
+\end{enumerate}
+\end{cor}
+
+
+
+
+%これからCoremapを次のように特徴付けられる. 
+
+\begin{prop}\cite[Proposition 3.12]{Cam04}
+\label{prop-Cam04-3.12}
+$X$を複素多様体 in Fujiki classとし, 
+$ f : X \dashrightarrow Y$ を general type かつ special fibration とする. 
+このとき$f = c_X$である(正確にいうとcore mapとbimeromorphic である.)
+%特に， $X$ 上には special かつ general type である fibration が常に存在し, それはcoremapである. 
+\end{prop}
+実際にはもっと強く,  $X$ 上には special かつ general type である fibration が常に存在し, それはcoremapであることがわかる. (が今の段階でcoremapがgeneral typeであることが非自明である).
+\begin{proof}
+$f$ が special であるので， $g : Y \dashrightarrow C(X)$ であって $g \circ f = c_X$ をみたす分解が存在する．
+これは$f$ の general fiber $F$ は special であり， $c_X$ のある general fiber $C$ と交わるので, core mapの性質(2)から$F \subset C$ となる．
+
+一方 $f$ は general type であり，\ref{thm-Cam04-2.6}により $h : C(X) \dashrightarrow Y$ であって $f = h \circ c_X$ をみたす分解が存在する．したがって $f = c_X$ が従う．
+\end{proof}
+
+
+\begin{cor}\cite[Corollary 3.14]{Cam04}
+\label{cor-Cam04-3.14}
+$X$を複素多様体 in Fujiki class でgeneral type とする．
+このとき $c_X$ は $X$ の恒等写像であり， $\operatorname{ess}(X)=\dim(X)$ である．
+\end{cor}
+$id_X$に上を適応すれば良い. 
+逆も\ref{thm-Cam04-5.5}より成り立つ. 
+
+\begin{cor}\cite[Corollary 3.16]{Cam04}
+$X$を複素多様体 in Fujiki class とし， $n := \dim(X)$とする. 
+次の二つの場合には $\operatorname{ess}(X) = n-1$ である．
+\begin{enumerate}
+\item[(a)] $\kappa(X)=n-1$ であり， $X$ の Iitaka fibration $J_X$ が general type fibration である場合．
+このとき $c_X = J_X$ である．
+\item[(b)] $X$ の rational quotient (MRC fibration) $r_X : X \dashrightarrow R(X)$について, $R(X)$が次元 $n-1$ の general type である場合.
+\end{enumerate}
+\end{cor}
+逆も\ref{thm-Cam04-5.7}より成り立つ. 
+\begin{proof}
+(a)の場合, $J_X$のfiberが$\kappa=0$でspecialである. 
+よって, core mapは$J_X$を通るが, 次元勘定すれば$c_X = J_X$である. 
+(b)も同じである. 
+\end{proof}
+
+\begin{cor}\cite[Corollary 3.18]{Cam04}
+\label{cor-Cam04-3.18}
+$X$を複素多様体 in Fujiki class, $C$を滑らかな射影代数曲線, 
+$f : X \dashrightarrow C$ を special fibration とする．
+このとき次のどちらかが成り立つ.
+\begin{enumerate}
+\item[(a)] $f$ が general type かつ $f=c_X$ である.
+\item[(b)] $f$ が general type ではなく， $X$ が special である．
+\end{enumerate}
+\end{cor}
+
+\begin{proof}
+$f$がgeneral typeならば, \ref{prop-Cam04-3.12}より(a)が成立する. 
+よって$f$がgeneral typeでないとする. 
+$X$がspecialを示せば良い. 
+
+背理法. $h : X \dashrightarrow T$というgeneral type fibrationがあるとする. 
+ \ref{thm-Cam04-2.6}より, $h$は$f$を経由し, $C \dashrightarrow Z$という写像がある
+ $C$はcurveで$ \dim C \ge \dim Z >0$より, $C\to Z$は同型になる. よって$f$がgeneral type になり矛盾する. 
+ \end{proof}
+
+
+\subsection{Rationally connected manifolds \cite[3.3]{Cam04}}
+\cite[Subsection 3.3]{Cam04}は次のように書かれていた
+\begin{tcolorbox}
+コンパクト 解析空間 $X$ は， $X$ の任意の二つの generic point が $X$ の rational chain（これは $X$ の connected projective curve であり，その全ての既約成分が（特異かもしれない）有理曲線である）に含まれるとき， \underline{rationally connected}であると言う．
+\end{tcolorbox}
+
+読んでいてびっくりした. 
+\begin{center}
+これは rationally "chain" connected の定義
+\end{center}
+である. 正しい定義を述べると次のとおり.
+
+\begin{defn}(cf. \cite[Chapter 4 Section 4.1, 4.5]{Deb01})
+$X$をコンパクト 解析空間とする.
+\begin{itemize}
+\item $X$がrationally connected(有理連結, RC)とは任意のgeneral point　$x, y \in X$が有理曲線$\C\mathbb{P}^1 \to X$で結ばれること.
+\item $X$がrationally chain connected (RCC)とは任意のgeneral point　$x, y \in X$が何本かの有理曲線$\C\mathbb{P}^1 \to X$の和で結ばれること.
+\end{itemize}
+\end{defn}
+
+成り立つこととは以下の通り
+\begin{itemize}
+\item 次が成り立つ:
+\begin{center}
+Fano ($-K_X$ ample) $\Rightarrow$ rationally connected $\Rightarrow $rationally chain connected
+\end{center}
+である. 逆は成り立たない. 
+\item $X$がsmooth(もっと弱くKLT)ならばRationally chain connected $\Rightarrow$ rationally connected である. smoothのときはKollar-Miyaoka-Mori, KLTの場合はHacon-Mckernan \cite{HM07}.
+\item rationally connected はbimeromorhic invariantだが, Rationally chain connected はそうではない(下の例参照)
+\end{itemize}
+\begin{ex}
+%\label{ex-Cam04-3.2}
+\ref{rem-Cam04-2.23}の通り
+$X$を種数2以上のリーマン面$Y$のprojective coneとする. 
+$\pi : \widetilde{X} \to X$を$v$でのblowupとすると$\widetilde{\varphi} : \widetilde{X} \to Y$は$\C\mathbb{P}^1$-束になる.
+
+すると$X$は$v$を通る有理曲線二つを使って, 任意の2点を結べるので Rationally chain connectedである. 
+一方$ \widetilde{X}$はRationally chain connectedではない(もしそうなら$Y$が有理曲線を持ってしまう!).
+なおこの例の$X$はKLTより悪い特異点を持つ. 
+\end{ex}
+
+
+\begin{thm}[{\cite[Theorem 3.19]{Cam04}, \cite{GHS03}}]
+\label{thm-Cam04-3.19}
+$f : X \to C$ を 射影代数曲線 $C$ 上の fibration とし， $X$ は射影多様体で, generic fiber が rationally connected であるとする．
+このとき $f$ は holomorphic section をもつ．
+\end{thm}
+
+次はKollar-Miyaoka-Mori-CampanaによるMRCC (Maximally Rationally Chain Connected) fibration もしくはRational quotientである. \cite{Deb01}参照. 
+\begin{thm}\cite[Theorem 3.23]{Cam04}
+$X$をコンパクト normal 解析空間 in Fujiki classとする. 
+$X$ の MRCC fibration (Rational quotient) と呼ばれる一意な meromorphic fibration
+\[
+r_X : X \dashrightarrow R(X)
+\]
+が存在し，次をみたす．
+\begin{enumerate}
+\item $r_X$ の general fiber は rationally chain connected である．
+\item $r_X$ の very general fiberはそれと交わる $X$ 上の任意の有理曲線を含む．
+\item $r_X$ は almost holomorphic である．
+\end{enumerate}
+\end{thm}
+$X$がsmoothのときは rationally "chain" connectedの部分を rationally connectedにしても良い.
+\begin{cor}
+$R(X)$はnon-uniruledである. 特に$K_{R(X)}$はpsefである.
+\end{cor}
+\begin{proof}
+$R(X)$をsmoothとして良い. 
+$R(X)$をuniruledと仮定する. すると一般点$z \in R(X)$について$z$を通る有理曲線$C$が存在する.\footnote{一般点に対して有理曲線が存在することが重要. 実際$R(X)$に有理曲線が存在することはありうる. (Calabi-Yauなど)}
+そこで$r_X : r_{X}^{-1}(C) \to C$を考えると (適宜$r_{X}^{-1}(C)$のresolutionをとってsmoothとして良い), 
+\ref{thm-Cam04-3.19}より$C \to r_{X}^{-1}(C)$というsectionが存在する.
+それは$r_{X}$の2番目の条件に矛盾する. 
+
+最後の主張はProjectiveの場合は\cite{BDPP13}, コンパクト K\"ahlerの場合は\cite{Ou25}の結果による. 
+\end{proof}
+
+
+
+\begin{prop}\cite[Proposition 3.25]{Cam04}
+$X$を複素多様体 in Fujiki class, $Y$ コンパクト normal 解析空間, 
+$f : X \dashrightarrow Y$ を dominant meromorphic とする．
+このとき $f$ は functorial な写像
+\[
+f_* : R(X) \dashrightarrow R(Y), \qquad f_* : C(X) \dashrightarrow C(Y)
+\]
+を誘導する．
+\end{prop}
+
+上の命題で $f := r_X$ とおくと，自然な写像
+\[
+(r_X)_* : C(X) \dashrightarrow C(R(X))
+\]
+を得る． 
+rational quotient の場合は, 一般の special fibration と違って次のことが言える.
+%については，一般の special fibration には成り立たない以下の特別な性質がある．
+
+\begin{thm}\cite[Theorem 3.26]{Cam04}
+\label{thm-Cam04-3.26}
+$X$を複素多様体 in Fujiki class, $r_X : X \dashrightarrow R(X)$ を $X$ の rational quotient とし， $c_{R(X)} : R(X) \dashrightarrow C(R(X))$ を $R(X)$ の core とする．
+
+$X$がMoishezonならば, 
+\[
+(r_X)_* : C(X) \dashrightarrow C(R(X))
+\]
+は bimeromorphic であり， $c_{R(X)} \circ r_X : X \dashrightarrow C(R(X))$ は $X$ の core である．
+特に $C(R(X)) = C(X)$ である．
+
+\[
+\xymatrix{
+X\ar@{-->}[d]^{r_X} \ar@{-->}[r]^{c_X}& C(X)  \ar@{-->}[d]^{(r_X)_* \text{ bimero }} \\
+R(X)\ar@{-->}[r]^{c_{R(X)}}& C(R(X))  
+}
+\]
+
+\end{thm}
+
+\begin{rem}\cite[Remark 3.27]{Cam04}
+$X$ が "Moishezon" であるという仮定を, "in Fujiki class" であるという仮定に弱めれるかは不明?\footnote{"そのためには，下の\cite[Lem 3.29]{Cam04}における $G$ に対する仮定を同じように弱めれば十分である．"とこの補足に書いてあったが, そもそも\cite[Lem 3.29]{Cam04}があっているかがわからなかった(腑に落ちない点があった) なので証明も記述しない. }
+\end{rem}
+以下のpropは使えるので書いておく. 
+\begin{prop}\cite[Proposition 3.28]{Cam04}
+\label{prop-Cam04-3.28}
+$f : F \dashrightarrow G$ を fibration とし，$F \in \mathcal{C}$ は smooth，$G$ は Moishezon かつ special であり，$f$ の generic fiber は rationally connected であるとする．このとき $F$ は special である．
+\end{prop}
+
+\subsection{Surfaces. \cite[3.5]{Cam04}}
+以下Iitaka mapを $J_X : X \dashrightarrow J(X)$と表す. 
+
+\begin{thm}\cite[Theorem 3.31]{Cam04}
+\label{thm-Cam04-3.31}
+\(X\) をコンパクト Kähler 曲面とする.その core \(c_X\) は次のように記述される.
+\begin{enumerate}
+\item \(\kappa(X)=2\) ならば \(c_X=\mathrm{id}_X\) であり，\(\mathrm{ess}(X)=2\) である.
+\item \(\kappa(X)=\dim J(X)=1\) ならば \(c_X=J_X\) であり，\(\mathrm{ess}(X)=1\) である.
+\item \(\kappa(X)=1>\dim J(X) =0\) ならば \(X\) は special である.
+\item \(\kappa(X)=0\) ならば \(X\) は special である.
+\item \(\kappa(X)=-\infty\) かつ \(q(X)\geq 2\) ならば \(c_X=r_X\) であり，\(\mathrm{ess}(X)=1\) である.
+\item \(\kappa(X)=-\infty\) かつ \(q(X)\leq 1\) ならば \(X\) は special である.
+\end{enumerate}
+\end{thm}
+
+
+\begin{proof}
+\(\kappa(X)=2\) のときは, \ref{cor-Cam04-3.14}による. 
+
+\(\kappa(X)=1\) のとき，\(J_X : X \dashrightarrow C=J(X)\) は special  fibration であるので, \ref{cor-Cam04-3.18}からわかる. 
+
+\(\kappa(X)=0\) のときは, \ref{thm-Cam04-5.1}より常にspecialである.
+
+\(\kappa(X)=-\infty\) のとき， 曲面の分類から，\(X\) は \( \C\mathbb{P}^1\times C\) と双有理である.\footnote{$X$は曲線$C$上の$\C\mathbb{P}^1$束 と双有理である.} ここで \(C\) は \(g(C)=q(X)\) を満たす曲線である. 
+ \(q(X)\ge 2\) ならば\(r_X\) は \(C\) への射影でありこれがcore mapになる. 
+$q(X)\leq 1$ならば, $\C\mathbb{P}^1$も$ C$もspecialなので, $X$はspecialである. 
+\end{proof}
+
+群 \(G\) が almost あるいは almost (virtually) abelian であるとは，有限指数の abelian 部分群をもつことをいう.
+
+\begin{cor}\cite[Corollary 3.32, 3.33]{Cam04}
+\(X\) をコンパクト Kähler 曲面とする.次のいずれかが成り立つ.
+\begin{itemize}
+\item \(X\) は special であり，\(c_X\) は定値写像である.
+\item \(\kappa(X)\geq 1\) で \(c_X=J_X\)（Iitaka fibration）である.
+\item \(\kappa(X)=-\infty\) で \(c_X=r_X\)，すなわち \(X\) の rational quotient である.
+\end{itemize}
+さらに \(\mathrm{ess}(X)\) は次のように計算できる.
+\begin{enumerate}
+\item \(\mathrm{ess}(X)=2\) であるのは \(\kappa(X)=2\) のときに限る.(general typeと同値)
+\item \(\mathrm{ess}(X)=1\) であるのは \(\kappa(X)\in\{1,-\infty\}\) かつ \(\pi_1(X)\) が virtually abelian でないときに限る.
+\item \(\mathrm{ess}(X)=0\) であるのは \(\kappa(X)\leq 1\) かつ \(\pi_1(X)\) が virtually abelian であるときに限る.この場合はSpecialであることと同値である. 
+\end{enumerate}
+
+特にコンパクト Kähler 曲面 \(X\) が special であることと， finite étale 被覆をもち，その被覆が次のいずれかの曲面と双有理であることとは同値である.
+\begin{enumerate}[label=$(\alph*)$]
+\item \(\mathbb{P}^2(\mathbb{C})\).
+\item \(\C\mathbb{P}^1(\mathbb{C})\times E\)（\(E\) は 楕円曲線）.
+\item K3 曲面，または Abelian 曲面.
+\item 曲線 \(C\) 上の elliptic fibration で multiple fiber の個数が \(m\) 個であるもの.ここで \(C\) は有理曲線であってそのとき \(m\leq 2\)，あるいは 楕円曲線であってそのとき \(m=0\) である.
+\end{enumerate}
+\end{cor}
+よって$X$が曲面の場合には次がわかる. 
+\begin{center}
+$\pi_1(X)$がalmost(virtually) Abel
+$\Leftrightarrow$ Special
+$\Leftrightarrow$ weakly special\footnote{$X$がweakly specialであるとは, 任意のfinite etale cover(有限被覆空間)$X'$がgeneral typeへのdominant rational mapを有さないこと. 一般にはSpecialならばWeakly specialだが, 逆は成り立たない. }
+\end{center}
+
+また$X \dashrightarrow J(X)$を$K_X$のIitaka mapとして次がわかる.
+\[
+\begin{array}{c|c|c}
+
+& \text{ Special }
+& \text{Nonspecial}
+\\ \hline
+\text{$\kappa(K_X)=2$} 
+&  \times
+& \text{常にnonspecial}
+\\ \hline
+\text{$\kappa(K_X)=1$} 
+&  \text{(d) $\dim J(X)=0$, $\pi_1(X)$がalmost Abel}
+& \text{$\dim J(X)=1$, $\pi_1(X)$がnot almost Abel}
+\\ \hline
+\text{$\kappa(K_X)=0$} 
+&  \text{(c)常にnonspecial}
+& \times
+\\ \hline
+\text{$\kappa(K_X)=-\infty$} 
+&  \text{(a, b) $q(X) \le 1$, $\pi_1(X)$がalmost Abel}
+& \text{$q(X) \ge 2$, $\pi_1(X)$がnot almost Abel}
+\\ \hline
+\end{array}
+\]
+
+\begin{proof}
+基本群に関する主張以外はは \ref{thm-Cam04-3.31} から直ちに従う.
+
+\(\kappa(X)=-\infty\) のとき， $X$は\( \C\mathbb{P}^1\times C\)と双有理同値なので, \(\pi_1(X)\simeq \pi_1(C)\) であるので曲線の分類からわかる. 
+
+\(\kappa(X)=0\) のとき，分類論から \(\pi_1(X)\) は almost abelian であることが知られている.
+\footnote{Minimal model $X \to X_{\min}$において$\pi_1$は不変であり, $X_{\min}$が$c_1(X_{\min})=0$であるので, Beauville-Bogomolov分解から$\pi_1(X_{\min})$はalmost Abelianである.} 
+
+\(\kappa(X)=1\) のときの主張は，\(J_X\) に\ref{lem-Cam04-3.34}を適応する.
+\end{proof}
+
+\begin{lem}\cite[Lemma 3.34]{Cam04}
+\label{lem-Cam04-3.34}
+\(f : X \to C\) をコンパクト Kähler 曲面 \(X\) 上の relatively minimal elliptic fibration とする.
+\begin{enumerate}
+\item 任意の scheme-theoretic fiber \(X_c\) を
+\[
+f^*(c):=\sum_{j\in J} m_j D_j
+\]
+と書く.このとき multiplicity
+\[
+m(c,f):=\inf\{m_j\}
+\]
+は
+\[
+m^+(c,f):=\gcd\{m_j\}
+\]
+にも等しい.
+\item finite étale 被覆 \(u : X' \to X\) が存在して，\(v\circ f'= f\circ u\) が \(f\circ u\) の Stein 分解であるようにできる.ここで \(f' : X' \to C'\) は連結，\(v : C'\to C\) は有限である.このとき \(g(C')\geq 1\) ならば \(f'\) は multiple fiber をもたず，\(C'\) が有理曲線ならば，高々 2 本の multiple fiber をもち，それらの multiplicity は互いに素である.
+\item さらに，上の状況で \(g(C')=\kappa(C',f')=\kappa(C,f)\) が成り立つ.
+\item \(X\) が special であることと，\(\pi_1(X)\) が almost abelian であることとは同値である.
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+%(1) は elliptic fibration の特異ファイバーの Kodaira 分類から従う.この等式は，generic fiber が複素トーラスであるような fibration というより一般の場合についても，初等的な議論から従う.
+
+%(2) は [Ca98] および [Na87] から従う.実際，[Na87] は，多重度 \(n_1,\dots,n_m\) をもつ点 \(a_1,\dots,a_m\) をもつ曲線 \(C\) が与えられるとき，\(C\) 上の \(a_i\) だけの上で分岐し，各 \(a_i\) の上の点の分岐指数がちょうど \(n_i\) であるような被覆 \(C'\to C\) が存在することを示している.唯一の例外は，\(C=\mathbb{P}^1\)，\(m=1,2\) で，\(m=2\) のとき \(n_1\neq n_2\) である場合である.[Ca98] では，\(C'\) への base change が求める étale 被覆 \(u : X'\to X\) を与えることが（簡単な計算により）示されている.
+
+(1), (2)は曲面のファイバーの分類による. \footnote{この辺りはよくわからなかった. 曲面論になる??}
+
+そこで性質 (3) は，第 2 の等式については \ref{thm-Cam04-1.8}から，また \(g(C')\geq 1\) ならば \(m=0\) であるという事実から従う.
+
+最後に (4) を示す.\(X\) が special であると仮定する.このとき \(\kappa(C,f)\leq 0\) であり，従って \(C'\) は有理曲線か 楕円曲線である.
+そして下のexact sequenceが存在する. 
+\[
+\pi_1(F')\to\pi_1(X')\to\pi_1(C')\to 1
+\]
+ここで \(F'\) は \(f'\) の一般ファイバーであり，\(F'\) は 楕円曲線で，\(\pi_1(F')\simeq \mathbb{Z}^{\oplus 2}\) である.
+
+よってもし \(X'\) が special ならば \(\pi_1(X')\) は almost abelian であり，\(f'\) は special であり \(\kappa(C',f')=\kappa(C,f)\) であるから，\(X\) が special であれば \(X'\) も special である.従って \(\pi_1(X)\) は almost abelian である.
+
+逆に，\(\pi_1(X)\) が almost abelian であると仮定する.このとき \(\pi_1(C')\) も almost abelian であり，\(C'\) は有理曲線か 楕円曲線である.従って \(\kappa(C,f)\leq 0\) であり，3.31 から \(X\) は special である.
+\end{proof}
+
+\cite[Subsection 3.7]{Cam04}では3次元の粗い分類もある. 
+%%%%%%%%%%%%%%%%
+\begin{comment}
+\subsection{3.7. Threefolds.}
+３次元だと以下のように粗い分類ができる. 
+\begin{thm}\cite[Theorem 3.39]{Cam04}
+任意の special threefold \(X\in\mathcal{C}\) は次のいずれかである.
+\begin{enumerate}
+\item \(\kappa(X)=2\) の場合.
+\begin{enumerate}
+\item \(\kappa'(X)=1>\kappa''(X)\) であり, \(J'_X\) が curve 上への non\-general type fibration であって, そのファイバー \(F\) が \(\kappa(F)=1>\kappa'(F)\in\{0,-\infty\}\) を満たす special surface である場合.
+\item \(\kappa'(X)=0\) であり, \(J_X\) が klt orbifold base をもつ elliptic fibration で, その base は torsion ログ標準束 \(K_S+\Delta\) をもつ正規 surface である場合（log\-Enriques の場合）.
+\item \(\kappa'(X)=-\infty\) であり, \(X\) が, 一般ファイバーが \(\kappa(F)=1,\ \kappa'(F)=-\infty\) を満たす special surface \(F\) である curve 上への non\-general type fibration をもつか, あるいは base orbifold が Picard 数 1 の klt 正規 surface で, かつ \(-\left(K_S+\Delta\right)\) が ample である log\-Del Pezzo であるような elliptic fibration をもつ場合.楕円曲線
+\end{enumerate}
+
+\item \(\kappa(X)=1\) であり, \(J_X\) が, 一般ファイバー \(F\) が \(\kappa(F)=0\) を満たす surface である curve 上への non\-general type fibration である場合.
+
+\item \(\kappa(X)=0\) の場合.
+
+\item \(\kappa(X)=-\infty\) であり, \(X\) が rationally connected であるか, 一般ファイバーが rational surface である 楕円曲線 上の fibration であるか, あるいは \(\kappa(S)\geq 0\) を満たす special surface \(S\) 上の \(\C\mathbb{P}^1\)\-fibration である場合.simple non\-Kummer な \(X\) は存在しないと予想されているが, 厳密に言えば \(\kappa(X)\leq 0\) であるので, 上のリストの最後の部分 (4) にも含まれる.
+\end{enumerate}
+\end{thm}
+証明は\cite[Subsection 3.7]{Cam04}参照. 
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{comment}
+
+
+
+\section{Orbifold additivity}
+
+\subsection{Iitaka conjecture}
+
+IItaka's \(C_{n,m}\)-conjectureとは次のとおり
+\begin{conj}\cite[Conjecture 4.1]{Cam04}
+$Y, Z$を複素多様体 in Fujiki class,
+\(g : Y\to Z\)をfibrationとする. 
+このとき
+\[
+\kappa(K_Y) \ge \kappa(K_{F}) + \kappa(K_Z)
+\]
+が成り立つ.
+ここで$F$はgeneral fiberである. 
+\end{conj}
+
+気になる人は藤野先生の本\cite{Fuj20}参照\footnote{藤野先生のホームページに"飯高予想"に関する集中講義のノートがある. \url{https://www.math.kyoto-u.ac.jp/~fujino/sonota.html}}
+今の所次の場合に成り立つ.
+\begin{itemize}
+\item $\dim Z =1$ Kawamata, $\dim Z=2$ Junyan Cao
+\item $\kappa(K_Z) =\dim Z$ Viehweg, Kollar?
+\item Fiberがgood Minimal modelを有する場合. Kawamata? Kollar? / (Fujino?)
+\item $q(Z)=\dim Z$ Cao-Paun, Hacon-Popa-Schnell, Juanyong Wang...
+\end{itemize}
+
+\cite{Cam04}の設定は$\kappa(K_Z) =\dim Z$ の場合に対応している. 
+ただよくわからなかった. \footnote{仮定の"high"ってなんなんだとなった}
+パッと見た感じ\cite{Wang21}の方が読みやすし, 必要なものは証明されていると思う． 
+
+\subsection{Orbifold conjecture \(C_{n,m}^{\mathrm{orb}}\)}
+
+一応原文そのままに主定理だけを述べておく. 
+
+\begin{thm}{\cite[Theorem 4.2]{Cam04} \(C_{\mathrm{gt}}^{\mathrm{orb}}\) conjecture }
+$Y, Z$を複素多様体 in Fujiki class,
+\(g : (Y/H) \to Z\) fibration, \(Z\) はprojectiveとする. 
+
+\(g\) は prepared かつ high かつgeneral type， すなわち
+\[
+\kappa\bigl(Z/\Delta(g,H)\bigr) = \dim(Z)
+\]
+であると仮定する.
+このとき
+\[
+\kappa(Y/H) = \kappa((Y/H)_z) + \dim(Z)
+\]
+が成り立つ.
+ここで \(z \in Z\) は一般点であり，\((Y/H)_z := (Y_z/H_z)\) である.
+\end{thm}
+
+"high "に関しては\cite[Section 1]{Cam04}を参照. 一般的な用語ではない. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+
+
+
+節 1.6 で導入した記法と概念を用いる.
+すなわち，\(g : (Y/H) \to Z\) を orbifold divisor \(H\) を備えた多様体 \(Y\) からの holomorphic fibration とする.
+このとき我々は base orbifold \(\Delta(g,H)\) を \(Z\) 上に定義した.
+この定義の基本的性質は，ある fibration \(f : X \to Y\) に対し \(H = \Delta(f)\) であるとき，適当なモデル \(f,g\) を取って \(f,g,g \circ f\) が prepared かつ admissible であり \(g\) が high となるように選べば，
+\[
+\Delta(g,H) = \Delta(g \circ f)
+\]
+が成り立つということである（1.33 参照）.
+これで orbifold additivity の予想 \(C_{n,m}^{\mathrm{orb}}\) を述べることができる.
+
+\begin{conj}[4.1, \(C_{n,m}^{\mathrm{orb}}\)]
+\(g : (Y/H) \to Z\) を多様体間の holomorphic fibration とし，\(Y \in \mathcal{C}\) とする.
+\(g\) は prepared かつ high であると仮定する.
+このとき
+\[
+\kappa(Y/H) \ge \kappa((Y/H)_z) + \kappa\bigl(Z/\Delta(g,H)\bigr)
+\]
+が成り立つ.
+ここで \(z \in Z\) は一般点であり，\((Y/H)_z := (Y_z/H_z)\) である.
+\end{conj}
+
+本論文の考察にとって根本的に重要なのは，以下の特別な場合であり，これは古典的な証明法（T.~Fujita, Y.~Kawamata, E.~Viehweg）を適切に改変することによって示される.
+
+\begin{thm}[4.2, \(C_{\mathrm{gt}}^{\mathrm{orb}}\)]
+\(g : (Y/H) \to Z\) を多様体間の holomorphic fibration とし，\(Y \in \mathcal{C}\)，\(Z\) は射影的とする.
+\(g\) は prepared かつ high であり，かつgeneral type，すなわち
+\[
+\kappa\bigl(Z/\Delta(g,H)\bigr) = \dim(Z)
+\]
+であると仮定する.
+このとき
+\[
+\kappa(Y/H) = \kappa((Y/H)_z) + \dim(Z)
+\]
+が成り立つ.
+ここで \(z \in Z\) は一般点であり，\((Y/H)_z := (Y_z/H_z)\) である.
+\end{thm}
+
+もちろん，上の \(C_{n,m}^{\mathrm{orb}}\) は S.~Iitaka の古典的な予想の単純な一般化かつ洗練であり，前章で行った構成から自然に導かれるものである.
+
+\begin{rem}[4.3]
+4.2 および 4.1 においては，\(H\) の水平成分 \(H^{\mathrm{hor}}\) の既約成分がすべて，その重複度が区間 \([0,1]\) に属する有理数であると仮定するだけで十分である.
+以下で与える証明はこのより広い状況にも適用できる.
+\end{rem}
+
+上の予想の系や特別な場合をいくつか挙げよう.
+
+\begin{prop}[4.4]
+\(C_{n,m}^{\mathrm{orb}}\) が成り立つと仮定する.
+\(f : X \to Y\) および \(g : Y \to Z\) を fibration とし，\(X \in \mathcal{C}\) とする.
+このとき
+\[
+\kappa(Y,f) \ge \kappa(Y_z,f_z) + \kappa(Z,g \circ f)
+\]
+が成り立つ.
+ここで \(z \in Z\) は一般点であり，\(f_z : X_z \to Y_z\) は \(f\) の制限である.
+\end{prop}
+
+\begin{proof}
+1.6 と 1.28 より，\(g\) と \(f\) のモデルを選び直して，\(f,g,g \circ f\) が admissible かつ prepared であり，\(g\) が high となり，
+\[
+\Delta(g \circ f) = \Delta(g,\Delta(f))
+\]
+が成り立つようにできる.
+さらに \(f_z\) も admissible であるように取ることができる.
+すると \(C_{n,m}^{\mathrm{orb}}\) と
+\[
+\kappa(Y/\Delta(f)) = \kappa(Y,f),\quad
+\kappa(Y_z/\Delta(f)_z) = \kappa(Y_z,f_z),
+\]
+および
+\[
+\kappa(Z,g \circ f) = \kappa(Z/\Delta(g \circ f)) = \kappa(Z/\Delta(g,\Delta(f)))
+\]
+という等式から主張が従う. \(\square\)
+\end{proof}
+
+特に \(X = Y\) の場合には次が得られる.
+
+\begin{prop}[4.5]
+\(C_{n,m}^{\mathrm{orb}}\) が成り立つと仮定する.
+\(g : Y \to Z\) を fibration とし，\(Y \in \mathcal{C}\) とする.
+このとき
+\[
+\kappa(Y) \ge \kappa(Y_z) + \kappa(Z,g) \ge \kappa(Y_z) + \kappa(Z)
+\]
+が成り立つ.
+\end{prop}
+
+右端の不等式はもちろん Iitaka の古典的予想である.
+次に定理 4.2 からただちに従ういくつかの結果を挙げる.
+\end{comment}
+%%%%%%%%%%%%%%%%%%
+今後必要な定理だけを抽出する. 
+
+
+\begin{cor}\cite[Corollary 4.6]{Cam04}
+\label{cor-Cam04-4.6}
+$X, Y, Z$を複素多様体 in Fujiki class,
+\(f : X \to Y\) \(g : Y \to Z\) を fibration とする.
+もし \(g \circ f\) がgeneral typeであれば，
+\[
+\kappa(Y,f) = \kappa(Y_z,f_z) + \dim(Z)
+\]
+が成り立つ.
+\end{cor}
+
+\begin{cor}\cite[Corollary 4.7]{Cam04}
+\label{cor-Cam04-4.7}
+$Y, Z$を複素多様体 in Fujiki class,
+ \(g : Y \to Z\) を fibration とする.
+もし \(g\) がgeneral typeであれば，
+\[
+\kappa(Y) = \kappa(Y_z) + \dim(Z)
+\]
+が成り立つ.
+\end{cor}
+
+
+\section{5.\ Geometric consequences of additivity}
+\subsection{Varieties with \(\kappa = 0\) \cite[5.1]{Cam04}}
+
+
+\begin{thm}\cite[Theorem 5.1]{Cam04}
+\label{thm-Cam04-5.1}
+$X$を複素多様体 in Fujiki classとする.
+\(\kappa(X)=0\) ならば\(X\) は special である.
+\end{thm}
+
+\begin{proof}
+$X$がspecialでないとして矛盾を示す.
+general type fibration \(f : X \to Y\)で$\dim Y>0$のものがあるとする. 
+\ref{cor-Cam04-4.7}より
+\[
+\kappa(X) =\kappa(X_y) + \dim(Y)
+\]
+となる. 
+これは\(\kappa(X)=0\)と$\dim Y>0$に矛盾する. 
+\end{proof}
+
+\begin{rem}\cite[Remark 5.2]{Cam04}
+\( \kappa(X)=0 \) のとき \( X \) は Bogomolov sheaf を持たないことがわかる. 
+\cite{Cam95}では, $\kappa^+(X) := \sup\{ \kappa(X, F) \mid F \subset \Omega_X^p\}$として, 
+\begin{center}
+$\kappa^+(X) =0 \Rightarrow \kappa(X) =0$ ??
+\end{center}
+となると期待されている.\footnote{おそらくその期待はCampanaだけだと思うが...ただ面白そうなのでこのpdfにも補足として残しておいた}
+なお\( c_1(X)=0 \) かつ\( X \)がKähler ならYauの結果から正しい. 
+\end{rem}
+
+\subsection{The Albanese map \cite[5.2]{Cam04}}
+
+%以下の結果は, 加法定理~4.2 の最も簡単な部分のみを間接的に用いる.しかし, この節に属するのが自然に見える.
+\begin{defn}\cite[Definition 9.26]{Cam04}
+\label{defn-Cam04-9.26}
+$X$を複素多様体 in Fujiki classとする. 
+$X$が\emph{weakly-special}(w-special)であるとは， 任意のfinite étale 被覆 \(u : X' \to X\) について,  
+$X'$がいかなる正の次元のgeneral type \(Y'\) への dominant meromorphic map \(f' : X' \dashrightarrow Y'\) を持たないことを言う. 
+\end{defn}
+
+\begin{prop}\cite[Proposition 5.3]{Cam04}
+\label{prop-Cam04-5.3}
+$X$を複素多様体 in Fujiki classとする. 
+$X$がspecial ならば,  Albanese 写像\( \alpha_X : X \to \operatorname{Alb}(X) \) は全射かつファイバー連結である. 
+またこの主張は$X$がweakly-specialでも正しい. 
+\end{prop}
+\begin{rem}
+\cite[Propsition 5.3]{Cam04}では「余次元 1 の multiple fiber を持たない.すなわち \( \Delta(\alpha_X)=\emptyset \) である」ということも示されていたが, 後にgapがあることがわかった. \footnote{\url{https://arxiv.org/pdf/2109.07147} 参照. }
+$X$がprojectiveの場合は正しい, K\"ahlerのときは不明. 
+\end{rem}
+
+\begin{proof}
+以下$X$をweakly specialと仮定して証明する. 
+ \( \alpha:=\alpha_X \) が全射でないと仮定する.
+ \( Z\subset \operatorname{Alb}(X) \) を像とする.
+ 
+  \cite[Theorem 10.9]{Uen75}(下の定理参照)により, general type $W$への fibration \( g : Z \to W\) が存在する.  $g\circ\alpha : X \to W$のStein 分解$X \to W' \to W$を取ると, $W' \to W$はfiniteなので, $W'$もgeneral typeである. 
+  よって$X \to W'$はgeneral type $W$への fibrationとなり, $X$はweakly specialなので$\dim W=0$となる. 
+  
+ よって$Z$はsubtorusになり, Albanese mapの普遍性より$\operatorname{Alb}(X) \to Z$という写像が唯一に存在する. しかし$\operatorname{Alb}(X) \to Z \hookrightarrow \operatorname{Alb}(X)$がidentity mapになって矛盾する.
+ \footnote{背理法を使わず\( Z=\operatorname{Alb}(X) \) となることを言った方が良かったかもしれない}
+よって\( \alpha \) は全射であり \( Z=\operatorname{Alb}(X) \) である.
+
+次に \( \alpha=\beta\circ \alpha' \) を Stein 分解とする.ここで \( \alpha' : X\to A' \) はファイバー連結で, \( \beta : A' \to \operatorname{Alb}(X) \) は有限である.
+Kawamata--Viehweg の議論(\cite[Proposition 4.1]{Wang21} 下参照)により, $X$がweakly specialなので, 
+$A'$はcomplex torusになり, $A' \to A$はetaleとなる. 
+よってAlbanese mapの普遍性より$A' \to A$は双正則になり, $\alpha$はファイバー連結である. 
+%次に, \( \alpha : X\to \operatorname{Alb}(X) \) の fibration が非自明な \( \Delta(\alpha) \) を持つと仮定する.\( \Delta \) をその任意の成分とする.ある連結な極大商写像\[q : \operatorname{Alb}(X) \to A := \operatorname{Alb}(X)/B\]が存在し, \( B \subset \operatorname{Alb}(X) \) をある部分トーラスとする.すると \( \Delta = q^{-1}(D) \) となるある big \( \mathbb{Q} \)-divisor \( D \subset A \) が存在する.
+%\( f := q\circ \alpha : X \to A \) を考える.このとき \( \Delta(f) \subset A \) である.命題 1.14 より \( f \) はgeneral typeである.実際に \( K_A \) は自明であり, \( D \) は \( A \) 上 big である.これは \( X \) が special であるという仮定に矛盾する.従って special の場合の証明が完結する.
+%もし \( X \) が w-special のみであれば, 最初の 2 ステップはそのまま同じであり, 変更なく結論が得られる.
+\end{proof}
+
+\begin{thm} \cite[Theorem 10.9]{Uen75}
+$B$をcomplex torus $A$のsubvarietyとする. 
+
+このとき$\kappa(B) \ge 0$であるsubtorus $A_1 \subset A$とprojective
+variety $W$でAbelian varietyのsubvarietyとなるものが存在して
+\begin{enumerate}
+\item $B \to W$は正則ファイバー束でfiberが$A_1$となる.
+\item $\kappa(W)=\dim W=\kappa(B)$.
+\end{enumerate}
+となるものが存在する.
+さらに $B$ がalgebraic varietyならば, finite etale $\tilde{B} \to B$, $\tilde{W} \to W$があって,  $\tilde{B} \cong A_1\times \tilde{W}$となる. 
+\end{thm}
+
+\begin{prop}\cite[Proposition 4.1]{Wang21}
+$p : V \to T$をfinite射で$V$をコンパクト normal 解析空間, $T$をcomplex torusとする. 
+
+このとき$\kappa(V) \geq 0$であり, あるsubtorus $S \subset T$, 
+(projective) normal variety general type $W$で$T/S$上でfiniteなものがあって次を満たす. 
+\begin{enumerate}
+\item fibration $\phi_p : V \to W$であってgeneral fiberは$\tilde{S}$である.
+ここで$\tilde{S}$はcomplex torusで$\tilde{S} \to S$というfinite
+\'etale coverを有する.
+\item $\kappa(W) = \kappa(V) = \dim W$.
+\end{enumerate}
+\end{prop}
+
+\subsection{The decomposition theorem \cite[5.4]{Cam04}}
+"本論文の大部分を動機づける主張は次の通りである" \footnote{\cite{Cam04}の文章をそのまま載せた. }
+
+\begin{thm}\cite[Theorem 5.8]{Cam04}
+\label{thm-Cam-4-5.8}
+$X$を複素多様体 in Fujiki classとする.
+\( X \) が non-special なら, \( c_X \) はgeneral type fibration である.
+\end{thm}
+
+よって任意の多様体は\( X \) はcore mapによって
+\begin{itemize}
+\item core mapのファイバー(special 多様体)
+\item core mapのbase のlog general type $(C(X)/\Delta(c_X))$
+\end{itemize}
+に分解される. (これが分解定理である)
+どんな \( X\in\mathcal{C} \) に対しても special かつgeneral typeとなる fibration を持ち, これは唯一であり, core mapである. 
+
+\begin{proof}
+\( d:=\mathrm{ess}(X) \) に関する帰納法.
+\( d=0 \) は$X$はspecialなので\ref{thm-Cam04-3.3}より明らか. 
+
+$d >0$とする. \( X \) が non-specialなので, general type fibration \( f:X\dashrightarrow Y \) がある.\ref{thm-Cam04-2.6}より, $c_X$がspecial fibrationより
+\[
+f=\psi\circ c_X
+\]
+という分解がある. $\psi : C(X) \dashrightarrow Y$である. 
+\ref{cor-Cam04-3.11}(3)より, general fiber $y \in Y$について, \(c_X|_{X_y} : X_y \dashrightarrow C(X)|_{X_y} \) は \( X_y \) の core mapである.
+帰納法によりその一般ファイバーはgeneral type fibration である.
+よって, \ref{cor-Cam04-4.6}より
+$$
+\kappa(X,x_X) \underset{\ref{cor-Cam04-4.6}}{=} \kappa(X_y,c_X|_{X_y}) + \dim(Y)
+\underset{\text{$c_X|_{X_y}$ gen. type}}{=} \dim(X_y) + \dim(Y) = \dim X
+$$
+となるので,  \( c_X \) はgeneral type fibration である. 
+\end{proof}
+
+いくつかのCorollaryを示す. 
+
+\begin{thm}\cite[Theorem 5.10]{Cam04}
+\label{thm-Cam04-5.10}
+$X$を複素多様体 in Fujiki class, \( a_X: X\to \mathrm{Alg}(X) \) をalgebraic reductionとする.すると \( c_X \) は
+\[
+c_X = \phi \circ a_X
+\]
+と分解するような \( \phi : \mathrm{Alg}(X)\dashrightarrow C(X) \) をもつ.特に \( C(X) \) は Moishezon である.
+\end{thm}
+\cite[Theorem~2.39]{Cam04} により, \( a_X \) の一般ファイバーはspecial であるためである. 
+最後の主張は\cite[Chapter 7 Proposition 6.12]{SCV7}より.(Moishezonの全射はMoishezon)
+
+
+%\begin{prop}[5.11]
+%\( j : Z\dashrightarrow X \) を meromorphic 写像とし, \( c_X\circ j : Z\dashrightarrow C(X) \) が全射かつ一般有限であるとする.\( c_X \) が \( X \) の core であるとき, \( Z \) はgeneral typeである.
+%\end{prop}
+%\begin{proof}
+%core の関手性より \( C(Z)\dashrightarrow C(X) \) が存在する.\( c_X\circ j = c_Z \) が一般有限なので, Theorem~5.5 より \( Z \) はgeneral typeである.
+%\end{proof}
+
+
+\begin{thm}\cite[Theorem 5.5]{Cam04}
+\label{thm-Cam04-5.5}
+$X$を複素多様体 in Fujiki classとする.
+ \( \mathrm{ess}(X)=\dim(X) \) であることと \( X \) がgeneral typeであることは同値である.
+\end{thm}
+\begin{proof}
+\( \mathrm{ess}(X)=\dim(X) \)であるとすると, $\Delta(c_X)=0$なので, $C(X)$がgeneral typeになる. 
+逆は\ref{cor-Cam04-3.14}より. 
+\end{proof}
+
+\begin{thm}\cite[Theorem 5.7]{Cam04}
+\label{thm-Cam04-5.7}
+$X$を複素多様体 in Fujiki classとする. 
+ \( n:=\dim X>0 \) とするとき, \( \mathrm{ess}(X)=n-1 \) であることは, 以下の 2 つのいずれかが成立することと同値である.
+\begin{itemize}
+\item[(a)] \( \kappa(X)=n-1 \) かつ \( J_X \) はgeneral type fibration である.
+\item[(b)] \( X \) の rational quotient \( R(X) \) は \( n-1 \) 次元でgeneral typeである.
+\end{itemize}
+\end{thm}
+
+\begin{proof}
+\( \mathrm{ess}(X)=n-1 \) とする. 
+ \( c_X : X\dashrightarrow C(X) \) が \( n-1 \) 次元の像をもつとする. 一般ファイバー \( F \) は special 曲線で, 従って有理曲線または楕円曲線である.
+
+\( F \) が有理曲線なら, MRC fibration $r_X$が\( c_X \) を通るので \( C(X)=R(X) \) である. 
+よって\ref{thm-Cam04-5.10}から\( R(X) \) は \( n-1 \) 次元の Moishezon である. 
+よって\ref{thm-Cam04-3.26}より,  \( R(X)=C(X) =C(R(X))\) なので, $R(X)$はgeneral typeである.
+
+\( F \) が楕円曲線なら, Iitaka map$J_X$が\( c_X \) を通るので,  \( c_X=J_X \) である. 特にgeneral type fibrationである. 
+また$X$はgeneral typeではないので, 
+\( \kappa(X)=n-1 \) が確定する. 
+\end{proof}
+
+
+\subsection{Finite étale covers \cite[5.5]{Cam04}}
+
+%分解定理は, finite étale 被覆のもとで \( \mathrm{ess}(X) \) が不変であることを示唆する.
+
+\begin{thm}\cite[Theorem 5.12]{Cam04}
+$X$を複素多様体 in Fujiki classとし, \( u : X' \to X \) をfinite étale 被覆とする.
+\( c_{u} : C(X') \dashrightarrow C(X) \) を誘導される写像とする.
+このとき \( c_u \) は
+\[
+C(X') \dashrightarrow C(X)
+\]
+の上にある被覆である.(つまりgenerically finiteである)
+
+特にfinite etale被覆のもとで \( \mathrm{ess}(X) \) は不変であり, special 多様体 のfinite étale 被覆が special となる. 
+\end{thm}
+
+\begin{proof}
+\( u :X' \to X  \) が Galoisで, そのGaloins群を \( G \)と仮定する. 
+そのcore mapの一意性から, \( c_{X'} \) は \( G \)-equivariant になる.
+\( h' : C(X') \dashrightarrow Y \) を \( G \)-quotient とする.
+$X' \dashrightarrow C(X')$を用いて, 
+\( G \)-invariance から自然な写像
+\(
+h: X \dashrightarrow Y
+\)
+を 得る. 
+$h : X \dashrightarrow  Y$のfiberは$X'$のspecial 多様体の像なので, \ref{lem-Cam04-2.9}(1)よりspecialである. 
+よって\ref{lem-rigidity}から
+\[
+v : Y \dashrightarrow  C(X)
+\]
+で$c_X = v \circ h$となるものが存在する. 
+\[
+\xymatrix@C=80pt@R=20pt{
+&X' \ar@{->}[d]_{u} \ar@{-->}[r]^{c_{X'}}& C(X')  \ar@{-->}[d]^{c_u \text{ fin. etale $/G$}}  \ar@{-->}[lld]_{ \hspace{10pt} h'} \\
+Y \ar@/_2pc/@{-->}[rr]_{ v }&X\ar@{-->}[r]^{c_{X}}\ar@{-->}[l]^{h}& C(X)  
+}
+\]
+
+
+\ref{thm-Cam-4-5.8}より, \( c_{X'} \) は general type の fibration である.
+そして \ref{thm-Cam04-1.8}(2)から$u$がetaleなので,  \( h : X \dashrightarrow \) も general type である.
+$c_{X} : X \dashrightarrow C(X)$はspecial fibrationなので, 
+\ref{thm-Cam04-2.6}より
+\[
+w : C(X) \to Y
+\]
+が存在して, \( h = w \circ c_X \) を満たす. 
+以上より\( Y = C(X) \) であり, \( h = c_u \) は(genericallyに) finite となる.
+\end{proof}
+
+\subsection{Essential and Bogomolov dimensions \cite[5.6]{Cam04}}
+
+\begin{defn}\cite[Definition 5.13]{Cam04}
+$X$を複素多様体 in Fujiki classとする. 
+\[
+B(X) := \max \{ p>0 \mid \Omega_X^p \text{ の部分層として Bogomolov sheaf } F \subset \Omega_X^p \text{ が存在する} \}
+\]
+と定める.
+Bogomolov sheaf が存在しないときは \( B(X) := 0 \) とする.
+\end{defn}
+
+\begin{cor}\cite[Corollary 5.14, 5.15]{Cam04}
+$X$を複素多様体 in Fujiki classとするとき, \( \mathrm{ess}(X) = B(X) \) である. 
+さらにそれはcore mapによってmaxが達成される. 
+\end{cor}
+
+\begin{proof}
+\( F \) を \( X \) 上の次元 \( p>0 \) の Bogomolov sheaf とする.
+これに付随する fibration は general type であり, \ref{thm-Cam04-2.6}から\( c_X \) を通る.
+よって \( \mathrm{ess}(X) \ge p \) である.
+
+逆に, \( c_X \) が general type の fibration であるため, その Bogomolov sheaf の次元は \( p = \mathrm{ess}(X) \) となる.以上より等式が従う.
+\end{proof}
+
+
+\subsection{Construction of the core as the highest general type fibration \cite[5.7]{Cam04}}
+
+Core mapの構成は以下のように構成することもできる. (\cite{Voi}はこの方法で紹介されていた. )
+
+\begin{thm}\cite[Theorem 5.16]{Cam04}
+$X$を複素多様体 in Fujiki classとする. 
+このとき \( X \) は general type かつ special な fibration を持つ.
+この fibration は同値を除いて一意であり, \( X \) の core である.
+\end{thm}
+この構成は"general type の fibration \( f : X \to Y \)で$\dim Y$が最大なもの"としてcore mapを構成する． 
+\begin{proof}
+ general type かつspecialなfibrationが存在したら, それは\ref{cor-Cam04-2.20}から唯一である. よって存在のみを示せば良い. 
+
+\( \dim(X)=n \) に関する帰納法. 
+もし \( X \) が special であれば, 定数写像がcore mapである. 
+そうでなければ, general type fibration \( f : X \to Y \) が存在し, その中で \( \dim(Y) \) が最大のものを取る.
+
+もし \( f \) のgeneral fiberが special であることを示す. 
+そうでない場合と仮定すると. 
+relative core を構成できる.\footnote{\cite{Voi}にもそう書いてあったが, これ大丈夫なのかがわからん. 帰納法で"relative coreの存在"も仮定している??}
+\[
+h : X \to Z  \quad g : Z \to Y \quad s.t 
+\quad 
+f = g \circ h
+\]
+となる分解で, general fiber $X_y$について \( h_y : X_y \to Z_y \) は \( X_y \) の core mapになるものが存在する 
+これは帰納法の仮定から, general type fibration である.
+
+
+\ref{cor-Cam04-4.6}より,  \( h \) 自体が general type の fibration となる. 
+しかし \( \dim(Z) > \dim(Y) \) となるため, \( \dim(Y) \) が最大性に矛盾. 
+よって\( f \) のgeneral fiberが special である. 
+\end{proof}
+
+\section{ 6 The decomposition of the core.}
+
+さっぱりわからなかった. 
+\cite{CW15}を引用すると次のとおり.
+\begin{conj}\cite[Conjecture 2.4]{CW15}
+\label{conj-CW15-2.4}
+$X$を複素多様体 in Fujiki classとする. 
+このとき$c_X =(J \circ r)^{\dim X}$となる. ここで
+\begin{itemize}
+\item $J$ Orbifold version of Moishezon map (Iitaka mapの一種)
+\item $r$ (orbifold??) Rational quotient 
+\end{itemize}
+とする. 特にspecial 多様体は$\kappa=0$と$\kappa_{+}=0$で構成される. 
+ここで
+$$
+\kappa_{+}(X):=\sup\{ \kappa(X, \det\mathcal{F}) \mid \mathcal{F} \subset \Omega_{X}^{p} \text{coherent subsheaf}\}
+$$
+とする. 
+\end{conj}
+
+\begin{thm}
+Orbifold version of Iitaka Conjecture が成り立つならば, 
+\ref{conj-CW15-2.4}も成り立つ. 
+\end{thm}
+
+Campanaの講演動画を見たときには以下のように言っていた
+\begin{itemize}
+\item$X \dashrightarrow R(X)$のrational quotient (MRC fibration)をとる. $K_{R(X)}$ psefである.
+\item  $K_{R(X)}$ がeffectiveであるとする\footnote{ただし大予想であるnonvanishing conjectureが解けていると仮定する}. すると$R(X) \dashrightarrow J(R(X))$をIitaka mapとする．  
+\end{itemize}
+これを繰り返すとcore mapが得られるという議論である. あっているかがわからない. 
+
+ちなみに(orbifold??) Rational quotient に近いものとしてSlope rationally connected\footnote{\url{https://arxiv.org/abs/1607.07829}}というものもあるがこれもあっているかがわからない. 
+
+ただ最近になってある程度はわかっているようである. 以下を参照のこと. 
+\begin{itemize}
+\item Qile Chen, Brian Lehmann, Sho Tanimoto
+Campana rational connectedness and weak approximation  \url{https://arxiv.org/abs/2406.04991}
+\item Enhao Feng, Sara Mehidi Campana separable rational connectedness of toric orbifold \url{https://arxiv.org/abs/2511.22545}
+\end{itemize}
+
+
+\section{7. The fundamental group.}
+
+\subsection{The abelianity conjecture. \cite[7.1]{Cam04}}
+
+\begin{conj}[{Abelianity conjecture \cite[Conjecture 7.1]{Cam04}}]
+\(X\) を special とする.このとき \(\pi_1(X)\) は almost (virtually) abelian である.
+\end{conj}
+群が almost (virtually) abelianであるとは, 有限指数の abelian 部分群を持つことをいう.
+
+abelianity conjectureに関しては以下の通り. この予想は多分かなり難しいので解けたら大結果だと思う. 
+\begin{ex}\cite[Example 7.2]{Cam04}
+\begin{enumerate}
+\item $ \dim X \le 2$ 分類により正しい
+\item Rationally connected 多様体. そもそも基本群が自明だから. 
+\item \(c_1(X)=0\) の多様体の場合 Beauville-Bogomolov分解により正しい. 
+\item  \(a(X)=0\) or \(\kappa(X)=0\). これらも\(\pi_1(X)\) は almost (virtually) abelian であると予想されている. よってこれらはabelianity conjectureの一部である.
+\item Orbifold rationally connected の場合. \cite{Cam04}のときはこの場合は基本群が自明だと予想されていた. 
+これは最近進展があった. Brian-Lehmannさんたちが解決したっぽい. Eric Jovinelly, Brian Lehmann, Eric Riedl Free curves and fundamental groups \url{https://arxiv.org/abs/2510.27031} 参照のこと. 
+\item  \(-K_X\) nefまたは$T_X$ psef. これも正しい. 構造定理からわかる.\footnote{\(-K_X\) nefならば基本群がalmost (virtually) abelian はPaunの結果とCampanaの結果を合わせてもわかる. } 
+\item (別の)Iitaka conjecture "$\C^n \to X$というetale coveringが存在するとき, $X$は(finite etale coverを除いて)complex torus である"に関連がある. この予想は,  "$\C^n \to X$というetale coveringが存在するならば\(\pi_1(X)\) が virtually abelian である"という予想と同値である. よってabelianity conjectureの一部になる. 
+\end{enumerate}
+\end{ex}
+\subsection{Linear and solvable quotients. \cite[7.2]{Cam04}}
+
+\begin{thm}
+\label{thm-almostAbel}
+$X$を複素多様体 in Fujiki classとする. 
+$X$がweakly specialであると仮定する. 
+$\pi_1(X)$がtorsion-freeかつvirtually nilpotentであるとき, $\pi_1(X)$はvirtually abelianである
+\end{thm}
+鍵となるのは\ref{prop-Cam04-5.3}による"Albanese mapが全射かつファイバー連結"であることである. 
+
+\begin{proof}
+\cite{Cam95a}の議論による. \cite[Theorem 3.23]{Voi}を参考にした. 
+
+finite etale 被覆をとって, $\pi_1(X)$をnilpotentだと仮定して良い. 
+$\alpha : X \to A$をAlbanese mapとする. 
+
+ \begin{itemize}
+ \item \(\alpha_* : \pi_1(X) \to \pi_1(A)\)は全射になる. というのも \( \phi : X \to A\)がファイバー連結なので (\ref{lem-Voi-1.2}(1)参照)
+\item  \( \alpha_* : H_1(X, \mathbb{Z}) \to H_1(A, \mathbb{Z}) \)は全射かつ, finite kernelである. これはAlbanese mapの性質から
+\item \( \alpha^* : H^2(A, \mathbb{Q}) \to H^2(X, \mathbb{Q}) \)単射である. (\ref{lem-Voi-1.2}(2)参照)
+\end{itemize}
+
+\( H := \pi_1(A) =\Z^{2k}\)とおく.
+\[ n: H^2(H, \mathbb{Q}) =H^2(\Z^{2k}, \Q)\to H^2(A, \mathbb{Q}) \]
+という(全)単射が存在することを示す. 
+  \( E_H \to B_H = E_H / H \)を$H$の分類空間とする.\footnote{ \url{http://pantodon.jp/index.rb?body=BG}参照. 任意の位相空間$X$上の主$H$束$E \to X$について, ある連続写像$h : X \to B_H$が存在して, $h^{*}E_H$と$E$は同相になる. 例えば$H=\Z$なら$\R\to S^1$がそれに当たる. } 
+   \( E_H \) は可縮である. 
+すると普遍被覆 \( \C^k \to A \) が主$H$束なので, 
+$A \underset{\text{homeo}}{\cong}(\C^k\times E_H) / H $である.
+そこで 
+\[ u : A \underset{\text{上の同型}}{\to} (\C^k\times E_H)/H 
+\underset{\text{射影}}{\to} E_H / H = B_H
+\]
+とおく. 
+ そして$n$を以下で定める.\footnote{ここは\cite[Theorem 3.23]{Voi}に合わせた. \cite[Theorem 3.23]{Voi}ではもっと一般の状況を考えている.}
+\[
+n:=u^{*} : H^2(B_H, \mathbb{Q}) \to H^2(A, \mathbb{Q}) (= H^2((\C^k\times E_H)/H, \mathbb{Q}))
+\]
+今の場合$ E_H =\R^{2k}\to B_H=(S^1)^{2k}$であるので, $A \to B_H$は$\C^{k}/\Z^{2k} \to (S^1)^{2k}$のように複素torusの複素構造を忘れて, $(S^1)^{2k}$とみなした写像(恒等写像)に等しい.
+よって全単射となる.
+
+よって\( \alpha_* : H_1(X, \mathbb{Q}) \to H_1(A, \mathbb{Q}) \)は単射なので上と合わせて
+ \[  
+ H_2(X, \mathbb{Q}) \underset{\alpha_*}{\to} 
+  H_2(A, \mathbb{Q}) \underset{n=u^{*}}{\to} 
+ H_2(H, \mathbb{Q}) 
+ \]
+ は全射の合成で全射になる. 
+ \( G = \pi_1(X) \)とすると以下の可換図式が成り立つ:
+\[
+\begin{array}{ccc}
+H_2(X, \mathbb{Q}) & \underset{\alpha_*}{\longrightarrow}& H_2(A, \mathbb{Q}) \\
+\downarrow & & \downarrow \\
+H_2(G, \mathbb{Q}) & \underset{\alpha_*}{\longrightarrow} & H_2(H, \mathbb{Q})
+\end{array}
+\]
+よって%$ \pi_1(X) =G \twoheadrightarrow H　=\pi_1(A)$によって
+  \(H_2(G, \mathbb{Q}) \to H_2(H, \mathbb{Q}) \)も全射である. 
+以上より
+\begin{itemize}
+\item  \( \alpha_* : H_1(G, \mathbb{Q}) \to H_1(H, \mathbb{Q}) \)同型. 
+\item   \( \alpha_* : H_2(G, \mathbb{Q}) \to H_2(H, \mathbb{Q}) \)全射. 
+\end{itemize}
+であるので,$\pi_1(X),  \pi_1(A)$ともにnilpotentであるから,  \ref{lem-Voi-3.24}より
+$$G=\pi_1(X) \to \pi_1(A)=H
+$$
+は有限のkernelを持つ.(全射であることは前から言えてる)
+\end{proof}
+
+使った定理をまとめておく. 
+\begin{lem}\cite[Lemma 1.2]{Voi}
+\label{lem-Voi-1.2}
+ \(  f : X \to Y \ \) は properで次を満たす. 
+\begin{enumerate}
+\item \( f_{*} : \pi_1(X) \to \pi_1(Y) \) について, $ f_{*}(\pi_1(X)) \subset \pi_1(Y)$はfinite indexを持つ. さらにファイバー連結ならば,  $f_{*}(\pi_1(X)) =  \pi_1(Y)$
+\item  \( f^* : H^i(Y,\mathbb{Q}) \to H^i(X,\mathbb{Q}) \) はHodge 構造における単射である. 
+\item  一般ファイバー \( X_s \)が連結かつ, 任意の \( i>0 \)で\( H^0(X_s,\Omega^i_{X_s}) = 0 \)
+ならば, \( f^* : H^0(Y,\Omega^i_Y) \to H^0(X,\Omega^i_X) \)は \( i \ge 0 \)で同型である. 
+\end{enumerate}
+\end{lem}
+
+\begin{lem}\cite[Lemma 3.24]{Voi}\cite[Proposition 6.2]{Wang22}
+\label{lem-Voi-3.24}
+%\label{lem:3.24}
+\( \alpha : G \to H \) を有限生成群の準同型とする. 
+\( H_1(G, \mathbb{Q}) \simeq H_1(H, \mathbb{Q}) \) 同型かつ, 
+\( H_2(G, \mathbb{Q}) \twoheadrightarrow  H_2(H, \mathbb{Q}) \)全射ならば, 
+任意の \( n \in \N \)について,  \( G/G_n \to H/H_n \)は finite kernel and cokernelを持つ. 
+
+%ここで， 群$\Gamma$について, $n$-th lower central seriesを\( \Gamma_n = [\Gamma, \Gamma_{n-1}] \)とする. 
+\end{lem}
+群$\Gamma$について, $n$-th lower central seriesを\( \Gamma_n = [\Gamma, \Gamma_{n-1}] \)とする. 
+
+以上より次が言える. 
+\begin{thm}\cite[Corollary 7.7, 7.8, 7.10]{Cam04}
+\label{thm-Cam04-7.7}
+$X$を複素多様体 in Fujiki class かつ weakly special とする. 
+\begin{enumerate}
+\item \(\mu : \pi_1(X)\to G\) が群の全射準同型で, \(G\) が solvable かつ torsionfree であるとする.このとき \(G\) は virtually abelian である.すなわち, \(\pi_1(X)\) の torsionfree な solvable 商は almost abelian である.
+\item \(\rho : \pi_1(X)\to Gl(N,\mathbb{C})\) を線形表現とする.すると \(G := \mathrm{Image}(\rho)\) は virtually abelian である.すなわち, \(\pi_1(X)\) の線形商は almost abelian である.
+\item \(\pi_1(X)\) が線形（すなわち忠実な線形表現を持つ）ならば, $\pi_1(X)$はalmost Abelian
+\end{enumerate}
+特にspecialならばweakly specialなので, 上が成り立つ. 
+\end{thm}
+
+\begin{proof}
+(1) $\pi_1(X)=G$のときを証明する\footnote{一般の場合はおそらく\ref{thm-almostAbel}最後だけ変わるんだと思う. つまり最後の議論から$\pi_1(X)$のnilpotent completion $\pi_1(X)_{\mathrm{nil}}$が$ \cong \Z^{2k}$と同型になる. よって$\pi_1(X)_{\mathrm{nil}} \twoheadrightarrow G$により$G$はAbelとなる. }
+$\pi_1(X)$がsolvableだとArapura-Nori 97 の結果によってvirtually nilpotentである. 
+よって\ref{thm-almostAbel}よりalmost Abelianである. 
+
+(2) 
+\(G'\) を \(G\) の Zariski closure とする.適当な étale 被覆で \(X\) を置き換えることにより, \(G'\) が connected であると仮定してよい.すると群の完全列
+\[
+1 \longrightarrow R \longrightarrow G' \longrightarrow S \longrightarrow 1
+\]
+を持ち, ここで \(S\) は semi-simple, \(R\) は solvable である.
+
+$S=1$, つまり$G$がsolvableであることを示す. 
+$S$が自明でないとすると, \cite{CCE15}によって
+ \(\rho' = \sigma \circ \rho : \pi_1(X)\to S\) によるShafarevich map\footnote{Shafarevich mapに関しては\cite{Voi}参照. }
+ $$
+ \Sha_{\rho'} : X \dashrightarrow W
+ $$
+ に関して$W$がgeneral typeになる. 
+ これは$X$がweakly specialに矛盾する. 
+
+$G$がsolvableであり, 適当なfinite étale 被覆を取ることで torsionfree となるので(1)よりいえた. 
+(3)は(2)の特別な場合である. 
+\end{proof}
+
+
+
+\begin{thm}\cite[Theorem 7.11, 7.12]{Cam04}
+$X$を複素多様体 in Fujiki classとする.
+ \(\mathbb{C}^n \to X\) という全射 etale mapが存在と仮定する. 
+ 
+ もし \(\pi_1(X)\) が solvable か線形であるならば,  \(X\) はfinite etale 被覆で持ち上げると, 複素トーラスになる. 
+\end{thm}
+
+\begin{proof}
+\ref{thm-Cam04-8.2}より,  \(X\) は special であることがわかる. (もしくは\cite{KO75}からweakly specialであることがわかる.)
+よって\ref{thm-Cam04-7.7}より\(\pi_1(X)\) almost abelian である.
+finite etale 被覆で持ち上げて, $\pi_1(X)$ Abelianと仮定して良い. 
+\(\alpha : X\to A\) を \(X\) の Albanese 写像とすると, 全射かつ ファイバー連結である.
+
+まず$\alpha$の一般ファイバーが0次元であることを示す. 
+背理法. \(\dim(F)>0\) と仮定し, 
+$i : F \hookrightarrow X$とする. 
+\(\mathbb{C}^d\) は正の次元をもつコンパクト部分多様体を含まないので,  
+\[\mathrm{image}(i_{*} : \pi_1(F)\to\pi_1(X))
+\text{: 無限 }
+\] となる. 
+\(\pi_1(X)\) が abelian であるので
+\[\mathrm{image}(i_{*} : H_1(F, \Z)\to H_1(X, \Z))
+\text{: 無限 }
+\] 
+であることもわかる. 
+よってdualを取ってHodge分解して(ここにFujikiを使う), 制限写像
+\[
+i^{*}: H^0(X,\Omega_X^1)\longrightarrow H^0(F,\Omega_F^1)
+\]
+が零でない. 
+しかしこれは \(F\) が \(\alpha\) のファイバーであるという事実と矛盾する. 
+実際$\alpha^{*} : H^0(A,\Omega_A^{1})\to H^0(X,\Omega_X^1) $は$\alpha$が全射なので次元が一緒なことから全単射になり, $\alpha^{*} \omega|_{F}=0$となるためである. 
+
+以上より\(\dim(F)=0\)なので, \(\alpha\) は birational となる. 
+ \(\alpha\) が同型でなければ $\alpha^{-1} : A \dashrightarrow X$を考えれば, \(X\) は有理曲線$f : \C\mathbb{P}^1 \to X$を含むことになる. この$f$は$C \to \C^{d}$に持ち上がるが, これは定数になり矛盾する. 
+ \end{proof}
+
+\begin{rem}
+$X$をコンパクトK\"ahler多様体とする. この辺りの話は以下のShafarevich mapと関係している
+\begin{conj}[Shafarevich Conjecture]
+$X$の普遍被覆は正則凸か?
+\end{conj}
+これに関しては高山先生のサーベイ を参照.\footnote{"A SURVEY ON VARIETIES WITH LARGE FUNDAMENTAL GROUPS"
+\url{https://repository.kulib.kyoto-u.ac.jp/items/6e8ed648-5783-4277-9975-513010993e49}} 
+
+$\pi_1(X)$がlinearなら解決している. projectiveならば\cite{EKPR12}, コンパクトK\"ahlerなら\cite{CCE15}である. 
+
+この辺りの話はquasi-projectiveの場合に関してYa Dengさんと山ノ井先生が最近いろんな論文を出している. 
+\begin{itemize}
+\item Hyperbolicity and fundamental groups of complex quasi-projective varieties \url{https://arxiv.org/abs/2212.12225}
+\item Reductive Shafarevich Conjecture \url{https://arxiv.org/abs/2306.03070}
+\item Linear Shafarevich Conjecture in positive characteristic, Hyperbolicity and Applications \url{https://arxiv.org/abs/2403.16199}
+\end{itemize}
+quasi-projectiveの場合のShafarevich conjectureに関しては, $\pi_1(X)$がlinearなら$X$の普遍被覆が正則凸のZariski open setになることがわかっている. \footnote{ Benjamin Bakker, Yohan Brunebarbe, Jacob Tsimerman "The linear Shafarevich conjecture for quasiprojective varieties and algebraicity of Shafarevich morphisms" \url{https://arxiv.org/abs/2408.16441} 参照のこと. }
+\end{rem}
+
+
+
+\section{8. An orbifold generalisation of Kobayashi-Ochiai's extension theorem}
+
+\subsection{Kobayashi-Ochiaiの定理}
+
+
+古典的なKobayashi-Ochiaiの定理は次のとおり. 
+\cite{KO75}または\cite[Theorem 7.5.1]{Kob98}を参照. 
+
+\begin{thm}\cite{KO75}
+\(X\), \(Y\) を コンパクト 解析空間とする. 
+$Y$がgeneral typeであるならば　\(X\) から \(Y\) への 全射 meromorphic map 全体の集合は有限である.
+\end{thm}
+$Y$がgeneral typeであるとはresolution $\widetilde{Y} \to Y$について$K_{\widetilde{Y}}$がbigであるということである. 
+
+\begin{thm}\label{thm:2}
+\(X\) を 解析空間, \(A \subset X\) を部分解析空間とする. 
+\(Y\) を general type の \(n\)-次元 コンパクト 解析空間とする．
+このとき, 最大階数 \(n\) をもつ任意の meromorphic map
+\[
+f\colon X \setminus A \dashrightarrow Y
+\]
+は, meromorphic map \(f\colon X\dashrightarrow Y\) へと延長される.
+\end{thm}
+
+ meromorphic mapが最大階数 \(n\) をもつとは.
+  \(f\) が$X \setminus A$のある点において正則写像になり, かつその微分(ヤコビ行列)が階数 \(n\) であることを言う. 
+これは$f$がdominantであることと同値である. 
+$f$がnondegenerate(非退化)ともいう.
+
+
+\begin{cor}
+\(X\), \(Y\) を コンパクト 解析空間, \(A \subset X\) を部分解析空間とする. 
+このとき, 最大階数 \(n\) をもつ meromorphic map
+\[
+f\colon X-A \dashrightarrow Y
+\]
+全体の集合は有限である.
+\end{cor}
+
+\subsection{Statements \cite[8.1]{Cam04}}
+以下の定理はOrbifold version of Kobayashi-Ochiaiとも言える
+
+\begin{thm}\cite[Theorem 8.2]{Cam04}
+\label{thm-Cam04-8.2}
+\begin{itemize}
+\item \(V\) を連結な複素多様体, $D \subset V$をreduced divisor, $U:= V \setminus D$とする.
+\item $X$をコンパクトな解析空間でFujiki classであるとし. \(\phi:U \dashrightarrow  X\) を meromorphic mapとする. 
+\item \(f:X\to Y\) を fibration とし, \(\psi:=f\circ\phi : U\to Y\) が非退化であるとする. (つまりある点において正則写像になり, かつその微分(ヤコビ行列)が階数 \(\dim Y\)となる)
+\end{itemize}
+
+もし\(f : X \dashrightarrow \) がgeneral type fibrationであるならば次が成り立つ. 
+\begin{enumerate}
+\item \(\psi:=f\circ\phi : U\to Y\) は meromorphic に \(\psi' : V\to Y\) へ延長される.
+\item 任意の十分大きく割り切れる整数\(m>0\) とする. 
+任意の \(s\in H^0(Y,m(K_Y+\Delta(f)))\) に対して, \(\psi^*(s)\) は \((\psi')^*(s)\in H^0\bigl(V,(\Omega_V^p)^{\otimes m}((m-1)D)\bigr)\) へ延長される. 
+特に
+$$
+\psi^{* }: H^0(Y,m(K_Y+\Delta(f))) \to  H^0\bigl(V,(\Omega_V^p)^{\otimes m}((m-1)D)\bigr)
+\quad s \mapsto \psi^*(s)
+$$
+が考えられ, これは(非退化の仮定から)単射である. 
+\end{enumerate}
+\end{thm}
+
+これからわかることは次のとおり.
+
+\begin{defn}\cite[Definition 8.10]{Cam04}
+解析空間\(X\) が \(\mathbb{C}^d\)-dominableであるとは, 非退化な写像 (dominant map) \(\phi:\mathbb{C}^d\to X\) が存在すること.
+\end{defn}
+\(\mathbb{C}^d\)-dominable という用語はBuzzard-Luの論文\cite{BL00}から.  
+
+\begin{cor}\cite[Corollary 8.11]{Cam04}
+$X$をコンパクト normal 解析空間 in Fujiki classとする. 
+$X$が\(\mathbb{C}^d\)-dominable ならばspecial である.
+特にOka多様体はspecial である.
+\end{cor}
+実はdominant meromorphic map \(\phi:\mathbb{C}^d\dashrightarrow X\)が存在するでも良い. 
+\begin{proof}
+背理法. $X$がspecialでないとすると, general type fibration $f : X\dashrightarrow Y$で$p:=\dim Y>0$となるものが存在する. 
+\ref{defn-Cam04-special}およびその下の補足により, $Y$上の$\Q$-divisor $\Delta(f)$があって
+$\kappa(K_Y + \Delta(f)) = p >0$であることを仮定して良い. 
+
+$V = \C\mathbb{P}^d, D=\C\mathbb{P}^{d-1}$とすると, $U = \C^d$となる.  
+よって\ref{thm-Cam04-8.2}から
+$$
+\psi^{* }: H^0(Y,m(K_Y+\Delta(f))) \to  H^0\bigl(\mathbb{P}^d,(\Omega_{\mathbb{P}^d}^p)^{\otimes m}((m-1)D)\bigr)
+$$
+と言う単射を得る. よって次を示せば矛盾を得る.
+\begin{claim}
+$D \subset \C\mathbb{P}^n$を(1次)の超平面とするとき, 任意の$p, m>0$について
+$$
+H^0\bigl(\mathbb{P}^n,(\Omega_{\mathbb{P}^n}^p)^{\otimes m}((m-1)D)\bigr)=0 
+\footnote{Campanaの論文では$H^0\bigl(V,(\Omega_V^p)^{\otimes m}((m-1)D)\bigr)=0$が常に成り立つpair$(V, D)$をlog RCと呼んでいる. なお"$(\mathbb{P}^n, \mathbb{P}^{n-1})$がlog RCなのは簡単にわかる"と書いてあった.(簡単なのか?)}
+$$
+\end{claim}
+[claimの証明]
+%$D=\C\mathbb{P}^n \setminus \C^n $は$\C\mathbb{P}^n$のhyperplaneと同一視でき
+$D \sim \mathcal{O}_{\C\mathbb{P}^n}(1)$であり, 
+$D^{n-1}$に関するslope $\mu_{D}$は以下のように計算できる. 
+\begin{align*}
+\mu_{D}\left((\Omega_{\C\mathbb{P}^n}^{p})^{\otimes m} ((m-1)D)\right)
+&\underset{\text{slopeの加法性}}{=}
+\mu_{D}\left((\Omega_{\C\mathbb{P}^n}^{p})^{\otimes m} \right) 
++ \mu_{D}((m-1)D)) \\
+&\underset{D^n =1}{=} m \mu_{D}(\Omega_{\C\mathbb{P}^n}^{p})  + m-1\\
+&\underset{\text{cf. \cite[Prop. 4.2]{Iwa21}}}{=}  - m \frac{p(n+1)}{n} + m -1 <0 \\
+\end{align*}
+また今$\C\mathbb{P}^n$はKE計量を持つので
+$(\Omega_{\C\mathbb{P}^n}^{p})^{\otimes m} ((m-1)D)$は$D$-semistableである.　
+
+一般にample 直線束$A$について, $E$が$A$-semistable vector bundle かつ $\mu_{A}(E) <0$ならば$H^0(X, E)=0$である(例えば\cite[Chapter 5]{Kob14}参照)
+よって言えた.
+
+最後の主張はOka多様体ならば\(\mathbb{C}^d\)-dominableである事実から来ている. 
+\end{proof}
+
+
+
+\subsection{Sketch of proof of the Kobayashi–Ochiai's extension theorem. \cite[8.1]{Cam04}}
+
+証明は\cite{KO75}と同じようにやるらしい. \xr{ただ現時点で\cite{KO75}の証明もよくわかっていないです. 理解できたら書いていきます...}
+
+おそらく$X = \D^n$単位円盤の直積, $A = \D^{n-1} \times \{ 0 \}$と仮定するはずである. (余次元2以上なら勝手に拡張する)
+$\D^n \setminus  \D^{n-1} \times \{ 0 \} \to Y$に関して次の補題を使うはずである. (詳しくは\cite[Theorem 7.5.1]{Kob98}参照)
+
+\begin{lem}\cite[Lemma 7.5.8]{Kob98}
+\( f(z) = \sum_{q=-\infty}^{\infty} a_q z^q \)が
+punctured disk \( D^* = \{ 0 < |z| < 1 \} \) 上で正則かつ, ある正の整数$m$があって, 
+\[
+\int_{D^*} |f(z)|^{2/m}\, dx dy < \infty
+\]
+が成り立つとする. 
+このとき, \( q \leq -m \)について\( a_q = 0 \)である.
+\end{lem}
+\ref{thm-Cam04-8.2}での$(\Omega_V^p)^{\otimes m}((m-1)D)$の$m-1$は上の補題から来ている. 
+(高々$m-1$位の極しか持たないと言うこと)
+
+\section{ Relationships with arithmetics and hyperbolicity +おまけ}
+ここは予想ばっかりなので, 適当に読んでいいと思う. 
+\cite{Voi}のサーベイの方がうまくまとめれらていたのでそっちを引用する．
+\begin{conj}[{\cite[9.2, 9.8, 9.5 and 9.20]{Cam04}}]
+\( X \)をコンパクト 複素多様体 in fujiki classとしたとき, 次は同値か?
+\begin{enumerate}
+\item special.
+\item Kobayashi pseudo-metric $d_{kob, X}$は常に0
+\item entire curve \( h : \mathbb{C} \to X \) でZariski-dense なものが存在. (Zariski dence entire curveの存在)
+\item entire curve \( h : \mathbb{C} \to X \) でmetrically dense なものが存在. 
+\item 任意の二つの一般点がentire curveで結べる
+\item 任意の可算集合があるentire curveの像にふくまれる
+\item $X$が$\C$-connected. つまり任意の $a, b \in Y$ に対し, 有限個の $f_j \in \mathcal{O}(\mathbb{C}, Y)$, $j = 1, \dots, m$ で
+  \[
+  a \in f_1(\mathbb{C}), \quad b \in f_m(\mathbb{C}), \quad f_j(\mathbb{C}) \cap f_{j+1}(\mathbb{C}) \neq \emptyset, \quad j = 1, \dots, m-1
+  \]
+  となるものが存在する. 
+\end{enumerate}
+\end{conj}
+
+上はかなり難しいので解けたり反例があれば大結果だと思う.\footnote{"Zariski dence entire curve $\Rightarrow$ special or weakly special"が解けたら, Green-Griffith-Lang予想が解ける. なので上は解くのがほぼ無理な予想だと思う. }
+なお$X$がRCだとある程度わかっている. \cite{CW23}参照. 
+
+
+\begin{conj}[Arithmetic analog]
+\label{conj-arithmetic}
+\( X \) projective variety /number field \( K \). 
+次は同値
+\begin{enumerate}
+\item[1. ] \( X_{\C} \)はspecial ($X_\C$は$Spec \C \to Spec K$によってbase changeしたもの)
+\item[2. ] \( X \) potentially dense, つまりある有限拡大 \( k/K \)があって, \( X(k) \) はZariski dense
+\end{enumerate}
+\end{conj}
+
+\ref{conj-arithmetic}に関しては最近進展があった. 
+この予想はWeakly special (\ref{defn-Cam04-9.26})だと正しくなさそうである. 
+
+Finn Bartsch, Frédéric Campana, Ariyan Javanpeykar, Olivier Wittenberg "The Weakly Special Conjecture contradicts orbifold Mordell, and thus abc" \url{https://arxiv.org/abs/2410.06643}
+と言う論文によると
+\begin{center}
+number field上のABC予想を仮定すると, weakly specialだが, \( X \)がpotentially denseでない例が存在する
+\end{center}
+と言うことである. 
+ただWeakly specialだがspecialではない例がBogomolov-Tschinkel\footnote{\url{https://arxiv.org/abs/math/0303044}}にあるので, 予想\ref{conj-arithmetic}自体に反例があるわけではない
+
+なお上の予想は小林双曲性関連の予想と対応している. \footnote{この辺りは山ノ井先生のサーベイ"代数多様体の整正則曲線とNevanlinna理論"を参考にした. \url{https://www.jstage.jst.go.jp/article/sugaku/59/4/59_4_353/_article/-char/ja/}}
+\begin{conj}
+$X$を射影多様体とする.
+\begin{itemize}
+\item (Green-Griffith) $X$ general typeならば任意の$f : \C \to X$について代数退化($\overline{f(\C)}^{zar} \neq X$)である?
+\item (Lang) $X$ general typeならば, ある真の部分代数的集合$Z \subsetneq X$任意の$f : \C \to X$について代数退化($\overline{f(\C)}^{zar} \neq X$)である?
+\item $X$ general typeならばであることは, 任意の閉部分代数多様体がgeneral typeであることと同値?
+\item  (Lang) \( X \) projective variety /number field \( K \)とする. \( X_{\C} \)が小林双曲的ならば, $X_K$の$K$-有理点は有限個である?
+\item (Kobayashi?) hyperbolicならば$K_X$ amlple (big)??
+\end{itemize}
+
+\end{conj}
+
+
+\subsection{$h$-special}
+\cite{CDY22}を見ていると次の定義があった. 
+
+
+\begin{defn}\cite[Definition 1.11 (h-special)]{CDY22}
+$X$を smooth quasi-projective varietyとする. 
+二項関係$x \sim y$を
+$x, y \in X$が正則写像 \(f_1, \ldots, f_l : \mathbb{C} \to X\)であって, 
+$Z_i :=\overline{f_i(\mathbb{C})}^{zar}$としたとき, 
+\[
+x \in Z_1, Z_1 \cap Z_2 \neq \emptyset, \ldots, Z_{l-1} \cap Z_l \neq \emptyset, y \in Z_l.
+\]
+が成り立つこととする. 
+$R = \{(x,y) \in X \times X; x \sim y\}$とする. 
+
+$X$が\emph{hyperbolically special} (h-special)とは$R \subset X \times X$がZariski denseであることとして定義する. 
+\end{defn}
+%これはCampanaのH-special ( Kobayashi pseudo-distanceが常に0)来ているらしい
+\begin{center}
+Zariski dense entire curveがある
+$\Rightarrow$
+h-special
+\end{center}
+である. よって\cite{CW23}よりrationally connected ならば, Zariski dense entire curvesがあるので$h$specialである. 
+
+ところでこの$h$-specialはspecialと関係あるのだろうか?(どちらかというと$\C$-connectedと関係ありそう.)
+見た感じspecialと似たような性質があることが\cite[Section 10]{CDY22}を見るとわかる. 
+
+\bibliographystyle{alpha}
+\bibliography{ref_MY.bib}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
