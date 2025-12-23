@@ -9,7 +9,6 @@ layout: default
 
 ## **ニュース**
 - 2026年1月26--30日に大阪大学南部ホールにて[Workshop on Algebraic Geometry and Complex Geometry in Osaka](https://masataka123.github.io/AGCG_Osaka_2026/)を開催します. 皆さんのご参加お待ちしております.
-- 2025年12月17--18日に九州大学で[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)を開催します. 皆さんのご参加お待ちしております.
 - 2025年7月14日に新しい論文[The Miyaoka-Yau inequality for singular varieties with big canonical or anticanonical divisors](https://arxiv.org/abs/2507.08522)をアップロードしました. 大阪大学 陣内智史氏と University of Science and Technology of China (USTC) Shiyu Zhang氏との共同研究です. 
 - 東北大学 松村慎一氏とFreiburg大学 Niklas Muller氏との共同研究[Minimal projective varieties satisfying Miyaoka's equality](https://arxiv.org/abs/2404.07568)がProceedings of the London Mathematical Societyにアクセプトされました. 
 
