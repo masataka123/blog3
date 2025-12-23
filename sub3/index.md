@@ -1,6 +1,4 @@
 # **出張予定**
-- 2025年12月17--18日: 九州大学で[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)を開催します. 
-- 2025年12月19--21日: 九州大学で開催される[2025年度 多変数函数論冬セミナー](https://kusakabe.github.io/2025scvwinter/)に参加する予定です. 
 - 2026年1月26--30日: 大阪大学で[Workshop on Algebraic Geometry and Complex Geometry in Osaka](https://masataka123.github.io/AGCG_Osaka_2026/)を開催します. 
 
 # **講演履歴**
@@ -22,6 +20,8 @@
 34. "Inequalities for the second Chern class and structure theorems" [Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html), 北京大学, 2025年6月26日. 
 35.  "Inequalities for the second Chern class and structure theorems" [The 3rd Niigata Algebra Symposium](http://mathweb.sc.niigata-u.ac.jp/~hoshi/NiigataAlgebraSymposium.html) 新潟大学,  2025年11月20日.
 36. "Inequalities for the second Chern class -Miyaoka-Yau inequality and Miyaoka's inequality-" [第2回新潟若手代数・幾何シンポジウム](https://sites.google.com/view/niigatawakate2025/ホーム) 新潟大学, 2025年11月28日
+37. "CampanaのSpecial多様体およびCampana-Winkelmann ``On h-principle and specialness for complex projective manifolds’‘の解説." 九州大学, 2025年12月16日 [Campana Special variety まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_04_2025_1218.pdf) [Campana-Winkelman 15 まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_Winkelman_2025_1218.pdf) 
+
 
 ### **2018年4月から2022年3月まで**
 1. 'On the global generation of direct images of pluri-adjoint line bundles' 第20回葉山シンポジウム (night session), 葉山湘南国際村センター, 2018年7月 [slide](https://masataka123.github.io/blog3/pdf/2018_07_16.pdf)
