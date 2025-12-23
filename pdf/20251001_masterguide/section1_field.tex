@@ -106,7 +106,9 @@
 %あと調べてみると「Greb先生もKebekus先生も多変数複素の人だったのか」と気づいた. あとSiu先生ってめちゃくちゃ年上なことにも気づいた. 
 
 なお高山先生・辻先生の博士の年代はWikipedia情報になります. 
-確定情報ではないので?マークをつけました. 高山先生の指導教官に関しては私が直接聞きました. \footnote{高山先生に「高山先生の指導教官って誰ですか？」と聞いたら, 偶然横にいた辻先生が「私ですね.」と言った.} 辻先生の指導教官は誰になるのだろうか? Siu先生な気もするが, これはわかりません. 
+確定情報ではないので?マークをつけました. 
+辻先生・高山先生の指導教官に関しては私が直接聞きました. \footnote{高山先生に「高山先生の指導教官って誰ですか？」と聞いたら, 偶然横にいた辻先生が「私ですね.」と言った. ただ高山先生が博士取得時に辻先生は東京都立大学にいなかったはずなので, (形式的な)指導教官は別かもしれません. 辻先生の指導教官に関しても辻先生に聞きました. なお大沢先生にも聞いたので, 多分正しいかなと思います. } 
+%辻先生の指導教官は誰になるのだろうか? Siu先生な気もするが, これはわかりません. 
 
 \newpage
 
@@ -148,6 +150,7 @@
 \node[person] at ($(xjapan) + (y1960) +(-2.5, 1)$) (akizuki) {秋月 (1939)};
 \node[person] at ($(xjapan) + (y1960) +(-2.5, 0)$) (nakano) {中野 (1956)};
 \draw[arrow] (akizuki) -- (nakano);
+\node[person, align=center] at ($(xjapan) + (y1960) + (0,  0.5)$) (kodaira) {小平 \\ (1949)};
 %Demailly
 \node[person, align=center] at ($(xfrance) + (y1960) +(0, 1.5)$) (montel) {Montel(1907)};
 \node[person, align=center] at ($(xfrance) + (y1960) +(0, 0.5)$) (lelong) {Lelong(1941)};
@@ -168,6 +171,8 @@
 
 % 1970
 %Ohsawa
+\node[person, align=center] at ($(xjapan) + (y1970) + (0,-0.5)$) (miyaoka) {宮岡 \\ (1977)};
+\draw[arrow] (kodaira) --  (miyaoka);
 %Demailly
 \node[person] at ($(xfrance) + (y1970) +(0, 0.75)$) (skoda) {Skoda(1972)};
 \draw[arrow] (lelong) -- (skoda) ;
@@ -181,6 +186,7 @@
 \node[person, align=center] at ($(xjapan) + (y1980) + (-2.5,1.25)$) (osawa) {大沢\\ (1981)};
 \draw[arrow] (nakano) -- (osawa);
 \node[person, align=center] at ($(xjapan) + (y1980) + (0,-0.5)$) (tsuji) {辻 \\ (1988?)};
+\draw[arrow] (miyaoka) --  (tsuji);
 %Demailly
 \node[person, align=center] at ($(xfrance) + (y1980) + (0,0.75)$) (demailly) {Demailly \\ (1982)};
 \draw[arrow] (skoda) -- (demailly) ;
