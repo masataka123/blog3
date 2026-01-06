@@ -502,9 +502,11 @@ $K_A^k(M),\ D_A^k(M) $は それぞれ$ C^k(M),\ \mathcal E^k(M) $の閉部分�
 
 \end{proof}
 
+
 % [page 1]
 \begin{tcolorbox}[mybox]
 \begin{prop}(cf. \ref{thm-M-8.7})
+\label{prop-E-7}
 \begin{enumerate}[label=$(\alph*)$]
 \item $V \subset D^k(M)$ convex balanced について, $V$がopenであることは, 任意のcompact $A \subset M$について, $V \cap D_A^k(M) \subset D_A^k(M)$であることと同値.
 \item $A \subset M$ compactとしたとき，  
@@ -518,6 +520,7 @@ compact $A \subset M$であって, $E \subset D_A^k(M)$となる.
 \end{prop}
 \end{tcolorbox}
 \begin{proof}
+
 [(a)] \ref{thm-M-8.6}が$D^k(M)$でも言える(\ref{thm-M-8.7} (a)の議論が回る)
 
 [(b)] $D_A^k(M) \hookrightarrow D^k(M)$ は, (a)より連続である.
@@ -525,9 +528,367 @@ compact $A \subset M$であって, $E \subset D_A^k(M)$となる.
 一方，$D^k(M) \hookrightarrow \mathcal E^k(M)$ も 連続である.
 なぜならば$\mathcal E^k(M)$ は locally convex より, convex balanced な open base at 0 となるものがある.
 それらをひとつ取っても convex balanced であり, 各 $D_A^k(M)$ に制限しても open なので, $D^k(M)$ の上で openとなる. 
+
+[(c)] 対偶を示す. $E \subset D^k(M)$は
+任意のcompact $A \subset M$について, $E \not \subset D_{A}^{k}(M)$を満たすとする.\footnote{ある$\varphi \in E$と$x \in A$であって, $\varphi(x) \neq 0$ということと同じ.}
+この時$E$がboundedでないことを示す. 
+
+$K_1 \subset K_2 \subset \cdots \subset M$というコンパクト集合であって
+$$
+K_i \subset K_{i+1}^{\circ} \quad \text{and} \quad M = \bigcup K_{i}^{\circ} 
+$$ 
+となるものをとる. 
+$E$の仮定から, ある$\varphi_n  \in E$と$x_n \in K_n$であって, 
+$\varphi_n (x_n) \neq 0$かつ$\{ x_{n} \}_{n \in \N}$は集積点を持たないものが取れる. 
+
+そこで
+$x_ n \in U_n \subset M$という局所座標をとって, 
+$$
+W :=  \{ \psi \mid \max_{J} | \psi_J (x_n)|  < \frac{1}{n}\max_{J}|\phi_{n, J}(c)|  \text{ for any $n$} \}
+$$
+とおく. ($\phi_n = \sum_{J} \phi_{n, J} dx^J$と分解する.)
+$W$は convex balanced open in $\mathcal{D}^*(M)$である. 
+なぜならば, convex balanced は $|\cdot|$ の性質から. 
+任意のcompact $ A \subset M$ に対し,  $U_n \subset A$となる$U_n$ は
+有限個である. そして
+$W \cap \mathcal{D}^{k}_A(M)$ は open in $\mathcal{D}^*_A(M)$である. (開集合の有限この共通部分なので. )
+
+しかし任意の$n \in \N$について, $\varphi_n \not \in nW$となるので, $E \not \subset nW$であり, $E$はboundedではない. 
+
+[(d)]  
+bounded  closed $E \subset \mathcal{D}^{k}(M)$ はcompactであることを言う. 
+(c) より, あるcompact $A \subset M$で, $E \subset \mathcal{D}^{k}_A(M)$.
+(b) より, $\mathcal{D}^{k}_A(M) \subset \mathcal{D}^k(M)$は部分位相が入るので, $E \subset \mathcal{D}^{k}_A(M)$ の中では bounded かつclosed.
+よって\ref{prop-E-6}の$\mathcal{D}^{k}_A(M)$のHeine-Borel Propertyより言える. 
+
+[(e)]
+$\mathcal{D}^{k}(M) \xrightarrow{f} V$を
+locally convex 位相$\C$ ベクトル空間の$\C$ 線型写像とする. 
+すると次の同値変形ができる. 
+\begin{align*}
+& \text{$f$が連続である} \\
+&\iff \text{$\forall U \subset V$ : convex balanced open
+に対し, $f^{-1}(U)$ open} \\
+&\iff \text{$\forall U \subset V$ : convex balanced open.
+compact $A \subset M$に対し
+$f^{-1}(U) \cap \mathcal{D}^{k}_A(M)$ open in $\mathcal{D}^{k}_A(M)$} \\
+&\iff \text{$f|_{\mathcal{D}^{k}_A(M)} : \mathcal{D}^{k}_A(M) \to V$ 連続} \\
+\end{align*}
+
+map が $\mathbb{C}$-linearなことについても同様に言えるので, 
+\[
+\mathrm{Hom}\bigl(\mathcal{D}^{k}(M), V\bigr)
+\simeq
+\varprojlim_{A \subset M\ \mathrm{compact}}
+\mathrm{Hom}\bigl(\mathcal{D}^{k}_A(M), V\bigr).
+\]
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-8}
+$\{V_\lambda \subset U_\lambda\}_{\lambda \in \Lambda}$ と書いた時, 次を意味する. 
+\begin{itemize}
+\item $U_\lambda = (U_\lambda; x_{\lambda}^1, \dots, x_{\lambda}^n)$: local coordinate of $M$
+\item $V_\lambda \subset U_\lambda$: 相対コンパクトな開集合
+（つまり $\overline{V_\lambda} \subset U_\lambda$ コンパクt）
+\item $M = \bigcup_\lambda V_\lambda$かつ, $\{U_\lambda\}_\Lambda$ は locally finite open covering of $M$. （つまり, 任意の$x \in M$について,  ある$x$の近傍$V$で, $U \cap U_\lambda \neq \emptyset$となる$\lambda$は有限個)
+\end{itemize}
+\end{defn}
+\end{tcolorbox}
+上のような$V_\lambda$の存在に関しては, 多様体が2nd countableであることから. ( 2nd countable $\Rightarrow$ para-compact)
+また定義から$\Lambda$は可算集合となる. 
+
+また局所有限性から任意のcompact $A \subset M$に対して, 
+$A \cap U_\lambda \neq \varnothing$ なる $\lambda$ は 有限である. 
+
+\begin{proof}
+もし無限になるなら, ある $x_i \in A \cap U_{\lambda_i}$（$i=1,2,\dots$）
+が取れる. 
+$A$ compactなので, ある$x$に収束する部分列 $\{x_{i_k}\}$が取れる. 
+すると$x$の任意の近傍$V$について, $V \cap U_{\lambda_{i_k}} \neq \varnothing$が言えて$\{V_\lambda\}$の仮定に矛盾する
+\end{proof}
+
+以下
+% [page 7]
+$U_\lambda$上の座標$(x_{\lambda}^1, \dots, x_{\lambda}^n)$と
+$\alpha \in \mathbb{Z}_{\ge 0}^n$ について, 
+$$
+D_\lambda^\alpha
+:= \left(\frac{\partial}{\partial x^{1}_{\lambda}}\right)^{\alpha_1}
+\cdots
+\left(\frac{\partial}{\partial x^{n}_{\lambda}}\right)^{\alpha_n}
+$$
+
+また$\varphi \in \mathcal{E}^k(M),\ \lambda \in \Lambda,\ \ell \in \mathbb{Z}_{\ge 0}$について, 
+\[
+\|\varphi\|_{\lambda}^{\ell}
+:= \max \left\{
+\left| D_\lambda^\alpha \varphi_{\lambda, J}(x) \right|
+\ \middle|\
+x \in \overline{V_\lambda},\ J,\ |\alpha| \le \ell
+\right\}.
+\]
+
+最後に$\varphi \in \mathcal{D}^{k}(M),\ \ell \in \mathbb{Z}_{\ge 0}$について, 
+\[
+\|\varphi\|^{\ell}
+:= \max_\lambda \|\varphi\|_{\lambda}^{\ell}
+= \max \left\{
+\left| D_\lambda^\alpha \varphi_{\lambda, J}(x) \right|
+\ \middle|\
+x \in \overline{V_\lambda},\ J, \ \lambda, \ |\alpha| \le \ell
+\right\}.
+\]
+とする .
+これらはseminormである. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-E-9}
+ $\{V_\lambda \subset U_\lambda\}$ を固定する. 
+ この時
+$$
+\{\|\cdot\|_\lambda^\ell \mid \lambda \in \Lambda,\ \ell \ge 0\}
+$$
+はseparating family of seminorm
+on $\mathcal{E}^k(M)$ であり, 
+前に定めた位相(\ref{defn-E-5})と同じ位相を定める. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+Seminormであることはすぐにわかる. 
+$$
+V ( \lambda,\ell, \varepsilon)
+:= \{\varphi \in \mathcal{E}^k(M) \mid \|\varphi\|_\lambda^\ell < \varepsilon\}
+$$
+とする. 
+示すことは
+$$\{\ \bigcap_{\text{finite}} 
+V  ( \lambda_i,\ell_i, \varepsilon_i)
+\mid \lambda_i \in \Lambda,\ \ell_i \ge 0,\ \varepsilon_i > 0 \,\}
+$$
+がlocal base at $0$であることを示せば良い. 
+
+$V ( \lambda,\ell, \varepsilon)$がopenであることは, 
+制限写像$\mathrm{res} : \mathcal{E}^k(M) \to \mathcal{E}^k(U_\lambda)$によって, 
+$$\{\varphi \in \mathcal{E}^k(U_\lambda) \mid \|\varphi\|_\lambda^\ell < \varepsilon\}
+\subset \prod_{J}\mathcal{E}^0(U_\lambda)
+$$
+のpullbackになるので良い. 
+
+任意の$0 \in V \subset \mathcal{E}^k(M)$となるopenについて, 
+ある$N \gg 0$と
+compact subset
+$K_N := K_{N, 1} \cup K_{N, 2} \cup \cdots \cup K_{N, N}$であって, 
+\[
+p_N(\varphi)
+:= \max \left\{
+\left| D^\alpha \varphi_{J}(x) \right|
+\ \middle|\
+x \in K_N,\ J,\ |\alpha| \le N
+\right\}.
+\]
+としたとき, $V$は
+\(
+\left\{
+\varphi \in \mathcal{E}^k(M)
+\ \middle|\
+p_N(\varphi) < \frac{1}{N}
+\right\}
+\)を含む. 
+よって$K_N \subset \bigcup_{i \text{finite}} V_{\lambda_i}$をとり, 
+$\ell_i \le N$ とし，
+$0<\varepsilon_i \ll \frac{1}{N}$ をとると
+\[
+\bigcap_i V(\lambda_i,\ell_i,\varepsilon_i)
+\subset
+\left\{
+\varphi \ \middle| \ p_N(\varphi) < \frac{1}{N}
+\right\}
+\subset V
+\]
+となりいえた. 
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{cor}
+\label{cor-E-10}
+compact $A \subset M$ について, 
+$\{\|\cdot\|^{(\ell)} \mid \ell \ge 0\}$
+は separating family of seminorms on
+$\mathcal{D}^k_A(M)$ であり, 同じ位相を定める.
+\end{cor}
+\end{tcolorbox}
+$\mathcal{K}^k_A(M)$についても, $\{\|\cdot\|^{(0)} \mid \ell \ge 0\}$を考えれば同様の主張が得られる. 
+
+
+\begin{tcolorbox}[mybox]
+\begin{prop}
+\label{prop-E-11}
+$\{V_\lambda \subset U_\lambda\}$を固定する. 
+\begin{enumerate}
+\item $\{\varphi_i\}$が$\mathcal{D}^k(M)$で Cauchy 列であることは, 
+あるcompact 部分集合 $A \subset M$ で
+$\{\varphi_i\} \subset \mathcal{D}^k_A(M)$かつ
+$$\lim_{i,j \to \infty} \|\varphi_i - \varphi_j\|^{\ell} = 0
+\quad \forall \ell \ge 0 $$
+が成り立つことと同値. 
+\item $\varphi_i \to \varphi$ in $\mathcal{D}^k(M)$は, 
+あるcompact 部分集合  $A \subset M$ で
+$\{\varphi_i\} \cup \{\varphi\} \subset \mathcal{D}^k_A(M)$
+かつ
+$$\lim_{i \to \infty} \|\varphi_i - \varphi\|^{\ell} = 0
+\quad \forall \ell \ge 0.$$
+が成り立つことと同値. 
+\item $\mathcal{D}^k(M)$ は complete.
+\end{enumerate}
+\end{prop}
+\end{tcolorbox}
+$\mathcal{K}^k_A(M)$についても, $\{\|\cdot\|^{(0)} \}$を考えれば同様の主張が得られる. 
+
+\begin{proof}
+
+[(1)] $\{\varphi_i\}$ Cauchy 列は boundedである. 
+よって\ref{prop-E-7}より，
+あるcompact $A \subset M$であって, 
+$\{\varphi_i\} \subset \mathcal{D}^k_A(M)$となる. 
+これより
+\begin{align*}
+&\text{$\{\varphi_i\}$ Cauchy 列 in $\mathcal{D}^k(M)$} \\
+&\iff 
+\text{$\exists A \subset M$ compact s.t. $\{\varphi_i\} \subset \mathcal{D}^k_A(M)$ かつ Cauchy 列 in $\mathcal{D}^k_A(M)$} \\
+&\underset{\ref{cor-E-10}}{\iff} 
+\text{$\exists A \subset M$ compact s.t.  $\{\varphi_i\} \subset \mathcal{D}^k_A(M)$ かつ
+\(
+\lim_{i,j \to \infty} \|\varphi_i - \varphi_j\|^\ell = 0
+\quad \forall \ell \ge 0.
+\) }
+\end{align*}
+
+% [page 14]
+[(2)] $\{\varphi_i\} \cup \{\varphi\}$ は bounded より，
+(1) と同様. 
+
+[(3)] (1) と $\mathcal{D}^k_A(M)$ は complete より，
+任意のCauchy 列は収束する. 
 \end{proof}
 
 
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-12}
+連続線型写像 
+$T : \mathcal{D}^k(M) \to \mathbb{C}$
+のことを $k$-dimensional current on $M$ という. 
+特にdistribution は $0$-dimensional current のことをさす. 
+$$
+\mathcal{D}'_k(M) := \{\, k\text{-current on } M \,\}
+= \mathrm{Hom}_{\text{top } \mathbb{C}\text{-vect sp}}
+\bigl(\mathcal{D}^k(M), \mathbb{C}\bigr)
+$$
+$$\mathcal{K}'_k(M)
+:= \mathrm{Hom}_{\text{top } \mathbb{C}\text{-vect sp}}
+\bigl(\mathcal{K}^k(M), \mathbb{C}\bigr).
+$$
+\end{defn}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{prop}[cf. \ref{prop-M-8.9}, \ref{prop-M-8.11}]
+$Y$をlocally convex 位相 $\C$-ベクトル空間, 
+$T : \mathcal{D}^k(M) \to Y$を
+$\mathbb{C}$線型写像とする. 
+次は同値である. 
+\begin{enumerate}[label=$(\alph*)$]
+\item  $T$ は 連続
+\item $T$ は bounded, つまり bounded set を bounded set にうつす.
+ \item $\varphi_i \to 0$ in $\mathcal{D}^k(M)$
+ならば, 
+$T(\varphi_i) \to 0$ in $Y$.
+\item 任意のcompact $A \subset M$について, 
+$T|_{\mathcal{D}^k_A(M)} : \mathcal{D}^k_A(M) \to Y$は連続. 
+\item ($Y = \mathbb{C}$ の場合のみ) 任意のcompact $A \subset M$について, 
+ある$ \ell \ge 0, C > 0$があって, 
+\[
+|T(\varphi)| \le C \cdot \|\varphi\|^{\ell}
+\quad \text{for } \forall \varphi \in \mathcal{D}^k_A(M).
+\]
+\end{enumerate}
+\end{prop}
+\end{tcolorbox}
+$\mathcal{K}^k_A(M)$についても, $\ell=0$のみを考えれば同様の主張が得られる. 
+
+\begin{proof}
+
+[$(a) \Leftrightarrow (b) \Leftrightarrow (c) \Leftrightarrow (d)$]
+$(a),(b),(c)$ の主張において, 
+$$\mathcal{D}^k(M) \mapsto \mathcal{D}^k_A(M)
+\quad 
+T \mapsto T|_{\mathcal{D}^k_A(M)}
+$$
+に取り替えた主張を
+$(a)_A ,(b)_A (c)_A$
+とする. 
+\ref{prop-E-6}より$\mathcal{D}^k_A(M)$ は metrizable より
+\ref{prop-M-4.2}より, 
+$$
+(a)_A \iff (b)_A \iff (c)_A
+$$
+となる. 
+また\ref{prop-E-7} (e)から
+$$
+(d) \text{が成立} \iff 
+\forall A \subset M \text{ compact, }(a)_A \text{が成立}
+$$
+となる. よって$(a)$と$(d)$が同値になる. 
+同様にしてこれらは$(b)$や$(c)$と同値となる. 
+%同様にして, 
+%(b) $\iff \forall A$ cpt. (b)$_A$，
+%(c) $\iff \forall A$ cpt. (c)$_A$.
+%よって，(a)～(d) は同値。
+% [page 19]
+
+[$(e) \Rightarrow (d)$] $Y=\mathbb{C}$ とする. 
+compact $ A \subset M$ をとる. 
+仮定より $\ell \ge 0, C > 0$があって, 
+\[
+|T(\varphi)| \le C \cdot \|\varphi\|^{\ell}
+\quad \text{for } \forall \varphi \in \mathcal{D}^k_A(M).
+\]
+$\forall \varepsilon > 0$ に対し，
+\[
+V := \left\{
+\varphi \in \mathcal{D}^k_A(M)
+\ \middle|\
+\|\varphi\|^{\ell} < \frac{\varepsilon}{C}
+\right\}
+\]
+とおくと， これは $0$ を含む open in $\mathcal{D}^k_A(M)$であり, 
+\[
+ \varphi \in V \Rightarrow
+\bigl|T|_{\mathcal{D}^k_A(M)}(\varphi)\bigr| < \varepsilon
+\]
+である. よって $T|_{\mathcal{D}^k_A(M)}$ は連続である. 
+
+[$(d) \Rightarrow (e)$]
+$A \subset M$ compactとすると, 
+仮定より $T|_{\mathcal{D}^k_A(M)}$ は連続. 
+よって\ref{cor-E-10}から, $\ell \ge 0, \varepsilon > 0$があって, 
+\[
+T\bigl(\{\varphi \in \mathcal{D}^k_A(M)\mid \|\varphi\|^{\ell}<\varepsilon\}\bigr)
+\subset \{z\in\mathbb{C}\mid |z|<1\}.
+\]
+よって任意の$\varphi \in \mathcal{D}^k_A(M)$，$\varphi\neq 0$ に対し，
+\[
+\left|T\left(\frac{\varepsilon}{2\|\varphi\|^{\ell}}\varphi\right)\right|<1.
+\]
+であるので整理して, 
+\(
+|T(\varphi)|<\frac{2}{\varepsilon}\,\|\varphi\|^{\ell}
+\)となる. よって$C=\frac{2}{\varepsilon}$とおけば良い. 
+\end{proof}
+%Rieszの表現定理とorder 0に関して. 
 
 
 
