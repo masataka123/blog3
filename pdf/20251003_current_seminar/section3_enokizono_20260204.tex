@@ -213,7 +213,7 @@ $$
 $\varinjlim_{K} \mathcal{D}_{K}(M)$については次回再考. 
 
 
-\subsection{current続き}
+\section{current続き}
 以下\cite{NO}の記法に合わせる. ($M$ 2nd countable $m$次元$C^\infty$級多様体, $k \in \N$とする.)\footnote{おそらく通常の記法とかなり違う記法であると思われる. }
 
 \begin{itemize}
@@ -794,8 +794,11 @@ $$
 \end{defn}
 \end{tcolorbox}
 
+
+
 \begin{tcolorbox}[mybox]
 \begin{prop}[cf. \ref{prop-M-8.9}, \ref{prop-M-8.11}]
+\label{prop-E-13}
 $Y$をlocally convex 位相 $\C$-ベクトル空間, 
 $T : \mathcal{D}^k(M) \to Y$を
 $\mathbb{C}$線型写像とする. 
@@ -888,8 +891,374 @@ T\bigl(\{\varphi \in \mathcal{D}^k_A(M)\mid \|\varphi\|^{\ell}<\varepsilon\}\big
 |T(\varphi)|<\frac{2}{\varepsilon}\,\|\varphi\|^{\ell}
 \)となる. よって$C=\frac{2}{\varepsilon}$とおけば良い. 
 \end{proof}
-%Rieszの表現定理とorder 0に関して. 
 
+\begin{rem}
+$k$ dimensional current $\mathcal{D}'_k(M)$のことを$\dim M -k$ degree currentともいう.(かなりややこしい)
+
+$Z \in H_{k}(M, \Z)$の元は積分することで,  $\mathcal{D}'_k(M)$の元となる. (これが"dimensional"の由来だと思われる)また$\dim M - k$次微分形式は外積をとって積分することで$\mathcal{D}'_k(M)$の元となる.
+
+\end{rem}
+
+
+\section{カレントのorderとorder 0 カレントの特徴づけ}
+
+引き続き$M$を$m$次元 2nd contable 実多様体とする. 
+
+示すことは
+\[
+\mathcal{L}_{\mathrm{loc}}^{m-k}(M)
+\hookrightarrow \mathcal{K}'_{k}(M)
+\cong 
+D^{'}_k(M)_{\text{ord}=0}
+\hookrightarrow  D^{'}_{k}(M)_{\text{ord}\le l}
+\hookrightarrow D^{'}_k(M).
+\]
+そしてこれが$M$の位相$\C$ベクトル空間のsheafでの完全列であることを示す. 
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-14}
+$D_k'(M)$に位相を
+$$
+\{ ev_{\varphi} :  D^{'}_k(M) \to \C  \mid \varphi \in D^k(M) \}
+$$
+に関するweak topologyを入れる. 
+つまり
+$$
+\{ ev^{-1}_{\varphi_1}(B_1) \cap \cdots \cap ev^{-1}_{\varphi_l}(B_l)  \mid \varphi_1, \ldots, \varphi_l \in D^k(M), 0 \in B_1, \ldots, B_l \subset \C \text{ open ball } \}
+$$
+をlocal baseとする位相を入れる.
+\end{defn}
+\end{tcolorbox}
+\begin{rem}
+これは各点収束な位相である. 次の同値変形からわかる. 
+\begin{align*}
+&T_i \to T\quad (i\to\infty) \\
+&\iff
+\forall U=\mathrm{ev}_{\varphi_1}^{-1}(B_1)\cap \cdots \cap \mathrm{ev}_{\varphi_\ell}^{-1}(B_\ell), \exists N,\ \forall n\ge N,\ T_n-T\in U \\
+&\iff
+\forall U=\mathrm{ev}_{\varphi_1}^{-1}(B_1)\cap \cdots \cap \mathrm{ev}_{\varphi_\ell}^{-1}(B_\ell), \exists N,\ \forall n\ge N, T_n(\varphi_j)-T(\varphi_j)\in B_j  (\forall j=1,\ldots,\ell) \\
+&\iff
+\forall \varphi\in D^k(M),\ \forall \varepsilon>0, 
+\exists N,\ \forall n\ge N,\ |T_n(\varphi)-T(\varphi)|<\varepsilon \\
+&\iff\forall \varphi\in D^k(M),
+T_i(\varphi) \to T(\varphi)\quad (i\to\infty) 
+\end{align*}
+
+\end{rem}
+さて　開集合$U\subset M$ に対し, 
+restriction map $D_k'(M)\to D_k'(U)$ を
+\[
+T\mapsto \Bigl(D^k(U)\hookrightarrow D^k(M)\xrightarrow{T}\C\Bigr)
+=:T|_U
+\]
+これは連続な$\C$-linear mapとなる. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-E-15}
+ $U\subset M\ \mapsto\ D_k'(U)$によって, $M$上の
+位相$\C$ベクトル空間のsheafを定める. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+% [page 1]
+$\{U_\lambda\}_{\lambda\in\Lambda}$ locally finite open cover of $M$, 
+$\{\psi_\lambda\}_{\lambda\in\Lambda}$1の分割とする. 
+
+[1. ] $T\in D_k'(M)$, $T|_{U_\lambda}=0\ \forall\lambda$ ならば,
+$T=0$を示す. 
+これは
+$\varphi\in D^k(M)$ について, 
+\begin{align*}
+T(\varphi)
+&=T\Bigl(\sum_\lambda \psi_\lambda\cdot \varphi\Bigr) =\sum_\lambda T(\underbrace{\psi_\lambda \varphi}_{\in D^k (U_\lambda)}) 
+=\sum_\lambda \underbrace{T|_{U_\lambda}}_{=0}(\psi_\lambda\varphi) 
+ =0
+\end{align*}
+
+[2.]
+$ T_\lambda\in D_k'(U_\lambda)$かつ
+\[
+T_\lambda|_{U_\lambda\cap U_\mu}=T_\mu|_{U_\lambda\cap U_\mu}
+\]
+ならば, ある$T \in D_k'(M)$があって$T|_{U_{\lambda}}=T_{\lambda}$となること. 
+
+$T\in D_k'(M)$ を, $\varphi\in D^k(M)$ に対し
+\[
+T(\varphi):=\sum_\lambda \underbrace{T_\lambda(\psi_\lambda\cdot \varphi)}_{\text{有限こを除いて0}}
+\]
+と定義する. 
+すると, $T$ は $\C$-linear である. 
+
+また$\varphi_i\to 0\ (i\to\infty)$ のとき, \ref{prop-E-11}から
+ある$A \subset M$ コンパクトがあって, $\supp(\varphi_i) \subset A$かつ, 
+\[
+T(\varphi_i)=\sum_\lambda T_\lambda(\psi_\lambda\varphi_i)\to 0
+\qquad (i\to\infty)
+\]
+となる.
+(この$i \to\infty$は$\supp(\varphi_i) \subset A$なので, $\lambda$によらずに取れる. )
+よって$T$は連続.
+
+また $\varphi\in D^k(U_\lambda)$ に対し,
+\[
+T(\varphi)
+=\sum_\mu T_\mu(\underbrace{\psi_\mu\varphi}_{\in D^k (U_{\lambda} \cap U_{\mu})})
+\underbrace{=}_{T_\lambda|_{U_\lambda\cap U_\mu}=T_\mu|_{U_\lambda\cap U_\mu}}
+\sum_\mu T_\lambda(\psi_\mu\varphi)
+=T_\lambda\Bigl(\sum_\mu \psi_\mu\varphi\Bigr)
+=T_\lambda(\varphi)
+\]
+
+よって$T|_{U_\lambda}=T_\lambda$
+であり, $D_k'$は$M$上のsheafである. 
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-16}
+$T\in D_k'(M)$ がorder $\le \ell$であるとは, 
+任意のコンパクト$A\subset M$について, ある$\exists C>0$があって次を満たすこと. 
+\[
+|T(\varphi)|\le C\cdot \|\varphi\|^\ell
+\qquad
+\forall \varphi\in D_A^k(M).
+\]
+
+また$T$がorder $\ell$であることを, $T$がorder $\le \ell$ かつ order $\le \ell-1$ではないとして定める. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+
+これは開集合の取り方によらない. 
+これは二つの開被覆
+$\{ V_\lambda\subset U_\lambda\}$, $\{ V_\lambda\subset U_\lambda\}$をとり, それに対応するnormを
+$\|\varphi\|^\ell,\ \|\varphi\|^{\prime\ell}$とすると, 
+任意のコンパクト$A\subset M$について, ある$\exists D>0$があって
+$$
+\|\varphi\|^\ell \le D\cdot \|\varphi\|^{\prime\ell}
+\qquad
+\forall \varphi\in D_A^k(M).
+$$
+となるので. 
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-E-17}
+\begin{enumerate}
+\item $\{U_\lambda\}_{\lambda\in\Lambda}$ locally finite  open cover of $M$とするとき, 
+\begin{center}
+$T\in D_k'(M)$ は order $\le \ell$
+$\iff$
+$T|_{U_\lambda}\ \text{は order }\le \ell\quad \forall\lambda.$
+\end{center}
+\item $T_i\in D_k'(M)$ order $\le \ell$, $T_i\to T\ (i\to\infty)$
+のとき
+$T\ \text{も order }\le \ell.$
+\end{enumerate}
+
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+(1)
+$\Rightarrow$の証明は明らか.
+$\Leftarrow$を示す. 
+$\{\psi_\lambda\}$を１の分割とする.
+仮定より, $\forall A$ : cpt. $\exists C_\lambda>0$
+\begin{equation}
+\label{eq-partition}
+|T(\psi_\lambda\cdot \varphi)|\le C_\lambda\cdot \|\psi_\lambda\varphi\|^\ell
+\qquad
+\forall \varphi\in D_A^k(M).
+\end{equation}
+そこで, 
+$A\cap U_\lambda\neq\emptyset$ なる $\lambda$ を
+$\lambda_1,\ldots,\lambda_N$ とおくと,
+$\lambda_1,\ldots,\lambda_N$ 以外では $\psi_\lambda\varphi=0$である. 
+よって
+\[
+C:=\sum_{i=1}^N C_{\lambda_i}
+\]
+とおけば, 
+\[
+|T(\varphi)|
+\underset{\text{$A$ compact}}{=}
+\left|\sum_{i=1}^N T(\psi_{\lambda_i}\varphi)\right|
+\le \sum_{i=1}^N |T(\psi_{\lambda_i}\varphi)|
+\underset{\ref{eq-partition}}{\le} \sum_{i=1}^N C_{\lambda_i}\cdot \|\psi_{\lambda_i}\varphi\|^\ell
+\le C\cdot \|\varphi\|^\ell.
+\]
+
+
+% [page 1]
+
+(2) 次のBanach--Steinhaus theorem(一様有界性定理)を使う.
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 2.6]{Rud}
+$X$を$F$-space, つまり位相ベクトル空間で位相とcompatibleなcomplete invariant metric
+を持つものとし, 
+$Y$を位相ベクトル空間とする. 
+
+$\Gamma\subset \Hom_{\text{top vect sp}}(X,Y)$ とする. 
+$ x\in X$ に対して,
+\[
+\Gamma(x):=\{\Lambda(x)\mid \Lambda\in\Gamma\} \subset Y
+\]
+が$Y$上でboundedならば, 
+$\Gamma$ はequi-conti, つまり
+任意の0の近傍$0 \in W\subset Y$について, ある近傍$0 \in V\subset X$があって, 
+$$
+\forall \Lambda\in\Gamma \Rightarrow \Lambda(V)\subset W
+$$
+\end{thm}
+\end{tcolorbox}
+
+% [page 1]
+
+これを $X=(D_A^k(M),\|\cdot\|^\ell)$, $Y=\C$, $\Gamma=\{T_i\}_i$ に用いる. 
+ここで, $\varphi\in D_A^k(M)$ならば, 仮定より $T_i(\varphi)\to T(\varphi)\ (i\to\infty)$なので, 
+特に
+$$
+\{T_i(\varphi)\mid i \in \N\} \subset \C \text{ bounded} 
+$$
+である. 
+Banach--Steinhaus theorem(一様有界性定理)より, 
+$\Gamma$ は equi-contiである. 
+
+\ref{prop-E-13} (d) $\Rightarrow$ (e)の証明と同様に
+\[
+W=\{z\in\C\mid |z|<1\},
+\qquad
+V=\{\varphi\in D_A^k(M)\mid \|\varphi\|^\ell<\varepsilon\}, 
+\qquad
+ C:=\frac{2}{\varepsilon}
+ \]とすると
+\[
+|T_i(\varphi)|\le C\cdot \|\varphi\|^\ell
+\qquad
+\text{for }\forall i,\ \forall \varphi\in D_A^k(M).
+\]
+% [page 1]
+
+よって, $\forall \varphi\in D_A^k(M)$ に対し,
+\[
+|T(\varphi)-T_i(\varphi)|\le \|\varphi\|^\ell
+\quad \text{for } i\gg 0.
+\]
+ととると, 
+\[
+|T(\varphi)|
+\le |T(\varphi)-T_i(\varphi)|+|T_i(\varphi)|
+\le \|\varphi\|^\ell + C\cdot \|\varphi\|^\ell
+=(1+C)\|\varphi\|^\ell.
+\]
+よって $T$ も order $\le \ell$である. 
+\end{proof}
+
+\ref{lem-E-17}から$D_{k,\mathrm{order}\le \ell}'\subset D_k'$ は
+closed 位相$\C$ベクトル空間からなる subsheafである. 
+
+さて$K'_{k}(M)\to D'_k(M)$ を
+\[
+T\mapsto \Bigl(D^k(M)\underset{\text{cont.}}{\hookrightarrow} K^k(M)\xrightarrow{T}\C\Bigr)
+\]
+として定める. これは連続$\C$線型で
+またorder $=0$ である.(\ref{cor-E-10}の周り参照)
+restriction map とも可換なので, 
+sheafとしての写像$K'_k\to D'_{k,\mathrm{order}=0}$
+が定める. 
+
+
+% [page 1]
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-E-18}
+$K'_k \to D'_{k,\mathrm{order}=0}$
+位相$\C$ベクトル空間のsheafの同型を与える.
+\end{lem}
+\end{tcolorbox}
+\xr{同相になる？？}
+\begin{proof}
+\(
+M=U\subset \R^m.
+\)と仮定して良い(ここに$D'_k(M) \subset \prod D'_k(U_{\lambda})$によって$D'_k(M)$の位相は$\prod D'_k(U_{\lambda}$の部分位相)となることを使う. 
+
+$T\in D_{k,\mathrm{order}=0}'(U)$ をとる.
+示すことは次のとおり. 
+\[
+\xymatrix@C=50pt@R=20pt{
+D^k(U) \ar[r]^{T} & \C \\
+K^k(U) \ar@{-->}[ru]_{\exists !} \ar@{^{(}->}[u] & \\
+}
+\]
+
+$\varphi\in K^k(U)$をとり, 
+$\varphi=\sum_J \varphi_J\,dx^J$ と書く.
+すると各 $J$ に対し, \ref{lem-H-2.12}(\cite[Definition 6.31]{Rud}あたり)からtest function のCauchy 列　$\{\varphi_{i,J}\}\subset D^0(U)$であって, 
+\[
+\lim_{i\to\infty}\varphi_{i,J}=\varphi_J \ \text{in } K^0(U)
+\]
+となるものが取れる. 
+そこで, 
+\[
+\varphi_i:=\sum_J \varphi_{i,J}\,dx^J\in D^k(U)
+\]
+とおくと,これは $D^k(U)$ の Cauchy 列であって
+\(\{T(\varphi_i)\}_i \) 
+も また$\C$上のCauchy 列となる.
+
+% [page 1]
+そこで$\varphi\in K^k(U)$について,
+\[
+T(\varphi):=\lim_{i\to\infty}T(\varphi_i)
+\]
+と定義する. 
+これは $\{\varphi_i\}$ のとり方によらない.
+なぜならば, 
+二つのCauchy 列$\{\varphi_i\},\{\varphi_i'\}$について, 
+\[
+\varphi_{i,J}-\varphi_{i,J}'\to 0\ (i\to\infty).
+\underset{}{\Rightarrow} \varphi_i-\varphi_i'\to 0\ (i\to\infty).
+\underset{\text{$T$ 連続}}{\Rightarrow} T(\varphi_i)-T(\varphi_i')\to 0\ (i\to\infty).
+\]
+となるためである. 
+よって$\C$-linear map$T:K^k(U)\to \C$が定義される.
+
+連続性を示す.
+コンパクト集合$A \subset U$について, $C_A>1$ を
+\begin{equation}
+\label{eq-K0}
+|T(\psi)|\le C_A\|\psi\|^0
+\qquad
+\forall \psi\in D_A^k(U)
+\end{equation}
+となるものとする. (これは$T\in D_{k,\mathrm{order}=0}'(U)$なので取れる)
+すると$\varphi\in K_A^k(U)$ に対し, ある $A \subset A'$なるコンパクト集合と,  
+$\{\varphi_i\}\subset D_{A'}^k(U)$で,  $\varphi_i\to \varphi\ (i\to\infty)$
+となるCauchy 列が存在する.
+
+$T$の定義とCauchy 列から
+$$
+T(\varphi)-T(\varphi_i) \to 0 \quad
+\|\varphi_i - \varphi\|^0 \to 0 
+\quad (i \to \infty)
+$$
+なので$i\gg 0$とすれば
+\[
+|T(\varphi)|
+\underset{i \gg 0}{\le} |T(\varphi)-T(\varphi_i)|+|T(\varphi_i)|
+\underset{\text{above}}{\le} \|\varphi\|^0+|T(\varphi_i)|
+\underset{\ref{eq-K0}}{\le}  \|\varphi\|^0 + C_{A'}\|\varphi_i\|^0
+\underset{\|\varphi_i\|^0 \le 2 \|\varphi\|^0}{\le} (2C_{A'}+1)\cdot \|\varphi\|^0.
+\]
+これより一意性もわかる. $\C$線型同型がいえた. 
+
+\end{proof}
 
 
 
