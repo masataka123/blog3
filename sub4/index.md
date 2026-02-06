@@ -52,6 +52,9 @@
 (担当: 平地健吾先生) 
 
 # **講義資料**
+- 2025年度秋冬学期 大阪大学 全学共通教育科目 線形代数学入門 経(81-160) 木曜3限 [講義資料](https://masataka123.github.io/2025_winter_linear_algebra/material/0_線形代数_2025.pdf)  [授業のホームページ](https://masataka123.github.io/2025_winter_linear_algebra/)
+- 2025年度春夏学期 大阪大学 理学部数学科 幾何学基礎１演義 火曜4限 [演習問題 基礎問題](https://masataka123.github.io/2025_summer_set_theory/material/0_集合問題集_2025_基礎問題集.pdf) [演習問題 応用問題](https://masataka123.github.io/2025_summer_set_theory/material/0_集合問題集_2025_応用問題集.pdf)  [授業のホームページ](https://masataka123.github.io/2025_summer_set_theory/)
+- 2025年度春夏学期 大阪大学 全学共通教育科目 線形代数学1 工(然56-110) 木曜2限 [講義資料](https://masataka123.github.io/2025_summer_linear_algebra/material/0_線形代数_2025.pdf) [授業のホームページ](https://masataka123.github.io/2025_summer_linear_algebra/)
 - 2024年度秋冬学期 大阪大学 全学共通教育科目 線形代数学概論 医（放・検）火曜4限 [講義資料](https://masataka123.github.io/2024_winter_linear_algebra/material/0_線形代数_2024.pdf) [授業のホームページ](https://masataka123.github.io/2024_winter_linear_algebra/)
 - 2024年度秋冬学期 大阪大学 理学部数学科 幾何学１演義 金曜4限 [演習問題](https://masataka123.github.io/2024_winter_geometry1/material/0_幾何学1問題集.pdf)  [授業のホームページ](https://masataka123.github.io/2024_winter_geometry1/)
 - 2024年度春夏学期 大阪大学 全学共通教育科目 線形代数学I 	工（理63〜123）水曜3限 [講義資料](https://masataka123.github.io/2024_summer_linear_algebra/material/0_線形代数_2024.pdf) [授業のホームページ](https://masataka123.github.io/2024_summer_linear_algebra/)
