@@ -1,249 +1,3 @@
-%\documentclass[dvipdfmx,a4paper,12pt]{amsart}
-\documentclass[dvipdfmx,a4paper,11pt]{report} %titleとe-mailをコメントアウトする．
-
-
-%%% Packages %%%
-\setlength{\lineskip}{0pt}
-
-% --- 和文フォント設定 (ゴシックを使うなら) ---amsartを使う時はコメントアウト
-\renewcommand{\kanjifamilydefault}{\gtdefault}
-\usepackage{otf}          % min10を避けるため
-\usepackage{pxrubrica}    % 和文ルビ
-
-% --- 基本パッケージ ---
-\usepackage{graphicx}
-\usepackage[all]{xy}
-\usepackage{wrapfig}
-\usepackage{pgfplots}
-\usepackage{color}
-\usepackage[dvipsnames]{xcolor}
-
-% --- 数学関連 ---
-\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
-\usepackage{amscd,dsfont,bigdelim,braket,physics,mathrsfs,bm}
-
-% --- 書式・リスト関連 ---
-\usepackage{latexsym}
-\usepackage{setspace}
-\usepackage{multirow}
-\usepackage{enumerate}
-\usepackage{enumitem}
-
-% --- コメント・取消線など ---
-\usepackage{comment}
-\usepackage[normalem]{ulem} % \emph の下線化を抑止（cancelと共存）
-
-% --- URL・文字コード ---
-\usepackage{url}
-% \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要、pdflatexなら有効に
-
-% --- showkeys（常に表示） ---
-\usepackage{showkeys}
-\renewcommand*{\showkeyslabelformat}[1]{%
- \fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
-}
-% --- hyperrefは最後に読み込む ---
-\usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
-
-%%% レイアウト調整 %%%
-%%% レイアウト調整（geometryに統一） %%%
-\usepackage[
-  top=30mm,        % 上余白
-  bottom=30mm,     % 下余白
-  left=25mm,       % 左余白
-  right=25mm,      % 右余白
-  headheight=12pt, % ヘッダー高さ（必要なら）
-  headsep=10mm,    % ヘッダーと本文の間
-  footskip=32pt,   % 本文とフッターの距離
-  includehead,     % ヘッダー分も高さに含める
-  includefoot      % フッター分も高さに含める
-]{geometry}
-
-%%% 行間調整（適宜 1.2 などに変更） %%%
-\usepackage{setspace}
-\setstretch{1.1}
-
-% --- 段落設定 --- 文字の行間ならここを変更する
-\setlength{\parskip}{5pt}   % 段落間のスペース
-\setlength{\parindent}{0pt}   % 段落先頭の字下げをなくす
-
-
-%%% 追加（重複なし）パッケージ・設定 %%%
-
-% --- 目次の体裁調整 ---
-%\usepackage{tocloft}
-%\renewcommand{\contentsname}{目次} % 日本語化
-%\setlength{\cftbeforesecskip}{0pt}
-%\setlength{\cftbeforesubsecskip}{0pt}
-%\setlength{\cftbeforesubsubsecskip}{0pt}
-
-% --- セクション見出しの体裁調整 ---
-%\usepackage{titlesec}
-%\titleformat*{\section}{\Large\bfseries}
-%\titleformat*{\subsection}{\large\bfseries}
-%\titlespacing*{\section}{0pt}{1.5ex plus .2ex minus .2ex}{0.8ex plus .1ex}
-%\titlespacing*{\subsection}{0pt}{1.0ex plus .2ex minus .2ex}{0.5ex plus .1ex}
-
-% --- ヘッダー／フッター設定 ---
-%\usepackage{fancyhdr}
-%\pagestyle{fancy}
-%\fancyhf{}
-%\rhead{岩井 雅崇}
-%\lhead{大阪大学 数学専攻}
-%\cfoot{\thepage}
-
-
-% -- enumerate, itemize行間設定
-\usepackage{enumitem} % デフォルト設定
-\setlist[itemize]{itemsep=3pt, parsep=0pt}
-\setlist[enumerate]{itemsep=3pt, parsep=0pt}
-% "変更する際は右を使う" \setlength{\parskip}{0cm} % 段落間\setlength{\itemsep}{5pt} % 項目間
-
-% --- tcolorbox 設定 ---%\begin{tcolorbox}[mybox]と使う
-\usepackage[most]{tcolorbox}
-\tcbuselibrary{breakable, skins, theorems}
-\tcbset{
-  mybox/.style={
-    colback = white,
-    colframe = green!35!black,
-    fonttitle = \bfseries,
-    breakable = true
-  }
-}
-
-% --- TikZ 設定 ---
-\usepackage{tikz}
-\usetikzlibrary{positioning, arrows.meta, fit, calc, backgrounds}
-\pgfdeclarelayer{background}
-\pgfdeclarelayer{foreground}
-\pgfsetlayers{background,main,foreground}
-
-% --- footnote がページをまたがない設定 ---
-\interfootnotelinepenalty=10000
-
-% --- 目次に表示する階層の深さ ---
-\setcounter{tocdepth}{2}
-
-% --- 日本語目次---
-\usepackage{pxjahyper}
-
-%--newtheorem%--newcommand----
-
-\newtheorem{thm}{Theorem}[section] 
-\newtheorem{theo}[thm]{Theorem}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{conj}[thm]{Conjecture}
-\newtheorem*{mainthm}{Theorem}
-\newtheorem{deflem}[thm]{Definition-Lemma}
-\newtheorem{lem}[thm]{Lemma}
-\theoremstyle{definition} 
-\newtheorem{defn}[thm]{Definition}
-\newtheorem{propdefn}[thm]{Proposition-Definition} 
-\newtheorem{lemdefn}[thm]{Lemma-Definition} 
-\newtheorem{thmdefn}[thm]{Theorem-Definition} 
-\newtheorem{eg}[thm]{Example} 
-\newtheorem{ex}[thm]{Example} 
-\newtheorem{ques}[thm]{Question}
-\newtheorem{remin}[thm]{Reminder}
-\theoremstyle{remark}
-\newtheorem{rem}[thm]{Remark}
-\newtheorem{setup}[thm]{Setup}
-\newtheorem{obs}[thm]{Observation}
-\newtheorem{notation}[thm]{Notation}
-\newtheorem{cl}{Claim}
-\newtheorem{claim}[thm]{Claim}
-\newtheorem{assup}[thm]{Assumption}
-\newtheorem{step}{Step}
-\newtheorem*{clproof}{Proof of Claim}
-\newtheorem{cln}[thm]{Claim}
-\newtheorem*{ack}{Acknowledgements} 
-\numberwithin{equation}{section}
-\newtheorem{case}{Case}
-
-\newcommand{\rk}[0]{\operatorname{rk}}
-\newcommand{\supp}[0]{\operatorname{Supp}}
-\newcommand{\Rad}[0]{\operatorname{Rad}}
-\newcommand{\Sha}[0]{\operatorname{Sha}}
-\newcommand{\sha}[0]{\operatorname{sha}}
-\newcommand{\eend}[0]{\operatorname{End}}
-\newcommand{\codim}[0]{\operatorname{codim}}
-\newcommand{\nd}[0]{\operatorname{nd}}
-\renewcommand{\rank}[0]{\operatorname{rank}}
-\newcommand{\degree}[0]{\operatorname{deg}}
-\newcommand{\Exc}[0]{\operatorname{Exc}}
-\newcommand{\pr}{{\rm pr}}
-\newcommand{\id}{{\rm id}}
-\newcommand{\Sym}{{\rm Sym}}
-\newcommand{\End}[0]{\operatorname{End}}
-\newcommand{\Coker}[0]{\operatorname{Coker}}
-
-\newcommand{\Supp}{{\rm Supp}}
-\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
-\newcommand{\Ext}[0]{\mathscr{E}\!\textit{xt}}
-\newcommand{\GL}[0]{\operatorname{GL}}
-\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
-\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
-
-\newcommand{\Alb}{{\rm Alb}}
-\newcommand{\verti}{{\rm vert}}
-\newcommand{\hor}{{\rm hor}}
-\newcommand{\univ}{{\rm univ}}
-\newcommand{\Tor}{{\rm tor}}
-\newcommand{\shaf}{\mathrm{sha}}
-\newcommand{\Shaf}{\mathrm{Sha}}
-\newcommand{\reg}{{\rm{reg}}}
-\newcommand{\sing}{{\rm{sing}}}
-\newcommand{\qt}{{\rm{qt}}}
-\newcommand\sO{{\mathcal O}}
-\newcommand{\Div}[0]{\operatorname{div}}
-\newcommand{\ddbar}{dd^c}
-\newcommand{\cV}{\mathcal{V}}
-\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
-\newcommand{\dbar}{\overline{\partial}}
-\newcommand{\I}[1]{\mathcal{I}(#1)}
-\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
-\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
-\newcommand{\Image}[1]{\mathrm{Im}(#1)}
-\DeclareMathOperator{\Ric}{Ric}
-\DeclareMathOperator{\Vol}{Vol}
- \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
- \newcommand{\drv}[2]{\frac{d #1}{d#2}}
-  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
-\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
-\newcommand{\polar}{\beta}
-  
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{Z}_+}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\D}{\mathbb{D}}
-\newcommand{\mP}{\mathbb{P}}
-\newcommand{\mO}{\mathcal{O}}
-\newcommand{\B}{\mathds{B}}
-\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
-\renewcommand{\tr}{\hspace{-0.8ex}>}
-
-\newcommand{\xb}[1]{\textcolor{blue}{#1}}
-\newcommand{\xr}[1]{\textcolor{red}{#1}}
-\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
-
-\newcommand{\illegible}[1]{\textcolor{red}{[ILLEGIBLE: #1]}}
-
-\title{カレントセミナーのノート} 
-\author{岩井雅崇}
-%\address{Department of Mathematics, Graduate School of Science, Osaka City University 3-3-138, Sugimoto, Sumiyoshi-ku Osaka, 558-8585Japan} 
-%\email{{\tt masataka.math@gmail.com}}
-%\email{{\tt masataka.math@gmail.com, masataka@sci.osaka-cu.ac.jp}}
-\date{\today, version 0.01}
-
-\renewcommand{\thefootnote}{\arabic{footnote}}
-
-\baselineskip = 15pt
-\footskip = 32pt
-
-\begin{document}
 \begin{thebibliography}{n}
 \bibitem[Rud]{Rud}
 W. Rudin. \textit{Functional analysis.} 2nd edn. International Series in Pure and Applied Mathematics. McGraw-Hill, Inc., New York. (1991.)
@@ -1287,6 +1041,7 @@ $$
 となるので. 
 \end{rem}
 
+
 \begin{tcolorbox}[mybox]
 \begin{lem}
 \label{lem-E-17}
@@ -1304,6 +1059,16 @@ $T\ \text{も order }\le \ell.$
 
 \end{lem}
 \end{tcolorbox}
+
+\begin{rem}
+上の主張\ref{lem-E-17}は間違っている. 元々\cite{NO}の日本語版にあった主張であるが, 英語版だと無くなっていた. Banach-Steinhausを$D^k_{A }(M)$に使っているが, これが$F$-spaceでないことからくる. 
+
+反例は$T_n = n(\delta_{1/n}-\delta_0)$
+とすると, これは$\R$上のdistribution でorderは0だが, 極限は$\delta' (0)$というdistributionに収束して, order はちょうど1となる. 
+\end{rem}
+
+
+\color{red}
 \begin{proof}
 (1)
 $\Rightarrow$の証明は明らか.
@@ -1400,6 +1165,11 @@ V=\{\varphi\in D_A^k(M)\mid \|\varphi\|^\ell<\varepsilon\},
 \]
 よって $T$ も order $\le \ell$である. 
 \end{proof}
+\color{black}
+
+
+
+
 
 \ref{lem-E-17}から$D_{k,\mathrm{order}\le \ell}'\subset D_k'$ は
 closed 位相$\C$ベクトル空間からなる subsheafである. 
@@ -1423,7 +1193,7 @@ $K'_k \to D'_{k,\mathrm{order}=0}$
 位相$\C$ベクトル空間のsheafの同型を与える.
 \end{lem}
 \end{tcolorbox}
-\xr{同相になる？？}
+
 \begin{proof}
 \(
 M=U\subset \R^m.
@@ -1498,11 +1268,442 @@ $$
 \underset{\|\varphi_i\|^0 \le 2 \|\varphi\|^0}{\le} (2C_{A'}+1)\cdot \|\varphi\|^0.
 \]
 これより一意性もわかる. $\C$線型同型がいえた. 
+\end{proof}
 
+\begin{rem}
+$K'$はリースの表現定理からRadon 測度で与えられる.(\cite{NO}参照)
+特にorder0の超関数はRadon測度と同一視できる. 
+\end{rem}
+
+
+\section{Currentの例・演算}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-19}
+$ U \subset \mathbb{R}^m$を開集合とする.
+$$
+L^1_{\mathrm{loc}}(U) 
+:= \left\{ f : U \to \mathbb{C} : \text{Lebesgue measurable}
+\ \&\ locally\ integrable \right\}/\underset{\text{a.e.} }{\sim}
+$$とする. 
+ここで"locally integrable"を任意のコンパクト集合$A \subset U$みついて$\int_{A}|f| d \mu  < +\infty$として定める. 
+
+同様に
+$$
+L^k_{\mathrm{loc}}(U) := 
+\left\{ \omega = \sum_J \omega_J\, dz^J \text{ $k$-form}
+\mid
+\omega_J \in L^1_{\mathrm{loc}}(U) \right\}
+$$
+として定める. これらは$\C$ベクトル空間になる. 
+\end{defn}
+\end{tcolorbox}
+
+$$
+[\cdot] : L^{m-k}_{\mathrm{loc}}(U) \longrightarrow K'_{k}(U)
+\quad
+\omega \longmapsto [\omega] : \varphi \longmapsto \int_U \omega \wedge \varphi
+\qquad (\varphi \in K^k(U))
+$$
+と定義する. 
+これは$\C$線型単射である. 
+\begin{proof}
+$f \in L_{\mathrm{loc}}(U)$ は $f = 0 \Longleftrightarrow \int_U |f|\, d\mu = 0$であることを思い出す. 
+\xr{ここは後で示す}
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-20}
+$M$: 向きづけ可能な多様体について
+$$
+L^k_{\mathrm{loc}}(M) := \left\{ \omega \underset{\text{locally}}{=} \sum_J \omega_J\, dz^J ,\ \omega_J \in L^1_{\mathrm{loc}}(U)
+\right\}
+$$
+とする. $L_{\mathrm{loc}}(M, \Lambda^k T^*M)$ともかく
+
+また$M$上の$\C$ベクトル空間のsheafを
+$$L^k_{\mathrm{loc}} : (U \subset M) \longmapsto L^k_{\mathrm{loc}}(U)$$
+として定義する. 
+
+\end{defn}
+\end{tcolorbox}
+
+$$
+[\cdot] : L^{m-k}_{\mathrm{loc}}(M) \longrightarrow K'_{k}(M)
+\quad
+\omega \longmapsto [\omega] : \varphi \longmapsto \int_M \omega \wedge \varphi
+\qquad (\varphi \in K^k(M))
+$$
+とする. 
+$[\omega]  \in K'_{k}(M)$になるのは次のとおり:
+
+$\{V_\lambda \subset U\}_{\lambda}$を$V_{\lambda}$の１の分割とする. 
+
+$K^k_A(M)$について
+$$
+C := \sum_{\lambda \mid V_\lambda \cap A \neq \varnothing}
+ \sum_J \int_{V_\lambda \cap A}
+|\psi_\lambda \omega_J|\, d\mu
+$$
+とおくと
+$$
+|\int_M \omega \wedge \varphi|
+\underset{\text{定義}}{=} 
+|\sum_\lambda \int_{V_\lambda \cap A}
+\psi_\lambda (\omega \wedge \varphi)|
+\le C ||\psi_\lambda ||^0
+$$
+となる. 
+
+特に$[\cdot] :  L^{m-k}_{\mathrm{loc}}\longrightarrow K'_{k}$は
+$\C$ベクトル空間のsheafの射となる. 
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-20}
+% [page 6]
+$M$: $m$次元向きづけ可能な多様体, 
+$N \subset M$向きづけ可能$k$次元閉部分多様体とする. 
+
+すると，
+$$
+[N] : K^k(M) \longrightarrow \mathbb{C}
+\quad
+[N](\varphi) := \int_N \varphi|_N
+$$
+と定義するとこれは連続な$\C$線型写像になり$[N] \in K'_{k}(M)$となる. 
+\end{defn}
+\end{tcolorbox}
+\begin{proof}
+$\{V_\lambda \subset U_\lambda\}_{\lambda}$
+を $N \cap U_\lambda
+= \{x^{k+1} = \cdots = x^m = 0\}$
+となるようにとる. すると$N$の座標近傍は
+$\{(N \cap U_\lambda, x^1,\ldots,x^k)\}_{\lambda}$となる.
+
+$\varphi \in K^k_A(M)$を
+$\varphi = \sum_J \varphi_{\lambda J}\, dx^J$
+on $\ U_\lambda$と表すと
+$$
+\varphi|_N =\sum_{ J_0 = (1,2,\ldots,k)} \varphi_{\lambda J_0}\, dx^{J_0},
+$$
+とかける. $C := \sum_{\lambda \mid  V_\lambda \cap A \neq \varnothing}
+\mu(N \cap A \cap \overline{V}_\lambda)$とすれば
+
+$$
+\left| \int_N \varphi|_N \right|
+\le \sum_{\lambda:\, A \cap U_\lambda \neq \varnothing}
+\sum_{ J_0 = (1,2,\ldots,k)}
+\left| \int_{N \cap U_\lambda}
+\psi_\lambda \varphi_{\lambda J_0}\, dx^{J_0} \right|
+\le C \cdot \|\varphi\|^0
+$$
 \end{proof}
 
 
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-21}
+$M$: $m$次元向きづけ可能な多様体, 
+$\mathcal{D}^k(M) := \mathcal{D}_{m-k}(M)$とおく. ($m-k$をdegreeという.)
+
+$T \in \mathcal{D}^p(M),\ \alpha \in \mathcal{E}^q(M)$ に対し，
+$T \wedge \alpha,\ \alpha \wedge T \in \mathcal{D}^{p+q}(M)$を次のように定義する. 
+
+$$
+(T \wedge \alpha)(\varphi) := T(\alpha \wedge \varphi)
+\qquad
+\forall \varphi \in \mathcal{D}^{m-p-q}(M).
+$$
+$$
+\alpha \wedge T := (-1)^{pq} T \wedge \alpha.
+$$
+\end{defn}
+\end{tcolorbox}
+上において
+$T \wedge \alpha$が 連続であることを見ておく. 
+(証明から$T$のorderが$l$ならば$T \wedge \alpha$のorderも$l$となる. )
+\begin{proof} 
+$A$コンパクトとすると, $T$の定義から
+$$\exists C \ge 0, l \in \Z \text{ s.t. }
+|T(\psi)| \le C \|\psi\|^l
+\quad
+\forall \psi \in \mathcal{D}^{m-p}_A(M).
+$$
+すると任意の$\varphi \in \mathcal{D}^{m-p-q}_A(M)$に対し，
+$$
+|(T \wedge \alpha)(\varphi)|
+= |T(\alpha \wedge \varphi)|
+\le C \|\alpha \wedge \varphi\|^l
+$$
+が成り立つ. 
+よってあとは$\|\alpha \wedge \varphi\|^l \le C' \|\varphi\|^l$を見れば良い. 
+$$
+\alpha = \sum_I \alpha_{\lambda I}\, dx^I,
+\qquad
+\varphi = \sum_J \varphi_{\lambda J}\, dx^J
+\quad \text{on } U_\lambda
+$$
+とすると，
+$$
+\alpha \wedge \varphi
+= \sum_{I,J \atop I \cap J = \varnothing}
+\alpha_{\lambda I}\, \varphi_{\lambda J}\, dx^I \wedge dx^J
+$$
+となる. ここで定義から
+$$
+\|\alpha \wedge \varphi\|^l
+= \max
+\left\{
+\left| D^\beta (\alpha_{\lambda I}\, \varphi_{\lambda J})(a) \right|
+\ \middle|\
+\lambda,I,J,\ |\beta|\le l,\ a\in \overline{V_\lambda}
+\right\}
+$$
+ライプニッツ則から
+$$
+D^\beta (\alpha_{\lambda I}\, \varphi_{\lambda J})
+:=
+\sum_{0 \le \delta \le \beta}
+C_{\beta\delta}\,
+(D^\delta \alpha_{\lambda I})\,
+(D^{\beta-\delta} \varphi_{\lambda J})
+$$
+となる$C_{\beta\delta}$があるので, 
+$$
+C' :=
+\#\{(I,J,\beta)\mid I\cap J=\varnothing,\ |\beta|\le l\}
+\cdot
+\max
+\left\{
+|C_{\beta\delta}\, D^\delta \alpha_{\lambda I}(a)|
+\ \middle|\
+0\le \delta\le \beta,\ |\beta|\le l,\ a\in V_\lambda
+\right\}
+$$
+とおくと，
+$$
+\|\alpha \wedge \varphi\|^l
+\le C' \|\varphi\|^l.
+$$となるので言える. 
+\end{proof}
+定義\ref{defn-E-21}は通常の外積の拡張になっている．　
+また$\omega \in L^p_{\mathrm{loc}}(M),\ \alpha \in \mathcal{E}^q(M)$について
+$$[\omega] \wedge \alpha = [\omega \wedge \alpha]
+\quad 
+\in  K'^{p+q}(M)
+$$
+となる. これは$\varphi \in K^{n-p-q}(M)$について
+$$
+([\omega] \wedge \alpha)(\varphi)
+\underset{\ref{defn-E-21}}{=} [\omega](\alpha \wedge \varphi)
+\underset{\ref{defn-E-20}}{=}
+ \int_M \omega \wedge (\alpha \wedge \varphi)
+\underset{\ref{defn-E-20}}{=}
+[\omega \wedge \alpha](\varphi)
+$$
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-22}
+外微分$d: \mathcal{D}^p(M) \longrightarrow \mathcal{D}^{p+1}(M)$
+を次のように定義する.
+$$
+(dT)(\varphi) := (-1)^{p-1} T(d\varphi),
+\qquad
+\varphi \in \mathcal{D}^{m-p-1}(M).
+$$
+これは$\|d\varphi\|^l \le C\|\varphi\|^{l+1}$なのでorder$ \le l$のカレントをorder$ \le l+1$のカレントに移す. 
+
+$dT = 0$のとき$T$を closed current という。
+\end{defn}
+\end{tcolorbox}
 
 
+$\omega \in \mathcal{E}^p(M)$とする. 
+$d[\omega] = [d\omega]$である.
+ \begin{proof}
+ $\varphi \in \mathcal{D}^{m-p-1}(M)$とすると
+ $$
+d(\omega \wedge \varphi)= d\omega \wedge \varphi
++ (-1)^p \omega \wedge d\varphi 
+$$
+である. よって, 
+\begin{align*}
+(d[\omega])(\varphi)
+&\underset{\ref{defn-E-22}}{=} (-1)^{p-1} [\omega](d\varphi)
+&\underset{\ref{defn-E-20}}{=} (-1)^{p-1} \int_M \omega \wedge d\varphi
+&\underset{\text{Stokes}}{=}\int_M d\omega \wedge \varphi
+&= [d\omega](\varphi).
+\end{align*}
+ \end{proof}
 
-\end{document}
+$N \subset M$向きづけ可能$k$次元閉部分多様体とすると
+$[N]$はclosed currentとなる. 
+\begin{proof}
+ $\varphi \in \mathcal{D}^{m-k-1}(M)$について
+$$
+(d[N])(\varphi)
+\underset{\ref{defn-E-22}}{=}  (-1)^{m-k-1} [N](d\varphi)
+\underset{\ref{defn-E-20}}{=} (-1)^{m-k-1} \int_N d\varphi|_N
+\underset{\text{Stokes}}{=} 0
+$$
+\end{proof}
+
+$d : \mathcal{D}^p \to \mathcal{D}^{p+1}$はsheafとしての線型写像となる
+
+\begin{proof}
+$U \subset M$を開集合とする. 
+$d$はrestriction mapと可換で$\C$線型である. よって$d$によって
+${\mathcal{D}'}^{p}(U) \to {\mathcal{D}'}^{p+1}(U)$が連続を示せば良い
+$\varphi \in \mathcal{D}^{m-p-1}(M)$として，
+$ev_{\varphi} : {\mathcal{D}'}^{p}(U) \to \C$を代入写像とし, 
+$B_\varepsilon \subset \C$を$\varepsilon$近傍として
+ $$
+d^{-1}\bigl(ev_\varphi^{-1}(B_\varepsilon)\bigr)
+= \{\, T \in{\mathcal{D}'}^p(M) \mid |e_\varphi(dT)| < \varepsilon \,\}
+= ev_{d\varphi}^{-1}(B_\varepsilon).
+$$
+となるのでいえた.
+\end{proof}
+
+$$
+d(T \wedge \alpha)
+= dT \wedge \alpha
++ (-1)^p T \wedge d\alpha.
+$$
+が成り立つ. 
+\begin{proof}
+$\varphi \in \mathcal{D}^{m-p-q-1}(M)$として，
+$$
+d(T \wedge \alpha)(\varphi)
+\underset{\ref{defn-E-22}}{=}  (-1)^{p+q-1} (T \wedge \alpha)(d\varphi)
+\underset{\ref{defn-E-21}}{=}  (-1)^{p+q-1} T(\alpha \wedge d\varphi)
+$$
+\begin{align*}
+(dT \wedge \alpha)(\varphi)
+&\underset{\ref{defn-E-21}}{=} dT(\alpha \wedge \varphi)\\
+&\underset{\ref{defn-E-22}}{=} (-1)^{p-1} T\bigl(d(\alpha \wedge \varphi)\bigr)\\
+&\underset{\text{formの外微分}}{=} 
+&\underset{\text{formの外微分}}{=}  (-1)^{p-1} T(d\alpha \wedge \varphi)
++ (-1)^{p+q-1} T(\alpha \wedge d\varphi).
+\end{align*}
+よって
+$$
+d(T \wedge \alpha)(\varphi)
+- (dT \wedge \alpha)(\varphi)
+= (-1)^{p} T(d\alpha \wedge \varphi)
+\underset{\ref{defn-E-21}}{=} (-1)^{p} (T \wedge d\alpha)\varphi)
+$$
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-E-23}
+$ U \subset \mathbb{R}^m$開集合, $p$次カレント$T \in {\mathcal{D}'}^p(U)$
+とする. 
+
+$J = (1 \le j_1 < \cdots < j_{p} \le m)$ について
+0次カレント(超関数)$T_J \in {\mathcal{D}'}^0(U)$を
+$$
+T_J : \mathcal{D}^m(U) \to \mathbb{C},
+\quad
+f\, dx^1 \wedge \cdots \wedge dx^m
+\longmapsto
+\operatorname{sgn}(J, J^c)\,
+T(f\, dx^{J^c})
+$$
+として定める. ここで$J^c$は$(1, \ldots, n)$から$J$を取り除いたものとし. 
+$\operatorname{sgn}(J, J^c)$は置換$(1, \ldots, n) \to (J, J^c)$の符号とする
+\end{defn}
+\end{tcolorbox}
+
+$T = \sum_J T_J \wedge dx^J$となる. 
+つまりカレントは超関数係数のformとなる. 
+ 以後$T_J\, dx^J:=T_J \wedge dx^J$と書く.
+
+\begin{proof}
+$\sum_J T_J dx^J$の方を展開していく. 
+$\varphi =\sum_{K} \varphi_{K} dx^K\in D_{m-p}(U)$について
+\begin{align*}
+ \left(\sum_J T_J\, dx^J\right)(\varphi)
+&= \sum_J T_J(dx^J \wedge \varphi) \\
+&= \sum_J T_J\bigl(\varphi_{J^c} \, dx^J \wedge dx^{J^c}\bigr) \\
+&\underset{dx^J \wedge dx^{J^c} = \operatorname{sgn}(J,J^c) dx^1 \wedge \cdots \wedge dx^m}{=} 
+\sum_J \operatorname{sgn}(J,J^c)\,
+T_J\bigl(\varphi_{J^c}  dx^1 \wedge \cdots \wedge dx^m\bigr) \\
+&\underset{\text{$T_J$の定義}}{=} \sum_J \operatorname{sgn}(J,J^c)^2\,
+T(\varphi_{J^c}\, dx^{J^c}) \\
+&= T(\varphi).
+\end{align*}
+\end{proof}
+
+$dT = \sum_{J}\sum_{i=1}^m
+\frac{\partial T}{\partial x^i} dx^i \wedge dx^J$である. 
+\begin{proof}
+$$
+dT 
+\underset{\text{上の式}}{=} 
+d\left(\sum_J T_J\, dx^J\right)
+= \sum_J dT_J \wedge dx^J.
+$$
+であるので, 以上より
+$$
+dT_J = \sum_{i=1}^m
+\frac{\partial T_J}{\partial x^i}\, dx^i
+$$
+を示せば良い. 
+つまり， $p = 0$の場合($T$が0次カレント)であるとして良い. 
+%$dT(\varphi) = -\,T(d\varphi).$を示せば良い
+
+今$\varphi = \sum_{i=1}^m
+\varphi_i\, dx^1 \wedge \cdots \wedge \widehat{dx^i}
+\wedge \cdots \wedge dx^m$
+とすると，
+$$
+d\varphi
+= \sum_{i=1}^m
+\frac{\partial \varphi_i}{\partial x^i}
+\, dx^i \wedge dx^1 \wedge \cdots \wedge \widehat{dx^i}
+\wedge \cdots \wedge dx^m
+= \sum_{i=1}^m
+(-1)^{i-1}
+\frac{\partial \varphi_i}{\partial x^i}
+\, dx^1 \wedge \cdots \wedge dx^m.
+$$
+したがって，
+$$
+dT(\varphi)
+= -\,T(d\varphi)
+= -\,T\left(
+\sum_{i=1}^m
+(-1)^{i-1}
+\frac{\partial \varphi_i}{\partial x^i}
+\, dx^1 \wedge \cdots \wedge dx^m
+\right).
+$$
+% [page 18]
+一方，
+\begin{align*}
+\left( \sum_{i=1}^m
+\frac{\partial T}{\partial x^i}\, dx^i \right)(\varphi)
+&= \sum_{i=1}^m
+\frac{\partial T}{\partial x^i}(dx^i \wedge \varphi) \\
+&= \sum_{i=1}^m
+\frac{\partial T}{\partial x^i}
+\Bigl(
+(-1)^{i-1}\,
+\varphi_i\,
+dx^1 \wedge \cdots \wedge dx^m
+\Bigr) \\
+&= \sum_{i=1}^m
+-\,T\left(
+(-1)^{i-1}
+\frac{\partial \varphi_i}{\partial x^i}
+\, dx^1 \wedge \cdots \wedge dx^m
+\right).
+\end{align*}
+\end{proof}
+
