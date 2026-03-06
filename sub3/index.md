@@ -1,5 +1,5 @@
 # **出張予定**
-- 2026年1月26--30日: 大阪大学で[Workshop on Algebraic Geometry and Complex Geometry in Osaka](https://masataka123.github.io/AGCG_Osaka_2026/)を開催します. 
+
 
 # **講演履歴**
 
