@@ -93,6 +93,7 @@
 
 ## **学内・学外セミナー**
 5. 大阪大学幾何セミナー世話人, 大阪大学, 2023--2024年度  [2023年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rirekiThisY.cgi) [2024年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2024)
-8. 大阪大学幾何セミナー世話人, 大阪大学, 2025年度 (大阪大学 濱中翔太氏, 大阪大学 松本佳彦氏との共同主催)
+8. 大阪大学幾何セミナー世話人, 大阪大学, 2025年度 (大阪大学 濱中翔太氏, 大阪大学 松本佳彦氏との共同主催) [2025年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2025)
+6. 大阪大学幾何セミナー世話人, 大阪大学, 2026年度 (大阪大学 田代賢志郎氏, 大阪大学 松本佳彦氏との共同主催) [2026年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2026)
 
 [](# **その他** 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  )
