@@ -8,12 +8,12 @@ layout: default
 
 
 ## **ニュース**
-
-
+- 2026年5月25--29日に東北大学で[集中講義](http://www.math.tohoku.ac.jp/research/intensive.html)をします. 
+- 2026年6月23--26日に筑波大学で開催予定の[Mini-workshop on complex geometry related to MMP ]()で講演する予定です. 
+- 2026年9月12--13日に大阪公立大学で[CR多様体の勉強会](https://masataka123.github.io/CR_manifold_2026/)を開催いたします. 皆さんのご参加お待ちしております. 
 
 <!--
 - 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 
-
 -->
 
 ## **岩井のところでセミナーを志望される方**

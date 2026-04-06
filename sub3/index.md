@@ -1,5 +1,10 @@
 # **出張予定**
 
+- 2026年5月25--29日に東北大学で[集中講義](http://www.math.tohoku.ac.jp/research/intensive.html)をします. 
+- 2026年6月23--26日に筑波大学で開催予定の[Mini-workshop on complex geometry related to MMP ]()で講演する予定です. 
+- 2026年9月12--13日に大阪公立大学で[CR多様体の勉強会](https://masataka123.github.io/CR_manifold_2026/)を開催いたします.
+- 2026年9月14--17日に大阪公立大学で開催される[複素幾何学への多角的アプローチ](https://tkoike.com/multi_appr_cpx_geom/)に参加いたします. 
+- 2026年9月14--18日に名古屋大学で開催される[Fano varieties and Related topics](https://shotanimoto.wordpress.com/fano-varieties-and-related-topics/)に参加するかもしれません(参加するなら上の集会をちょっと抜けて参加します.)
 
 # **講演履歴**
 
