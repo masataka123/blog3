@@ -88,7 +88,7 @@
 福岡工業大学. 2025年5月14--16日 (京都大学 井上瑛二氏, 九州大学 日下部佑太氏, 福岡工業大学 野瀬敏洋氏, 東北大学 松村慎一氏 との共同主催) [Link](https://masataka123.github.io/AG_SCV_2025/)
 13. "岡多様体の勉強会" 九州大学. 2025年12月17--18日. (九州大学 日下部佑太氏, 中央大学 渡邊祐太氏との共同主催) [Link](https://masataka123.github.io/Oka_manifold_2025/) 
 14. "Workshop on Algebraic Geometry and Complex Geometry in Osaka" 大阪大学. 2026年1月26--30日. (新潟大学 橋詰健太氏, 大阪大学 藤田健人氏との共同主催) [Link](https://masataka123.github.io/AGCG_Osaka_2026/) 
-15. "CR多様体の勉強会" 大阪公立大学. 2026年9月12--13日. (九州大学 日下部佑太氏, 大阪大学 鈴木良明氏, 東京大学 松本周也氏との共同主催) [Link](https://masataka123.github.io/CR_manifold_2026/) 
+15. "CR多様体の勉強会" 大阪公立大学. 2026年9月12--13日. (九州大学 日下部佑太氏, 大阪大学 鈴木良明氏, 東京大学 松本周也氏, 大阪公立大学 村上 怜氏 との共同主催) [Link](https://masataka123.github.io/CR_manifold_2026/) 
 
 
 ## **学内・学外セミナー**
