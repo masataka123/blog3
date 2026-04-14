@@ -1069,11 +1069,494 @@ d=\partial+\bar{\partial},\qquad \partial\partial=\bar{\partial}\bar{\partial}
 \[
 \int_{M}\partial\psi=\int_{M}d\psi\underset{\text{普通のStokes}}{=}0
 \]
-である. $\bar{\partial}$も同様である. 
-
+である. $\bar{\partial}$も同様である.
 
 \end{proof}
 
+% [page 1]
+\begin{ex}
 
+ \( \omega \in L_{\mathrm{loc}}^{(p,q)}(M) \)とし, 
+ \([ \omega ] \in \mathcal{D}'^{p+q}(M)\)について, 
+
+\[
+[\omega](\varphi):=\int_M \omega \wedge \varphi
+\qquad \text{for } \varphi \in \mathcal{D}^{2n-p-q}(M)
+\]
+と定義すると, \([ \omega ] \in \mathcal{D}'^{(p,q)}(M)\)となる.
+
+\begin{proof}
+\(\bigl((r,s)\neq (n-p,n-q)\bigr)\)かつ
+\( r+s=2n-p-q\)
+とする. 任意の
+\( \varphi \in \mathcal{D}^{(r,s)}(M) \)について, 
+\(
+\omega \wedge \varphi = 0
+\)
+である. よって$[\omega](\varphi)=0$
+\end{proof}
+
+\end{ex}
+
+
+\begin{ex}
+ \( N \subset M \)を \( \dim_{\mathbb{C}} N = k \)次元のcomplex submanifoldとする. 
+
+この時 \([N] \in \mathcal{D}'^{2n-2k}(M)\) を
+\[
+[N](\varphi)=\int_N \varphi|_N
+\qquad \text{for } \varphi \in \mathcal{D}^{2k}(M).
+\]
+と定義すると,  \([N] \in \mathcal{D}'^{(n-k,n-k)}(M)\)
+
+\begin{proof}
+\( r+s=2k \)かつ$(r,s)\neq (k,k)$とする. 
+\( \varphi \in \mathcal{D}^{(r,s)}(M) \) について, 
+\[
+\varphi|_N = 0.
+\]
+である. 
+これはアトラス \( \{U_\lambda; z_\lambda^1,\cdots,z_\lambda^n\}_{\lambda\in\Lambda} \)
+で
+\(
+U_\lambda \cap N = \bigl( z_\lambda^{k+1}=\cdots=z_\lambda^n=0 \bigr).
+\)
+となるものをとればわかる. 
+\end{proof}
+\end{ex}
+
+\subsection{複素共役}
+
+複素共役
+\( (\Lambda^k T^*M) \otimes_{\mathbb{R}} \mathbb{C}
+\overset{\text{id}\otimes(-)}{\longrightarrow}
+(\Lambda^k T^*M)\otimes_{\mathbb{R}} \mathbb{C} \)
+によって, \( \mathcal{E}^k, \mathcal{E}^{p,q}, \mathcal{D}'(M), \mathcal{K}^k(M) \)に複素共役を誘導する. 
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-4.2.1}
+\( l\geq 0 \). \( T\in \mathcal{D}'^{\,l}(M) \)について, 
+ \( \overline{T} \) を
+\[
+\overline{T}:\mathcal{D}^{n-l}(M)\to \mathbb{C};\ \varphi \mapsto \overline{T(\overline{\varphi})}.
+\]
+この時\( \overline{T}\in \mathcal{D}'^{\,l}(M) \)である
+
+ \( T=\overline{T} \)となるとき, \( T \) をreal current (実カレント)という. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{proof}[\( \overline{T}\in \mathcal{D}'^{\,l}(M) \)の証明]
+ \( \overline{T} \) が \( \mathbb{C} \)線形は明らか. 連続性は以下の図式より. 
+\[
+\xymatrix@C=4em@R=2em{
+\overline{T}\colon
+D^{m-l}(M)\ar[r]^{\overline{(\cdot)}}
+&
+D^{m-l}(M)\ar[r]^{T}_{\text{conti}}
+&
+\mathbb{C}\ar[r]^{\overline{(\cdot)}}_{\text{conti}}
+&
+\mathbb{C}
+\\
+D_A^{m-l}(M)\ar@{^{(}->}[u]\ar[r]_{\text{conti}}
+&
+D_A^{m-l}(M)\ar@{^{(}->}[u]
+}
+\]
+\end{proof}
+
+
+また\( T\in \mathcal{D}'^{(p,q)}(M) \)ならば \( \overline{T}\in \mathcal{D}'^{(q,p)}(M) \)である. 
+
+\begin{proof}
+\( \varphi\in \mathcal{D}^{(r,s)}(M) \), \( r+s=p+q \)について
+$\varphi$の型は \( (n-p,n-q) \)でないならば,  \( \varphi \)の型は\( (n-q,n-p) \)でないので
+\[
+\overline{T}(\varphi)=\overline{T(\overline{\varphi})}=0
+\]
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.2.2}
+ \( k,l\geq 0 \)とする. 
+
+\begin{enumerate}
+\item 次は可換.
+\[
+\xymatrix{
+L^k_{\mathrm{loc}}(M) \ar[r]^{[\cdot]} \ar[d]^{\overline{(\cdot)}}
+& \mathcal{D}'^{\,k}(M) \ar[d]^{(\overline{(\cdot)}}
+\\
+L^k_{\mathrm{loc}}(M) \ar[r]^{[\cdot]}
+& \mathcal{D}'^{\,k}(M)
+}
+\]
+
+\item  \( T\in \mathcal{D}'^{\,k}(M),\ \omega\in \mathcal{E}^{\,l}(M) \)ならば
+\(\overline{T\wedge \omega}=\overline{T}\wedge \overline{\omega}
+\)
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+(1). \( \omega\in L^k_{\mathrm{loc}}(M) \), \( \varphi\in \mathcal{D}^{n-k}(M) \)について
+
+\[
+\overline{[\omega]}(\varphi)
+=\overline{[\omega](\overline{\varphi})}
+=\overline{\int_M \omega\wedge \overline{\varphi}}
+=\int_M \overline{\omega\wedge \overline{\varphi}}
+=\int_M \overline{\omega}\wedge \varphi
+=[\overline{\omega}](\varphi).
+\]
+
+(2) \(  \varphi\in \mathcal{D}^{2n-k-l}(M) \)について, 
+\[
+\overline{T\wedge \omega}(\varphi)
+=\overline{T\wedge \omega (\overline{\varphi})}
+=\overline{T(\omega\wedge \overline{\varphi})}
+=\overline{T(\overline{\overline{\omega}\wedge \varphi})}
+=\overline{T}(\overline{\omega}\wedge \varphi)
+=\overline{T}\wedge \overline{\omega}(\varphi)
+\]
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{cor}
+\label{cor-M-4.2.3}
+ \( U\subset \mathbb{C}^m \)開集合,  \( T\in \mathcal{D}'^{(p,q)}(U) (p,q\geq 0) \)について
+$$
+ T=\sum_{J \in \{m ; p\} K \in \{m ; q\} } 
+ T_{J\overline{K}} \wedge dz^J \wedge d\overline{z}^K 
+ $$
+ となるような
+ \( T_{J\overline{K}}\in \mathcal{D}'^{\,0}(U)\)をとる. 
+ (ただし \((z^1,\cdots,z^m)\)を$U$の座標とする. )
+
+この時
+\[
+\overline{T}
+=
+\sum_{J \in \{m ; p\} K \in \{m ; q\} } 
+ \overline{T_{J\overline{K}}} \wedge d\overline{z}^J \wedge d z^K 
+\]
+\end{cor}
+\end{tcolorbox}
+\begin{proof}
+ Lem \ref{lem-M-4.2.2} (2)より.
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.2.4}
+\( k\geq 0 \)について, $T\in \mathcal{D}'^{\,k}(M)$ならば. 
+\[
+\overline{dT}=d\,\overline{T},
+\qquad
+\overline{\partial T}=\overline{\partial}\,\overline{T},
+\qquad
+\overline{\overline{\partial}T}=\partial \overline{T}
+\]
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+
+\(  \varphi\in \mathcal{D}^{2n-k-1}(M) \)について, 
+
+\[
+\overline{dT}(\varphi)
+=
+\overline{dT(\overline{\varphi})}
+=
+\overline{(-1)^{k+1}T(d\overline{\varphi})}
+=
+(-1)^{k+1}\overline{T(\overline{d\varphi})}
+=
+(-1)^{k+1}\overline{T}(d\varphi)
+=
+(d\overline{T})(\varphi)
+\]
+
+
+% [page 1]
+\( \partial,\overline{\partial} \) についても
+\(
+\overline{\partial \varphi}=\overline{\partial}\,\overline{\varphi},
+\overline{\overline{\partial}\varphi}=\partial \overline{\varphi}
+\)
+により同様である. 
+\end{proof}
+
+\subsection{Pushforward of current}
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-4.2.5}
+ \( M,N \) 2nd countable complex manifoldとする. 
+ \(\dim_{\mathbb{C}}M=m,\dim_{\mathbb{C}}N=n\)とする. 
+
+正則写像\( f:M\to N \) をquasi-proper
+(i.e. 任意の\(  K\subset N \) cptについて\( f^{-1}(K) \) is cptである)と仮定する. 
+この時
+\[
+f_*:\mathcal{D}'^{\,k} (M)\to \mathcal{D}'^{\,k} (N)
+\quad
+T\longmapsto \left( \mathcal{D}^{k}(N)\overset{f^*}{\longrightarrow}\mathcal{D}^{k}(M)\overset{T}{\to}\mathbb{C} \right)
+\]
+として定義する. すると\( f_*T\in \mathcal{D}'^{\,\ell}(N) \)であり, $f_{*}$は連続である(後述)
+$ f_*T$をcurrentのpushforwardという. 
+\end{defn}
+\end{tcolorbox}
+以下\( f_*T\in \mathcal{D}'^{\,\ell}(N) \)であり, $f_{*}$は連続であることを示す. 
+\begin{proof}
+\[
+\xymatrix@C=4em@R=2em{
+D^{k}(N)\ar[r]^{f^{*}}
+&
+D^{k}(M)\ar[r]^{T}_{\text{conti $\C$ 線型}}
+&
+\mathbb{C}
+\\
+D_{A}^{k}(N)\ar@{^{(}->}[u]\ar[r]^{f^{*}}_{\text{conti}}
+&
+D_{f^{-1}(A)}^{k}(M)\ar@{^{(}->}[u]
+&
+}
+\]
+ここで$f$がquasi-properなので, $f^{-1}(A)$がコンパクトになることに注意する. 
+よって\( f_*T\in \mathcal{D}'^{\,\ell}(N) \)である. 
+
+\( f_* \) が \( \mathbb{C} \)-線形は明らか. 
+\( f_* \)の連続性は, 
+任意の\(\varphi\in \mathcal{D}^{\ell}(N)\)について
+
+\[
+\mathcal{D}'_{\ell}(M)\overset{f_*}{\longrightarrow}\mathcal{D}'_{\ell}(N)\overset{\mathrm{ev}_\varphi}{\longrightarrow}\mathbb{C}
+\quad 
+T\longmapsto f_*T \longmapsto f_{*}T[\varphi]=T[f^*\varphi]
+\]
+をかんがえると, 上はev\(_{f^*\varphi}\)に等しいことから. ($\mathcal{D}'_{\ell}(M)$にはevaluationが連続になるような最小の位相を入れていることに注意する.)
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.2.6}
+\( f:M\to N \) quasi-proper 正則写像とする. 
+この時次が可換である. 
+\[
+\xymatrix{
+\mathcal{D}'_{k}(M) \ar[r]^{f_*} \ar[d]_{\partial}
+& \mathcal{D}'_{\ell}(N) \ar[d]^{\partial}
+\\
+\mathcal{D}'_{\ell-1}(M) \ar[r]^{f_*}
+& \mathcal{D}'_{\ell-1}(N)
+}
+,\qquad
+\xymatrix{
+\mathcal{D}'_{\ell}(M) \ar[r]^{f_*} \ar[d]_{\overline{\partial}}
+& \mathcal{D}'_{\ell}(N) \ar[d]^{\overline{\partial}}
+\\
+\mathcal{D}'_{\ell-1}(M) \ar[r]^{f_*}
+& \mathcal{D}'_{\ell-1}(N)
+}
+\]
+特に \( d\circ f_* = f_*\circ d \).
+\end{lem}
+\end{tcolorbox}
+ (submanifoldについては\( d\circ f_* = (-1)^{\dim_{\mathbb{R}}M+\dim_{\mathbb{R}}N} f_*\circ d \) であることに注意)
+
+\begin{proof}
+\( T\in \mathcal{D}'_{k}(M) \), \( \varphi\in \mathcal{D}^{k-1}(N) \)について, 
+\begin{align*}
+(d(\underbrace{f_*T}_{\in  \mathcal{D}'_{k}(N)= \mathcal{D}'^{2n-k}(N)  }))(\varphi)
+&\overset{\text{def}}{=}
+(-1)^{2n-k-1}(f_*T)(d\varphi)
+\\
+&=
+(-1)^{2n-k-1}T[f^*d\varphi]
+\\
+&=
+(-1)^{2n-k-1}\underbrace{T}_{ \in \mathcal{D}'_{k}(N)= \mathcal{D}'^{2m-k}(N)  }[df^*\varphi]
+\\
+&=
+(-1)^{2n-k-1}(-1)^{2m-k-1}(dT)(f^*\varphi)
+\\
+&=
+(-1)^{2k+2m}(f_*dT)(\varphi)
+\end{align*}
+よって
+$d\circ f_* = (-1)^{2k+2m} f_*\circ d = f_*\circ d$となる. 
+\( \partial,\overline{\partial} \) についても同じである. 
+\end{proof}
+
+\subsection{Distribution and measure}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-4.2.7}
+$X$をlocally compact Hausdorff topological spaceとする. 
+正Borel測度\( \mu \)とする. 
+
+\( \mu \) がregularとは, 
+任意のBorel 集合\( E\subset X \) について
+\[
+\mu(E)=\inf\{\,\mu(U)\mid E\subset U\subset X,\ U \text{ open}\,\}
+=\sup\{\,\mu(K)\mid K\subset E,\ K \text{ cpt}\,\}
+\]
+
+\( \mu \) がlocally finiteとは, 
+任意の
+\( x\in X,\)について, ある開集合\( x\in  U\subset X \)があって, 
+\(\mu(U)<\infty
+\)となること. 
+これは任意のコンパクト
+\(K\subset X \)について\(\mu(K)<\infty\)であることと等しい. 
+\end{defn}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-4.2.8}
+ $(X, m )$測度空間とする. 
+$\mu$が複素測度であるとは, 写像
+\[
+\mu: m \to \mathbb{C}
+\]
+であって任意の
+ $\forall E_i\in m\ (i=1,2,\cdots)$ で $E_i\cap E_j=\phi$ ($i\neq j$)となるものについて
+ $$
+ \mu\left(\bigcup_{i=1}^{\infty} E_i\right)=\sum_{i=1}^{\infty}\mu(E_i)
+ $$
+ただし, 右辺が常に収束することを要求する.
+(特に $\sum_{i=1}^{\infty}\mu(E_i)$ は絶対収束する)
+
+$E\in m$について. 
+\[
+|\mu|(E):=\sup\left\{\sum_{i=1}^{\infty}|\mu(E_i)|\ \middle|\ E=\bigcup_{i=1}^{\infty}E_i,\ 
+E_i\cap E_j=\phi \ \text{for}\ i\neq j\right\}
+\]
+とし, 
+$|\mu|$を$\mu$のtotal variationと呼ぶ
+
+\end{defn}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.2, 6.4]{Rud2}
+\label{thm-M-4.2.9}
+上の$|\mu|$は, $|\mu|(X)<\infty$となる$(X,\mathcal{M})$上のpositive measure である. 
+\end{thm}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{defn} 
+\label{defn-M-4.2.10}
+$X$をlocally compact Hausdorff topological spaceとする. 
+複素Borel測度$\mu$について, $|\mu|$ がregularである時, 
+$\mu$ が regularであると定義する. 
+\end{defn}
+\end{tcolorbox}
+
+以下\cite{Rud2}で使うFactを並べる. 
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 2.18]{Rud2}
+\label{thm-M-4.2.11}
+$X$をlocally compact Hausdorff topological spaceとする. 
+さらに任意の開集合が$\sigma$-コンパクトであると仮定する.
+この時任意のlocally finite positive Borel 測度はregular.
+\end{thm}
+\end{tcolorbox}
+$\sigma$-コンパクトとは可算個のコンパクト集合の合併になること. 2nd conutableなら$\sigma$コンパクト
+
+次はリースの表現定理である. 
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 2.14]{Rud2}
+\label{thm-M-4.2.12}
+$X$をlocally compact Hausdorff topological spaceとする. 
+さらに任意の開集合が$\sigma$-コンパクトであると仮定する.
+
+$T:\mathcal{K}(X)\to \mathbb{C}$を $\mathbb{C}$線型写像とし, さらにpositiveであると仮定する. 
+ ("$T$がpositive"とは任意の$ \varphi\in \mathcal{K}(X)$で$\varphi \ge 0$なるものについて, $(T(\varphi)\geq 0 $であること)
+ 
+この時positive locally finite regular Borel 測度 $\mu$であって
+\[
+T(\varphi)=\int_X \varphi \, d\mu \quad \text{for } {}^\forall \varphi\in \mathcal{K}(X).
+\]
+となるものがただ一つ存在する, 
+\end{thm}
+\end{tcolorbox}
+ここで
+\(
+\left( \mathcal{K}(X)=\{\varphi:X\to \mathbb{C}\ \mathrm{cont.};\ \mathrm{supp}\ \varphi\ \mathrm{cpt}\}\right)
+\)である. \cite{NO}の記号に合わせた. 
+
+% [page 1]
+
+
+\begin{tcolorbox}[mybox]
+\begin{thm}\cite[Theorem 6.19]{Rud2}
+\label{thm-M-4.2.13}
+$X$をlocally compact Hausdorff topological spaceとする. 
+$\C$線型写像$T:\mathcal{K}(X)\to \mathbb{C}$で
+
+ある$ C>0$があって, 
+$$\ |T(\varphi)|\leq C \sup_{x\in X}|\varphi(x)| \quad \text{for } {}^\forall \varphi\in \mathcal{K}(X),
+$$
+ならば
+complex regular Borel 測度 $\mu$であって
+\[
+T(\varphi)=\int_X \varphi \, d\mu \qquad \text{for } {}^\forall \varphi\in \mathcal{K}(X)
+\]
+となるものがただ一つ存在する. 
+
+さらにこの場合
+\[
+\|T\|:=\sup\left\{\frac{|T(\varphi)|}{\sup_{x\in X}|\varphi(x)|}\ \middle|\ \varphi\in \mathcal{K}(X),\ \varphi\neq 0\right\}
+=|\mu|(X).
+\]
+
+\end{thm}
+\end{tcolorbox}
+
+\begin{rem}
+$X$を$C^{\infty}$ 2nd countable manifoldとする. 
+%$T$がpositiveという条件は強く, これから$T$が連続であることが従う. 
+$T:\mathcal{K}(X)\to \mathbb{C}$を$\mathbb{C}$線形かつpositive とする.
+ここでpositiveとは
+\[
+\varphi\geq 0 \Rightarrow T(\varphi)\geq 0
+\]
+を意味する. すると$T$は連続になる. もっと強くorder $0$ distributionである. 
+\begin{proof}
+$A\subset X$をコンパクト集合とする. 
+ $\psi\in \mathcal{D}(X)$で, $\psi\geq 0$かつ$A$上で$\psi \equiv 1$となるものを取る. 
+任意の$\varphi\in \mathcal{D}_A(X)$について, 
+もし$\varphi(X)\subset \mathbb{R}$ならば
+\[
+\underbrace{\|\varphi\|_0}_{=:\sup_{x\in X} |\varphi(x)|}\psi \pm \varphi \geq 0
+\]
+であるので, $T$がpositiveから
+\[
+T(\|\varphi\|_0\psi \pm \varphi)\geq 0
+\]
+以上より線形性から, 
+\( |T(\varphi)|\leq T(\psi)\|\varphi\|_0
+\)を得る.
+
+一般の場合($\varphi(X)\subset \mathbb{C}$の場合), 
+
+\[
+|T(\varphi)|=\left|T(\Re\varphi)+iT(\Im\varphi)\right|
+\leq T(\psi)(\|\Re\varphi\|_0+\|\Im\varphi\|_0)
+\underset{\text{上の議論}}{\leq} 2T(\psi)\|\varphi\|_0.
+\]
+よって$C_A:=2T(\psi)$ととれば, $T|_{\mathcal{D}(X)}$はorder $0$ distributionの定義を満たす. 
+\end{proof}
+\end{rem}
 
 \end{document}
