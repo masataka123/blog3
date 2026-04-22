@@ -245,6 +245,11 @@
 
 \begin{document}
 \begin{thebibliography}{n}
+\bibitem[Dem12]{Dem}
+J.-P. Demailly,
+\textit{Complex Analytic and Differential Geometry},
+Book, 2012.
+\url{https://people.math.harvard.edu/~demarco/Math274/Demailly_ComplexAnalyticDiffGeom.pdf}\footnote{Demailly先生のページがどうも開けず, Demarco先生のページのリンクを引用した. Demailly先生のページは一回見れないことがあったので, もしかしたらそのうちなくなる可能性もある. なおそれを見越して私はDemailly先生にあったpdfを全てダウンロードした.}
 \bibitem[Rud]{Rud}
 W. Rudin. \textit{Functional analysis.} 2nd edn. International Series in Pure and Applied Mathematics. McGraw-Hill, Inc., New York. (1991.)
 \bibitem[Rud 2]{Rud2}
@@ -254,7 +259,12 @@ J. Noguchi, T.Ochiai \textit{Geometric Function Theory in Several Complex Variab
 Volume: 80; 1990; 282 pp
 \end{thebibliography}
  
-\cite[Chapter 3]{NO}を参考にしている. 
+カレントに関しては\cite[Chapter 3]{NO}を参考にしている. 
+またpositive currentに関しては, 
+\cite[Chapter 1. Section 3.C]{Dem}, \cite[Chapter 3. Section 1.]{Dem}
+などを参考にしている. 
+
+
 
 \section{}
 
@@ -1495,7 +1505,9 @@ T(\varphi)=\int_X \varphi \, d\mu \quad \text{for } {}^\forall \varphi\in \mathc
 \left( \mathcal{K}(X)=\{\varphi:X\to \mathbb{C}\ \mathrm{cont.};\ \mathrm{supp}\ \varphi\ \mathrm{cpt}\}\right)
 \)である. \cite{NO}の記号に合わせた. 
 
-% [page 1]
+
+"任意の開集合が$\sigma$-コンパクトである"という仮定は2nd conutableなら常に満たされる.
+ よって上の定理は多様体なら常に満たされる仮定である. 
 
 
 \begin{tcolorbox}[mybox]
@@ -1558,5 +1570,552 @@ T(\|\varphi\|_0\psi \pm \varphi)\geq 0
 よって$C_A:=2T(\psi)$ととれば, $T|_{\mathcal{D}(X)}$はorder $0$ distributionの定義を満たす. 
 \end{proof}
 \end{rem}
+
+
+
+任意の \(T \in \mathcal{K}'(M)\)について
+\[
+\operatorname{Supp} T := M \setminus \bigcup \{\, U \subset M \text{ open }  : T|_{\mathcal{K}(U)} = 0 \,\}\]
+また \(T \in \mathcal{D}'(|H|)\)について
+\[\operatorname{Supp} T := M \setminus \bigcup \{\, U \subset M \text{ open } : T|_{\mathcal{D}(U)} = 0 \,\}\]
+と定義した. 下の図式が可換になる.
+\[
+\xymatrix{
+\mathcal{K}'(M) \ar[r] & \mathcal{D}'(M)\ ;\ T \mapsto T|_{\mathcal{D}(M)} \\
+& \mathcal{D}'(M)_{\mathrm{ord}=0} \ar[u]_{\cup} \ar@{<-}[ul]_-{\sim}^{\mathrm{bij}}
+}
+\]
+よって, 
+\(T \in \mathcal{K}'(M)\)について, "$\mathcal{K}'(M)$での$\operatorname{Supp} T$"は
+"$\mathcal{D}'(M)$での$\operatorname{Supp} T$"に等しい.
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}[support of measure]
+\label{defn-M-4.3.1}
+\(X\) を位相空間とする.
+\begin{enumerate}
+\item $X$上のpositive Borel measure \(\mu\) について
+
+\[\operatorname{Supp}\mu := 
+\{x \in X \mid x \in {}^{\forall} U \subset X \ \text{open},\ \mu(U) > 0\} \subset X
+\]
+とする. この補集合がopenなので, $\operatorname{Supp}\mu$はclosedとなる. 
+
+\item $X$上のcomplex Borel measure \(\mu\)について, 
+任意の\(A \subset X\)について, \(\mu(A) \in \mathbb{R}\)であるとする. 
+(このようなmeasureを"real Borel measure"という.)
+この時
+\[\mu^{+} := \frac{1}{2}(|\mu|+\mu),\quad \mu^{-} := \frac{1}{2}(|\mu|-\mu)\]
+を positive/negative variationという. 
+ここで\(|\mu|\)をtotal variationとする. 
+\(|\mu|, \mu^{+}, \mu^{-}, \mu\)は全てreal measureである. 
+さらにSupportを次で定義する. 
+\[
+\operatorname{Supp}\mu:=\operatorname{Supp}\mu^{+}\cup \operatorname{Supp}\mu^{-}.
+\]
+
+\item $X$上のcomplex Borel measure \(\mu\) について, Supportを次で定義する
+\[
+\operatorname{Supp}\mu:=\operatorname{Supp}\Re\mu\cup \operatorname{Supp}\Im\mu.
+\]
+ここで
+\((\Re\mu)(A):=\Re \mu(A)\)とする. 
+\end{enumerate}
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+\(X\) が2nd countableかつ \(\mu\) がpositiveまたはcomplex Borel measureであるならば
+\[
+\mu(X\setminus \operatorname{Supp}\mu)=0
+\]
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{thm}
+\label{thm-M-4.3.2}
+\(M\)を\(C^{\infty}\)多様体とする
+\begin{enumerate}
+\item  \(T \in \mathcal{K}'(M)\) \((=\mathcal{D}'(M)_{\mathrm{ord}=0})\)について, 
+\(\operatorname{supp} T\) がコンパクトならば, ただ一つの
+complex regular Borel measure \(\mu\)があって, 
+\[
+T(\varphi)=\int_M \varphi\, d\mu \qquad \text{for } {}^{\forall}\varphi\in \mathcal{K}(M).
+\]
+特に \(\operatorname{supp} T=\operatorname{supp}\mu\).
+\item  \(T \in \mathcal{D}'(M)\)をpositive distributionとする. 
+(つまり \(T(\varphi)\geq 0\) for \({}^{\forall}\varphi\in \mathcal{D}(M)\) with \(\varphi(M)\subset \mathbb{R}_{\geq 0}\)となる.)
+
+この時$T$のorderは0で, ただ一つのpositive locally finite regular
+Borel measure $\mu$ があって, 
+\[
+T(\varphi)=\int_M \varphi\, d\mu \qquad \text{for } {}^{\forall}\varphi\in \mathcal{K}(M)
+\]
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+(1). $W, V$がopenかつ$\overline{W}, \overline{V}$がコンパクトで
+\[
+\operatorname{supp} T \subset W \subset \overline{W} \subset V \subset \overline{V} \subset M
+\] 
+となるものをとる. さらに\(\chi \in \mathcal{D}_{\overline{V}}(M)\) で
+\[0 \leq \chi \leq 1,\quad \text{and} \quad  \chi \equiv 1 \text{ on } \overline{W}\]
+となるものをとる. 
+
+この時任意の \(\varphi \in \mathcal{K}(M)\)について
+\[
+T(\varphi)=
+T(\chi\varphi+\underbrace{(1-\chi)\varphi}_{\equiv 0 \text{ on Supp $T$ }} )
+=T(\chi\varphi).
+\]
+よって,  \(T \in \mathcal{K}'(M)\)について, \(T,\overline{V}\) にしかよらない定数\( C>0\)があって, 
+\[
+|T(\varphi)|
+ = |T(\chi\varphi)| 
+ \underset{\text{$T$は order 0}}{\leq} 
+ C\|\chi\varphi\|_{0} 
+ \underset{0\le \chi \le 1}{\leq}  C\|\varphi\|_{0}.
+\]
+ただし$\|\varphi\|_{0}$はsup normとする.
+以上より$T:\mathcal{K}(M)\to \mathbb{C}$はsup norm $\|\bullet\|_{0}$に関して有界である.
+これより. 定理\ref{thm-M-4.2.13}から
+ただ一つの
+complex regular Borel measure \(\mu\)があって, 
+\[
+T(\varphi)=\int_M \varphi\, d\mu \qquad \text{for } {}^{\forall}\varphi\in \mathcal{K}(M)
+\]
+となる. あとはSupprtが一致することを示せば良い. 
+
+まず, \(M\setminus \operatorname{Supp}\mu \subset M\setminus \operatorname{Supp}T \)を示す. 
+任意の \(\varphi\in \mathcal{K}(M\setminus \operatorname{Supp}\mu)\)
+\footnote{これは$\varphi\in \mathcal{K}(M\setminus \operatorname{Supp}\mu)$で$\Supp(\varphi) \subset M\setminus \operatorname{Supp}\mu$となるもの. これは外側を$=0$で定義すれば,$\varphi\in \mathcal{K}(M)$となる. }
+について
+\[
+T(\varphi)
+\underset{\mu\text{の性質}}{=}
+\int_M \varphi\, d\mu
+\underset{\Supp(\varphi) \subset M\setminus \operatorname{Supp}\mu}{=}
+\int_{M\setminus \operatorname{Supp}\mu}\varphi\, d\mu
+\underset{\mu|_{M\setminus \operatorname{Supp}\mu} =0 }{=}
+0
+\]
+以上より$M\setminus \operatorname{Supp}T \subset M\setminus \operatorname{Supp} \mu$
+
+次に\(M\setminus \operatorname{Supp}T \subset M\setminus \operatorname{Supp}\mu\)を示す. 
+任意の$\varphi\in \mathcal{K}(M\setminus \operatorname{Supp}T)$について, 
+\[
+0\underset{Supp T \text{の定義}}{=}T(\varphi)
+\underset{\mu\text{の性質}}{=}\int_M \varphi\, d\mu
+\underset{\Supp(\varphi) \subset M\setminus \operatorname{Supp}\mu}{=}
+\int_{M\setminus \operatorname{Supp}T}\varphi\, d\mu
+\]
+よって,$M\setminus \operatorname{Supp}T$について, 定理\ref{thm-M-4.2.13}の唯一性を使えば
+\(\mu|_{M\setminus \operatorname{Supp}T}=0\)となる. よって言えた. 
+
+(2). 
+まず \(T\) が order \(0\) を示す. 
+コンパクト集合\(A \subset M\)と, 
+ \(\chi \in \mathcal{D}(M)\) で
+$$
+\chi \geq 0 \quad \text{and} \quad 
+ \chi=1 \text{ on } A
+ $$
+ となるものをとる. 
+すると任意の \(\varphi \in \mathcal{D}_A(M)\)について, 
+もし \(\varphi\)が実数値ならば
+\[
+T(\underbrace{\|\varphi\|_0\chi \pm \varphi}_{\text{$\ge 0$なる関数}})
+\underset{T \text{positive} }{\geq} 0
+\]
+であるので, $T(\varphi)\in \mathbb{R}$かつ
+\[
+|T(\varphi)|\leq T(\|\varphi\|_0\chi)=\underbrace{T(\chi)}_{\ge 0}\|\varphi\|_0
+\]
+よって一般の\(\varphi \in \mathcal{D}_A(M)\)について, 
+\begin{align*}
+|T(\varphi)|
+=|T(\Re\varphi)+i\,T(\Im\varphi)|
+\leq T(\chi)\|\Re\varphi\|_0+T(\chi)\|\Im\varphi\|_0
+\leq 2T(\chi)\|\varphi\|_0
+\end{align*}
+これより \(T\) はorder \(0\)であり, 特に\(T \in \mathcal{K}'(M)\).
+
+
+\begin{tcolorbox}[mybox]
+\begin{claim}
+任意の\(\varphi\in \mathcal{K}(M)\)について,  \(\varphi\geq 0\) ならば, \(T(\varphi)\geq 0\)である. 
+\end{claim}
+\end{tcolorbox}
+もしこれが言えたら, 定理\ref{thm-M-4.2.12}より$\mu$の存在が言える(Suppの議論も同様)
+
+以下claimを証明する. 
+局所座標に関する1の分割を用いて \(M \subset \mathbb{R}^{m}\)かつ$ \mathbb{R}^{m}$の開集合であるとして良い. 
+ \(\{\chi_{\varepsilon}\}_{\varepsilon>0}\) をapproximate identityとする. 
+ つまり
+$\chi:\mathbb{R}^{m}\to \mathbb{R}$を$C^{\infty}$で
+$$\ 0\leq \chi\leq 1, 
+\quad \operatorname{supp}\chi\subset \overline{B_{1}(0)}, 
+\quad \int_{\mathbb{R}^{m}} \chi\, dm = 1, 
+\quad  \chi(x)=\chi(y)\ \text{if } ||x||\leq ||y||
+$$
+として, $\varepsilon > 0$について
+$$
+\chi_{\varepsilon}(x):=\dfrac{1}{\varepsilon^{m}}\chi\left(\dfrac{x}{\varepsilon}\right)\qquad x\in \mathbb{R}^{m}
+$$
+と定義する. 
+するとconvoluaitonは
+任意の\(\varphi\in \mathcal{K}(M)\)について, 
+\[
+(\varphi\ast\chi_{\varepsilon})(x):=\int_{\mathbb{R}^{m}}\varphi(y)\chi_{\varepsilon}(x-y)\,dm(y)
+\]
+と定義したのだった. 今
+\(
+\varphi\ast\chi_{\varepsilon}\in \mathcal{D}(\mathbb{R}^{m})
+\)
+かつ \(
+\operatorname{supp}(\varphi\ast\chi_{\varepsilon})\subset \operatorname{supp}\varphi+\operatorname{supp}\chi_{\varepsilon}
+\)
+である. 
+\(\operatorname{supp}\varphi\subset M\)であるので, 十分小さな \(0<\varepsilon\ll 1\)について, 
+ \[\operatorname{supp}(\varphi\ast\chi_{\varepsilon})\subset M\]
+ よって
+\(\varphi\ast\chi_{\varepsilon}\in \mathcal{D}(M)\)かつ
+\(\varphi\ast\chi_{\varepsilon}\xrightarrow[\varepsilon\to 0]{}\varphi\text{ in }\mathcal{K}(M)
+\)である. 
+また \(\varphi\geq 0\)の仮定から \(\varphi\ast\chi_{\varepsilon}\geq 0\).
+以上より
+\[
+T(\varphi)=T(\lim_{\varepsilon\to 0}\varphi\ast\chi_{\varepsilon})
+=\lim_{\varepsilon\to 0}T(\varphi\ast\chi_{\varepsilon})\geq 0
+\]
+
+\end{proof}
+
+\subsection{Positivity of forms}
+以下\(V\)を\(\mathbb{C}\)ベクトル空間,
+ \(\dim_{\mathbb{C}}V=n\)とする. \((\mathbb{C}=(\mathbb{C},i))\)
+\(V_{\mathbb{R}}=V\) を \(\mathbb{R}\subset \mathbb{C}\)によって,  \(\mathbb{R}\)ベクトル空間とみなしたものとする. \(\dim_{\mathbb{R}}V_{\mathbb{R}}=2n\)である. 
+
+\begin{tcolorbox}[mybox]
+簡単な例としては, $M$を$n$次元複素多様体, $x \in M$について
+\[
+V=T_{x}M \ \text{or}\ T_{x}^{*}M=\operatorname{Hom}_{\mathbb{R}}(T_{x}M,\mathbb{R})
+\]
+ほぼこれ以外は使わないと思って良い. 
+\end{tcolorbox}
+ \(J:V\to V;\ v\mapsto iv.\)を \(\mathbb{R}\text{線形写像}\)とする. 
+\[
+ J^{2}=-\mathrm{id}_{V}.
+\]
+である. 
+そこで, \(V_{\mathbb{C}}:=V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}\)とする. 
+これは\(\mathbb{C}\)ベクトル空間で \(\dim_{\mathbb{C}}V=2n\)である. 
+ \[
+J \otimes id_{\C}:V_{\mathbb{C}}\to V_{\mathbb{C}}
+\]
+とし, $\C$線形であり, これも$J : V_{\mathbb{C}}\to V_{\mathbb{C}}$とする. 
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.3.3}
+\[
+V^{1,0}=\ker(J-i\,\mathrm{id}),\qquad V^{0,1}=\ker(J+i\,\mathrm{id})
+\]
+を\(J\)の固有空間とする時, 
+\[
+V_{\mathbb{C}}=V^{1,0}\oplus V^{0,1}
+\]
+となる. 
+さらに
+\[
+V_{\mathbb{C}}=V^{1,0}\oplus V^{0,1},
+\qquad
+v\mapsto \frac{1}{2}(v-iJv)+\frac{1}{2}(v+iJv),
+\]
+で対応し, 
+\[
+\iota: V \hookrightarrow  V_{\mathbb{C}}\xrightarrow{\mathrm{pr}_{1}}V^{1,0}
+\quad 
+v\mapsto v\otimes 1\mapsto \frac{1}{2}(v\otimes 1-i\,v\otimes i)
+\]
+は\(\mathbb{C}\)線形同型である. 
+特に\(\dim_{\mathbb{C}}V^{1,0}=\dim_{\mathbb{C}}V^{0,1}=n.\)である. 
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+ Since \(J^{2}=-\mathrm{id}:V_{\mathbb{C}}\to V_{\mathbb{C}}\), \(J\)は対角化可能\footnote{$J$の最小多項式$x^2+1=(x + i)(x-i)$で最小多項式が重複しない一次因子の積に分解するので. (線型写像が対角化可能と同値条件)}
+であり, 固有値は高々\(\pm i\)である.
+そして
+\[
+ V_{\mathbb{C}}
+ =
+ \ker(J-i\,\mathrm{id})\oplus\ker(J+i\,\mathrm{id})
+ =
+ V^{1,0}\oplus V^{0,1}.
+\]
+となる. 
+
+任意の \(v\in V_{\mathbb{C}}\)について,  \(v=v_{1}+v_{2}\ \ \ v_{1}\in V^{1,0},\ v_{2}\in V^{0,1}\)とかく. 
+すると
+\[
+Jv + iv
+=(J+i\,\mathrm{id})(v)
+\underset{v_2 \in \ker(J+i\,\mathrm{id})}{=}(J+i\,\mathrm{id})(v_{1})
+=Jv_{1}+iv_{1}
+\underset{v_1 \in \ker(J-i\,\mathrm{id})}{=}
+iv_{1}+iv_{1}=2iv_{1}
+\]
+よって, $ v_{1}=\frac{1}{2i}(Jv+iv)=\frac{1}{2}(v-iJv)$を得る. 
+同様にして, 
+$
+v_{2}=v-v_{1}=\frac{1}{2}(v+iJv)
+$
+を得る. 
+
+これより
+\[
+\iota:V\hookrightarrow V_{\mathbb{C}}\xrightarrow{\mathrm{pr}_{1}}V^{1,0}
+\quad
+v\mapsto v\otimes 1\mapsto 
+\frac{1}{2}(v\otimes 1-iJ(v\otimes 1))
+=\frac{1}{2}(\underbrace{v\otimes 1}_{\in V_\R \times_{\R} \R \cdot 1}
+- \underbrace{(iv)\otimes i}_{\in V_\R \times_{\R} \R \cdot i})
+\]
+ここで
+$$
+iJ(v\otimes 1)
+\underset{\text{$J : V_\C \to V_\C$の定義}}{=} i \cdot (J \times id)(v\otimes 1)
+\underset{\text{$J : V \to V$の定義}}{=} i \cdot ( (iv) \otimes 1)
+\underset{\text{$V_\C$の$\C$スカラー倍の定義}}{=} (iv) \otimes i
+$$
+よって, $ \iota$は$\R$線形単射であることがわかる($\iota$の行き先を見る)
+特に
+$2n=\dim_{\mathbb{R}}V\leq \dim_{\mathbb{R}}V^{1,0}$である. 
+同様に, 
+$$V\hookrightarrow V_{\mathbb{C}}\xrightarrow{\mathrm{pr}_{2}}V^{0,1}
+\quad
+v\mapsto \frac{1}{2}(v\otimes 1+iJ(v\otimes 1)) = \frac{1}{2}(v\otimes 1+(iv)\otimes i)
+$$
+を考えれば, これは$\R$線形単射となり
+$2n=\dim_{\mathbb{R}}V\leq \dim_{\mathbb{R}}V^{0,1}$となる.
+
+以上より
+\(
+\dim_{\mathbb{R}}V^{1,0}+\dim_{\mathbb{R}}V^{0,1}
+=\dim_{\mathbb{R}}V_{\mathbb{C}}=4n,
+\)
+であることから, 
+\(
+\dim_{\mathbb{R}}V^{1,0}=\dim_{\mathbb{R}}V^{0,1}=2n
+\)
+であり, これから
+\[
+ \dim_{\mathbb{C}}V^{1,0}=\dim_{\mathbb{C}}V^{0,1}=n
+\quad
+\text{and}
+\quad
+\iota:  \mathbb{R}\text{線形同型}
+\]
+であることが言える. 
+ここで以下が可換である,
+\[
+\xymatrix{
+V \ar[r]^-{} \ar[d]_{J} & 
+V \ar[r]^-{} \ar[d]_{J \otimes id} & V^{1,0} \ar[d]^{i\text{倍}} \\
+V \ar[r]^-{} & V \ar[r]^-{} & V^{1,0}.
+}
+\]
+よって$\iota : V \to V^{1,0}$は\(\mathbb{C}\)線形同型である. 
+\end{proof}
+
+複素共役(complex conjugate)
+$$
+\overline{(\cdot)}:=id \otimes \overline{(\cdot)}
+: V_{\mathbb{C}}=V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}\to V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}
+$$
+と定義すると次が可換になる. 
+\[
+\xymatrix{
+V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C} \ar[r]^-{\overline{(\cdot)}} \ar[d]_{J\otimes \mathrm{id}} &
+V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C} \ar[d]^{J\otimes \mathrm{id}} \\
+V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C} \ar[r]^-{\overline{(\cdot)}} &
+V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}.
+}
+\]
+特に
+$\overline{V^{1,0}}=V^{0,1}$かつ, 
+\(
+\left\{v\in V_{\mathbb{C}}\mid v=\overline{v}\right\}=V_{\mathbb{R}}.
+\)が成り立つ. 
+
+すると任意の\(v\in V_{\mathbb{R}}\)について, $\alpha \in V^{1, 0}$があって, 
+\[
+V_{\mathbb{R}}\hookrightarrow V_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}
+=V^{1,0}\oplus V^{0,1}
+\quad \text{s.t.} \quad 
+v\mapsto v\otimes 1=\alpha+\overline{\alpha}
+\quad 
+Jv\mapsto J(v\otimes 1)=i\alpha-i\overline{\alpha}.
+\]
+となる. 
+\begin{proof}
+$ v\otimes 1=\alpha+\beta,\ \alpha\in V^{1,0},\ \beta\in V^{0,1}$
+とすると
+$$
+\alpha+\beta=
+ v\otimes 1
+ \underset{v \in V_\R}{=}
+\overline{v\otimes 1}=\overline{\alpha}+\overline{\beta} \
+$$
+が成り立つ. $\overline{\alpha}\in V^{0,1},\ \overline{\beta}\in V^{1,0}$なので ,$\beta=\overline{\alpha}$となる.
+\end{proof}
+
+双対(Dual)
+\[
+V^{*}:=\operatorname{Hom}_{\mathbb{R}}(V_{\mathbb{R}},\mathbb{R})
+\]
+と定義し, $\C$線型空間の構造を
+\[
+(af)(v):=f(\underbrace{av}_{\text{$V$が$\C$線型}})
+\qquad
+a\in \mathbb{C},\ f\in V^{*},\ v\in V_{\mathbb{R}}
+\]
+として定義する. 
+
+$V$の$\C$基底を\(v_{1},\ldots,v_{n}\)とすると, 
+$\R$基底は
+\(v_{1},Jv_{1},\ldots,v_{n},Jv_{n}\)
+となる. 
+よって
+$V^{*}$の$\R$基底は双対基底を用いて
+\[v_{1}^{\vee},(Jv_{1})^{\vee},\ldots,v_{n}^{\vee},(Jv_{n})^{\vee}\]
+となる. 
+この時
+\[
+(Jv_{j})^{\vee}=-J(v_{j}^{\vee})
+\]
+が成り立つ.
+\begin{proof}
+$v_{k}, Jv_{k}$を代入して示す.
+\[
+ (-J(v_{j}^{\vee}))(v_{k})
+ \underset{\text{$V^{*}$の$\C$倍の定義}}{=}
+ v_{j}^{\vee}(-iv_{k})
+  \underset{\text{$J : V \to V$の定義}}{=}
+  v_{j}^{\vee}(-Jv_{k})
+  \underset{\text{$\R$基底}}{=}0
+\]
+\[
+(-J(v_{j}^{\vee}))(Jv_{k})
+ \underset{\text{$V^{*}$の$\C$倍の定義}}{=}
+ v_{j}^{\vee}(v_{k})
+  \underset{\text{$\R$基底}}{=}
+\begin{cases}
+1 & j=k\\
+0 & j\ne k
+\end{cases}
+\]
+
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.3.3}
+\((v_{1},\cdots,v_{n}), (w_{1},\cdots,w_{n})\)を
+$V$の\(\mathbb{C}\)基底とする. 
+
+\[
+(v_{1}\cdots v_{n})=(w_{1}\cdots w_{n})A \qquad A\in GL_{n}(\mathbb{C})
+\]
+となるならば, ある \(B\in GL_{2n}(\mathbb{R})\) で\( \det B=|\det A|^{2}\ (>0)\)かつ
+\[
+(v_{1}\ Jv_{1}\ \cdots\ v_{n}\ Jv_{n})=(w_{1}\ Jw_{1}\ \cdots\ w_{n}\ Jw_{n})B
+\]
+となるものが存在する. 
+\end{lem}
+\end{tcolorbox}
+これは複素多様体が向き付け可能の証明と同じである. 
+\begin{proof}
+\(
+A=A_{0}+iA_{1} \qquad A_{0},A_{1}\in M_{n}(\mathbb{R})
+\)とする. 
+すると
+\begin{itemize}
+\item $ (v_{1}\cdots v_{n})=(w_{1}\cdots w_{n})A_{0}+(Jw_{1}\cdots Jw_{n})A_{1}$
+\item $(Jv_{1}\cdots Jv_{n})
+=(iw_{1}\cdots iw_{n})(A_{0}+iA_{1})
+=(Jw_{1}\cdots Jw_{n})A_{0}-(w_{1}\cdots w_{n})A_{1}$
+\end{itemize}
+であるので, 
+\[
+(v_{1}\cdots v_{n}\ Jv_{1}\cdots Jv_{n})
+=
+(w_{1}\cdots w_{n}\ Jw_{1}\cdots Jw_{n})
+\begin{pmatrix}
+A_{0} & -A_{1} \\
+A_{1} & A_{0}
+\end{pmatrix}
+\]
+となる. そこで$P$を
+\[
+(v_{1}\ Jv_{1}\ \cdots\ v_{n}\ Jv_{n})=(v_{1}\cdots v_{n}\ Jv_{1}\cdots Jv_{n})P,
+\]
+となるようにとれば,
+
+\begin{align*}
+(v_{1}\ Jv_{1}\ \cdots\ v_{n}\ Jv_{n})
+&=(v_{1}\cdots v_{n}\ Jv_{1}\cdots Jv_{n})P
+\\
+&=(w_{1}\ \cdots\ w_{n}\ Jw_{1}\ \cdots\ Jw_{n})
+\begin{pmatrix}
+A_{0} & -A_{1}\\
+A_{1} & A_{0}
+\end{pmatrix}
+P
+\\
+&=(w_{1}\ \cdots\ w_{n}\ Jw_{1}\ \cdots\ Jw_{n})P
+\underbrace{
+P^{-1}
+\begin{pmatrix}
+A_{0} & -A_{1}\\
+A_{1} & A_{0}
+\end{pmatrix}
+P
+}_{=:B}
+\\
+&=(w_{1}\ Jw_{1}\ \cdots\ w_{n}\ Jw_{n})B
+\end{align*}
+また$B\in GL_{2n}(\mathbb{R})$は明らかである. 
+$\det$を行基本変形を用いて計算すると
+\begin{align*}
+\det B&=\det
+\begin{pmatrix}
+A_{0} & -A_{1}\\
+A_{1} & A_{0}
+\end{pmatrix}
+=\det
+\begin{pmatrix}
+A_{0}-iA_{1} & -A_{1}\\
+A_{1}+iA_{0} & A_{0}
+\end{pmatrix}
+=\det
+\begin{pmatrix}
+A_{0}-iA_{1} & -A_{1}\\
+0 & A_{0}+iA_{1}
+\end{pmatrix}
+\\
+&=\det(A_{0}-iA_{1})\det(A_{0}+iA_{1})
+=\overline{\det A}\det A=|\det A|^{2}
+\end{align*}
+\end{proof}
+特に$V$の$\C$基底$v_{1},\cdots,v_{n}$について, 
+$V_{\mathbb{R}}$の基底$v_{1},Jv_{1},\cdots,v_{n},Jv_{n}$は$V$と同じorientationを与える. 
+
 
 \end{document}
