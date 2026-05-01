@@ -1138,9 +1138,9 @@ U_\lambda \cap N = \bigl( z_\lambda^{k+1}=\cdots=z_\lambda^n=0 \bigr).
 \subsection{複素共役}
 
 複素共役
-\( (\Lambda^k T^*M) \otimes_{\mathbb{R}} \mathbb{C}
+\( (\wedge^k T^*M) \otimes_{\mathbb{R}} \mathbb{C}
 \overset{\text{id}\otimes(-)}{\longrightarrow}
-(\Lambda^k T^*M)\otimes_{\mathbb{R}} \mathbb{C} \)
+(\wedge^k T^*M)\otimes_{\mathbb{R}} \mathbb{C} \)
 によって, \( \mathcal{E}^k, \mathcal{E}^{p,q}, \mathcal{D}'(M), \mathcal{K}^k(M) \)に複素共役を誘導する. 
 
 \begin{tcolorbox}[mybox]
@@ -1840,7 +1840,7 @@ v\mapsto \frac{1}{2}(v-iJv)+\frac{1}{2}(v+iJv),
 \[
 \iota: V \hookrightarrow  V_{\mathbb{C}}\xrightarrow{\mathrm{pr}_{1}}V^{1,0}
 \quad 
-v\mapsto v\otimes 1\mapsto \frac{1}{2}(v\otimes 1-i\,v\otimes i)
+v\mapsto v\otimes 1\mapsto \frac{1}{2}(v\otimes 1-(iv)\otimes i)
 \]
 は\(\mathbb{C}\)線形同型である. 
 特に\(\dim_{\mathbb{C}}V^{1,0}=\dim_{\mathbb{C}}V^{0,1}=n.\)である. 
@@ -2116,6 +2116,637 @@ A_{0}-iA_{1} & -A_{1}\\
 \end{proof}
 特に$V$の$\C$基底$v_{1},\cdots,v_{n}$について, 
 $V_{\mathbb{R}}$の基底$v_{1},Jv_{1},\cdots,v_{n},Jv_{n}$は$V$と同じorientationを与える. 
+
+
+
+$M$ complex manifold, $\dim_\C M =n, p \in M$とする.
+${T}_{p} M, {T}_{p} ^{*}M$ を$p$での実多様体とみたtangent/cotangent spaceとする.
+${T}_{p} ^{*}M:=\mathrm{Hom}_\R ({T}_{p}M, \R)$
+
+${T}_{p}M$に次の$\C$ベクトル空間の構造を次で入れる. 
+$$
+\varphi : p \in U \overset{\sim}{\to} V \subset \C^n \quad 
+z^{1}=x^1 +iy^1, \ldots, z^n=x^n +iy^n
+$$
+を$p$の正則座標とする.
+この時
+$$
+{T}_{p} M:= \oplus_{j=1}^{n}\left( \R \frac{\partial}{\partial x^j} \oplus  \R \frac{\partial}{\partial y^j} \right)
+\quad 
+\C \to \mathrm{End}_{\R}(T_p M)
+\quad i \mapsto J : \left( \frac{\partial}{\partial x^j} \mapsto \frac{\partial}{\partial y^j}, \frac{\partial}{\partial y^j} \mapsto -\frac{\partial}{\partial x^j}\right)
+$$
+これは$p$の座標近傍の取り方によらない
+\begin{proof}
+$\psi : p \in U' \overset{\sim}{\to} V' \subset \C^n $を別の正則座標とする.
+座標を$w^1=\xi^1+ i \eta^1, \ldots, w^n=\xi^n+ i \eta^n$とする.
+$$
+\psi(U \cap U') \to U \cap U' \to \varphi(U\cap U')
+\quad 
+(\xi^1,  \eta^1, \ldots, \xi^n, \eta^n) \mapsto (u^1(\xi, \eta), v^1(\xi, \eta), \ldots, u^n(\xi, \eta), v^n(\xi, \eta))
+$$
+とすると
+
+% [page 1]
+\begin{align*}
+\bigoplus_{j=1}^{n}\mathbb{R}\frac{\partial}{\partial \xi^j}
+\oplus \mathbb{R}\frac{\partial}{\partial \eta^j}
+=
+T_p M
+=
+\bigoplus_{j=1}^{n}\mathbb{R}\frac{\partial}{\partial x^j}
+\oplus \mathbb{R}\frac{\partial}{\partial y^j}.
+\\
+\end{align*}
+であり, $i$倍を計算すると
+\begin{align*}
+i\frac{\partial}{\partial \xi^j}
+&\underset{\text{定義}}{=}
+i\sum_{k=1}^{n}
+\left(
+\frac{\partial u^k}{\partial \xi^j}\frac{\partial}{\partial x^k}
++
+\frac{\partial v^k}{\partial \xi^j}\frac{\partial}{\partial y^k}
+\right)
+=
+\sum_{k=1}^{n}
+\left(
+\frac{\partial u^k}{\partial \xi^j}\frac{\partial}{\partial y^k}
+-
+\frac{\partial v^k}{\partial \xi^j}\frac{\partial}{\partial x^k}
+\right)
+\\
+&
+\underset{\mathrm{CR}\text{方程式}}{=}
+\sum_{k=1}^{n}
+\left(
+\frac{\partial v^k}{\partial \eta^j}\frac{\partial}{\partial y^k}
++
+\frac{\partial u^k}{\partial \eta^j}\frac{\partial}{\partial x^k}
+\right)
+=
+\frac{\partial}{\partial \eta^j}
+\end{align*}
+
+$
+i\frac{\partial}{\partial \eta^j}
+=
+-\frac{\partial}{\partial \xi^j}
+$
+も同様である. 
+\end{proof}
+
+
+$T_p^*M=\mathrm{Hom}_{\mathbb{R}}(T_pm,\mathbb{R})$ には $T_pM$の \(\mathbb{C}\)ベクトル空間の構造を用いて
+を用いて \(\mathbb{C}\) ベクトル空間の構造 を入れる.
+\(z^1=x^1+i y^1,\ldots,z^n=x^n+i y^n\) が \(p\) 周りの 正則座標
+の時
+\[
+i\,dx^j=-dy^j,
+\qquad
+i\,dy^j=dx^j.
+\]
+である. 
+以降
+$T_pM,T_p^*M$への \(i\) の作用は \(J\) であらわす.
+
+\ref{lem-M-4.3.3}を$V={T}_{p}^{*}M$に使うと
+\[
+\iota: {T}_{p}^{*}M \hookrightarrow  {T}_{p}^{*}M\otimes_\R \mathbb{C}
+=  \overbrace{{{T}_{p}^{*}}^{1,0}M \oplus   {{T}_{p}^{*}}^{0, 1}M}^{\text{$J$の固有値分解}}
+%\quad v\mapsto v\otimes 1\mapsto \frac{1}{2}(v\otimes 1-(iv)\otimes i)
+\]
+
+\[
+dx^j \longmapsto dx^j\otimes 1
+=
+\frac{1}{2}(dx^j\otimes 1+dy^j\otimes i)
++
+\frac{1}{2}(dx^j\otimes 1-dy^j\otimes i)
+=
+\frac{1}{2}dz^j+\frac{1}{2}d\bar{z}^j
+\]
+
+\[
+dy^j \longmapsto dy^j\otimes 1
+=
+\frac{1}{2}(dy^j\otimes 1-dx^j\otimes i)
++
+\frac{1}{2}(dy^j\otimes 1+dx^j\otimes i)
+%=
+%\frac{1}{2i}(dx^j\otimes 1+dy^j\otimes i)
+%-
+%\frac{1}{2i}(dx^j\otimes 1-dy^j\otimes i)
+%=
+\frac{1}{2i}dz^j-\frac{1}{2i}d\bar{z}^j.
+\]
+
+ここで
+$v_1,\ldots,v_n \in V$が$\mathbb{C}$基底ならば, 
+$v_1,Jv_1,\ldots,v_n,Jv_n$は$V_{\mathbb{R}}$の向きとを定義し, 
+\(
+v_1,-Jv_1,\ldots,v_n,-Jv_n\)も同じ向きを定める.
+
+
+これを\(T_p^*M\) の基底
+\(
+dx^1,\ldots,dx^n\)に適応すると
+
+\[
+dx^1,\underbrace{-Jdx^1}_{=dy^1},\ldots,
+dx^n,\underbrace{-Jdx^n}_{=dy^n}
+\]
+は正則座標によって \(T_p^*M\) の向きを定める.
+
+
+\(
+f:M\longrightarrow N
+\)を複素多様体間の正則写像
+とすると, 任意の$p \in M$について
+\(
+df_p:T_pM\longrightarrow T_{f(p)}N
+\)
+は$\C$線形である($\C$ベクトル構造のwell-definednessと同様.)
+
+以下 \(V:\ n\)-dim \(\mathbb{C}\) ベクトル空間, \(V^*=\mathrm{Hom}_{\mathbb{R}}(V,\mathbb{R})\)に自然な$\C$ベクトル空間の構造を入れる. 
+($V=T_pM$, $V^*=T_p^*M$を想定している.)
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.4.1}
+$\alpha_1, \ldots, \alpha_n \in {V^{*}}^{1,0}$, $\beta_1, \ldots, \beta_n \in {V^{*}}^{1,0}$
+を$\C$基底とする. 
+この時$\wedge_{\C}^{2n}{V^{*}}^{1,0}$の元として, 
+$i \alpha_1 \wedge \overline{\alpha_1} \wedge \cdots \wedge i \alpha_n\wedge \overline{\alpha_n}$と$i \beta_1 \wedge \overline{\beta_1} \wedge \cdots \wedge i \beta_n\wedge \overline{\beta_n}$は互いに他の$\R_{>0}$倍である. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$v_1 := \alpha_1 + \overline{\alpha_1}$とおくと, 
+$\overline{v_1}=v_1$なので$v_1 \in V^{*}$
+また
+$$
+Jv_1=J\alpha_1 + J\overline{\alpha_1}\underset{\text{$J$の定義}}{=}
+i\alpha_1 - i \overline{\alpha_1}
+$$
+
+以上より
+\begin{align*}
+i \alpha_1 \wedge \overline{\alpha_1}
+=
+i \cdot \frac{1}{2}(v_1 - i J v_1) 
+\wedge \frac{i}{2}(v_1 + i J v_1) 
+=
+-\frac{1}{2}(v_1\wedge J v_1)
+=
+\frac{1}{2}v_1\wedge (-J v_1)
+\end{align*}
+よって$v_j = \alpha_j + \overline{\alpha_j}$とおくと
+$$
+i \alpha_1 \wedge \overline{\alpha_1} \wedge \cdots \wedge i \alpha_n\wedge \overline{\alpha_n}
+= \frac{1}{2^n}
+v_1\wedge (-J v_1) 
+\wedge \cdots \wedge
+v_n\wedge (-J v_n) 
+$$
+ここで$\alpha_1, \overline{\alpha_1}\ldots, \alpha_n, \overline{\alpha_n}$は$V_\C^{*}$の$\C$basisである. ($V_\C^{*}=V^{0,1}\oplus V^{1,0}$で互いに複素共役で映る)
+よって
+\(v_1,\ldots,v_n\)は($V^*$の元々の$\C$ベクトル空間の構造について)$V^*$の$ \mathbb{C}$基底となる.
+よって
+\[
+v_1\wedge(-Jv_1)\wedge\cdots\wedge v_n\wedge(-Jv_n)\ne 0.
+\]
+である. 
+同様に$w_i = \beta_i + \overline{\beta_i}$とおけば
+\(w_1,\ldots,w_n\)は$V^*$の$\mathbb{C}$基底なので, 
+補題\ref{lem-M-4.3.3}より, ある実数$a > 0$があって
+\[
+v_1\wedge(-Jv_1)\wedge\cdots\wedge v_n\wedge(-Jv_n)
+=
+aw_1\wedge(-Jw_1)\wedge\cdots\wedge w_n\wedge(-Jw_n)
+\]
+となる. 
+\end{proof}
+
+\begin{rem}
+\(
+\wedge_{\mathbb{C}}^{2n}V_{\mathbb{C}}^*
+=
+\wedge_{\mathbb{C}}^{2n}(V^*\otimes_{\mathbb{R}}\mathbb{C})
+=
+(\wedge_{\mathbb{R}}^{2n}V^*)\otimes_{\mathbb{R}}\mathbb{C}
+\supset \wedge_{\mathbb{R}}^{2n}V^*
+\)
+である. 
+ここで
+\(
+\wedge_{\mathbb{R}}^{2n}V^*
+=
+\left\{
+\omega\in\wedge_{\mathbb{C}}^{2n}V_{\mathbb{C}}^*
+\mid
+\omega=\overline{\omega}
+\right\}
+\)
+である.
+
+以上より\ref{lem-M-4.4.1}での
+\(
+\omega
+=
+i\alpha_1\wedge\bar{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\bar{\alpha}_n
+\)
+については
+\(\overline{\omega}=\omega\)であるので, 
+\(
+\wedge_{\mathbb{R}}^{2n}V^*=\mathbb{R}\omega.
+\)
+となる. これは
+$\omega$が$\wedge_{\mathbb{R}}^{2n}V^*(\simeq\mathbb{R})$の向きを定めることを意味する.
+
+\end{rem}
+
+
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-4.4.2}
+$\omega \in \wedge^{2n}_\C V_{\C}^{*}$がpositiveであるとは, $\omega=0$または, 
+任意の(ある)$\C$基底$\alpha_1, \ldots, \alpha_n \in {V^{*}}^{1,0}$があって
+$$
+\omega \in  \R_{\ge 0} i \alpha_1 \wedge \overline{\alpha_1} \wedge \cdots \wedge i \alpha_n\wedge \overline{\alpha_n}
+$$
+\end{defn}
+\end{tcolorbox}
+$\omega=0$もpositiveであることに注意する. 
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-4.4.3}
+\(k\ge 0.\)とし, 
+
+\[
+\wedge_{\mathbb{C}}^k V_{\mathbb{C}}^*
+=
+\bigoplus_{\substack{p+q=k\\ p,q\ge 0}}
+\wedge^{p,q}V^*
+\]
+とする. ここで, 
+\[
+\wedge^{p,q}V^*
+=
+\wedge_{\mathbb{C}}^p V^{*1,0}
+\otimes_{\mathbb{C}}
+\wedge_{\mathbb{C}}^q V^{*0,1}
+=
+\bigoplus_{\substack{1\le i_1<\cdots<i_p\le n\\
+1\le j_1<\cdots<j_q\le n}}
+\mathbb{C}\,
+v_{i_1}\wedge\cdots\wedge v_{i_p}
+\wedge w_{j_1}\wedge\cdots\wedge w_{j_q}
+\]
+とする. 
+ \(v_1,\ldots,v_n\) は \(V^{*1,0}\)の\(\mathbb{C}\)基底, 
+$w_1,\ldots,w_n$は$V^{*0,1}$の\(\mathbb{C}\)基底とする. 
+
+\(\wedge^{p,q}V^*\)の元を\((p,q)\)-formまたはtype \((p,q)\)という. 
+\end{defn}
+\end{tcolorbox}
+
+複素共役
+ $\overline{(\bullet)}:
+ \wedge_{\mathbb{C}}^k V_{\mathbb{C}}^*\to \wedge_{\mathbb{C}}^k V_{\mathbb{C}}^*
+ $が$\wedge_{\mathbb{C}}^k V_{\mathbb{C}}^*
+=
+(\wedge_{\mathbb{R}}^k V^*)\otimes_{\mathbb{R}}\mathbb{C}
+$によって誘導される.
+この時
+\[
+\overline{\wedge^{p,q}V^*}
+=
+\wedge^{q,p}V^*.
+\]
+となる. 
+($\overline{v_{i_1}\wedge\cdots\wedge v_{i_k}}=\overline{v_{i_1}}\wedge\cdots\wedge \overline{v_{i_k}}$なので)
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+$\omega \in \wedge_{\mathbb{C}}^k V_{\mathbb{C}}^*$について, 
+$\omega=\overline{\omega}$ (つまり$\omega \in \wedge_{\mathbb{R}}^k V^*$)である時, 
+$\omega$をreal formという. 
+\end{defn}
+\end{tcolorbox}
+
+複素多様体$M$の上のPositive $2n$-form　とは
+$z^1=x^1+ iy^1, \ldots, z^n=x^n + y^n$を$p$周りの座標として
+% [page 1]
+\[
+T_p^*M
+\longrightarrow
+(T_p^*M)\otimes_{\mathbb{R}}\mathbb{C}
+=
+T_p^{*1,0}M\oplus T_p^{*0,1}M
+\]
+\[
+dx^j
+\longmapsto
+\frac{1}{2}dz^j+\frac{1}{2}d\bar{z}^j
+\quad
+dy^j
+\longmapsto
+\frac{1}{2i}dz^j-\frac{1}{2i}d\bar{z}^j.
+\]
+であるので, $dz^1, \ldots, dz^n$は$T_p^*M$の$\C$基底である.
+
+$$
+\tau(z):=i dz^1 \wedge \overline{dz^1} \wedge \cdots \wedge i dz^n\wedge \overline{dz^n} 
+$$
+はpositive であり, 
+\begin{align*}
+\tau(z)
+&:=i dz^1 \wedge \overline{dz^1} \wedge \cdots \wedge i dz^n\wedge \overline{dz^n}
+\\
+&=i^n (-1)^{1 + 2 + + \cdots + (n-1)}
+dz^1 \wedge \cdots \wedge dz^n\wedge   \overline{dz^1} \wedge \cdots \wedge \overline{dz^n}
+\\
+&=i^{n^2}dz^1 \wedge \cdots \wedge dz^n  \wedge \overline{dz^1} \wedge \cdots \wedge \overline{dz^n}
+\\
+\end{align*}
+
+
+また
+\(
+i\,dz^j\wedge d\bar{z}^j
+=
+i(dx^j+i\,dy^j)\wedge(dx^j-i\,dy^j)
+=
+2\,dx^j\wedge dy^j.
+\)
+を用いれば
+\[
+\tau(z)
+=
+2^n dx^1\wedge dy^1\wedge\cdots\wedge dx^n\wedge dy^n.
+\]
+となる. 
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-4.4.4}[Strongly positive cone]
+Strongly positive cone $\wedge_{sp}^{p,p}V^{*} \subset \subset 
+\wedge^{p,p}V^{*}$を次のように定義する.
+$p=0$のとき
+$$
+\wedge^{0,0}V^{*}=\C \supset \R_{\ge 0}=:\wedge_{sp}^{0,0}V^{*}
+$$
+$p \ge 1$のとき
+$$
+\wedge_{sp}^{0,0}V^{*}
+:= \left\{ \sum_{k=1}^{r} c_k \omega_k \mid \text{$r \ge 0, c_k \ge 0,$ }
+\omega_k= i \alpha_1 \wedge \overline{\alpha_1} \wedge \cdots \wedge i \alpha_k\wedge \overline{\alpha_k} \text{ $\exists \alpha_1, \ldots, \alpha_p \in {V^{*}}^{1,0} $ }
+\right\}
+$$
+ $\wedge_{sp}^{p,p}V^{*}$の元をStrongly positive formという. 
+\end{defn}
+\end{tcolorbox}
+後に $\wedge_{sp}^{p,p}V^{*}$はclosed convex coneでlineを含まないことを示す. 
+
+
+Pairing \(p+q=n,\ p,q\ge 0\) とする.
+
+\[
+\xymatrix@C=28pt@R=22pt{
+\wedge^{p,p}V^* \times \wedge^{q,q}V^*
+  \ar@{^{(}->}[r]
+  \ar[dr]
+&
+\wedge_{\mathbb C}^{2p}V_{\mathbb C}^* \times \wedge_{\mathbb C}^{2q}V_{\mathbb C}^*
+  \ar[d]^-{\ (\omega,\eta)\mapsto \omega\wedge\eta\ }
+  %\ar[dr]^-{(\omega,\eta)}
+\\
+&
+\wedge_{\mathbb C}^{2n}V_{\mathbb C}^*
+  \\ 
+  & 
+  \wedge_{\mathbb R}^{2n}V^*
+  =
+  \mathbb R\!\left(
+    i\alpha_1\wedge\bar{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\bar{\alpha}_n
+  \right)
+    \ar@{^{(}->}[u]
+%&\omega\wedge\eta
+}
+\]
+ここで$\alpha_1,\ldots,\alpha_n\in V^{*1,0}$とする. 
+次が成り立つ
+\[\omega\in \wedge_{\mathbb{C}}^{2p}V_{\mathbb{C}}^*,\ \eta\in \wedge_{\mathbb{C}}^{2q}V_{\mathbb{C}}^*,\ \omega\wedge\eta=\eta\wedge\omega.\]
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}[positive cone]
+\label{defn-M-4.4.5}
+ \(p\ge 0.\ \omega\in \wedge^{p,p}V^*\) について, 
+ \[\omega \text{ positive }\Longleftrightarrow\forall \eta\in \wedge_{sp}^{n-p,n-p}V^*,\omega\wedge\eta \text{ positive } 2n\text{-form}\]
+ として定義する. 
+ 
+$$
+\wedge_{pos}^{p,p}V^{*}:= \{ \omega \in \wedge^{p,p}V^{*} \mid \text{$\omega$ positive}\}\subset 
+\wedge^{p,p}V^{*}
+$$
+をpositive coneという.
+\end{defn}
+\end{tcolorbox}
+ $p=n$のときに, Definition \ref{defn-M-4.4.5}の意味でのpositive と, 
+Definition \ref{defn-M-4.4.2}での positiveは一致する.
+ 
+ \begin{rem}
+ $p=0, n$の時はstrongly positive = positive 
+ 理由は以下の通り, 
+\[
+\omega\in \wedge^{0,0}V^* \cong \mathbb{C}
+\text{ strongly positive }
+\Longleftrightarrow
+\omega\in \mathbb{R}_{\ge 0}
+\Longleftrightarrow
+\omega\in \wedge^{0,0}V^* \cong \mathbb{C}
+\text{  positive }
+\]
+
+\begin{align*}
+\omega\in \wedge^{n,n}V^*
+\text{ strongly positive}
+&\Longleftrightarrow
+\omega\in \mathbb{R}_{\ge 0}\,
+i\alpha_1\wedge\bar{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\bar{\alpha}_n
+&\Longleftrightarrow
+\omega\in \wedge^{n,n}V^* \text{  positive }
+\end{align*}
+ $p=1, n-1$でも一致することをあとで示す. 一般には一致しない. 
+ \end{rem}
+
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.4.6}
+ \(0\le p\le n\). \(\omega\in \wedge^{p,p}V^*\)について
+strongly positiveならば positive.
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+
+\(\omega=i\alpha_1\wedge \bar{\alpha}_1\wedge \cdots \wedge i\alpha_p\wedge \bar{\alpha}_p\)として良い. ($\alpha_1,\cdots,\alpha_p\in V^{*1,0}$である)
+この時任意の \(\beta_1,\cdots,\beta_{n-p}\in V^{*1,0}\)について
+ \[
+ \omega\wedge i\beta_1\wedge \overline{\beta}_1\wedge \cdots \wedge i\beta_{n-p}\wedge \overline{\beta}_{n-p} \quad \text{  positive }
+\]
+を示せば良い. 
+\(n-p=q\)として
+\begin{align*}
+\omega\wedge i\beta_1\wedge \overline{\beta}_1\wedge \cdots \wedge i\beta_q\wedge \overline{\beta}_q
+&= i\alpha_1\wedge \overline{\alpha}_1\wedge \cdots \wedge i\alpha_p\wedge \overline{\alpha}_p
+\wedge i\beta_1\wedge \overline{\beta}_1\wedge \cdots \wedge i\beta_q\wedge \overline{\beta}_q.
+\end{align*}
+これは \(\alpha_1,\cdots,\alpha_p,\beta_1,\cdots,\beta_q\in V^{*1,0}\) なので Definition \ref{defn-M-4.4.2}の定義からpositive.
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.4.7}
+\(\alpha_1,\cdots,\alpha_n\in V^{*1,0}\) \(\mathbb{C}\)-basis
+とするとき, 
+\(\wedge^{p,p}V^* \)は
+\[
+i\beta_1\wedge \overline{\beta}_1\wedge \cdots \wedge i\beta_p\wedge \overline{\beta}_p
+\]
+という形の$\C$基底で, 各\(\beta_j\)は
+ \[\alpha_j\pm \alpha_k,\ \alpha_j\pm i\alpha_k\qquad 1\le j,k\le n.\]
+という形になるものを持つ.
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+\begin{align*}
+&(\alpha_j+\alpha_k)\wedge \overline{(\alpha_j+\alpha_k)}
+-
+(\alpha_j-\alpha_k)\wedge \overline{(\alpha_j-\alpha_k)}
++ i(\alpha_j+i\alpha_k)\wedge \overline{(\alpha_j+i\alpha_k)}
+- i(\alpha_j-i\alpha_k)\wedge \overline{(\alpha_j-i\alpha_k)}
+\\
+&= 4\alpha_j\wedge \overline{\alpha}_k.
+\end{align*}
+である. 
+$p=1$の時は\(\wedge^{1,1}V^* \)は$\alpha_j\wedge \overline{\alpha}_k$の$\C$線型結合で貼られるので, 上の式から$\alpha_j\pm \alpha_k,\ \alpha_j\pm i\alpha_k$の$\C$線型結合で貼られる. よってこの中から基底\(\beta_j\)を選べば良い. $p \ge 2$の時も同様.
+\end{proof}
+
+
+\begin{rem}
+strongly posisitve formは real formである. 
+$
+(\wedge^{p,p}V^*)_{\R}:=(\wedge^{p,p}V^*)\cap \wedge_{\mathbb{R}}^{2p}V^*
+$はstrongly positive formで$\R$上で生成される.
+また
+\((\wedge^{p,p}V^*)_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}
+=
+\wedge^{p,p}V^*\)である. 
+
+補題\ref{lem-M-4.4.7}から
+\[
+(\wedge^{p,p}V^*)_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}
+\twoheadrightarrow
+\wedge^{p,p}V^*.
+\]
+である. よって, 
+
+\[
+\xymatrix@C=32pt@R=18pt{
+(\wedge^{p,p}V^*)_{\mathbb{R}}\otimes_{\mathbb{R}}\mathbb{C}
+\ar@{^{(}->}[r]
+\ar@/_2pc/[dr]^{\mathrm{inj}}
+&
+(\wedge_{\mathbb{R}}^{2p}V^*)\otimes_{\mathbb{R}}\mathbb{C}
+=
+\wedge_{\mathbb{C}}^{2p}V_{\mathbb{C}}^*
+\\
+&
+\wedge^{p,p}V^*
+    \ar@{^{(}->}[u]
+}
+\]
+
+\end{rem}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-4.4.8}
+\(\omega\in \wedge^{p,p}V^*\)がpositive ならば, real form.
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+ \(q=n-p\) とする. 
+ 定義から任意の\( \eta\in \wedge_{sp}^{q,q}V^*\)について, \(\omega\wedge\eta\)がpositiveである. 
+ここで\ref{defn-M-4.4.2}から明らかに任意のpositive\(2n\)-form はrealなので, 
+
+\[
+\omega\wedge\eta
+\underset{\text{$2n$formはreal}}{=}
+\overline{\omega\wedge\eta}
+\underset{}{=}
+\overline{\omega}\wedge\overline{\eta}
+\underset{\text{strongly positive formはreal}}{=}
+\overline{\omega}\wedge\\wedge\eta.
+\]
+以上より
+任意の$\eta\in \wedge_{sp}^{q,q}V^*$について
+\((\omega-\bar{\omega})\wedge \eta = 0
+\)
+である. ここで
+\[
+\wedge^{p,p}V^* \times \wedge^{q,q}V^*
+\subset
+\wedge_{\mathbb{C}}^{2p}V_{\mathbb{C}}^* \times \wedge_{\mathbb{C}}^{2q}V_{\mathbb{C}}^*
+\to
+\wedge_{\mathbb{C}}^{2n}V_{\mathbb{C}}^* \simeq \mathbb{C}
+\]
+はperfect pairingであるので, 
+\(
+\omega-\bar{\omega}=0
+\)
+を得る. 
+\end{proof}
+
+\begin{rem}
+\cite{NO}におけるpositivity の定義は
+
+
+\[
+\omega \text{ positive in the sence of \cite{NO}}
+\Longleftrightarrow
+\omega\wedge i^{(n-p)^2}\eta\wedge \bar{\eta}
+ \text{ positive }
+\forall \eta\in \wedge^{n-p,0}V^*,
+\]
+\end{rem}
+である. この時
+
+\[
+\text{strongly positive }
+\Rightarrow
+\text{positive in the sense of  \cite{NO}}
+\Rightarrow
+\text{positive }
+\]
+が成り立つ.
+ただ, このpositiveの定義はあまり使われないと思われるので, \cite{Dem}に則った定義を使う. 
 
 
 \end{document}
