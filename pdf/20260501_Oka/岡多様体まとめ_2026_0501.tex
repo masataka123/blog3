@@ -1,0 +1,1149 @@
+%\documentclass[dvipdfmx,a4paper,12pt]{amsart}
+\documentclass[dvipdfmx,a4paper,11pt]{article} %titleとe-mailをコメントアウトする．
+
+
+%%% Packages %%%
+\setlength{\lineskip}{0pt}
+
+% --- 和文フォント設定 (ゴシックを使うなら) ---amsartを使う時はコメントアウト
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf}          % min10を避けるため
+\usepackage{pxrubrica}    % 和文ルビ
+
+% --- 基本パッケージ ---
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{pgfplots}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+% --- 数学関連 ---
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{amscd,dsfont,bigdelim,braket,physics,mathrsfs,bm}
+
+% --- 書式・リスト関連 ---
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+% --- コメント・取消線など ---
+\usepackage{comment}
+\usepackage[normalem]{ulem} % \emph の下線化を抑止（cancelと共存）
+
+% --- URL・文字コード ---
+\usepackage{url}
+% \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要、pdflatexなら有効に
+
+% --- showkeys（常に表示） ---
+%\usepackage{showkeys}
+%\renewcommand*{\showkeyslabelformat}[1]{%
+%  \fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
+%}
+% --- hyperrefは最後に読み込む ---
+\usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+
+%%% レイアウト調整 %%%
+%%% レイアウト調整（geometryに統一） %%%
+\usepackage[
+  top=30mm,        % 上余白
+  bottom=30mm,     % 下余白
+  left=25mm,       % 左余白
+  right=25mm,      % 右余白
+  headheight=12pt, % ヘッダー高さ（必要なら）
+  headsep=10mm,    % ヘッダーと本文の間
+  footskip=32pt,   % 本文とフッターの距離
+  includehead,     % ヘッダー分も高さに含める
+  includefoot      % フッター分も高さに含める
+]{geometry}
+
+%%% 行間調整（適宜 1.2 などに変更） %%%
+\usepackage{setspace}
+\setstretch{1.1}
+
+% --- 段落設定 --- 文字の行間ならここを変更する
+\setlength{\parskip}{5pt}   % 段落間のスペース
+\setlength{\parindent}{0pt}   % 段落先頭の字下げをなくす
+
+
+%%% 追加（重複なし）パッケージ・設定 %%%
+
+% --- 目次の体裁調整 ---
+\usepackage{tocloft}
+%\renewcommand{\contentsname}{目次} % 日本語化
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\setlength{\cftbeforesubsubsecskip}{0pt}
+
+% --- セクション見出しの体裁調整 ---
+%\usepackage{titlesec}
+%\titleformat*{\section}{\Large\bfseries}
+%\titleformat*{\subsection}{\large\bfseries}
+%\titlespacing*{\section}{0pt}{1.5ex plus .2ex minus .2ex}{0.8ex plus .1ex}
+%\titlespacing*{\subsection}{0pt}{1.0ex plus .2ex minus .2ex}{0.5ex plus .1ex}
+
+% --- ヘッダー／フッター設定 ---
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\rhead{岩井 雅崇}
+%\lhead{大阪大学 数学専攻}
+%\cfoot{\thepage}
+
+% -- enumerate, itemize行間設定
+\usepackage{enumitem} % デフォルト設定
+\setlist[itemize]{itemsep=3pt, parsep=0pt}
+\setlist[enumerate]{itemsep=3pt, parsep=0pt}
+% "変更する際は右を使う" \setlength{\parskip}{0cm} % 段落間\setlength{\itemsep}{5pt} % 項目間
+
+% --- tcolorbox 設定 ---%\begin{tcolorbox}[mybox]と使う
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true
+  }
+}
+
+%--緑枠自動化
+\AtBeginEnvironment{prop}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{prop}{\end{tcolorbox}}
+\AtBeginEnvironment{lem}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{lem}{\end{tcolorbox}}
+\AtBeginEnvironment{thm}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{thm}{\end{tcolorbox}}
+\AtBeginEnvironment{defn}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{defn}{\end{tcolorbox}}
+\AtBeginEnvironment{cor}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{cor}{\end{tcolorbox}}
+\AtBeginEnvironment{ques}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{ques}{\end{tcolorbox}}
+\AtBeginEnvironment{conj}{\begin{tcolorbox}[mybox]}
+\AtEndEnvironment{conj}{\end{tcolorbox}}
+
+
+% --- TikZ 設定 ---
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, fit, calc, backgrounds}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+% --- footnote がページをまたがない設定 ---
+\interfootnotelinepenalty=10000
+
+% --- 目次に表示する階層の深さ ---
+\setcounter{tocdepth}{2}
+
+% --- 日本語目次---
+\usepackage{pxjahyper}
+
+%--newtheorem%--newcommand----
+
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{eg}[thm]{Example} 
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+\numberwithin{equation}{section}
+\newtheorem{case}{Case}
+
+
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\renewcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Coker}[0]{\operatorname{Coker}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\Ext}[0]{\mathscr{E}\!\textit{xt}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\alb}{{\rm alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+\newcommand{\polar}{\beta}
+  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{Z}_+}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\renewcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+
+
+\title{岡多様体のまとめ}
+\author{Masataka IWAI}
+%\address{Department of Mathematics, Graduate School of Science, Osaka City University 3-3-138, Sugimoto, Sumiyoshi-ku Osaka, 558-8585Japan} 
+%\email{{\tt masataka.math@gmail.com}}
+%\email{{\tt masataka.math@gmail.com, masataka@sci.osaka-cu.ac.jp}}
+
+
+
+\date{\today, version 0.01}
+
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+\begin{document}
+
+
+
+\maketitle
+%
+\begin{abstract}
+岡多様体の勉強会以前に勉強した内容と勉強後の日下部さんの講演内容をpdfにしました. 
+\end{abstract}
+%
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+\section*{はじめに}
+\begin{itemize}
+\item 岡多様体の勉強会での日下部さんの講演のノートをpdfにしました.
+\item Oka多様体まとめと問題. Oka多様体に関する日下部さんのサーベイやForstneric先生のサーベイをまとめた内容です. 
+
+岡多様体の勉強会のリンクは以下の通りです.
+
+\begin{center}
+\url{https://masataka123.github.io/Oka_manifold_2025/}
+\end{center}
+
+\end{itemize}
+
+\newpage
+
+\section{岡多様体の勉強会 -岡多様体論の現状と未来-}
+\subsubsection*{初めに}
+岡多様体の勉強会での日下部さんの講演"岡多様体の勉強会 -岡多様体論の現状と未来-"のノートをpdfにしました. ただしその際に書かれていた学生の名前などは削除し, 少し書き方を変えました. 
+
+\subsection{参考文献}
+
+$\bullet$ Forstnericの教科書  1.2.5.6.7. 特に §7.11 Towards Quantitative Oka Theoryは2nd edditionに入ってないが読むべき内容. 
+
+$\bullet$ Recent developments on Oka manifolds (Indag Math 2023.)
+
+$\bullet$ Forstneric ICM 2026 予稿: arXiv:2509.21197.
+$\mathrm{Ell}_1$に ``relative ellipticity'' と名が付いた.
+
+\subsection{岡多様体とは何か?}
+
+\begin{itemize}
+\item 岡の原理 (1939) : 複素解析における \(h\)-principle
+\item Gromov (1989):  楕円性から重要な仕事をした.
+\item Lárusson ('04) : モデル圏の観点から岡の原理を研究
+\end{itemize}
+
+\begin{defn}
+複素多様体 X が弱岡(weak Oka)
+であるとは, 任意のStein 多様体$Z$について
+$$
+\mathcal{O}(Z,X)\hookrightarrow C^0(Z,X)
+$$
+がコンパクト開位相について, 弱ホモトピー同値であること. つまり任意の$k \in \N$について
+\[
+\pi_k (\mathcal{O}(Z,X))\longrightarrow \pi_k (C^0(Z,X)
+\]
+が同型になること. 
+\end{defn}
+$X$が弱岡ならば, 任意の
+\( f_0\in C^0(Z,X)\)について, ある$f\in \mathcal{O}(Z,X)$があって, $f_0$と$f$は homotopicである.\footnote{これをCampana Winkelman \cite{CW15}ではh principleと呼んでいる. なおWinkelman 93において, $Z,X$が1次元の時にいつ成り立つかを完全に分類した}
+
+\begin{ex}
+\begin{itemize}
+\item \(X\) が正則写像 \(X\to X\) を通って可縮\(\Rightarrow X:\) 弱岡
+特に単位円盤$\mathbb D$や $\mathbb C$は弱岡
+\item Oka 39 \(\mathbb C^*\) : 弱岡 (Larussonの講義録参照. Stein多様体で$\overline{\partial}$方程式が解けることと$\exp : \C^* \to \C$で線形化(クザン第二問題)を解くことで示す. )
+\item \(\mathbb D^*\) は弱岡でない.
+$ f_0:\mathbb C^*\rightarrow \mathbb D^*$
+という連続写像で
+\[
+\pi_1(\mathbb C^*)\overset{\sim}{\longrightarrow}\pi_1( \mathbb D^*) \cong \Z
+\]
+という同型を誘導するものを取る. 
+これが正則写像に homotopic とすると, 定数になり得ないが, これは
+Liouville の定理に矛盾する 
+\end{itemize}
+\end{ex}
+
+
+Campana-Winkelman 15ではh principle を"弱岡の定義の$k=0$だけを満たすもの"として定義している. 
+$X$がprojectiveならば, 次が成り立つ
+\[
+\xymatrix@C=18mm{
+\text{岡}
+  \ar@/^1pc/@{=>}[r]^{??}
+&
+\text{弱岡}
+  \ar@/^1pc/@{=>}[l]_{??}
+  \ar@/^1pc/@{=>}[r]^{\text{自明}}
+&
+\text{h principle}
+  \ar@/^1pc/@{=>}[l]_{?}
+  \ar@/^1pc/@{=>}[r]^{CW15}
+&
+\text{特殊型}\ (\text{special})
+  \ar@/^1pc/@{=>}[l]_{??}
+}
+\]
+
+\begin{ques}
+上の?が成り立つか調べよ. またコンパクトケーラーの場合のh principle $\Rightarrow$ specialを調べよ.
+\end{ques}
+
+
+
+次の岡多様体を定義する性質は.
+\begin{center}
+POPAI (Parametric Oka Property with Approximation \& Interpolation)
+\end{center}
+とよばれる.
+
+\begin{defn}[POPAIによるOkaの定義]
+次が成り立つ時, 複素多様体$X$は岡(Oka)であるという.
+
+\[
+\forall Z:\text{Stein多様体}, \forall Z_0\subset Z: \text{閉解析部分集合}, 
+\forall K\subset Z:\text{コンパクト正則凸集合}
+\]
+\[
+\forall P_0\subset P:\text{コンパクトハウスドルフ集合}, 
+\forall f_0:Z\times P\longrightarrow X \text{連続写像}.
+\]
+であって, 
+\begin{itemize}
+\item\(\forall p\in P\) $f_0(-,p)$は$K$上で正則かつ$Z_0$上で正則.
+\item \(\forall p\in P_0\) $f_0(-,p)$は$Z$上で正則. 
+\end{itemize}
+この時
+\[
+\exists f_t:Z\times P\longrightarrow X:\ \mathrm{homotopy}\quad (t\in[0,1]).
+\]
+であって, 
+\begin{itemize}
+\item \(\forall p\in P. f_1(\cdot,p)\in O(Z,X)\). 
+\item \(\forall p\in P,\ \forall t\in[0,1],
+f_t(\cdot,p) \simeq f_0(\cdot,p)\ \mathrm{on}\ K
+\)　ここで$\simeq$は$K$上で一様に近いという意味である. 
+\item \(\forall t\in[0,1],
+f_t=f_0\ \mathrm{on}\ (Z\times P_0)\cup(Z_0\times P).
+\)
+\end{itemize}
+\end{defn}
+
+\begin{rem}
+\begin{itemize}
+\item $P_0=\emptyset\subset\{*\}=P$の場合, $POPAI$がB(Basic)になって, $BOPAI$になる.
+\item \(Z_0=\emptyset\) のとき, \(I\) がなくなる. (POPA)
+\item$K=\emptyset$の時$A$ がなくなる. (POPI) 
+\end{itemize}
+他にも
+\(\mathrm{BOPI},\ \mathrm{BOPA},\ \mathrm{POP},\ \mathrm{BOP},\ \cdots\)などがある. (BOPが\cite{CW15}でのh-principleに相当)
+\end{rem}
+
+Gromov ('89) : 簡単な Runge 型近似定理で特徴付けられるか?
+
+\begin{thm}[Forstnerič の岡の原理 '06, '09]
+\(X:\) 岡 (POPAI)であることは
+$X$が CAP (Convex Approximation Property) をみたすことと同値
+
+ここでCAPとは下の条件を満たすこと.
+\[
+\forall n\in\mathbb N,\quad
+\forall K\subset \mathbb C^n:\ \text{コンパクト凸集合},\quad
+O(\mathbb C,X)|_K\subset O(K,X)\ \mathrm{dense}.
+\]
+\end{thm}
+
+\begin{cor}
+ POPAI, POPA, BOPAI, BOPI, \(\cdots\), CAP は全て同値.
+(\text{ただし, BOP, POP は除く})
+\end{cor}
+
+補足としては次の通り
+\begin{itemize}
+\item 岡 \(\Longleftrightarrow\)
+\(\forall Z_0\subset Z: 
+\mathcal{O}(Z,X)\longrightarrow
+\{f\in C^0(Z,X)\mid f|_{Z_0}:\mathrm{hol}\}
+\)が弱ホモトピー同値. (POPI)
+\item \(\mathbb C\) の POPAI \(=\) Oka-Cartan ectension \(+\) Oka-Weil approximationの parametric version. これはStein多様体論から. (これが\(\mathbb C\) の POPAI の有理型関数版に繋がる)
+\end{itemize}
+
+POPAI はもう 2 段階, 見た目を強くできる.
+
+1. \(Z:\)をreduced Stein spaceにしてもよい. (Stein多様体のStratificationをとる.)
+ただし
+\begin{tcolorbox}[mybox]
+$X$に singularity をゆるすと, POPAI は CAP と同値でない!!
+\end{tcolorbox}
+POPAI からCAPは
+\(P=\{*\}\supset \emptyset=P_0, Z_0=\emptyset\) にすれば良い. CAPからPOPAIが成り立たない.
+
+\begin{ques}
+ Oka space はどう定義する?? Lárusson のモデル理論との関係は？？
+\end{ques}
+
+
+2. \(Z_0(\subset Z):\) reduced とは限らない closed analytic subspaceにしても良い. 
+ただし, \(f_0\) は \(Z_0\) の 近傍 で 正則 と仮定しておく.
+(これはPOPAJI と呼ばれ, Gromov は $Ell_{\infty}$と呼んでたものである. 
+
+なおPOPAI の状況で \(f_0\) を \(Z_0\) の 近傍 で 正則 とできることは非自明.
+これはSiu の近傍定理と Docquier--Grauert の 管状近傍定理を用いると可能. 
+
+Siu の近傍定理は$q$-completeでも成り立つ.
+\begin{ques}
+$q$-complete上での岡の原理とは？？
+\[
+H^k(X,\mathcal{O}^*)\longrightarrow H^k(X,C^*)
+\]
+を岡多様体論の
+枠組で理解できるか?
+\end{ques}
+
+
+\subsection{ Gromov の楕円性}
+\begin{defn}
+$X$を複素解析空間, $Y$を複素多様体, $ f:X\longrightarrow Y$を正則写像とする.
+
+(1).
+\[
+\xymatrix{
+& E \ar[dr]^s \ar[dl]_p& \\
+X && Y
+}
+\]
+が$f$上の(正則)スプレーであるとは, 
+$E\overset{p}{\longrightarrow}X$が正則ベクトル束であり, 次が可換になること. 
+\[
+\xymatrix{
+& E \ar[dr]^s & \\
+X \ar[ur]^{0_E} \ar[rr]_f && Y
+}
+\]
+
+特に\(f=\mathrm{id}_X\) のときに.
+\(X\) 上のスプレーという.
+
+
+% [page 5]
+(2).
+\[
+\xymatrix{
+& E \ar[dl]_p \ar[dr]^s & \\
+X && Y
+}
+\]
+が支配的であるとは, 
+$(p,s):E\longrightarrow X\times Y$が$E$ の zero section の 近傍で submersionになること. 
+これは
+$$
+\text{任意の$x\in X$について } s|_{E_x}: E_x\longrightarrow Y: \text{ submersive at } 0_x 
+$$
+と同値である. 
+\end{defn}
+(2)の条件に$Y$がsmoothという仮定がいる. 
+\begin{defn}
+$X$を複素多様体とする. 
+
+
+(1). 
+$X$がGromov 楕円的 (Gromov elliptic)
+であるとは, ある$X$上の支配的スプレーが存在すること. 
+
+(2).$X$が相対楕円的 ($Ell_1$)
+とは, 任意のStein多様体 Z, 任意の $f\in \mathcal{O}(Z,X)$
+について, $f$の支配的スプレーが存在すること. 
+
+(3). $X$が凸相対楕円的(Convex Relative Ellipticity)であるとは, 
+任意の$n \in \N$と任意のコンパクト凸集合$ K\subset \mathbb C^n$, 任意の
+$f\in \mathcal{O}(K,X)$について, $f$の支配的スプレーが存在すること. 
+\end{defn}
+
+
+$(1)\Longrightarrow(2)\Longrightarrow(3)$が成り立つ. 
+
+\begin{proof}[ラフな証明]
+$(1)\Longrightarrow(2)$
+\(id_X\) 上の支配的スプレー$E$をとって$f$でpullbackをとると$f^{*}E$が欲しいものになる.
+\[
+\xymatrix{
+f^*E \ar[r] \ar[d] & E \ar[r]^s \ar[d]^p & X\\
+Z \ar[r]_f & X &
+}
+\]
+
+$(2)\Longrightarrow(3)$ $K \subset Z$となるStein近傍を持つことから. 
+\end{proof}
+
+また$CAP\Longrightarrow(3)$である, これにはConvexの近似定理を使う.$Oka\Longrightarrow(2)$である. これはBOPAJI ($Ell_\infty$)から．
+
+\begin{thm}[Gromovの岡の原理('89)]
+複素多様体においてGromov 楕円的 $\Rightarrow$ Oka
+\end{thm}
+
+図で表すと以下の通り. 
+\[
+\xymatrix@C=34mm@R=14mm{
+\text{(1) Gromov 楕円的}
+  \ar@{=>}[d]
+  \ar@/_6pc/@{=>}[dd]
+&&
+\text{Oka}
+  \ar@{-->}[ll]_{\text{Gromov questionでKusakabeが否定的解決}}
+  \ar@{<=>}[d]
+  \ar@/_7pc/@{=>}[lldd]
+\\
+\text{(3) 凸相対楕円的}
+   \ar@/_1pc/@{=>}[rr]_{\text{Kusakabeによる肯定的解決}}
+&&
+\text{CAP}
+  \ar@{<=>}[ll]
+  \\
+  \text{(2) 相対楕円的} \ar@{=>}[u]
+&&
+}
+\]
+なので(2), (3), CAP, Okaは同値である. 
+
+
+%\includegraphics[width=0.55\linewidth]{page05-fig1.png}
+
+\begin{ex}
+$G$をコンパクト複素Lie群とし, $G \curvearrowright X$が正則に推移的に作用する(複素等質空間)ならば, 
+$X$はGromov 楕円的. 
+これは
+$s:X\times\mathfrak g\longrightarrow X$を$s(x,v)=\exp(v)\cdot x$で定義すれば良い. スプレーは exp map の一般化ともみれる. 
+\end{ex}
+
+\begin{prop}[$\mathrm{Forstneri\check c}$ 14~16]
+自明束からのスプレーで elliptic なコンパクト複素多様体はhomogeneous(複素等質空間), つまり上のような$G \curvearrowright X$がある. 
+\end{prop}
+
+\begin{ex}
+$\mathrm{Bl}_p\mathbb P^2$ not homogeneous である ellipticである
+\end{ex}
+
+% [page 6]
+\begin{thm}[Gromov 予想, K'21]
+凸相対的 elliptic
+$\Longleftrightarrow$ Oka
+特に相対楕円的と同値.
+\end{thm}
+
+\begin{cor}[局所化定理]
+Zariski locally Oka
+$\Rightarrow$
+Oka
+\end{cor}
+
+\begin{ques}
+dense Zariski open Oka を含むなら Oka か?特にOka多様体のコンパクト化はOkaか？
+\end{ques}
+smooth toric varietyはOkaであることがわかっている. 
+
+\begin{ques}
+OkaのunionはOkaか？
+\end{ques}
+
+以下知られていることをまとめる. 
+
+
+正則ファイバー束$E \to B$でファイバー$F$がOkaのものについて
+$$
+\text{$E$ Oka} \Leftrightarrow \text{$B$ Oka}
+$$
+\begin{ques}
+正則ファイバー束$E \to B$について
+$$
+\text{$B$, $E$ Oka} \Rightarrow \text{$F$ Oka}?
+$$
+\end{ques}
+
+正則なcovering mapでOkaはうつり合うが
+分岐被覆$X' \to X$については
+\begin{itemize}
+\item 「$X'$Okaならば$X$もOka」は未解決. 
+\item  「$X$Okaならば$X'$もOka」は反例. 例えばhypereliptic curve$f : C \to \mathbb{P}^1$. 
+\end{itemize}
+
+Okaの直積はOkaになる.
+
+Okaの1点BlowupはOka
+\begin{ques}
+Okaのblowup, OkaとbirationalなものはOkaか？
+\end{ques}
+ちなみに無限個blowupだと反例. ある$D\subset\mathbb C^2$
+discreteであって\(\mathrm{Bl}_D\mathbb C^2$がOkaでないものがある.
+
+OkaのopenはOka.
+
+$D$ tameだと$\C^2 \setminus D$がOkaになる.
+これはgeneral な\(\mathbb P^n\supset H\)でdegree$\gg 0$ならば, 
+$\mathbb P^n\setminus H$が
+Kobayashi hyperbolicとなるに似ている. 
+
+\begin{thm}[K,\ 26?]
+Gromov\ 楕円性に関しては一般に
+局所化定理が不成立.
+\end{thm}
+
+\begin{ques}
+弱岡は楕円性で特徴づけられる?
+\end{ques}
+\begin{ques}
+Gromov 楕円性
+は函数論的条件(解析接続など？)で特徴づけられる?
+ハルトークス型の拡張定理など. 
+\end{ques}
+
+\begin{thm}[Gromov-ElliashbergによるForster\ 予想の部分的解決]
+Gromovの岡の原理からForster\ 予想の部分的解決, つまり任意のStein多様体が
+$X^n \hookrightarrow \mathbb C^{N}$で$N$が最良次元になるように埋め込める.
+\end{thm}
+ただし$n \ge 2$の場合であり, $n=1$の時(リーマン面の時), $X \hookrightarrow \C^2$に関しては(properとは限らない埋め込みでも)未解決である. 
+
+
+% [page 7]
+\subsection{三大問題の候補とその周辺}
+
+・\underline{1. 双対 Levi 問題}.
+岡領域$\Omega\subset X$となる複素多様体を$\partial\Omega$で特徴付けよ.
+
+\begin{thm}[Forstneric Ritter 14, 16]
+$\Omega\subset X,\quad \partial\Omega\in C^2$について
+\[
+\Omega:\mathrm{Oka}
+\Longrightarrow
+\text{ 強ギ凸 で}  \mathrm{boundary pt}\in\partial\Omega \text{なものが存在しない}.
+\]
+つまり真に凸になり得ない
+\end{thm}
+\begin{thm}[K'24]
+任意の$n\ge 2$, 任意のコンパクト正則凸(多項式凸)$K\subset\mathbb C^n$について, $\mathbb C^n\setminus K$はOka.
+\end{thm}
+Okaが凹であるとも思える. またこれはVaroli のdensity propertyを満たすStein多様体内のcomplementに一般化できる. 
+\begin{cor}
+$n\ge 3$について
+$\mathbb C^n\setminus \overline{\mathbb B}^n$
+はnonelliptic Oka
+\end{cor}
+\begin{thm}[K'26]
+$n\ge 2$について
+$\mathbb C^n\setminus \overline{\mathbb B}^n$
+はnonelliptic 
+\end{thm}
+
+\begin{thm}[Forstneric-Larusson  '26?]
+Every projective Oka manifold  is elliptic
+\end{thm}
+
+\begin{ques}
+Is Every compact Kahler manifold  is elliptic?
+\end{ques}
+ケーラーは必要. ホップ曲面の一点ブローアップがコンパクトnon-elliptic Okaになるから. 
+
+・\underline{2. 有理型写像の問題}
+
+\begin{ques}
+Runge型近似定理との関連はあるか？
+pshの近似の場合はどうか？
+PshのOkaの原理はどうなるか(Harmonic mapでの近似など)
+\end{ques}
+
+・\underline{3. 極大度条件の問題}
+
+Ohsawa-Takegoshi型の問題. finite order ($L^2$条件)の正則mapとの関連を知りたい. 
+設定としては
+\(X\subset\mathbb C^n, Z\longrightarrow X:\ L^2\text{正則写像}.
+\)など
+
+\begin{ques}
+Ohsawa-Takegoshi for Oka manifold?? (Forstnericの1st editionをみよ.)
+\end{ques}
+
+
+% [page 8]
+
+
+
+\newpage
+\section{Oka多様体まとめと問題}
+%2024年11月の集会で日下部くんと話してた内容や
+Oka多様体の基本性質などをまとめる. 
+これらは日下部さんのサーベイ(日本数学会 2021 \cite{Kus21})やForstnevicのサーベイ\cite{For13}などをそのまま移した.
+
+また用語に関しては時代によって変わっている可能性がある. 適宜ForstnericのICM2026のサーベイや日下部さんの岡シンポジウム2024のサーベイなど最近のものを参照してほしい. 
+
+\subsection{Oka多様体の定義}
+\begin{defn}
+$X$を複素多様体, $f : X \to Y$を正則写像とする.
+\begin{enumerate}
+\item $f : X \to Y$上の\underline{spray}とは, 正則ベクトル束$E \to X$と, $s : E\to Y$で任意の$x \in X$について$s(0_x)=f(x)$となるもの.
+\item $f : X \to Y$上のspray $E \to X, s:E \to Y$が\underline{dominate}とは, $s|_{E_x} : E_x \to Y$が$0_x \in E_x$で沈め込みになること.
+\item $f :  X \to Y$に\underline{dominateなspray}が存在するとは, 正則ベクトル束$E \to Y$と正則写像$s:E \to Y$が存在して, 任意の$x \in X$で$s(0_x)=f(x)$かつ$s|_{E_X} : E_x \to Y$が$0_x \in E_x$で沈め込みになること.
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+$X$を複素多様体とする. 
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+%\item $X$ is dominable (resp. strongly-dominable)　とはある点$x \in X$ (任意の点$x \in X$)についてある正則写像$s : \C^N \to X$があって$s(0)=x$かつ$0$で$s$は沈め込みになる. 
+\item $X$が\underline{(Gromov)-Elliptic}であるとは, $id_X$にdominateなsprayが存在すること. つまり正則ベクトル束$E \to X$と正則写像$s:E \to X$が存在して, $s(0_x)=x$かつ$s|_{E_x} : E_x \to X$が$0_x \in E_x$で沈め込みになること.
+\item $X$が\underline{subelliptic}であるとは, $X$ 上の有限個の正則ベクトル束 $\pi_j : E_j \to Y$ と零切断に制限すると恒等写像になる正則写像 $s_j : E_j \to Y,\ j = 1, \dots, m$ で、任意の $y \in Y$ に対して
+  \[
+  \sum_{j=1}^{m} (ds_j)_0|_{(E_j)_y} = T_y Y
+  \]
+  となるものが存在すること.
+\medskip
+\item  $X$が\underline{$Ell_1$(相対楕円的)}であるとは, 任意のStein多様体$Z$と任意の正則写像$f :  Z \to X$にdominateなsprayが存在すること. つまり正則ベクトル束$E \to Z$と正則写像$s:E \to X$が存在して, $s(0_z)=f(z)$かつ$s|_{E_z} : E_z \to X$が$0_z \in E_z$で沈め込みになること.
+% \item $X$が$Ell_2$ であるとは, Stein 多様体の解析的部分集合の近傍から $Y$ への正則写像に対して、ジェット拡張に関する岡の原理が成り立つことである。  
+ % \item $X$が$Ell_\infty$ であるとは、定理1における拡張の部分をジェット拡張にした岡の原理の多面体パラメータ版が成り立つことである（cf.~[5, §3.1]）。
+\item $X$が\underline{Oka}とは, 任意の$n \in \N$と任意のコンパクト凸集合$K \subset \C^n$について$\mathcal{O}(\C^n, X)|_{K} \subset \mathcal{O}(K,Y)$がdenseであること. この性質をCAP(Convex Approxmation Property)という.
+\medskip
+\item $X$が\underline{$\C$-dominable}とは, ある$x \in X$と正則写像$s : \C^{\dim X} \to X$があって, $s(0)=x$かつ$0$で沈め込みになること. (つまり$s$が非退化であること.) 
+\item $X$が\underline{$\C$-strongly-dominable}とは, 任意の点$x \in X$についてある正則写像$s : \C^{\dim X} \to X$があって$s(0)=x$かつ$0$で沈め込みになる. 
+\medskip
+\item $X$が\underline{$\C$-connected}であるとは, 任意の $a, b \in Y$ に対し, 有限個の $f_j \in \mathcal{O}(\mathbb{C}, Y)$, $j = 1, \dots, m$ で
+  \[
+  a \in f_1(\mathbb{C}), \quad b \in f_m(\mathbb{C}), \quad f_j(\mathbb{C}) \cap f_{j+1}(\mathbb{C}) \neq \emptyset, \quad j = 1, \dots, m-1
+  \]
+  となるものが存在すること. %($\C$-chain connectedって感じ)
+  \item $X$が\underline{strongly $\C$-connected}であるとは, 上で $m=1$ としたものが成り立つこと.
+  \item$X$ がZariski dense entire curveを持つとは, $f \in \mathcal{O}(\mathbb{C}, Y)$ で $\overline{f(\mathbb{C})} = Y$ となるものが存在すること. 
+\end{itemize}
+\end{defn}
+
+図にするとこんな感じである. 
+\[
+\xymatrix@C=50pt@R=30pt{
+  \hbox{elliptic} \ar@{=>}[d]\ar@{=>}[r] & \hbox{Ell}_\infty \ar@{=>}[d] \ar@{=>}[r] & \hbox{Ell}_2 \ar@{=>}[r] \ar@{=>}[l]& \hbox{Ell}_1 \ar@{=>}[l] \ar@{=>}[d]\\
+\hbox{subelliptic} \ar@{=>}[r] & \hbox{Oka} \ar@{=>}[ld]\ar@{=>}[rr] \ar@{=>}[d]  \ar@{=>}[u]& &\hbox{$\C$-strongly dominable}  \ar@{=>}[d] \ar@{=>}[ld]\\
+  \hbox{dense entire curve} & \hbox{strongly $\C$-connected} \ar@{=>}[r] & \hbox{$\C$-connected}& \hbox{$\C$-dominable} 
+}
+\]
+
+上に図に関して2点補足すると以下の通りである.
+
+\begin{thm}\cite{Kus21}\cite{For13}
+複素多様体 $X$について次は同値
+\begin{enumerate}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item Oka
+ \item $Ell_1$ (他にも$Ell_2$, $Ell_{\infty}$とかあるらしい.)
+ \item convex elliptic. つまり任意のコンパクト凸集合 $K \subset \C^n$から$X$への正則写像に支配的スプレーが存在する.
+ \item 任意のStein 多様体(空間?) $Z$, コンパクト正則凸集合 $K \subset Z$,　閉部分多様体$Z' \subset Z$について, 連続写像$f_0 : Z \to X$で$K$の近傍と$X'$上で正則ならば, あるホモトピー$f_t : Z \to X$が存在して次を満たす. 
+ \begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} 
+  \item $f_t : Z \to X$は$K$の近傍で正則で, $K$上に一様に近似する.
+  \item $f_t|_{Z'} = f_{0}|_{Z'}$
+  \item $f_1 :  Z \to X$ は正則
+ \end{itemize}
+ \item 任意のコンパクト凸集合$K \subset \C^n$の近傍からの$X$への正則写像について, 正則写像$\C^n \to X$で$K$上に一様近似できる. 
+ \end{enumerate}
+\end{thm}
+
+
+\begin{thm}
+Gromov ellipticならばOkaである. 逆は必ずしも成り立たない
+\end{thm}
+\begin{proof}
+上の同値性(これも定理だが)からGromov ellipticならば$Ell_1$を示せば良い.
+Stein 多様体$Z$と任意の正則写像$f :  Z \to X$について, $f^{*} E \to Z$と$f^{*} E  \to E \to X$を考えればこれがdominate sprayを与える. 
+\end{proof}
+
+Oka多様体の他の同値性に関しては次のとおり. 以下の同値性から$h$-principleとの関係が言える. 
+\begin{thm}\cite{FL11}
+複素多様体 $X$について次は同値
+\begin{enumerate}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  \item Oka. つまりCAP(Convex Approxmation Propety)を満たす. ここでCAPとは, 任意の$n \in \N$と任意のコンパクト 凸集合$K \subset \C^n$について$\mathcal{O}(\C^n, X)|_{K} \subset \mathcal{O}(K,Y)$がdenseであること.(一様近似できる).
+\item Convex Interpolation Property (CIP)を満たす.  
+つまり任意の閉部分多様体\(T \subset \mathbb{C}^n\)で, ある$\mathbb{C}^k$のconvex domainと双正則なものと, 任意の正則写像\(f : T \to X\)について, $f$は正則写像\(\mathbb{C}^n \to X\)への拡張を持つ.
+  \item Basic Oka Property Approxmation and Interpolation (BOPAI)を満たす. 
+  つまり任意のStein inclusion \(T \hookrightarrow S\), 任意の正則凸コンパクト集合\(K \subset S\), そして連続関数\(f : S \to X\)で \(K \cup T\) 上で正則なものについて, $f$は正則写像\(S \to X\)に変形できる(homotopicである). またこの変形は$T$を保つ. 
+ \item Parametric Oka Property Approxmation and Interpolation (POPAI)を満たす. 
+ つまり,  \(T \hookrightarrow S\) \(K \subset S\) をBOPAIのものとし, 
+ \(Q \subset P\subset\mathbb{R}^m\)をコンパクト部分集合とする. 
+
+ 任意の連続関数\(f : S \times P \to X\)であって, 
+\begin{itemize}
+\item 任意の$x \in Q$について, \(f(\cdot,x) : S \to X\)は正則
+\item 任意の$x \in P$について, \(f(\cdot,x)\)は\(K \cup T\)上で正則
+\end{itemize}
+このとき連続な変形
+\(f_t : S \times P \to X\) ($t \in [0,1]$)であって, 
+\(f=f_0\) かつ次を満たす. 
+\begin{itemize}
+\item $\{ f_t \}_{t \in [0,1]}$は\((S \times Q) \cup (T \times P)\)を保つ. 
+\item 任意の\(t \in [0,1]\), $x \in P$について
+\(f_t(\cdot,x)\)は$K$上で正則. さらに \(f_t\)は\(K \times P\)上に$f$に一様に近づく.(多分$\lim_{t \to 0}\sup_{K \times P}||f_t - f||_{X} =0$だと思う)
+\item 任意の\(x \in P\)について, \(f_1(\cdot,x) : S \to X\)は正則 
+\end{itemize}
+\end{enumerate}
+\end{thm}
+他にもBOBIとかいっぱいあるがBOPとPOP以外は全て同値とのこと\footnote{\cite{FL11}のPOPは今でいうPOPAIのことだと思う. }
+
+最後のPOPAIがわかりずらい. $K=\varnothing$にするとこの図のようになる.
+ここで$\mathcal{O}(S,X) $は$S \to X$なる正則写像の集合, $\mathcal{C}(S,X) $は$S \to X$なる連続写像の集合とする.
+\[
+\xymatrix@C=80pt@R=30pt{
+Q \ar[r]^{q \mapsto f(\cdot,q)} \ar@{^{(}-_>}[d]& \mathcal{O}(S,X) \ar@{^{(}-_>}[r] \ar[d]& \mathcal{C}(S,X) \ar[d]^{\cdot |_{T}} \\
+P \ar[r]_{p \mapsto f(\cdot,p)} \ar@{.>}[ur]^{p \mapsto f_1(\cdot, p)}  \ar@{->}[urr]_{ \quad \quad p \mapsto f(\cdot, p)} & \mathcal{O}(T,X) \ar@{^{(}-_>}[r] & \mathcal{C}(T,X)
+}
+\]
+つまり, 
+\begin{itemize}
+\item 連続関数で\(f : S \times P \to X\)を与える. これは$p \in P$ごとに$f(\cdot,p)  \in \mathcal{C}(S,X)$を与える($P$から右右上の矢印)
+\item $q \in Q$ごとに$f(\cdot,q)  \in \mathcal{O}(S,X)$を与える(上の水平の矢印)
+\item$p \in P$ごとに$f(\cdot,p)  \in \mathcal{O}(T,X)$を与える(下の水平の矢印)
+\end{itemize}
+となるものを与えると, \(f_t : S \times P \to X\)という変形で
+\begin{itemize}
+\item (POPの3つ目の条件と同値) $p \in P$について, $f_1(\cdot,p)  \in \mathcal{O}(S,X)$($P$から右上の矢印)
+%\item　(POPの3つ目の条件と同値)$p \in P$ごとに$f_{t}(\cdot,p)  \in \mathcal{C}(S,X)$を与える($P$から右右上の矢印)
+\item (POPの1つ目の条件と同値) $Q \to P \to \mathcal{C}(S,X)$と$P \to \mathcal{C}(S,X) \to  \mathcal{C}(T,X)$の部分が可換
+\end{itemize}
+となるものが存在する. ($K=\varnothing$より2番目の条件はnull condition)
+
+$K=\varnothing, T=\ast$にするともっと簡単になる. 
+連続写像$f : P \to \mathcal{C}(S,X) $で$f(Q) \subset \mathcal{O}(S,X) $となるものは
+$f _1: P \to \mathcal{O}(S,X)$にhomotopyで連続変形できる.
+ただし, $\mathcal{O}(S,X), \mathcal{C}(S,X)$にはコンパクト開位相を入れる. 
+%(ただしコンパクト開位相に関しては\cite{Iwa}参照)
+図式にすると次のとおり
+ \[
+\xymatrix@C=50pt@R=20pt{
+Q\ar@{->}[r]\ar@{^{(}-_>}[d] &\mathcal{O}(S,X) \ar@{^{(}-_>}[d]  \\
+P\ar@{->}[r]_{f}\ar@{-->}[ru]^{f_1}  & \mathcal{C}(S,X)
+}
+\]
+ただこの図の可換性に関しては注意が必要で, 
+\begin{itemize}
+\item $Q \to P \to \mathcal{O}(S,X) $の部分は可換.
+\item $ P \to \mathcal{O}(S,X) \to \mathcal{C}(S,X) $の部分は"連続変形"をかませば可換.
+\end{itemize}
+
+
+\begin{cor}
+\label{cor-Oka-hP}
+Stein多様体\(S\)とOka多様体\(X\)について, 
+\(
+\mathcal{O}(S,X) \hookrightarrow \mathcal{C}(S,X)
+\)
+という包含写像は, コンパクト開位相に関して弱ホモトピー同値. (この性質を弱岡という)
+
+つまり任意の$k \in \N$について次の同型($k=0$のときは全単射)が言える. 
+$$\pi_{k}(\mathcal{O}(S,X)) \cong \pi_{k}(\mathcal{C}(S,X))$$
+
+特にOka多様体は$h$-principle(任意のStein manifold $Z$からの連続写像$Z \to X$が正則写像とhomotopicである) を満たす.
+\end{cor}
+
+ホモトピー群の定義は\ref{defn-CW15-homotopy}参照.
+$S^n$を$n$次元球面, $P=(1, 0, \ldots, 0)$, $x_0 \in X$をとって
+$x_0\in \mathcal{O}(S,X)$を$S \to \{ x_0\}$という定数写像としたとき
+$$
+\pi_{n}(\mathcal{O}(S,X) ):= \{ f : S^{n}\to \mathcal{O}(S,X) \mid f(P)=x_0\}/\sim
+$$
+とする.
+ ここで$f \sim g$を"$f$と$g$はホモトピック", つまり
+「ある連続写像$H : S^{n}\times [0,1] \to \mathcal{O}(S,X)$で$H(x, 0)=f(x), H(x, 1)=g(x)$なものが存在する」として同値関係を入れる. 
+
+\begin{proof}
+%$k=1$の場合を考える(一番わかりやすいから)$\pi_{1}(\mathcal{O}(S,X))=\{ f : S^1 \to \mathcal{O}(S,X) \text{conti}\}/\underset{\text{homotopic}}{\sim}$である. 
+\[
+\pi_k(i) : \pi_{k}(\mathcal{O}(S,X) ) \rightarrow \pi_{k}(\mathcal{C}(S,X))
+\]
+とする. 全単射を示せば良い.
+
+(単射性) 
+$\gamma : S^{k}\to \mathcal{O}(S,X)$, $f(P)=x_0$かつ
+$\pi_k(i)(\gamma)=0$とする. 
+すると 
+連続写像
+$H : S^{k}\times [0,1] \to \mathcal{C}(S,X)$で$H(x, 0)=\gamma (x), H(x, 1)=x_0 \in \mathcal{C}(S,X)$なものが存在する
+
+前の議論で, $Q=S^{k} \times \{ 0, 1\}, P=S^{k}\times [0,1] , K=\varnothing, T=\ast $とすると
+ \[
+\xymatrix@C=50pt@R=20pt{
+S^{k} \times \{ 0, 1\}\ar@{->}[r]^{ \gamma, x_0}\ar@{^{(}-_>}[d] &\mathcal{O}(S,X) \ar@{^{(}-_>}[d]  \\
+S^{k}\times [0,1] \ar@{->}[r]_{H}\ar@{-->}[ru]^{G}  & \mathcal{C}(S,X)
+}
+\]
+となるので, ある$G : S^{k}\times [0,1] \to \mathcal{O}(S,X)$で$G(x, 0)=\gamma (x), G(x, 1)=x_0 \in \mathcal{O}(S,X)$なものが存在する. よって定義から$\gamma=0 \in \pi_{k}(\mathcal{O}(S,X) )$
+
+(全射性)
+$\delta : S^{k}\to \mathcal{C}(S,X)$, $f(P)=x_0$とする. 
+前の議論で, $Q=\varnothing,  P=S^{k} , K=\varnothing, T=\ast $とすると \[
+\xymatrix@C=50pt@R=20pt{
+\varnothing\ar@{->}[r]\ar@{^{(}-_>}[d] &\mathcal{O}(S,X) \ar@{^{(}-_>}[d]  \\
+S^{k}\ar@{->}[r]_{\delta }\ar@{-->}[ru]^{\widetilde{\delta}}  & \mathcal{C}(S,X)
+}
+\]
+となるので, $\widetilde{\delta} : S^{n}\to \mathcal{O}(S,X)$で
+$\delta$とhomotopicとなるものが存在する. 
+よって$\pi_k(i)(\widetilde{\delta})=\delta$である.  
+
+最後の主張に関しては(全射性)の証明において$k=0$, $S^0 =pt$とすれば言える.  
+\end{proof}
+
+\subsection{成り立つこと}
+Oka多様体の性質をまとめると次のとおり.
+\begin{enumerate}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} 
+\item Stein OkaはGromov elliptic.
+\item \cite{Kus21} OkaであるZariski開集合で被覆される多様体はOka
+\item \cite[Prop2.8]{For13} 正則な covering map $\tilde{X} \to X$についてOkaである性質はうつりあう.\footnote{ここは$h$-principleと違う点. 種数2のリーマン面は$h$-principleを満たさないが, 普遍被覆は可縮なので$h$-princioleを満たす. この例はどちらもOkaではない. }
+\item \cite[Cor 2.9]{For13} Okaならばstrongly Liouville(任意のnegative pshは定数のみ.)
+\item \cite{For18} Okaならば$\C$-strongly dominable. つまり$f : \C^{\dim X} \to X$という全射正則写像がある.
+\item \cite[Theorem 2.11]{For13} 正則ファイバー束$f : E \to X$でファイバーがOkaとする. このとき$E$がOkaと$X$がOkaは同値. ただsubmersionでは分かってないらしい. \footnote{ここもspecialと違う. $X$とファイバーがspecialだが$E$がspecialではないsubmersionの例がある. ファイバー束の場合はわからん.} 
+\item Okaの1点blow upはOka. ただblow up locusの次元が１次元以上だと分かってないらしい. 
+\item  \cite[Theorem 2.13]{For13} $\C^n, \C\mathbb{P}^n$, Grassmann多様体について, codim 2以上の$\C^n$内のalgebraic subvarietyの補集合はOka. 
+\item RationalならGromov ellipticが2024年11月に示されたらしい\footnote{\url{https://arxiv.org/abs/2411.17892}}
+\end{enumerate}
+
+\begin{ex}
+(1). 等質多様体$X$はGromov elliptic. 特にOka.
+\begin{proof}
+群$G$が$X$に正則かつ推移的に$X$に作用するとして
+$$
+s : X \times T_{e}G \to X
+$$
+を$s(x,v):=exp(v)x$とすればこれが$id_X$のdominateなsprayになる.
+\end{proof}
+
+(2). $T_X$が完備正則ベクトル場$V_1, \ldots, V_N$で生成される\footnote{正則柔軟(holomorphic soft?)というらしい}ならば$X$はGromov Ellipticである.
+特にOkaである. 
+\begin{proof}
+$\varphi^{i}_{t} \in Aut(X)$を$V_i$のフローとして
+$s : X \times \C^N \to X$を
+$$
+s(x, t_1, \ldots, t_N)=\varphi^{1}_{t_1} \circ \cdots \circ \varphi^{N}_{t_N}(x) 
+$$
+とすればこれが$id_X$のdominateなsprayになる.
+\end{proof}
+特に$X$ コンパクトかつ$T_X$がglobally generatedならOkaである.
+
+(3) toricならばOka(\cite[Theorem 2.17]{For13}, Larussonによる結果)
+特に$\C\mathbb{P}^n$やminimal Hirzebruch surfaceもOka
+
+\begin{proof}$\C^{*}$がOkaであることを使い$X$がtorus factorを持たないとして良い. 
+このとき$X = (\C^m \setminus Z)/G$で$Z$がalgebraic subvarietyでcodim2以上なので， $\C^m \setminus Z$はOkaであり, $G$が推移的に作用しているので従う. 
+\end{proof}
+
+(4) トーラスはOka. $\C^n$がOkaであるので. 
+実は\cite[Cor 2.25]{For13}で$\C^n/\Gamma$から有限個の点を取り除いてもOkaになることがわかっている. 
+これは「$\C^n \setminus A$で$A$がdiscreteなtame集合というもの」からのcovering mapを持つからである. 
+
+(5) コンパクトリーマン面がOka であることは$g \le 1$と同値.
+これは$g\ge2$ならば$\C \to X$という全射はないから. 
+
+(6) 2次元surface$X$について, RCならばOka.
+これはMMP$X \to X_{min}$を考えると
+$X_{min}$はHirzebruch surface, $\C\mathbb{P}^2$となるからである. 
+
+突き詰めると$X$uniruledで$X_{min}$が種数2以上のruled surfaceでないなら, $X$はOkaである
+
+(7) Hopf surfaceもOka.
+
+普遍被覆が$\C^n \setminus \{0\}$であるので. 
+
+(8) \cite[Section 8]{Cam04} Okaならばspecial. これはOrbifold Kobayashi-Ochiaiを使う. 
+
+%\begin{proof}
+%$f : X \to (Y, \Delta)$をcore fibrationとする. 
+%$X$はOkaなので, $s: \C^n \to X$というsurjective mapがあり, $f \circ s : \C^n \to (Y,\Delta)$を得る.
+%しかし$(Y,\Delta)$はof general typeなのでKobayashi Ochiaiの定理より, 定数に限る(本来の主張は有限こという主張だが, 定数でないと無限こ作れる. )
+%よって$\dim Y =0$より$X$special.
+%\end{proof}
+\end{ex}
+
+\begin{ex}\cite[Subsection 2.8]{For13}
+minimal Surfaceに関しては, Kodaira 次元で分けると次がわかる
+
+$\kappa=- \infty$. 分類より$\C\mathbb{P}^2$かruled surface
+であるので, 「ruled surface over curve with $g\ge 2$」以外はOkaである
+
+$\kappa=0$.
+torus, biellipticならOka. 
+K3, Enriquesは不明.
+
+$\kappa=1$ 
+Buzzard-Lu \cite{BL00}より, $\C$-dominableとdense entire curveがあることは同値である.
+その他全く不明. 
+
+$\kappa =2$
+SpecialでないのでOkaでもない.
+\end{ex}
+
+一つ面白い結果があったので, 書いておく
+\begin{prop}\cite[Cor 2.39]{For13}
+Kummer ならば $\C$-strongly dominable
+\end{prop}
+\begin{proof}
+statified Okaならば$\C$-strongly dominableであることがわかっている.
+ここでstatified Okaとは$X=X_0 \supset X_1\supset \cdots \supset X_m = \varphi$という閉部分代数多様体のstratificationがあって, $X_i \setminus X_{i+1}$がOkaになるものである.
+
+Kummer 曲面 $X$はトーラスを$(z.w) \mapsto (-z,-w)$の作用でわり, そこででた16点の特異点でblow upしたものである．つまり16点の特異点でblow upしたrational curveの集合を$C=\cup_{i=1}^{16}R_i$とすれば
+$X \setminus C $は$ T \setminus{\text{16点}}$ を$\Z_2$で割ったものと同型であり, $T \setminus{\text{16点}}$はOkaである.
+
+$C$はrational curveの集まりよりOkaである. よって$X$はstatified Okaであり, $\C$-strongly dominableである
+\end{proof}
+
+\subsection{Oka多様体に関する未解決問題たち}
+
+\begin{ques}
+specialならばOkaか?
+\end{ques}
+ただこれ成り立つか微妙である. 
+なおCampana Winkelmanは次のことを示した
+\begin{thm}\cite{CW15}
+$X$をprojective manifoldとする.
+$X$が$h$-principle, つまり「任意のStein manifold $Z$からの連続写像$Z \to X$が正則写像とhomotopicである」を満たすとする.
+
+このとき$X$はspecialでBrody hyperbolic K\"ahler manifold $Y$への正則写像$X \to Y$は定数である.
+\end{thm}
+
+$h$-principleであってもOkaではない. 
+例えば可縮 ならばどんな写像も定値写像とhomotopicなので, 単位円板が反例になる. 
+
+\begin{ques}
+specialならば$h$-principleを満たすか? 
+\end{ques}
+
+
+\begin{ques}
+$T_X$ nefなFanoはOka多様体か?
+\end{ques}
+Campana-Peternell予想が正しいなら$T_X$はglobally generatedなので, Okaとなる.
+(Rational homogenusからOkaでもいい)
+
+突き詰めるとこういうことになる.
+\begin{ques}
+\begin{itemize}
+\item$T_X$ psefなrationally connectedはOkaか？
+\item FanoやRCはOkaか？
+\item $\kappa=0$ならOkaか？
+\end{itemize}
+\end{ques}
+
+%正直ちょっと難しい感じがするが, ある程度は何かできなかなーとは思う. 
+
+
+
+なおCampana-Winkelman 23 \cite{CW23}で, "RCはdence entire curveを持つこと"がわかっている. 
+specialならばdence entire curveを持つは未解決だが, semiabelian varietyとbirationalならば言えている(らしい?).\footnote{これは2024年の多変数冬セミナーで山ノ井先生が講演していた.}
+
+
+
+
+\bibliographystyle{alpha}
+\bibliography{ref_MY.bib}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

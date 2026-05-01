@@ -42,7 +42,7 @@
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
 - [公理的集合論と圏論まとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_set_category.pdf)
-2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 公理的集合論の最初の方に付け足したい(がいつやるかわかりません)
+2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 未完成. 公理的集合論の最初の方に付け足したい(がいつやるかわかりません)
 
 - [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成. ただこれは自分のためにもまとめていきたいです. 
@@ -53,6 +53,9 @@
 - [Campana Special variety まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_04_2025_1218.pdf) [Campana-Winkelman 15 まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_Winkelman_2025_1218.pdf) 
 これらは[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)のためにまとめたもの. Campana先生の論文は至る所アイデアが散逸しているのでまとめるのが大変だった. 
 ただCampana先生, Peternell先生の論文は読んでて本当に面白い. 華やかな論文が多いイメージである. 
+
+- [岡多様体のまとめ](https://masataka123.github.io/blog3/pdf/20260501_Oka/岡多様体まとめ_2026_0501.pdf) 
+[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)の日下部さんの講演とその前にまとめていた内容を再構成した. 「なんかTexにしたいな」と思いその日中にTex化した. chatGPTがあるとTex化が捗るのでいいですね. 
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
