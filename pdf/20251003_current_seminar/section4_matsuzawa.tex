@@ -2499,7 +2499,7 @@ i(dx^j+i\,dy^j)\wedge(dx^j-i\,dy^j)
 \begin{tcolorbox}[mybox]
 \begin{defn}
 \label{defn-M-4.4.4}[Strongly positive cone]
-Strongly positive cone $\wedge_{sp}^{p,p}V^{*} \subset \subset 
+Strongly positive cone $\wedge_{sp}^{p,p}V^{*} \subset 
 \wedge^{p,p}V^{*}$を次のように定義する.
 $p=0$のとき
 $$
@@ -2747,6 +2747,365 @@ $はstrongly positive formで$\R$上で生成される.
 \]
 が成り立つ.
 ただ, このpositiveの定義はあまり使われないと思われるので, \cite{Dem}に則った定義を使う. 
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-5.4.1}
+$\wedge_{sp}^{p,p}V^{*}$, $\wedge_{pos}^{p,p}V^{*}$
+は$\wedge^{p,p}V^{*}$でのclosed convex coneであり, 0を通るlineを含まない. 
+(ただし$\R \hookrightarrow \C$により$\wedge^{p,p}V^{*}$を$\R$ベクトル空間とみる.)
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+
+[positive coneの場合]
+定義\ref{defn-M-4.4.5}から
+$$
+\wedge_{pos}^{p,p}V^{*}:= \{ \omega \in \wedge^{p,p}V^{*} \mid \forall \eta\in \wedge_{sp}^{n-p,n-p}V^*,\omega\wedge\eta \text{ positive } 2n\text{-form}\}\subset 
+\wedge^{p,p}V^{*}
+$$
+である. 
+よって convexは明らか.
+また$\omega\wedge \eta \ge0$という条件から, 閉集合の合併であり閉集合である.
+
+line を含まないのは, 
+任意の$ \eta  \in \wedge_{sp}^{n-p,n-p}V^*$について, $\omega\wedge \eta \ge0$かつ$-\omega\wedge \eta \ge0$であれば, 
+$\omega\wedge \eta=0$となる. 
+ここでLemma \ref{lem-M-4.4.7}よりstrongly positive coneで$\wedge^{n-p,n-p}V^*$が生成されるので, (perfect pairing性から)$\omega=0$である. 
+
+[Strongly positive coneの場合]
+lineを含まないことは同じ. (Lemma \ref{lem-M-4.4.6}より$\wedge_{pos}^{n-p,n-p}V^*\subset\wedge_{sp}^{n-p,n-p}V^*$からでも可)
+closedの証明をする. 
+
+
+
+\begin{claim}
+$$
+\mathcal{C}:=
+\left\{ 
+i \alpha_1 \wedge \overline{\alpha_1} \wedge \cdots \wedge i \alpha_p\wedge \overline{\alpha_p} \mid \text{ $\alpha_1, \ldots, \alpha_p \in {V^{*}}^{1,0} $ 
+}
+\right\}
+$$
+とおく. $\mathcal{C} \subset \wedge^{p,p}V^*$はclosedである.
+\end{claim}
+\begin{proof}[Claimの証明]
+\[
+\xymatrix@C=5.5em@R=4.5em{
+\mathrm{Grass}(V^{*1,0},p)
+\ar[r]^-{\mathrm{Plucker} \text{埋め込み}}
+&
+{\mathbf P}\!\left(\left(\Lambda_{\mathbf C}^{p}V^{*1,0}\right)^{\vee}\right)
+\\
+{\left\{
+\begin{array}{c}
+\alpha_1\wedge\cdots\wedge\alpha_p\\
+\alpha_1,\ldots,\alpha_p\in V^{*1,0}\\
+\mathbf C\mathrm{-lin.\ ind.}
+\end{array}
+\right\}}
+\ar[u]^-{
+\mathrm{Grass\ of}
+p\mathrm{-dim.\ }\mathbf C\mathrm{-subsp.}
+}
+\ar[r]_-{\mathrm{closed}}
+&
+\Lambda^{p,0}V^*\setminus\{0\}
+\ar[u]_-{
+\begin{array}{c}
+\mathrm{quotient}\\
+\mathrm{by\ }\mathbf C^*
+\end{array}}
+}
+\]
+を考えれば,
+$$
+A := 
+\left\{ 
+\alpha_1 \wedge \cdots \wedge  \alpha_p \mid 
+\alpha_1, \ldots, \alpha_p \in {V^{*}}^{1,0} 
+\right\}
+\underset{\text{closed}}{\subset} 
+ \wedge^{p,0}V^*
+$$
+であることがわかる. 
+そこで次の射を考える:
+\[
+\psi\colon \Lambda^{p,0}V^*
+\longrightarrow
+\Lambda^{p,0}V^*\otimes_{\mathbb{C}}\Lambda^{0,p}V^*
+\simeq
+\Lambda^{p,p}V^*
+\quad 
+v\longmapsto v\otimes \overline{v}\quad
+\longmapsto\quad v\wedge\overline{v}.
+\]
+
+\(\psi\)は連続である. 
+\(\psi\) closed mapであることを示す. 
+$v_i \in  \Lambda^{p,0}V^*$で$\psi(v_i) \to w\in\Lambda^{p,0}V^*\otimes_{\mathbb{C}}\Lambda^{0,p}V^*$となるものを取る
+すると \(\{v_i\}_{i=1}^{\infty}\) は有界である. 
+(これは座標をとればわかる)
+よって, 部分列を取り替えて$v_i \to v_{\infty}$
+となる$v_\infty$が取れる. 
+よって$\psi(v_\infty)=w$となり言えた. 
+これより
+\[
+\psi(A):=
+\{ \alpha_1 \wedge \cdots \wedge  \alpha_p \wedge 
+\overline{\alpha_1} \wedge \cdots \wedge  \overline{\alpha_p}
+\mid \alpha_j\in {V^{*}}^{1,0}
+\}
+\underset{\text{closed }}{\subset} \wedge^{p,p}V^*
+\]
+ここで
+\begin{align*}
+\alpha_1\wedge\cdots\wedge\alpha_p
+\wedge\overline{\alpha_1}\wedge\cdots\wedge\overline{\alpha_p}
+&=
+(-1)^{1+\cdots+(p-1)}
+\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+\alpha_p\wedge\overline{\alpha_p}
+=
+i^{p(p-1)}
+\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+\alpha_p\wedge\overline{\alpha_p}
+\\
+&=
+i^{p(p-1)-p}\,
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}
+=
+i^{p(p-2)}\,
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}.
+\end{align*}
+であるので
+$$
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}.
+=
+\underbrace{i^{-p^2 + 2p}}_{=i^{p^2}}\alpha_1\wedge\cdots\wedge\alpha_p
+\wedge\overline{\alpha_1}\wedge\cdots\wedge\overline{\alpha_p}
+$$
+である. 
+よって$\mathcal{C}=i^{p^2}\psi(A)$となり, closed である.
+\end{proof}
+
+strongly positive coneのclosed cone性の証明にもどる. 
+$K:=\mathcal{C} \cap S^1 \subset \wedge^{p,p}V^*$
+とおく.
+ただし$S^1$はnormを固定してそれに関してのunit sphereである/
+すると$K$はコンパクトである. 
+今
+$$
+\wedge_{sp}^{p,p}V^*
+=
+\R_{\ge 0} \underbrace{\mathrm{conv}(K)}_{\text{convex hullをとる}}
+$$
+が成り立つ. 
+これは$\supset$は明らかで, $\subset $に関しては
+任意の$\gamma \in \wedge_{sp}^{p,p}V^*$について, 定義から
+$\gamma = \gamma_1 + \ldots + \gamma_r $となる$\gamma_i \in \mathcal{C}$があるので, 
+$$
+\gamma 
+= \sum_{i=1}^{r}
+\underbrace{|| \gamma_i||}_{\in \R_{\ge0}}
+\underbrace{\frac{\gamma_i}{|| \gamma_i||}}_{\in K} 
+$$
+となり, $\frac{\gamma}{\sum_{i=1}^{r} ||\gamma_i||} \in \mathrm{conv}(K)$となるので. 
+また$\mathrm{conv}(K)$はコンパクトである. 
+
+$0 \not \in \mathrm{conv}(K)$を示す. 
+これはもし$0 \in \mathrm{conv}(K)$ならば
+$$
+0=\sum_{i=1}^{r} a_i v_i \quad a_i \ge 0, \sum a_i =1, v_i \in K
+$$
+となる. 
+$r \ge 2$が確定し$a_1v_1 = - \sum_{i=2}^{r}a_iv_i \in \wedge_{sp}^{p,p}V^*$となり, $a_1v_1, -a_1v_1 \in \wedge_{sp}^{p,p}V^*$となり矛盾するため. 
+
+
+$\mathrm{conv}(K)$はclosedを示す. 
+$\omega_j \in \mathrm{conv}(K)$かつ$\omega_j \to \omega \in \wedge_{sp}V^*$とする. 
+$$
+\omega_j :=a_j v_j  \quad a_j \in \R_{\ge0}, v_j \in \mathrm{conv}(K)
+$$
+とすると$\mathrm{conv}(K)$がコンパクトなので, 部分列を取り替えて
+$v_j \to v \in \mathrm{conv}(K)$となる$v$を得る.
+$$
+a_j v_j =\omega_j \to \omega
+\quad \text{and} \quad
+\underbrace{v \neq 0}_{\text{by $0 \not \in \mathrm{conv}(K)$}}
+\Rightarrow 
+a_j \to \exists a \in \R_{\ge 0}
+$$
+である. よって$w = av \in \R_{\ge 0}  \mathrm{conv}(K)$である.
+\end{proof}
+
+\begin{rem}
+$0 \not \in \mathrm{conv}(K)$がかなりきいている. 
+例えば$0 \ge x \ge 1$上で$y=x^2$と$y=\sqrt{x}$を考えて, それに囲まれる図形(ラグビーボールみたいな形)から$(0, 0)$を抜いたものを$K$とすると, 
+$0 \in \mathrm{conv}(K)$であり, convex coneはclosedにはならない($x$軸$y$軸を含まない)
+また
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-5.4.2}
+$p+q=n$について, $\omega \in \wedge_{sp}^{p,p}V^{*}$がstrongly positiveであることは, 任意の$\eta \in \wedge_{pos}^{q,q}V^*$について, $\omega \wedge \eta$が
+positiveであることと同値
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\Rightarrow$は定義から明らか. 
+$\Leftarrow$を示す. 
+strongly positiveならばpositiveなので, 定義から$\omega$はpositiveである. 
+Lemma \ref{lem-M-4.4.8}より, real formである. 
+以下の図式を考える.
+\[
+\xymatrix@C=4.5em@R=3em{
+\left(\wedge^{p,p}V^*\right)_{\mathbb{R}}
+\times
+\left(\wedge^{q,q}V^*\right)_{\mathbb{R}}
+\ar[r]^-{\mathrm{perfect pairing}}
+&
+\left(\wedge^{n,n}V^*\right)_{\mathbb{R}}
+\simeq \mathbb{R}
+\\
+\wedge^{p,p}_{sp}V^*\times\wedge^{q,q}_{pos}V^*
+\ar[u]
+\ar[r]
+&
+\mathbb{R}_{\ge 0}
+\ar[u]
+}
+\]
+
+もし \(\omega\notin \wedge^{p,p}_{sp}V^*\)ならば,
+ ある\(\mathbb{R}\)線型写像 \(\ell\colon
+\left(\wedge^{p,p}V^*\right)_{\mathbb{R}}\to \mathbb{R}\)
+で\(\wedge^{p,p}_{sp}V^*\)上で\(\ell>0\) かつ \(\ell(\omega)<0\)
+となるものがある. 
+$\ell=\eta\wedge(-)$となる$\eta\in \wedge^{q,q}_{\mathbb{R}}V^*$
+をとれば矛盾する. 
+\end{proof}
+
+
+$\C$線型写像\(\Phi\colon W\to V\) について, 
+\[
+\Phi^*\colon \underbrace{V^*}_{=:\mathrm{Hom}_{\mathbb{R}}(V,\mathbb{R})}\longrightarrow W^*
+\]
+もまた
+$\C$線形である. 
+これより
+\(
+\Phi^*:
+V^*\otimes_{\mathbb{R}}\mathbb{C}
+\overset{}{\longrightarrow}
+W^*\otimes_{\mathbb{R}}\mathbb{C}
+\)は$J$と可換であり, 
+
+\[
+V^{*1,0}\overset{\Phi^{*}}{\longrightarrow}W^{*1,0}
+\quad
+V^{*0,1}\overset{\Phi^{*}}{\longrightarrow} W^{*0,1}
+\quad
+\wedge^{p,q}V^*\overset{\Phi^{*}}{\longrightarrow}\wedge^{p,q}W^*.
+\]
+となる. 
+特に
+\(
+W\underset{\Phi}{\hookrightarrow} V
+\)
+というsubspaceと$u \in \wedge^{p,q}V^*$に対し
+\[
+u|_W:=\Phi^*(u)
+\]
+と定義する. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-5.4.3}
+$u \in \wedge^{p, p}V^{*}$について
+$u$がpositiveであることは, 任意の$p$次元$\C$部分空間$S \subset V$について
+$u|_{S} \in \wedge^{p, p}S^{*}$がpositiveであることと同値. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+
+$\Rightarrow $を示す. $S \subset V$を固定する. 
+$V^{*} \twoheadrightarrow S^{*}$は全射より$\C$ベクトル空間として, 下は可換である.
+\[
+\xymatrix@C=4em@R=3em{
+V^* \ar[r] \ar[d]_{\simeq} & S^* \ar[d]^{\simeq}\\
+V^{*1,0} \ar[r] & S^{*1,0}
+}
+\]
+よって$\alpha_1, \ldots, \alpha_n \in {V^{*}}^{1, 0}$という$\C$基底で
+$\alpha_1|_{S}, \ldots, \alpha_n|_{S} \in {S^{*}}^{1, 0}$が$\C$基底になるように取れる.
+よって
+$$
+u|_{S} = \lambda_{S} (i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p})|_{S}
+\quad \text{where $\lambda_S \in \C$} 
+$$
+とできる. すると
+$$
+u  \wedge (i\alpha_{p+1}\wedge\overline{\alpha_{p+1}}\wedge\cdots\wedge
+i\alpha_{n}\wedge\overline{\alpha_n})
+=
+\lambda_{S} i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_n\wedge\overline{\alpha_n}
+$$
+なので, 仮定から$u$がpositiveなので, $\lambda|_{S}\ge 0$である. 
+よって$u|_{S}$もpositiveである. 
+
+$\Leftarrow $を示す. 示すことは任意の$\beta_1, \ldots, \beta_{n-p} \in {V^{*}}^{1, 0}$について
+$u \wedge i\beta_1\wedge\overline{\beta_1}\wedge\cdots\wedge
+i\beta_{n-p}\wedge\overline{\beta_{n-p}}$がpositiveである.
+
+$\beta_1, \ldots, \beta_{n-p} \in {V^{*}}^{1, 0}$をとる. 一次独立と仮定して良い. 
+$V^* \simeq V^{*1,0}$によって$v_j \leftrightarrow \beta_j$と対応することと, 
+$$
+S:=\left(
+V^*/\sum_{j=1}^{\,n-p}\mathbb C v_j,\mathbb R
+\right)
+\hookrightarrow 
+\mathrm{Hom}_{\mathbb R}(V^*,\mathbb R)=V
+$$
+を用いれば, 
+\[
+V^{*1,0}\twoheadrightarrow S^{*1,0}
+\quad
+\beta_1,\ldots,\beta_{n-p}\longmapsto 0
+\]
+を得る. そこで
+  \(\alpha_1,\ldots,\alpha_p\in V^{*1,0}\) であって
+\(\alpha_1,\ldots,\alpha_p,\beta_1,\ldots,\beta_{n-p}\) が
+ \(V^{*1,0}\)の\(\mathbb{C}\)-基底であるものを取る. 
+すると
+\[
+u|_S
+=
+\lambda\left(
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}
+\right)\bigg|_S
+\]
+である仮定から$\lambda\geq 0$を得て, 
+\[
+u\wedge i\beta_1\wedge\overline{\beta_1}\wedge\cdots\wedge
+i\beta_{n-p}\wedge\overline{\beta_{n-p}}
+=
+\lambda\,
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}\wedge
+i\beta_1\wedge\overline{\beta_1}\wedge\cdots\wedge
+i\beta_{n-p}\wedge\overline{\beta_{n-p}}
+\]
+より, positive である. 
+\end{proof}
 
 
 \end{document}
