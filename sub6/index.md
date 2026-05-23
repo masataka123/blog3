@@ -27,15 +27,18 @@
 いちょう祭まちかね祭での数学科の展示, [まちかね山の数学教室](http://www.math.sci.osaka-u.ac.jp/event/machikaneyama/)
 で用いたもの. 上のパズルをもう少し簡単にした.
 
-- [A3ポスター用](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
-- [A4配布用](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
-- [問題の解説](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4_解説書_ホームページ用.pdf)
+- [2026年のA3ポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/学祭のパズルの展示_20260426.pdf)
+- [2026年のA4配布](https://masataka123.github.io/blog3/pdf/20251103_gakusai/学祭のパズル解説書_20260426.pdf)
+- [2025年のA3ポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
+- [2025年のA4配布](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
+- [2025年の問題の解説](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4_解説書_ホームページ用.pdf)
 
 展示の解説もよく使うのであげておいた．
 
-- [正多面体](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
-- [シャボン膜](https://masataka123.github.io/blog3/pdf/20251103_gakusai/syabon.pdf)
-- [カルキンウィルフツリー](https://masataka123.github.io/blog3/pdf/20251103_gakusai/カルキンウィルフツリー.pdf)
+- [正多面体 (tex)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体展示マニュアル_2026_0428.pdf)
+- [正多面体(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
+- [シャボン膜(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/syabon.pdf)
+- [カルキンウィルフツリー(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/カルキンウィルフツリー.pdf)
 
 
 ## 数学パズルの引用文献
