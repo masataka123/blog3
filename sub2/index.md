@@ -31,6 +31,7 @@
 # **ノート**
 勉強したことなどをまとめた自分用のノートです. 自分用ですがホームページにおいていると便利なのであげることにしました.
 間違っている可能性は大いにあるので注意してください. (岩井の写し間違いや勘違いが多くあると思います.)
+[Google Drive](https://drive.google.com/drive/folders/1zVY2KFeFIUPRmdwu5I1HHey6r1IstPLC?usp=sharing)にもあります. 
 
 - [位相空間論まとめ](https://masataka123.github.io/blog3/lecture/2022_集合と位相まとめ.pdf)
 位相の演義を担当した際に定義などを勉強し直しました. なお単語帳のために作ったので証明は書いてないです. 
@@ -56,6 +57,9 @@
 
 - [岡多様体のまとめ](https://masataka123.github.io/blog3/pdf/20260501_Oka/岡多様体まとめ_2026_0501.pdf) 
 [岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)の日下部さんの講演とその前にまとめていた内容を再構成した. 「なんかTexにしたいな」と思いその日中にTex化した. chatGPTがあるとTex化が捗るのでいいですね. 
+
+- [Chern類と複素幾何学](https://masataka123.github.io/blog3/pdf/20260526_Tohoku_Chern_class/東北大学授業資料_2026_0526.pdf) 
+2026年の[集中講義](https://masataka123.github.io/2026_tohoku_Chern_class/)のために作った. 初学者にわかりやすく, そして最新の研究につながるように頑張って書いた. 接続や曲率など普段使っている概念を定義するのが一番苦労した. こういう作業をすると自分が適当に数学していることが身に染みてわかった. あと微分幾何のテンソル計算はTeXで作業した方が楽であることもわかった. 
 
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
