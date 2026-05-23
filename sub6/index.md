@@ -27,8 +27,8 @@
 いちょう祭まちかね祭での数学科の展示, [まちかね山の数学教室](http://www.math.sci.osaka-u.ac.jp/event/machikaneyama/)
 で用いたもの. 上のパズルをもう少し簡単にした.
 
-- [2026年のA3ポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/学祭のパズルの展示_20260426.pdf)
-- [2026年のA4配布](https://masataka123.github.io/blog3/pdf/20251103_gakusai/学祭のパズル解説書_20260426.pdf)
+- [2026年のA3ポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E8%A7%A3%E8%AA%AC%E6%9B%B8_20260426.pdf)
+- [2026年のA4配布](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E8%A7%A3%E8%AA%AC%E6%9B%B8_20260426.pdf)
 - [2025年のA3ポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
 - [2025年のA4配布](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
 - [2025年の問題の解説](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4_解説書_ホームページ用.pdf)
