@@ -526,12 +526,12 @@ $z^j=x^j+iy^j$とする.
 $ U \subset \mathbb{C}^m$をopenとするときに
 
 \[
-dz^j = dx^j + i\,dy^j,\quad d\bar{z}^j = dx^j - i\,dy^j
+dz^j = dx^j + i\,dy^j,\quad d\overline{z}^j = dx^j - i\,dy^j
 \]
 
 \[
 \frac{\partial}{\partial z^j} := \frac{1}{2}\left(\frac{\partial}{\partial x^j} - i\frac{\partial}{\partial y^j}\right),\quad
-\frac{\partial}{\partial \bar{z}^j} := \frac{1}{2}\left(\frac{\partial}{\partial x^j} + i\frac{\partial}{\partial y^j}\right),
+\frac{\partial}{\partial \overline{z}^j} := \frac{1}{2}\left(\frac{\partial}{\partial x^j} + i\frac{\partial}{\partial y^j}\right),
 \]
 \end{defn}
 \end{tcolorbox}
@@ -548,7 +548,7 @@ dz^j = dx^j + i\,dy^j,\quad d\bar{z}^j = dx^j - i\,dy^j
 \[
 dz^J := dz^{j_1}\wedge \cdots \wedge dz^{j_k}
 \quad
-d\bar{z}^{\bar{J}}:= d\bar{z}^{j_1}\wedge \cdots \wedge d\bar{z}^{j_k}.
+d\overline{z}^{\overline{J}}:= d\overline{z}^{j_1}\wedge \cdots \wedge d\overline{z}^{j_k}.
 \]
 とする.  \(U\subset \mathbb{C}^m\) open, 
 \(
@@ -559,10 +559,10 @@ sectionについて,
 \[
 \varphi = 
 \sum_{\substack{p,q\geq 0\\ p+q=\ell}}
-\sum_{J\in \{m;p\} , \bar{K}\in\{m;q\}}
-\varphi_{J\bar{K}}\, dz^J\wedge d\bar{z}^{\bar{K}}
+\sum_{J\in \{m;p\} , \overline{K}\in\{m;q\}}
+\varphi_{J\overline{K}}\, dz^J\wedge d\overline{z}^{\overline{K}}
 \]
-となる唯一のmap\(\varphi_{J\bar{K}} : U \to \C\)が存在する. 
+となる唯一のmap\(\varphi_{J\overline{K}} : U \to \C\)が存在する. 
 \end{tcolorbox}
 
 \begin{tcolorbox}[mybox]
@@ -574,9 +574,9 @@ $\mathcal{C}^{(p,q)}(U)
 :=
 \left\{
 \sum_{J\in \{m;p\},  K\in \{m;q\}}
-\varphi_{J\bar{K}}\, dz^J\wedge d\bar{z}^{\bar{K}}
+\varphi_{J\overline{K}}\, dz^J\wedge d\overline{z}^{\overline{K}}
 \ \middle|\
-\varphi_{J\bar{K}} : U \to \mathbb{C}\ \text{連続}
+\varphi_{J\overline{K}} : U \to \mathbb{C}\ \text{連続}
 \right\}$
 % [page 1]
 \item $\mathcal{K}^{(p,q)}(U)=\mathcal{K}^{p+q}(U)\cap \mathcal{C}^{(p,q)}(U)$
@@ -586,9 +586,9 @@ $\mathcal{C}^{(p,q)}(U)
 $L^{(p,q)}_{\mathrm{loc}}(U):=
 \left\{
 \sum_{\substack{|J|=p\\|K|=q}}'
-\varphi_{J\bar{K}}\,dz^J\wedge d\bar{z}^{\bar{K}}
+\varphi_{J\overline{K}}\,dz^J\wedge d\overline{z}^{\overline{K}}
 \ \middle|\
-\varphi_{J\bar{K}}\in L^1_{\mathrm{loc}}(U)
+\varphi_{J\overline{K}}\in L^1_{\mathrm{loc}}(U)
 \right\}
 $
 \item 
@@ -618,7 +618,7 @@ $
  \( J\in \{n;p\},\ \forall K\in \{n;q\},\)
 について, 
 \(
-f^{*}(dz^{J}\wedge d\bar{z}^{K}) 
+f^{*}(dz^{J}\wedge d\overline{z}^{K}) 
 \)も type (p,q)である. 
 \end{lem}
 \end{tcolorbox}
@@ -630,7 +630,7 @@ f^{*}dz^{j}=f^{*}(dx^{j}+i\,dy^{j}) \underset{Cauchy-Riemann}{=}\
 \end{align*}
 同様にして, 
 $
-f^{*}d\bar{z}^{j}=
+f^{*}d\overline{z}^{j}=
 \sum_{k=1}^{m}\frac{\partial \overline{f^{j}}}{\partial \overline{w}^{\,k}}\,d\overline{w}^{\,k}$となるのでいえる. 
 \end{proof}
 
@@ -835,25 +835,25 @@ T|_{U_{\lambda}}(\chi_{\lambda}\varphi)
 \(U\subset \mathbb{C}^{m}\) open, \(T\in \mathcal{D}'^{\,\ell}(U)\), \(p+q=\ell\)とする. 
 \(T\) がtype \((p,q)\) であることは, 
 \[
-T=\sum_{J\in \mathcal{J}(m;p)\atop K\in \mathcal{J}(m;q)} T_{J\bar{K}}\wedge dz^{J}\wedge d\bar{z}^{K}
+T=\sum_{J\in \mathcal{J}(m;p)\atop K\in \mathcal{J}(m;q)} T_{J\overline{K}}\wedge dz^{J}\wedge d\overline{z}^{K}
 \]
-となる \(T_{J\bar{K}}\in \mathcal{D}'^{\,0}(U)\)が存在することと同値. 
+となる \(T_{J\overline{K}}\in \mathcal{D}'^{\,0}(U)\)が存在することと同値. 
 \end{lem}
 \end{tcolorbox}
 
 \begin{proof}
 \[
-T=\sum_{p+q=\ell}\ \sum_{\substack{|J|=p\\|K|=q}} T_{J\bar{K}}\wedge dz^{J}\wedge d\bar{z}^{K}.
+T=\sum_{p+q=\ell}\ \sum_{\substack{|J|=p\\|K|=q}} T_{J\overline{K}}\wedge dz^{J}\wedge d\overline{z}^{K}.
 \]
 とかく. 
 任意の \(J'\in \{m;s\}\), \(\forall K'\{m;t\},  \varphi\in \mathcal{D}(U)\)について, 
 \begin{align*}
-T(\varphi\,dz^{J'}\wedge d\bar{z}^{K'})
+T(\varphi\,dz^{J'}\wedge d\overline{z}^{K'})
 &=
 \sum_{p+q=\ell}\ \sum_{\substack{|J|=p\\|K|=q}}
-T_{J\bar{K}}(\varphi\,dz^{J}\wedge d\bar{z}^{K}\wedge dz^{J'}\wedge d\bar{z}^{K'})\\
+T_{J\overline{K}}(\varphi\,dz^{J}\wedge d\overline{z}^{K}\wedge dz^{J'}\wedge d\overline{z}^{K'})\\
 &=
-T_{J^{'0}\bar{K}^{'0}}(\varphi\,dz^{J^{'0}}\wedge d\bar{z}^{K^{'0}}\wedge dz^{J'}\wedge d\bar{z}^{K'})
+T_{J^{'0}\overline{K}^{'0}}(\varphi\,dz^{J^{'0}}\wedge d\overline{z}^{K^{'0}}\wedge dz^{J'}\wedge d\overline{z}^{K'})
 \end{align*}
 
 ここで
@@ -861,7 +861,7 @@ T_{J^{'0}\bar{K}^{'0}}(\varphi\,dz^{J^{'0}}\wedge d\bar{z}^{K^{'0}}\wedge dz^{J'
 以上より
 \(T\) がtype \((p,q)\) であることは, 
 \[
-T_{J\bar{K}}=0 \ \text{ for } \forall J,\ \forall K
+T_{J\overline{K}}=0 \ \text{ for } \forall J,\ \forall K
 \text{ s.t. } (|J|,|K|)\neq (p,q)
 \]
 となり, 結果が従う
@@ -930,15 +930,15 @@ $T_{p'q'}\big|_{\mathcal{D}^{2m-p-q}(M)}=0$
 \partial T:\mathcal{D}^{2m-\ell-1}(M)\to \mathbb{C};\qquad \varphi\mapsto (-1)^{\ell+1}T(\partial\varphi)
 \]
 \[
-\bar{\partial}T:\mathcal{D}^{2m-\ell-1}(M)\to \mathbb{C};\qquad \varphi\mapsto (-1)^{\ell+1}T(\bar{\partial}\varphi).
+\overline{\partial}T:\mathcal{D}^{2m-\ell-1}(M)\to \mathbb{C};\qquad \varphi\mapsto (-1)^{\ell+1}T(\overline{\partial}\varphi).
 \]
 とする. 
- \(\partial T,\bar{\partial}T\in \mathcal{D}'^{\,\ell+1}(M)\)である.
+ \(\partial T,\overline{\partial}T\in \mathcal{D}'^{\,\ell+1}(M)\)である.
 
 また
 \(T\in \mathcal{D}'^{\,\ell}(M)\)について, 
 \(\partial \)-closed を$\partial T=0$で定める. 
-\(\bar{\partial} \)-closed も$\bar{\partial} T=0$で定める. 
+\(\overline{\partial} \)-closed も$\overline{\partial} T=0$で定める. 
 
 \end{defn}
 \end{tcolorbox}
@@ -947,18 +947,18 @@ $T_{p'q'}\big|_{\mathcal{D}^{2m-p-q}(M)}=0$
 \begin{itemize}
 \item locallyに
 \(
-\partial\left(\sum \varphi_{J\bar{K}}\,dz^{J}\wedge d\bar{z}^{K}\right)
+\partial\left(\sum \varphi_{J\overline{K}}\,dz^{J}\wedge d\overline{z}^{K}\right)
 =
-\sum_{j}\left(\sum \frac{\partial \varphi_{J\bar{K}}}{\partial z^{j}}\,dz^{j}\right)\wedge dz^{J}\wedge d\bar{z}^{K}
+\sum_{j}\left(\sum \frac{\partial \varphi_{J\overline{K}}}{\partial z^{j}}\,dz^{j}\right)\wedge dz^{J}\wedge d\overline{z}^{K}
 \)
 \item \(
 \partial=\operatorname{pr}_{r+1,s}\circ d \quad \text{on } \mathcal{E}^{(r,s)}(H).
 \qquad
-\partial+\bar{\partial}=d
+\partial+\overline{\partial}=d
 \)
 \item 
 \(
-\bar{\partial}=\operatorname{pr}_{r,s+1}\circ d \quad \text{on } \mathcal{E}^{(r,s)}(H),
+\overline{\partial}=\operatorname{pr}_{r,s+1}\circ d \quad \text{on } \mathcal{E}^{(r,s)}(H),
 \)
 \item
 \(
@@ -968,14 +968,14 @@ $T_{p'q'}\big|_{\mathcal{D}^{2m-p-q}(M)}=0$
 \)
 \item
 \(
-\bar{\partial}(\omega\wedge \eta)=\bar{\partial}\omega\wedge \eta+(-1)^{k}\omega\wedge \bar{\partial}\eta
+\overline{\partial}(\omega\wedge \eta)=\overline{\partial}\omega\wedge \eta+(-1)^{k}\omega\wedge \overline{\partial}\eta
 \qquad
 \eta\in \mathcal{E}^{\ell}(H)
 \)
 \end{itemize}
 
 \(
-(\partial T,\bar{\partial}T\in \mathcal{D}'^{\,\ell+1}(M)
+(\partial T,\overline{\partial}T\in \mathcal{D}'^{\,\ell+1}(M)
 \), であることは, $A\subset M$コンパクトについて, 
 \[
 \xymatrix{
@@ -986,7 +986,7 @@ $T_{p'q'}\big|_{\mathcal{D}^{2m-p-q}(M)}=0$
 \mathcal{D}^{2m-\ell}_{A}(H) \ar[u]
 }
 \]
-であるから.\(\bar{\partial}T\)も同様である. 
+であるから.\(\overline{\partial}T\)も同様である. 
 
 \begin{tcolorbox}[mybox]
 \begin{lem}
@@ -994,10 +994,10 @@ $T_{p'q'}\big|_{\mathcal{D}^{2m-p-q}(M)}=0$
 \(M\) complex manifold, \(\dim_{\mathbb{C}}M=m\)とする.
 \begin{enumerate}
 \item \( T\in \mathcal{D}'^{(p,q)}(M)\)について, 
-\( \partial T\in \mathcal{D}'^{(p+1,q)}(H), \bar{\partial}T\in \mathcal{D}'^{(p,q+1)}(M)\)
+\( \partial T\in \mathcal{D}'^{(p+1,q)}(H), \overline{\partial}T\in \mathcal{D}'^{(p,q+1)}(M)\)
 \item \(T\in \mathcal{D}'^{\,\ell}(M)\)について, 
-\(dT=\partial T+\bar{\partial}T\)かつ
-\[ \partial\partial T=\bar{\partial}\bar{\partial}T=\partial\bar{\partial}T+\bar{\partial}\partial T=0
+\(dT=\partial T+\overline{\partial}T\)かつ
+\[ \partial\partial T=\overline{\partial}\overline{\partial}T=\partial\overline{\partial}T+\overline{\partial}\partial T=0
 \]
 \end{enumerate}
 \end{lem}
@@ -1011,12 +1011,12 @@ $T_{p'q'}\big|_{\mathcal{D}^{2m-p-q}(M)}=0$
 (\partial T)(\varphi)
 =(-1)^{p+q-1}T(\underbrace{\partial \varphi}_{\text{type }\neq (m-p,m-q) })=0.
 \]
-\(\bar{\partial}T\)についても同様である. 
+\(\overline{\partial}T\)についても同様である. 
 
 (2). \(\mathbb{C}^{\infty}\)-form について
 \[
-d=\partial+\bar{\partial},\qquad \partial\partial=\bar{\partial}\bar{\partial}
-=\bar{\partial}\partial+\partial\bar{\partial}=0
+d=\partial+\overline{\partial},\qquad \partial\partial=\overline{\partial}\overline{\partial}
+=\overline{\partial}\partial+\partial\overline{\partial}=0
 \]
 であるため. 
 \end{proof}
@@ -1038,8 +1038,8 @@ d=\partial+\bar{\partial},\qquad \partial\partial=\bar{\partial}\bar{\partial}
 }
 \qquad\qquad
 \xymatrix{
-\mathcal{E}^{(p,q)}(H) \ar@{^{(}->}[r]^{[\cdot]} \ar[d]_{\bar{\partial}} &
-\mathcal{D}'^{(p,q)}(H) \ar[d]^{\bar{\partial}} \\
+\mathcal{E}^{(p,q)}(H) \ar@{^{(}->}[r]^{[\cdot]} \ar[d]_{\overline{\partial}} &
+\mathcal{D}'^{(p,q)}(H) \ar[d]^{\overline{\partial}} \\
 \mathcal{E}^{(p,q+1)}(H) \ar@{^{(}->}[r]^{[\cdot]} &
 \mathcal{D}'^{(p,q+1)}(H)
 }
@@ -1072,14 +1072,14 @@ d=\partial+\bar{\partial},\qquad \partial\partial=\bar{\partial}\bar{\partial}
 \end{align*}
 
 (*)についてはStokesの定理"
-任意の\( \psi\in \mathcal{D}^{2m-1}(M)\)について, \(\int_{M}\partial \psi=\int_{H}\bar{\partial}\psi=0\)"である. 
+任意の\( \psi\in \mathcal{D}^{2m-1}(M)\)について, \(\int_{M}\partial \psi=\int_{H}\overline{\partial}\psi=0\)"である. 
 これは任意の$\psi\in \mathcal{D}^{(m-1,m)}(M)$について, 
-\(\ \partial\psi=(\partial+\bar{\partial})\psi=d\psi\)
+\(\ \partial\psi=(\partial+\overline{\partial})\psi=d\psi\)
 なので
 \[
 \int_{M}\partial\psi=\int_{M}d\psi\underset{\text{普通のStokes}}{=}0
 \]
-である. $\bar{\partial}$も同様である.
+である. $\overline{\partial}$も同様である.
 
 \end{proof}
 
@@ -2224,7 +2224,7 @@ dx^j \longmapsto dx^j\otimes 1
 +
 \frac{1}{2}(dx^j\otimes 1-dy^j\otimes i)
 =
-\frac{1}{2}dz^j+\frac{1}{2}d\bar{z}^j
+\frac{1}{2}dz^j+\frac{1}{2}d\overline{z}^j
 \]
 
 \[
@@ -2238,7 +2238,7 @@ dy^j \longmapsto dy^j\otimes 1
 %-
 %\frac{1}{2i}(dx^j\otimes 1-dy^j\otimes i)
 %=
-\frac{1}{2i}dz^j-\frac{1}{2i}d\bar{z}^j.
+\frac{1}{2i}dz^j-\frac{1}{2i}d\overline{z}^j.
 \]
 
 ここで
@@ -2353,7 +2353,7 @@ aw_1\wedge(-Jw_1)\wedge\cdots\wedge w_n\wedge(-Jw_n)
 \(
 \omega
 =
-i\alpha_1\wedge\bar{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\bar{\alpha}_n
+i\alpha_1\wedge\overline{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\overline{\alpha}_n
 \)
 については
 \(\overline{\omega}=\omega\)であるので, 
@@ -2454,11 +2454,11 @@ T_p^{*1,0}M\oplus T_p^{*0,1}M
 \[
 dx^j
 \longmapsto
-\frac{1}{2}dz^j+\frac{1}{2}d\bar{z}^j
+\frac{1}{2}dz^j+\frac{1}{2}d\overline{z}^j
 \quad
 dy^j
 \longmapsto
-\frac{1}{2i}dz^j-\frac{1}{2i}d\bar{z}^j.
+\frac{1}{2i}dz^j-\frac{1}{2i}d\overline{z}^j.
 \]
 であるので, $dz^1, \ldots, dz^n$は$T_p^*M$の$\C$基底である.
 
@@ -2480,7 +2480,7 @@ dz^1 \wedge \cdots \wedge dz^n\wedge   \overline{dz^1} \wedge \cdots \wedge \ove
 
 また
 \(
-i\,dz^j\wedge d\bar{z}^j
+i\,dz^j\wedge d\overline{z}^j
 =
 i(dx^j+i\,dy^j)\wedge(dx^j-i\,dy^j)
 =
@@ -2537,7 +2537,7 @@ Pairing \(p+q=n,\ p,q\ge 0\) とする.
   \wedge_{\mathbb R}^{2n}V^*
   =
   \mathbb R\!\left(
-    i\alpha_1\wedge\bar{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\bar{\alpha}_n
+    i\alpha_1\wedge\overline{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\overline{\alpha}_n
   \right)
     \ar@{^{(}->}[u]
 %&\omega\wedge\eta
@@ -2583,7 +2583,7 @@ Definition \ref{defn-M-4.4.2}での positiveは一致する.
 \text{ strongly positive}
 &\Longleftrightarrow
 \omega\in \mathbb{R}_{\ge 0}\,
-i\alpha_1\wedge\bar{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\bar{\alpha}_n
+i\alpha_1\wedge\overline{\alpha}_1\wedge\cdots\wedge i\alpha_n\wedge\overline{\alpha}_n
 &\Longleftrightarrow
 \omega\in \wedge^{n,n}V^* \text{  positive }
 \end{align*}
@@ -2602,7 +2602,7 @@ strongly positiveならば positive.
 \end{tcolorbox}
 \begin{proof}
 
-\(\omega=i\alpha_1\wedge \bar{\alpha}_1\wedge \cdots \wedge i\alpha_p\wedge \bar{\alpha}_p\)として良い. ($\alpha_1,\cdots,\alpha_p\in V^{*1,0}$である)
+\(\omega=i\alpha_1\wedge \overline{\alpha}_1\wedge \cdots \wedge i\alpha_p\wedge \overline{\alpha}_p\)として良い. ($\alpha_1,\cdots,\alpha_p\in V^{*1,0}$である)
 この時任意の \(\beta_1,\cdots,\beta_{n-p}\in V^{*1,0}\)について
  \[
  \omega\wedge i\beta_1\wedge \overline{\beta}_1\wedge \cdots \wedge i\beta_{n-p}\wedge \overline{\beta}_{n-p} \quad \text{  positive }
@@ -2707,7 +2707,7 @@ $はstrongly positive formで$\R$上で生成される.
 \]
 以上より
 任意の$\eta\in \wedge_{sp}^{q,q}V^*$について
-\((\omega-\bar{\omega})\wedge \eta = 0
+\((\omega-\overline{\omega})\wedge \eta = 0
 \)
 である. ここで
 \[
@@ -2719,7 +2719,7 @@ $はstrongly positive formで$\R$上で生成される.
 \]
 はperfect pairingであるので, 
 \(
-\omega-\bar{\omega}=0
+\omega-\overline{\omega}=0
 \)
 を得る. 
 \end{proof}
@@ -2731,7 +2731,7 @@ $はstrongly positive formで$\R$上で生成される.
 \[
 \omega \text{ positive in the sence of \cite{NO}}
 \Longleftrightarrow
-\omega\wedge i^{(n-p)^2}\eta\wedge \bar{\eta}
+\omega\wedge i^{(n-p)^2}\eta\wedge \overline{\eta}
  \text{ positive }
 \forall \eta\in \wedge^{n-p,0}V^*,
 \]
@@ -3106,6 +3106,284 @@ i\beta_{n-p}\wedge\overline{\beta_{n-p}}
 \]
 より, positive である. 
 \end{proof}
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.1}
+$\alpha_1, \ldots, \alpha_n \in V^{*1,0}$を$\C$-basisとする
+$$
+u = \sum_{1 \le j, k \le n} i h_{jk}\alpha_j\wedge \overline{\alpha_k} 
+\in \wedge^{1,1} V^{*}
+$$
+とするとき, 
+$u$がpositiveであることは, $h_{jk}$がsemipositive Hermitian 行列であることと同値. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+まず$u$がrealであることは$(h_{jk})$がHermitian 行列であることと同値であることを示す. 
+\begin{align*}
+\text{$u$ real}
+&\underset{\text{def.}}{\Leftrightarrow }
+u = \overline{u}
+\underset{}{\Leftrightarrow }
+\sum_{1 \le j, k \le n} i h_{jk}\alpha_j\wedge \overline{\alpha_k} 
+=
+-\sum_{1 \le j, k \le n} i\overline{h_{jk}} \overline{\alpha_j}\wedge \alpha_k
+=
+\sum_{1 \le j, k \le n} i\overline{ h_{kj}}\alpha_j\wedge \overline{\alpha_k} 
+\\
+&\underset{}{\Leftrightarrow }
+ h_{jk} = \overline{ h_{kj}}
+ \underset{\text{def.}}{\Leftrightarrow }
+ \text{$(h_{jk})$がHermitian 行列}
+\end{align*}
+
+positiveに関しては
+$S \subset V$を任意の1次元$\C$部分空間とし
+$\gamma \in S^{*1, 0}$を基底とすると
+$$
+V^{*1,0} \twoheadrightarrow S^{*1, 0}
+\quad 
+\alpha_j \longmapsto \xi_j \gamma
+\qquad
+(\xi_j \in \mathbb{C}),
+$$
+よって
+\(
+U|_S
+=
+\sum_{1\leq j,k\leq n}
+i h_{j\bar{k}}\xi_j \bar{\xi}_k \gamma \wedge \bar{\gamma}.
+\)とかけ
+\[
+u|_S 
+=
+\sum_{1\leq j,k\leq n}
+h_{j\bar{k}}\xi_j\bar{\xi}_k \geq 0
+\]
+となる. 
+ \(S \subset V\) を変えると, \((\xi_1,\cdots,\xi_n)\in \mathbb{C}^n\)
+の部分が変わるので.
+
+\begin{align*}
+u\text{ positive}
+&\underset{\text{\ref{lem-M-5.4.3}}}{\Leftrightarrow }
+u|_{S} \text{ positive $\forall$ $S \subset V$}
+\\
+&\underset{}{\Leftrightarrow }
+\sum_{1\leq j,k\leq n}
+h_{j\bar{k}}\xi_j\bar{\xi}_k \geq 0
+\text{$\forall$ \((\xi_1,\cdots,\xi_n)\in \mathbb{C}^n\)}
+\underset{}{\Leftrightarrow }
+(h_{j\bar{k}}) \text{ semipositive}
+\end{align*}
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.2}
+ \(u \in \Lambda^{p,p}V^*\), \(p=0,1,n-1,n\)について. 
+\(u\)がpositiveは, strongly positiveと同値
+\end{lem}
+\end{tcolorbox}
+$p=2, \ldots, n-2$ならばstrongly positiveだがpositiveでない例がある. 
+
+\begin{proof}
+positiveならばstrongly positiveを示せば良い. 
+\(p=0,n\) はすでに示した. 
+
+\(p=1\)の時. 
+$u$をpositiveとする. 
+\(
+\alpha_1,\cdots,\alpha_n \in V^{*1,0}
+\)を$\mathbb{C}$基底とする. 
+\ref{lem-M-6.4.1}より
+\[
+u
+=
+\sum_{1\leq j,\ell\leq n}
+i h_{j\bar{\ell}}\alpha_j\wedge \bar{\alpha}_{\ell}
+\qquad
+h_{j\bar{\ell}}\in \mathbb{C}.
+\]
+となるsemipositive Hermite行列 \((h_{j\bar{\ell}})\) がある.
+Hermite行列はあるunitary行列$A=(a_{\ell m})$で対角化可能なので, 
+
+\[
+{}^t\bar{A}(h_{j\bar{\ell}})A
+=
+(h'_{j\bar{\ell}})
+=
+\begin{pmatrix}
+h'_{11} &        & 0\\
+         & \ddots &  \\
+0        &        & h'_{nn}
+\end{pmatrix}
+\quad
+h'_{jj}\geq 0
+\]
+であると仮定して良い
+今 \(\mathbb{C}\)基底 \(\beta_1,\cdots,\beta_n\in V^{*1,0}\) で
+\[
+\alpha_j
+=
+\sum_{\ell=1}^n
+\bar{a}_{j\ell}\beta_\ell .
+\]
+とおくと
+\[
+u
+=
+\sum i h'_{j\bar{\ell}}\beta_j\wedge \bar{\beta}_\ell
+=
+\sum_{j=1}^n i h'_{jj}\beta_j\wedge \bar{\beta}_j
+\]
+となり, 定義からstrongly positiveとなる.
+
+\(p=n-1\)の時, 
+\(
+\omega \in \Lambda^{n-1,n-1}V^*
+\)をpositive とする.  
+任意の
+positive form
+\(
+u\in \Lambda^{1,1}V^*
+\)
+をとる. $u$はstrongly positiveなので, 
+\(
+\omega \wedge u 
+\)はpositiveである. 
+よって
+$\omega$もstrongly positiveである. 
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.3}
+$j=1,\cdots,l$について\(
+u_j \in \Lambda^{p_j,p_j}V^*
+\)とする. 
+
+\begin{enumerate}
+\item  \(u_j\) がすべてstrongly positiveならば, 
+\(u_1\wedge \cdots \wedge u_l\)もstrongly positive
+
+\item \(u_j\) がpositiveで, そのうち高々一つを除いてすべてが strongly positive であるならば,
+\(
+u_1\wedge \cdots \wedge u_l
+\)もpositive
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+証明は定義から直ちに従う. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.4}
+$V, W$を$\C$線型空間, $\Phi : W \to V$を$\C$線型写像, $u \in \wedge^{p, p}V^{*}$とする
+$u$がstrongly positive (resp. positive)ならば, $\Phi^{*}u$もstrongly positive (resp. positive)
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\Phi^{*} :  \wedge^{2p}(V^{*} \otimes_{\R} \C) \to \wedge^{2p}(W^{*} \otimes_{\R} \C)$
+が$\C$線形でtypeを保存し, 複素共役と交換可能である. 
+よって
+$$
+\Phi^{*}(i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p})
+=
+i\Phi^{*}\alpha_1\wedge\overline{\Phi^{*}\alpha_1}\wedge\cdots\wedge
+i\Phi^{*}\alpha_p\wedge\overline{\Phi^{*}\alpha_p}
+$$
+よってstrongly positiveは保たれる. 
+
+positiveに関して$S \subset W$を任意の$p$次元複素部分空間とする. 
+すると
+$$
+\Phi^{*}(u)|_{S}
+= \Phi^{*}(u|_{\Phi(S)})
+$$
+である. 
+$\dim \Phi(S)<p$ならば$u|_{\Phi(S)}=0$. 
+$\dim \Phi(S)=p$ならば$u|_{\Phi(S)}$ positive. よって補題\ref{lem-M-5.4.3}より言えた. 
+\end{proof}
+
+\begin{rem}
+$p \in \wedge^{p,0}V^{*}, \gamma \in \wedge^{ n-p,0}V^{*}$について
+\begin{align*}
+(i^{p^2} \beta \wedge \overline{\beta} )
+\wedge 
+(i^{(n-p)^2} \gamma \wedge \overline{\gamma} )
+&= i^{p^2 + (n-p)^2} (-1)^{p(n-p)}
+\beta \wedge \gamma \wedge \overline{\beta}\wedge \overline{\gamma}
+\\
+&=i^{n^2} \underbrace{\beta \wedge \gamma \wedge \overline{\beta}\wedge \overline{\gamma}}_{\text{postive $(n,n)$-form}}
+\end{align*} 
+
+また
+$$
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}
+=
+i^{p^2}(\alpha_1\wedge\cdots\wedge\alpha_p)
+\wedge(\overline{\alpha_1\wedge\cdots\wedge\alpha_p})
+$$
+である. 
+よって$i^{p^2} \beta \wedge \overline{\beta}$はpositiveである 
+
+\begin{lem}\cite[Ch.3 Rem 1.10]{Dem}
+$i^{p^2} \gamma \wedge \overline{\gamma}$がstrongly positiveであることは
+$\gamma =\gamma_1\wedge\cdots\wedge\gamma_{n-p}$となる
+$\gamma_1, \ldots, \gamma_{n-p} \in V^{* 1,0}$が存在することと同値
+\end{lem}
+
+以上より
+$$
+\wedge_{sp}^{p,p}V^{*}
+\subset
+\underbrace{
+\overline{ \sum_{\beta \in \wedge^{p,0}V^{*}} i^{p^2} \beta \wedge \overline{\beta} }
+}_{\text{\cite{NO}の意味のpositive}}
+\subset 
+\wedge_{pos}^{p,p}V^{*}
+$$
+なので$\wedge_{sp}^{p,p}V^{*} \neq \wedge_{pos}^{p,p}V^{*}$を鑑みれば, \cite{NO}のpositivityは中間のpositivityに属する. 
+\end{rem}
+
+\subsection{Positive current}
+以下は\cite[Ch.3]{Dem}に基づく．
+多様体は常に2nd countableを仮定する. 
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-6.4.5}
+$M$を複素多様体, $m=\dim_\C M$とする.
+\begin{enumerate}
+\item $\varphi : M \to \wedge_\C^{k}(T^{*}M \otimes_\R \C)$をsectionとする
+$\varphi$が(strongly) positiveであることを, 
+任意の$\xi \in M$について$\varphi(\xi) \in\wedge_\C^{k}(T^{*}_{\xi}M \otimes_\R \C)$が(strongly) positiveであることとして定める. 
+\item カレント$p \ge 0, T \in \mathcal{D}^{'(p,p)}(M)$について, 
+$T$がpositiveであることを, 任意のstrongly positive$\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$について$T(\varphi) \ge 0$として定める. 
+\item カレント$p \ge 0, T \in \mathcal{D}^{'(p,p)}(M)$について, 
+$T$がstrongly positiveであることを, 任意のpositive$\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$について$T(\varphi) \ge 0$として定める. 
+\end{enumerate}
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+\cite{NO}の定義は以下の通り:
+$M=U \subset \C^m$の時に$T$がpositiveであるとは, 任意の$\eta \in \mathcal{E}^{(m-p, 0)}(U)$について, 
+$T \wedge (i^{(m-p)^2} \eta \wedge \overline{\eta})$がpositive distribution である. 
+これが上とどのように関係しているかは不明. 
+\end{rem}
+
+
 
 
 \end{document}

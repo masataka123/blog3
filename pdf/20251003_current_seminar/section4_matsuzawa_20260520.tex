@@ -2861,3 +2861,280 @@ i\beta_{n-p}\wedge\overline{\beta_{n-p}}
 より, positive である. 
 \end{proof}
 
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.1}
+$\alpha_1, \ldots, \alpha_n \in V^{*1,0}$を$\C$-basisとする
+$$
+u = \sum_{1 \le j, k \le n} i h_{jk}\alpha_j\wedge \overline{\alpha_k} 
+\in \wedge^{1,1} V^{*}
+$$
+とするとき, 
+$u$がpositiveであることは, $h_{jk}$がsemipositive Hermitian 行列であることと同値. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+まず$u$がrealであることは$(h_{jk})$がHermitian 行列であることと同値であることを示す. 
+\begin{align*}
+\text{$u$ real}
+&\underset{\text{def.}}{\Leftrightarrow }
+u = \overline{u}
+\underset{}{\Leftrightarrow }
+\sum_{1 \le j, k \le n} i h_{jk}\alpha_j\wedge \overline{\alpha_k} 
+=
+-\sum_{1 \le j, k \le n} i\overline{h_{jk}} \overline{\alpha_j}\wedge \alpha_k
+=
+\sum_{1 \le j, k \le n} i\overline{ h_{kj}}\alpha_j\wedge \overline{\alpha_k} 
+\\
+&\underset{}{\Leftrightarrow }
+ h_{jk} = \overline{ h_{kj}}
+ \underset{\text{def.}}{\Leftrightarrow }
+ \text{$(h_{jk})$がHermitian 行列}
+\end{align*}
+
+positiveに関しては
+$S \subset V$を任意の1次元$\C$部分空間とし
+$\gamma \in S^{*1, 0}$を基底とすると
+$$
+V^{*1,0} \twoheadrightarrow S^{*1, 0}
+\quad 
+\alpha_j \longmapsto \xi_j \gamma
+\qquad
+(\xi_j \in \mathbb{C}),
+$$
+よって
+\(
+U|_S
+=
+\sum_{1\leq j,k\leq n}
+i h_{j\bar{k}}\xi_j \bar{\xi}_k \gamma \wedge \bar{\gamma}.
+\)とかけ
+\[
+u|_S 
+=
+\sum_{1\leq j,k\leq n}
+h_{j\bar{k}}\xi_j\bar{\xi}_k \geq 0
+\]
+となる. 
+ \(S \subset V\) を変えると, \((\xi_1,\cdots,\xi_n)\in \mathbb{C}^n\)
+の部分が変わるので.
+
+\begin{align*}
+u\text{ positive}
+&\underset{\text{\ref{lem-M-5.4.3}}}{\Leftrightarrow }
+u|_{S} \text{ positive $\forall$ $S \subset V$}
+\\
+&\underset{}{\Leftrightarrow }
+\sum_{1\leq j,k\leq n}
+h_{j\bar{k}}\xi_j\bar{\xi}_k \geq 0
+\text{$\forall$ \((\xi_1,\cdots,\xi_n)\in \mathbb{C}^n\)}
+\underset{}{\Leftrightarrow }
+(h_{j\bar{k}}) \text{ semipositive}
+\end{align*}
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.2}
+ \(u \in \Lambda^{p,p}V^*\), \(p=0,1,n-1,n\)について. 
+\(u\)がpositiveは, strongly positiveと同値
+\end{lem}
+\end{tcolorbox}
+$p=2, \ldots, n-2$ならばstrongly positiveだがpositiveでない例がある. 
+
+\begin{proof}
+positiveならばstrongly positiveを示せば良い. 
+\(p=0,n\) はすでに示した. 
+
+\(p=1\)の時. 
+$u$をpositiveとする. 
+\(
+\alpha_1,\cdots,\alpha_n \in V^{*1,0}
+\)を$\mathbb{C}$基底とする. 
+\ref{lem-M-6.4.1}より
+\[
+u
+=
+\sum_{1\leq j,\ell\leq n}
+i h_{j\bar{\ell}}\alpha_j\wedge \bar{\alpha}_{\ell}
+\qquad
+h_{j\bar{\ell}}\in \mathbb{C}.
+\]
+となるsemipositive Hermite行列 \((h_{j\bar{\ell}})\) がある.
+Hermite行列はあるunitary行列$A=(a_{\ell m})$で対角化可能なので, 
+
+\[
+{}^t\bar{A}(h_{j\bar{\ell}})A
+=
+(h'_{j\bar{\ell}})
+=
+\begin{pmatrix}
+h'_{11} &        & 0\\
+         & \ddots &  \\
+0        &        & h'_{nn}
+\end{pmatrix}
+\quad
+h'_{jj}\geq 0
+\]
+であると仮定して良い
+今 \(\mathbb{C}\)基底 \(\beta_1,\cdots,\beta_n\in V^{*1,0}\) で
+\[
+\alpha_j
+=
+\sum_{\ell=1}^n
+\bar{a}_{j\ell}\beta_\ell .
+\]
+とおくと
+\[
+u
+=
+\sum i h'_{j\bar{\ell}}\beta_j\wedge \bar{\beta}_\ell
+=
+\sum_{j=1}^n i h'_{jj}\beta_j\wedge \bar{\beta}_j
+\]
+となり, 定義からstrongly positiveとなる.
+
+\(p=n-1\)の時, 
+\(
+\omega \in \Lambda^{n-1,n-1}V^*
+\)をpositive とする.  
+任意の
+positive form
+\(
+u\in \Lambda^{1,1}V^*
+\)
+をとる. $u$はstrongly positiveなので, 
+\(
+\omega \wedge u 
+\)はpositiveである. 
+よって
+$\omega$もstrongly positiveである. 
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.3}
+$j=1,\cdots,l$について\(
+u_j \in \Lambda^{p_j,p_j}V^*
+\)とする. 
+
+\begin{enumerate}
+\item  \(u_j\) がすべてstrongly positiveならば, 
+\(u_1\wedge \cdots \wedge u_l\)もstrongly positive
+
+\item \(u_j\) がpositiveで, そのうち高々一つを除いてすべてが strongly positive であるならば,
+\(
+u_1\wedge \cdots \wedge u_l
+\)もpositive
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+証明は定義から直ちに従う. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-6.4.4}
+$V, W$を$\C$線型空間, $\Phi : W \to V$を$\C$線型写像, $u \in \wedge^{p, p}V^{*}$とする
+$u$がstrongly positive (resp. positive)ならば, $\Phi^{*}u$もstrongly positive (resp. positive)
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\Phi^{*} :  \wedge^{2p}(V^{*} \otimes_{\R} \C) \to \wedge^{2p}(W^{*} \otimes_{\R} \C)$
+が$\C$線形でtypeを保存し, 複素共役と交換可能である. 
+よって
+$$
+\Phi^{*}(i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p})
+=
+i\Phi^{*}\alpha_1\wedge\overline{\Phi^{*}\alpha_1}\wedge\cdots\wedge
+i\Phi^{*}\alpha_p\wedge\overline{\Phi^{*}\alpha_p}
+$$
+よってstrongly positiveは保たれる. 
+
+positiveに関して$S \subset W$を任意の$p$次元複素部分空間とする. 
+すると
+$$
+\Phi^{*}(u)|_{S}
+= \Phi^{*}(u|_{\Phi(S)})
+$$
+である. 
+$\dim \Phi(S)<p$ならば$u|_{\Phi(S)}=0$. 
+$\dim \Phi(S)=p$ならば$u|_{\Phi(S)}$ positive. よって補題\ref{lem-M-5.4.3}より言えた. 
+\end{proof}
+
+\begin{rem}
+$p \in \wedge^{p,0}V^{*}, \gamma \in \wedge^{ n-p,0}V^{*}$について
+\begin{align*}
+(i^{p^2} \beta \wedge \overline{\beta} )
+\wedge 
+(i^{(n-p)^2} \gamma \wedge \overline{\gamma} )
+&= i^{p^2 + (n-p)^2} (-1)^{p(n-p)}
+\beta \wedge \gamma \wedge \overline{\beta}\wedge \overline{\gamma}
+\\
+&=i^{n^2} \underbrace{\beta \wedge \gamma \wedge \overline{\beta}\wedge \overline{\gamma}}_{\text{postive $(n,n)$-form}}
+\end{align*} 
+
+また
+$$
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}
+=
+i^{p^2}(\alpha_1\wedge\cdots\wedge\alpha_p)
+\wedge(\overline{\alpha_1\wedge\cdots\wedge\alpha_p})
+$$
+である. 
+よって$i^{p^2} \beta \wedge \overline{\beta}$はpositiveである 
+
+\begin{lem}\cite[Ch.3 Rem 1.10]{Dem}
+$i^{p^2} \gamma \wedge \overline{\gamma}$がstrongly positiveであることは
+$\gamma =\gamma_1\wedge\cdots\wedge\gamma_{n-p}$となる
+$\gamma_1, \ldots, \gamma_{n-p} \in V^{* 1,0}$が存在することと同値
+\end{lem}
+
+以上より
+$$
+\wedge_{sp}^{p,p}V^{*}
+\subset
+\underbrace{
+\overline{ \sum_{\beta \in \wedge^{p,0}V^{*}} i^{p^2} \beta \wedge \overline{\beta} }
+}_{\text{\cite{NO}の意味のpositive}}
+\subset 
+\wedge_{pos}^{p,p}V^{*}
+$$
+なので$\wedge_{sp}^{p,p}V^{*} \neq \wedge_{pos}^{p,p}V^{*}$を鑑みれば, \cite{NO}のpositivityは中間のpositivityに属する. 
+\end{rem}
+
+\subsection{Positive current}
+以下は\cite[Ch.3]{Dem}に基づく．
+多様体は常に2nd countableを仮定する. 
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-6.4.5}
+$M$を複素多様体, $m=\dim_\C M$とする.
+\begin{enumerate}
+\item $\varphi : M \to \wedge_\C^{k}(T^{*}M \otimes_\R \C)$をsectionとする
+$\varphi$が(strongly) positiveであることを, 
+任意の$\xi \in M$について$\varphi(\xi) \in\wedge_\C^{k}(T^{*}_{\xi}M \otimes_\R \C)$が(strongly) positiveであることとして定める. 
+\item カレント$p \ge 0, T \in \mathcal{D}^{'(p,p)}(M)$について, 
+$T$がpositiveであることを, 任意のstrongly positive$\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$について$T(\varphi) \ge 0$として定める. 
+\item カレント$p \ge 0, T \in \mathcal{D}^{'(p,p)}(M)$について, 
+$T$がstrongly positiveであることを, 任意のpositive$\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$について$T(\varphi) \ge 0$として定める. 
+\end{enumerate}
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+\cite{NO}の定義は以下の通り:
+$M=U \subset \C^m$の時に$T$がpositiveであるとは, 任意の$\eta \in \mathcal{E}^{(m-p, 0)}(U)$について, 
+$T \wedge (i^{(m-p)^2} \eta \wedge \overline{\eta})$がpositive distribution である. 
+これが上とどのように関係しているかは不明. 
+\end{rem}
+
+
