@@ -3138,3 +3138,466 @@ $T \wedge (i^{(m-p)^2} \eta \wedge \overline{\eta})$がpositive distribution で
 \end{rem}
 
 
+
+\subsection{Positive current}
+以下は\cite[Ch.3]{Dem}に基づく．
+$M$を複素多様体は常に2nd countableを仮定し, $m=\dim_\C M$とする. 
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-6.4.5}
+\begin{enumerate}
+\item $\varphi : M \to \wedge_\C^{k}(T^{*}M \otimes_\R \C)$をsectionとする
+$\varphi$が(strongly) positiveであることを, 
+任意の$\xi \in M$について$\varphi(\xi) \in\wedge_\C^{k}(T^{*}_{\xi}M \otimes_\R \C)$が(strongly) positiveであることとして定める.  
+\item カレント$p \ge 0, T \in \mathcal{D}^{'(p,p)}(M)$について, 
+$T$がpositiveであることを, 任意のstrongly positive$\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$について$T(\varphi) \ge 0$として定める. 
+\item カレント$p \ge 0, T \in \mathcal{D}^{'(p,p)}(M)$について, 
+$T$がstrongly positiveであることを, 任意のpositive $\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$について$T(\varphi) \ge 0$として定める. 
+\end{enumerate}
+さらに次の表記をする. 
+$$
+{\mathcal{D}'}^{(p,p)}_{pos}(M)
+:= \{ T \in {\mathcal{D}'}^{(p,p)}(M) \mid \text{$T$ positive} \}
+$$
+$$
+{\mathcal{D}'}^{(p,p)}_{sp}(M)
+:= \{ T \in {\mathcal{D}'}^{(p,p)}(M) \mid \text{$T$ strongly positive} \}
+$$
+\end{defn}
+\end{tcolorbox}
+
+\begin{rem}
+\cite{NO}の定義は以下の通り:
+$M=U \subset \C^m$の時に$T$がpositiveであるとは, 任意の$\eta \in \mathcal{E}^{(m-p, 0)}(U)$について, 
+$T \wedge (i^{(m-p)^2} \eta \wedge \overline{\eta})$がpositive distribution である. 
+これが上とどのように関係しているかは不明. 
+\end{rem}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.2}
+$T \in {\mathcal{D}'}^{(p,p)}(M)$, $\{U_\lambda \}_{\lambda \in \Lambda}$を$M$の開被覆とする. 
+$T$が(strongly) positive であることは, 任意の$\lambda \in \Lambda$について, $T$が(strongly) positiveと同値である.  
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$T$がpositive とする. 
+任意のstrongly positive $\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$について
+$$
+T|_{U_\lambda}(\varphi )
+=T(\varphi) \ge 0
+\quad\text{ by }
+\mathcal{D}^{(m-p,m-p)}(U_\lambda) \subset \mathcal{D}^{(m-p,m-p)}(M) 
+$$
+以上より$T|_{U_\lambda}$もpositive. strongly positiveも同様.
+
+任意の$\lambda \in \Lambda$について, $T$がpositiveとする. 
+$\varphi \in  \mathcal{D}^{(m-p,m-p)}(M)$strongly positiveについて. 
+$\{\psi_\lambda\}$を1の分割とすると.
+$$
+T(\varphi)
+= T(\sum \psi_\lambda \varphi)
+= \sum T(\psi_\lambda \varphi) 
+=\sum T|_{U_\lambda}(\psi_\lambda \varphi) 
+ \ge 0
+$$
+\end{proof}
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.3}
+$$
+{\mathcal{D}'}^{(p,p)}_{sp}(M) 
+\subset 
+{\mathcal{D}'}^{(p,p)}_{pos}(M)
+\subset 
+{\mathcal{D}'}^{(p,p)}(M)
+$$
+であり, これらはclosed convex cone.
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\subset$はstrongly positiveがpositiveであることから.
+
+closedに関しては, ${\mathcal{D}'}^{(p,p)}(M)$の位相を
+test formのevluationを連続にする最大の位相で入れているため.
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.4}
+$\xi \in M, \omega_0 \in \wedge^{(p,p)}T^{*}_{\xi}M$とする. 
+
+$\omega_0$が(strongly) positiveならば, ある$\omega \in {\mathcal{D}}^{(p,p)}(M)$があって
+$\omega(\xi)=\omega_0$は(strongly) positive
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$\xi \in U \subset M$という座標近傍で, $z^1, \ldots, z^n$を座標とする. 
+$\psi \in {\mathcal{D}}(M)$で$\psi \ge 0, \psi(\xi)=1, \mathrm{Supp} \subset U$となるものを取る. 
+
+$\omega_0$をstrongly positiveとする.
+$$
+\omega_0
+=
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_p\wedge\overline{\alpha_p}
+\quad
+\alpha_j \in T^{* 1,0}_\xi M
+$$
+と仮定して良い. 
+そこで
+$$
+\alpha_j = \sum_{k=1}^{m}c_{jk}dz^k
+\quad \exists c_jk \in \C
+$$
+とかく. $\alpha_j$を$U$上のsmooth formに定数で拡張する. 
+(つまり$\alpha_j = \sum_{k=1}^{m}c_{jk}dz^k$を$U$上のformとみなす)
+
+$\widetilde{\omega_0}$を$U$上の$\omega_0$の拡張とすると. 
+$\psi \widetilde{\omega_0} \in {\mathcal{D}}^{(p,p)}(M) $が条件を満たす.
+実際これはstrongly positiveであり, 
+$$
+\psi \widetilde{\omega_0}(\xi)
+=\psi(\xi)\widetilde{\omega_0}(\xi)
+=\omega_0
+$$
+positive caseも同様である. 
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.5}
+$\omega$が(strongly) positive formであることは, 
+$[\omega]$が(strongly) positive currentであることと同値. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$$
+[\omega]
+:
+\mathcal{D}^{(m-p,m-p)}(M) \to \C
+\quad \varphi \mapsto \int_M \omega \wedge \varphi
+$$
+であることに注意する. 
+
+$\omega$をpositive formとする. 
+任意の$\varphi \in \mathcal{D}^{(m-p,m-p)}(M)$ strongly positiveについて, 
+$\omega \wedge \varphi$はpositiveである. 
+つまりlocallyに
+$$
+\omega \wedge \varphi
+\underset{\text{locally}}{=}
+f\cdot i^{m}dz^1 \wedge \cdots \wedge dz^m \wedge \overline{dz^1} \wedge \cdots \wedge \overline{dz^m}
+ =f 2^m dx^1\wedge dy^1\wedge\cdots\wedge dx^m\wedge dy^m.
+$$となる$f \ge 0$がある. 
+よって$\int_M \omega \wedge \varphi \ge 0$である. strongly positiveも同様. 
+
+逆に$[\omega]$がpositiveであるとする. 
+任意の$\xi \in M$について$\omega(\xi) \in \wedge^{p,p}T^{*}_\xi M$がpostivieを言えば良い. 
+
+背理法. strongly positive $\eta \in \wedge^{m-p,m-p}T^{*}_\xi M$であって, $\omega(\xi) \wedge \eta$がpositiveでないとする. 
+Lem. \ref{lem-M-7.4.4}から, あるstrongly positive $\varphi \in   {\mathcal{D}}^{(m-p,m-p)}(M)$があって
+$$
+\varphi(\xi)=\eta
+$$
+となる. 
+背理法の仮定から, 
+ある開集合$ \xi \in U$があって, $\omega \wedge \varphi$は$\xi \in U$上でstrongly negativeとなる.
+
+$\xi \in U \subset M$という座標近傍で, $z^1, \ldots, z^n$を座標をとり, 
+bump関数
+$\psi \in {\mathcal{D}}(M)$で$\psi \ge 0, \psi(\xi)=1, \mathrm{Supp} \subset U$となるものを取る.
+すると
+$$
+\int_{M}\omega \wedge \psi  \varphi <0
+$$
+となる. 
+しかし$[\omega]$がpositiveという仮定から
+$$
+0 \le [\omega](\psi \varphi):=\int_{M}\omega \wedge \psi  \varphi 
+$$
+となり矛盾が言える.
+strongly positiveも同様.
+\end{proof}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.6}
+$T \in {\mathcal{D}'}^{(p,p)}(M)$とする. 
+\begin{enumerate}
+\item $T$がpositiveは, 任意のstrongly positive $u \in {\mathcal{E}}^{(m-p,m-p)}(M)$について, 
+$T \wedge u \in {\mathcal{D}}^{(m,m)}(M)$がpositive distribution(つまりpositive $(m, m)$ current)であることと同値
+\item $T$がstrongly positiveは, 任意のpositive $u \in {\mathcal{E}}^{(m-p,m-p)}(M)$について, 
+$T \wedge u \in {\mathcal{D}}^{(m,m)}(M)$がpositive distribution
+であることと同値
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$T$がpositiveとする. 
+ 任意のstrongly positive $u \in {\mathcal{E}}^{(m-p,m-p)}(M)$, $\varphi \in {\mathcal{D}}(M)$, $\varphi \ge 0$について
+ $$
+ (T \wedge u)(\varphi)
+ =T(\underbrace{\varphi u}_{\text{strongly positive}})
+ \ge 0
+ $$
+ $T$がstrongly positiveの場合も同様.
+ 
+ 1つ目の逆を示す. 
+ 逆に$\varphi \in {\mathcal{D}}^{(m,m)}(M)$をstrongly positiveとする. 
+ $\psi \in {\mathcal{D}}(M)$を$\mathrm{Supp}(\varphi)$上で$\psi \equiv 1$となり$\psi \ge 0$となるものを取ると. 
+ $$
+ T(\varphi)
+ =T(\psi \varphi)
+ =(\underbrace{T \wedge \varphi}_{\text{positive}})(\psi)
+\ge 0
+ $$
+ 2つ目の逆も同様. 
+\end{proof}
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.7}
+$T \in {\mathcal{D}'}^{(p,p)}(M)$をpositive, 
+$\omega \in {\mathcal{E}}^{(q,q)}(M)$をpositiveとする.
+\begin{enumerate}
+\item　$T, \omega$のどちらかがstrongly positiveならば, $T \wedge \omega$はpositive.
+\item $T, \omega$のどちらもstrongly positiveならば, $T \wedge \omega$はstrongly positive.
+\end{enumerate}
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+1つ目. $\eta \in  {\mathcal{D}}^{(m-p-q,m-p-q)}(M)$ strongly positiveならば
+$$
+(T \wedge \omega)(\eta)
+=T(\omega \wedge \eta) \ge 0
+$$
+となる. ここで$\omega$positiveならば, $\omega \wedge \eta$はpositiveで, $\omega$strongly positiveならば, $\omega \wedge \eta$はstrongly positiveであることに注意する. 
+
+2つ目. $\eta \in  {\mathcal{D}}^{(m-p-q,m-p-q)}(M)$positiveならば
+$$
+(T \wedge \omega)(\eta)
+=\underbrace{T}_{\text{strongly positive}}(\underbrace{\omega \wedge \eta}_{\text{positive}}) \ge 0
+$$
+\end{proof}
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.8}
+$f : M \to N$を複素多様体の間のquasi-proper正則写像とする. 
+この時$T \in {\mathcal{D}'}^{(p,p)}(M)$を(strongly) positiveならば$f_{*}T$も(strongly) positive.
+\end{lem}
+\end{tcolorbox}
+$f$ quasi-properとはコンパクトの逆像がコンパクトになること. 
+\begin{proof}
+$f_{*} T\in {\mathcal{D}'}^{(n-(m-p),n-(m-p)}(N)$であることに注意して. 
+任意の
+$\omega \in {\mathcal{D}}^{((m-p),(m-p)}(N)$について
+$$
+\omega \text{ (strongly) positive }
+\Rightarrow 
+f^{*}\omega \text{ (strongly) positive }
+$$
+である. $f_{*} T(\omega):=T(f^{*}\omega)$であることから言えた. 
+\end{proof}
+
+
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.9}
+$T \in {\mathcal{D}'}^{(p,p)}(M)$がpositiveならば, $T$はreal.
+\end{lem}
+\end{tcolorbox}
+ $T$がrealの定義は$T = \overline{T}$. ここで$\overline{T}(\omega):=\overline{T(\overline{\omega})}$として定義する.
+\begin{proof}
+$p=m$の場合(distributionの場合)
+$\varphi\in {\mathcal{D}}(M)$について, 
+$\varphi(M) \subset \R$ならば$T(\varphi) \in \R$である. 
+
+これは$\psi \in {\mathcal{D}}(M)$で$0 \le \psi \le 1$かつ $\psi \equiv 1$ on $\mathrm{Supp}(\varphi)$をとると
+$$
+0 \underalign{\text{$T$ positive}}{\le} T(\underbrace{\| \varphi\|_0 \psi - \varphi}_{ \ge 0}) 
+\underalign{}{=} 
+ \| \varphi\|_0 \underbrace{T(\psi)}_{\in \R}-T(\varphi) 
+$$
+となるので, $T(\varphi)  \in \R$となる. 
+以上より任意の$\varphi\in {\mathcal{D}}(M)$について, 
+$$
+\overline{T}(\varphi):=\overline{T(\overline{\varphi})}
+=\overline{T(\mathrm{Re}\varphi - i \mathrm{Im}\varphi)}
+=T(\mathrm{Re}\varphi )+iT(\mathrm{Im}\varphi )
+=T(\varphi)
+$$
+となりrealである. 
+
+一般の場合. strongly positive $u \in {\mathcal{E}}^{(m-p,m-p)}(M)$について$T \wedge u$はpositiveである. 
+よって$p=m$の場合より$T \wedge u$はrealである. 
+以上よりstrongly positive formはreal formなので
+$$
+T \wedge u
+=\overline{T \wedge u}
+=\overline{T}\wedge  \overline{u}
+=\overline{T}\wedge  u
+\Rightarrow (T - \overline{T}) \wedge u =0
+$$
+よって次のClaimから言えた
+\end{proof}
+\begin{claim}
+$T \in {\mathcal{D}'}^{(p,p)}(M)$とする. 
+任意の strongly positive $u \in {\mathcal{E}}^{(m-p,m-p)}(M)$について
+$T \wedge u=0$ならば$T=0$.
+\end{claim}
+\begin{proof}
+$V \subset \overline{V} \subset U \subset M$で
+\begin{itemize}
+\item $U$ open
+\item $\overline{V}$ コンパクト
+\item $U$座標近傍で$(z^1, \ldots, z^n)$が座標
+\end{itemize}
+とする.
+さらに$\psi \in \mathcal{D}(M)$で$\psi \in {\mathcal{D}}(M)$で$0 \le \psi \le 1$かつ $\psi \equiv 1$ on $\mathrm{Supp}(\varphi)$をとる. 
+
+任意の strongly positive $u \in {\mathcal{E}}^{(m-p,m-p)}(M)$について
+$$
+T|_{V} \wedge u|_{V}
+=T|_{V} \wedge (\psi u)|_{V}
+=(T \wedge \psi u)|_{V}
+=0
+$$
+となる. 
+よって$T|_{V}=0$を示せば良い. 
+
+$$
+\omega = \bigoplus_{J \in \{m ; m-p \}, K \in \in \{m;m-p \}}
+\C dz^J \wedge d \overline{z^K}
+\subset  {\mathcal{E}}^{(m-p,m-p)}(U)
+$$
+を考える. 
+すると$\omega$は$\varphi_1, \ldots, \varphi_l$という基底で
+各々は
+$$
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_{m-p}\wedge\overline{\alpha_{m-p}}
+\quad 
+\alpha_j \in \bigoplus_{k=1}^{m} \C dz^k
+$$
+とかけるものがある. 
+これは
+\begin{align*}
+&\sum_{a \in \Z/4\Z}
+i^a (dz^j + i^a dz^k) \wedge \overline{ (dz^j + i^a dz^k)}
+\\
+&=\sum_{a \in \Z/4\Z}
+i^a (dz^j \wedge \overline{dz^j} + (-i)^a dz^j \wedge \overline{dz^k} 
++ i^a dz^k \wedge \overline{dz^j} + dz^k \wedge \overline{dz^k})
+\\
+&=4 dz^j \wedge \overline{dz^k}
+\end{align*}
+となることから. 
+
+以上より, 任意の$\chi \in \mathcal{D}^{(m-p, m-p)}(V)$について
+$$
+\chi = \sum_{j=1}^{l} \chi_j \varphi_j
+\quad \chi_j \in \mathcal{D}(V)
+$$
+とかく時
+$$
+T|_{V}(\chi)
+=\sum_{j=1}^{l}
+T|_{V}(\chi_j \varphi_j)
+=\sum_{j=1}^{l}
+(\underbrace{T|_{V} \wedge \varphi_j |_{V}}_{=0 \text{ by $\varphi_j$ strongly positive}})
+(\chi_j )
+=0
+$$
+以上より$T|_{V}=0$となる. 
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-M-7.4.10}
+$T \in {\mathcal{D}'}^{(p,p)}(M)$がpositiveならば, $T$はorder 0である. 
+つまり$T \in {\mathcal{K}'}^{p,p}(M)$である. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$M=U \underset{\text{open}}{\subset} \C^m$と仮定して良い. 
+
+任意の$k \ge 0$について
+$$
+\omega^{(k,k)}
+=
+ \bigoplus_{J \in \{m ; k\}, K \in \in \{m; k \}}
+\C dz^J \wedge d \overline{z^K}
+\subset  {\mathcal{E}}^{(k,k)}(U)
+\cdots \text{($\star$)}
+$$
+とすると
+$$
+\omega^{(p,p)} 
+\times 
+\omega^{(m-p,m-p)} 
+\overset{\wedge}{\longrightarrow}
+\omega^{(m,m)}
+=\C \tau(z)
+\quad 
+\text{where }
+\tau(z):= i^{m}dz^1 \wedge \cdots \wedge dz^m \wedge \overline{dz^1} \wedge \cdots \wedge \overline{dz^m}
+$$
+これはperfect pairingである. 
+
+$\varphi_1, \ldots, \varphi_l \in \omega^{(m-p,m-p)}$で
+$\varphi_j$が
+$$
+i\alpha_1\wedge\overline{\alpha_1}\wedge\cdots\wedge
+i\alpha_{m-p}\wedge\overline{\alpha_{m-p}}
+\quad 
+\alpha_j \in \bigoplus_{k=1}^{m} \C dz^k
+$$
+とかけるとして良い. 
+$\varphi^{*}_1, \ldots, \varphi^{*}_l \in {\omega'}^{(m-p,m-p)}$を($\star$)に関する双対基底とする. 
+今
+$$
+T=\sum_{j=1}^{l} T_j \wedge \varphi^{*}_j
+\quad 
+T_j \in {\mathcal{D}'}^{0}(U)
+$$
+
+すると
+$$
+\underbrace{T \wedge \varphi_j}_{\text{positive}}
+=
+\sum_{k=1}^{l}
+(T_k \wedge \varphi^{*}_k) \wedge \varphi_j
+= T_j \wedge \varphi^{*}_j\wedge \varphi_j
+= T_j \wedge \tau (z)
+$$
+であるので, 任意の$f \in \mathcal{D}(U)$で$f \ge 0$について
+$$
+(T_j \wedge \tau (z))(f)
+= T_j (f \tau(z)) \ge 0
+$$
+となる. 
+つまり$T_j \wedge \tau (z)$はpositive distributionである. 
+よってorder 0になり, $T_j$はorder ０で$T$もそうである. 
+\end{proof}
+
+
+
+
