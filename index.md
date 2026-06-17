@@ -18,7 +18,7 @@ layout: default
 
 ## **岩井のところでセミナーを志望される方**
 
-[研究室紹介](https://masataka123.github.io/blog3/sub0)のページをご覧ください.
+[研究室紹介・教科書一覧](https://masataka123.github.io/blog3/sub0)のページをご覧ください.
 
 - 修士1年以上で私の研究室を希望する方
 - 学部4年に私のところでセミナーを志望する方
