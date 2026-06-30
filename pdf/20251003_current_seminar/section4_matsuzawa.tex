@@ -244,6 +244,7 @@
 \footskip = 32pt
 
 \begin{document}
+\tableofcontents
 \begin{thebibliography}{n}
 \bibitem[Dem12]{Dem}
 J.-P. Demailly,
@@ -466,6 +467,7 @@ $|\lambda|(U)=0$がいえる.
 次の定理を思い出す. 
 \begin{tcolorbox}[mybox]
 \begin{thm}\cite[Theorem 3.14]{Rud2}
+\label{thm-Rud2-3.14}
 \(X\) locally compact Hausdorff,  \(\mathcal{M}\) $X$の\(\sigma\)-algebra, 
 \(\mu\)を\(\mathcal{M}\)上のpositive measureとする. 
 
@@ -3817,6 +3819,399 @@ $$
 \end{proof}
 
 
+\subsection{Strongly positive current の性質 (continued)}
+$U \subset \mathbb{C}^m$ open, $T \in \mathcal{D}'^{(p,p)}(U)$ $(p,p)$-currentとして
+
+\begin{equation*}
+T = i^{p^2} \sum_{\substack{J\in\{1,\ldots,m\},\, |J|=p\\ K\in\{1,\ldots,m\},\, |K|=p}} \underbrace{T_{J\bar K}}_{\text{$(0,0)$-current}} \wedge dz^J \wedge d\bar z^K
+\end{equation*}
+とする. 今
+\begin{align*}
+\tau(z) = i dz^1 \wedge d\bar z^1 \wedge \cdots \wedge i dz^m \wedge d\bar z^m
+= i^{m^2} dz \wedge d\bar z \qquad (dz = dz^1 \wedge \cdots \wedge dz^m)
+\end{align*}
+と書くとき, $\hat{J}$, $\hat{K}$を$J, K$のordered complementとするとき以下の式を得る.
+\[
+i^{p^{2}}
+\mathrm{sgn}(J, \widehat{J})
+\mathrm{sgn}(K, \widehat{K})
+(-1)^{p(m-p)}
+T_{J \bar K}
+\wedge 
+\tau(z)
+=T \wedge dz^{\hat{J}} \wedge  d \bar{z}^{\hat{K}}
+\]
+% [page 1]
+$T$ の positivityから$T_{J\bar K}$たちの性質を得る. 
+
+\begin{tcolorbox}[mybox]
+\begin{prop}
+\label{prop-M-8.4.1}
+ $U \subset \mathbb{C}^m$ open, $T \in \mathcal{D}'^{(p,p)}(U)$ strongly positiveとする. 
+\begin{equation*}
+T = i^{p^2} \sum_{J \in \{m : p\},  K\in \{m ; p\}, } 
+T_{J\bar K} \wedge dz^J \wedge d\bar z^K
+\end{equation*}
+となるような$T_{J\bar K} \in \mathcal{D}'^{0, 0}(U)$をとるとき, 任意の.
+$ (\xi^J) \in \mathbb{C}^{\binom{m}{p}}$について, 
+$\sum_{J \in \{m : p\},  K\in \{m ; p\}, }  T_{J\bar K}\xi^J\bar{\xi}^K$がpositive currentになる. 
+\end{prop}
+\end{tcolorbox}
+ただし, 
+\begin{equation*}
+\mathcal{D}'^{(0,0)}(U) \simeq \mathcal{D}'^{(m,m)}(U) 
+\quad
+S \longleftrightarrow S \wedge \tau(z)
+\end{equation*}
+という同一視をしている. 
+\begin{proof}
+$k =m-p$とする. $\hat{J}$のordered complementとする. 
+$$
+\eta = \sum_{J \in \{ m ; p \}} \xi^J dz^{\hat{J}}
+\in \mathcal{E}^{(k, 0)}(U)
+$$
+すると$i^{q^2}\eta \wedge \bar{\eta} \in \mathcal{E}^{(k,k)}(U)$
+はpositive formとなる. 
+これは$\alpha$をstrongly positive formとして
+\begin{align*}
+\left( i^{p^2}\alpha \wedge \bar{\alpha} \right) \wedge \left( i^{q^2}\eta \wedge \bar{\eta} \right)
+&= \underbrace{
+\underbrace{i^{p^2+k^2}(-1)^{pk}}_{i^{(p+k)^2}} \alpha \wedge \eta \wedge \bar{\alpha} \wedge \bar{\eta}
+}_{\text{positive $(p+k,p+k)$ form}}
+\end{align*}
+$T$はstrongly positiveなので, 
+$T \wedge i^{q^2}\eta \wedge \bar{\eta} \in \mathcal{D}'^{(m,m)}(U)$は positive  distributionである. 
+
+式変形すると
+\begin{align*}
+T\wedge\left(i^{q^2}\eta\wedge\bar{\eta}\right)
+&=\left(i^{p^2}
+\sum_{J \in \{m : p\},  K\in \{m ; p\}} 
+T_{J\bar K}\wedge dz^J\wedge d\bar z^K\right)\wedge\left(i^{k^2}\eta\wedge\bar{\eta}\right) \\
+&= i^{p^2+k^2}\sum_{J \in \{m : p\},  K\in \{m ; p\}} \xi^J\bar{\xi}^K \wedge dz^J\wedge d\bar z^K\wedge dz^{\hat J}\wedge d\bar z^{\hat K} \\
+&= \underbrace{i^{p^2+k^2}(-1)^{pk}}_{i^{m^2}}
+\sum_{J \in \{m : p\},  K\in \{m ; p\} }  T_{J\bar K}\xi^J\bar{\xi}^K \operatorname{sgn}(J,\hat J)\operatorname{sgn}(K,\hat K)\underbrace{\wedge dz\wedge d\bar z}_{i^{-m^2} \tau(z)}\\
+&=
+\sum_{J \in \{m : p\},  K\in \{m ; p\}, }T_{J\bar K}\xi^J\bar{\xi}^K \mathrm{sgn}(J,\hat J)\mathrm{sgn}(K,\hat K)\wedge \tau(z)
+\end{align*}
+
+そこで$\eta' =\sum_{J \in \{m : p\}, }\mathrm{sgn}(J,\hat J)\xi^J dz^{\hat J}$に同じ計算を apply すると
+\begin{equation*}
+T \wedge \left(i^{q^2}\eta' \wedge \bar{\eta}'\right)
+= \sum_{J \in \{m : p\},  K\in \{m ; p\} }  T_{J\bar K}\xi^J\bar{\xi}^K \wedge \tau(z)
+\end{equation*}
+がpositiveとなる. つまり
+$\sum_{J \in \{m : p\},  K\in \{m ; p\} } T_{J\bar K}\xi^J\bar{\xi}^K$がpositiveとなる.
+\end{proof}
+\begin{rem}
+この証明は$T\wedge \left(i^{q^2}\eta \wedge \bar{\eta}\right)$ の positivity のみ使っている. よってNoguichi-Ochiaiの意味で positiviteであってもこの証明は通る
+\end{rem}
+
+\subsection{Bourbaki流の複素測度}
+以下の議論においてRudin流の複素測度だとうまくいかない. 
+\cite{NO}や\cite{Dem}において複素測度の定義がなかったが, おそらく以下のBourbaki流の$+\infty$を許した複素測度を使っているはずである. 
+これはRieszの表現定理を使って定義し直す. 
+
+Reference
+\begin{itemize}
+\item  Bourbaki Integration I Chapter III. Section 3, 6あたり
+\end{itemize}
+
+以下混同しやすいので
+\begin{center}
+generalized complex measure 
+$=$
+Bourbaki流の複素測度
+\end{center}
+とする. 
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+$X$をreal manifoldとする(smooth, 2nd countable.)
+(実はlocally compact Hausorffでも全く同じことができる)
+\begin{itemize}
+\item $X$上のgeneralized complex measureとは連続 $\mathbb{C}$線型写像$T:\mathcal{K}(X)\to \mathbb{C}$のこととする. 
+\item $T$ is real $\overset{\mathrm{def}}{\Longleftrightarrow}$ $\overline{T}:=\overline{T(\bar f)}=T$
+\end{itemize}
+\end{defn}
+\end{tcolorbox}
+
+\xr{ここから修正する}
+
+$\mathbb{C}$線型写像$T:\mathcal{K}(X)\to \mathbb{C}$が連続とは, 
+$$
+\forall K \underalign{\text{compact}}{\subset} X, 
+\exists C_K>0,\ \forall f\in \mathcal{K}(X), \mathrm{Supp}(f) \subset K\Rightarrow \ |T(f)|\leq C\sup_{x\in X}|f(x)|
+$$
+と同値である. ただこの$C_K$が一様に取れるかは不明である. 一様に取れる場合は以下の同値性がわかる. 
+
+\begin{rem}
+$T:\mathcal{K}(X)\to \mathbb{C}$ generalized complex measureとする時以下は同値
+\begin{enumerate}
+\item $\exists C>0,\ \forall f\in \mathcal{K}(X),\ |T(f)|\leq C\sup_{x\in X}|f(x)|$
+\item $\exists!$ regular (Def. \ref{defn-M-4.2.7}) complex Borel measure  (Def. \ref{defn-M-4.2.8})  on $X$ s.t.
+\begin{equation*}
+T(f)=\int_X f\,d\mu \quad \forall f\in \mathcal{K}(X).
+\end{equation*}
+\end{enumerate}
+
+$\C$のlesbegue measure を$\lambda$とする. $\sqrt{-1}\lambda$は
+Rudinの意味での複素測度にならないが, Bourbaki流の複素測度にはなる. 
+\end{rem}
 
 
+\begin{rem}
+ $T:\mathcal{K}(X)\to \mathbb{C}$ generalized complex measureとする時以下は同値
+
+\begin{enumerate}
+\item $T$ is positive. (i.e. $T(f)\geq 0$ for $\forall f\in \mathcal{K}(X)$ with $f\geq 0$)
+\item  $\exists!\mu$: positive  locally  fininite Borel measure  on $X$ s.t.
+\begin{equation*}
+T(f)=\int_X f\,d\mu \quad \text{for } \forall f\in \mathcal{K}(X).
+\end{equation*}
+かつ, $\mu$が outer regular, 任意の開集合でinner regular, 
+任意のBorel集合$\forall E\Subset X$について $\mu(E)<\infty$となる. (用語に関してはThm. \ref{thm-Rud2-3.14}参照.)
+\end{enumerate}
+\end{rem}
+全てリースの表現定理(Thm. \ref{thm-M-4.2.12})からわかる.
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+$T:\mathcal{K}(X)\to \mathbb{C}$ genralized complex measureとする.
+この時
+positive 連続$\C$線型写像$ L:\mathcal{K}(X)\to \mathbb{C}$
+出会って, \begin{equation*}
+L(f)=\sup_{\substack{g\in \mathcal{K}(X)\\ |g|\leq f}} |T(g)| \quad \text{for } \forall f\in \mathcal{K}(X) \text{ with } f\geq 0
+\end{equation*}
+となるものがただ一つ存在する. 
+この$L$を$|T|$と書いて, absolute variationという. 
+\end{lem}
+\end{tcolorbox}
+証明は積分論の基礎的な議論に基づく. 
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+ positive $\C$線型写像$T:\mathcal{K}(X)\to \mathbb{C}$は
+ 連続かつ$|T|=T$
+\end{lem}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+$\mu$: regualr complex Borel measure on $X$について, 
+\begin{equation*}
+T_\mu:\mathcal{K}(X)\to \mathbb{C};\quad f\mapsto \int_X f\,d\mu
+\end{equation*}
+genralized complex measureであり, 
+$|T_\mu|=T_{|\mu|}$である. $|\mu|$は測度のtotal variationである.(Def. \ref{defn-M-4.2.8})
+\end{lem}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+連続$\C$線型写像 $T,S:\mathcal{K}(X)\to \mathbb{C}$について
+$T\leq S$を$S-T$がpositiveとして定義する. 
+\end{defn}
+\end{tcolorbox}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+連続$\C$線型写像 $T_1,T_2:\mathcal{K}(X)\to \mathbb{C}$について
+$ |T_1+T_2|\leq |T_1|+|T_2|$
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+任意の$f\in \mathcal{K}(X),\ f\geq 0$について
+\begin{equation*}
+|T_1+T_2|(f)\leq |T_1|(f)+|T_2|(f).
+\end{equation*}
+であることを示せば良い.
+\begin{align*}
+|T_1+T_2|(f)
+&\underalign{\text{定義}}{=} \sup_{|g|\leq f}|(T_1+T_2)(g)|
+\underalign{\text{三角不等式}}{\le}
+\sup_{|g|\leq f}\left(|T_1(g)|+|T_2(g)|\right) \\
+&\underalign{\text{supの性質}}{\le}\sup_{|g|\leq f}|T_1(g)|+\sup_{|g|\leq f}|T_2(g)| = |T_1|(f)+|T_2|(f).
+\end{align*}
+\end{proof}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+連続$\C$線型写像 $T:\mathcal{K}(X)\to \mathbb{C}$と$a\in \mathbb{C}$について, $ |aT|=|a||T|$
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+任意の $f\in \mathcal{K}(X)$ with $f\geq 0$について
+\begin{equation*}
+|aT|(f)=|a||T|(f).
+\end{equation*}
+を示せば良い. 
+これは以下よりわかる.
+\begin{equation*}
+|aT|(f)=\sup_{|g|\leq f}|aT(g)|=|a|\sup_{|g|\leq f}|T(g)|=|a||T|(f).
+\end{equation*}
+\end{proof}
+
+\subsection{Bourbaki流の複素測度とCurrent}
+
+\begin{tcolorbox}[mybox]
+\begin{prop}
+\label{prop-M-8.4.9}
+ $U\subset \mathbb{C}^m$ openとする. 
+$T=i^{p^2}\sum_{I,J\in \{ m; p\}} T_{I\bar J}\wedge dz^I\wedge d\bar z^J \in \mathcal{D}'^{(p,p)}(U)
+$が
+positive currentならば
+\begin{itemize}
+\item $I\in \{ m; p\}$について, $ T_{I\bar I}$がpositive current.
+\item $I,J\in \{ m; p\}$について, $T_{I\bar J}$はorder 0.
+\end{itemize}
+
+さらに$T_{I\bar J}$を下の対応で$U$上のgeneralized  complex measureと思えば, 
+$$
+\mathcal{D}'^{(0,0)}(U)_{\mathrm{ord}=0}\underset{}{\simeq}\mathcal{D}'^{(m,m)}(U)_{\mathrm{ord}=0}
+\underset{}{\simeq}\mathcal{K}'(U)
+\qquad
+S \longleftrightarrow S\wedge \tau(z)
+$$ 
+任意の$(\lambda_1,\ldots,\lambda_m)\in \mathbb{R}_{>0}^m$について, 
+\begin{equation*}
+\lambda_I\lambda_J |T_{I\bar J}|
+\leq
+2^{m-p}\sum_{\substack{I\cap J\subset H\subset I\cup J\\ H\in \{ m; p\}}}
+\lambda_H^2 T_{H\bar H}
+\quad
+\forall
+I,J\in  \{ m; p\}
+\end{equation*}
+が成り立つ. ここで$I\in \{ m; p\}$について$\lambda_I=\prod_{k\in I}\lambda_k$と定義する. 
+\end{prop}
+\end{tcolorbox}
+
+\begin{proof}
+ $q=m-p$ とおく. $ i^{q^2}dz^{\hat I}\wedge d\bar z^{\hat I}$がstrongly positive formなので、
+$T\wedge i^{q^2}dz^{\hat I}\wedge d\bar z^{\hat I}$がpositiveである. 
+ここで
+\begin{equation}
+\label{eq-positive-1}
+\begin{aligned}
+&T\wedge i^{q^2}dz^{\hat I}\wedge d\bar z^{\hat I}
+=i^{p^2+q^2} T_{I\bar I}\wedge dz^I\wedge d\bar z^I\wedge dz^{\hat I}\wedge d\bar z^{\hat I} \\
+&= \underbrace{i^{p^2+q^2}(-1)^{pq}}_{=i^{m^2}} T_{I\bar I}\, \underbrace{dz^I\wedge dz^{\hat I}\wedge d\bar z^I\wedge d\bar z^{\hat I}}_{=dz\wedge d\bar z} = T_{I\bar I}\wedge \underbrace{\tau(z)}_{:= i^{m^2}dz\wedge d\bar z}
+\end{aligned}
+\end{equation}
+以上より$\quad T_{I\bar I}$は positiveである. 
+特にLemma\ref{lem-M-7.4.10}から$T_{I\bar I}$ はorder $0$である. 
+
+$I,J\in \{ m; p\}$. $T_{I\bar J}$ について考える.
+$K=\hat I,\ L=\hat J$とする. 
+
+
+% [page 1]
+\begin{align*}
+T\wedge i^{q^2}dz^K\wedge d\bar z^L
+&= i^{p^2+q^2}T_{I\bar J}\wedge dz^I\wedge d\bar z^J\wedge dz^K\wedge d\bar z^L \\
+&= \underbrace{i^{p^2+q^2}(-1)^{pq}}_{=i^{m^2}}T_{I\bar J}\wedge \operatorname{sgn}(I,K)\operatorname{sgn}(J,L)\,dz\wedge d\bar z \\
+&= \operatorname{sgn}(I,K)\operatorname{sgn}(J,L)T_{I\bar J}\wedge \tau(z)
+\end{align*}
+左辺をもっと詳しく計算する. $K=(k_1,\ldots,k_q)$, $L=(\ell_1,\ldots,\ell_q)$ とすると, 
+\begin{equation}
+\label{eq-positive-2}
+\begin{aligned}
+dz^K\wedge d\bar z^L
+&= (-1)^{\binom{q}{2}}\bigwedge_{1\leq \lambda\leq q}\left(dz^{k_\lambda}\wedge d\bar z^{\ell_\lambda}\right) \\
+&= (-1)^{\binom{q}{2}}\bigwedge_{1\leq \lambda\leq q}\sum_{a\in \mathbb{Z}/4\mathbb{Z}}\frac{i^a}{4}\left(dz^{k_\lambda}+i^a dz^{\ell_\lambda}\right)\wedge
+\overline{\left(d z^{k_\lambda}+i^a d z^{\ell_\lambda}\right)} \\
+&= (-1)^{\binom{q}{2}}\sum_{\substack{a\in(\mathbb{Z}/4\mathbb{Z})^q\\ a=(a_1,\ldots,a_q)}}\left(\prod_{1\leq \lambda\leq q}i^{a_\lambda-1}\right)\alpha_a
+\end{aligned}
+\end{equation}
+ここで
+\begin{equation*}
+\alpha_a=\bigwedge_{1\leq \lambda\leq q}\frac{i}{4}\left(dz^{k_\lambda}+i^{a_\lambda}dz^{\ell_\lambda}\right)\wedge
+\overline{\left(d z^{k_\lambda}+i^{a_\lambda}d  z^{\ell_\lambda}\right)}
+\end{equation*}
+とする. strongly positive formである. 
+以上より
+\begin{equation}
+\label{eq-positive-3}
+T\wedge i^{q^2}dz^K\wedge d\bar z^L
+\underalign{\eqref{eq-positive-1}}{=} i^{q^2}(-1)^{\binom{q}{2}}
+\sum_{\substack{a\in(\mathbb{Z}/4\mathbb{Z})^q\\ a=(a_1,\ldots,a_q)}}
+\left(\prod_{q=1}^{q} i^{a_q-1}\right)
+\underbrace{(T\wedge \gamma_a)}_{\text{ positive distribution $\Rightarrow $ order 0 by Lem. \ref{lem-M-7.4.10}}}
+\end{equation}
+以上より
+$T\wedge i^{q^2}dz^K\wedge d\bar z^L$は order 0
+である. \eqref{eq-positive-1}から
+$T_{I\bar J}\wedge \tau(z)$もorder 0 である. 
+よって$ T_{I\bar J}$もorder 0.
+
+今$T_{I\bar J}$をgeneralized complex measureと見ると, 
+
+\begin{align*}
+|T_{I\bar J}\wedge \tau(z)|
+&\underalign{\eqref{eq-positive-3}}{\leq} \sum_{a\in(\mathbb{Z}/4\mathbb{Z})^q}|T\wedge \gamma_a| 
+= \sum_{a\in(\mathbb{Z}/4\mathbb{Z})^q}T\wedge \gamma_a
+= T\wedge \sum_{a\in(\mathbb{Z}/4\mathbb{Z})^q}\gamma_a\\
+&\underalign{}{=} T\wedge \sum_{\substack{a\in(\mathbb{Z}/4\mathbb{Z})^q\\ a=(a_1,\ldots,a_q)}} \bigwedge_{1\leq \lambda\leq q}\frac{i}{4}\left(dz^{k_\lambda}+i^{a_\lambda}dz^{\ell_\lambda}\right)
+\wedge \overline{\left(dz^{k_\lambda}+i^{a_\lambda}dz^{\ell_\lambda}\right)} \\
+&\underalign{}{=} T\wedge \bigwedge_{1\leq \lambda\leq q}\sum_{a\in\mathbb{Z}/4\mathbb{Z}}\frac{i}{4}\left(dz^{k_\lambda}+i^a dz^{\ell_\lambda}\right)
+\wedge \overline{\left(dz^{k_\lambda}+i^a dz^{\ell_\lambda}\right)} \\
+&\underalign{}{=} T\wedge 
+\underbrace{\bigwedge_{1\leq \lambda\leq q}\left(i dz^{k_\lambda}\wedge d\bar z^{k_\lambda}+i dz^{\ell_\lambda}\wedge d\bar z^{\ell_\lambda}\right)
+}_{\text{$i^{q^2}dz^H\wedge d\bar z^H$かつ$H\subset K\cup L,\ |H|=q$となる形の項の $2^q$ コの和.}}
+\\
+&\underalign{}{\leq}2^q \sum_{\substack{H\subset K\cup L\\ H\in \{m:q \}}} T\wedge i^{q^2}dz^H\wedge d\bar z^H \\
+&\underalign{}{=}2^q \sum_{\substack{H\subset K\cup L\\ H\in \{m:q \}}}
+i^{p^2+q^2}
+T_{\hat H\overline{\hat H}}\wedge
+\underbrace{dz^{\hat H}\wedge d\bar z^{\hat H}\wedge dz^H\wedge d\bar z^H}_{=(-1)^{pq}dz\wedge d\bar z} \\
+&\underalign{\tau(z) =i^{m^2}dz\wedge d\bar z}{=}
+2^q \sum_{\substack{I\cap J\subset H\\ H\in \{m:q \}}} T_{H\bar H}\wedge \tau(z)
+\end{align*}
+
+よって次を得た:
+\begin{equation*}
+\left|T_{I\bar J}\wedge \tau(z)\right|
+\leq 2^k \sum_{\substack{I\cap J\subset H\\ H\in \{m:q \} }} T_{H\bar H}\wedge \tau(z)
+\end{equation*}
+さて$\lambda_1,\ldots,\lambda_m>0$に関して, 座標変換$z^1=\lambda_1w^1,\cdots,z^m=\lambda_mw^m$をする. 
+
+座標変換
+$$
+\Lambda:V\overset{\sim}{\to} U
+\quad
+(w^1,\ldots,w^m)\longmapsto (\lambda_1w^1,\ldots,\lambda_mw^m)
+=(z^1, \ldots, z^m)
+$$を考える. 
+すると
+\begin{align*}
+(\Lambda^{-1})_*T
+&= i^{p^2}\sum_{I,J\in \{ m; p\}}
+(\Lambda^{-1})_*T_{I\bar J}\wedge \Lambda^*(dz^I\wedge d\bar z^J) 
+= i^{p^2}\sum_{I,J\in \{ m; p\}}
+\underbrace{
+(\Lambda^{-1}_*T_{I\bar J})
+\wedge \lambda_I\lambda_J}_{\text{ここに上の公式を使う}}
+dw^I\wedge d\bar w^J
+\end{align*}
+すると以下のように式変形できる
+\begin{align*}
+&\lambda_I\lambda_J\left|(\Lambda^{-1})_*T_{I\bar J}\wedge \tau(w)\right|
+\leq
+2^k\sum_{\substack{I\cap J\subset H\\ |H|=p}}\lambda_H^2(\Lambda^{-1})_*T_{H\bar H}\wedge \tau(w)
+\\
+&\Rightarrow
+\lambda_I\lambda_J\left|T_{I\bar J}\wedge \lambda^{-2}\tau(z)\right|
+\leq
+2^k\sum_{\substack{I\cap J\subset H\\ |H|=p}}\lambda_H^2T_{H\bar H}\wedge \lambda^{-2}\tau(z)
+\quad
+\lambda:=\lambda_1\cdots\lambda_m
+\\
+&\Rightarrow
+\lambda_I\lambda_J\left|T_{I\bar J}\wedge \tau(z)\right|
+\leq
+2^k\sum_{\substack{I\cap J\subset H\\ |H|=p}}\lambda_H^2T_{H\bar H}\wedge \tau(z)
+\end{align*}
+
+\end{proof}
 \end{document}

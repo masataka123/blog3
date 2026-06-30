@@ -53,7 +53,7 @@
 
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成. ただこれは自分のためにもまとめていきたいです. 
 
-- [超関数・カレントノート](https://masataka123.github.io/blog3/pdf/20251003_current_seminar/current_seminar_20260527.pdf)
+- [超関数・カレントノート](https://masataka123.github.io/blog3/pdf/20251003_current_seminar/current_seminar_20260630.pdf)
 
 現在進行形(2025年-)で行われている超関数・カレントセミナーのノート. chatGPTでTex化して日本語化した. そして全体を見返していないので, 誤字がいっぱいあるのはご了承ください. 時間を見つけ次第, 誤字を無くしていきます. (ここにおいているのは私が誤字を見つけるためです.)
 

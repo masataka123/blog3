@@ -1,7 +1,5 @@
 # **出張予定**
 
-- 2026年5月25--29日に東北大学で[集中講義](http://www.math.tohoku.ac.jp/research/intensive.html)をします. 
-- 2026年6月23--26日に筑波大学で開催予定の[Mini-workshop on complex geometry related to MMP ](https://sites.google.com/view/cg-mmp-2026)で講演する予定です. 
 - 2026年9月12--13日に大阪公立大学で[CR多様体の勉強会](https://masataka123.github.io/CR_manifold_2026/)を開催いたします.
 - 2026年9月14--17日に大阪公立大学で開催される[複素幾何学への多角的アプローチ](https://tkoike.com/multi_appr_cpx_geom/)に参加いたします. 
 - 2026年9月14--18日に名古屋大学で開催される[Fano varieties and Related topics](https://shotanimoto.wordpress.com/fano-varieties-and-related-topics/)に参加するかもしれません(参加するなら上の集会をちょっと抜けて参加します.)
@@ -26,6 +24,7 @@
 35.  "Inequalities for the second Chern class and structure theorems" [The 3rd Niigata Algebra Symposium](http://mathweb.sc.niigata-u.ac.jp/~hoshi/NiigataAlgebraSymposium.html) 新潟大学,  2025年11月20日.
 36. "Inequalities for the second Chern class -Miyaoka-Yau inequality and Miyaoka's inequality-" [第2回新潟若手代数・幾何シンポジウム](https://sites.google.com/view/niigatawakate2025/ホーム) 新潟大学, 2025年11月28日
 37. "CampanaのSpecial多様体およびCampana-Winkelmann ``On h-principle and specialness for complex projective manifolds’‘の解説." 九州大学, 2025年12月16日 [Campana Special variety まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_04_2025_1218.pdf) [Campana-Winkelman 15 まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_Winkelman_2025_1218.pdf) 
+38. "The Miyaoka–Yau inequality for projective manifolds with big canonical divisors" [Mini-workshop on complex geometry related to MMP](https://sites.google.com/view/cg-mmp-2026) 筑波大学, 2026年6月26日 
 
 
 ### **2018年4月から2022年3月まで**
@@ -66,6 +65,7 @@
 13. ‘Abundance theorem for minimal projective varieties satisfying Miyaoka's equality’, Sun Yat-Sen University, 2024年05月16日
 14. '数学の勉強法・研究の進め方・専門の決め方について' [What is セミナー](https://sites.google.com/view/handai-what-is-seminar/), 大阪大学, 2025年1月16日. [PDF](https://masataka123.github.io/blog3/pdf/2025_0116_What_is_seminar.pdf)
 15. "Inequalities for the second Chern class -Miyaoka-Yau inequality and Miyaoka's inequality-" [代数幾何学セミナー](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 大阪大学, 2025年12月8日.
+16. "Chern類の不等式と構造定理 “宮岡-Yau不等式と宮岡の不等式” 東北大学談話会, 東北大学, 2026年5月25日
 
 ### **2018年4月から2022年3月まで**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)
@@ -97,8 +97,8 @@
 
 
 ## **学内・学外セミナー**
-5. 大阪大学幾何セミナー世話人, 大阪大学, 2023--2024年度  [2023年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rirekiThisY.cgi) [2024年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2024)
-8. 大阪大学幾何セミナー世話人, 大阪大学, 2025年度 (大阪大学 濱中翔太氏, 大阪大学 松本佳彦氏との共同主催) [2025年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2025)
-6. 大阪大学幾何セミナー世話人, 大阪大学, 2026年度 (大阪大学 田代賢志郎氏, 大阪大学 松本佳彦氏との共同主催) [2026年度のセミナー一覧](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2026)
+1. 大阪大学幾何セミナー世話人, 大阪大学, 2023--2024年度  [2023年度](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rirekiThisY.cgi) [2024年度](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2024)
+2. 大阪大学幾何セミナー世話人, 大阪大学, 2025年度 (大阪大学 濱中翔太氏, 大阪大学 松本佳彦氏との共同主催) [2025年度](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2025)
+3. 大阪大学幾何セミナー世話人, 大阪大学, 2026年度 (大阪大学 田代賢志郎氏, 大阪大学 松本佳彦氏との共同主催) [2026年度](http://www4.math.sci.osaka-u.ac.jp/sembbs2/rireki.cgi?Y=2026)
 
 [](# **その他** 1. 2019年度大阪市立大学共同利用・共同研究(A) 「標準束の幾何学」 共同研究の提案者・研究代表 [link](http://www.sci.osaka-cu.ac.jp/OCAMI/joint/joint-usage.html)  )
