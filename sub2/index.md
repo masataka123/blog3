@@ -33,42 +33,42 @@
 間違っている可能性は大いにあるので注意してください. (岩井の写し間違いや勘違いが多くあると思います.)
 [Google Drive](https://drive.google.com/drive/folders/1zVY2KFeFIUPRmdwu5I1HHey6r1IstPLC?usp=sharing)にもあります. 
 
-- [位相空間論まとめ](https://masataka123.github.io/blog3/pdf/0_集合と位相まとめ_20221001.pdf)
+1. [位相空間論まとめ](https://masataka123.github.io/blog3/pdf/0_集合と位相まとめ_20221001.pdf)
 
 位相の演義を担当した際に定義などを勉強し直しました. なお単語帳のために作ったので証明は書いてないです. 
 
-- [Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendix 発表原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
+1. [Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendix 発表原稿](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_talk.pdf)
 
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)での, Condenced Mathmatics ショルツのレクチャーノート Section 2. Appendixの発表原稿です. 
 
-- [コンパクト生成空間・コンパクト生成弱ハウスドルフ空間のまとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_CGWH.pdf)
+1. [コンパクト生成空間・コンパクト生成弱ハウスドルフ空間のまとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_CGWH.pdf)
 
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート1のまとめです. 
 
-- [公理的集合論と圏論まとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_set_category.pdf)
+1. [公理的集合論と圏論まとめ](https://masataka123.github.io/blog3/pdf/2025_02_18_set_category.pdf)
 
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の予習で必要になった知識パート2のまとめです. 未完成. 公理的集合論の最初の方に付け足したい(がいつやるかわかりません)
 
-- [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
+1. [Condenced Mathmaticsまとめノート](https://masataka123.github.io/blog3/pdf/2025_02_18_Condensed_Mathmatics_seminarnote.pdf)
 
 2025年2月17日-21日開催の[Condensed mathematicsワークショップ](https://sites.google.com/view/condmathomu/home)の内容をまとめていく予定です. 未完成. ただこれは自分のためにもまとめていきたいです. 
 
-- [超関数・カレントノート](https://masataka123.github.io/blog3/pdf/20251003_current_seminar/current_seminar_20260630.pdf)
+1. [超関数・カレントノート](https://masataka123.github.io/blog3/pdf/20251003_current_seminar/current_seminar_20260630.pdf)
 
 現在進行形(2025年-)で行われている超関数・カレントセミナーのノート. chatGPTでTex化して日本語化した. そして全体を見返していないので, 誤字がいっぱいあるのはご了承ください. 時間を見つけ次第, 誤字を無くしていきます. (ここにおいているのは私が誤字を見つけるためです.)
 
-- [Campana Special variety まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_04_2025_1218.pdf) 
+1. [Campana Special variety まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_04_2025_1218.pdf) 
 
-- [Campana-Winkelman 15 まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_Winkelman_2025_1218.pdf) 
+1. [Campana-Winkelman 15 まとめ](https://masataka123.github.io/blog3/pdf/20251218_campana/Campana_Winkelman_2025_1218.pdf) 
 
 これらは[岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)のためにまとめたもの. Campana先生の論文は至る所アイデアが散逸しているのでまとめるのが大変だった. 
 ただCampana先生, Peternell先生の論文は読んでて本当に面白い. 華やかな論文が多いイメージである. 
 
-- [岡多様体のまとめ](https://masataka123.github.io/blog3/pdf/20260501_Oka/岡多様体まとめ_2026_0501.pdf) 
+1. [岡多様体のまとめ](https://masataka123.github.io/blog3/pdf/20260501_Oka/岡多様体まとめ_2026_0501.pdf) 
 
 [岡多様体の勉強会](https://masataka123.github.io/Oka_manifold_2025/)の日下部さんの講演とその前にまとめていた内容を再構成した. 「なんかTexにしたいな」と思いその日中にTex化した. chatGPTがあるとTex化が捗るのでいいですね. 
 
-- [Chern類と複素幾何学](https://masataka123.github.io/blog3/pdf/20260526_Tohoku_Chern_class/東北大学授業資料_2026_0526_ver2.pdf) 
+1. [Chern類と複素幾何学](https://masataka123.github.io/blog3/pdf/20260526_Tohoku_Chern_class/東北大学授業資料_2026_0526_ver2.pdf) 
 
 2026年の[集中講義](https://masataka123.github.io/2026_tohoku_Chern_class/)のために作った. 初学者にわかりやすく, そして最新の研究につながるように頑張って書いた. 接続や曲率など普段使っている概念を定義するのが一番苦労した. こういう作業をすると自分が適当に数学していることが身に染みてわかった. あと微分幾何のテンソル計算はTeXで作業した方が楽であることもわかった. 
 
