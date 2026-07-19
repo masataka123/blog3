@@ -33,6 +33,10 @@
 間違っている可能性は大いにあるので注意してください. (岩井の写し間違いや勘違いが多くあると思います.)
 [Google Drive](https://drive.google.com/drive/folders/1zVY2KFeFIUPRmdwu5I1HHey6r1IstPLC?usp=sharing)にもあります. 
 
+- [教科書一覧](https://masataka123.github.io/blog3/pdf/20251001_masterguide/master_guide_20251001_C2.pdf)
+
+私に近い分野や気になる分野の教科書をリストアップしました. 随時更新中です. 
+
 - [位相空間論まとめ](https://masataka123.github.io/blog3/pdf/0_集合と位相まとめ_20221001.pdf)
 
 位相の演義を担当した際に定義などを勉強し直しました. なお単語帳のために作ったので証明は書いてないです. 
