@@ -3969,6 +3969,8 @@ dw^I\wedge d\bar w^J
 \end{align*}
 \end{proof}
 
+\subsection{Current of integration}
+
 \begin{ex}[Current of integration]
 $M$ を複素$m$次元の複素多様体, $Z \subset M$ 複素$p$次元の部分複素多様体とする.
 $$
@@ -4023,4 +4025,261 @@ $Z$のintegration currentを
 $[Z]=\pi_*[\widetilde Z]$
 となり, 特に $[Z]$ は str pos $(n-p,n-p)$ closed currentである. 
 \end{ex}
+上の例に関して積分がwell definedかどうかを以下に詳しく説明する
+
+ $M$を複素多様体, $\dim_{\mathbb{C}}M=m\geq 0$とする. 
+ $M$は第二可算を仮定する.
+volume form $\omega\in\mathcal{E}^{(m,m)}(M)$をpositive, nowhere $0$なものとする. 
+この時コンパクトサポートも持つ連続関数の空間$\mathcal{K}(M)$上に, positiveな$\mathbb{C}$線型写像を以下で定義する. 
+\begin{equation*}
+\mathcal{K}(M)\longrightarrow\mathbb{C};
+\qquad
+\varphi\longmapsto
+\underbrace{\int_M\varphi\omega}_{\text{1の分割を用いて積分を定義}}
+\end{equation*}
+ここでpositiveとは$\varphi\geq 0$ならば, $\int_M\varphi\omega \ge 0$となることである. 
+
+Rieszの表現定理より, $\mu_\omega$となるlocally finite regular positive Borel measureで
+\begin{equation*}
+\int_M\varphi\omega=\int_M\varphi\,d\mu_\omega
+\quad
+\text{for all }\varphi\in\mathcal{D}(M).
+\end{equation*}
+となるものがただ一つ存在する. 任意の $\eta\in\mathcal{D}^{(m,m)}(M)$について,  $\eta=\varphi\omega$ となる $\varphi\in\mathcal{D}(M)$がある時, 
+\begin{equation*}
+\int_M\eta
+=
+\int_M\varphi\omega
+=
+\int_M\varphi\,d\mu_\omega.
+\end{equation*}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-M-measure}
+ $\eta\in\mathcal{C}^{(m,m)}(M)$を連続値$(m,m)$-formの空間とする. $\eta=\varphi\omega$となる連続関数$\varphi\in C(M)$を用いて, 
+\begin{equation*}
+\int_M\eta:=\int_M\varphi\,d\mu_\omega
+\end{equation*}
+と定義する. (ただし右側が存在する場合にのみ定義する.)
+\end{defn}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+上の積分は存在を含めて$\omega$の取り方によらない. 
+つまり $\omega$での積分が存在した場合, 任意の$\omega'\in\mathcal{E}^{(m,m)}(M)$について, $\omega'$での積分が存在しその値は$\omega$での積分に等しい. 
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+ $\omega'\in\mathcal{E}^{(m,m)}(M)$ を別のvolume formとし, 
+ $\omega'=f\omega$となる$C^\infty$級関数$f\in \mathcal{E}(M)$で$f>0$となるものをとる. 
+
+任意の$\varphi\in\mathcal{K}(M)$について
+\begin{equation}
+\label{eq-integral-dmu}
+\int_M\varphi\,d\mu_{\omega'}
+\underalign{\text{定義}}{=}
+\int_M\varphi\omega'
+\underalign{\text{代入}}{=}
+\int_M\varphi f\omega
+\underalign{\text{定義}}{=}
+\int_M\varphi f\,d\mu_\omega
+\end{equation}
+
+\begin{claim}
+任意の(コンパクトサポートを持つとは限らない)連続関数$\forall\varphi\colon M\longrightarrow[0,+\infty)$について, 
+\begin{equation*}
+\int_M\varphi\,d\mu_{\omega'}
+=
+\int_M\varphi f\,d\mu_\omega.
+\end{equation*}
+\end{claim}
+\begin{proof}[Proof of Claim]
+第二可算性から,  smoothで可算個数の1の分割$\{\chi_n\}_{n\geq 0}$が取れ, さらに
+$\operatorname{supp}\chi_n$はコンパクトになる. 
+よって
+\begin{equation*}
+\int_M
+\underbrace{\left(\sum_{n=0}^{N}\chi_n\right)}_{\in\mathcal{K}(M)}
+\varphi\,d\mu_{\omega'}
+\underalign{\eqref{eq-integral-dmu}}{=}
+\int_M
+\left(\sum_{n=0}^{N}\chi_n\right)\varphi f\,d\mu_\omega.
+\end{equation*}
+一方
+\begin{equation*}
+\left(\sum_{n=0}^{N}\chi_n\right)\varphi
+\nearrow
+\varphi
+\qquad
+(N\to\infty),
+\end{equation*}
+であるので, 単調収束定理より言える. 
+\end{proof}
+
+さて $\eta\in\mathcal{K}^{(m,m)}(M)$について,  $\eta=\varphi\omega'=\varphi f\omega$となる連続関数$\varphi\in C(M)$をとる. 
+今
+\begin{equation*}
+\operatorname{Re}(\varphi f)=(\operatorname{Re}\varphi)f,
+\quad
+\operatorname{Im}(\varphi f)=(\operatorname{Im}\varphi)f,
+\quad
+\operatorname{Re}(\varphi f)^{+}
+=
+(\operatorname{Re}\varphi)^{+}f,
+\end{equation*}
+が成り立つので, $\varphi$を実関数として良い. ($\varphi$ が複素数値で同様の議論ができるので)
+すると
+\begin{equation*}
+\int_M\eta
+\text{ exists w.r.t. }\omega'
+\Longleftrightarrow
+\int_M\varphi\,d\mu_{\omega'}
+\text{ exists}.
+\end{equation*}
+であり, 
+
+\begin{align*}
+\int_M\varphi^{+}\,d\mu_{\omega'},
+\ \int_M\varphi^{-}\,d\mu_{\omega'}
+\text{ の一方は }<\infty
+&\underalign{\text{Claim}}{\Longleftrightarrow}
+\int_M\varphi^{+}f\,d\mu_{\omega},
+\ \int_M\varphi^{-}f\,d\mu_{\omega}
+\text{ の一方は }<\infty
+\\
+&\underalign{}{\Longleftrightarrow}
+\int_M\eta\text{ exists w.r.t. }\omega.
+\end{align*}
+また存在する時の値も同じである
+\end{proof}
+すぐにわかる性質を述べておく.
+
+(1).双正則$\alpha\colon N\xrightarrow{\sim}M$と $\omega\in\mathcal{E}^{(m,m)}(M)$ volume formとする. 
+任意の$\varphi\in\mathcal{K}(M)$について, 
+\begin{equation*}
+\begin{aligned}
+\int_M\varphi\omega
+\underalign{\text{定義}}{=}
+\int_M\varphi\,d\mu_\omega
+\underalign{\text{測度の性質}}{=}
+\int_N(\varphi\circ\alpha)\,d\mu_{\alpha^*\omega},
+\underalign{\text{定義}}{=}
+\int_N(\varphi\circ\alpha)\alpha^*\omega
+\underalign{\text{pullbackの性質}}{=}
+\int_N\alpha^*(\varphi\omega).
+\end{aligned}
+\end{equation*}
+よってRieszの表現定理の唯一性から, $\alpha_*\mu_{\alpha^*\omega}=\mu_\omega$
+
+
+(2).任意のopen$U\subset M$とvolume form$\omega\in\mathcal{E}^{(m,m)}(M)$について, $\left.\mu_\omega\right|_U=\mu_{\left.\omega\right|_U}$である. これは任意の$\varphi\in\mathcal{K}(U)\ (\subset\mathcal{K}(M))$について, 
+\begin{equation*}
+\int_U\varphi\,\left. d\mu_{\omega}\right|_U
+\underalign{\text{測度の性質}}{=}
+\int_M\varphi\,d\mu_\omega
+\underalign{\text{定義}}{=}
+\int_M\varphi\omega
+\underalign{\text{$\varphi\in\mathcal{K}(U)$}}{=}
+\int_U\varphi\left.\omega\right|_U
+\underalign{\text{定義}}{=}
+\int_U\varphi\,d\mu_{\left.\omega\right|_U}
+\end{equation*}
+よってRieszの表現定理の唯一性から, 言える. 
+
+(3). 任意のdenseでないanalytic subset $Z\subset M$と
+volume form $\omega\in\mathcal{E}^{(m,m)}(M)$について, 
+$\mu_\omega(Z)=0$
+これは$M$の可算個数のchartをとることで, $M\subset\mathbb{C}^m$として良い
+(ここに(2).を使っている. )
+この場合
+\begin{equation*}
+\tau
+:=
+\sqrt{-1}\,dz^1\wedge d\overline{z}^1\wedge\cdots\wedge
+\sqrt{-1}\,dz^m\wedge d\overline{z}^m.
+\end{equation*}
+とすると, $\omega=f\tau$となる$f>0$がある .
+よって
+\begin{equation*}
+\mu_\omega(Z)
+\underalign{\text{定義}}{=}
+\int_M\chi_Z\,d\mu_\omega
+\underalign{(\star)}{=}
+\underbrace{\int_M\chi_Zf\,d\mu_\tau}_{\text{通常のLesbegue測度による積分}}
+\end{equation*}
+である. 上の式の右辺が0なのはよく知られた事実である. 
+
+$(\star)$ が成り立つ理由は次のとおり($\chi_Z$は連続ではないので, \eqref{eq-integral-dmu}と別に議論がいる.)
+単調収束定理と$M$が$\sigma$コンパクトであることから, 
+$Z$をコンパクトとして良い.
+特に$\mu$はlocally finiteなので$\mu_\omega(Z)<\infty$である. 
+
+ここで$\mu$は(outer) regularなので, $U_1\supset U_2\supset\cdots\supset Z$で, 
+\begin{equation*}
+\mu_\omega(U_n)\searrow\mu_\omega(Z)
+\quad\text{as }n\to\infty
+\quad
+\text{and }
+\quad
+\bigcap_{n\geq 1}U_n=Z
+\end{equation*}
+となるものが取れる. 
+0以上の値を取る$\varphi_n\in\mathcal{K}(M)$で
+$Z$上で$\varphi_n=1$, 
+$\operatorname{supp}\varphi_n\subset U_n$となるものをとる. 
+すると(outer) regularより
+\begin{equation*}
+\int_M\chi_Z\,d\mu_\omega
+=
+\lim_{n\to\infty}\int_M\chi_{U_n}\,d\mu_\omega.
+\end{equation*}
+である. 
+一方$\varphi_n$の性質から
+\begin{equation*}
+\int_M\chi_Z\,d\mu_\omega
+\leq
+\int_M\varphi_n\,d\mu_\omega
+\leq
+\int_M\chi_{U_n}\,d\mu_\omega<+\infty
+\end{equation*}
+である. 今$|\varphi_n|\leq\chi_{\overline{U_1}}$で,  $\chi_{\overline{U_1}}f$ is $\mu_\tau$可測, almost everywhereで$\varphi_n\to\chi_Z$より, 
+Lesbegue収束定理から
+$$
+\int_M\varphi_n\,d\mu_\omega
+=
+\int_M\varphi_n f\,d\mu_\tau
+\underalign{(n\to\infty)}{\longrightarrow}
+\int_M\chi_Z f\,d\mu_\tau
+$$
+よってはさみうちの原理から, $(\star)$が言える. 
+
+\underline{Current of integration}
+ $M$を複素多様体, $Z\subset M$を純$p$次元analytic subsetとする. 
+ 定義\ref{defn-M-measure}を用いて
+\begin{equation*}
+\mathcal{D}^{(p,p)}(M)\longrightarrow\mathbb{C};
+\qquad
+\psi\longmapsto
+\int_{Z_{\mathrm{sm}}}\left.\psi\right|_{Z_{\mathrm{sm}}}
+\end{equation*}
+と定義する. これがwell-defined(収束を含めて値が存在するなど)であるのは, 
+$f : \widetilde{W} \to Z$を特異点解消とする時, 
+\begin{equation*}
+\int_{\widetilde{W}}(\iota\circ f)^*\psi
+\underalign{\text{(2) \& (3)}}{=}
+\int_{f^{-1}(Z_{\mathrm{sm}})}(\iota\circ f)^*\psi
+\underalign{\text{(1)}}{=}
+\int_{Z_{\mathrm{sm}}}\left.\psi\right|_{Z_{\mathrm{sm}}}.
+\end{equation*}
+となり, 左辺が存在するので右辺も存在することがわかるからである. 
+
+
+
+
+
+
+
 

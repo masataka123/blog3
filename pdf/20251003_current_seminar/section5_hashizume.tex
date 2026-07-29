@@ -1,0 +1,1666 @@
+%\documentclass[dvipdfmx,a4paper,12pt]{amsart}
+\documentclass[dvipdfmx,a4paper,11pt]{report} %titleとe-mailをコメントアウトする．
+
+
+%%% Packages %%%
+\setlength{\lineskip}{0pt}
+
+% --- 和文フォント設定 (ゴシックを使うなら) ---amsartを使う時はコメントアウト
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf}          % min10を避けるため
+\usepackage{pxrubrica}    % 和文ルビ
+
+% --- 基本パッケージ ---
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{pgfplots}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+
+% --- 数学関連 ---
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{amscd,dsfont,bigdelim,braket,physics,mathrsfs,bm}
+
+% --- 書式・リスト関連 ---
+\usepackage{latexsym}
+\usepackage{setspace}
+\usepackage{multirow}
+\usepackage{enumerate}
+\usepackage{enumitem}
+
+% --- コメント・取消線など ---
+\usepackage{comment}
+\usepackage[normalem]{ulem} % \emph の下線化を抑止（cancelと共存）
+
+% --- URL・文字コード ---
+\usepackage{url}
+% \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要、pdflatexなら有効に
+
+% --- showkeys（常に表示） ---
+%\usepackage{showkeys}
+%\renewcommand*{\showkeyslabelformat}[1]{%
+ %\fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
+%}
+% --- hyperrefは最後に読み込む ---
+\usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
+
+%%% レイアウト調整 %%%
+%%% レイアウト調整（geometryに統一） %%%
+\usepackage[
+  top=30mm,        % 上余白
+  bottom=30mm,     % 下余白
+  left=25mm,       % 左余白
+  right=25mm,      % 右余白
+  headheight=12pt, % ヘッダー高さ（必要なら）
+  headsep=10mm,    % ヘッダーと本文の間
+  footskip=32pt,   % 本文とフッターの距離
+  includehead,     % ヘッダー分も高さに含める
+  includefoot      % フッター分も高さに含める
+]{geometry}
+
+%%% 行間調整（適宜 1.2 などに変更） %%%
+\usepackage{setspace}
+\setstretch{1.1}
+
+% --- 段落設定 --- 文字の行間ならここを変更する
+\setlength{\parskip}{5pt}   % 段落間のスペース
+\setlength{\parindent}{0pt}   % 段落先頭の字下げをなくす
+
+
+%%% 追加（重複なし）パッケージ・設定 %%%
+
+% --- 目次の体裁調整 ---
+%\usepackage{tocloft}
+%\renewcommand{\contentsname}{目次} % 日本語化
+%\setlength{\cftbeforesecskip}{0pt}
+%\setlength{\cftbeforesubsecskip}{0pt}
+%\setlength{\cftbeforesubsubsecskip}{0pt}
+
+% --- セクション見出しの体裁調整 ---
+%\usepackage{titlesec}
+%\titleformat*{\section}{\Large\bfseries}
+%\titleformat*{\subsection}{\large\bfseries}
+%\titlespacing*{\section}{0pt}{1.5ex plus .2ex minus .2ex}{0.8ex plus .1ex}
+%\titlespacing*{\subsection}{0pt}{1.0ex plus .2ex minus .2ex}{0.5ex plus .1ex}
+
+% --- ヘッダー／フッター設定 ---
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\rhead{岩井 雅崇}
+%\lhead{大阪大学 数学専攻}
+%\cfoot{\thepage}
+
+
+% -- enumerate, itemize行間設定
+\usepackage{enumitem} % デフォルト設定
+\setlist[itemize]{itemsep=3pt, parsep=0pt}
+\setlist[enumerate]{itemsep=3pt, parsep=0pt}
+% "変更する際は右を使う" \setlength{\parskip}{0cm} % 段落間\setlength{\itemsep}{5pt} % 項目間
+
+% --- tcolorbox 設定 ---%\begin{tcolorbox}[mybox]と使う
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true
+  }
+}
+
+% --- TikZ 設定 ---
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, fit, calc, backgrounds}
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+% --- footnote がページをまたがない設定 ---
+\interfootnotelinepenalty=10000
+
+% --- 目次に表示する階層の深さ ---
+\setcounter{tocdepth}{2}
+
+% --- 日本語目次---
+\usepackage{pxjahyper}
+
+%--newtheorem%--newcommand----
+
+\newtheorem{thm}{Theorem}[section] 
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+\theoremstyle{definition} 
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition} 
+\newtheorem{lemdefn}[thm]{Lemma-Definition} 
+\newtheorem{thmdefn}[thm]{Theorem-Definition} 
+\newtheorem{eg}[thm]{Example} 
+\newtheorem{ex}[thm]{Example} 
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{cl}{Claim}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{step}{Step}
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem{cln}[thm]{Claim}
+\newtheorem*{ack}{Acknowledgements} 
+\numberwithin{equation}{section}
+\newtheorem{case}{Case}
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\renewcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+\newcommand{\End}[0]{\operatorname{End}}
+\newcommand{\Coker}[0]{\operatorname{Coker}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\Ext}[0]{\mathscr{E}\!\textit{xt}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+\newcommand{\polar}{\beta}
+  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{Z}_+}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\renewcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\newcommand{\illegible}[1]{\textcolor{red}{[ILLEGIBLE: #1]}}
+
+%\title{カレントセミナーのノート} 
+%\author{岩井雅崇}
+%\address{Department of Mathematics, Graduate School of Science, Osaka City University 3-3-138, Sugimoto, Sumiyoshi-ku Osaka, 558-8585Japan} 
+%\email{{\tt masataka.math@gmail.com}}
+%\email{{\tt masataka.math@gmail.com, masataka@sci.osaka-cu.ac.jp}}
+%\date{\today, version 0.01}
+
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\baselineskip = 15pt
+\footskip = 32pt
+
+\begin{document}
+%\maketitle
+%\tableofcontents % 目次を出力
+
+\begin{thebibliography}{n}
+\bibitem[Dem12]{Dem}
+J.-P. Demailly,
+\textit{Complex Analytic and Differential Geometry},
+Book, 2012.
+\url{https://people.math.harvard.edu/~demarco/Math274/Demailly_ComplexAnalyticDiffGeom.pdf}\footnote{Demailly先生のページがどうも開けず, Demarco先生のページのリンクを引用した. Demailly先生のページは一回見れないことがあったので, もしかしたらそのうちなくなる可能性もある. なおそれを見越して私はDemailly先生にあったpdfを全てダウンロードした.}
+\bibitem[Rud]{Rud}
+W. Rudin. \textit{Functional analysis.} 2nd edn. International Series in Pure and Applied Mathematics. McGraw-Hill, Inc., New York. (1991.)
+\bibitem[Rud 2]{Rud2}
+W. Rudin. \textit{Real and complex analysis. } 3rd ed. New York, NY: McGraw-Hill 
+\bibitem[NO]{NO}
+J. Noguchi, T.Ochiai \textit{Geometric Function Theory in Several Complex Variables} Translations of Mathematical Monographs
+Volume: 80; 1990; 282 pp
+\end{thebibliography}
+ 
+カレントに関しては\cite[Chapter 3]{NO}を参考にしている. 
+またpositive currentに関しては, 
+\cite[Chapter 1. Section 3.C]{Dem}, \cite[Chapter 3. Section 1.]{Dem}
+などを参考にしている. 
+
+% [page 1]
+\section{Lelong number}
+
+\underline{Notation}
+\begin{itemize}
+\item $(z^1,\ldots,z^m)$: coordinate of $\mathbb{C}^m$
+\item $d^c:=\dfrac{1}{2\pi}\dfrac{i}{2}(\bar{\partial}-\partial)$ \quad (thus $dd^c=\dfrac{i}{2\pi}\partial\bar{\partial}$)
+\item $\alpha:=dd^c|z|^2=\dfrac{i}{2\pi}\displaystyle\sum_{j=1}^m dz^j\wedge d\bar{z}^j$
+\item $\beta:=dd^c\log|z|^2=\dfrac{i}{2\pi}\displaystyle\sum_{j,k=1}^m\left(\dfrac{\delta_{jk}}{|z|^2}-\dfrac{z^k\bar{z}^j}{|z|^4}\right)dz^j\wedge d\bar{z}^k$
+\item $\alpha^k,\beta^k$：$k$ 回ウェッジ積，$\alpha^0:=1$，$\beta^0:=1$．
+\item $\eta:=d^c\log|z|^2\wedge\beta^{m-1}$
+\item $B(z;r):=\{w\in\mathbb{C}^m\mid |w-z|<r\}$
+\item $\Gamma(z;r):=\{w\in\mathbb{C}^m\mid |w-z|=r\}$
+\item $B(r):=B(0;r)$，$\Gamma(r):=\Gamma(0;r)$．
+\end{itemize}
+
+\begin{rem}
+\label{rem-H-5.1}
+%\underline{Rem 1}
+\begin{equation*}
+d\alpha=d\beta=0,\qquad
+\alpha^m=\frac{m!}{\pi^m}\bigwedge_{j=1}^m\frac{i}{2}dz^j\wedge d\bar{z}^j,\qquad
+d\eta=\beta^m=0.
+\end{equation*}
+
+$\beta^m=0$ については
+$A:=\left(\dfrac{\delta_{jk}}{|z|^2}-\dfrac{z^k\bar{z}^j}{|z|^4}\right)_{\substack{1\leq j\leq m\\1\leq k\leq m}}$
+として $\det(A)=0$ を示せばよいが：
+\begin{equation*}
+|z|^4A
+=
+|z|^2E_m
+-
+\begin{pmatrix}
+\bar{z}^1\\
+\vdots\\
+\bar{z}^m
+\end{pmatrix}
+\begin{pmatrix}
+z^1&\cdots&z^m
+\end{pmatrix}
+\end{equation*}
+より
+$A\begin{pmatrix}\bar{z}^1\\ \vdots\\ \bar{z}^m\end{pmatrix}=0$
+なので行列式の性質から$\det(A)=0$．
+\end{rem}
+
+% [page 2]
+%\underline{Fact 2}
+\begin{rem}
+\label{rem-H-5.2}
+半径 $r$ の $d$ 次元球の体積はガンマ関数を用いて, 
+$\frac{\pi^{d/2}}{\Gamma\left(\frac{d}{2}+1\right)}r^d
+$となる. よって$dz^j=dx^j+i\,dy^j$と$d=2m$の代入から
+\begin{equation*}
+\int_{B(z;r)}\alpha^m
+=
+\frac{m!}{\pi^m}
+\int_{B(z;r)}
+dx^1\wedge dy^1\wedge\cdots\wedge dx^m\wedge dy^m
+=
+r^{2m}
+\end{equation*}
+ここに$\Gamma\left(\frac{d}{2}+1\right)=\Gamma\left(m+1\right)=m!$を用いた
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-H-5.3}
+%\underline{Lem 3}
+\begin{equation*}
+\left.\beta\right|_{\Gamma(r)}
+=
+\frac{1}{r^2}\left.\alpha\right|_{\Gamma(r)}.
+\end{equation*}
+\end{lem}
+\end{tcolorbox}
+\begin{proof}
+$f\colon\mathbb{C}^m\to\mathbb{R}$を$f(z):=|z|^2$とする. 
+すると$\Gamma(r)$の定義と$f$の定義式から
+\begin{equation*}
+\left.(\partial f)\right|_{\Gamma(r)}
++
+\left.(\bar{\partial}f)\right|_{\Gamma(r)}
+=
+\left.(df)\right|_{\Gamma(r)}
+=
+0.
+\end{equation*}
+よって
+\begin{align*}
+\beta
+&\underalign{\text{$\beta$の定義}}{=}
+\frac{i}{2\pi}\partial\bar{\partial}\log f(z)
+=
+\frac{i}{2\pi}\partial\frac{\bar{\partial}f(z)}{|z|^2}
+=
+\frac{i}{2\pi}
+\left(
+\frac{\partial\bar{\partial}f(z)}{|z|^2}
++
+\frac{\bar{\partial}f(z)\wedge\partial f(z)}{|z|^4}
+\right)
+%\\
+%&=
+%\frac{1}{|z|^2}\alpha
+%+
+%\frac{i}{2\pi}\cdot
+%\frac{\bar{\partial}f(z)\wedge\partial f(z)}{|z|^4}.
+\end{align*}
+以上より
+\begin{equation*}
+\left.\beta\right|_{\Gamma(r)}
+=
+\frac{1}{r^2}\left.\alpha\right|_{\Gamma(r)}
++
+\frac{i}{2\pi}\cdot
+\frac{
+\overbrace{-\partial f(z)}^{\bar{\partial}f(z)}
+\wedge\partial f(z)
+}{r^4}
+=
+\frac{1}{r^2}\left.\alpha\right|_{\Gamma(r)}.
+\end{equation*}
+\end{proof}
+
+\begin{rem}[Poincare Lemma]
+\label{rem-H-5.4}
+%\underline{Fact 4 (Poincaré lemma)}
+$U\subset\mathbb{R}^d$を星型領域とする. 
+任意の$\varphi\in\mathcal{E}^p(U)$について, $\psi\in\mathcal{E}^{p-1}(U)$があって, $d\psi=\varphi$.
+\end{rem}
+
+% [page 3]
+%\underline{Def 5 (Radon measure, [松澤 2026-04-13, Def 7 以降])}
+\begin{tcolorbox}[mybox]
+\begin{defn}
+$U\subset\mathbb{R}^d$を開集合, 
+$\mathcal{B}(U)$を全ての開集合を含む最小の Borel $\sigma$代数とする. 
+
+Radon measure' $\mu\colon\mathcal{B}(U)\to[0,\infty]$はBorel measureであり, 
+\begin{enumerate}
+\item (正則性) 任意の$ E\in\mathcal{B}(U)$について, 
+\begin{equation*}
+\mu(E)
+=
+\inf\{\mu(V)\mid E\subset V\subset U;\ \text{open}\}
+=
+\sup\{\mu(A)\mid A\subset E:\ \text{cpt}\}.
+\end{equation*}
+\item 任意のコンパクト集合$K\in\mathcal{B}(U)$について$\mu(K)<\infty$.
+\end{enumerate}
+
+complex Radon measure $\mu\colon\mathcal{B}(U)\to\mathbb{C}$を複素Borel測度でtotal variation
+\begin{equation*}
+\mathcal{B}(U)\longrightarrow[0,\infty] \quad E \longmapsto
+|\mu|(E)
+:=
+\sup\left\{
+\sum_{i=1}^{\infty}|\mu(E_i)| \mid E=\bigcup_{i=1}^{\infty}E_i, E_i\cap E_j=\varnothing (\forall i,j)
+\right\}.
+\end{equation*}
+%$|\mu|\colon\mathcal{B}(U)\to[0,\infty]$
+がRadon測度となることとする.
+\end{defn}
+\end{tcolorbox}
+上はRudinの意味でのRadon measureと同じである. 
+完全加法性が絶対収束になることを要請しており, この場合total variationが有限になること従う. 
+
+%別の流儀では cpx. Radon meas. を $\mathcal{B}(U)$ ではなく$\{E\in\mathcal{B}(U)\mid\overline{E}:\text{cpt}\}$の枠組みで定義している．このときは$E\in\mathcal{B}(U):\text{non-rel. cpt.}$に対して $\mu(E)$ は定義されない．
+
+
+%\underline{Obs 8}
+\begin{rem}
+\label{rem-H-5.8}
+\begin{itemize}
+\item $U\subset\mathbb{C}^m$：open
+\item $T\in\mathcal{D}'^{(p,p)}(U)$：positive current
+\end{itemize}
+$\alpha$をstrongly positive formとすると, $T\wedge\alpha^{m-p}$もpositiveである. 特に$T\wedge\alpha^{m-p}\in\mathcal{D}'^{(m,m)}(U)$ となる. 
+よってRieszの表現定理から$\exists!\mu_{T\wedge\alpha^{m-p}}$がpositive real Radon measureとして存在し次を満たす. 
+\begin{equation*}
+(T\wedge\alpha^{m-p})(f)
+=
+\int_U f\,d\mu_{T\wedge\alpha^{m-p}}
+\qquad
+(\forall f\in\mathcal{K}(U)).
+\end{equation*}
+\end{rem}
+
+\begin{tcolorbox}[mybox]
+\begin{defn}
+\label{defn-H-5.9}
+%\underline{Def 9}
+$U, T$を上のようにとる. 
+任意の$z\in U$, $r\in\mathbb{R}_{>0}$で$\overline{B}(z;r)\subset U$となるものについて, 
+\begin{equation*}
+n(z;r,T)
+:=
+\frac{1}{r^{2(m-p)}}
+\mu_{T\wedge\alpha^{m-p}}\bigl(B(z;r)\bigr),
+\end{equation*}
+%where, for $\forall S\subset\mathbb{C}^m$,
+%\begin{equation*}
+%\chi_S(z)
+%:=
+%\begin{cases}
+%1 & (z\in S),\\
+%0 & (z\notin S).
+%\end{cases}
+%\end{equation*}
+とする. 
+ここで$\mu_{T\wedge\alpha^{m-p}}$がpositive measureなので, $n(z;r,T)\geq 0$である. 
+\end{defn}
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[mybox]
+\begin{thm}
+\label{thm-H-5.10}
+%\underline{Thm 10}
+$U, T$を上のようにとる. さらに$dT=0$を仮定する. 
+この時$z\in U$について, $r\longmapsto n(z;r,T)$は単調非減少関数である.
+\end{thm}
+\end{tcolorbox}
+
+
+\end{document}
+
+%2026/07/29 下に次回分のノートを添付
+
+
+% [page 1]
+証明には2つの道具が要る（Trace, smoothing）
+
+\noindent\underline{\textbf{Lem 11 (On trace)}}
+
+\noindent$\bullet$\;
+\begin{equation*}
+T=i^{p^2}\sum_{J,K\in\{m;p\}}T_{J\bar K}\,dz^J\wedge d\bar z^K
+\in\mathcal{D}'^{(p,p)}(U)
+\end{equation*}
+is a pos.\ current, where $U\subset\mathbb{C}^m$ is open.
+
+Then
+\begin{equation*}
+\operatorname{Tr}(T):=\sum_{J\in\{m;p\}}T_{J\bar J}
+\end{equation*}
+is a pos.\ $(0,0)$-current.
+
+\noindent\underline{prf.}\ It follows from [松澤2026-06-30, Prop 9].\hfill //
+
+\noindent\underline{\textbf{Def 12 (Smoothing)}}
+
+\noindent$\bullet$\; $h\colon\mathbb{C}^m\longrightarrow\mathbb{R}$: $C^\infty$-func.\ s.t.\
+$h(z)\geq 0$ $(\forall z)$, $\operatorname{Supp}(h)\subset B(0;1)$,
+\begin{equation*}
+h(z)\text{ only dep.\ on }|z|,
+\qquad
+\int_{\mathbb{R}^m}h(z)\,dz=1.
+\end{equation*}
+
+\noindent$\bullet$\; $h_\epsilon\colon\mathbb{C}^m\longrightarrow\mathbb{R}$:
+\begin{equation*}
+h_\epsilon(z):=\frac{1}{\epsilon^m}h\left(\frac{z}{\epsilon}\right).
+\end{equation*}
+
+\noindent$\bullet$\;
+\begin{equation*}
+T=\sum_{\substack{J\in\{m;p\}\\K\in\{m;q\}}}
+T_{J\bar K}\,dz^J\wedge d\bar z^K
+\in\mathcal{D}'^{(p,q)}(U);
+\quad\text{current}
+\qquad
+(U\subset\mathbb{C}^m;\text{ open}).
+\end{equation*}
+
+\begin{equation*}
+\textcolor{blue}{
+T_{J\bar K}\wedge
+\left(\bigwedge_{\ell=1}^m dz^\ell\wedge d\bar z^\ell\right)
+=
+T\wedge dz^{J^\circ}\wedge d\bar z^{K^\circ}
+\text{ で定義},
+\qquad
+(J^\circ,K^\circ:\text{ ord.\ compl.})
+}
+\end{equation*}
+
+\noindent$\bullet$\;
+\begin{equation*}
+U_\epsilon:=
+\left\{
+z\in\mathbb{C}^m
+\ \middle|\
+\overline{B(z;\epsilon)}\subset U
+\right\}.
+\end{equation*}
+
+Then
+\begin{equation*}
+T_\epsilon:=
+\sum_{\substack{J\in\{m;p\}\\K\in\{m;q\}}}
+(T_{J\bar K}*h_\epsilon)\,dz^J\wedge d\bar z^K
+\end{equation*}
+is an elem.\ of $\mathcal{D}'^{(p,q)}(U_\epsilon)$, where
+\begin{equation*}
+T_{J\bar K}*h_\epsilon
+=
+\left[
+z\longmapsto T_{J\bar K}\bigl(h_\epsilon(u-z)\bigr)
+\right],
+\qquad\text{i.e.,}
+\end{equation*}
+\begin{equation*}
+(T_{J\bar K}*h_\epsilon)(f)
+:=
+\int_{U_\epsilon}
+\left(T_{J\bar K}\bigl(h_\epsilon(u-z)\bigr)\right)_z
+\cdot f(z)\,dz,
+\end{equation*}
+\begin{equation*}
+\textcolor{blue}{
+u\text{：変数},
+\qquad
+z\text{：変数},
+\qquad
+dz=dz_1\wedge d\bar z_1\wedge\cdots\wedge dz_m\wedge d\bar z_m
+}
+\end{equation*}
+\begin{align*}
+&=
+T_{J\bar K}
+\left(
+\int_{\mathbb{C}^m}f(z)h_\epsilon(u-z)\,dz
+\right)
+=
+T_{J\bar K}(f*h_\epsilon).
+\end{align*}
+\textcolor{blue}{$u$を変数とする関数}
+
+We call $T_\epsilon$ a ``smoothing'' of $T$
+\[
+\textcolor{red}{[判読不能：この箇所は使用禁止の数式区切りを避けるため次行に転記]}
+\]
+\begin{equation*}
+\left(
+z\longmapsto T_{J\bar K}\bigl(h_\epsilon(u-z)\bigr);
+\ C^\infty\text{-func.}
+\right).
+\end{equation*}
+
+% [page 2]
+\noindent\underline{\textbf{Rem 13}}
+
+\noindent$\bullet$\; $H_{J\bar K,\epsilon}$: func.\ corr.\ to
+\begin{equation*}
+z\longmapsto T_{J\bar K}\bigl(h_\epsilon(u-z)\bigr).
+\end{equation*}
+
+Then $H_{J\bar K,\epsilon}\in C^\infty$, so we can think $T_\epsilon$ of a $(p,q)$-form.
+
+Moreover, as we have seen, we have
+\begin{equation*}
+T_{J\bar K}*h_\epsilon=[H_{J\bar K,\epsilon}].
+\end{equation*}
+So $\sigma_{JK}\in\{\pm1\}$ s.t.
+\begin{equation*}
+\bigwedge_{\ell=1}^m
+\left(dz^\ell\wedge d\bar z^\ell\right)
+=
+\sigma_{JK}\,
+dz^J\wedge d\bar z^K\wedge
+dz^{J^\circ}\wedge d\bar z^{K^\circ}
+\end{equation*}
+(for each $J\in\{m;p\}$, $K\in\{m;q\}$).
+
+Then, for
+\begin{equation*}
+\forall\phi\in
+\sum_{\substack{J\in\{m;m-p\}\\K\in\{m;m-q\}}}
+\phi_{J\bar K}\,dz^J\wedge d\bar z^K
+\in\mathcal{D}^{(m-p,m-q)}(U_\epsilon),
+\end{equation*}
+\begin{align*}
+T_\epsilon(\phi)
+&=
+\sum_{\substack{J\in\{m;p\}\\K\in\{m;q\}}}
+\sigma_{JK}(T_{J\bar K}*h_\epsilon)
+\left(\phi_{J^\circ\overline{K^\circ}}\right)\\
+&=
+\sum_{\substack{J\in\{m;p\}\\K\in\{m;q\}}}
+\sigma_{JK}
+\int_{U_\epsilon}
+H_{J\bar K}\cdot
+\phi_{J^\circ\overline{K^\circ}}\,dz\\
+&=
+\int_{U_\epsilon}
+\sum_{\substack{J\in\{m;p\}\\K\in\{m;q\}}}
+\sigma_{JK}H_{J\bar K}\cdot
+\phi_{J^\circ\overline{K^\circ}}\,dz
+=
+\int_{U_\epsilon}T_\epsilon\wedge\phi.
+\end{align*}
+
+Therefore, action of $T_\epsilon$ coincides w/ that of
+\begin{equation*}
+\left[
+\sum_{\substack{J\in\{m;p\}\\K\in\{m;q\}}}
+H_{J\bar K,\epsilon}\,dz^J\wedge d\bar z^K
+\right].
+\end{equation*}
+\textcolor{blue}{smooth $(p,q)$-form}
+
+We may regard the smoothings of currents as differential forms (including actions)!!
+
+\noindent\underline{\textbf{Lem 14}}
+
+\noindent$\bullet$\; $T\in\mathcal{D}'^{(p,p)}(U)$: current
+\qquad $(U\subset\mathbb{C}^m:\text{ open})$.
+
+\noindent(1) If $T$: pos., then so is $T_\epsilon$ for $\forall\epsilon$.
+
+\noindent(2) Fix $\epsilon$. If $dT_\epsilon=0$ as a current, then $dT_\epsilon=0$ as a diff.\ form.
+
+% [page 3]
+\noindent\underline{prf.}
+
+\noindent(1) $\forall f\in\mathcal{D}^{(m-p,m-p)}(U)$: str.\ pos.,
+$f*h_\epsilon$ is str.\ pos.
+\[
+\textcolor{red}{[判読不能：この箇所は使用禁止の数式区切りを避けるため次行に転記]}
+\]
+\begin{equation*}
+\left(
+\because\text{ 2つの非負関数のたたみ込みは非負}
+\right).
+\end{equation*}
+\textcolor{blue}{[松澤2026-05-01, Def 4]}
+
+\begin{equation*}
+\therefore\quad
+T_\epsilon(f)=T(f*h_\epsilon)\geq 0
+\qquad
+\therefore\quad
+T_\epsilon:\text{ pos.}
+\end{equation*}
+\hfill //
+
+\noindent(2) By Rem 13 and Rem 14, $dT_\epsilon=0$ shows
+\begin{equation*}
+\int_{U_\epsilon}dT_\epsilon\wedge\phi=0
+\qquad
+(\forall\phi).
+\end{equation*}
+
+Write
+\begin{equation*}
+dT_\epsilon
+=
+\sum_{\substack{J,K\subset\{1,\ldots,m\}\\|J|+|K|=p+1}}
+T_{\epsilon J\bar K}\,dz^J\wedge d\bar z^K.
+\end{equation*}
+\textcolor{blue}{小さい順に並べて wedge}
+
+Then
+\begin{equation*}
+\int_{U_\epsilon}T_{\epsilon J\bar K}\,\phi\,dz=0
+\qquad
+\text{for }\forall\phi\in\mathcal{D}(U_\epsilon).
+\end{equation*}
+
+Approximationとのたたみ込みを考えれば
+\begin{equation*}
+T_{\epsilon J\bar K}=0
+\qquad
+(\forall J,K).
+\end{equation*}
+\textcolor{blue}{[松澤2025-09-16, Def 11, Lem 12; -09-26; -10-02]}
+
+\begin{equation*}
+\therefore\quad
+dT_\epsilon=0
+\quad\text{as a $(p,p)$-form.}
+\end{equation*}
+\hfill //
+
+\noindent\underline{\textbf{Lem 15}}
+
+\noindent$\bullet$\; $U\subset\mathbb{C}^m$: open.
+
+\noindent$\bullet$\; $T\in\mathcal{D}'^{(p,p)}(U)$: pos.\ current.
+
+By Lem 15(1) and Obs 8,
+\begin{equation*}
+\exists!\,
+\mu_{T_\epsilon\wedge\alpha^{m-p}}
+:\text{ pos.\ (real) Radon meas.\ s.t.}
+\end{equation*}
+\begin{equation*}
+(T_\epsilon\wedge\alpha^{m-p})(f)
+=
+\int_U f\,d\mu_{T_\epsilon\wedge\alpha^{m-p}}
+\qquad
+\left(
+\forall f\in\mathcal{H}(U_\epsilon)
+\right).
+\end{equation*}
+
+Then
+\begin{equation*}
+\mu_{T_\epsilon\wedge\alpha^{m-p}}(E)
+=
+\int_E T_\epsilon\wedge\alpha^{m-p}
+\qquad
+\text{for }\forall E\in\mathcal{B}(U_\epsilon),
+\end{equation*}
+including well-definedness of RHS.
+
+\noindent\underline{prf.}
+
+By def.\ of $\alpha$, we can easily check that
+\begin{equation*}
+(T_\epsilon\wedge\alpha^{m-p})
+=
+(T\wedge\alpha^{m-p})_\epsilon.
+\end{equation*}
+
+% [page 4]
+Hence $T_\epsilon\wedge\alpha^{m-p}$ is a pos.\ $(m,m)$-form.
+
+Therefore, we may write
+\begin{equation*}
+T_\epsilon\wedge\alpha^{m-p}
+=
+g\wedge
+\left(
+\bigwedge_{\ell=1}^m
+\left(i\,dz^\ell\wedge d\bar z^\ell\right)
+\right)
+\end{equation*}
+w/ a $C^\infty$-func.\
+$g\colon U_\epsilon\longrightarrow\mathbb{R}$ s.t.\
+$g(z)\geq0$ for $\forall z\in U_\epsilon$.
+
+Therefore, for $\forall E\in\mathcal{B}(U_\epsilon)$, we can define
+\begin{equation*}
+\int_E T_\epsilon\wedge\alpha^{m-p}\in[0,\infty].
+\end{equation*}
+
+\noindent$\bullet$\;
+$\nu\colon\mathcal{B}(U_\epsilon)\longrightarrow[0,\infty]$ s.t.
+\begin{equation*}
+\nu(E):=
+\int_E T\wedge\alpha^{m-p}
+\qquad
+(E\in\mathcal{B}(U_\epsilon)).
+\end{equation*}
+
+$\int_E T_\epsilon\wedge\alpha^{m-p}$の定義（区分求積法みたいなもの）より、$\nu$が Borel meas.\ であることが分かる。
+
+And Def 5(b) is clear, and Def 5(a) is clear.
+
+\textcolor{blue}{[松澤2026-04-13, Def 7, Fact 11]}
+
+Therefore, $\nu$: pos.\ real Radon meas.
+
+$\int_U\phi\cdot T\wedge\alpha^{m-p}$
+$(\phi\in\mathcal{H}(U_\epsilon))$の定義（区分求積法みたいなもの）より、$\forall\phi\in\mathcal{H}(U_\epsilon)$,
+\begin{align*}
+\int_{U_\epsilon}\phi\,d\nu
+&=
+\int_{U_\epsilon}\phi\cdot T_\epsilon\wedge\alpha^{m-p}\\
+&=
+(T_\epsilon\wedge\alpha^{m-p})(\phi)
+=
+\int_{U_\epsilon}\phi\,d\mu.
+\end{align*}
+\textcolor{blue}{第1等号：上の定義、第2等号：Rem 13、第3等号：$\mu$の def}
+
+By the Riesz rep.\ thm
+([Rudin, Real cpx.\ analysis, Thm 2.147]),
+\textcolor{blue}{[松澤2026-04-13, Fact 12]},
+we have
+\begin{equation*}
+\mu=\nu.
+\end{equation*}
+\hfill //
+
+
+% [page 1]
+\noindent\underline{\textbf{Lem 16}}
+
+\noindent$\bullet$\; $T\in\mathcal{D}'^{(p,p)}(U)$: pos.\ current \quad $(U\subset\mathbb{C}^m:\text{ open})$.
+
+By Lem 11, [松澤2026-05-27, Lem 10], and the Riesz rep.\ thm ([Rudin, Real cpx.\ analysis, Thm 2.147]),
+\begin{equation*}
+\exists!\,\mu_{\operatorname{Tr}(T)}:\text{ pos.\ (real) Radon meas.}
+\end{equation*}
+s.t.,
+\begin{equation*}
+(\operatorname{Tr}(T))(f)
+=
+\int_U f\,d\mu_{\operatorname{Tr}(T)}
+\qquad
+(\forall f\in\mathcal{H}(U)).
+\end{equation*}
+
+Fix $z\in U$ and $r>0$ s.t.\
+\begin{equation*}
+\overline{B(z;r)}\subset U
+\qquad\text{and}\qquad
+\mu_{\operatorname{Tr}(T)}(\Gamma(z;r))=0.
+\end{equation*}
+Then
+\begin{equation*}
+\lim_{\epsilon\to0}
+\int_{B(z;r)}T_\epsilon\wedge\alpha^{m-p}
+=
+\mu_{T\wedge\alpha^{m-p}}(B(z;r)).
+\end{equation*}
+\textcolor{blue}{$T_\epsilon\wedge\alpha^{m-p}$は sm.\ form である}
+
+\noindent\underline{prf.}
+
+\noindent\underline{Step 1.}\ Show
+\begin{equation*}
+\mu_{T\wedge\alpha^{m-p}}(\Gamma(z;r))=0.
+\end{equation*}
+
+We write
+\begin{equation*}
+T
+=
+i^{p^2}
+\sum_{J,K\in\{m;p\}}
+T_{J\bar K}\wedge dz^J\wedge d\bar z^K
+\qquad
+\text{w/}\qquad
+\operatorname{Tr}(T)
+=
+\sum_{J\in\{m;p\}}T_{J\bar J}.
+\end{equation*}
+
+Then
+\begin{align*}
+T\wedge\alpha^{m-p}
+&=
+T\wedge
+\left(
+\bigwedge^{m-p}
+\frac{i}{2\pi}
+\sum_{j=1}^m dz^j\wedge d\bar z^j
+\right)\\
+&=
+\left(\frac{i}{2\pi}\right)^{m-p}
+T\wedge
+\left(
+(m-p)!
+\sum_{J\in\{m;m-p\}}
+dz^{j_1}\wedge d\bar z^{j_1}
+\wedge\cdots\wedge
+dz^{j_{m-p}}\wedge d\bar z^{j_{m-p}}
+\right)\\
+&=
+(m-p)!
+\left(\frac{i}{2\pi}\right)^{m-p}
+i^{p^2}
+\sum_{J\in\{m;m-p\}}
+T_{J^\circ\overline{J^\circ}}\,
+dz^{J^\circ}\wedge d\bar z^{J^\circ}
+\wedge(dz\wedge d\bar z)^J.
+\end{align*}
+\textcolor{blue}{$J=\{j_1,\ldots,j_{m-p}\}$,\qquad
+$dz^{j_1}\wedge d\bar z^{j_1}\wedge\cdots\wedge dz^{j_{m-p}}\wedge d\bar z^{j_{m-p}}
+=(dz\wedge d\bar z)^J$}
+
+\textcolor{blue}{
+$dz^{J^\circ}\wedge d\bar z^{J^\circ}
+=
+(-1)^{\frac12p(p-1)}(dz\wedge d\bar z)^{J^\circ}$
+}
+
+% [page 2]
+\textcolor{blue}{$2p(p-1)\equiv0\pmod 4$}
+
+\begin{align*}
+T\wedge\alpha^{m-p}
+&=
+(m-p)!
+\frac{i^{m-p}}{(2\pi)^{m-p}}
+i^{p^2}
+\sum_{J\in\{m;m-p\}}
+i^{p(p-1)}
+T_{J^\circ\overline{J^\circ}}
+(dz\wedge d\bar z)^{J^\circ}
+\wedge(dz\wedge d\bar z)^J\\
+&=
+(m-p)!
+\frac{i^m}{(2\pi)^{m-p}}
+\sum_{J\in\{m;m-p\}}
+T_{J^\circ\overline{J^\circ}}\,
+dz^1\wedge d\bar z^1\wedge\cdots\wedge dz^m\wedge d\bar z^m\\
+&=
+\frac{(m-p)!}{(2\pi)^{m-p}}
+\operatorname{Tr}(T)\wedge
+\left(
+\bigwedge_{\ell=1}^m
+i\,dz^\ell\wedge d\bar z^\ell
+\right).
+\end{align*}
+
+Therefore,
+\begin{equation*}
+\frac{(m-p)!}{(2\pi)^{m-p}}
+(\operatorname{Tr}(T))(f)
+=
+(T\wedge\alpha^{m-p})(f)
+\qquad
+(\forall f\in\mathcal{H}(U)).
+\end{equation*}
+
+By the uniqueness of corr.\ Radon meas.\ (Riesz rep.\ thm.),
+\begin{equation*}
+\frac{(m-p)!}{(2\pi)^{m-p}}
+\mu_{\operatorname{Tr}(T)}
+=
+\mu_{T\wedge\alpha^{m-p}}.
+\end{equation*}
+Therefore,
+\begin{equation*}
+\mu_{T\wedge\alpha^{m-p}}(\Gamma(z;r))
+=
+\frac{(m-p)!}{(2\pi)^{m-p}}
+\mu_{\operatorname{Tr}(T)}(\Gamma(z;r))
+=
+0.
+\end{equation*}
+
+\noindent\underline{Step 2.}\ Calculations.
+
+Fix $\forall\delta\in\mathbb{R}_{>0}$.
+
+By the outer regularity of Radon meas.,
+$\exists\sigma\in\mathbb{R}_{>0}$ s.t.
+\begin{equation*}
+0
+\leq
+\mu_{T\wedge\alpha^{m-p}}
+\left(
+B(z;r+3\sigma)\setminus\overline{B(z;r-3\sigma)}
+\right)
+<
+\frac{1}{3}\delta.
+\tag{*}
+\end{equation*}
+
+Pick $f\colon\mathbb{R}\longrightarrow\mathbb{R}$; $C^\infty$-func.\ s.t.
+\begin{equation*}
+\begin{cases}
+f(t)=1 & (\forall |t|\leq r-2\sigma),\\
+0\leq f(t)\leq1 & (r-2\sigma\leq|t|\leq r-\sigma),\\
+f(t)=0 & (|t|\geq r-\sigma).
+\end{cases}
+\end{equation*}
+
+\textcolor{red}{[図：page02-fig1.png をここに挿入]}
+
+% [page 3]
+Put $g(t)=1-f(t)$. Then
+\begin{align*}
+&
+\left|
+\int_{B(z;r)}T_\epsilon\wedge\alpha^{m-p}
+-
+\mu_{T\wedge\alpha^{m-p}}(B(z;r))
+\right|\\
+&=
+\left|
+\int_{U_\epsilon}
+(f+g)(|u-z|)\chi_{B(z;r)}(u)
+T_\epsilon\wedge\alpha^{m-p}
+-
+\int_U
+(f+g)(|u-z|)\chi_{B(z;r)}(u)
+\,d\mu_{T\wedge\alpha^{m-p}}
+\right|\\
+&\leq
+\left|
+\int_{U_\epsilon}
+f(|u-z|)T_\epsilon\wedge\alpha^{m-p}
+-
+\int_U f(|u-z|)
+\,d\mu_{T\wedge\alpha^{m-p}}
+\right|
+\textcolor{red}{\ (3)}\\
+&\quad+
+\left|
+\int_{B(z;r)}
+g(|u-z|)T_\epsilon\wedge\alpha^{m-p}
+\right|
+\textcolor{red}{\ (2)}
++
+\left|
+\int_U
+g(|u-z|)\chi_{B(z;r)}(u)
+\,d\mu_{T\wedge\alpha^{m-p}}
+\right|
+\textcolor{red}{\ (1)}.
+\end{align*}
+
+\textcolor{blue}{
+$\operatorname{Supp}\bigl(g(|u-z|)\chi_{B(z;r)}(u)\bigr)
+\subset
+B(z;r)\setminus\overline{B(z;r-2\sigma)}$
+}
+
+Then
+\begin{align*}
+0
+&\leq
+\int_U
+g(|u-z|)\chi_{B(z;r)}(u)
+\,d\mu_{T\wedge\alpha^{m-p}}\\
+&\leq
+\mu_{T\wedge\alpha^{m-p}}
+\left(
+B(z;r+3\sigma)\setminus\overline{B(z;r-3\sigma)}
+\right)
+<
+\frac{1}{3}\delta.
+\tag{**}
+\end{align*}
+\textcolor{blue}{by $(*)$}
+
+and
+\begin{align*}
+0
+&\leq
+\int_{B(z;r)}
+g(|u-z|)T_\epsilon\wedge\alpha^{m-p}\\
+&=
+\int_U
+g(|u-z|)\chi_{B(z;r)}(u)
+T_\epsilon\wedge\alpha^{m-p}\\
+&=
+(T_\epsilon\wedge\alpha^{m-p})
+\left(
+g(|u-z|)\chi_{B(z;r)}(u)
+\right)\\
+&=
+(T\wedge\alpha^{m-p})_\epsilon
+\left(
+g(|u-z|)\chi_{B(z;r)}(u)
+\right)\\
+&=
+(T\wedge\alpha^{m-p})
+\left(
+g(|u-z|)\chi_{B(z;r)}(u)*h_\epsilon(u)
+\right)\\
+&=
+\int_U
+g(|u-z|)\chi_{B(z;r)}(u)*h_\epsilon(u)
+\,d\mu_{T\wedge\alpha^{m-p}}\\
+&\leq
+\int_U
+\chi_{B(z;r+3\sigma)\setminus\overline{B(z;r-3\sigma)}}
+\,d\mu_{T\wedge\alpha^{m-p}}
+\qquad
+(\because\text{中身の関数が1大きくなる})\\
+&=
+\mu_{T\wedge\alpha^{m-p}}
+\left(
+B(z;r+3\sigma)\setminus\overline{B(z;r-3\sigma)}
+\right)
+<
+\frac{1}{3}\delta.
+\tag{***}
+\end{align*}
+
+\textcolor{blue}{Rem 13:
+$(T_\epsilon\wedge\alpha^{m-p})=(T\wedge\alpha^{m-p})_\epsilon$}
+
+\textcolor{blue}{Def 12}
+
+\textcolor{blue}{Obs 8}
+
+\textcolor{blue}{
+$g(|u-z|)\chi_{B(z;r)}(u)*h_\epsilon(u)\in\mathcal{H}(U)$
+}
+
+\textcolor{blue}{
+$B(z;r-3\sigma)$上と$B(z;r+3\sigma)$の外で$0$
+}
+
+% [page 4]
+\textcolor{blue}{Rudin, Func analysis, Thm 6.32(b)を参照}
+
+Since
+\begin{equation*}
+T_\epsilon\longrightarrow T
+\qquad
+(\epsilon\longrightarrow0)
+\quad\text{in }\mathcal{D}'^{(p,p)}(U),
+\end{equation*}
+$\exists\epsilon_0\in(0,\epsilon)$ s.t.
+\begin{align*}
+&
+\left|
+\int_{B(z;r)}
+f(|u-z|)T_{\epsilon'}\wedge\alpha^{m-p}
+-
+(T\wedge\alpha^{m-p})(f(|u-z|))
+\right|\\
+&=
+\left|
+(T\wedge\alpha^{m-p})
+\left(
+(f*h_{\epsilon'}-f)(|u-z|)
+\right)
+\right|
+<
+\frac{\delta}{3}
+\qquad
+(0<\forall\epsilon'<0).
+\tag{****}
+\end{align*}
+\textcolor{blue}{$f(|u-z|)\in\mathcal{H}(U)$}
+
+By $(**)$, $(***)$, $(****)$,
+\begin{equation*}
+\textcolor{red}{(3)}
++
+\textcolor{red}{(2)}
++
+\textcolor{red}{(1)}
+<
+\frac{\delta}{3}
++
+\frac{\delta}{3}
++
+\frac{\delta}{3}
+=
+\delta.
+\end{equation*}
+Therefore,
+\begin{equation*}
+\lim_{\epsilon\to0}
+\int_{B(z;r)}
+T_\epsilon\wedge\alpha^{m-p}
+=
+\mu_{T\wedge\alpha^{m-p}}(B(z;r)).
+\end{equation*}
+\hfill //
+
+\noindent\underline{\textbf{Lem 17}}
+
+$\beta$ is positive as a $(1,1)$-current on $\mathbb{C}^m\setminus\{0\}$.
+
+\noindent\underline{prf.}
+
+Since
+\begin{equation*}
+\beta
+:=
+dd^c\log|z|
+=
+\frac{i}{2\pi}
+\sum_{j,k=1}^n
+\left(
+\frac{\delta_{jk}}{|z|^2}
+-
+\frac{z^k\bar z^j}{|z|^4}
+\right)
+dz^j\wedge d\bar z^k,
+\end{equation*}
+ETS
+\begin{equation*}
+A
+:=
+\left(
+|z|^2\delta_{jk}-z^k\bar z^j
+\right)_{\substack{1\leq j\leq m\\1\leq k\leq m}}
+=
+|z|^2E_n
+-
+\begin{pmatrix}
+\bar z_1\\
+\vdots\\
+\bar z_m
+\end{pmatrix}
+(z_1,\ldots,z_m)
+\end{equation*}
+is semi-pos.\ Her.\ matrix.
+
+For $\forall u:=(u_1,\ldots,u_m)\in\mathbb{C}^m$,
+\begin{align*}
+(u_1,\ldots,u_m)
+A
+\begin{pmatrix}
+\bar u_1\\
+\vdots\\
+\bar u_m
+\end{pmatrix}
+&=
+|u|^2|z|^2
+-
+(u_1,\ldots,u_m)
+\begin{pmatrix}
+\bar z_1\\
+\vdots\\
+\bar z_m
+\end{pmatrix}
+(z_1,\ldots,z_m)
+\begin{pmatrix}
+\bar u_1\\
+\vdots\\
+\bar u_m
+\end{pmatrix}\\
+&=
+|u|^2|z|^2
+-
+|\langle u,z\rangle|^2
+\geq0
+\qquad
+(\text{Cauchy--Schwarz}).
+\end{align*}
+\hfill //
+
+
+% [page 1]
+\noindent\underline{\textbf{Lem 18}}
+
+\noindent$\bullet$\; $T\in\mathcal{D}'^{(p,p)}(U)$: pos.\ current \quad $(U\subset\mathbb{C}^m:\text{ open})$.
+
+\noindent$\bullet$\; $\operatorname{Tr}(T)$, $d\mu_{\operatorname{Tr}(T)}$: as in Lem 16.
+
+Fix $z\in U$ and $r_2>r_1>0$ s.t.\
+\begin{equation*}
+\overline{B(z;r_2)}\subset U
+\end{equation*}
+and
+\begin{equation*}
+\mu_{\operatorname{Tr}(T)}(\Gamma(z;r_1))
+=
+\mu_{\operatorname{Tr}(T)}(\Gamma(z;r_2))
+=
+0.
+\end{equation*}
+
+Then
+\begin{equation*}
+\lim_{\epsilon\to0}
+\int_{B(z;r_2)\setminus\overline{B(z;r_1)}}
+T_\epsilon\wedge\beta^{m-p}
+=
+\mu_{T\wedge\beta^{m-p}}
+\left(
+B(z;r_2)\setminus\overline{B(z;r_1)}
+\right).
+\end{equation*}
+\textcolor{blue}{Lem 17とRiesz rep.\ thm.\ より（Obs 8）}
+
+\noindent\underline{Idea of prf}\ （詳細はLem 16とほぼ一緒）
+
+まず，
+\begin{equation*}
+\mu_{T\wedge\beta^{m-p}}(\Gamma(z;r_1))
+=
+\mu_{T\wedge\beta^{m-p}}(\Gamma(z;r_2))
+=
+0
+\end{equation*}
+を示す．
+
+（$T\wedge\beta^{m-p}$は$\operatorname{Tr}(T)$の定数倍で上から押さえられる．）
+
+次に，$\forall\delta>0$に対し，
+\begin{align*}
+0
+&\leq
+\mu_{T\wedge\beta^{m-p}}
+\Bigl(
+\bigl(B(z;r_1+3\sigma)\setminus\overline{B(z;r_1-3\sigma)}\bigr)
+\sqcup
+\bigl(B(z;r_2+3\sigma)\setminus\overline{B(z;r_2-3\sigma)}\bigr)
+\Bigr)\\
+&<
+\frac{1}{5}\delta
+\qquad\cdots(*)
+\end{align*}
+となる$\sigma$をとり，$f\colon\mathbb{R}\longrightarrow\mathbb{R}$: $C^\infty$-func.\ s.t.
+\begin{equation*}
+\begin{cases}
+f(t)=1
+&
+(r_1+2\sigma\leq|t|\leq r_2-2\sigma),\\
+0\leq f(t)\leq1
+&
+(r_1+\sigma\leq|t|\leq r_1+2\sigma,\;
+r_2-2\sigma\leq|t|\leq r_2-\sigma),\\
+f(t)=0
+&
+(|t|\leq r_1+\sigma,\;
+r_2+2\sigma\leq|t|)
+\end{cases}
+\end{equation*}
+を選ぶ．
+
+\textcolor{red}{[図：page01-fig1.png をここに挿入]}
+
+% [page 2]
+\begin{equation*}
+g_1(t):=
+\begin{cases}
+1-f(t) & (|t|\leq r_1+2\sigma),\\
+0 & (|t|\geq r_1+2\sigma),
+\end{cases}
+\qquad
+g_2(t):=
+\begin{cases}
+0 & (|t|\leq r_2-2\sigma),\\
+1-f(t) & (r_2-2\sigma\leq|t|).
+\end{cases}
+\end{equation*}
+
+ととると，$f+g_1+g_2=1$．
+
+あとは
+\begin{align*}
+&
+\left|
+\int_{B(z;r_2)\setminus\overline{B(z;r_1)}}
+T_\epsilon\wedge\beta^{m-p}
+-
+\mu_{T\wedge\beta^{m-p}}
+\left(
+B(z;r_2)\setminus\overline{B(z;r_1)}
+\right)
+\right|\\
+&=
+\left|
+\int_{U_\epsilon}
+(f+g_1+g_2)(|u-z|)
+\chi_{B(z;r_2)\setminus\overline{B(z;r_1)}}(u)
+T_\epsilon\wedge\beta^{m-p}
+\right.\\
+&\hspace{45mm}\left.
+-
+\int_U
+(f+g_1+g_2)(|u-z|)
+\chi_{B(z;r_2)\setminus\overline{B(z;r_1)}}(u)
+\,d\mu_{T\wedge\beta^{m-p}}
+\right|\\
+&\leq
+\left|
+\int_{U_\epsilon}
+f(|u-z|)T_\epsilon\wedge\beta^{m-p}
+-
+\int_U
+f(|u-z|)\,d\mu_{T\wedge\beta^{m-p}}
+\right|
+\quad\textcolor{blue}{\textcircled{5}}\\
+&\quad+
+\left|
+\int_{B(z;r_2)\setminus\overline{B(z;r_1)}}
+g_1(|u-z|)T_\epsilon\wedge\beta^{m-p}
+\right|
+\quad\textcolor{blue}{\textcircled{3}}\\
+&\quad+
+\left|
+\int_{B(z;r_2)}
+g_2(|u-z|)T_\epsilon\wedge\beta^{m-p}
+\right|
+\quad\textcolor{blue}{\textcircled{4}}\\
+&\quad+
+\left|
+\int_U
+g_1(|u-z|)
+\chi_{B(z;r_2)\setminus\overline{B(z;r_1)}}(u)
+\,d\mu_{T\wedge\beta^{m-p}}
+\right|
+\quad\textcolor{blue}{\textcircled{1}}\\
+&\quad+
+\left|
+\int_U
+g_2(|u-z|)
+\chi_{B(z;r_2)}(u)
+\,d\mu_{T\wedge\beta^{m-p}}
+\right|
+\quad\textcolor{blue}{\textcircled{2}}
+\end{align*}
+を全て$\dfrac{\delta}{5}$で上から押さえる．
+
+\textcircled{1}と\textcircled{2}は$(*)$より簡単．\textcircled{5}はLem 16\textcircled{3}と同じ．\textcircled{3}と\textcircled{4}については
+\begin{equation*}
+C\alpha-\beta:\text{ pos.\ current on }
+\overline{B(z;r_2+3\sigma)}\setminus B(z;r_1-3\sigma)
+\end{equation*}
+となる$C$が存在するので，$\beta$を$C\alpha$におきかえてLem 16の\textcircled{2}と同じ議論に帰着．\hfill //
+
+% [page 3]
+\noindent\underline{prf.\ of Thm 10.}
+
+\textcolor{blue}{Rudin, Func analysis, Thm 6.30(b)の証明参照．}
+
+WMA $z=0$. Since $dT=0$, we have $dT_\epsilon=0$ as a current.
+
+By Lem 14(2), $dT_\epsilon=0$ as a diff.\ $(2p+1)$-form.
+
+By Fact 4 (Poincaré lemma),
+\begin{equation*}
+\exists S_\epsilon;\text{ diff.\ $(2p-1)$-form s.t. }dS_\epsilon=T_\epsilon.
+\end{equation*}
+
+By Def 9 and Rem 13,
+\begin{equation*}
+n(0;r,T_\epsilon)
+=
+\frac{1}{r^{2(m-p)}}
+\mu_{T_\epsilon\wedge\alpha^{m-1}}(B(0;r))
+=
+\frac{1}{r^{2(m-p)}}
+\int_{B(0;r)}
+T_\epsilon\wedge\alpha^{m-p}.
+\end{equation*}
+
+Therefore, for $0<\forall r_1\leq\forall r_2$,
+\begin{align*}
+n(0;r_2,T_\epsilon)-n(0;r_1,T_\epsilon)
+&=
+\frac{1}{r_2^{2(m-p)}}
+\int_{B(0;r_2)}
+T_\epsilon\wedge\alpha^{m-p}
+-
+\frac{1}{r_1^{2(m-p)}}
+\int_{B(0;r_1)}
+T_\epsilon\wedge\alpha^{m-p}\\
+&=
+\frac{1}{r_2^{2(m-p)}}
+\int_{B(0;r_2)}
+dS_\epsilon\wedge\alpha^{m-p}
+-
+\frac{1}{r_1^{2(m-p)}}
+\int_{B(0;r_1)}
+dS_\epsilon\wedge\alpha^{m-p}\\
+&=
+\frac{1}{r_2^{2(m-p)}}
+\int_{\Gamma(0;r_2)}
+S_\epsilon\wedge\alpha^{m-p}
+-
+\frac{1}{r_1^{2(m-p)}}
+\int_{\Gamma(0;r_1)}
+S_\epsilon\wedge\alpha^{m-p}\\
+&=
+\int_{\Gamma(0;r_2)}
+S_\epsilon\wedge\beta^{m-p}
+-
+\int_{\Gamma(0;r_1)}
+S_\epsilon\wedge\beta^{m-p}\\
+&=
+\int_{B(0;r_2)\setminus\overline{B(0;r_1)}}
+T_\epsilon\wedge\beta^{m-p}.
+\end{align*}
+
+\textcolor{blue}{$d\alpha=0$（Rem 1）$+$ Stokes thm}
+
+\textcolor{blue}{Lem 3}
+
+\textcolor{blue}{$d\beta=0$（Rem 1）$+$ Stokes thm}
+
+Pick $\widetilde r>r_2$ s.t.\
+\begin{equation*}
+\overline{B(0;\widetilde r)}\subset U.
+\end{equation*}
+For $\forall N\in\mathbb{Z}_{>0}$, set
+\begin{equation*}
+E_N:=
+\left\{
+r\in[0,\widetilde r)
+\ \middle|\
+\mu_{\operatorname{Tr}(T)}(\Gamma(r))>\frac{1}{N}
+\right\}.
+\end{equation*}
+
+% [page 4]
+Then $E_N$: fin.\ set for $\forall N$ because
+\begin{equation*}
+\infty
+>
+\mu_{\operatorname{Tr}(T)}
+\left(
+\overline{B(0;\widetilde r)}
+\right)
+\geq
+\sum_{r'\in E_N}
+\mu_{\operatorname{Tr}(T)}(\Gamma(0;r'))
+\geq
+\#E_N\cdot\frac{1}{N}.
+\end{equation*}
+\textcolor{blue}{Def 5(b)}
+
+Therefore, the set $E$ of $r\in[0,\widetilde r)$ s.t.\
+\begin{equation*}
+\mu_{\operatorname{Tr}(T)}(\Gamma(0;r))>0
+\end{equation*}
+is countable.
+
+In par., $[0,\widetilde r)\setminus E$ is dense in $[0,\widetilde r)$.
+
+If $r_1,r_2\notin E$, then
+\begin{equation*}
+\mu_{\operatorname{Tr}(T)}(\Gamma(0;r_1))
+=
+\mu_{\operatorname{Tr}(T)}(\Gamma(0;r_2))
+=
+0,
+\end{equation*}
+so Lem 16 and Lem 18 show
+\begin{align*}
+n(0;r_2,T)-n(0;r_1,T)
+&=
+\lim_{\epsilon\to0}
+\left(
+n(0;r_2,T_\epsilon)-n(0;r_1,T_\epsilon)
+\right)\\
+&=
+\lim_{\epsilon\to0}
+\int_{B(0;r_2)\setminus\overline{B(0;r_1)}}
+T_\epsilon\wedge\beta^{m-p}\\
+&=
+\mu_{T\wedge\beta^{m-p}}
+\left(
+B(z;r_2)\setminus\overline{B(z;r_1)}
+\right)
+\geq0.
+\end{align*}
+\textcolor{blue}{第1等号：Lem 16，第3等号：Lem 18}
+
+For gen.\ $r_1$ and $r_2$, by the inner regularity of Radon meas.,
+\begin{align*}
+\mu_{T\wedge\beta^{m-p}}
+\left(
+B(z;r_2)\setminus\overline{B(z;r_1)}
+\right)
+&=
+\sup_{\substack{r_1\leq r_1'<r_2'\leq r_2\\r_1',r_2'\notin E}}
+\mu_{T\wedge\beta^{m-p}}
+\left(
+B(z;r_2')\setminus\overline{B(z;r_1')}
+\right)\\
+&=
+\sup_{\substack{r_1\leq r_1'<r_2'\leq r_2\\r_1',r_2'\notin E}}
+\mu_{T\wedge\beta^{m-p}}
+\left(
+B(z;r_2')\setminus\overline{B(z;r_1')}
+\right)
+\geq0.
+\end{align*}
+
+\textcolor{blue}{
+$\because\;
+\mu_{T\wedge\beta^{m-p}}(\Gamma(0;r_2'))
+=
+\mu_{T\wedge\beta^{m-p}}(\Gamma(0;r_1'))
+=
+0$
+}
+
+Therefore,
+\begin{equation*}
+n(0;r_2,T)-n(0;r_1,T)\geq0
+\qquad
+\text{for }0<\forall r_1<\forall r_2.
+\end{equation*}
+
+Therefore, Thm 10 holds.\hfill //
+
+% [page 5]
+\noindent\underline{\textbf{Def 1.19 (Lelong number)}}
+
+\noindent$\bullet$\; $T\in\mathcal{D}'^{(p,p)}(U)$: pos.\ current s.t.\ $dT=0$.
+
+\noindent$\bullet$\; $z\in U$: pt.
+
+The ``Lelong number'' $\mathcal{L}(z;T)$ is defined to be
+\begin{equation*}
+\mathcal{L}(z;T)
+:=
+\lim_{r\to0}
+\frac{1}{r^{2(m-p)}}
+\mu_{T\wedge\alpha^{m-p}}(B(z;r))
+\in\mathbb{R}_{\geq0}.
+\end{equation*}
+
+
+
