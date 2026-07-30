@@ -9,6 +9,7 @@ layout: default
 
 ## **ニュース**
 - 2026年9月12--13日に大阪公立大学で[CR多様体の勉強会](https://masataka123.github.io/CR_manifold_2026/)を開催いたします. 皆さんのご参加お待ちしております. 
+- 新しい論文[The Miyaoka-Yau inequality and the delta invariant for Fano varieties](https://arxiv.org/abs/2607.25181)を出しました. 名古屋大学の久本 智之氏との共同研究です. 
 
 <!--
 - 2025年6月23--27日に北京大学で開催される[Workshop on Fano Varieties](https://bicmr.pku.edu.cn/content/show/17-3569.html)で講演する予定です. 

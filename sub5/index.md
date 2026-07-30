@@ -15,6 +15,7 @@
 - [Niklas Muller](https://sites.google.com/view/niklas-mueller-cplx-geometry/home)
 - [Shiyu Zhang](https://berkovichyu.github.io)
 - Satoshi Jinnouchi
+- [Tomoyuki Hisamoto](https://sites.google.com/view/t-hisamoto/)
 
 ## その他お世話になった・お世話になっている人たち
 

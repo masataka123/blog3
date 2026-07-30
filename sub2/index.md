@@ -20,6 +20,11 @@
 
 - Masataka Iwai, Satoshi Jinnouchi, Shiyu Zhang 'The Miyaoka-Yau inequality for singular varieties with big canonical or anticanonical divisors' [arXiv](https://arxiv.org/abs/2507.08522)
 
+- Masataka Iwai, Satoshi Jinnouchi, Shiyu Zhang 'Semipositivity of the orbifold second Chern class in Fujiki's class' [arXiv](https://arxiv.org/abs/2607.18699)
+
+- Tomoyuki Hisamoto, Masataka Iwai 'The Miyaoka-Yau inequality and the delta invariant for Fano varieties' [arXiv](https://arxiv.org/abs/2607.25181)
+
+
 # **報告集**
 1. '相対的な設定での藤田予想について' 第24回代数学若手研究会報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_02_18_hokoku.pdf)
 2. 'Projective manifolds with pseudo-effective tangent bundles' 第62回函数論シンポジウム報告集 [PDF](https://masataka123.github.io/blog3/pdf/2019_11_02.pdf)
