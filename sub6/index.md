@@ -40,6 +40,9 @@
 - [シャボン膜(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/syabon.pdf)
 - [カルキンウィルフツリー(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/カルキンウィルフツリー.pdf)
 
+研究の展示のポスター(学祭以外も含む)
+ [複素射影多様体の構造定理 (接束)](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20241102.pdf)
+- [曲がりから、空間の正体へ (Chern数)](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20260807.pdf)
 
 ## 数学パズルの引用文献
 せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)

@@ -1,0 +1,271 @@
+\documentclass{jsarticle}
+\usepackage[top=-2mm,left=10mm,right=10mm,bottom=10mm,noheadfoot,driver=none]{geometry}
+\usepackage{url,multicol,amsthm,url,amsmath,amssymb}
+\usepackage[dvipdfmx]{graphicx,color}
+\usepackage{simpleposter}
+\usepackage{ascmac}
+\theoremstyle{upshapetheorem}
+
+%\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+%\usepackage[driverfallback=dvipdfm]{hyperref}
+\usepackage{comment}
+\usepackage[normalem]{ulem}
+%\usepackage[bookmarks=false]{hyperref}
+%\usepackage[dvipdfmx]{hyperref}
+%\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage{amscd} 
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb} 
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{bigdelim}
+\usepackage{color} 
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{multirow}
+\usepackage[all]{xy} 
+\usepackage{color} 
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{wrapfig}
+\usepackage{jumoline}
+\usepackage{tcolorbox}
+
+\usepackage{ascmac,fancybox}%文章を囲む
+\color{red}%色設定
+%\tcbuselibrary{breakable, skins, theorems}
+
+
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+
+
+\newcommand{\rk}[0]{\operatorname{rk}}
+\newcommand{\supp}[0]{\operatorname{Supp}}
+\newcommand{\Rad}[0]{\operatorname{Rad}}
+\newcommand{\Sha}[0]{\operatorname{Sha}}
+\newcommand{\sha}[0]{\operatorname{sha}}
+\newcommand{\eend}[0]{\operatorname{End}}
+\newcommand{\codim}[0]{\operatorname{codim}}
+\newcommand{\nd}[0]{\operatorname{nd}}
+\newcommand{\rank}[0]{\operatorname{rank}}
+\newcommand{\degree}[0]{\operatorname{deg}}
+\newcommand{\Exc}[0]{\operatorname{Exc}}
+\newcommand{\pr}{{\rm pr}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\Sym}{{\rm Sym}}
+
+\newcommand{\Supp}{{\rm Supp}}
+\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
+\newcommand{\GL}[0]{\operatorname{GL}}
+\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
+
+\newcommand{\Alb}{{\rm Alb}}
+\newcommand{\verti}{{\rm vert}}
+\newcommand{\hor}{{\rm hor}}
+\newcommand{\univ}{{\rm univ}}
+\newcommand{\Tor}{{\rm tor}}
+\newcommand{\shaf}{\mathrm{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\reg}{{\rm{reg}}}
+\newcommand{\sing}{{\rm{sing}}}
+\newcommand{\qt}{{\rm{qt}}}
+\newcommand\sO{{\mathcal O}}
+\newcommand{\Div}[0]{\operatorname{div}}
+\newcommand{\ddbar}{dd^c}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
+\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
+\newcommand{\Image}[1]{\mathrm{Im}(#1)}
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{Z}_+}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+
+
+\renewcommand{\abstractFontSize}{\footnotesize}
+\begin{document}
+
+\author{岩井雅崇 (大阪大学大学院理学研究科 数学専攻)}
+
+ \title{複素射影多様体の構造定理}
+ \date{}
+ \maketitle
+
+
+\begin{multicols}{2}
+\section{複素射影多様体}
+
+$\C\mP^{N}$の閉部分複素多様体を複素射影多様体という. 
+Chowの定理によって複素射影多様体$X$はいくつかの同次多項式$\{ f_{i}(t_0, \ldots, t_{N})\}_{i=1}^{l}$を用いて
+$$
+X = \{ (x_0 :  \cdots: x_N) \in \C\mP^{N} | f_{i}(x_0, \ldots, x_N)=0 \, (i = 1, \ldots, l)\}
+$$
+と表せられる.  例えば以下のものは複素射影多様体になる. 
+$$
+\{ (x:y:z:w) \in \C\mP^{3} |  x^4 + y^4+z^4 + w^4=0\}
+$$
+
+
+\section{分類問題}
+
+%複素射影多様体に関する
+複素射影多様体の基本的な問題の1つに次のものがある.
+
+\begin{itembox}[l]{分類問題}
+複素射影多様体はリッチ曲率が正, 0, 負の3つの多様体から構成される.
+\end{itembox}
+
+
+例えば複素1次元の射影多様体は, 下図のようにリッチ曲率が正, 0, 負の多様体に分類され, 実2次元多様体としてみなせば穴の数との対応がある. 
+
+\begin{center}
+  \begin{minipage}[t]{\linewidth}
+    \includegraphics[width=\linewidth]{pic_ricci_2.eps}
+  \end{minipage}
+\end{center}
+
+
+
+%\begin{center}
+%\begin{wrapfigure}{r}[0pt]{0.42\textwidth}
+ % \centering
+ %\includegraphics[height=27mm, width=75mm]{pic_ricci.jpg}
+%\end{wrapfigure}
+%\end{center}
+
+2次元に関しては小平邦彦らにより, 3次元に関しては森重文らによって分類問題は肯定的に解決している. 
+4次元以上に関しては分類問題は未解決である.
+
+
+\section{接ベクトル束が0以上の曲率を持つ場合}
+
+1つ目の研究では(正則)接ベクトル束$T_X$が0以上の曲率を持つ場合の分類問題を調べた.
+%Siu-Yauの結果[SY80]から, 接ベクトル束$T_X$の曲率が正であるならば, $X$は$\mathbb{CP}^n$である(Siu-Yau, Invent. Math. 1980).
+先行研究として次のものがある. 
+\begin{itembox}[l]{定理. [Howard-Smyth-Wu 81]}
+%{\bf 定理} \cite{HSW81}
+$T_X$の曲率が0以上ならば, $X$は次の2つに分解される.
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{0pt}
+\item Fano多様体 (リッチ曲率正な多様体)
+\item トーラス (リッチ曲率0の多様体)
+\end{itemize}
+\end{itembox}
+
+私はこの結果を特異計量(滑らかな計量の極限となる計量)の曲率が0以上の場合に拡張した. 
+
+\begin{itembox}[l]{定理 [Hosono-I.-Matsumura 21]}
+%$($[HSW81]の特異計量版$)$.)
+$T_X$の特異曲率が0以上ならば,  $X$は次の2つに分解される.
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{0pt}
+\item 有理連結多様体 (リッチ曲率正の仲間)
+\item トーラス (リッチ曲率0の多様体)
+\end{itemize}
+\end{itembox}
+
+Fano多様体は有理連結多様体であるので, 以下のような対応が得られる. 
+
+\vspace{-10pt}
+{ \small
+\begin{equation*}\xymatrix@C=15pt@R=20pt{ 
+%*++[F]{\txt{[SY80] $T_X$の曲率が正  $\Rightarrow$ $X \cong \mathbb{CP}^n$} }\ar@{->}[d]_{\text{\scriptsize{特異計量への一般化}}}& 
+*++[F]{\txt{[HSW81] $T_X$の曲率が0以上 $\Rightarrow$ \underline{Fano多様体}+トーラス} } \ar@{->}[d]^{\text{\scriptsize{特異計量への一般化}}} \\
+%*++[F]{  \txt{ [Iwai21]  $T_X$の特異曲率が正  $\Rightarrow$ $X \cong \mathbb{CP}^n$} } & 
+*++[F]{ \txt{[HIM21] $T_X$の特異曲率が0以上$\Rightarrow$ \underline{有理連結多様体}+トーラス}}\\
+}
+\end{equation*}
+}
+
+%また\cite{Iwa21}において, $T_X$の部分束$\mathcal{F} \subset T_X$の曲率や特異曲率が0以上の曲率を持つ場合にも, 分類問題を調べた. 
+
+\section{接ベクトル束が0以下の曲率を持つ場合}
+
+2つ目の研究では(正則)接ベクトル束$T_X$が0以下の曲率を持つ場合の分類問題を調べた.
+1つ目の研究と違いこの場合は未解決であり以下の予想がある. 
+
+\begin{itembox}[l]{予想}
+$T_X$の曲率が0以下ならば,  $X$は次の2つに分解される.
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{0pt}
+\item リッチ曲率負な多様体
+\item トーラス (リッチ曲率0の多様体)
+\end{itemize}
+\end{itembox}
+
+私はこの予想に関して部分的な解決を与えた.
+
+\begin{itembox}[l]{定理 [I.-Matsumura 22]}
+$T_X$の曲率が0以下かつ$c_1(T_X)^2=0$ならば,  $X$は次の2つに分解される.
+\begin{itemize}
+ \setlength{\parskip}{0cm}
+  \setlength{\itemsep}{0pt}
+\item リッチ曲率負な複素１次元多様体
+\item トーラス (リッチ曲率0の多様体)
+\end{itemize}
+\end{itembox}
+
+
+\footnotesize
+\begin{thebibliography}{99}
+\bibitem{HSW81}
+A. Howard, B. Smyth, H. Wu, 
+\textit{On compact K\"ahler manifolds of nonnegative bisectional curvature I and II}, 
+Acta Math. {\bf{147}} (1981) %, no. 1-2, 51--70
+
+\bibitem{HIM21}
+Genki Hosono, Masataka Iwai, Shin-ichi Matsumura. 
+\textit{On projective manifolds with pseudo-effective tangent bundles.}, 
+Journal of the Institute of Mathematics of Jussieu. (2021) 
+%\\ DOI:10.1017/S1474748020000754.
+
+%\bibitem[Iwa22]{Iwa21}
+%Masataka Iwai. 
+%\textit{Almost nef regular foliations and Fujita's decomposition of reflexive sheaves.}, 
+%Annali della Scuola Normale Superiore di Pisa, Classe di Scienze. (2022) 
+%VOL. XXIII, ISSUE 2 719-743 
+%DOI: 10.2422/2036-2145.202010\_055
+\bibitem{IM22}
+Masataka Iwai, Shin-ichi Matsumura.
+ \textit{Abundance theorem for minimal compact K\"ahler manifolds with vanishing second Chern class.} arXiv:2205.10613
+
+\end{thebibliography}
+
+\end{multicols}
+\end{document}
