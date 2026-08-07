@@ -27,23 +27,22 @@
 いちょう祭まちかね祭での数学科の展示, [まちかね山の数学教室](http://www.math.sci.osaka-u.ac.jp/event/machikaneyama/)
 で用いたもの. 上のパズルをもう少し簡単にした.
 
-- [学祭のパズルの展示_20260426.pdf](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E3%81%AE%E5%B1%95%E7%A4%BA_20260426.pdf)
-- [2026年のA4配布](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E8%A7%A3%E8%AA%AC%E6%9B%B8_20260426.pdf)
-- [2025年のA3ポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
-- [2025年のA4配布](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
+- [2026年のポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E3%81%AE%E5%B1%95%E7%A4%BA_20260426.pdf)
+- [2026年の配布資料](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E8%A7%A3%E8%AA%AC%E6%9B%B8_20260426.pdf)
+- [2025年のポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
+- [2025年の配布資料](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
 - [2025年の問題の解説](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4_解説書_ホームページ用.pdf)
 
 展示の解説もよく使うのであげておいた．
 
-- [正多面体 (tex)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体展示マニュアル_2026_0428.pdf)
-- [正多面体(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
+- [正多面体 (tex)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体展示マニュアル_2026_0428.pdf) [正多面体(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
 - [シャボン膜(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/syabon.pdf)
 - [カルキンウィルフツリー(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/カルキンウィルフツリー.pdf)
 
 研究の展示のポスター(学祭以外も含む)
 
-- [複素射影多様体の構造定理 (接束)](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20241102.pdf)
-- [曲がりから、空間の正体へ (Chern数)](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20260807.pdf)
+- [複素射影多様体の構造定理 (接束)のポスター](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20241102.pdf)
+- [曲がりから、空間の正体へ (Chern数)のポスター](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20260807.pdf)
 
 ## 数学パズルの引用文献
 せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)
