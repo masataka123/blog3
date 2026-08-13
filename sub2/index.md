@@ -81,6 +81,11 @@
 
 2026年の[集中講義](https://masataka123.github.io/2026_tohoku_Chern_class/)のために作った. 初学者にわかりやすく, そして最新の研究につながるように頑張って書いた. 接続や曲率など普段使っている概念を定義するのが一番苦労した. こういう作業をすると自分が適当に数学していることが身に染みてわかった. あと微分幾何のテンソル計算はTeXで作業した方が楽であることもわかった. 
 
+- [Yauの定理とその応用](https://masataka123.github.io/blog3/pdf/20260813_Yau_theorem/Yau_theorem_application_2026_0813.pdf) 
+
+[久本さんとの研究](https://arxiv.org/abs/2607.25181)でAppendix Aを示した際に, 今まで苦手だった微分幾何学が意外とできることがわかった. その勢いのまま「今までブラックボックスにしていた定理を示していこう!」と思い, 一気に作った. 今まで楕円型偏微分作用素, Yauの定理, 榎先生のgeneric nefness, -Kxがnefの基本群など, 結構適当に理解していたが, ちゃんと文章や証明を埋めてよかった気がする. まあchatGPTのおかげですね. 
+
+
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
 - Masataka Iwai, Takahito Kashiwabara, Ichiro Sato and Ryosuke Yano. ‘Earthquake-network in Japan based on Abe-Suzuki model and its characteristics.’ DOI: 10.13140/RG.2.2.12494.61766
