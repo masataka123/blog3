@@ -260,4 +260,6 @@ Terence Tao先生のホームページ. Career advice, On writingとか結構い
 - [π-Base](https://topology.jdabbs.com)
 位相空間まとめ.
 - [Graded Ring Database](https://grdb.co.uk)
+- [Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/) 
+なんか最近の論文をまとめて欲しいと思ってchatGPTに作ってもらった. なんで動いているかがわからない. 魔法みたいですね. 
 
