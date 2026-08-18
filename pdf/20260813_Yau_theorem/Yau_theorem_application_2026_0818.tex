@@ -646,7 +646,8 @@ K\"ahlerの公式をまとめると次のとおり. 以下$\partial_{i}\coloneqq
 \label{suma-brief-diff}
 $\omega=\sqrt{-1}g_{i \bar{j}} dz^i \wedge d \bar{z}^{\bar{j}}$をK\"ahler計量とする時
 \begin{itemize}
-\item Christoffel記号. $\Gamma_{jk}^{i} = g^{i\bar{l}} \partial_j g_{k\bar{l}} $. $\Gamma_{jk}^{i} = \Gamma_{kj}^{i}$
+\item Christoffel記号. $\Gamma_{jk}^{i} = g^{i\bar{l}} \partial_j g_{k\bar{l}} $. 
+K\"ahler条件から$\Gamma_{jk}^{i} = \Gamma_{kj}^{i}$が成り立つ. 
 \item $\omega$によって$T_X$にHermite計量$h$を入れる時, Chern接続 
 \[
 D_h \colon A^0(T_X) \to A^{1}(T_X)
@@ -669,7 +670,7 @@ F_h \coloneqq R^{j}_{i k \bar{l}}
 \otimes \underbrace{dz^k \wedge\,d\bar{z}^{\bar{l}}}_{\text{$(1,1)$-form}}
 \]
 %($\frac{1}{2 \pi}$をつけているのは, $dd^c = \frac{i}{2\pi}\partial \bar{\partial}$とDGPでは採用しているので, その都合上)
-\item curvature tensorを
+\item Riemann curvature tensorを
 \[
 R_{i \bar{j}k \bar{l}}\coloneqq  g_{p\bar{j}} R^{p}_{i k \bar{l}}
 \]とすると次が成り立つ
@@ -737,7 +738,7 @@ n\cdot \frac{\sqrt{-1}}{2 \pi}F_{h}\wedge \omega^{n-1}
 
 \newpage
 
-\section{Schauder estimateと楕円型作用素}
+\section{Schauder評価と楕円型作用素}
 Szekelyhidiのlecture note \cite[Chapter 2]{Sze14}による
 
 \subsection{Harmonic function}
@@ -957,7 +958,7 @@ Corollary~\ref{cor-Sze-2.3}より$r$によらない定数$C'$があって,
 \begin{equation}
 \label{eq-Sze-2.4}
 \lvert\nabla f_r(0)\rvert
-\underalign{\text{(Corollary~\ref{cor-Sze-2.3})}}{ \leq }
+\underalign{\text{(Cor. \ref{cor-Sze-2.3})}}{ \leq }
 C_1\int_{B_2} \lvert f_r(x)\rvert\,dx \leq C'\sup_{B_2}\lvert f_r\rvert=C'\sup_{B_{2r}}\lvert f\rvert,
 \end{equation}
 一方$\nabla f_r(0)=r\nabla f(0)$なので,
@@ -991,7 +992,7 @@ $a_{jk},b_l,c$はすべて滑らかなものを考える.
 \end{itemize}
 \end{defn}
 $\sum_{j,k=1}^n a_{jk}(x)v^jv^k $のことを$L$のprincipal symbolとも言う. 
-$L$が楕円型であり, コンパクト多様体$M$について, $\Omega$は座標近傍ならば, 一様楕円型である. 
+%$L$が楕円型であり, コンパクト多様体$M$について, $\Omega$は座標近傍ならば, 一様楕円型である. 
 
 \begin{defn}
 Definition~\ref{defn-Sze-elliptic}の状況下で, 
@@ -1002,9 +1003,7 @@ Definition~\ref{defn-Sze-elliptic}の状況下で,
 \]
 が成り立つこと. 
 ここで$C^{\infty}_{c}(\Omega)$はsupportがコンパクトな滑らかな関数とし, 
-$dV$は$\mathbb{R}^n$上の通常の体積測度とする. 
-
-ただし形式随伴$L^*$を
+$dV$は$\mathbb{R}^n$上の通常の体積測度とし, 形式随伴$L^*$を
 \[
 L^* \colon C^{\infty}_{c}(\Omega) \to C^{\infty}_{c}(\Omega)
 \quad
@@ -1288,7 +1287,8 @@ f  \colon \Omega \to \R \mid  \lVert f\rVert_{C^{k,\alpha}} < + \infty\right\}
 
 \begin{thm}[Arzel\`a--Ascoli theorem {\cite[Theorem 2.6]{Sze14}}]
 \label{thm-Arzela-Ascoli}
-$\Omega$を有界集合とし,$u_k\colon \Omega\to\mathbb{R}$を関数列で$\lVert u_k\rVert_{C^{k,\alpha}}<C$がある定数$C$に対して成り立つとする.このとき$l+\beta<k+\alpha$を満たす任意の$l,\beta$に対し,$u_k$の部分列で$C^{l,\beta}$において収束するものが存在する.
+$\Omega$を有界集合とし, $u_k\colon \Omega\to\mathbb{R}$を関数列で$\lVert u_k\rVert_{C^{k,\alpha}}<C$がある定数$C$に対して成り立つとする.
+このとき$l+\beta<k+\alpha$を満たす任意の$l,\beta$に対し, $u_k$の部分列で$C^{l,\beta}$において収束するものが存在する.
 \end{thm}
 かっこよくいうと$C^{k, \alpha} \hookrightarrow C^{l, \beta}$がコンパクト埋め込みである. 
 これは厳密には普通の場合のArzel\`a--Ascoli theoremのCorollaryである. まず普通の場合のArzel\`a--Ascoli theoremを思い出す. 
@@ -1452,7 +1452,7 @@ L(f)=\sum_{j,k=1}^n a_{jk}\frac{\partial^2 f}{\partial x^j\partial x^k}
 この$C$は$k,\alpha$,領域$\Omega,\Omega'$,$L$の係数の$C^{k,\alpha}$-norm,  一様楕円性の定数$\lambda,\Lambda$にのみ依存する. 
 \end{thm}
 \cite[Theorem 2.7]{Sze14}では"任意の$f \in C^2$について"の仮定はなかったがおそらく必要だと思う.
-ただ結局は$f$がdistributionでいけるらしい. ただかなり苦労するため省略.  
+ただ結局は$f$がdistributionでいけるらしい. かなり苦労するため省略.  
 \begin{proof}
 $L$の係数が定数であり, $k=0$かつ$b_l,c=0$の場合を示す.(一般の場合はこれに帰着する)
 また補間不等式を用いることで, 次の弱い主張を示せば良い.
@@ -1873,7 +1873,7 @@ $L$をコンパクトRiemann多様体$M$上の線形2回楕円型偏微分作用
 \begin{proof}
 Theorem~\ref{thm-Schauder}から
 $Lf=0$の任意の弱解は, $L$の係数が滑らかなので, $f$も滑らかである. 
-$\ker L$が有限次元であることを示すために,$L^2$計量に関して$\ker L$の閉単位球が(点列)コンパクトであることを示す.(下のRemark~\ref{rem-norm-cpt}参照)
+$\ker L$が有限次元であることを示すために, $L^2$計量に関して$\ker L$の閉単位球が(点列)コンパクトであることを示す.(下のRemark~\ref{rem-norm-cpt}参照)
 
 以下$f_k\in\ker L$を$\lVert f_k\rVert_{L^2(M)}\leq 1$を満たす関数列とする.
 ここでH\"olderの不等式を思い出す. 
@@ -2227,7 +2227,7 @@ g^{k\bar l}\partial_k\partial_{\bar l}f
 = \int_{\R}-f g'\,dx
 \]
 にしていることに似ている. 
-一方今使っているLaplacian$\Delta=- \bar\partial^*\bar\partial$は楕円型作用素にするためにこの符号を用いている. 
+一方今使っているLaplacian $\Delta=- \bar\partial^*\bar\partial$は楕円型作用素にするためにこの符号を用いている. 
 \end{rem}
 
 \subsection{Poisson方程式の解の存在}
@@ -2850,7 +2850,9 @@ Lf=\rho \quad \text{and} \quad f\perp\ker L
 となる. よって示すのは$f \in W^{m+2,2}(M)$のみである. 
 これは
 局所楕円型正則性\eqref{eq-global-Sobolev-elliptic}よりすぐにわかる. 
-$L$が連続なのは, 係数$L$の係数が$L^\infty$より
+
+$L$がHilbert空間の同型であることを示す. 
+これは$L$と$L^{-1}$の連続性のみが問題である. まず$L$が連続なのは, 係数$L$の係数が$L^\infty$より
 $$
 \lVert Lf\rVert_{W^{m,2}(M)}
 \leq
@@ -3496,7 +3498,7 @@ K\"ahler計量$\omega_0 \in -c_1(X)$を固定し,
 \Ric(\omega_0)=-\omega_0+\frac{\sqrt{-1}}{2\pi}\partial\bar\partial F
 \]
 となる$F \in C^\infty (X)$を固定する. 
-この時(複素)Monge--Amp\`ere方程式の解$\varphi \in C^\infty (X)$で
+この時$($複素$)$Monge--Amp\`ere方程式の解$\varphi \in C^\infty (X)$で
  \begin{equation}
  \label{eq-MA-equation}
  \left(\omega_0+\frac{\sqrt{-1}}{2\pi}\partial\bar\partial\varphi\right)^n=e^{F+\varphi}\omega_0^n.
@@ -3561,7 +3563,7 @@ $t\in[0,1]$について
 \item $(*)_0$を解ける. これは$\varphi=0$が解になる.  
 \item ある$t<1$で$(*)_t$が解をもつなら,十分小さい$\varepsilon>0$に対して$(*)_{t+\varepsilon}$も解ける.(陰関数定理).
 \item ある$s\in(0,1]$に対し,すべての$t<s$で$(*)_t$を解けるなら,$(*)_s$も解ける. 
-これは$t\to s$とするとき部分列に沿って極限をとれるように,H\"older空間における解の評価が必要になる.
+これは$t\to s$とするとき部分列に沿って極限をとれるように, H\"older空間における解の評価が必要になる.
 \end{enumerate}
 
 
@@ -3681,7 +3683,7 @@ $\mathcal{X}=\mathcal{H}^{3, \alpha}, \mathcal{Y}=(0,1), \mathcal{Z}=C^{1,\alpha
 &\underalign{\text{(微分の計算)}}{=}
 \underbrace{\frac{n}{2\pi}\frac{\sqrt{-1}\partial\bar\partial u \wedge \omega_t^{n-1}}{\omega_t^n}}_{=\frac{1}{2\pi}g_{t}^{i\bar j }\partial_i\bar\partial_{j}u = \frac{1}{2\pi}\Delta_t u}
 -u
-\underalign{\text{(Definition~\ref{defn-cpx-Laplace})}}{=}
+\underalign{\text{(Def. \ref{defn-cpx-Laplace})}}{=}
 \frac{1}{2\pi}\Delta_t u-u.
 \end{align*}
 ここで$\Delta_t$は$\omega_t$に関する複素Laplacianである. 
@@ -3708,7 +3710,7 @@ $L=L^*$ (self-adjoint)なので, $L^*$も自明なkernelをもつ.
 以上より$L$は楕円型なので, Theorem~\ref{thm-fredholm}から, 
 \[
 L\colon C^{3,\alpha}(X)=(\ker L)^\perp\cap C^{3,\alpha}
-\underalign{\text{(Theorem~\ref{thm-fredholm})}}{\overset{\sim}{\to}}\ (\ker L^*)^\perp\cap C^{1,\alpha}= C^{1,\alpha}(X)
+\underalign{\text{(Thm.\ref{thm-fredholm})}}{\overset{\sim}{\to}}\ (\ker L^*)^\perp\cap C^{1,\alpha}= C^{1,\alpha}(X)
 \]
 は同型写像である.
 よって
@@ -4125,7 +4127,7 @@ logを組み込んで, $u=\operatorname{tr}_g g'$とすれば
 \underbrace{\sqrt{g'^{p\bar p}}(\partial_p g'_{a\bar a})}_{\text{($x_p$とみる)}}
 \underbrace{\sqrt{g'^{p\bar p}}(\partial_{\bar p}g'_{b\bar b})}_{\text{($y_p$とみる)}}
 \\
-&\underalign{\text{(Cauchy--Schwarz)}}{\leq}
+&\underalign{\text{(CS ineq.)}}{\leq}
  \sum_{a,b}\Bigl(\sum_p g'^{p\bar p}\lvert\partial_p g'_{a\bar a}\rvert^2\Bigr)^{1/2}
 \Bigl(\sum_q g'^{q\bar q}\lvert\partial_q g'_{b\bar b}\rvert^2\Bigr)^{1/2}
 \underalign{\text{(まとめる)}}{=}
@@ -4137,7 +4139,7 @@ logを組み込んで, $u=\operatorname{tr}_g g'$とすれば
 \underbrace{\Bigl(\sum_p g'^{p\bar p}g'^{a\bar a}\lvert\partial_p g'_{a\bar a}\rvert^2\Bigr)^{1/2}
 }_{\text{($y_a$とみる)}}\,
 \Bigr)^2
-\underalign{\text{(Cauchy--Schwarz)}}{\leq}
+\underalign{\text{(CS ineq.)}}{\leq}
  \underbrace{\Bigl(\sum_a g'_{a\bar a}\Bigr)}_{=\operatorname{tr}_g g'}
  \Bigl(\sum_{b,p} g'^{p\bar p}g'^{b\bar b}\lvert\partial_p g'_{b\bar b}\rvert^2\Bigr).
 \end{aligned}
@@ -4224,7 +4226,7 @@ Cauchy--Schwarz inequalityから
 \left(\sum_i g'_{i\bar i}\right)
 \cdot
 \left(\sum_j\frac{1}{g'_{j\bar j}}\right)
-\underalign{\text{(Cauchy--Schwarz)}}{\geq}
+\underalign{\text{(CS ineq.)}}{\geq}
 \left(\sum_i g'_{i\bar i}\cdot \frac{1}{g'_{i\bar i}}\right)^2
 =
  n^2
@@ -4447,7 +4449,7 @@ S^{p}_{ja}\overline{S^{p}_{ja}},
 \label{eq-laplacian-S}
 \begin{aligned}
 \Delta\lvert S\rvert_{g}^{2}
-&\underalign{\text{(Lem. \ref{lem-cpx-Laplace})}}{=}
+&\underalign{\text{(Lem.\ref{lem-cpx-Laplace})}}{=}
 \sum_{p, i,j,k} \nabla_{p}\nabla_{\bar p}\bigl(S^{i}_{jk}\overline{S^{i}_{jk}}\bigr) \\
 &\underalign{\text{}}{=}
 \sum_{p, i,j,k} 
@@ -5358,9 +5360,9 @@ $(X, \omega)$をコンパクトK\"ahler多様体, $f$を$C^{\infty}$級関数, $
 \label{cor-Yau-thm}
 $(X, \omega_0)$をコンパクトK\"ahler多様体とする. 
 \begin{enumerate}
-\item $K_X$ ampleかつ$\{\omega_0\} \in c_1(K_X)$ならば, $\{ \omega\}=\{\omega_0\}$となるK\"ahler--Einstein計量$\Ric(\omega)=-\omega$が存在する
+\item $K_X$がampleかつ$\{\omega_0\} \in c_1(K_X)$ならば, $\{ \omega\}=\{\omega_0\}$となるK\"ahler--Einstein計量$\Ric(\omega)=-\omega$が存在する
 \item $c_1(K_X) =  0$の時, $\{ \omega\}=\{\omega_0\}$となるK\"ahler--Einstein計量$\Ric(\omega)=0$が存在する
-\item $-K_X$ ampleの時, ある$\varepsilon>0$があって, $\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \geq \varepsilon \omega$なるK\"ahler計量が存在する.
+\item $-K_X$がampleの時, ある$\varepsilon>0$があって, $\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \geq \varepsilon \omega$なるK\"ahler計量が存在する.
 %\item $-K_X$ nefの時, 任意の$\varepsilon>0$について$\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \ge - \varepsilon \omega$となるケーラー計量が存在する.
 %\item $K_X$ nefの時, 任意の$\varepsilon>0$について$\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \le \varepsilon \omega_0$なるケーラー計量が存在する
 \end{enumerate}
@@ -5485,7 +5487,7 @@ $-\Ric(\omega_0) \in -c_1(X)=c_1(K_X)$なので,
   \Ric\left(\omega_0+\frac{\sqrt{-1}}{2\pi}\partial\bar\partial\varphi\right)
    =\underbrace{\Ric (\omega_0) +\frac{\sqrt{-1}}{2\pi}\partial\bar\partial F}_{=-\omega_0}
    - \frac{\sqrt{-1}}{2\pi}\partial\bar\partial \varphi
-   =-(\omega_0 + \frac{\sqrt{-1}}{2\pi}\partial\bar\partial \varphi)
+   =-\left(\omega_0 + \frac{\sqrt{-1}}{2\pi}\partial\bar\partial \varphi\right)
  \end{align*}
 となり言えた.
 
@@ -5538,7 +5540,7 @@ $\Ric(\omega_0) \in c_1(X)=c_1(-K_X)$なので,
   \Ric\left(\omega_0+\frac{\sqrt{-1}}{2\pi}\partial\bar\partial\varphi\right)
    =\underbrace{\Ric (\omega_0) -\frac{\sqrt{-1}}{2\pi}\partial\bar\partial F}_{=\theta}
    =\theta
-  \underalign{\text{($X$コンパクト)}}{>} 
+  \underalign{\text{($X$コンパクト)}}{\ge} 
   \varepsilon \left(\omega_0+\frac{\sqrt{-1}}{2\pi}\partial\bar\partial\varphi\right)
  \end{align*}
 最後は$X$がコンパクトを用いてうまく$\varepsilon>0$をとる. 
@@ -5663,7 +5665,7 @@ g_{i\overline l}g_{k\overline j}
 
 よって次の定理を得る. 
 \begin{thm}[{\cite{Yau77}}]
-$K_X$ampleならば
+$K_X$がampleならば
 \[
 \left\{
 2(n+1)c_2(X)-nc_{1}^{2}(X)
@@ -5690,9 +5692,9 @@ Corollary~\ref{cor-Yau-thm}よりK\"ahler--Einstein計量が存在するため, 
  等号が成立するとき$X$の普遍被覆が$\C^n$になるが, Bieberbachの古典的定理により, 複素トーラスによって被覆される.
  \end{proof}
 
-$-K_X$ampleの時はK\"ahler--Einstein計量を持つとは限らないので次の形でしか書けない. 
+$-K_X$がampleの時はK\"ahler--Einstein計量を持つとは限らないので次の形でしか書けない. 
 \begin{thm}[{=Theorem~\ref{thm-MY-curv}}]
-$-K_X$ampleかつK\"ahler--Einstein計量を持てば
+$-K_X$がampleかつK\"ahler--Einstein計量を持てば
 \[
 \left\{
 2(n+1)c_2(X)-nc_{1}^{2}(X)
@@ -5703,11 +5705,11 @@ $-K_X$ampleかつK\"ahler--Einstein計量を持てば
 \end{thm}
 
 実際Miyaoka--Yauが成り立たないFanoの例が\cite{GKP22}により知られている. 
-\cite{Bando, SW16, GKP22, DGP24}より次がわかっている. 
+\cite{Bando, Tian92, SW16, GKP22, DGP24}より次がわかっている. 
 %\footnote{もしかすると$X$がsmoothな場合はこの結果よりも前に知られていたかもしれない. なお\cite{Bando, SW16, GKP22, DGP24}はKLT多様体で示している.}
 
-\begin{thm}[{\cite{Bando, SW16, GKP22, DGP24}}]
-$-K_X$ampleかつ, K-semistableならば
+\begin{thm}[{\cite{Bando, Tian92, SW16, GKP22, DGP24}}]
+$-K_X$がampleかつ, K-semistableならば
 \[
 \left\{
 2(n+1)c_2(X)-nc_{1}^{2}(X)
@@ -5719,20 +5721,19 @@ $-K_X$ampleかつ, K-semistableならば
 
 
 \subsection{Miyaoka-Yau不等式の歴史}
-  
-  例えば曲面の場合のMiyaoka--Yau不等式は
-\[
+  曲面の場合のMiyaoka--Yau不等式は
+\(
 3c_2 \geq c_1(X)^2
-\]
+\)
 と同値である. この形はBogomolov-Miyaoka-Yauの不等式と呼ばれる.
 歴史的には以下の通り.
 \begin{itemize}
 \item Theorem~\ref{thm-MY-curv}はChen--Ogiue \cite{CO75}で示された. なので, 個人的にこの不等式を述べる際には\cite{CO75}も引用すべきな気がする. 
-\item \cite{Miy77}が曲面の場合に$3c_2 \geq c_1(X)^2$を示した. この場合は$K_X$ bigでもよい. 
-\item \cite{Yau77}でYauがK\"ahler--Einstein計量の存在を示して, $K_X$ ampleの場合のMiyaoka-Yau不等式を示した. $c_1(K_X)=0$の場合もYauの定理である. 
+\item \cite{Miy77}が曲面の場合に$3c_2 \geq c_1(X)^2$を示した. この場合は$K_X$がbigでもよい. 
+\item \cite{Yau77}でYauがK\"ahler--Einstein計量の存在を示して, $K_X$がampleの場合のMiyaoka-Yau不等式を示した. $c_1(K_X)=0$の場合もYauの定理である. 
 \item KLTの拡張としては$c_1(K_X)=0$の場合は\cite{GKP16, LT18}により示された. maximal-quasi-\'etale coverをつかう. $K_X$ ampleの場合は\cite{GKPT19a, GKPT19b}により示された. Higgs束などを使う.
-\item $-K_X$ ampleかつ, K-semistableの場合は, smoothな場合は実質的には\cite{Bando}が初めらしいこれは久本さんに教えてもらった. \cite{SW16}も近いことをやっていて引用すべきな気もする. \cite{Tian92}によるcanonical extension sheafを使った別証明もある. 
-\item $-K_X$ ampleかつ, K-semistable KLT多様体は\cite{GKP22, DGP24}による. Tianのcanonical extension sheafをつかう. 
+\item $-K_X$がampleかつ, K-semistableの場合は, smoothな場合は実質的には\cite{Bando}が初めらしいこれは久本さんに教えてもらった. \cite{SW16}も近いことをやっていて引用すべきな気もする. \cite{Tian92}によるcanonical extension sheafを使った別証明もある. 
+\item $-K_X$がampleかつ, K-semistable KLT多様体は\cite{GKP22, DGP24}による. Tianのcanonical extension sheafをつかう. 
 \end{itemize}
 
  \newpage
@@ -5745,8 +5746,8 @@ $-K_X$ampleかつ, K-semistableならば
 \label{cor-Yau-thm-2}
 $(X, \omega_0)$をコンパクトK\"ahler多様体とする. 
 \begin{enumerate}
-\item $-K_X$ nefの時, 任意の$\varepsilon>0$について$\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \geq - \varepsilon \omega$となるK\"ahler計量が存在する.
-\item $K_X$ nefの時, 任意の$\varepsilon>0$について$\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \leq \varepsilon \omega_0$なるK\"ahler計量が存在する
+\item $-K_X$がnefの時, 任意の$\varepsilon>0$について$\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \geq - \varepsilon \omega$となるK\"ahler計量が存在する.
+\item $K_X$がnefの時, 任意の$\varepsilon>0$について$\{ \omega\}=\{\omega_0\}$かつ$\Ric(\omega) \leq \varepsilon \omega_0$なるK\"ahler計量が存在する
 \end{enumerate}
 \end{cor}
 \begin{proof}
@@ -5788,7 +5789,7 @@ $\Ric(\omega_0) \in c_1(X)=c_1(-K_X)$なので,
   \Ric\left(\omega_0+\frac{\sqrt{-1}}{2\pi}\partial\bar\partial\varphi\right)
    =\underbrace{\Ric (\omega_0) -\frac{\sqrt{-1}}{2\pi}\partial\bar\partial G_{\varepsilon}}_{=\frac{\sqrt{-1}}{2 \pi}F_{h_{\varepsilon}} \geq - \varepsilon \omega_0}
    - \varepsilon\frac{\sqrt{-1}}{2\pi}\partial\bar\partial \varphi
-  \geq -\varepsilon(\omega_0 + \frac{\sqrt{-1}}{2\pi}\partial\bar\partial \varphi)
+  \geq -\varepsilon\left(\omega_0 + \frac{\sqrt{-1}}{2\pi}\partial\bar\partial \varphi\right)
  \end{align*}
 
  (2). 
@@ -6060,7 +6061,7 @@ $X$がnon-uniruledならば, 任意のtorsion-free quotient sheaf $\pi_{*}\Omega
 証明の概略は次のとおり. 
 \begin{enumerate}
 \item $c_1(\mathcal{Q})\cdot H^{n-1} <0$となる$\pi_{*}\Omega_{\widetilde{X}} \twoheadrightarrow \mathcal{Q}$があるとする. すると$\mathcal{F} \subset T_{\widetilde{X}}$でminimal slopeが0より大きいものが作れる. 
-\item この$\mathcal{F}$がalgebraic foliation with rationally connected leavesになる. 特に$\mathcal{F}$からfibration $f \colon \widetilde{X} \dashrightarrow Y$でgeneral fiberのZariski closureがRationally connectedであるものが誘導される. 
+\item この$\mathcal{F}$がalgebraic foliation with rationally connected leavesになる. 特に$\mathcal{F}$からfibration $f \colon \widetilde{X} \dashrightarrow Y$でgeneral fiberのZariski closureが有理連結であるものが誘導される. 
 \item しかしこれはrational curveがいっぱいあるので, $X$がnon-uniruledに矛盾する. 
 \end{enumerate}
 
@@ -6069,7 +6070,7 @@ $X$がnon-uniruledならば, 任意のtorsion-free quotient sheaf $\pi_{*}\Omega
 \item \cite{BDPP13}より$X$がsmoothならばnon-uniruledと$K_X$ psefが同値なので, 上はcanonical singularityで$K_X$ psefで成り立つ. 
 \item Foliationに関しては\cite{BM16, KST07}など色々あるが, 最終的にmovable classまで拡張したのは\cite{CP19}だと思う. \cite{Cla16}のサーベイに詳しい. \cite{Lazicnote}も読みやすいと思う. 
 \item \cite{CKT21}よりKLTでも成り立つことがわかった
-\item $-K_X$nefのgeneric nefnessは\cite{Ou23}で完全解決. 
+\item $-K_X$がnefのgeneric nefnessは\cite{Ou23}で完全解決. 
 \end{itemize}
 
  コンパクトK\"ahlerの場合は上のfoliationの議論が成り立つかどうか最近まで不明だった. (2025年に解決) ただそれまで時間がかなりあったので, コンパクトK\"ahlerの場合は独自の進化があった
@@ -6803,11 +6804,11 @@ finite etale coverをとって, $\pi_1(X)$をnilpotentかつtorsion-freeであ�
 このあとは\cite{Cam95a}の議論による. \cite[Theorem 3.23]{Voi}を参考にした. 
 (\cite[Subsection 7.2]{Iwa-Cam}そのまま写した)
 $\alpha \colon X \to A$をAlbanese mapとする. 
- \begin{itemize}
+ \begin{enumerate}
  \item \(\alpha_* \colon \pi_1(X) \to \pi_1(A)\)は全射になる. これは\( \phi \colon X \to A\)がファイバー連結なので (Lemma~\ref{lem-Voi-1.2}(1)参照)
-\item  \( \alpha_* \colon H_1(X, \mathbb{Z}) \to H_1(A, \mathbb{Z}) \)は全射かつ, finite kernelである. これはAlbanese mapの性質から.
+\item  \( \alpha_* \colon H_1(X, \mathbb{Z}) \to H_1(A, \mathbb{Z}) \)は全射かつ, finite kernelである. これはAlbanese mapの性質から. 特に $H_1(X, \mathbb{Q})  \cong H_1(A, \mathbb{Q}) $である. 
 \item \( \alpha^* \colon H^2(A, \mathbb{Q}) \to H^2(X, \mathbb{Q}) \)単射である. (Lemma~\ref{lem-Voi-1.2}(2)参照)
-\end{itemize}
+\end{enumerate}
 
 \( H \coloneqq  \pi_1(A) =\Z^{2k}\)とおく.
 \[
@@ -6815,31 +6816,28 @@ n\colon H^2(H, \mathbb{Q}) =H^2(\Z^{2k}, \Q)\to H^2(A, \mathbb{Q})
 \]
 という(全)単射が存在することを示す. 
 \(E_H \to B_H = E_H / H\)を$H$の分類空間とする.\footnote{\url{http://pantodon.jp/index.rb?body=BG}参照. 任意の位相空間$X$上の主$H$束$E \to X$について, ある連続写像$h \colon X \to B_H$が存在して, $h^{*}E_H$と$E$は同相になる. 例えば$H=\Z$なら$\R\to S^1$がそれに当たる. } 
-ここで\(E_H\)は可縮である. 
+具体的にいうと\(E_H=\R^{2l}\)で, $B_H=(S^1)^{2l}$である. 
 一方普遍被覆
 \(
 \C^k\to A=\C^k/H
 \)
 も主$H$束であり, $\C^k$は可縮である. 
-したがって$\C^k\to A$自身が$H$の普遍主束のmodelとなり, 
-$A$は$B_H$のmodelとみなすことができる. 
-特にclassifying map
+したがってこれもまた$H$の分類空間となり, classifying map
 \(
 u\colon A\to B_H
 \)
 はhomotopy equivalenceである. 
-
-そこで$n$を以下で定める.\footnote{ここは\cite[Theorem 3.23]{Voi}に合わせた. \cite[Theorem 3.23]{Voi}ではもっと一般の状況を考えている.}
-\[
-n\coloneqq u^{*} \colon H^2(B_H, \mathbb{Q}) \to H^2(A, \mathbb{Q}).
-\]
-$u$はhomotopy equivalenceなので,
-これは全単射である. 
-また
+群のコホモロジーの性質から
 \(
-H^2(H,\Q)\coloneqq H^2(B_H,\Q)
+H^2(H,\Q)\cong H^2(B_H,\Q)
 \)
-であり, $H\simeq\Z^{2k}$なので,
+なので, これを用いて$n$を以下で定める.
+%\footnote{ここは\cite[Theorem 3.23]{Voi}に合わせた. \cite[Theorem 3.23]{Voi}ではもっと一般の状況を考えている.}
+\[
+n\coloneqq u^{*} \colon \underbrace{H^2(H,\Q)}_{\cong H^2(B_H, \mathbb{Q})} \to H^2(A, \mathbb{Q}).
+\]
+$u$はhomotopy equivalenceなので, $n$は全単射である. 
+また, $H\simeq\Z^{2k}$なので,
 \[
 H^2(H,\Q)
 =
@@ -6847,37 +6845,15 @@ H^2(\Z^{2k},\Q)
 \overset{n}{\simeq}
 H^2(A,\Q)
 \]
-を得る.
-%%%%%%%%%%%%%%
-\begin{comment}
 
-\[ n\colon H^2(H, \mathbb{Q}) =H^2(\Z^{2k}, \Q)\to H^2(A, \mathbb{Q}) \]
-という(全)単射が存在することを示す. 
-  \( E_H \to B_H = E_H / H \)を$H$の分類空間とする.\footnote{ \url{http://pantodon.jp/index.rb?body=BG}参照. 任意の位相空間$X$上の主$H$束$E \to X$について, ある連続写像$h \colon X \to B_H$が存在して, $h^{*}E_H$と$E$は同相になる. 例えば$H=\Z$なら$\R\to S^1$がそれに当たる. } 
-   \( E_H \)は可縮である. 
-すると普遍被覆\( \C^k \to A \)が主$H$束なので, 
-$A \underset{\text{homeo}}{\cong}(\C^k\times E_H) / H $である.
-そこで 
-\[ u \colon A \underset{\text{(上の同型)}}{\to} (\C^k\times E_H)/H 
-\underset{\text{(射影)}}{\to} E_H / H = B_H
-\]
-とおく. 
- そして$n$を以下で定める.\footnote{ここは\cite[Theorem 3.23]{Voi}に合わせた. \cite[Theorem 3.23]{Voi}ではもっと一般の状況を考えている.}
-\[
-n\coloneqq u^{*} \colon H^2(B_H, \mathbb{Q}) \to H^2(A, \mathbb{Q}) = H^2((\C^k\times E_H)/H, \mathbb{Q})
-\]
-今の場合$ E_H =\R^{2k}\to B_H=(S^1)^{2k}$であるので, $A \to B_H$は$\C^{k}/\Z^{2k} \to (S^1)^{2k}$のように複素torusの複素構造を忘れて, $(S^1)^{2k}$とみなした写像(恒等写像)に等しい.
-よって全単射となる.
-\end{comment}
-%%%%%%%%%%%%%%
-よって\( \alpha_* \colon H_1(X, \mathbb{Q}) \to H_1(A, \mathbb{Q}) \)は単射なので上と合わせて
+さて(3)より\( \alpha^* \colon H^2(A, \mathbb{Q}) \to H^2(X, \mathbb{Q}) \)単射なので, 上と合わせて
  \[  
- H_2(X, \mathbb{Q}) \underset{\alpha_*}{\to} 
-  H_2(A, \mathbb{Q}) \underset{n=u^{*}}{\to} 
+ H_2(X, \mathbb{Q}) \underset{\alpha_*}{\twoheadrightarrow} 
+  H_2(A, \mathbb{Q}) \underset{u_{*}}{\twoheadrightarrow} 
  H_2(H, \mathbb{Q}) 
  \]
  は全射の合成で全射になる. 
- \( G = \pi_1(X) \)とすると以下の可換図式が成り立つ:
+ \( G = \pi_1(X) \)とすると, 分類空間を用いて以下の可換図式が成り立つ:
 \[
 \begin{array}{ccc}
 H_2(X, \mathbb{Q}) & \underset{\alpha_*}{\longrightarrow}& H_2(A, \mathbb{Q}) \\
@@ -6885,14 +6861,14 @@ H_2(X, \mathbb{Q}) & \underset{\alpha_*}{\longrightarrow}& H_2(A, \mathbb{Q}) \\
 H_2(G, \mathbb{Q}) & \underset{\alpha_*}{\longrightarrow} & H_2(H, \mathbb{Q})
 \end{array}
 \]
-よって%$ \pi_1(X) =G \twoheadrightarrow H　=\pi_1(A)$によって
-  \(H_2(G, \mathbb{Q}) \to H_2(H, \mathbb{Q}) \)も全射である. 
-以上より
+よって  \(H_2(G, \mathbb{Q}) \to H_2(H, \mathbb{Q}) \)は全射である. 
+
+まとめると
 \begin{itemize}
-\item  \( \alpha_* \colon H_1(G, \mathbb{Q}) \to H_1(H, \mathbb{Q}) \)同型. 
+\item  \( \alpha_* \colon H_1(G, \mathbb{Q}) \to H_1(H, \mathbb{Q}) \)同型. これは(2)と群のホモロジーの性質$H_1(G, \mathbb{Q}) \cong G_{ab}$とHurewiczの定理$H_1(X, \Z) \cong \pi_1(X)_{ab}=G_{ab}$から. 
 \item   \( \alpha_* \colon H_2(G, \mathbb{Q}) \to H_2(H, \mathbb{Q}) \)全射. 
 \end{itemize}
-であるので,$\pi_1(X),  \pi_1(A)$ともにnilpotentであるから,  Lemma~\ref{lem-Voi-3.24}より
+よって Lemma~\ref{lem-Voi-3.24}より, $\pi_1(X),  \pi_1(A)$ともにnilpotentであるから, 
 \[G=\pi_1(X) \to \pi_1(A)=H
 \]
 は有限のkernelを持つ.(全射であることは前から言えてる)
@@ -7653,7 +7629,7 @@ $-K_X$がnefの場合の基本群に関しては以下の通り
 これは$\chi(X, \mathcal{O}_X) \neq 0$であり, \cite{Cam95}を用いる. よって残りは奇数次元の強い意味でのCalabi-Yauである. おそらくこれの$\pi_1(X)$が有限がわかれば, $-K_X$がnefで$X$がKLTの場合の基本群$\pi_1(X)$がalmost Abelianは\cite{MW21}の構造定理からわかるはずである. 
 \end{itemize}
 
-$-K_X$がnefでKLTの場合の$\pi_1(X_\reg)$のalmost Abelianは全くわかっていない. 3次元でも未解決かもしれない. また$c_1(K_X)=0$の場合に帰着できるかも不明らしい. これは有理連結KLT多様体の$X_\reg$がどうなるかが難しいためである. なお$-K_X$がnefで$X$がKLTの場合は, $\pi_1(X_\reg)$の有限次元表現がalmost Abelianな像を持つことは\cite{GGK19}と\cite{MW21}を用いればわかる.(\cite{IMM24}参照)  
+$-K_X$がnefでKLTの場合の$\pi_1(X_\reg)$のalmost Abelianは全くわかっていない. (多分3次元ならわかっているかも). また$c_1(K_X)=0$の場合に帰着できるかも不明らしい. これは有理連結KLT多様体の$X_\reg$がどうなるかが難しいためである. なお$-K_X$がnefで$X$がKLTの場合は, $\pi_1(X_\reg)$の有限次元表現がalmost Abelianな像を持つことは\cite{GGK19}と\cite{MW21}を用いればわかる.(\cite{IMM24}参照)  
 
 \newpage
 
