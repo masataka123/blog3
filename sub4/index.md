@@ -7,6 +7,8 @@
 - 2026年度 5月25-29日 東北大学集中講義 [Link](https://masataka123.github.io/2026_tohoku_Chern_class/)
 - 2026年度秋冬学期 大阪大学 理学部数学科 幾何学5/複素幾何学概論I 火曜4限 
 - 2026年度秋冬学期 大阪大学 全学共通教育科目 線形代数学Ⅱ 工（環）水曜3限 
+- 2026年度 学部4年セミナー 1人 Matthias Beck and Raman Sanyal著 [Combinatorial Reciprocity Theorems: An Invitation to Enumerative Geometric Combinatorics](https://pubs.ams.org/ebooks/gsm/195/)
+
 
 ## **2025年度**
 - 2025年度春夏学期 大阪大学 理学部数学科 幾何学基礎１演義 火曜4限 [Link](https://masataka123.github.io/2025_summer_set_theory/)
