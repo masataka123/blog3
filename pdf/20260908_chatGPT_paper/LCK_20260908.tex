@@ -1,0 +1,1418 @@
+% !TeX program = xelatex
+\documentclass[12pt]{amsart}
+\RequirePackage{iftex}
+\RequireTUTeX
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+% dsfont unavailable; compatible unused fallback below.
+\providecommand{\mathds}[1]{\mathbb{#1}}
+% bbm omitted: unused and unavailable.
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+% ulem omitted: unused and unavailable.
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+% Integration: unused XY-pic is not loaded.
+% Integration: unused TikZ is not loaded.
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+% Integration: unused tcolorbox package and box style are not loaded.
+
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+% Duplicate enumitem loading removed.
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\ifLuaTeX
+  \usepackage{luatexja-fontspec}
+  \ltjsetparameter{autospacing=false,autoxspacing=false}
+\else
+  \usepackage{fontspec}
+\fi
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions for this research note; existing mathematical macros are unchanged.
+\newcommand{\cAforms}{\mathcal A}
+\newcommand{\LCK}{\mathrm{LCK}}
+\setlength{\emergencystretch}{1.5em}
+\hypersetup{pdfauthor={chatGPT 6 Astra},pdfsubject={AI-assisted research draft; independently unverified}}
+
+\IfFontExistsTF{Latin Modern Roman}{
+\setmainfont{Latin Modern Roman}[SmallCapsFont={Latin Modern Roman Caps}]
+}{
+\setmainfont{lmroman10-regular.otf}[SmallCapsFont={lmromancaps10-regular.otf},
+BoldFont={lmroman10-bold.otf},ItalicFont={lmroman10-italic.otf},BoldItalicFont={lmroman10-bolditalic.otf}]
+}
+
+
+% Japanese font selection; no downloaded font is required for a standard TeX Live install.
+\usepackage{etoolbox}
+\providecommand{\MergedJapaneseFontPath}{}
+\newcommand{\MergedApplyJapaneseFont}[2]{%
+  \newfontfamily\MergedJapaneseRoman{#1}[Ligatures=TeX,SmallCapsFont={#1},BoldFont={#1},
+    BoldFeatures={FakeBold=2},ItalicFont={#1},ItalicFeatures={FakeSlant=0.15},
+    BoldItalicFont={#1},BoldItalicFeatures={FakeBold=2,FakeSlant=0.15},#2]%
+  \ifLuaTeX
+    \setmainjfont{#1}[BoldFont={#1},BoldFeatures={FakeBold=2},
+      ItalicFont={#1},ItalicFeatures={FakeSlant=0.15},BoldItalicFont={#1},
+      BoldItalicFeatures={FakeBold=2,FakeSlant=0.15},#2]%
+  \fi
+}
+\ifdefempty{\MergedJapaneseFontPath}{%
+  \IfFontExistsTF{Noto Serif CJK JP}{%
+    \MergedApplyJapaneseFont{Noto Serif CJK JP}{}%
+  }{%
+    \IfFontExistsTF{NotoSerifCJKjp-Regular.otf}{%
+      \MergedApplyJapaneseFont{NotoSerifCJKjp-Regular.otf}{}%
+    }{%
+      \MergedApplyJapaneseFont{HaranoAjiMincho-Regular.otf}{}%
+      \PackageWarningNoLine{merged-bilingual}{Noto Serif CJK JP not found; using TeX Live Harano Aji Mincho. Layout may differ}%
+    }%
+  }%
+}{%
+  \MergedApplyJapaneseFont{NotoSerifCJKjp-Regular.otf}{Path={\MergedJapaneseFontPath}}%
+}
+\makeatletter
+\begingroup
+  \MergedJapaneseRoman
+  \xdef\MergedJapaneseRomanFamily{\f@family}
+\endgroup
+\makeatother
+
+% Integration wrappers: source bodies below remain byte-for-byte unchanged.
+\usepackage{etoolbox}
+\makeatletter
+\newcommand{\MergedLanguage}{en}
+\hypersetup{pdfauthor={chatGPT 6 Astra}}
+% Only author typography is exempted from the AMS uppercase transformation.
+\patchcmd{\@setauthors}{\MakeUppercase{\authors}}{\authors}{}{\errmessage{Author patch failed}}
+\patchcmd{\HyOrg@maketitle}{\@nx\MakeUppercase{\the\toks@}}{\the\toks@}{}{\errmessage{Author header patch failed}}
+\newswitch{en-toc}
+\newswitch{ja-toc}
+\let\MergedAddToContents\addtocontents
+\renewcommand{\addtocontents}[2]{%
+  \edef\MergedExtension{#1}%
+  \def\MergedTocExtension{toc}%
+  \ifx\MergedExtension\MergedTocExtension
+    \MergedAddToContents{\MergedLanguage-toc}{#2}%
+  \else\MergedAddToContents{#1}{#2}\fi}
+\let\MergedSetAbstract\@setabstract
+\newcommand{\MergedBegin}[1]{%
+  \let\@setabstract\MergedSetAbstract
+  \def\MergedLanguage{#1}%
+  \gdef\authors{}\gdef\shortauthors{}\gdef\addresses{}%
+  \gdef\thankses{}%
+  \def\tableofcontents{\@starttoc{#1-toc}\contentsname}%
+  \setcounter{section}{0}\setcounter{subsection}{0}\setcounter{subsubsection}{0}%
+  \setcounter{paragraph}{0}\setcounter{subparagraph}{0}%
+  \setcounter{thm}{0}\setcounter{equation}{0}%
+  \setcounter{cl}{0}\setcounter{step}{0}\setcounter{case}{0}%
+  \setcounter{figure}{0}\setcounter{table}{0}\setcounter{footnote}{0}%
+  \renewcommand{\theHsection}{#1.\arabic{section}}%
+  \renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}%
+  \renewcommand{\theHsubsubsection}{\theHsubsection.\arabic{subsubsection}}%
+  \renewcommand{\theHequation}{#1.\thesection.\arabic{equation}}%
+  \def\theHthm{#1.\thesection.\arabic{thm}}%
+  \def\theHfigure{#1.\arabic{figure}}%
+  \def\theHtable{#1.\arabic{table}}%
+  \def\theHfootnote{#1.\arabic{Hfootnote}}%
+}
+\makeatother
+\AtBeginDocument{%
+  \let\MergedOriginalLabel\label
+  \RenewDocumentCommand{\label}{m}{\MergedOriginalLabel{\MergedLanguage:#1}}%
+  \expandafter\let\csname ltx@label\endcsname\label
+  \NewCommandCopy\MergedOriginalRef\ref
+  \RenewDocumentCommand{\ref}{s m}{%
+    \IfBooleanTF{#1}{\MergedOriginalRef*{\MergedLanguage:#2}}{\MergedOriginalRef{\MergedLanguage:#2}}}%
+  \NewCommandCopy\MergedOriginalBibitem\bibitem
+  \RenewDocumentCommand{\bibitem}{o m}{%
+    \IfNoValueTF{#1}{\MergedOriginalBibitem{\MergedLanguage:#2}}{\MergedOriginalBibitem[#1]{\MergedLanguage:#2}}}%
+}
+\ExplSyntaxOn
+\cs_new_protected:Npn \merged_cite:nn #1#2 {
+  \clist_clear:N \l_tmpa_clist
+  \clist_map_inline:nn {#2} {\clist_put_right:Nx \l_tmpa_clist {\MergedLanguage \c_colon_str ##1}}
+  \IfNoValueTF{#1}
+    {\exp_args:NV \MergedOriginalCite \l_tmpa_clist}
+    {\exp_args:NnV \merged_cite_optional:nn {#1} \l_tmpa_clist}
+}
+\cs_new_protected:Npn \merged_cite_optional:nn #1#2 {\MergedOriginalCite[#1]{#2}}
+\AtBeginDocument{
+  \NewCommandCopy \MergedOriginalCite \cite
+  \RenewDocumentCommand{\cite}{o m}{\merged_cite:nn {#1}{#2}}
+}
+\ExplSyntaxOff
+
+\begin{document}
+\begingroup
+\MergedBegin{en}
+\title[Positive cones on LCK point blow-ups]{Fixed-Lee positive cones on point blow-ups\\of exact LCK surfaces}
+\author{chatGPT 6 Astra}
+
+
+
+
+
+
+
+\date{7 September 2026, version 0.1 (research draft)}
+\renewcommand{\subjclassname}{\textup{2020} Mathematics Subject Classification}
+\subjclass[2020]{Primary 53C55; Secondary 32J15, 32Q55}
+\keywords{locally conformally K\"ahler, Vaisman surface, point blow-up,
+Morse--Novikov cohomology, relative ampleness, proximity inequalities}
+
+\pdfbookmark[0]{English version}{english-version}
+% BEGIN PRESERVED EN BODY
+\begin{abstract}
+We determine the exceptional part of the fixed-Lee positive cone after any finite sequence of point blow-ups of a compact complex surface carrying a twisted-exact locally conformally K\"ahler form. In the basis of total exceptional transforms, a class $-\sum_i a_i e_i$ has a positive representative exactly when $a_i>\sum_{j\succ i}a_j$ for every $i$, where $j\succ i$ denotes proximity. If the original second Morse--Novikov cohomology vanishes, this describes the entire cone; in particular it applies to the Lee class of a compact Vaisman surface. Every positive assignment of areas to the irreducible exceptional curves occurs. At a fixed such class and fixed Lee form, total volume is unbounded. The proof combines classical relative ampleness with localized curvature and an exact positive background. We identify these ingredients as existing mathematics. The complete cone description is presented as a modest candidate for an additional result, without a claim of established priority. General non-exact backgrounds and numerical criteria in higher dimension are not settled here.
+\end{abstract}
+\maketitle
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+\tableofcontents
+\clearpage
+
+\section{Introduction and precise scope}\label{sec:intro}
+The existence of an LCK metric on a point blow-up is classical. A different question asks which cohomology classes can be represented while keeping the Lee form fixed. We study this question in degree two, allowing the blow-up centres to be infinitely near. This distinction matters: successive exceptional areas satisfy proximity relations when expressed in the total-transform basis.
+
+Point blow-up existence is attributed to Tricerri and Vuletescu in \cite[\S1.1]{OVV}; the more general construction in \cite[Theorem 2.8 and Lemma 3.4]{OVV} is particularly useful here. Yang--Zhao \cite[Theorem 1.1]{YZ} and Meng \cite[Theorem 1.2]{Meng} compute the relevant twisted cohomology. These results concern existence and the ambient vector space, respectively. We investigate the full region of positive classes in that space. This is not the Lee cone in $H^1$, studied in \cite[\S8]{OVLee}, nor the Gauduchon or Bott--Chern cones discussed in \cite[\S4]{OVBalanced}.
+
+Here is the setup for the main statement. Let $X$ be a compact connected smooth complex surface with a real closed one-form $\theta$ and a positive real $(1,1)$-form $\omega_0$ such that
+\begin{equation}\label{eq:exact}
+ d\omega_0=\theta\wedge\omega_0,\qquad
+ \omega_0=d_\theta\eta,\qquad d_\theta=d-\theta\wedge
+\end{equation}
+for a smooth real one-form $\eta$. Thus ``exact'' always means twisted-exact, not that the Lee form is exact. Let
+\begin{equation}\label{eq:chain}
+ Y=X_r\xrightarrow{\pi_r}X_{r-1}\longrightarrow\cdots
+ \xrightarrow{\pi_1}X_0=X,\qquad r\geq1,
+\end{equation}
+be point blow-ups with composite $\pi$. Let $E_i\subset X_i$ be the exceptional curve created at step $i$, let $D_i$ be its total transform on $Y$, and let $C_i$ be its final strict transform. Write $j\succ i$ if $j>i$ and the centre of $\pi_j$ lies on the strict transform of $E_i$ in $X_{j-1}$.
+
+We first make a conformal gauge change so that $\theta=0$ on disjoint coordinate balls around the finitely many images in $X$ of all centres. Lemma~\ref{lem:gauge} justifies this and describes transport back to the original form. Put $\Theta=\pi^*\theta$. Let $e_i\in H^2_\Theta(Y)$ be represented by the curvature of $\cO_Y(D_i)$, with a metric flat in its canonical frame outside these balls' inverse images. This is a localized, twisted divisor class; its definition is given in Lemma~\ref{lem:cohomology}. Set
+\begin{equation}\label{eq:cone}
+ \cK_\Theta(Y)=\{[\Omega]_\Theta:\Omega\text{ is real of type }(1,1),
+ \ \Omega>0,\ d_\Theta\Omega=0\},\quad
+ V_E=\bigoplus_{i=1}^r\R e_i.
+\end{equation}
+
+\begin{thm}[Exceptional cone; R1]\label{thm:main}
+Under \eqref{eq:exact}--\eqref{eq:chain},
+\begin{equation}\label{eq:maincone}
+ \cK_\Theta(Y)\cap V_E
+ =\left\{-\sum_{i=1}^r a_i e_i:
+ a_i-\sum_{j\succ i}a_j>0\ \text{for every }i\right\}.
+\end{equation}
+More precisely, for every $s=(s_1,\ldots,s_r)\in\R_{>0}^r$ there is a unique class $u\in V_E$ whose periods on $C_i$ are $s_i$, and $u$ has an LCK representative with Lee form exactly $\Theta$. Every such representative has $\int_{C_i}\Omega=s_i$.
+\end{thm}
+
+\begin{cor}[Full cone and Vaisman application; R2]\label{cor:full}
+If, in addition, $H^2_\theta(X)=0$, formula~\eqref{eq:maincone} describes all of $\cK_\Theta(Y)$, and $H^2_\Theta(Y)\simeq\R^r$. This applies when $X$ has a Vaisman metric with nonzero Lee form $\nu$ and $\theta$ is the representative of $[\nu]$ flattened near the centres. The cone is open, simplicial and rational polyhedral in the localized exceptional coordinates, and its closure is obtained by replacing all strict inequalities by weak ones.
+\end{cor}
+
+The rational structure here comes from the chosen exceptional trivializations. It is not a claim that an arbitrary real weight local system has a preferred integral lattice. The theorem concerns fixed complex structures and a fixed Lee form, with the stated gauge convention. It neither asserts that $Y$ is Vaisman nor classifies Lee classes on $Y$.
+
+\begin{cor}[Unbounded volume; R3]\label{cor:volume}
+For every class $u$ in \eqref{eq:maincone}, there are LCK forms $\Omega_t$ with Lee form $\Theta$, class $u$, and the same exceptional areas, such that
+\begin{equation}\label{eq:volasym}
+ \frac12\int_Y\Omega_t^2
+ =\frac{t^2}{2}\int_X\omega_0^2-\frac12\sum_i a_i^2\longrightarrow+\infty,
+\end{equation}
+where $u=-\sum_i a_ie_i$. The forms are not required to coincide with one fixed metric away from the exceptional locus.
+\end{cor}
+
+\subsection{What may be additional, and what is already known}
+The curvature-plus-pullback argument is already present in \cite[Lemma 3.4]{OVV}; the cohomology decomposition is also known. Our additional argument is the passage from arbitrary strict proximity inequalities, including satellite points, to a curvature form positive on the \emph{entire kernel} of $d\pi$, followed by use of \eqref{eq:exact} to keep the class unchanged while increasing the background. Relative ampleness supplies control even at exceptional crossings. We do not present either relative ampleness or proximity intersection theory as new.
+
+No explicit statement of \eqref{eq:maincone} was located in the sources checked for this draft. That supports only a candidate novelty assessment, not a priority assertion. The result may be an unrecorded consequence familiar to specialists. In particular, the argument does not justify calling it a major classification theorem. Precise searches, discarded candidates and publication/version checks are recorded in \texttt{research\_audit\_ja.md}.
+
+\begin{center}\small
+\begin{tabular}{@{}p{1cm}p{8.4cm}p{1cm}p{1.5cm}@{}}
+\toprule
+ID & Statement & Proof & Novelty\\\midrule
+R1 & Exceptional cone, Theorem~\ref{thm:main} & A & d\\
+R2 & Full cone, Corollary~\ref{cor:full} & A & b$^*$\\
+R3 & Unbounded volume, Corollary~\ref{cor:volume} & A & b\\
+R4 & Positive total coefficients alone do not suffice, Example~\ref{ex:two} & D & b\\
+R5 & Failure without exact background, Example~\ref{ex:kahler} & D & b\\
+R6 & No twisted-exact LCK metric on $Y$, Proposition~\ref{prop:rational} & A & b\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here A means a complete argument under the stated assumptions, and D means a disproved proposed extension with a verified counterexample. Novelty b means a direct consequence; d means a candidate additional result. The symbol $^*$ indicates that R2 is the direct application of R1 and known vanishing, not a second independent novelty claim. The background cohomology and vanishing statements are A/a (known). No incomplete lemma is used in R1--R3. The questions in Section~\ref{sec:limits} are separate.
+
+\section{Conventions and background with proofs}\label{sec:prelim}
+A Vaisman metric here means an LCK metric whose Lee form is nonzero and parallel for its Levi--Civita connection. The general term LCK includes globally conformally K\"ahler structures.
+
+All forms are smooth and real unless specified. Positivity of a real $(1,1)$-form means $\omega(v,Jv)>0$ for every nonzero real tangent vector. We use
+\begin{equation}\label{eq:dc}
+ d^c=\frac{\sqrt{-1}}{4\pi}(\bar\partial-\partial),\qquad
+ dd^c=\frac{\sqrt{-1}}{2\pi}\partial\bar\partial=\ddbar.
+\end{equation}
+Thus the existing template macro $\backslash$\texttt{ddbar} is unchanged. For a holomorphic frame $s$ of a Hermitian line bundle $(L,h)$, the Chern form is
+\begin{equation}\label{eq:chern}
+ c_1(L,h)=-dd^c\log\|s\|_h^2.
+\end{equation}
+Its integral over a compact curve is the degree; the Fubini--Study form has integral one on a projective line. No basic or orbifold Chern classes occur.
+
+The complex defining $H^k_\theta(X)$ is $(\cA^\bullet(X),d_\theta)$. It is not a differential graded algebra with its ordinary wedge product: for $\alpha$ of degree $p$,
+\begin{equation}\label{eq:product}
+ d_{\theta+\psi}(\alpha\wedge\beta)
+ =d_\theta\alpha\wedge\beta+(-1)^p\alpha\wedge d_\psi\beta.
+\end{equation}
+In particular the square of a degree-two class with twist $\theta$ has twist $2\theta$. We never use an untwisted global self-intersection of an LCK class. Meng uses $d+\theta\wedge$; his formulas are applied with $-\theta$ in place of his parameter.
+
+\begin{lem}[Gauge change]\label{lem:gauge}
+For a real function $f$, multiplication by $e^f$ gives an isomorphism
+\[
+ (\cA^\bullet,d_\theta)\longrightarrow(\cA^\bullet,d_{\theta+df})
+\]
+and preserves type and positivity. Given finitely many points of $X$, one can choose $f$ so that $\theta+df$ vanishes in neighbourhoods of them.
+\end{lem}
+\begin{proof}
+Expanding the left side gives
+\[
+ d_{\theta+df}(e^f\alpha)
+ =e^f(d\alpha+df\wedge\alpha-\theta\wedge\alpha-df\wedge\alpha)
+ =e^fd_\theta\alpha.
+\]
+On disjoint coordinate balls write $\theta=dh_b$. Take a smooth cut-off $\chi_b$ supported in each ball and equal to one on a smaller ball, and set $f=-\sum_b\chi_bh_b$. Then $\theta+df=0$ on the smaller balls. Exactness is preserved by the displayed identity. On $Y$ the inverse gauge is multiplication by $e^{-\pi^*f}$. In the original gauge, an exceptional period is computed using the resulting positive local flat trivialization; it is not an unweighted integral for an arbitrary representative of the Lee class.
+\end{proof}
+
+\begin{prop}[Known parallel-form vanishing]\label{prop:vanishing}
+Let $M$ be compact and connected and let $\nu$ be a nonzero parallel real one-form for a Riemannian metric. Then $H^k_\nu(M)=0$ for every $k$.
+\end{prop}
+This is a known theorem; see \cite[Theorem 3.15]{LLMP}. We give a direct homotopy proof to avoid assumptions on regularity of a foliation or rank of a period group.
+\begin{proof}
+Set $V=\nu^\sharp$ and $c=\nu(V)=|\nu|^2>0$, which is constant. The complete flow $\Phi_t$ of $V$ consists of isometries and preserves $\nu$. Cartan's identity gives
+\begin{equation}\label{eq:cartan}
+ d_\nu\iota_V+\iota_Vd_\nu=\cL_V-c\,\id.
+\end{equation}
+Define on smooth forms
+\[
+ R\alpha=-\int_0^\infty e^{-ct}\Phi_t^*\alpha\,dt.
+\]
+Because isometries preserve the Levi--Civita connection, all covariant derivatives of $\Phi_t^*\alpha$ have uniformly bounded sup norms on $M$. The integral therefore converges in every $C^k$ norm, and can be differentiated. Integration of
+$\frac{d}{dt}(e^{-ct}\Phi_t^*\alpha)$ yields
+$(\cL_V-c)R\alpha=\alpha$. The operator $R$ commutes with $d_\nu$, since the flow preserves $\nu$, and with $\cL_V$, by its flow-integral definition. Multiplying \eqref{eq:cartan} on the left by $R$ shows that $K=R\iota_V$ satisfies $d_\nu K+Kd_\nu=\id$. Every closed form is exact.
+\end{proof}
+
+\begin{lem}[Localized blow-up decomposition]\label{lem:cohomology}
+For \eqref{eq:chain} in the flattened gauge,
+\begin{equation}\label{eq:split}
+ H^2_\Theta(Y)=\pi^*H^2_\theta(X)\oplus\bigoplus_{i=1}^r\R e_i.
+\end{equation}
+The classes $e_i$ are well-defined by metrics as specified before Theorem~\ref{thm:main}. Every class pulled back from $X$ restricts to zero on each $C_i$.
+\end{lem}
+\begin{proof}
+First consider one point blow-up $b:\widehat M\to M$. Take a coordinate ball $U$ at the point, on which the twist is zero, and use the cover $M=(M\setminus\{p\})\cup U$. The intersection retracts onto $S^3$, whose first and second real cohomology vanish. The ball is contractible. The degree-two part of the Mayer--Vietoris sequence therefore identifies $H^2_\theta(M)$ with $H^2_\theta(M\setminus\{p\})$. For the corresponding cover of $\widehat M$, the inverse image of the ball retracts onto $E\simeq\mP^1$, giving one extra real summand. Mayer--Vietoris applies to the twisted complex because restriction is a short exact sequence of complexes for an open cover, with surjectivity on forms obtained by a partition of unity. The local twist is zero in the overlap.
+
+The line bundle $\cO(E)$ has a canonical nonvanishing frame away from $E$. Choose a Hermitian metric for which that frame has norm one outside a smaller neighbourhood. Its curvature $\rho$ is supported where the twist is zero and is both $d$-closed and $d_\theta$-closed. Since $\cO(E)|_E=\cO_{\mP^1}(-1)$, we have $\int_E\rho=-1$. This generates the extra summand. Two such metrics have a smooth global log-ratio supported where the twist is zero; their curvatures differ by a $dd^c$ of that function, hence by a twisted-exact form.
+
+Iterating gives \eqref{eq:split}. Pulling back each previously chosen divisor metric represents the corresponding total transform. The support remains in the inverse image of the original balls. Finally, $\pi|_{C_i}$ is constant, so the pullback of every positive-degree form on $X$ vanishes on $C_i$.
+\end{proof}
+This elementary surface calculation is consistent with \cite[Theorem 1.1]{YZ} and \cite[Theorem 1.2]{Meng}; we do not claim a new blow-up formula.
+
+\section{Proximity and realization of exceptional classes}\label{sec:realization}
+\begin{lem}[Intersection identities]\label{lem:proximity}
+The total transforms satisfy $D_i\cdot D_j=-\delta_{ij}$ and
+\begin{equation}\label{eq:strict}
+ C_i=D_i-\sum_{j\succ i}D_j.
+\end{equation}
+Consequently, if $u=-\sum_i a_i e_i$, its exceptional periods are
+\begin{equation}\label{eq:period}
+ s_i=\int_{C_i}u=a_i-\sum_{j\succ i}a_j.
+\end{equation}
+Let $P_{ii}=1$, $P_{ij}=-1$ for $j\succ i$, and all other entries be zero. Then $s=Pa$, the prime exceptional intersection matrix is $Q=-PP^T$, and $P^{-1}$ has nonnegative integer entries.
+\end{lem}
+\begin{proof}
+For a point blow-up, the new exceptional curve has square $-1$, its intersection with a pullback divisor is zero, and intersections of pullback divisors are preserved. These statements follow respectively from the normal bundle $\cO_{\mP^1}(-1)$ and the projection formula. They give the diagonal total-transform intersection matrix by induction. At a step whose centre is on the strict transform of $E_i$, that curve is smooth and has multiplicity one there. Its pullback is its new strict transform plus the new exceptional curve. At any other step it acquires no such term. Pulling all of these identities to $Y$ gives \eqref{eq:strict}. Intersecting with $-\sum a_iD_i$ proves \eqref{eq:period}. These are intersections on the local exceptional neighbourhood, where the twisting line is trivial.
+
+In column notation $C=PD$, so $Q=P(-I)P^T$. Write $P=I-N$, where $N$ is strictly upper triangular with entries zero or one. Since $N^r=0$,
+\begin{equation}\label{eq:inverse}
+ P^{-1}=I+N+\cdots+N^{r-1}.
+\end{equation}
+In particular $P$ is invertible over $\Z$. Equivalently, given areas $s_i$, one recovers the coefficients in reverse order by $a_i=s_i+\sum_{j\succ i}a_j$.
+\end{proof}
+
+\begin{lem}[Localized relative curvature]\label{lem:curvature}
+Assume $Pa>0$. There exists a smooth real $d$-closed $(1,1)$-form $\alpha$, supported in the inverse image of the flattened balls, such that $[\alpha]_\Theta=-\sum_i a_i e_i$ and
+\begin{equation}\label{eq:vertical}
+ \alpha(v,Jv)>0\quad\text{for }0\ne v\in\ker(d\pi_y),\quad y\in Y.
+\end{equation}
+No positivity in all tangent directions is asserted for $\alpha$.
+\end{lem}
+\begin{proof}
+We give the argument for a cluster over one ball; disjoint clusters are treated separately and their forms are added.
+
+\emph{Algebraic local model.} Identify the ball with an open subset of $\C^2$. The first blow-up is the restriction of $\operatorname{Bl}_0\mathbb A^2_\C$. Inductively each subsequent centre over the origin is a complex point of the analytification of the previous algebraic blow-up. Such a point is a closed $\C$-point of that algebraic surface. Blowing it up and restricting to the ball recovers the next analytic blow-up. Thus the entire cluster is the restriction of a projective morphism $f:Z\to\mathbb A^2_\C$ obtained by the same finite sequence. This uses algebraicity only of this local model, not of $X$.
+
+\emph{Rational coefficients.} Suppose first that all $a_i$ are rational and choose $m>0$ such that $ma_i$ are integers. The algebraic line bundle
+\[
+ L=\cO_Z\left(-m\sum_i a_iD_i\right)
+\]
+has degree $m(Pa)_i>0$ on every irreducible curve in the exceptional fibre. Its other fibres are points. A proper scheme of dimension at most one has an ample line bundle precisely when its degree on every irreducible one-dimensional component is positive \cite[Tag 0B5Y]{Stacks}. This includes nonreduced fibres. Therefore $L$ is ample on every scheme-theoretic fibre of $f$. The morphism is proper and the base is Noetherian, so \cite[Theorem 4.7.1, p.~145]{EGA} makes $L$ relatively ample.
+
+After shrinking the base about the origin, a power $L^k$ is relatively very ample. Concretely one obtains a closed embedding $(f,F):Z\hookrightarrow W\times\mP^N$ over that neighbourhood with $L^k=F^*\cO(1)$. This is the relative embedding property of an ample line bundle; it also follows from the definition over the affine base and properness. Pulling back the Fubini--Study metric and taking its $k$-th root gives a metric on $L$ whose curvature is $k^{-1}F^*\omega_{\rm FS}$. If $v\ne0$ and $df(v)=0$, the injectivity of $d(f,F)$ implies $dF(v)\ne0$. Hence this curvature is positive on the \emph{whole} kernel of $df$. Testing only the tangent line of each component would not justify this assertion at a crossing.
+
+Restrict to a smaller ball. The divisor defining $L$ is supported in the exceptional fibre, so it supplies a nonvanishing holomorphic frame on the complement. Modify the metric there, using a smooth cut-off of its logarithm, to make this frame have norm one outside a slightly larger neighbourhood of the exceptional fibre. This modification is identically zero near the fibre and leaves its curvature unchanged there. It yields a metric smooth everywhere, with curvature zero near the boundary of the ball. Extend its curvature by zero to $Y$ and divide it by $m$; call the result $\alpha$.
+
+For clarity, the cut-off is applied only where the canonical frame is nonzero: if its squared norm is $b$, multiply the metric by $\exp(-(1-\chi)\log b)$, where $\chi=1$ near the fibre and $\chi=0$ near the boundary. The exponent extends smoothly by zero across a neighbourhood of the fibre. Comparing with the tensor product of the localized metrics defining $e_i$ shows that the difference in curvature is $dd^c$ of a function supported where $\Theta=0$. Thus the \emph{twisted} class is exactly $-\sum a_ie_i$, without any extra pullback component. Since $\Theta=0$ on the support, $d_\Theta\alpha=d\alpha=0$.
+
+\emph{Real coefficients.} The set $\{a:Pa>0\}$ is open in $\R^r$. Choose a sufficiently small box with rational vertices, entirely inside it, containing $a$ in its interior. The point $a$ is an exact convex combination of the finitely many vertices (use the product of the one-dimensional barycentric weights of the box). Construct the preceding curvature forms at these rational vertices and take the same convex combination. Their classes combine to the required class and their vertical positivity is preserved. This is a finite construction, not an unverified limiting argument. The proof is complete.
+\end{proof}
+
+\begin{lem}[Domination]\label{lem:domination}
+Let $A,B$ be smooth real $(1,1)$-forms on a compact complex manifold, with $B\geq0$. If $A$ is positive on every nonzero vector in $\ker B$, then $A+tB>0$ for all sufficiently large $t$.
+\end{lem}
+\begin{proof}
+Fix an auxiliary Hermitian norm. If the conclusion fails, take $t_j\to\infty$ and unit vectors $v_j$ based at $y_j$ with $A(v_j,Jv_j)+t_jB(v_j,Jv_j)\leq0$. The unit tangent bundle is compact; pass to a convergent subsequence with limit $(y,v)$. Boundedness of $A$ gives $B(v_j,Jv_j)\to0$, hence $v\in\ker B_y$. Here semipositivity ensures that a vector of zero quadratic value lies in the kernel. The assumption gives $A(v,Jv)>0$, so eventually $A(v_j,Jv_j)>0$, contradicting the displayed inequality and $B\geq0$.
+\end{proof}
+
+\section{Proofs of the main results}\label{sec:proofs}
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+If $[\Omega]_\Theta=u=-\sum_i a_ie_i$, restriction to $C_i$ takes twisted-exact forms to ordinary exact forms, since $\Theta|_{C_i}=0$. Thus \eqref{eq:period} gives $\int_{C_i}\Omega=(Pa)_i$. The complex orientation and strict positivity of $\Omega$ imply $(Pa)_i>0$. This proves necessity.
+
+Conversely, suppose $Pa>0$, and take $\alpha$ from Lemma~\ref{lem:curvature}. The form $B=\pi^*\omega_0$ is semipositive and its kernel is precisely $\ker d\pi$, because $\omega_0$ is positive. Lemma~\ref{lem:domination} gives
+\begin{equation}\label{eq:construction}
+ \Omega_t=t\pi^*\omega_0+\alpha>0\qquad(t\geq t_0).
+\end{equation}
+Both summands are $d_\Theta$-closed; hence $d\Omega_t=\Theta\wedge\Omega_t$. Moreover,
+\[
+ [\Omega_t]_\Theta=t\pi^*[d_\theta\eta]_\theta+[\alpha]_\Theta
+ =-\sum_i a_ie_i=u.
+\]
+This is the step where the exact positive background is indispensable in this proof. Increasing $t$ has not altered either the Lee form or the prescribed twisted class. Outside the exceptional neighbourhood the form is $t\pi^*\omega_0$. Finally, $P$ is invertible by \eqref{eq:inverse}, so each $s>0$ determines exactly one exceptional class. Necessity already shows that every positive representative of that class has the prescribed periods.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:full}]
+If $H^2_\theta(X)=0$, Lemma~\ref{lem:cohomology} identifies all of $H^2_\Theta(Y)$ with $V_E$. Theorem~\ref{thm:main} then applies to every class. The transformation $a\mapsto Pa$ identifies the cone with $\R_{>0}^r$ and its closure with $\R_{\geq0}^r$. Since $P$ is integral and invertible, the stated assertions about the cone follow.
+
+For the Vaisman application, the nonzero Lee form $\nu$ is parallel by definition. Proposition~\ref{prop:vanishing} gives $H^2_\nu(X)=0$, and in particular the Vaisman fundamental form is $d_\nu$-exact. Apply Lemma~\ref{lem:gauge} to obtain the exact LCK form $\omega_0$ and the flattened $\theta$. The gauge isomorphism gives $H^2_\theta(X)=0$. No quotient by a canonical foliation, quasi-regular approximation, or mapping-torus theorem is used.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~\ref{cor:volume}]
+Use \eqref{eq:construction} with one fixed $\alpha$. The class and exceptional periods were already computed. Expanding the square as differential forms gives
+\begin{equation}\label{eq:volume}
+ \frac12\int_Y\Omega_t^2
+ =\frac{t^2}{2}\int_Y\pi^*(\omega_0^2)
+ +t\int_Y\pi^*\omega_0\wedge\alpha+\frac12\int_Y\alpha^2.
+\end{equation}
+The modification is an orientation-preserving diffeomorphism off sets of real measure zero, so the first integral equals $\int_X\omega_0^2>0$. On each flattened ball, $\omega_0$ is closed and hence exact. Since $\alpha$ is closed and supported in the inverse images of these balls, Stokes gives $\int_Y\pi^*\omega_0\wedge\alpha=0$. As an ordinary closed form, the localized correction $\alpha$ represents $-\sum_i a_ic_1(\cO_Y(D_i))$. The local intersection identities give $\int_Y\alpha^2=-\sum_i a_i^2$. Substituting proves the exact formula \eqref{eq:volasym}. Ordinary intersections have been used only for the closed localized correction, not for $\Omega_t$. These are integrals of actual forms, not a pairing on $H^2_\Theta(Y)$. Formula~\eqref{eq:product} explains why ordinary K\"ahler volume invariance cannot be imported into this argument.
+\end{proof}
+
+\begin{prop}[Rational curves and loss of exactness; R6]\label{prop:rational}
+A complex manifold carrying a twisted-exact LCK form has no nonconstant holomorphic map from $\mP^1$. Consequently the rational curves on $Y$ in Theorem~\ref{thm:main} are exactly the exceptional components $C_i$, and $Y$ admits no twisted-exact LCK form for \emph{any} closed Lee form. In particular, $Y$ admits no Vaisman metric and no LCK metric with an automorphic K\"ahler potential.
+\end{prop}
+\begin{proof}
+For a holomorphic map $g:\mP^1\to X$, the closed form $g^*\theta$ equals $dh$ because $H^1(\mP^1,\R)=0$. By \eqref{eq:exact},
+\[
+ e^{-h}g^*\omega_0=d(e^{-h}g^*\eta).
+\]
+Its integral is zero by Stokes. A nonconstant holomorphic map has nonzero derivative on a nonempty open set, so the left side is semipositive everywhere and strictly positive there, giving a positive integral. This is a contradiction. A rational curve in $Y$, composed with $\pi$ after normalization, must therefore map to a point of $X$, and hence is one of the exceptional components. Each $C_i\simeq\mP^1$ also prevents any twisted-exact LCK structure on $Y$ by the same argument.
+
+Vaisman forms are twisted-exact by Proposition~\ref{prop:vanishing}. To check the assertion about potentials directly, let $p:\widetilde Y\to Y$ be the universal covering, write $p^*\vartheta=dh$, and suppose $e^{-h}p^*\omega=dd^c\varphi$ with an automorphic potential $\varphi$. If $\gamma^*h=h+c_\gamma$, automorphy says $\gamma^*\varphi=e^{-c_\gamma}\varphi$. Therefore $e^h d^c\varphi$ is deck-invariant and descends to a one-form $\zeta$. Explicitly,
+\[
+ p^*(d_\vartheta\zeta)=d_{dh}(e^h d^c\varphi)
+ =e^hdd^c\varphi=p^*\omega.
+\]
+Pullback by a surjective covering is injective on forms, so $d_\vartheta\zeta=\omega$. This contradicts the rational curve obstruction. This also checks the equivariance needed for the descent. These obstructions are elementary consequences of known exactness, not separate novelty claims.
+\end{proof}
+
+The dependence of the proof is summarized by
+\[
+\begin{gathered}
+\text{Proximity identities + fibrewise ampleness (known)}\\
+\Downarrow\\
+\text{Localized relative curvature (Lemma~\ref{lem:curvature})}\\
++\ \text{exact positive background + domination}\\
+\Downarrow\\
+\text{R1}\ \Longrightarrow\ \text{R3},\\[2pt]
+\text{R1 + parallel-form vanishing + blow-up decomposition}
+\ \Longrightarrow\ \text{R2}.
+\end{gathered}
+\]
+
+\section{Examples, counterexamples and sharpness}\label{sec:examples}
+\begin{eg}[Nonempty family: scalar Hopf surfaces]\label{ex:hopf}
+Fix $0<q<1$ and let $X=(\C^2\setminus\{0\})/\langle z\mapsto qz\rangle$. With $\varphi=|z_1|^2+|z_2|^2$, set
+\begin{equation}\label{eq:hopf}
+ \omega_H=\varphi^{-1}dd^c\varphi,\qquad
+ \nu=-d\log\varphi,\qquad \eta_H=\varphi^{-1}d^c\varphi.
+\end{equation}
+All three descend because $\varphi$ and its derivatives scale by $q^2$. The form $dd^c\varphi$ is positive. Expanding the derivative gives
+\[
+ d\eta_H=-\varphi^{-2}d\varphi\wedge d^c\varphi
+              +\varphi^{-1}dd^c\varphi,\qquad
+ -\nu\wedge\eta_H=\varphi^{-2}d\varphi\wedge d^c\varphi,
+\]
+so $d_\nu\eta_H=\omega_H$. In polar coordinates $z=e^t u$, $u\in S^3$, its Riemannian metric is a positive constant multiple of $dt^2+g_{S^3}$, and $\nu=-2dt$ is parallel. The quotient is compact, with a fundamental domain $q\leq|z|\leq1$. This explicitly verifies all base hypotheses. Any finite cluster of ordinary or infinitely near points can be blown up, and Corollary~\ref{cor:full} applies. No classification theorem for Hopf surfaces is needed.
+\end{eg}
+
+\begin{eg}[Distinct points]\label{ex:distinct}
+If the $r$ points lie at distinct positions in $X$, no proximity relations occur, $P=I$, and the cone is $a_i>0$. The areas are exactly $a_i$. Arbitrarily large values are allowed because the background in \eqref{eq:construction} is allowed to increase. This simplest case is close to a direct consequence of the classical point blow-up construction; it is not the principal novelty candidate.
+\end{eg}
+
+\begin{eg}[Two infinitely near points; R4]\label{ex:two}
+Blow up a point and then a point of its exceptional curve. The identities are $C_1=D_1-D_2$, $C_2=D_2$, and
+\begin{equation}\label{eq:two}
+ P=\begin{pmatrix}1&-1\\0&1\end{pmatrix},\qquad
+ s=(a_1-a_2,a_2),\qquad a_1>a_2>0.
+\end{equation}
+The proposal that positive total-transform coefficients alone suffice is false: $(a_1,a_2)=(1,2)$ gives $\int_{C_1}u=-1$. Positivity cannot hold. In contrast, $(3,1)$ is realized and gives areas $(2,1)$. This is an exact counterexample to the proposed criterion, not a numerical experiment.
+\end{eg}
+
+\begin{eg}[A satellite point]\label{ex:satellite}
+After the preceding two steps, blow up the intersection of the strict first exceptional curve and the second exceptional curve. Then $2\succ1$, $3\succ1$, and $3\succ2$. Hence
+\begin{equation}\label{eq:satellite}
+ P=\begin{pmatrix}1&-1&-1\\0&1&-1\\0&0&1\end{pmatrix},\quad
+ P^{-1}=\begin{pmatrix}1&1&2\\0&1&1\\0&0&1\end{pmatrix},\quad
+ Q=\begin{pmatrix}-3&0&1\\0&-2&1\\1&1&-1\end{pmatrix}.
+\end{equation}
+The inequalities are $a_1>a_2+a_3$, $a_2>a_3>0$. The vector $(4,2,1)$ realizes areas $(1,1,1)$. Note that $D_1=C_1+C_2+2C_3$; forgetting the multiplicity two would change the answer. A symbolic verification script checks these matrices using exact rational arithmetic, but the general proof is Lemma~\ref{lem:proximity}.
+\end{eg}
+
+\begin{eg}[The exact background cannot simply be omitted; R5]\label{ex:kahler}
+Take $X=\mP^2$ with $\theta=0$ and blow up one point. The class $u=-a[E]$, $a>0$, has positive degree $a$ on the exceptional curve. Yet $u^2=-a^2<0$, whereas a K\"ahler form has positive square. Thus this exceptional-slice criterion is false for arbitrary LCK structures if globally conformally K\"ahler structures are included. This example does not settle a version restricted to non-exact Lee forms and non-exact fundamental forms.
+
+In fact, on a compact complex manifold a positive form cannot be both globally conformally K\"ahler and twisted-exact. If $\theta=dh$ and $\omega=d_\theta\eta$, the positive closed form $e^{-h}\omega=d(e^{-h}\eta)$ is exact; the integral of its top power is zero by Stokes and positive by positivity. Thus \eqref{eq:exact} automatically has a non-exact Lee class.
+\end{eg}
+
+\begin{prop}[A fixed exterior metric imposes a bound]\label{prop:exterior}
+Let $U$ be a coordinate ball with smooth boundary and a K\"ahler form $\kappa$ defined near its closure. On $\widehat U=\operatorname{Bl}_pU$, let $\Omega$ be a K\"ahler form equal to $b^*\kappa$ near the boundary, and write $a=\int_E\Omega>0$. Then
+\begin{equation}\label{eq:exterior}
+ \int_{\widehat U}\Omega^2=\int_U\kappa^2-a^2>0.
+\end{equation}
+In particular $a<(\int_U\kappa^2)^{1/2}$.
+\end{prop}
+\begin{proof}
+The difference $\beta=\Omega-b^*\kappa$ is closed with compact support in $\widehat U$. Its compactly supported class is $-a$ times the exceptional divisor class: $H_c^2(\widehat U)\to H^2(\widehat U)$ is an isomorphism, as the boundary is $S^3$ and its first and second cohomology vanish. The self-intersection of that generator is $-1$, so $\int\beta^2=-a^2$. Since $\kappa=d\lambda$ on the ball and $\beta$ is closed with compact support, Stokes gives $\int b^*\kappa\wedge\beta=0$. Expanding the square proves \eqref{eq:exterior}. This is a local untwisted calculation on a ball, where that intersection argument is legitimate.
+\end{proof}
+This explains why Theorem~\ref{thm:main} must not be read as a construction with a prescribed unchanged exterior metric. Zero exceptional area also cannot occur for a smooth positive representative. The boundary in Corollary~\ref{cor:full} is a boundary of cohomology classes, not a proven smooth compactification of metrics.
+
+\section{Limitations and explicit remaining tasks}\label{sec:limits}
+\subsection{A non-exact background: a concrete missing problem}
+Let $(X,\omega,\theta)$ be a compact LCK surface, flatten $\theta$ near $p$, and put $c=[\omega]_\theta$. For the one-point blow-up define
+\begin{equation}\label{eq:epsilon}
+ I_\theta(c,p)=\{a>0:\pi^*c-ae\in\cK_{\pi^*\theta}(\operatorname{Bl}_pX)\}.
+\end{equation}
+The local construction for one exceptional curve gives an interval of sufficiently small positive values: $\pi^*\omega+\varepsilon\alpha$ is positive for small $\varepsilon>0$, with $[\alpha]=-e$. Convex combinations of positive forms show that $I_\theta(c,p)$ is an interval; openness of positivity and variation by a localized representative of $e$ show that it is open. Hence
+\[
+ I_\theta(c,p)=(0,\varepsilon_\theta(c,p)),\qquad
+ 0<\varepsilon_\theta(c,p)\leq+\infty.
+\]
+Theorem~\ref{thm:main} proves $\varepsilon_\theta(0,p)=+\infty$ under \eqref{eq:exact}. More generally, if an exact positive background with the same Lee form exists, adding a large multiple of it proves the same assertion for every $c\in\cK_\theta(X)$.
+
+The outstanding problem here is to determine this endpoint when no exact positive background is available. A precise test statement is: if $[\theta]\ne0$ and no compact irreducible curve through $p$ has exact Lee form after pullback to its normalization, must $\varepsilon_\theta(c,p)=+\infty$? We neither prove nor disprove this statement. Its resolution would require a class-preserving positivity construction without the exact summand in \eqref{eq:construction}, or a further obstruction. It is an unproved question of this draft, not a claim that the literature has established it as an open problem.
+
+\subsection{Boundary representatives and higher dimension}
+For $Pa\geq0$, Corollary~\ref{cor:full} proves only membership in the closure of the cone. We have not proved that every such class has a \emph{smooth semipositive} representative. One sufficient missing input would be a localized closed representative $\alpha$ for which $\alpha+t\pi^*\omega_0\geq0$ for some finite $t$. Merely knowing nonnegative degrees on exceptional curves does not supply the curvature and mixed-direction control in that assertion. No such boundary lemma is used in the positive case.
+
+The domination argument itself works in every complex dimension. For an iterated point modification in dimension at least three, the concrete input needed is a compactly supported real closed $(1,1)$-representative of a proposed exceptional class which is positive on every $\ker d\pi$. A numerical criterion using only the curve inequalities above has not been established here; the exceptional fibres now have higher dimension, so the dimension-one ampleness criterion used in Lemma~\ref{lem:curvature} no longer applies. For any class for which that input is supplied, the same proof gives the conditional extension. This is a reduction, not a higher-dimensional numerical classification.
+
+\subsection{Status of the research claim}
+R1 has a complete proof in this manuscript using the explicitly cited established ampleness results. R2 and R3 are consequences, and R4--R5 are verified failures of broader proposed statements. R6 records a known mechanism which prevents confusing the resulting manifolds with Vaisman manifolds or manifolds with potential. The external ampleness theorem, the nonreduced fibre issue, the full vertical tangent kernel, the gauge convention, and the total-transform multiplicities are all used explicitly.
+
+The novelty audit is necessarily limited. We checked the nearby blow-up and cohomology papers, later work on modifications and LCK cones, and targeted terminology variants. We did not audit every non-English source, thesis, unpublished note or full citation network. There is no independent verification of either mathematical correctness or priority. A specialist may identify R1 as a familiar corollary, in which case this text should be retained as an explicit proof and calculation note, with its novelty classification downgraded.
+
+The later monograph \cite[Remark 18.29 and \S\S37.3--37.4]{OVBook} also explicitly records the non-exactness obstruction on blow-ups and the classical curvature construction. These are part of the known background for this draft. We found no complete proximity-cone statement in those checked sections; this limited check is not a claim about every part of the monograph.
+
+\clearpage
+\bibliographystyle{alpha}
+\begin{thebibliography}{OVV13}
+\bibitem[EGA61]{EGA}
+A.~Grothendieck, \emph{\'El\'ements de g\'eom\'etrie alg\'ebrique III: \'Etude cohomologique des faisceaux coh\'erents, Premi\`ere partie}, Publ. Math. IH\'ES \textbf{11} (1961), 5--167. Theorem 4.7.1, p.~145.
+\href{https://www.numdam.org/item/PMIHES_1961__11__5_0/}{Numdam source}.
+
+\bibitem[LLMP99]{LLMP}
+M.~de Le\'on, B.~L\'opez, J.~C.~Marrero and E.~Padr\'on,
+\emph{Lichnerowicz--Jacobi cohomology and homology of Jacobi manifolds: modular class and duality}, preprint (1999),
+\href{https://arxiv.org/abs/math/9910079}{arXiv:math/9910079v1}, Theorem 3.15, pp.~26--27. This citation refers specifically to the checked preprint.
+
+\bibitem[Men22]{Meng}
+L.~Meng, \emph{Morse--Novikov cohomology for blow-ups of complex manifolds}, Pacific J. Math. \textbf{320} (2022), no.~2, 365--390.
+\href{https://arxiv.org/abs/1806.06622}{arXiv:1806.06622v6} (16 February 2023), Theorem 1.2. The theorem numbering cited here is that of v6.
+
+\bibitem[OV24a]{OVLee}
+L.~Ornea and M.~Verbitsky, \emph{Lee classes on LCK manifolds with potential}, Tohoku Math. J. (2) \textbf{76} (2024), no.~1, 105--125.
+\href{https://arxiv.org/abs/2112.03363}{arXiv:2112.03363v2}, \S8. Used for comparison of the objects studied, not as an input to the cone proof.
+
+\bibitem[OV24m]{OVBook}
+L.~Ornea and M.~Verbitsky, \emph{Principles of Locally Conformally K\"ahler Geometry}, Progress in Mathematics \textbf{354}, Birkh\"auser, 2024.
+\href{https://arxiv.org/abs/2208.07188}{arXiv:2208.07188v6} (7 December 2024), Remark 18.29 and \S\S37.3--37.4, especially Theorem 37.16 and Lemma 37.19. Numbering refers to v6.
+
+\bibitem[OV25]{OVBalanced}
+L.~Ornea and M.~Verbitsky, \emph{Balanced metrics and Gauduchon cone of locally conformally K\"ahler manifolds},
+Int. Math. Res. Not. IMRN (2025), no.~3, rnaf014.
+\href{https://arxiv.org/abs/2407.04623}{arXiv:2407.04623v2} (7 August 2024), \S\S3.1, 4;
+\href{https://doi.org/10.1093/imrn/rnaf014}{doi:10.1093/imrn/rnaf014}. Used for comparison; no theorem of this paper is an input to R1.
+
+\bibitem[OVV13]{OVV}
+L.~Ornea, M.~Verbitsky and V.~Vuletescu, \emph{Blow-ups of locally conformally K\"ahler manifolds}, Int. Math. Res. Not. IMRN (2013), no.~12, 2809--2821.
+\href{https://arxiv.org/abs/1108.4885}{arXiv:1108.4885v2}, Theorem 2.8 and Lemma 3.4, especially pp.~11--12 of the preprint. All numbered citations here refer to v2.
+
+\bibitem[Sta26]{Stacks}
+The Stacks Project Authors, \emph{The Stacks Project},
+\href{https://stacks.math.columbia.edu/tag/0B5Y}{Tag 0B5Y, Lemma 33.44.15}; see also
+\href{https://stacks.math.columbia.edu/tag/01VG}{Tag 01VG, relatively ample sheaves}. Accessed 7 September 2026.
+
+\bibitem[YZ15]{YZ}
+X.~Yang and G.~Zhao, \emph{A note on the Morse--Novikov cohomology of blow-ups of locally conformal K\"ahler manifolds}, Bull. Aust. Math. Soc. \textbf{91} (2015), 155--166, Theorem 1.1 (Theorem 3.1).
+\href{https://doi.org/10.1017/S0004972714000859}{doi:10.1017/S0004972714000859}.
+\end{thebibliography}
+
+% END PRESERVED EN BODY
+\clearpage
+\endgroup
+% Requested language boundary; preceding clearpage flushes pending floats.
+\newpage
+\begingroup
+\MergedBegin{ja}
+% XeLaTeX Japanese typesetting: installed CJK font and native line breaking.
+
+\renewcommand{\rmdefault}{\MergedJapaneseRomanFamily}
+\normalfont
+\ifXeTeX
+  \XeTeXlinebreaklocale "ja"
+  \XeTeXlinebreakskip=0pt plus 1pt
+\else
+  \ltjsetparameter{autospacing=true,autoxspacing=true}
+\fi
+\newtheoremstyle{japaneseplain}{6pt plus 2pt minus 2pt}{6pt plus 2pt minus 2pt}
+  {\normalfont}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{japaneseplain}
+
+\newtheorem{MergedJAthm}[thm]{定理}
+\newtheorem{MergedJAtheo}[thm]{定理}
+\newtheorem{MergedJAcor}[thm]{系}
+\newtheorem{MergedJAprop}[thm]{命題}
+\newtheorem{MergedJAconj}[thm]{Conjecture}
+\newtheorem*{MergedJAmainthm}{定理}
+
+\newtheorem{MergedJAdeflem}[thm]{Definition-Lemma}
+\newtheorem{MergedJAlem}[thm]{補題}
+
+\theoremstyle{definition}
+\newtheorem{MergedJAdefn}[thm]{定義}
+\newtheorem{MergedJApropdefn}[thm]{Proposition-Definition}
+\newtheorem{MergedJAlemdefn}[thm]{Lemma-Definition}
+\newtheorem{MergedJAthmdefn}[thm]{Theorem-Definition}
+\newtheorem{MergedJAeg}[thm]{例}
+\newtheorem{MergedJAex}[thm]{例}
+\newtheorem{MergedJAexa}[thm]{例}
+\newtheorem{MergedJAques}[thm]{問い}
+\newtheorem{MergedJAremin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{MergedJArem}[thm]{注意}
+\newtheorem{MergedJAsetup}[thm]{Setup}
+\newtheorem{MergedJAobs}[thm]{Observation}
+\newtheorem{MergedJAnotation}[thm]{Notation}
+\newtheorem{MergedJAclaim}[thm]{Claim}
+\newtheorem{MergedJAassup}[thm]{Assumption}
+\newtheorem{MergedJAcln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{MergedJAcl}[cl]{Claim}
+\newtheorem{MergedJAstep}[step]{Step}
+\newtheorem{MergedJAcase}[case]{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{MergedJAclproof}{Proof of Claim}
+\newtheorem*{MergedJAack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+
+\expandafter\let\expandafter\thm\csname MergedJAthm\endcsname
+\expandafter\let\expandafter\endthm\csname endMergedJAthm\endcsname
+\expandafter\let\expandafter\theo\csname MergedJAtheo\endcsname
+\expandafter\let\expandafter\endtheo\csname endMergedJAtheo\endcsname
+\expandafter\let\expandafter\cor\csname MergedJAcor\endcsname
+\expandafter\let\expandafter\endcor\csname endMergedJAcor\endcsname
+\expandafter\let\expandafter\prop\csname MergedJAprop\endcsname
+\expandafter\let\expandafter\endprop\csname endMergedJAprop\endcsname
+\expandafter\let\expandafter\conj\csname MergedJAconj\endcsname
+\expandafter\let\expandafter\endconj\csname endMergedJAconj\endcsname
+\expandafter\let\expandafter\mainthm\csname MergedJAmainthm\endcsname
+\expandafter\let\expandafter\endmainthm\csname endMergedJAmainthm\endcsname
+\expandafter\let\expandafter\deflem\csname MergedJAdeflem\endcsname
+\expandafter\let\expandafter\enddeflem\csname endMergedJAdeflem\endcsname
+\expandafter\let\expandafter\lem\csname MergedJAlem\endcsname
+\expandafter\let\expandafter\endlem\csname endMergedJAlem\endcsname
+\expandafter\let\expandafter\defn\csname MergedJAdefn\endcsname
+\expandafter\let\expandafter\enddefn\csname endMergedJAdefn\endcsname
+\expandafter\let\expandafter\propdefn\csname MergedJApropdefn\endcsname
+\expandafter\let\expandafter\endpropdefn\csname endMergedJApropdefn\endcsname
+\expandafter\let\expandafter\lemdefn\csname MergedJAlemdefn\endcsname
+\expandafter\let\expandafter\endlemdefn\csname endMergedJAlemdefn\endcsname
+\expandafter\let\expandafter\thmdefn\csname MergedJAthmdefn\endcsname
+\expandafter\let\expandafter\endthmdefn\csname endMergedJAthmdefn\endcsname
+\expandafter\let\expandafter\eg\csname MergedJAeg\endcsname
+\expandafter\let\expandafter\endeg\csname endMergedJAeg\endcsname
+\expandafter\let\expandafter\ex\csname MergedJAex\endcsname
+\expandafter\let\expandafter\endex\csname endMergedJAex\endcsname
+\expandafter\let\expandafter\exa\csname MergedJAexa\endcsname
+\expandafter\let\expandafter\endexa\csname endMergedJAexa\endcsname
+\expandafter\let\expandafter\ques\csname MergedJAques\endcsname
+\expandafter\let\expandafter\endques\csname endMergedJAques\endcsname
+\expandafter\let\expandafter\remin\csname MergedJAremin\endcsname
+\expandafter\let\expandafter\endremin\csname endMergedJAremin\endcsname
+\expandafter\let\expandafter\rem\csname MergedJArem\endcsname
+\expandafter\let\expandafter\endrem\csname endMergedJArem\endcsname
+\expandafter\let\expandafter\setup\csname MergedJAsetup\endcsname
+\expandafter\let\expandafter\endsetup\csname endMergedJAsetup\endcsname
+\expandafter\let\expandafter\obs\csname MergedJAobs\endcsname
+\expandafter\let\expandafter\endobs\csname endMergedJAobs\endcsname
+\expandafter\let\expandafter\notation\csname MergedJAnotation\endcsname
+\expandafter\let\expandafter\endnotation\csname endMergedJAnotation\endcsname
+\expandafter\let\expandafter\claim\csname MergedJAclaim\endcsname
+\expandafter\let\expandafter\endclaim\csname endMergedJAclaim\endcsname
+\expandafter\let\expandafter\assup\csname MergedJAassup\endcsname
+\expandafter\let\expandafter\endassup\csname endMergedJAassup\endcsname
+\expandafter\let\expandafter\cln\csname MergedJAcln\endcsname
+\expandafter\let\expandafter\endcln\csname endMergedJAcln\endcsname
+\expandafter\let\expandafter\cl\csname MergedJAcl\endcsname
+\expandafter\let\expandafter\endcl\csname endMergedJAcl\endcsname
+\expandafter\let\expandafter\step\csname MergedJAstep\endcsname
+\expandafter\let\expandafter\endstep\csname endMergedJAstep\endcsname
+\expandafter\let\expandafter\case\csname MergedJAcase\endcsname
+\expandafter\let\expandafter\endcase\csname endMergedJAcase\endcsname
+\expandafter\let\expandafter\clproof\csname MergedJAclproof\endcsname
+\expandafter\let\expandafter\endclproof\csname endMergedJAclproof\endcsname
+\expandafter\let\expandafter\ack\csname MergedJAack\endcsname
+\expandafter\let\expandafter\endack\csname endMergedJAack\endcsname
+\renewcommand{\proofname}{証明}
+\renewcommand{\contentsname}{目次}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\abstractname}{要旨}
+
+\title[点blow-upとLCK正値錐]{Exact LCK曲面の点blow-upと\\固定Lee形式の正値錐}
+\author{chatGPT 6 Astra}
+
+
+
+
+
+
+
+\date{7 September 2026, version 0.1 (research draft)}
+\renewcommand{\subjclassname}{\textup{2020} Mathematics Subject Classification}
+\subjclass[2020]{Primary 53C55; Secondary 32J15, 32Q55}
+\keywords{locally conformally K\"ahler, Vaisman surface, point blow-up,
+Morse--Novikov cohomology, relative ampleness, proximity inequalities}
+
+\pdfbookmark[0]{日本語版}{japanese-version}
+% BEGIN PRESERVED JA BODY
+\begin{abstract}
+twisted-exactな局所共形K\"ahler形式を持つコンパクト複素曲面に対し，有限回の点blow-up後の，Lee形式を固定した正値錐の例外部分を決定する．例外因子の全変換を基底とすると，類$-\sum_i a_i e_i$が正値代表を持つための必要十分条件は，各$i$について$a_i>\sum_{j\succ i}a_j$となることである．ここで$j\succ i$は近接関係を表す．元の第2 Morse--Novikovコホモロジーが消滅するとき，これは正値錐全体を記述し，特にコンパクトVaisman曲面のLee類に適用できる．既約例外曲線の面積には任意の正の値を指定でき，その類とLee形式を固定したまま全体積を非有界にできる．証明は古典的な相対ample性，局所化した曲率，exactな正値背景形式を組み合わせる．これらの手法が既知であることを明記する．錐全体の記述を限定的な新規候補として提示するが，優先性の確定は主張しない．一般のnon-exactな背景と，高次元の数値的判定は本稿では解決しない．
+\end{abstract}
+\maketitle
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+\tableofcontents
+\clearpage
+
+\section{序論と正確な適用範囲}\label{sec:intro}
+点blow-up上にLCK計量が存在することは古典的である．これに対し，Lee形式を固定したまま，どのコホモロジー類を正値形式で表せるかを問うことができる．本稿では，無限近接点を中心に含めた有限回の点blow-upに対し，第2コホモロジーでこの問題を考える．全変換を基底に用いると，例外曲線の面積は近接関係に由来する不等式に従うため，中心の配置の区別は本質的である．
+
+点blow-upによる存在結果は\cite[\S1.1]{OVV}でTricerriとVuletescuに帰されている．本稿に特に近いのは\cite[Theorem 2.8 and Lemma 3.4]{OVV}の構成である．またYang--Zhao \cite[Theorem 1.1]{YZ}とMeng \cite[Theorem 1.2]{Meng}は，対応するtwisted cohomologyを計算した．前者の幾何学的結果は計量の存在を，後者の計算は類の入るベクトル空間を与える．本稿ではその空間内の正値領域全体を調べる．これは\cite[\S8]{OVLee}が扱う$H^1$内のLee錐でも，\cite[\S4]{OVBalanced}が扱うGauduchon錐やBott--Chern錐でもない．
+
+主張の設定を先に述べる．$X$をコンパクト連結な滑らかな複素曲面とする．実閉1形式$\theta$と正の実$(1,1)$形式$\omega_0$に対し，滑らかな実1形式$\eta$が存在して
+\begin{equation}\label{eq:exact}
+ d\omega_0=\theta\wedge\omega_0,\qquad
+ \omega_0=d_\theta\eta,\qquad d_\theta=d-\theta\wedge
+\end{equation}
+と仮定する．したがって本稿の``exact''は常にtwisted-exactを指し，Lee形式が完全形式であるという意味ではない．点blow-upの列
+\begin{equation}\label{eq:chain}
+ Y=X_r\xrightarrow{\pi_r}X_{r-1}\longrightarrow\cdots
+ \xrightarrow{\pi_1}X_0=X,\qquad r\geq1,
+\end{equation}
+を取り，その合成を$\pi$とする．第$i$段階で生じた例外曲線を$E_i\subset X_i$，その$Y$上の全変換を$D_i$，最終的な狭義変換を$C_i$と書く．$j>i$かつ$\pi_j$の中心が$X_{j-1}$上の$E_i$の狭義変換上にあるとき，$j\succ i$と書く．
+
+最初に共形ゲージを変更し，全中心の$X$内の像を囲む互いに素な座標球上で$\theta=0$とする．補題\ref{lem:gauge}でこの操作と元の形式への戻し方を説明する．$\Theta=\pi^*\theta$とおく．$\cO_Y(D_i)$に，これらの球の逆像の外で標準的な枠に関して平坦な計量を入れ，その曲率が表す類を$e_i\in H^2_\Theta(Y)$とする．これは局所化したtwistedな因子類であり，補題\ref{lem:cohomology}で定義を確認する．
+\begin{equation}\label{eq:cone}
+ \begin{split}
+ \cK_\Theta(Y)&=\{[\Omega]_\Theta:\Omega\text{は実}(1,1)\text{形式},
+ \ \Omega>0,\ d_\Theta\Omega=0\},\\
+ V_E&=\bigoplus_{i=1}^r\R e_i
+ \end{split}
+\end{equation}
+とおく．
+
+\begin{thm}[例外部分の正値錐；R1]\label{thm:main}
+仮定\eqref{eq:exact}--\eqref{eq:chain}の下で，
+\begin{equation}\label{eq:maincone}
+ \cK_\Theta(Y)\cap V_E
+ =\left\{-\sum_{i=1}^r a_i e_i:
+ a_i-\sum_{j\succ i}a_j>0\ \text{がすべての }i\text{で成立}\right\}
+\end{equation}
+である．より正確には，任意の$s=(s_1,\ldots,s_r)\in\R_{>0}^r$に対し，$C_i$上の周期が$s_i$となる類$u\in V_E$が一意に存在し，Lee形式が正確に$\Theta$であるLCK代表を持つ．その類のすべての正値代表について$\int_{C_i}\Omega=s_i$となる．
+\end{thm}
+
+\begin{cor}[正値錐全体；R2]\label{cor:full}\leavevmode\par
+さらに$H^2_\theta(X)=0$ならば，式\eqref{eq:maincone}は$\cK_\Theta(Y)$全体を記述する．また$H^2_\Theta(Y)\simeq\R^r$である．
+
+特に，$X$が非零Lee形式$\nu$を持つコンパクトVaisman曲面で，$\theta$が$[\nu]$の代表を中心の近くで零にしたものならば適用できる．
+
+局所化した例外座標に関して，錐は開な単体的有理多面錐であり，その閉包はすべての狭義不等号を広義不等号に置き換えて得られる．
+\end{cor}
+
+ここで有理構造は，選んだ例外部分の自明化によるものである．一般の実係数局所系に標準的な整数格子があるとは主張していない．複素構造とLee形式を固定し，上述のゲージ規約を採用している．$Y$がVaismanであるとも，$Y$のすべてのLee類を分類したとも述べていない．
+
+\begin{cor}[体積の非有界性；R3]\label{cor:volume}
+式\eqref{eq:maincone}内の各類$u$について，Lee形式が$\Theta$，類が$u$で，すべての例外曲線の面積が一定のLCK形式$\Omega_t$を選び，
+\begin{equation}\label{eq:volasym}
+ \frac12\int_Y\Omega_t^2
+ =\frac{t^2}{2}\int_X\omega_0^2-\frac12\sum_i a_i^2\longrightarrow+\infty
+\end{equation}
+とできる．ここで$u=-\sum_i a_ie_i$である．例外集合の外で一つの固定計量に一致することは要求しない．
+\end{cor}
+
+\subsection{新規候補の部分と既知の部分}
+曲率に引き戻し形式を加える手法自体は\cite[Lemma 3.4]{OVV}にあり，コホモロジーの分解も既知である．本稿で付加する議論は，satellite pointを含む任意の狭義近接不等式から，$d\pi$の\emph{核全体}で正となる曲率代表を作り，\eqref{eq:exact}を用いて類を変えずに背景形式を大きくすることである．相対ample性により，例外曲線の交点でも必要な接方向を制御する．相対ample性や近接交点理論自体を新しいものとして扱わない．
+
+本草稿で確認した文献には，\eqref{eq:maincone}を明示したstatementを見出さなかった．これは新規候補という評価のみを支え，優先性を確定しない．専門家に知られた未記録の帰結である可能性がある．特に，大きな分類定理と呼ぶ根拠はない．検索語，採用しなかった候補，出版情報と版の確認は\texttt{research\_audit\_ja.md}に記録した．
+
+\begin{center}\small
+\begin{tabular}{@{}p{1cm}p{8.4cm}p{1cm}p{1.5cm}@{}}
+\toprule
+ID & 主張 & 証明 & 新規性\\\midrule
+R1 & 例外部分の錐，定理\ref{thm:main} & A & d\\
+R2 & 錐全体，系\ref{cor:full} & A & b$^*$\\
+R3 & 体積非有界，系\ref{cor:volume} & A & b\\
+R4 & 全変換係数の正値性だけでは不十分，例\ref{ex:two} & D & b\\
+R5 & exactな背景を除くと偽，例\ref{ex:kahler} & D & b\\
+R6 & $Y$上にtwisted-exact LCK計量は存在しない，命題\ref{prop:rational} & A & b\\
+\bottomrule
+\end{tabular}
+\end{center}
+Aは明記された仮定の下での証明完結，Dは提案した拡張が検証済み反例によって否定されたことを意味する．新規性bは直接の帰結，dは新しい結果の候補である．$^*$は，R2がR1と既知の消滅定理の直接の適用であり，別個の新規性を主張しないことを示す．背景のコホモロジーと消滅のstatementはA/a（既知）である．R1--R3は未証明の補題を使用しない．第\ref{sec:limits}節の問いは別に扱う．
+
+\section{規約と証明付きの準備}\label{sec:prelim}
+本稿でVaisman計量とは，Lee形式が非零で，その計量のLevi--Civita接続に関して平行なLCK計量をいう．一般のLCKという語には，大域的共形K\"ahler構造も含める．
+
+特に断らない限り形式は滑らかで実である．実$(1,1)$形式の正値性は，非零実接ベクトル$v$に対し$\omega(v,Jv)>0$となることを意味する．
+\begin{equation}\label{eq:dc}
+ d^c=\frac{\sqrt{-1}}{4\pi}(\bar\partial-\partial),\qquad
+ dd^c=\frac{\sqrt{-1}}{2\pi}\partial\bar\partial=\ddbar
+\end{equation}
+とする．既存テンプレートのマクロ$\backslash$\texttt{ddbar}の意味は変更していない．Hermitian直線束$(L,h)$の正則枠$s$に対し，Chern形式を
+\begin{equation}\label{eq:chern}
+ c_1(L,h)=-dd^c\log\|s\|_h^2
+\end{equation}
+と定める．コンパクト曲線上の積分は次数であり，Fubini--Study形式の射影直線上の積分は1である．basic Chern類やorbifold Chern類は使用しない．
+
+$H^k_\theta(X)$を定める複体は$(\cA^\bullet(X),d_\theta)$である．通常の外積に関して，これは微分次数付き代数にはならない．$\alpha$の次数が$p$ならば
+\begin{equation}\label{eq:product}
+ d_{\theta+\psi}(\alpha\wedge\beta)
+ =d_\theta\alpha\wedge\beta+(-1)^p\alpha\wedge d_\psi\beta
+\end{equation}
+となる．特にtwistが$\theta$である第2類の二乗は，twistが$2\theta$になる．LCK類に対して，untwistedな大域的自己交点を用いることはしない．Mengは$d+\theta\wedge$を用いるため，その公式にはパラメータを$-\theta$として適用する．
+
+\begin{lem}[ゲージ変更]\label{lem:gauge}
+実関数$f$について，$e^f$の乗法は同型
+\[
+ (\cA^\bullet,d_\theta)\longrightarrow(\cA^\bullet,d_{\theta+df})
+\]
+を与え，型と正値性を保つ．$X$内の有限個の点に対し，その近傍で$\theta+df$が零となるように$f$を選べる．
+\end{lem}
+\begin{proof}
+左辺を展開すると
+\[
+ d_{\theta+df}(e^f\alpha)
+ =e^f(d\alpha+df\wedge\alpha-\theta\wedge\alpha-df\wedge\alpha)
+ =e^fd_\theta\alpha
+\]
+である．互いに素な座標球上で$\theta=dh_b$と書き，各球内に台を持ち，小さい球上で1となる滑らかな切断関数$\chi_b$を取る．$f=-\sum_b\chi_bh_b$とすれば，小さい球上で$\theta+df=0$となる．表示した恒等式によりexact性も保存される．$Y$上で元のゲージに戻す操作は$e^{-\pi^*f}$の乗法である．元のゲージの例外周期は，これによって得られる正の局所的平坦自明化に関して計算する．Lee類の任意の代表について，重みを付けない積分をそのまま用いてよいという意味ではない．
+\end{proof}
+
+\begin{prop}[既知の平行1形式の消滅定理]\label{prop:vanishing}
+$M$をコンパクト連結多様体とし，Riemann計量に関して非零な実1形式$\nu$が平行とする．このときすべての$k$について$H^k_\nu(M)=0$である．
+\end{prop}
+これは既知の定理である\cite[Theorem 3.15]{LLMP}．葉層のregular性や周期群のrankを仮定しないため，直接のホモトピー証明を記す．
+\begin{proof}
+$V=\nu^\sharp$，$c=\nu(V)=|\nu|^2>0$とおくと，$c$は定数である．$V$の完備な流れ$\Phi_t$は等長変換で，$\nu$を保つ．Cartanの公式より
+\begin{equation}\label{eq:cartan}
+ d_\nu\iota_V+\iota_Vd_\nu=\cL_V-c\,\id
+\end{equation}
+を得る．滑らかな形式について
+\[
+ R\alpha=-\int_0^\infty e^{-ct}\Phi_t^*\alpha\,dt
+\]
+と定める．等長変換はLevi--Civita接続を保つので，$\Phi_t^*\alpha$の任意の階数の共変微分の上限ノルムは，$M$上で$t$によらず有界である．したがって積分はすべての$C^k$ノルムで収束し，微分と交換できる．$\frac{d}{dt}(e^{-ct}\Phi_t^*\alpha)$を積分すると，$(\cL_V-c)R\alpha=\alpha$を得る．流れが$\nu$を保つため，$R$は$d_\nu$と可換である．また流れの積分による定義から$\cL_V$とも可換である．式\eqref{eq:cartan}に左から$R$を作用させると，$K=R\iota_V$について$d_\nu K+Kd_\nu=\id$となる．従って閉形式はすべて完全形式である．
+\end{proof}
+
+\begin{lem}[局所化したblow-up分解]\label{lem:cohomology}
+式\eqref{eq:chain}について，中心の近くでLee形式を零にしたゲージでは
+\begin{equation}\label{eq:split}
+ H^2_\Theta(Y)=\pi^*H^2_\theta(X)\oplus\bigoplus_{i=1}^r\R e_i
+\end{equation}
+となる．$e_i$は定理\ref{thm:main}の前で指定した計量によってwell-definedに定まる．$X$からの引き戻し類は，すべての$C_i$に零として制限される．
+\end{lem}
+\begin{proof}
+まず一回の点blow-up $b:\widehat M\to M$を考える．中心$p$の座標球$U$上でtwistは零とする．開被覆$M=(M\setminus\{p\})\cup U$の共通部分は$S^3$に変形収縮し，第1，第2実コホモロジーが零である．球は可縮なので，Mayer--Vietoris完全列の第2部分により，$H^2_\theta(M)$と$H^2_\theta(M\setminus\{p\})$が同一視される．$\widehat M$の対応する開被覆では，球の逆像が$E\simeq\mP^1$に変形収縮するため，実1次元の直和因子が加わる．twisted複体でも，開被覆に関する制限は複体の短完全列を与える．形式についての全射性は1の分割から得られるため，Mayer--Vietorisを適用できる．重なりではtwistは零である．
+
+直線束$\cO(E)$は$E$の外で標準的な非消滅枠を持つ．小さい近傍の外でその枠のノルムが1になるHermitian計量を選ぶ．曲率$\rho$はtwistが零の領域に台を持ち，$d$-closedかつ$d_\theta$-closedである．$\cO(E)|_E=\cO_{\mP^1}(-1)$より$\int_E\rho=-1$となり，追加された因子を生成する．この条件を満たす二つの計量の比の対数は，twistが零の領域に台を持つ大域的滑らか関数である．曲率の差はその$dd^c$なので，twisted-exactになる．
+
+これを反復して\eqref{eq:split}を得る．以前の段階の因子計量を引き戻すと，対応する全変換を表す．台は最初に選んだ球の逆像内に留まる．最後に$\pi|_{C_i}$は定値写像なので，$X$上の正次数の形式の引き戻しは$C_i$上で零となる．
+\end{proof}
+この曲面における初等的計算は\cite[Theorem 1.1]{YZ}と\cite[Theorem 1.2]{Meng}の特殊例と一致し，新しいblow-up公式とは主張しない．
+
+\section{近接関係と例外類の実現}\label{sec:realization}
+\begin{lem}[交点の恒等式]\label{lem:proximity}
+全変換について$D_i\cdot D_j=-\delta_{ij}$であり，
+\begin{equation}\label{eq:strict}
+ C_i=D_i-\sum_{j\succ i}D_j
+\end{equation}
+となる．従って$u=-\sum_i a_i e_i$の例外周期は
+\begin{equation}\label{eq:period}
+ s_i=\int_{C_i}u=a_i-\sum_{j\succ i}a_j
+\end{equation}
+である．$P_{ii}=1$，$j\succ i$のとき$P_{ij}=-1$，それ以外は零とすると，$s=Pa$であり，既約例外曲線の交点行列は$Q=-PP^T$，$P^{-1}$は非負整数行列となる．
+\end{lem}
+\begin{proof}
+点blow-upで新たに生じた例外曲線の自己交点は$-1$であり，引き戻し因子との交点は零であり，引き戻した因子同士の交点は保存される．それぞれ法束$\cO_{\mP^1}(-1)$と射影公式から従う．帰納的に，全変換基底の交点行列は対角行列$-I$となる．中心が$E_i$の狭義変換上にある段階では，その曲線は滑らかで，中心での重複度は1である．従って引き戻しは新しい狭義変換と新例外曲線の和になる．それ以外の段階ではこの項は加わらない．これらの等式をすべて$Y$に引き戻すと\eqref{eq:strict}を得る．$-\sum a_iD_i$との交点を取れば\eqref{eq:period}となる．ここでの交点は，twistを自明化した局所例外近傍での計算である．
+
+列ベクトルの記法で$C=PD$なので，$Q=P(-I)P^T$である．$P=I-N$と書くと，$N$は成分が0または1の狭義上三角行列であり，$N^r=0$だから
+\begin{equation}\label{eq:inverse}
+ P^{-1}=I+N+\cdots+N^{r-1}
+\end{equation}
+となる．特に$P$は$\Z$上可逆である．同じことを逆順の漸化式で書くと，面積$s_i$から$a_i=s_i+\sum_{j\succ i}a_j$により係数を復元できる．
+\end{proof}
+
+\begin{lem}[局所化した相対曲率]\label{lem:curvature}
+$Pa>0$と仮定する．最初にLee形式を零にした球の逆像内に台を持つ，滑らかな実$d$-closed $(1,1)$形式$\alpha$で，$[\alpha]_\Theta=-\sum_i a_i e_i$かつ
+\begin{equation}\label{eq:vertical}
+ \alpha(v,Jv)>0\quad(0\ne v\in\ker(d\pi_y),\quad y\in Y)
+\end{equation}
+を満たすものが存在する．$\alpha$がすべての接方向で正であるとは主張しない．
+\end{lem}
+\begin{proof}
+一つの球上の点の集まりについて示す．互いに素な球上のものは別々に扱い，得た形式を加える．
+
+\emph{代数的な局所モデル．} 球を$\C^2$の開集合と同一視する．最初のblow-upは$\operatorname{Bl}_0\mathbb A^2_\C$の制限である．帰納的に，原点上にある後続の中心は，直前の代数的blow-upの解析化の複素点である．これはその代数曲面の閉$\C$-点でもある．そこでその点を代数的にblow-upし，球上に制限すると次の解析的blow-upを再現する．従って全体は，同じ有限列からなる射影射$f:Z\to\mathbb A^2_\C$の制限となる．ここでは局所モデルの代数性だけを用い，$X$が代数的であるとは仮定しない．
+
+\emph{有理係数の場合．} まずすべての$a_i$を有理数とし，$ma_i$が整数となる$m>0$を取る．代数的直線束
+\[
+ L=\cO_Z\left(-m\sum_i a_iD_i\right)
+\]
+の各既約例外曲線上の次数は$m(Pa)_i>0$であり，他のファイバーは点である．次元高々1のproper scheme上の直線束がampleであるための必要十分条件は，各1次元既約成分上の次数が正となることである\cite[Tag 0B5Y]{Stacks}．この主張は非被約ファイバーも含む．よって$L$は$f$のすべてのscheme-theoretic fibre上でampleである．$f$はproperで，底はNoetherianなので，\cite[Theorem 4.7.1, p.~145]{EGA}により$L$は相対ampleとなる．
+
+原点の近くで底を縮めると，ある冪$L^k$は相対very ampleとなる．具体的には閉埋め込み$(f,F):Z\hookrightarrow W\times\mP^N$で$L^k=F^*\cO(1)$となるものが得られる．これはample直線束の相対埋め込み性であり，affineな底上での定義とproper性からも従う．Fubini--Study計量を引き戻して$k$乗根を取ると，$L$の曲率は$k^{-1}F^*\omega_{\rm FS}$となる．$v\ne0$かつ$df(v)=0$ならば，$d(f,F)$の単射性により$dF(v)\ne0$である．従ってこの曲率は$df$の\emph{核全体}で正である．各成分の接直線だけを調べても，交点でのこの主張は正当化できない．
+
+小さい球に制限する．$L$を定める因子の台は例外ファイバー内なので，その外に非消滅正則枠を持つ．計量の対数を滑らかな切断関数で変更し，少し大きい例外近傍の外でこの枠のノルムを1にする．変更はファイバーの近くで恒等的に零とし，そこでの曲率を変えない．得られる計量は全体で滑らかで，球の境界近くの曲率は零である．曲率を$Y$に零延長して$m$で割ったものを$\alpha$とする．
+
+切断操作を明確にする．標準枠のノルムの二乗を$b$とし，計量に
+\[
+ \exp(-(1-\chi)\log b)
+\]
+を掛ける．ここで$\chi$はファイバーの近くで1，境界近くで0である．この指数はファイバー近傍を跨いで零として滑らかに延長する．$e_i$を定義した局所化計量のテンソル積と比較すると，曲率の差は$\Theta=0$の領域に台を持つ関数の$dd^c$である．従って\emph{twistedな}類が正確に$-\sum a_ie_i$となり，引き戻し部分の余分な類は加わらない．台上で$\Theta=0$なので，$d_\Theta\alpha=d\alpha=0$である．
+
+\emph{実係数の場合．} 集合$\{a:Pa>0\}$は$\R^r$で開である．その内部に含まれ，$a$を内部に含む十分小さい有理頂点の直方体を選ぶ．$a$はその有限個の頂点の正確な凸結合である．重みは各座標区間の1次元重心座標の積で書ける．各有理頂点について先ほどの曲率形式を作り，同じ凸結合を取る．類は所望の類となり，垂直方向の正値性も保たれる．これは有限の構成であり，正値性の保持を未確認のまま極限を取る議論ではない．
+\end{proof}
+
+\begin{lem}[背景形式による正値化]\label{lem:domination}
+コンパクト複素多様体上の滑らかな実$(1,1)$形式$A,B$について，$B\geq0$とする．$A$が$\ker B$内のすべての非零ベクトルで正ならば，十分大きいすべての$t$について$A+tB>0$となる．
+\end{lem}
+\begin{proof}
+補助Hermitianノルムを固定する．結論が偽ならば，$t_j\to\infty$と，点$y_j$を始点とする単位ベクトル$v_j$で$A(v_j,Jv_j)+t_jB(v_j,Jv_j)\leq0$となるものがある．単位接束はコンパクトなので，部分列を取り$(y_j,v_j)\to(y,v)$とできる．$A$の有界性から$B(v_j,Jv_j)\to0$，従って$v\in\ker B_y$である．ここでは半正値形式について二次形式の値が零であるベクトルは核に属することを用いた．仮定より$A(v,Jv)>0$なので，十分大きい$j$について$A(v_j,Jv_j)>0$となり，$B\geq0$と先ほどの不等式に矛盾する．
+\end{proof}
+
+\section{主結果の証明}\label{sec:proofs}
+\begin{proof}[定理\ref{thm:main}の証明]
+$[\Omega]_\Theta=u=-\sum_i a_ie_i$とする．$\Theta|_{C_i}=0$なので，twisted-exact形式を$C_i$に制限すると通常の完全形式となる．従って\eqref{eq:period}より$\int_{C_i}\Omega=(Pa)_i$である．複素向きと$\Omega$の正値性により$(Pa)_i>0$となり，必要性を得る．
+
+逆に$Pa>0$と仮定し，補題\ref{lem:curvature}の$\alpha$を取る．$\omega_0$は正なので，$B=\pi^*\omega_0$は半正値で，その核は正確に$\ker d\pi$である．補題\ref{lem:domination}より
+\begin{equation}\label{eq:construction}
+ \Omega_t=t\pi^*\omega_0+\alpha>0\qquad(t\geq t_0)
+\end{equation}
+を得る．両方の項が$d_\Theta$-closedなので，$d\Omega_t=\Theta\wedge\Omega_t$である．さらに
+\[
+ [\Omega_t]_\Theta=t\pi^*[d_\theta\eta]_\theta+[\alpha]_\Theta
+ =-\sum_i a_ie_i=u
+\]
+となる．この証明でexactな正値背景を本質的に用いるのはここである．$t$を増してもLee形式と指定したtwistedな類は変わらない．例外近傍の外では$t\pi^*\omega_0$となる．最後に\eqref{eq:inverse}より$P$は可逆なので，各$s>0$は例外類を一意に定める．必要性の証明から，その類のすべての正値代表で所望の周期を持つことも従う．
+\end{proof}
+
+\begin{proof}[系\ref{cor:full}の証明]
+$H^2_\theta(X)=0$ならば，補題\ref{lem:cohomology}により$H^2_\Theta(Y)$全体が$V_E$と同一視される．よって定理\ref{thm:main}をすべての類に適用できる．変換$a\mapsto Pa$は錐を$\R_{>0}^r$，その閉包を$\R_{\geq0}^r$と同一視する．$P$は整数行列で可逆なので，錐の記述が従う．
+
+Vaismanの場合，非零Lee形式$\nu$は定義により平行である．命題\ref{prop:vanishing}から$H^2_\nu(X)=0$で，特にVaisman基本形式は$d_\nu$-exactとなる．補題\ref{lem:gauge}を適用し，exactなLCK形式$\omega_0$と中心の近くで零である$\theta$を得る．ゲージ同型により$H^2_\theta(X)=0$である．標準葉層の商，quasi-regular近似，mapping torusの構造定理は使用しない．
+\end{proof}
+
+\begin{proof}[系\ref{cor:volume}の証明]
+一つの$\alpha$を固定して\eqref{eq:construction}を用いる．類と例外周期はすでに計算した．微分形式として二乗を展開すると
+\begin{equation}\label{eq:volume}
+ \frac12\int_Y\Omega_t^2
+ =\frac{t^2}{2}\int_Y\pi^*(\omega_0^2)
+ +t\int_Y\pi^*\omega_0\wedge\alpha+\frac12\int_Y\alpha^2
+\end{equation}
+である．modificationは実測度零の集合の外で向きを保つ微分同相なので，最初の積分は$\int_X\omega_0^2>0$と一致する．Lee形式を零にした各球上で$\omega_0$は閉形式，従って完全形式である．$\alpha$は閉形式で，これらの球の逆像に台を持つので，Stokesにより$\int_Y\pi^*\omega_0\wedge\alpha=0$となる．通常の閉形式として，局所補正$\alpha$は$-\sum_i a_ic_1(\cO_Y(D_i))$を表す．局所交点公式から$\int_Y\alpha^2=-\sum_i a_i^2$となるため，代入して厳密な式\eqref{eq:volasym}を得る．通常の交点を用いたのは閉じた局所補正に対してだけであり，$\Omega_t$に対してではない．ここで積分しているのは実際の形式であり，$H^2_\Theta(Y)$上の交点pairingではない．式\eqref{eq:product}により，通常のK\"ahler体積の類に関する不変性を持ち込めない理由が分かる．
+\end{proof}
+
+\begin{prop}[有理曲線とexact性の喪失；R6]\label{prop:rational}
+twisted-exactなLCK形式を持つ複素多様体には，$\mP^1$からの非定値正則写像は存在しない．従って定理\ref{thm:main}の$Y$の有理曲線は正確に例外成分$C_i$であり，$Y$は\emph{どの}実閉Lee形式についてもtwisted-exactなLCK形式を持たない．特に，$Y$はVaisman計量も，automorphicなK\"ahler potentialを持つLCK計量も持たない．
+\end{prop}
+\begin{proof}
+正則写像$g:\mP^1\to X$について，$H^1(\mP^1,\R)=0$より$g^*\theta=dh$と書ける．\eqref{eq:exact}から
+\[
+ e^{-h}g^*\omega_0=d(e^{-h}g^*\eta)
+\]
+であり，Stokesにより積分は零である．非定値正則写像の微分は空でない開集合上で非零なので，左辺は全体で半正値，その開集合上で正となり，積分は正となって矛盾する．$Y$の有理曲線を正規化して$\pi$と合成すれば，$X$の点に写らなければならない．従ってその曲線は例外成分の一つである．また各$C_i\simeq\mP^1$の存在と同じ議論により，$Y$上の任意のtwisted-exact LCK構造が排除される．
+
+Vaisman形式がtwisted-exactであることは命題\ref{prop:vanishing}による．potentialについても直接確認する．$p:\widetilde Y\to Y$を普遍被覆とし，$p^*\vartheta=dh$と書く．automorphicなpotential $\varphi$について$e^{-h}p^*\omega=dd^c\varphi$とする．$\gamma^*h=h+c_\gamma$ならば，automorphyとは$\gamma^*\varphi=e^{-c_\gamma}\varphi$を意味する．よって$e^h d^c\varphi$はdeck群で不変で，$Y$上の1形式$\zeta$に降りる．具体的には
+\[
+ p^*(d_\vartheta\zeta)=d_{dh}(e^h d^c\varphi)
+ =e^hdd^c\varphi=p^*\omega
+\]
+である．全射な被覆による形式の引き戻しは単射なので，$d_\vartheta\zeta=\omega$となり，有理曲線による障害に矛盾する．この議論は降下に必要な同変性も確認している．これらの障害は既知のexact性からの初等的帰結であり，独立の新規性は主張しない．
+\end{proof}
+
+証明の依存関係をまとめると
+\[
+\begin{gathered}
+\text{近接交点公式とファイバーごとのample性（既知）}\\
+\Downarrow\\
+\text{局所化した相対曲率（補題\ref{lem:curvature}）}\\
++\ \text{exactな正値背景と正値化補題}\\
+\Downarrow\\
+\text{R1}\ \Longrightarrow\ \text{R3},\\[2pt]
+\text{R1と平行1形式の消滅定理とblow-up分解}
+\ \Longrightarrow\ \text{R2}
+\end{gathered}
+\]
+となる．
+
+\section{例，反例，仮定の役割}\label{sec:examples}
+\begin{eg}[非空な適用族：scalar Hopf曲面]\label{ex:hopf}
+$0<q<1$を固定し，$X=(\C^2\setminus\{0\})/\langle z\mapsto qz\rangle$とする．$\varphi=|z_1|^2+|z_2|^2$に対し
+\begin{equation}\label{eq:hopf}
+ \omega_H=\varphi^{-1}dd^c\varphi,\qquad
+ \nu=-d\log\varphi,\qquad \eta_H=\varphi^{-1}d^c\varphi
+\end{equation}
+とおく．$\varphi$とその微分は$q^2$倍されるので，三つの形式はすべて商に降りる．$dd^c\varphi$は正である．微分を展開すると
+\[
+ d\eta_H=-\varphi^{-2}d\varphi\wedge d^c\varphi
+              +\varphi^{-1}dd^c\varphi,\qquad
+ -\nu\wedge\eta_H=\varphi^{-2}d\varphi\wedge d^c\varphi
+\]
+となり，$d_\nu\eta_H=\omega_H$を得る．極座標$z=e^t u$，$u\in S^3$では，対応するRiemann計量は$dt^2+g_{S^3}$の正定数倍で，$\nu=-2dt$は平行である．基本領域$q\leq|z|\leq1$を持つので商はコンパクトである．これで底の仮定をすべて具体的に確認した．通常の点または無限近接点の任意の有限配置をblow-upでき，系\ref{cor:full}が適用される．Hopf曲面の分類定理は不要である．
+\end{eg}
+
+\begin{eg}[互いに異なる点]\label{ex:distinct}
+$r$個の点が$X$の互いに異なる位置にあれば近接関係はなく，$P=I$で，錐は$a_i>0$となる．面積は正確に$a_i$である．式\eqref{eq:construction}の背景を大きくできるため，任意に大きい値も許される．この最も簡単な場合は古典的点blow-up構成の直接の帰結に近く，主たる新規候補とはしない．
+\end{eg}
+
+\begin{eg}[二つの無限近接点；R4]\label{ex:two}
+一点をblow-upし，次にその例外曲線上の一点をblow-upする．$C_1=D_1-D_2$，$C_2=D_2$であり，
+\begin{equation}\label{eq:two}
+ P=\begin{pmatrix}1&-1\\0&1\end{pmatrix},\qquad
+ s=(a_1-a_2,a_2),\qquad a_1>a_2>0
+\end{equation}
+となる．全変換の係数が正であるだけで十分という提案は偽である．実際，$(a_1,a_2)=(1,2)$ならば$\int_{C_1}u=-1$で，正値性は不可能である．一方，$(3,1)$は実現され，面積は$(2,1)$となる．これは提案した判定法への厳密な反例であり，数値実験ではない．
+\end{eg}
+
+\begin{eg}[Satellite point]\label{ex:satellite}
+先ほどの二回の後，第1例外曲線の狭義変換と第2例外曲線の交点をblow-upする．このとき$2\succ1$，$3\succ1$，$3\succ2$であり，
+\begin{equation}\label{eq:satellite}
+ P=\begin{pmatrix}1&-1&-1\\0&1&-1\\0&0&1\end{pmatrix},\quad
+ P^{-1}=\begin{pmatrix}1&1&2\\0&1&1\\0&0&1\end{pmatrix},\quad
+ Q=\begin{pmatrix}-3&0&1\\0&-2&1\\1&1&-1\end{pmatrix}
+\end{equation}
+となる．不等式は$a_1>a_2+a_3$，$a_2>a_3>0$である．$(4,2,1)$は面積$(1,1,1)$を実現する．$D_1=C_1+C_2+2C_3$であり，重複度2を忘れると結論が変わる．補助スクリプトは有理数の厳密演算でこれらの行列を検算するが，一般の場合の証明は補題\ref{lem:proximity}である．
+\end{eg}
+
+\begin{eg}[exactな背景を単に除くことはできない；R5]\label{ex:kahler}
+$X=\mP^2$，$\theta=0$とし，一点をblow-upする．$u=-a[E]$，$a>0$は例外曲線上で正の次数$a$を持つ．しかし$u^2=-a^2<0$であるのに対し，K\"ahler形式の二乗は正である．従ってglobally conformally K\"ahler構造も含めて一般のLCK構造を考えるならば，この例外部分の判定法は偽である．この例は，Lee形式も基本形式もnon-exactである場合に限定した拡張を決着させない．
+
+実際，コンパクト複素多様体上の正値形式は，globally conformally K\"ahlerであると同時にtwisted-exactではあり得ない．$\theta=dh$かつ$\omega=d_\theta\eta$ならば，正の閉形式$e^{-h}\omega=d(e^{-h}\eta)$は完全形式である．その最高外積の積分はStokesにより零，正値性により正となって矛盾する．従って\eqref{eq:exact}のLee類は自動的に非零である．
+\end{eg}
+
+\begin{prop}[外側の計量を固定したときの上界]\label{prop:exterior}
+$U$を滑らかな境界を持つ座標球，$\kappa$をその閉包の近傍で定義されたK\"ahler形式とする．$\widehat U=\operatorname{Bl}_pU$上のK\"ahler形式$\Omega$が境界近くで$b^*\kappa$に一致するとし，$a=\int_E\Omega>0$とおく．このとき
+\begin{equation}\label{eq:exterior}
+ \int_{\widehat U}\Omega^2=\int_U\kappa^2-a^2>0
+\end{equation}
+であり，特に$a<(\int_U\kappa^2)^{1/2}$となる．
+\end{prop}
+\begin{proof}
+差$\beta=\Omega-b^*\kappa$は閉形式で，$\widehat U$にコンパクトな台を持つ．そのコンパクト台コホモロジー類は例外因子類の$-a$倍である．実際，境界が$S^3$で，その第1，第2コホモロジーが零なので，$H_c^2(\widehat U)\to H^2(\widehat U)$は同型となる．その生成元の自己交点は$-1$だから$\int\beta^2=-a^2$である．球上で$\kappa=d\lambda$と書け，$\beta$は閉形式でコンパクトな台を持つので，Stokesより$\int b^*\kappa\wedge\beta=0$となる．二乗を展開して\eqref{eq:exterior}を得る．これは球内のuntwistedな局所計算であり，ここではこの交点計算が正当である．
+\end{proof}
+これにより，定理\ref{thm:main}を「外側の所与の計量を変更せずに行う構成」と読むことができない理由が分かる．また例外面積が零ならば，滑らかな正値代表は存在しない．系\ref{cor:full}の境界は類の空間の境界であり，計量の滑らかなコンパクト化を証明したものではない．
+
+\section{限界と具体的に残る課題}\label{sec:limits}
+\subsection{non-exactな背景で残る具体的問題}
+$(X,\omega,\theta)$をコンパクトLCK曲面とし，$p$の近くで$\theta$を零にして，$c=[\omega]_\theta$とおく．一点blow-upについて
+\begin{equation}\label{eq:epsilon}
+ I_\theta(c,p)=\{a>0:\pi^*c-ae\in\cK_{\pi^*\theta}(\operatorname{Bl}_pX)\}
+\end{equation}
+を定める．一つの例外曲線の局所構成から，十分小さい正の値の区間はこの集合に含まれる．実際，$[\alpha]=-e$となる局所曲率を用いれば，$\pi^*\omega+\varepsilon\alpha$は十分小さい$\varepsilon>0$について正となる．正値形式の凸結合により$I_\theta(c,p)$は区間である．正値性の開性と，$e$の局所化代表を用いる変化から，この区間は開である．従って
+\[
+ I_\theta(c,p)=(0,\varepsilon_\theta(c,p)),\qquad
+ 0<\varepsilon_\theta(c,p)\leq+\infty
+\]
+となる．定理\ref{thm:main}は\eqref{eq:exact}の下で$\varepsilon_\theta(0,p)=+\infty$を証明した．さらに，同じLee形式のexactな正値背景が存在すれば，その十分大きな倍数を加えることで，すべての$c\in\cK_\theta(X)$について同じ結論を得る．
+
+残る問題は，exactな正値背景が存在しないとき，この端点を決定することである．具体的な検討対象は次のstatementである：$[\theta]\ne0$であり，$p$を通るコンパクト既約曲線で，正規化へのLee形式の引き戻しが完全となるものがなければ，$\varepsilon_\theta(c,p)=+\infty$か．本稿ではこれを証明も反証もしていない．解決には\eqref{eq:construction}のexactな項を用いない，類を保つ正値化の構成，または別の障害が必要である．これは本草稿で未証明の問いであり，文献上の未解決問題であると確定したという意味ではない．
+
+\subsection{境界代表と高次元}
+$Pa\geq0$について系\ref{cor:full}が示すのは，錐の閉包に入ることだけである．その各類が\emph{滑らかな半正値}代表を持つことは証明していない．十分な未確立入力の一つは，局所化した閉代表$\alpha$で，ある有限の$t$について$\alpha+t\pi^*\omega_0\geq0$となるものの存在である．例外曲線上の次数が非負であることだけでは，この主張に必要な曲率と混合接方向の制御は得られない．正値の場合には，この境界補題を使用していない．
+
+背景形式による正値化の議論自体は任意次元で成立する．複素次元3以上の反復点modificationで具体的に必要な入力は，候補例外類を表し，すべての$\ker d\pi$で正となる，コンパクト台を持つ実閉$(1,1)$形式の存在である．本稿では，上の曲線不等式だけによる数値的判定は示していない．例外ファイバーが高次元となり，補題\ref{lem:curvature}で用いた次元1のample判定がそのまま適用できなくなるためである．この入力が得られた各類について，同じ証明により条件付きの拡張が従う．これは還元であり，高次元の数値的分類ではない．
+
+\subsection{研究上の主張の位置付け}
+R1は，明示的に引用した既知のample性の結果を用い，本稿内で証明が完結している．R2とR3はその帰結で，R4--R5はより広い提案の検証済み反例である．R6は，得られた多様体をVaismanやpotential付き多様体と混同することを防ぐ既知の機構である．外部のample性定理，非被約ファイバー，垂直接空間の核全体，ゲージ規約，全変換の重複度を，それぞれ明示して使用した．
+
+新規性監査には限界がある．近接するblow-up論文とコホモロジー論文，modificationとLCKの各種錐に関する後続研究，用語を変えた検索を確認した．すべての非英語文献，学位論文，未公刊ノート，引用網全体は調査していない．数学的正しさも優先性も，独立の検証を受けていない．専門家がR1を周知の帰結と判断する場合には，新規性の分類を下げ，明示的な証明と計算のノートとして位置付け直すべきである．
+
+後のmonograph \cite[Remark 18.29, \S\S37.3--37.4]{OVBook}にも，blow-upにおける非exact性の障害と古典的な曲率構成が明記されている．本稿ではこれらを既知の背景と位置付ける．確認したこれらの箇所では近接不等式による錐全体のstatementを見いださなかったが，これはmonographの全箇所を検査したという主張ではない．
+
+\clearpage
+\bibliographystyle{alpha}
+\begin{thebibliography}{OVV13}
+\bibitem[EGA61]{EGA}
+A.~Grothendieck, \emph{\'El\'ements de g\'eom\'etrie alg\'ebrique III: \'Etude cohomologique des faisceaux coh\'erents, Premi\`ere partie}, Publ. Math. IH\'ES \textbf{11} (1961), 5--167. Theorem 4.7.1, p.~145.
+\href{https://www.numdam.org/item/PMIHES_1961__11__5_0/}{Numdam source}.
+
+\bibitem[LLMP99]{LLMP}
+M.~de Le\'on, B.~L\'opez, J.~C.~Marrero and E.~Padr\'on,
+\emph{Lichnerowicz--Jacobi cohomology and homology of Jacobi manifolds: modular class and duality}, preprint (1999),
+\href{https://arxiv.org/abs/math/9910079}{arXiv:math/9910079v1}, Theorem 3.15, pp.~26--27. This citation refers specifically to the checked preprint.
+
+\bibitem[Men22]{Meng}
+L.~Meng, \emph{Morse--Novikov cohomology for blow-ups of complex manifolds}, Pacific J. Math. \textbf{320} (2022), no.~2, 365--390.
+\href{https://arxiv.org/abs/1806.06622}{arXiv:1806.06622v6} (16 February 2023), Theorem 1.2. The theorem numbering cited here is that of v6.
+
+\bibitem[OV24a]{OVLee}
+L.~Ornea and M.~Verbitsky, \emph{Lee classes on LCK manifolds with potential}, Tohoku Math. J. (2) \textbf{76} (2024), no.~1, 105--125.
+\href{https://arxiv.org/abs/2112.03363}{arXiv:2112.03363v2}, \S8. Used for comparison of the objects studied, not as an input to the cone proof.
+
+\bibitem[OV24m]{OVBook}
+L.~Ornea and M.~Verbitsky, \emph{Principles of Locally Conformally K\"ahler Geometry}, Progress in Mathematics \textbf{354}, Birkh\"auser, 2024.
+\href{https://arxiv.org/abs/2208.07188}{arXiv:2208.07188v6} (7 December 2024), Remark 18.29 and \S\S37.3--37.4, especially Theorem 37.16 and Lemma 37.19. Numbering refers to v6.
+
+\bibitem[OV25]{OVBalanced}
+L.~Ornea and M.~Verbitsky, \emph{Balanced metrics and Gauduchon cone of locally conformally K\"ahler manifolds},
+Int. Math. Res. Not. IMRN (2025), no.~3, rnaf014.
+\href{https://arxiv.org/abs/2407.04623}{arXiv:2407.04623v2} (7 August 2024), \S\S3.1, 4;
+\href{https://doi.org/10.1093/imrn/rnaf014}{doi:10.1093/imrn/rnaf014}. Used for comparison; no theorem of this paper is an input to R1.
+
+\bibitem[OVV13]{OVV}
+L.~Ornea, M.~Verbitsky and V.~Vuletescu, \emph{Blow-ups of locally conformally K\"ahler manifolds}, Int. Math. Res. Not. IMRN (2013), no.~12, 2809--2821.
+\href{https://arxiv.org/abs/1108.4885}{arXiv:1108.4885v2}, Theorem 2.8 and Lemma 3.4, especially pp.~11--12 of the preprint. All numbered citations here refer to v2.
+
+\bibitem[Sta26]{Stacks}
+The Stacks Project Authors, \emph{The Stacks Project},
+\href{https://stacks.math.columbia.edu/tag/0B5Y}{Tag 0B5Y, Lemma 33.44.15}; see also
+\href{https://stacks.math.columbia.edu/tag/01VG}{Tag 01VG, relatively ample sheaves}. Accessed 7 September 2026.
+
+\bibitem[YZ15]{YZ}
+X.~Yang and G.~Zhao, \emph{A note on the Morse--Novikov cohomology of blow-ups of locally conformal K\"ahler manifolds}, Bull. Aust. Math. Soc. \textbf{91} (2015), 155--166, Theorem 1.1 (Theorem 3.1).
+\href{https://doi.org/10.1017/S0004972714000859}{doi:10.1017/S0004972714000859}.
+\end{thebibliography}
+
+% END PRESERVED JA BODY
+\clearpage
+\endgroup
+\end{document}

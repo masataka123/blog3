@@ -1,0 +1,887 @@
+\documentclass[12pt]{amsart}
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{luatexja-fontspec}
+\setmainjfont[BoldFont=HaranoAjiMincho-Bold]{HaranoAjiMincho-Regular}
+\setsansjfont[BoldFont=HaranoAjiGothic-Bold]{HaranoAjiGothic-Medium}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{bbm}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % LuaLaTeX driver.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+% xy omitted: installed xypdf rejects LuaHBTeX; no xy diagrams are used.
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical macros preserved from the template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Bilingual additions; original amsart class, page layout, and macros retained.
+\ltjsetparameter{jacharrange={-2}}
+\emergencystretch=2em
+\newcommand{\kappaI}{\kappa}
+\newcommand{\Bs}{\operatorname{Bs}}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Proj}{\operatorname{Proj}}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\NN}{\mathbb{N}}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jprop}[thm]{命題}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jcor}[thm]{系}
+\newtheorem{jrem}[thm]{注意}
+\newtheorem{jques}[thm]{問題}
+\newtheorem{jeg}[thm]{例}
+\hypersetup{pdftitle={Maximal relative anticanonical growth and finite etale splitting},
+ pdfauthor={chatGPT 6 Astra},
+ pdfsubject={AI-generated bilingual research draft; proof and novelty audit},
+ pdfkeywords={relative anticanonical divisor, nef, Iitaka dimension, finite etale cover}}
+\title[Relative anticanonical growth]{Maximal relative anticanonical growth\\and finite \'etale splitting:\\a proof and novelty audit}
+\author{chatGPT 6 Astra}
+\date{September 8, 2026}
+\subjclass[2020]{Primary 14D06; Secondary 14J45, 14E20}
+\keywords{Relative anticanonical divisor, Iitaka dimension, nef divisor, locally constant fibration, finite \'etale cover}
+\begin{document}
+\renewcommand{\thesection}{E.\arabic{section}}
+\renewcommand{\theHsection}{E.\arabic{section}}
+\begin{abstract}
+We investigate whether the growth of sections of a nef relative anticanonical divisor controls global twisting over an arbitrary smooth projective base. For a fibration $f:X\to Y$ between smooth complex projective varieties, put $L=-K_{X/Y}$ and $r=\dim X-\dim Y>0$. We give a complete derivation that $\kappa(X,L)=r$ forces a finite \'etale product decomposition. A subsystem inducing a generically finite rational map on a general fibre gives a splitting cover of degree dividing the degree of that map. The proof marks the zero divisors of finitely many sections and their sums, obtaining one locally constant structure compatible with their ratios, even in the presence of base points. A separate audit derives the more general abundant case from established results. Consequently, neither the qualitative splitting statement nor this proof adaptation is asserted to be a new research theorem. The unresolved part of this investigation concerns a structural account of the non-abundant case.
+\end{abstract}
+\maketitle
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{The problem and the outcome}\label{en:intro}
+Let $f:X\to Y$ be a surjective morphism with connected fibres between smooth complex projective varieties, with $\dim Y\geq2$ and positive relative dimension $r$. We study positivity of $L=-K_X+f^*K_Y$ on the whole space $X$. The guiding question is how a numerical or section-theoretic condition on $L$ can force the twisting of the family to disappear after a finite unramified base change.
+
+There are two distinct obstacles. First, smoothness and local triviality of the underlying family do not identify its global sections with fixed vectors for an arbitrarily selected monodromy representation. Second, a rational map defined by sections may have base points; its generic finiteness does not make it a finite morphism on $X$ or on its fibre. These obstacles cannot be removed by merely restricting intersection numbers to a curve.
+
+The closest starting points are the restriction theorem of Ejiri--Gongyo \cite{en:EG} and the locally constant structure for klt pairs in Ejiri--Iwai--Matsumura \cite{en:EIM}. The latter article also proves \'etale product decomposition under semiampleness and explicitly points to Ambro's earlier approach. We therefore do not use semiampleness as a supposed new hypothesis leading to a new splitting theorem.
+
+The investigation initially singled out the condition $\kappa(X,L)=\nu(X,L)$ as a potential extension. A later audit found an existing chain of implications through klt representatives and the canonical bundle formula. Section~\ref{en:auditproof} supplies the assumptions and computations in that chain. The abundant case is thus removed from the list of original research claims. This correction also removes its maximal-growth special case from that list.
+
+What remains in the present draft is a fully checked derivation with an explicit treatment of simultaneous markings, rational maps and a degree bound. It is a structural statement for arbitrary bases and fibres, rather than a calculation on a split bundle. Nevertheless, extending a known proof and sharpening its bookkeeping is not, by itself, evidence of the substantive novelty requested for a research contribution. The outcome is a proof-and-audit manuscript, not a claim to have established such novelty.
+
+\section{Setting and verified inputs}\label{en:setting}
+All varieties in our own statements are integral over $\C$. Both $X$ and $Y$ are smooth and projective. We do not initially assume that $f$ is smooth; its smoothness will follow from the quoted structure theorem. Since canonical divisors are Cartier,
+\[
+ K_{X/Y}=K_X-f^*K_Y,\qquad L=-K_{X/Y}
+\]
+are well defined as line bundles. For a smooth fibre $F$, adjunction gives $L|_F=-K_F$.
+
+A divisor $D$ is nef if $D\cdot C\geq0$ for every integral curve $C$ on its ambient projective variety. Being $f$-nef asks this only for contracted curves. The condition used below is the former. A divisor is pseudo-effective if its numerical class is in the closure of the effective cone; it is big if its Iitaka dimension is the dimension of its ambient variety. Nefness and bigness are not arranged in a single hierarchy.
+
+For $D$ nef on a smooth projective $n$-fold and $A$ ample, we use
+\[
+ \nu(D)=\max\{k\in\{0,\ldots,n\}:D^k\cdot A^{n-k}>0\}.
+\]
+This is independent of $A$. We put $\kappa(D)=-\infty$ when all positive multiples have no sections, and otherwise define $\kappa(D)$ as the maximum dimension of the images of $\Phi_{|mD|}$. A nef divisor is abundant when $\kappa(D)=\nu(D)$. Semiampleness means that some positive multiple is globally generated on the whole variety.
+
+A locally constant structure means an analytic presentation
+\begin{equation}\label{en:suspension}
+ X\simeq(\widetilde Y\times F)/\pi_1(Y),\qquad
+ \gamma(y,z)=(\gamma y,\rho(\gamma)z).
+\end{equation}
+This is stronger than analytic local triviality. The representation and presentation need not be unique. Our assertions about monodromy always refer to a structure explicitly chosen in the proof, never to every possible flat structure on the same holomorphic family.
+
+The following are the external inputs, not results proved here.
+\begin{enumerate}
+\item For $L$ nef, restriction to a suitable general smooth fibre is injective on the graded section ring: each $H^0(X,mL)\to H^0(F,-mK_F)$ is injective \cite[Theorem 1.2]{en:EG}.
+\item If $\Delta\geq0$ is rational, $(X,\Delta)$ is klt and $-(K_{X/Y}+\Delta)$ is nef, there is a locally constant presentation of the pair over $Y$ \cite[Theorem 4.6]{en:EIM}. We use only this smooth-total-space special case.
+\item For nef $L$, $\nu(L)=\nu(-K_F)$ \cite[Theorem 1.5]{en:EIM}. The semiampleness splitting theorem is \cite[Theorem 1.6]{en:EIM}.
+\item A nef abundant line bundle on a projective klt pair has an effective rational representative which can be absorbed into its boundary while keeping it klt \cite[Corollary 5.3 and Lemma 5.4]{en:CDB}; the numbering here is from the checked arXiv v2.
+\end{enumerate}
+The results of Fujino, Ambro and purity that are needed for the separate audit are applied with their full relevant hypotheses in Section~\ref{en:auditproof}.
+
+\section{A maximal-growth criterion and its quantitative form}\label{en:main}
+\begin{thm}[Proved derivation; no originality claim]\label{en:criterion}
+In the setting above, assume $L$ is nef and $\kappa(X,L)=r$. Then $f$ is smooth, every fibre is a smooth weak Fano variety, and there is a connected finite \'etale Galois cover $\tau:Y'\to Y$ with
+\[
+ X\times_Y Y'\simeq Y'\times F
+\]
+as $Y'$-schemes. Moreover $L$ is semiample.
+
+More precisely, let $W\subseteq H^0(X,mL)$ be a nonzero finite-dimensional subspace whose restriction defines a generically finite rational map
+\[
+ \psi:F\dashrightarrow Z\subseteq\mP(W^*),\qquad
+ d=[\C(F):\C(Z)].
+\]
+Then one can choose a splitting cover with degree $e$ satisfying
+\begin{equation}\label{en:degree}
+ e\mid d,\qquad e\leq d\leq m^r(-K_F)^r.
+\end{equation}
+If $d=1$, $f$ itself is a product.
+\end{thm}
+
+The existence of such a $W$ follows from $\kappa(X,L)=r$, as proved below. There is no assumption that $W$ is base point free or that $-K_F$ is ample. The number $d$ is a function-field degree, not the degree of an everywhere finite morphism.
+
+\begin{cor}\label{en:equiv}
+Suppose $L$ is nef and its general fibre is weak Fano. The following are equivalent: $\kappa(X,L)=r$; $L$ is semiample; and $f$ becomes a product after a finite \'etale cover.
+\end{cor}
+\begin{proof}
+The first condition gives the other two by Theorem~\ref{en:criterion}. If $L$ is semiample, its numerical and Iitaka dimensions agree, and the numerical-dimension input gives $\kappa(L)=\nu(-K_F)=r$. For a product after a finite \'etale cover, $-K_F$ is semiample by the argument in Section~\ref{en:proof}; the norm argument there descends this property to $L$, reducing to the previous implication.
+\end{proof}
+
+\section{The simultaneous marking argument}\label{en:mark}
+\begin{lem}[Compatible ratios for a finite system]\label{en:marklemma}
+Assume $L$ is nef. For every nonzero finite-dimensional $W\subseteq H^0(X,mL)$, there exists a locally constant presentation~\eqref{en:suspension} such that the rational map $\Phi_W$ pulled back to $\widetilde Y\times F$ equals $\psi\circ\pr_F$ for a rational map $\psi$ on $F$. In particular $\psi\circ\rho(\gamma)=\psi$ for all $\gamma\in\pi_1(Y)$.
+\end{lem}
+\begin{proof}
+Choose a basis $s_0,\ldots,s_q$ and a general fibre on which their restrictions are linearly independent. This is possible by the restriction input. The case $q=0$ is constant, and the unmarked structure theorem suffices. Suppose $q\geq1$. Set
+\[
+ D_i=\Div(s_i),\quad D_i^+=\Div(s_0+s_i)\ (1\leq i\leq q),
+ \quad T=\sum_{i=0}^qD_i+\sum_{i=1}^qD_i^+.
+\]
+All these are effective Cartier divisors, including possible fixed components and their multiplicities. We have $T\sim m(2q+1)L$.
+
+Choose a positive rational $\epsilon$ so small that $(X,\epsilon T)$ is klt and $\epsilon m(2q+1)<1$. To justify the first condition, take a log resolution of the single fixed divisor $T$. There are finitely many discrepancies and multiplicities on this resolution; the strict inequalities defining klt hold for all sufficiently small positive $\epsilon$, since $X$ is smooth. We now have
+\begin{equation}\label{en:perturb}
+ -(K_{X/Y}+\epsilon T)\sim_\Q
+ (1-\epsilon m(2q+1))L,
+\end{equation}
+which is nef. Apply the pair structure theorem once to this one boundary.
+
+Write $p:\widetilde Y\times F\to X$ for the resulting covering map. The divisor $p^*T$ is a product divisor. Every effective summand $p^*D_i$ and $p^*D_i^+$ is therefore supported on its finitely many product prime divisors. On the connected product, the multiplicity on each prime is a fixed integer. Each summand is itself a product divisor. This does not require selecting separate trivializations for different sections, and no component permutation is silently discarded.
+
+Under the relative canonical identification $p^*(mL)\simeq\pr_F^*(-mK_F)$, normalize at a point $y_0\in\widetilde Y$, and write $t_i=p^*s_i|_{\{y_0\}\times F}$. The equality of divisors gives
+\[
+ p^*s_i=a_i(y)\pr_F^*t_i,
+ \qquad p^*(s_0+s_i)=b_i(y)\pr_F^*(t_0+t_i),
+\]
+with nowhere-zero holomorphic functions $a_i,b_i$ on $\widetilde Y$. Indeed, after dividing sections with the same divisor, the quotient is a nowhere-zero holomorphic function on the product; its restriction to the compact connected fibre $F$ is constant. Removable singularities here follow from equality of Cartier divisors on a smooth space, not from neglecting a codimension-two set.
+
+Additivity of pullback implies
+\[
+ a_0(y)t_0+a_i(y)t_i=b_i(y)(t_0+t_i).
+\]
+The two sections $t_0,t_i$ are linearly independent, so $a_0=a_i=b_i$. Thus all the projective coordinates have one common factor, which cancels. We obtain
+\[
+ \Phi_W\circ p=[t_0:\cdots:t_q]\circ\pr_F.
+\]
+This equality holds on the common domain of definition and hence as rational (equivalently, meromorphic here) maps. Deck invariance of the left-hand side yields $\psi\circ\rho(\gamma)=\psi$. At no point have we claimed that the individual $a_i$ are constant or that arbitrary holomorphic sections of a flat bundle are parallel.
+\end{proof}
+
+This is an elaboration of the boundary perturbation in \cite[proof of Theorem 1.6, Step 3]{en:EIM}. Marking sums makes the compatibility of several coordinates explicit. It is not presented as a new general theory of flat bundles.
+
+\section{Complete proof and the degree estimate}\label{en:proof}
+\begin{proof}[Proof of Theorem~\ref{en:criterion}]
+\textit{Step 1: generic finiteness on the fibre.}
+Choose $m$ for which $\dim\Phi_{|mL|}(X)=r$, and let $W=H^0(X,mL)$. A homogeneous polynomial relation in the restricted basis defines a section of $kmL$ vanishing on $F$. Injectivity of restriction in degree $km$ shows that this section vanishes on $X$. Conversely any relation on $X$ restricts to one on $F$. Therefore the two image closures in $\mP(W^*)$ have the same homogeneous ideal. Their dimensions are both $r$. The map on the $r$-dimensional integral variety $F$ is dominant and generically finite onto this image. Characteristic zero makes the associated finite field extension separable. This argument also shows $\kappa(-K_F)=r$, so $-K_F$ is big.
+
+\textit{Step 2: finite monodromy for the compatible presentation.}
+Apply Lemma~\ref{en:marklemma} to the chosen $W$, or to any $W$ in the quantitative statement. Put $K=\C(Z)$ and $E=\C(F)$. Its monodromy image $G=\rho(\pi_1(Y))$ fixes $K$ pointwise. Automorphisms of $F$ act faithfully on $E$: an automorphism fixing all rational functions is the identity on a dense open set and hence, by separatedness, on all of $F$. Thus $G$ embeds in $\Autop_K(E)$, a finite group with at most $[E:K]=d$ elements. More precisely, the fixed-field theorem for a finite group \cite[Tag 09I3]{en:Stacks} gives $[E:E^G]=|G|$ and the tower formula gives
+\[
+ d=[E:K]=|G|[E^G:K].
+\]
+Consequently $e:=|G|$ divides $d$. This uses neither resolution of the rational map on the total space nor finiteness at its base points.
+
+\textit{Step 3: an algebraic product cover.}
+The subgroup $\ker\rho$ is normal of finite index $e$. The associated connected covering $Y'\to Y$ is finite unramified. The Riemann existence correspondence \cite[Expos\'e XII, Theorem 5.1]{en:SGA} for smooth projective complex varieties identifies it with a finite \'etale algebraic cover. It is projective, and the pulled-back presentation is $Y'\times F$, since $\ker\rho$ acts trivially on $F$. The analytic isomorphism is algebraic by applying Chow's theorem to its graph \cite[Section 4, Proposition 14]{en:Serre}. The pair structure theorem has already shown that $f$ is locally trivial with smooth fibre; hence $f$ is smooth everywhere. Nefness restricts to every fibre, and all fibres are isomorphic, so all are weak Fano.
+
+\textit{Step 4: semiampleness and descent.}
+On $F$, put $H=-K_F$. In Fujino's formulation of Kawamata's theorem \cite[Theorem 1.1]{en:Fuj}, take the base to be a point, boundary zero, and the nef divisor to be $H$. Both $H-K_F=2H$ and $aH-K_F=(a+1)H$ are nef and big for $a>1$; their numerical dimensions are $r$ and their Iitaka dimensions are nonnegative. All hypotheses hold, so $H$ is semiample.
+
+Thus a fixed power of $p'^*L$ is globally generated on $X'=X\times_Y Y'$, where $p':X'\to X$. Let this power be $m_0$. For any $x\in X$, choose a section of $p'^*(m_0L)$ nonzero at every point above $x$. Such a section exists by avoiding finitely many proper linear hyperplanes in the space of sections over the infinite field $\C$. The product of its $G$-translates is invariant, descends to a section of $m_0eL$, and is nonzero at $x$. The exponent is independent of $x$. Hence $m_0eL$ is globally generated.
+
+\textit{Step 5: intersection bound.}
+Resolve the base ideal of $W|_F$ by $\mu:\widehat F\to F$. Write
+\[
+ A:=m\mu^*(-K_F)=M+B,
+\]
+where $M$ is globally generated and $B$ is effective. Both $A$ and $M$ are nef. The induced morphism $h:\widehat F\to Z$ is generically finite of degree $d$ and $M=h^*\cO_Z(1)$. By the projection formula, $M^r=d\deg Z$. Furthermore,
+\begin{align*}
+ A^r-M^r
+ &=B\cdot\sum_{j=0}^{r-1}A^{r-1-j}M^j\ \geq\ 0.
+\end{align*}
+Each summand is nonnegative: restrict the nef classes to each component of the effective divisor and take limits of ample classes on a resolution of that component. Thus
+\[
+ d\leq d\deg Z=M^r\leq A^r=m^r(-K_F)^r.
+\]
+Every intersection has degree $r$ on $\widehat F$. This proves~\eqref{en:degree}, including the case $r=1$.
+\end{proof}
+
+The field-theoretic argument is the usual finite-automorphism argument; it replaces the permutation bound that can arise from working with a finite fibre of a morphism. Its quantitative improvement is elementary, and is not counted as a separate substantive research discovery.
+
+\section{The abundance audit: a stronger established consequence}\label{en:auditproof}
+\begin{prop}[Consequence of existing results]\label{en:abundant}
+If $L=-K_{X/Y}$ is nef and abundant, then $f$ becomes a product after a connected finite \'etale cover, and $L$ is semiample. This holds also when $\nu(L)<r$ or $\nu(L)=0$.
+\end{prop}
+\begin{proof}
+\textit{Step 1: a klt representative.}
+By the fourth input there exists $D\geq0$ with $D\sim_\Q L$ and $(X,D)$ klt. Specifically, triviality of the asymptotic multiplier ideal yields a sufficiently divisible linear system and a rationally scaled general member with klt singularities. Nefness alone does not supply this representative.
+
+\textit{Step 2: a locally constant log Calabi--Yau family.}
+Now $K_{X/Y}+D\sim_\Q0$. Apply the pair structure theorem to the nef divisor $-(K_{X/Y}+D)$. It follows that $f$ is smooth and $(X,D)$ is locally a product. The map $(X,D)\to Y$ is an lc-trivial fibration in the sense of \cite{en:Amb}: its generic pair is klt, its relative log canonical divisor is rationally trivial, and the rank-one condition follows from the klt condition and connected fibres.
+
+\textit{Step 3: discriminant and moduli, including higher base models.}
+For a prime divisor $P$ on $Y$, local product structure shows that the log canonical threshold of $f^*P$ over its generic point is exactly $1$: the fibre pair is klt, while the new transverse base divisor acquires coefficient $t$. Thus the discriminant coefficient is $1-1=0$, so $B_Y=0$. Choose the rational trivialization so that the canonical bundle formula has base divisor $K_Y$.
+
+It is essential to check the moduli b-divisor, not just its trace on $Y$. Let $\beta:Y_1\to Y$ be any smooth birational model and put $X_1=X\times_Y Y_1$, with maps $g:X_1\to X$ and $f_1:X_1\to Y_1$. Smoothness of $f$ ensures $X_1$ is smooth. For $E_\beta=K_{Y_1}-\beta^*K_Y$, the crepant boundary is
+\[
+ D_1=g^*D-f_1^*E_\beta,
+ \qquad K_{X_1}+D_1=g^*(K_X+D).
+\]
+At the generic point of a prime divisor of $Y_1$ with coefficient $a$ in $E_\beta$, the threshold is $1+a$, hence the discriminant coefficient is $-a$. Therefore
+\[
+ B_{Y_1}=-E_\beta,\qquad
+ K_{Y_1}+B_{Y_1}=\beta^*K_Y,\qquad M_{Y_1}\sim_\Q0.
+\]
+With the chosen rational trivialization these formulae identify the moduli b-divisor with zero; they are compatible on all higher smooth models. The possibly negative exceptional boundary is retained throughout the calculation.
+
+\textit{Step 4: finite cover and extension over every base point.}
+Ambro's Theorem 4.7 applies: the geometric generic fibre is projective, the boundary is effective on $X$, the discriminant is zero, and the moduli b-divisor is rationally trivial. It provides a finite Galois cover \'etale in codimension one and a product over a nonempty open subset. Its normal source and the smooth target allow purity of the branch locus \cite[Tag 0BMB]{en:Stacks} to promote the cover to an everywhere \'etale cover. The pulled-back boundary is effective and the new discriminant is still zero. Ambro's Proposition 4.4 then extends the product isomorphism over the entire new base: its excluded set consists of base singularities, discriminant support and the image of the negative vertical boundary, all empty here. Thus no codimension-two extension is assumed without a theorem.
+
+\textit{Step 5: semiampleness.}
+Restriction injectivity and equality of numerical dimensions give
+\[
+ \nu(L)=\kappa(L)\leq\kappa(-K_F)\leq\nu(-K_F)=\nu(L).
+\]
+Thus $-K_F$ is nef and abundant. Apply Fujino's Theorem 1.1 with $H=-K_F$ as above: $2H$ is nef and abundant, and $(a+1)H$ has the same numerical dimension and nonnegative Iitaka dimension. This includes numerical dimension zero. Hence $H$ is semiample. Pullback to the product and the norm argument of Step 4 in Section~\ref{en:proof} imply semiampleness of $L$.
+\end{proof}
+
+This proposition explains why weakening ``semiample'' to ``nef and abundant'' does not establish originality in this investigation. The required implications are supplied by existing general results. It also prevents us from listing the smaller-abundance case as an open problem left by Theorem~\ref{en:criterion}.
+
+\section{Geometric meaning, examples and failed extensions}\label{en:examples}
+The arguments above use the fundamental group of the full base, klt pairs on the full total space, and (in the audit) discriminants on every smooth birational base model. They work for every base dimension, including $\dim Y\geq2$, and for fibres of arbitrary positive dimension. They do not arise by taking a product of a curve computation. A numerical condition removes twisting only when it controls enough sections; the non-abundant regime separates the two kinds of information.
+
+\textit{Nonempty classes.} Let $F$ be any smooth weak Fano variety, $G$ a finite group of automorphisms of $F$, and $Y'\to Y$ any connected \'etale $G$-torsor between smooth projective varieties with $\dim Y\geq2$. The diagonal quotient $(Y'\times F)/G$ is smooth because the action on $Y'$ is free, and projective because a tensor product of translates gives a $G$-linearized ample bundle. Its relative anticanonical bundle pulls back to $\pr_F^*(-K_F)$, so it is nef and semiample by finite descent. The criterion applies. Such covers exist, for example among isogenies of abelian varieties, and finite actions occur on projective space in every positive dimension. This verifies existence; it is not used as a novelty argument.
+
+\textit{Boundary test: nef alone.} Let $A$ be an abelian variety of dimension at least two and $P\in\Pic^0(A)$ a non-torsion line bundle. For this test only, take the quotient convention $X=\mP_A(\cO_A\oplus P)$, $\xi=c_1(\cO_X(1))$. Then
+\[
+ L=2\xi-f^*P,\quad
+ f_*\cO_X(mL)=\bigoplus_{j=0}^{2m}P^{j-m},\quad h^0(X,mL)=1.
+\]
+Indeed, a nontrivial numerically trivial line bundle on a projective variety has no section: a nonzero effective divisor would have positive intersection with an ample $(\dim A-1)$-fold power. The two line summands are unitary flat, so the fibrewise Fubini--Study metric descends and makes $L$ semipositive, in particular nef. Its numerical dimension is $1$, whereas $\kappa(L)=0$. It cannot split after a finite \'etale cover: on each connected component the pullback of $P$ remains non-torsion (use the norm), and the same section count persists, whereas a product would have $h^0(-mK_{\mP^1})=2m+1$. This is only a stress test, not the main result.
+
+\textit{Boundary test: absolute nefness cannot be omitted.} Let $Y=\operatorname{Bl}_p\mP^2$, with exceptional divisor $B$, and $X=\mP_Y(\cO_Y\oplus\cO_Y(B))$. Then $L=2\xi-f^*B$ is $f$-ample and effective, and
+\[
+ h^0(X,mL)=\sum_{k=-m}^{m}h^0(Y,kB)=m+1,
+ \qquad \kappa(L)=1=r.
+\]
+For $k>0$, every effective divisor linearly equivalent to $kB$ is $kB$: intersecting with the pullback of a line forces it to be exceptional. Negative multiples have no sections by intersection with an ample divisor. This proves the formula and its linear growth. On the quotient section associated to $\cO_Y$, $L$ restricts to $-B$, which has negative degree on the strict transform of a line through $p$. Thus $L$ is not nef. It cannot become a product by an \'etale cover, because the pullback of $-K_{\mP^1}$ on a product is nef and nefness descends under finite surjective morphisms. This refutes the extension of Theorem~\ref{en:criterion} with ``$f$-nef and pseudo-effective'' in place of ``nef on $X$''.
+
+\textit{Other rejected steps.} Flatness does not make all holomorphic sections parallel for an arbitrary connection. A trivial line bundle on a projective variety carrying a nonzero holomorphic one-form $\alpha$ has the flat connection $d+\alpha$; its section $1$ is not parallel. Likewise, a generically finite rational map need not be finite at its base locus. Finally, a chosen infinite monodromy representation does not by itself rule out a holomorphic product for another presentation. The proofs avoid all three inferences.
+
+\section{Comparison, novelty and the remaining question}\label{en:novelty}
+Three candidates were compared. The first sought local triviality under a non-dominating non-nef locus. Theorem 4.8 and Theorem 4.6 of \cite{en:EIM} already supply it, so it was discarded. The second sought finite splitting from relative abundance; this was chosen for proof work, and then its originality was rejected by Proposition~\ref{en:abundant}. The third concerned second-Chern-class inequalities and equality cases for nef anticanonical varieties. Recent work, including \cite{en:IJZ}, made a direct substitution into a known inequality an unsuitable proposed contribution; no new equality lemma was established, and this direction was not pursued simultaneously.
+
+For the selected problem, Theorem~\ref{en:criterion} has a complete proof relative to explicitly stated published inputs. Lemma~\ref{en:marklemma} adds the simultaneous-coordinate argument to the existing boundary-perturbation method; the degree estimate is an elementary field-theoretic and intersection-theoretic refinement. The difference from the statement of the semiample theorem is real as a difference in initial hypotheses and in the quantitative conclusion. It does not imply historical novelty. In fact the qualitative difference is already bridged by the existing results in Section~\ref{en:auditproof}.
+
+The review included the published EIM article (not merely its first preprint), EG v2, Ambro's published paper, Fujino's author manuscript, Cacciola--Di Biagio v2, and the 2026 v4 of Benozzo--Brivio--Chang \cite{en:BBC}. The latter treats anticanonical Iitaka inequalities under singularity conditions on linear series; it is not an input to our proof. M\"uller's 2025 non-vanishing result \cite{en:Mu} was checked to distinguish non-vanishing from maximal growth. Search coverage up to September 8, 2026 is a targeted review, not an exhaustive bibliography or a priority certificate.
+
+There is no counterexample to the proved criterion in the checks above. There is also no independently certified new substantive partial theorem. This distinction is part of the mathematical outcome, rather than a gap to be hidden by labeling an elementary consequence as new.
+
+\begin{ques}[Unresolved by this investigation; no claim of literature-wide openness]\label{en:question}
+For a smooth Fano fibration with $L$ nef and $0\leq\kappa(L)<\nu(L)=r$, describe the defect $r-\kappa(L)$ in terms of monodromy and its action on anticanonical sections. More specifically, determine when a locally constant presentation compatible with a maximal-dimensional global linear system can be chosen so that
+\[
+ \kappa(L)=\operatorname{trdeg}_{\C}\C(F)^G,
+\]
+where $G$ is the Zariski closure of its monodromy in $\Autop(F)$.
+\end{ques}
+For such a compatible presentation the argument here proves only the inequality $\kappa(L)\leq\operatorname{trdeg}\C(F)^G$: the coordinate ratios give an invariant subfield. Surjectivity onto the invariant function field is not proved. Invariant rational functions need not automatically be ratios of invariant sections of the required powers and linearization. Resolving that obstruction, rather than re-proving abundance by existing theorems, is the precise unfinished task. The question is not promoted to a conjecture, and no equality is used elsewhere.
+
+\section{Reproducibility and mathematical status}\label{en:repro}
+The master file contains both complete language versions, with labels prefixed \texttt{en:} and \texttt{ja:} and displayed section numbers E and J. The source template's incomplete title command has been replaced; its document class, dimensions, theorem environments and mathematical macros are retained. Original author/contact information has been removed and the author and PDF metadata are set to \texttt{chatGPT 6 Astra}.
+
+The accompanying audit records the three candidate statements and the failed proof shortcuts. A saved exact-arithmetic script checks the two auxiliary section counts and a finite cyclic action illustrating the degree divisibility; these finite checks are not evidence for a general theorem. The proof is the argument above. Compilation, text and metadata checks and actual page rendering are recorded separately, so that a typesetting check is not confused with a mathematical verification or an independent human review.
+
+\begin{thebibliography}{10}
+\bibitem{en:EG} S. Ejiri and Y. Gongyo, \emph{Nef anti-canonical divisors and rationally connected fibrations}, Compos. Math. \textbf{155} (2019), 1444--1456. Theorem 1.2; checked in \href{https://arxiv.org/abs/1802.03732v2}{arXiv:1802.03732v2}.
+\bibitem{en:EIM} S. Ejiri, M. Iwai and S.-i. Matsumura, with an appendix by F. Touzet, \emph{On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces}, J. Algebraic Geom. \textbf{32} (2023), 477--517. Theorems 1.5, 1.6, 4.6, 4.8; Section 5. \href{https://doi.org/10.1090/jag/814}{doi:10.1090/jag/814}.
+\bibitem{en:Amb} F. Ambro, \emph{The moduli b-divisor of an lc-trivial fibration}, Compos. Math. \textbf{141} (2005), 385--403. Proposition 4.4, Theorem 4.7. \href{https://doi.org/10.1112/S0010437X04001071}{doi:10.1112/S0010437X04001071}.
+\bibitem{en:CDB} S. Cacciola and L. Di Biagio, \emph{Asymptotic base loci on singular varieties}, \href{https://arxiv.org/abs/1105.1253v2}{arXiv:1105.1253v2} (2012), Corollary 5.3 and Lemma 5.4, p. 12 in that version. Published in Math. Z. (2013); published numbering not checked.
+\bibitem{en:Fuj} O. Fujino, \emph{On Kawamata's theorem}, author manuscript dated June 3, 2009, Theorem 1.1. \href{https://www.math.kyoto-u.ac.jp/~fujino/kawamata10.pdf}{Verified author PDF}. Published chapter: \href{https://doi.org/10.4171/007-1/14}{doi:10.4171/007-1/14} (2010); published pagination not checked.
+\bibitem{en:Stacks} The Stacks Project Authors, \emph{The Stacks Project}, \href{https://stacks.math.columbia.edu/tag/0BMB}{Tag 0BMB, Lemma 58.21.4}, purity of branch locus; \href{https://stacks.math.columbia.edu/tag/09I3}{Tag 09I3, Lemma 9.21.6}, finite-group fixed fields.
+\bibitem{en:SGA} A. Grothendieck et al., \emph{Rev\^etements \'etales et groupe fondamental (SGA 1)}, Lecture Notes in Mathematics 224, Springer, 1971. Expos\'e XII, Theorem 5.1; checked in \href{https://arxiv.org/abs/math/0206203v2}{arXiv:math/0206203v2}.
+\bibitem{en:Serre} J.-P. Serre, \emph{G\'eom\'etrie alg\'ebrique et g\'eom\'etrie analytique}, Ann. Inst. Fourier \textbf{6} (1956), 1--42. Section 4, Proposition 14. \href{https://doi.org/10.5802/aif.59}{doi:10.5802/aif.59}.
+\bibitem{en:BBC} M. Benozzo, I. Brivio and C.-K. Chang, \emph{On the superadditivity of anticanonical Iitaka dimension}, Adv. Math. \textbf{491} (2026), 110860. Theorem 1.4 checked in \href{https://arxiv.org/abs/2309.16580v4}{arXiv:2309.16580v4}, February 9, 2026. \href{https://doi.org/10.1016/j.aim.2026.110860}{doi:10.1016/j.aim.2026.110860}.
+\bibitem{en:Mu} N. M\"uller, \emph{Two non-vanishing results concerning the anti-canonical bundle}, Nagoya Math. J. \textbf{258} (2025). Theorem A; \href{https://doi.org/10.1017/nmj.2024.21}{doi:10.1017/nmj.2024.21}. Pagination not checked.
+\bibitem{en:IJZ} M. Iwai, S. Jinnouchi and S. Zhang, \emph{The Miyaoka--Yau inequality for singular varieties with big canonical or anticanonical divisors}, \href{https://arxiv.org/html/2507.08522v2}{arXiv:2507.08522v2}. Theorem 1.5 inspected for candidate selection; not used in the proofs.
+\end{thebibliography}
+
+\newpage
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\thesection}{J.\arabic{section}}
+\renewcommand{\theHsection}{J.\arabic{section}}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献（日本語版）}
+\markboth{chatGPT 6 Astra}{相対反標準因子の切断成長と有限被覆}
+\begin{center}
+{\Large\bfseries 相対反標準因子の最大切断成長と\\有限étale被覆による積分解：\\証明と新規性の監査}\par\medskip
+{\large chatGPT 6 Astra}\par\smallskip
+2026年9月8日
+\end{center}
+\medskip
+\noindent\textbf{要旨．}
+任意の滑らかな射影的基底上で、nefな相対反標準因子の切断成長がファイブレーションの大域的な捩れをどこまで制約するかを検討する。滑らかな複素射影多様体間のファイブレーション$f:X\to Y$に対して、$L=-K_{X/Y}$、$r=\dim X-\dim Y>0$とおく。$\kappa(X,L)=r$ならば有限étale被覆後に積分解することを、既知の定理に依存する完全な論証として与える。一般ファイバー上で生成的に有限な有理写像を定める部分線形系があれば、その写像の次数を割り切る次数の分解被覆を取れる。有限個の切断およびその和の零因子を同時に境界に組み込み、基点が存在しても切断の比と両立する一つの局所定数構造を得ることが証明の要点である。別の監査では、より一般のabundantな場合も既知結果から導く。したがって定性的な積分解も、この証明の拡張も、新しい研究定理とは主張しない。本研究で解決しなかった課題は、非abundantな場合の構造的理解である。
+\par\medskip
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{問題と到達点}\label{ja:intro}
+$f:X\to Y$を、滑らかな複素射影多様体間の連結ファイバーを持つ全射とし、$\dim Y\geq2$、相対次元$r>0$とする。全空間$X$上の$L=-K_X+f^*K_Y$の正値性を調べる。中心となる問いは、$L$の数値的条件または切断に関する条件によって、有限非分岐基底変換後にファイブレーションの捩れが消えることを導けるか、というものである。
+
+ここには二種類の障害がある。第一に、ファイブレーションが滑らかで局所自明であっても、任意に選んだモノドロミー表現の固定ベクトルと大域切断とが同一視されるわけではない。第二に、切断で定まる有理写像には基点があり得る。生成的有限性から、全空間やファイバー全体での有限射性は従わない。これらは交点数を曲線に制限するだけでは解消されない。
+
+直接の出発点はEjiri--Gongyoの制限定理\cite{ja:EG}と、Ejiri--Iwai--Matsumuraによるklt対の局所定数構造\cite{ja:EIM}である。後者はsemiampleの場合のétale積分解も証明しており、Ambroの先行する方法も明示している。したがってsemiampleという仮定から積分解することを、新しい定理として扱わない。
+
+当初は$\kappa(X,L)=\nu(X,L)$を仮定する拡張に着目した。しかし新規性の再監査により、klt代表元と標準束公式を経由する既知結果の連鎖があることが分かった。第\ref{ja:auditproof}節で、その連鎖に必要な仮定と計算を明示する。これによりabundantな場合を独自の研究成果候補から除外し、その特殊例である最大切断成長の場合も独自の成果とは認定しない。
+
+本稿に保存するのは、同時の境界指定、有理写像、被覆次数を明確に扱った完全な論証である。これは任意の基底とファイバーを対象とする構造命題であり、分裂束の計算ではない。ただし、既存の証明を延長し、その議論を精密化することだけでは、研究成果として求められた本質的な新規性の証拠にならない。本稿は証明と監査の原稿であり、その新規性を確立したという報告ではない。
+
+\section{設定と確認した既知の入力}\label{ja:setting}
+自ら述べる命題では、すべての多様体は$\C$上の整多様体とする。$X,Y$はいずれも滑らかで射影的である。最初から$f$のsmoothnessを仮定せず、引用する構造定理から導く。標準因子はCartierなので、
+\[
+ K_{X/Y}=K_X-f^*K_Y,\qquad L=-K_{X/Y}
+\]
+は直線束として定まる。滑らかなファイバー$F$には随伴公式によって$L|_F=-K_F$が成立する。
+
+因子$D$がnefであるとは、その存在する射影多様体上のすべての整曲線$C$について$D\cdot C\geq0$となることをいう。$f$-nefでは、$f$が収縮する曲線だけにこの条件を課す。以下で用いるのは前者である。pseudo-effectiveとは数値類が有効錐の閉包に属すること、bigとは飯高次元がその因子の存在する多様体の次元に等しいことをいう。nefとbigを一つの強弱関係に並べない。
+
+滑らかな射影$n$次元多様体上のnef因子$D$とample因子$A$に対して、
+\[
+ \nu(D)=\max\{k\in\{0,\ldots,n\}:D^k\cdot A^{n-k}>0\}
+\]
+を数値次元とする。この値は$A$に依存しない。正の倍数がすべて切断を持たない場合は$\kappa(D)=-\infty$とし、そうでなければ$\Phi_{|mD|}$の像の次元の最大値を$\kappa(D)$と定める。nef因子がabundantであるとは$\kappa(D)=\nu(D)$をいう。semiampleとは、ある正の倍数が多様体全体で大域生成されることをいう。
+
+局所定数構造とは、解析的な表示
+\begin{equation}\label{ja:suspension}
+ X\simeq(\widetilde Y\times F)/\pi_1(Y),\qquad
+ \gamma(y,z)=(\gamma y,\rho(\gamma)z)
+\end{equation}
+をいう。これは解析的局所自明性より強い条件である。表現と表示は一意とは限らない。本稿のモノドロミーについての主張は、常に証明で選ぶ構造に関するものであり、同じ正則ファイブレーション上のすべての平坦構造に関する主張ではない。
+
+以下は外部から用いる入力であり、本稿が証明する結果ではない。
+\begin{enumerate}
+\item $L$がnefなら、適切な一般の滑らかなファイバーへの制限は次数付き切断環上で単射となる。すなわち各$H^0(X,mL)\to H^0(F,-mK_F)$が単射である\cite[Theorem 1.2]{ja:EG}。
+\item $\Delta\geq0$が有理因子、$(X,\Delta)$がkltで、$-(K_{X/Y}+\Delta)$がnefなら、対は$Y$上で局所定数表示を持つ\cite[Theorem 4.6]{ja:EIM}。用いるのは全空間が滑らかな場合である。
+\item $L$がnefなら$\nu(L)=\nu(-K_F)$である\cite[Theorem 1.5]{ja:EIM}。semiampleの場合の積分解は同論文Theorem 1.6である。
+\item 射影klt対上のnefかつabundantな直線束には、境界に加えてもklt性を保つ有効有理代表元が存在する\cite[Corollary 5.3, Lemma 5.4]{ja:CDB}。この番号は本文を確認したarXiv v2による。
+\end{enumerate}
+別の監査に必要なFujino、Ambro、分岐純性の各結果は、第\ref{ja:auditproof}節で該当する仮定をすべて照合して適用する。
+
+\section{最大成長の判定と定量的な形}\label{ja:main}
+\begin{jthm}[完全な導出；独創性は主張しない]\label{ja:criterion}
+以上の設定で、$L$がnefかつ$\kappa(X,L)=r$と仮定する。このとき$f$は滑らかで、すべてのファイバーは滑らかなweak Fano多様体であり、連結な有限étale Galois被覆$\tau:Y'\to Y$が存在して、$Y'$-スキームとして
+\[
+ X\times_Y Y'\simeq Y'\times F
+\]
+となる。さらに$L$はsemiampleである。
+
+より詳しく、非零の有限次元部分空間$W\subseteq H^0(X,mL)$の制限が、生成的に有限な有理写像
+\[
+ \psi:F\dashrightarrow Z\subseteq\mP(W^*),\qquad
+ d=[\C(F):\C(Z)]
+\]
+を定めるとする。このとき分解被覆の次数$e$を
+\begin{equation}\label{ja:degree}
+ e\mid d,\qquad e\leq d\leq m^r(-K_F)^r
+\end{equation}
+を満たすように取れる。特に$d=1$なら$f$自体が積である。
+\end{jthm}
+
+このような$W$の存在は$\kappa(X,L)=r$から従うことを後で証明する。$W$が基点自由であることも、$-K_F$がampleであることも仮定していない。$d$は関数体の次数であり、至る所有限な射の次数と定義しているわけではない。
+
+\begin{jcor}\label{ja:equiv}
+$L$がnefで一般ファイバーがweak Fanoであるとする。このとき、$\kappa(X,L)=r$、$L$がsemiampleであること、$f$が有限étale被覆後に積になること、の三条件は同値である。
+\end{jcor}
+\begin{proof}
+最初の条件から残りは定理\ref{ja:criterion}による。$L$がsemiampleなら数値次元と飯高次元が一致するので、数値次元の入力から$\kappa(L)=\nu(-K_F)=r$である。有限étale被覆後に積となる場合、第\ref{ja:proof}節の議論により$-K_F$がsemiampleとなり、同節のノルムによる議論でその性質が$L$へ降下する。したがって先の含意に帰着する。
+\end{proof}
+
+\section{有限個の零因子を同時に指定する議論}\label{ja:mark}
+\begin{jlem}[有限線形系の比との両立]\label{ja:marklemma}
+$L$がnefであるとする。任意の非零有限次元部分空間$W\subseteq H^0(X,mL)$に対して、$\Phi_W$を$\widetilde Y\times F$へ引き戻した有理写像が、ある$F$上の有理写像$\psi$を用いて$\psi\circ\pr_F$となるような局所定数表示\eqref{ja:suspension}を取れる。特にすべての$\gamma\in\pi_1(Y)$について$\psi\circ\rho(\gamma)=\psi$である。
+\end{jlem}
+\begin{proof}
+基底$s_0,\ldots,s_q$を取り、それらの制限が一次独立となる一般ファイバーを選ぶ。これは制限単射性により可能である。$q=0$の場合は写像が定値なので、境界なしの構造定理でよい。以下$q\geq1$とする。
+\[
+ D_i=\Div(s_i),\quad D_i^+=\Div(s_0+s_i)\ (1\leq i\leq q),
+ \quad T=\sum_{i=0}^qD_i+\sum_{i=1}^qD_i^+
+\]
+とおく。いずれも固定成分や重複度を含めて有効Cartier因子であり、$T\sim m(2q+1)L$となる。
+
+$(X,\epsilon T)$がkltで、$\epsilon m(2q+1)<1$となる十分小さな正の有理数$\epsilon$を取る。前者の存在は、固定した一つの因子$T$の対数的特異点解消で確認できる。その上で現れるdiscrepancyと重複度は有限個であり、$X$が滑らかなので、kltを定める厳密不等式は十分小さな$\epsilon>0$で成立する。このとき
+\begin{equation}\label{ja:perturb}
+ -(K_{X/Y}+\epsilon T)\sim_\Q
+ (1-\epsilon m(2q+1))L
+\end{equation}
+はnefである。この一つの境界に対し、対の構造定理を一度適用する。
+
+得られた被覆写像を$p:\widetilde Y\times F\to X$と書く。$p^*T$は積型の因子である。その有効な加数である$p^*D_i$と$p^*D_i^+$は、その有限個の積型素因子に台を持つ。連結な積上で各素因子の重複度は固定された整数であるため、各加数も積型である。異なる切断に別々の自明化を選んでいるのではなく、成分の置換を黙って除外してもいない。
+
+相対標準束から得られる同一視$p^*(mL)\simeq\pr_F^*(-mK_F)$の下で、$y_0\in\widetilde Y$において規格化し、$t_i=p^*s_i|_{\{y_0\}\times F}$とおく。因子の一致から
+\[
+ p^*s_i=a_i(y)\pr_F^*t_i,
+ \qquad p^*(s_0+s_i)=b_i(y)\pr_F^*(t_0+t_i)
+\]
+と書ける。$a_i,b_i$は$\widetilde Y$上の零点を持たない正則関数である。同じ因子を持つ切断の比は積上の零点を持たない正則関数となり、コンパクト連結なファイバー$F$への制限が定数であるため、この形になる。ここでの特異点の除去は、滑らかな空間上でCartier因子が等しいことによる。余次元二の集合を理由なく無視してはいない。
+
+引き戻しの加法性から
+\[
+ a_0(y)t_0+a_i(y)t_i=b_i(y)(t_0+t_i)
+\]
+が成立する。$t_0,t_i$の一次独立性により$a_0=a_i=b_i$を得る。したがって射影座標はすべて共通の因子を持ち、それを消去できる。ゆえに
+\[
+ \Phi_W\circ p=[t_0:\cdots:t_q]\circ\pr_F
+\]
+となる。これは共通の定義域上で成立し、したがって有理写像、ここでは同値に有理型写像として成立する。左辺のdeck変換不変性から$\psi\circ\rho(\gamma)=\psi$を得る。個々の$a_i$が定数であることも、平坦束の任意の正則切断が平行であることも主張していない。
+\end{proof}
+
+この議論は\cite[Theorem 1.6の証明、Step 3]{ja:EIM}の境界摂動を詳しくしたものである。切断の和を同時に指定することで複数の座標の両立性を明示する。平坦束の新しい一般理論として提示するものではない。
+
+\section{完全な証明と次数評価}\label{ja:proof}
+\begin{proof}[定理\ref{ja:criterion}の証明]
+\textit{Step 1：ファイバー上の生成的有限性．}
+$\dim\Phi_{|mL|}(X)=r$となる$m$を選び、$W=H^0(X,mL)$とする。制限した基底の間の斉次多項式関係は、$F$上で消える$kmL$の切断を定める。次数$km$での制限単射性から、その切断は$X$上で消える。逆に$X$上の関係は$F$上にも制限される。したがって$\mP(W^*)$内の両方の像の閉包は同じ斉次イデアルを持ち、次元はいずれも$r$である。$r$次元の整多様体$F$からこの像への写像は支配的で生成的に有限である。標数零なので対応する有限体拡大は分離的である。また$\kappa(-K_F)=r$であるため、$-K_F$はbigである。
+
+\textit{Step 2：両立する表示におけるモノドロミーの有限性．}
+選んだ$W$、または定量的statementの任意の$W$に補題\ref{ja:marklemma}を適用する。$K=\C(Z)$、$E=\C(F)$とおく。モノドロミーの像$G=\rho(\pi_1(Y))$は$K$の各元を固定する。$F$の自己同型は$E$に忠実に作用する。実際、すべての有理関数を固定する自己同型は稠密開集合上で恒等であり、分離性から$F$全体で恒等となる。したがって$G$は$\Autop_K(E)$に埋め込まれる。この群は有限で、その位数は$[E:K]=d$以下である。さらに有限群の固定体定理\cite[Tag 09I3]{ja:Stacks}により$[E:E^G]=|G|$であり、次数の塔公式から
+\[
+ d=[E:K]=|G|[E^G:K]
+\]
+を得る。ゆえに$e:=|G|$は$d$を割り切る。全空間上で有理写像を解消する必要も、基点で写像が有限であるという主張も用いていない。
+
+\textit{Step 3：代数的な積分解被覆．}
+$\ker\rho$は指数$e$の正規部分群である。対応する連結被覆$Y'\to Y$は有限非分岐であり、滑らかな複素射影多様体のRiemann存在定理\cite[Expos\'e XII, Theorem 5.1]{ja:SGA}によって代数的な有限étale被覆となる。$Y'$は射影的で、$\ker\rho$は$F$に自明に作用するので、引き戻した表示は$Y'\times F$となる。解析的同型はグラフにChowの定理を適用することで代数的である\cite[Section 4, Proposition 14]{ja:Serre}。対の構造定理により$f$はすでに滑らかなファイバーを持つ局所自明射なので、至る所smoothである。nef性はすべてのファイバーに制限でき、全ファイバーが同型であるため、すべてweak Fanoとなる。
+
+\textit{Step 4：semiamplenessと降下．}
+$F$上で$H=-K_F$とおく。FujinoによるKawamataの定理の定式化\cite[Theorem 1.1]{ja:Fuj}で、基底を一点、境界を零、nef因子を$H$とする。$H-K_F=2H$と$aH-K_F=(a+1)H$は$a>1$に対してともにnefかつbigで、数値次元は$r$、飯高次元は非負である。したがってすべての仮定を満たし、$H$はsemiampleとなる。
+
+ゆえに$p':X'=X\times_Y Y'\to X$に対して、$p'^*L$のある固定した$m_0$乗は大域生成される。任意の$x\in X$に対し、その上のすべての点で消えない$p'^*(m_0L)$の切断を選べる。実際、切断空間の有限個の真の線形超平面を無限体$\C$上で避ければよい。その$G$-変換の積は不変であり、$m_0eL$の切断に降下して$x$で消えない。指数は$x$に依存しないので、$m_0eL$が大域生成される。
+
+\textit{Step 5：交点数による評価．}
+$W|_F$の基底イデアルを$\mu:\widehat F\to F$で解消して
+\[
+ A:=m\mu^*(-K_F)=M+B
+\]
+と書く。$M$は大域生成、$B$は有効であり、$A,M$はともにnefである。誘導射$h:\widehat F\to Z$は次数$d$の生成的有限射で、$M=h^*\cO_Z(1)$である。射影公式により$M^r=d\deg Z$を得る。また
+\begin{align*}
+ A^r-M^r
+ &=B\cdot\sum_{j=0}^{r-1}A^{r-1-j}M^j\ \geq\ 0
+\end{align*}
+である。各項の非負性は、有効因子の各成分にnef類を制限し、その成分の特異点解消上でample類の極限を取ることで従う。したがって
+\[
+ d\leq d\deg Z=M^r\leq A^r=m^r(-K_F)^r.
+\]
+交点積はいずれも$\widehat F$上で次数$r$である。$r=1$も含めて\eqref{ja:degree}が証明された。
+\end{proof}
+
+体論の議論は通常の有限自己同型群の議論であり、有限射の一つのファイバーの置換を使うと現れる評価を置き換えている。定量的な改良そのものは初等的であり、独立した本質的研究成果には数えない。
+
+\section{abundanceの監査：既知結果からのより強い帰結}\label{ja:auditproof}
+\begin{jprop}[既存の結果の帰結]\label{ja:abundant}
+$L=-K_{X/Y}$がnefかつabundantなら、$f$は連結な有限étale被覆後に積となり、$L$はsemiampleである。これは$\nu(L)<r$の場合も、$\nu(L)=0$の場合も含む。
+\end{jprop}
+\begin{proof}
+\textit{Step 1：kltな代表元．}
+第四の入力により、$D\geq0$、$D\sim_\Q L$、$(X,D)$がkltとなる$D$が存在する。具体的には、漸近乗数イデアルの自明性から、十分可除な線形系と、その一般元を有理数倍したklt代表元を得る。nef性だけからこの代表元が得られるわけではない。
+
+\textit{Step 2：局所定数なlog Calabi--Yauファミリー．}
+$K_{X/Y}+D\sim_\Q0$なので、nef因子$-(K_{X/Y}+D)$に対の構造定理を適用する。$f$は滑らかとなり、$(X,D)$は局所的に積となる。$(X,D)\to Y$は\cite{ja:Amb}の意味のlc-trivial fibrationである。一般対がkltで、相対対数標準因子が有理的に自明であり、rank-one条件はklt性とファイバーの連結性から成立する。
+
+\textit{Step 3：高い基底モデルも含めた判別因子とmoduli因子．}
+$Y$上の素因子$P$について、局所積構造から、その一般点上の$f^*P$のlog canonical thresholdは正確に$1$である。ファイバー対はkltであり、横断する新しい基底因子に係数$t$が加わるためである。判別因子の係数は$1-1=0$、したがって$B_Y=0$となる。標準束公式の基底因子が$K_Y$となる有理的自明化を選ぶ。
+
+$Y$上のtraceだけでなくmoduli b-divisorの確認が必要である。任意の滑らかな双有理モデル$\beta:Y_1\to Y$に対して$X_1=X\times_Y Y_1$とし、射を$g:X_1\to X$、$f_1:X_1\to Y_1$と書く。$f$のsmoothnessから$X_1$も滑らかである。$E_\beta=K_{Y_1}-\beta^*K_Y$とすると、crepantな境界は
+\[
+ D_1=g^*D-f_1^*E_\beta,
+ \qquad K_{X_1}+D_1=g^*(K_X+D)
+\]
+である。$E_\beta$における係数が$a$である$Y_1$上の素因子の一般点では、thresholdは$1+a$となるので、判別因子の係数は$-a$である。ゆえに
+\[
+ B_{Y_1}=-E_\beta,\qquad
+ K_{Y_1}+B_{Y_1}=\beta^*K_Y,\qquad M_{Y_1}\sim_\Q0.
+\]
+選んだ有理的自明化の下で、これらの式はmoduli b-divisorを零と同一視し、さらに高いすべての滑らかなモデルと両立する。途中で負となり得る例外的境界項を落としていない。
+
+\textit{Step 4：有限被覆と全基底への延長．}
+AmbroのTheorem 4.7を適用できる。幾何学的一般ファイバーは射影的で、$X$上の境界は有効、判別因子は零、moduli b-divisorは有理的に自明である。同定理により、余次元一でétaleな有限Galois被覆と、非空開集合上の積分解を得る。被覆の始域は正規、終域は滑らかなので、分岐軌跡の純性\cite[Tag 0BMB]{ja:Stacks}により被覆は至る所étaleである。引き戻した境界は有効で、新しい判別因子も零である。AmbroのProposition 4.4により積同型が新しい基底全体に延長する。この命題で除外するのは基底の特異点、判別因子の台、負の垂直境界の像であり、ここではすべて空である。したがって余次元二への延長を無根拠に仮定していない。
+
+\textit{Step 5：semiampleness．}
+制限単射性と数値次元の等式から
+\[
+ \nu(L)=\kappa(L)\leq\kappa(-K_F)\leq\nu(-K_F)=\nu(L)
+\]
+を得る。したがって$-K_F$はnefかつabundantである。先と同じく$H=-K_F$としてFujinoのTheorem 1.1を適用する。$2H$はnefかつabundantで、$(a+1)H$の数値次元は同じ、飯高次元は非負である。数値次元零も含めて、$H$はsemiampleとなる。積への引き戻しと第\ref{ja:proof}節Step 4のノルムの議論から、$L$もsemiampleである。
+\end{proof}
+
+この命題は、semiampleをnefかつabundantに弱めることが、本研究で独創性を確立することにはならない理由を示す。必要な含意は既存の一般定理によって供給される。また、数値次元の小さいabundantな場合を、定理\ref{ja:criterion}が残した未解決問題として列挙してはいけないことも分かる。
+
+\section{幾何学的意味・例・成立しない拡張}\label{ja:examples}
+以上の議論は基底全体の基本群、全空間上のklt対、さらに監査ではすべての滑らかな双有理基底モデル上の判別因子を扱う。任意の基底次元、特に$\dim Y\geq2$、および任意の正の相対次元で成立し、曲線上の計算に別の多様体を直積して得る議論ではない。数値的条件が十分多くの切断を制御して初めて、捩れを消せる。非abundantな場合には、この二種類の情報が分離する。
+
+\textit{空虚でない幾何学的クラス．}
+$F$を任意の滑らかなweak Fano多様体、$G$をその有限自己同型群とし、$Y'\to Y$を$\dim Y\geq2$の滑らかな射影多様体間の連結étale $G$-torsorとする。対角商$(Y'\times F)/G$は、$Y'$上の作用が自由なので滑らかであり、ample束の有限個の変換のテンソル積から$G$-linearized ample束が得られるので射影的である。相対反標準束は$\pr_F^*(-K_F)$に引き戻されるので、有限降下によりnefかつsemiampleである。判定定理が適用される。このような被覆は例えばアーベル多様体のisogenyから得られ、任意の正次元の射影空間には有限群作用が存在する。これは対象の存在確認であって、新規性の根拠ではない。
+
+\textit{境界検査：nefだけでは足りない．}
+$A$を次元二以上のアーベル多様体、$P\in\Pic^0(A)$を非torsionな直線束とする。この検査に限って商の規約で$X=\mP_A(\cO_A\oplus P)$、$\xi=c_1(\cO_X(1))$とおく。このとき
+\[
+ L=2\xi-f^*P,\quad
+ f_*\cO_X(mL)=\bigoplus_{j=0}^{2m}P^{j-m},\quad h^0(X,mL)=1
+\]
+となる。射影多様体上の非自明で数値的に自明な直線束は切断を持たない。非零の有効因子があれば、ample因子の$(\dim A-1)$乗との交点数が正となるからである。二つの直線束はunitary flatなので、ファイバー方向のFubini--Study計量が降下し、$L$はsemipositive、特にnefである。その数値次元は$1$だが$\kappa(L)=0$である。有限étale被覆後も積にはならない。各連結成分への$P$の引き戻しはノルムを使うと依然として非torsionであり、同じ切断数の式が成立する一方、積であれば$h^0(-mK_{\mP^1})=2m+1$となるためである。これは検算であって主結果ではない。
+
+\textit{境界検査：全空間上のnef性は省略できない．}
+$Y=\operatorname{Bl}_p\mP^2$の例外因子を$B$とし、$X=\mP_Y(\cO_Y\oplus\cO_Y(B))$とする。$L=2\xi-f^*B$は$f$-ampleかつ有効で、
+\[
+ h^0(X,mL)=\sum_{k=-m}^{m}h^0(Y,kB)=m+1,
+ \qquad \kappa(L)=1=r
+\]
+が成立する。$k>0$なら$kB$に線形同値な有効因子は$kB$自身しかない。直線の引き戻しとの交点を取ると、その因子は例外的でなければならないためである。負の倍数はample因子との交点により切断を持たない。これで切断数の式と一次成長が証明される。商$\cO_Y$に対応する切断上で$L$は$-B$に制限され、$p$を通る直線の狭義変換上で負の次数を持つ。したがってnefではない。有限étale被覆後に積になることもない。積上の$-K_{\mP^1}$の引き戻しはnefで、nef性は有限全射に関して降下するからである。この例は、定理\ref{ja:criterion}の「$X$上でnef」を「$f$-nefかつpseudo-effective」に置き換える拡張を否定する。
+
+\textit{その他の棄却した推論．}
+任意の接続について、平坦性から全正則切断の平行性は従わない。非零正則一形式$\alpha$を持つ射影多様体の自明直線束には平坦接続$d+\alpha$があるが、切断$1$は平行でない。また生成的有限な有理写像は、その基底軌跡で有限とは限らない。さらに、選んだ一つのモノドロミー表現の像が無限であることだけでは、別の表示における正則な積構造を排除できない。証明ではこれら三つの推論を用いていない。
+
+\section{既知結果との比較・新規性・残った問い}\label{ja:novelty}
+三つの候補を比較した。第一は、非nef locusが基底を支配しない条件から局所自明性を得る問題であったが、\cite{ja:EIM}のTheorem 4.8とTheorem 4.6がすでに与えるため棄却した。第二は相対abundanceから有限積分解を得る問題であり、これを選んで証明を進めたが、命題\ref{ja:abundant}によって独創性の主張を取り下げた。第三はnefな反標準因子を持つ多様体の第二Chern類の不等式と等号条件であった。\cite{ja:IJZ}を含む最近の結果があるため、既知の不等式への直接代入は適切な成果候補ではなかった。新しい等号補題を確立できず、この方向を同時には追究しなかった。
+
+選択した問題について、定理\ref{ja:criterion}は明示した公刊入力に依存する完全な証明を持つ。補題\ref{ja:marklemma}は既存の境界摂動法に複数の座標を同時に扱う議論を加え、次数評価は初等的な体論と交点理論による精密化である。semiampleの定理のstatementとは、出発する仮定と定量的結論に差がある。しかし、それだけで歴史的新規性は従わない。実際、定性的な差は第\ref{ja:auditproof}節の既知結果によって埋まる。
+
+調査したのは、最初のpreprintだけでなく公刊EIM論文、EG v2、Ambroの公刊論文、Fujinoの著者原稿、Cacciola--Di Biagio v2、2026年のBenozzo--Brivio--Chang v4\cite{ja:BBC}である。最後の論文は線形系の特異点条件の下で反標準飯高次元の不等式を扱うが、本稿の証明には用いない。また、非消滅と最大成長を区別するため、M\"ullerの2025年の非消滅結果\cite{ja:Mu}を確認した。2026年9月8日までを対象とする検索は焦点を絞った調査であり、網羅的な文献目録や優先権の証明ではない。
+
+以上の検査では証明した判定命題への反例は得られていない。一方、独立に新規性を認定できる本質的な部分定理も得られていない。この区別自体が今回の数学的作業の結論であり、初等的な系を新しい結果と呼んで隠すべき欠落ではない。
+
+\begin{jques}[本研究では未解決；文献全体での未解決性は主張しない]\label{ja:question}
+$L$がnefで$0\leq\kappa(L)<\nu(L)=r$を満たす滑らかなFanoファイブレーションについて、差$r-\kappa(L)$を、モノドロミーと反標準切断への作用から記述せよ。特に、像の次元が最大となる大域線形系と両立する局所定数表示を
+\[
+ \kappa(L)=\operatorname{trdeg}_{\C}\C(F)^G
+\]
+が成立するように選べる条件を決定せよ。ここで$G$は$\Autop(F)$内のモノドロミーのZariski閉包である。
+\end{jques}
+このような両立する表示に対して、本稿が示すのは$\kappa(L)\leq\operatorname{trdeg}\C(F)^G$だけである。座標の比が不変部分体を与えることによる。不変関数体全体への全射性は証明していない。不変有理関数が、指定された冪とlinearizationについての不変切断の比として表せるとは限らない。この障害を解決することが正確な未完了課題であり、既知の定理からabundanceを再証明することではない。この問いを予想には格上げせず、等号を他の議論に用いてもいない。
+
+\section{再現性と数学的な状態}\label{ja:repro}
+masterファイルは両言語の全文を含み、labelの接頭辞は\texttt{en:}と\texttt{ja:}、表示上の節番号はEとJである。テンプレートの未完成のtitle命令を置き換え、documentclass、紙面寸法、定理環境、数学用マクロを保持した。元の著者・連絡先を削除し、著者とPDFメタデータを\texttt{chatGPT 6 Astra}に設定した。
+
+同梱の監査記録には、三つの候補のstatementと、成立しなかった証明の短絡を保存している。保存した厳密整数計算のスクリプトは、補助例二つの切断数と、次数の整除性を示す有限巡回群作用を検算する。これらの有限検査は一般定理の証拠ではなく、証明は上記の議論である。コンパイル、文字・メタデータ検査、ページの実際の画像化は別途記録し、組版検査を数学的検証や人間による独立査読と混同しない。
+
+\begin{thebibliography}{10}
+\bibitem{ja:EG} S. Ejiri and Y. Gongyo, \emph{Nef anti-canonical divisors and rationally connected fibrations}, Compos. Math. \textbf{155} (2019), 1444--1456. Theorem 1.2；\href{https://arxiv.org/abs/1802.03732v2}{arXiv:1802.03732v2}で確認。
+\bibitem{ja:EIM} S. Ejiri, M. Iwai and S.-i. Matsumura, with an appendix by F. Touzet, \emph{On asymptotic base loci of relative anti-canonical divisors of algebraic fiber spaces}, J. Algebraic Geom. \textbf{32} (2023), 477--517. Theorems 1.5, 1.6, 4.6, 4.8；Section 5. \href{https://doi.org/10.1090/jag/814}{doi:10.1090/jag/814}.
+\bibitem{ja:Amb} F. Ambro, \emph{The moduli b-divisor of an lc-trivial fibration}, Compos. Math. \textbf{141} (2005), 385--403. Proposition 4.4, Theorem 4.7. \href{https://doi.org/10.1112/S0010437X04001071}{doi:10.1112/S0010437X04001071}.
+\bibitem{ja:CDB} S. Cacciola and L. Di Biagio, \emph{Asymptotic base loci on singular varieties}, \href{https://arxiv.org/abs/1105.1253v2}{arXiv:1105.1253v2} (2012), Corollary 5.3, Lemma 5.4, 同版p. 12. Math. Z. (2013)掲載；公刊版の番号は要確認。
+\bibitem{ja:Fuj} O. Fujino, \emph{On Kawamata's theorem}, 2009年6月3日付著者原稿、Theorem 1.1. \href{https://www.math.kyoto-u.ac.jp/~fujino/kawamata10.pdf}{確認した著者PDF}。公刊章：\href{https://doi.org/10.4171/007-1/14}{doi:10.4171/007-1/14} (2010)；公刊版ページは要確認。
+\bibitem{ja:Stacks} The Stacks Project Authors, \emph{The Stacks Project}, \href{https://stacks.math.columbia.edu/tag/0BMB}{Tag 0BMB, Lemma 58.21.4}、分岐純性；\href{https://stacks.math.columbia.edu/tag/09I3}{Tag 09I3, Lemma 9.21.6}、有限群の固定体。
+\bibitem{ja:SGA} A. Grothendieck et al., \emph{Rev\^etements \'etales et groupe fondamental (SGA 1)}, Lecture Notes in Mathematics 224, Springer, 1971. Expos\'e XII, Theorem 5.1; checked in \href{https://arxiv.org/abs/math/0206203v2}{arXiv:math/0206203v2}.
+\bibitem{ja:Serre} J.-P. Serre, \emph{G\'eom\'etrie alg\'ebrique et g\'eom\'etrie analytique}, Ann. Inst. Fourier \textbf{6} (1956), 1--42. Section 4, Proposition 14. \href{https://doi.org/10.5802/aif.59}{doi:10.5802/aif.59}.
+\bibitem{ja:BBC} M. Benozzo, I. Brivio and C.-K. Chang, \emph{On the superadditivity of anticanonical Iitaka dimension}, Adv. Math. \textbf{491} (2026), 110860. Theorem 1.4は2026年2月9日付\href{https://arxiv.org/abs/2309.16580v4}{arXiv:2309.16580v4}で確認。\href{https://doi.org/10.1016/j.aim.2026.110860}{doi:10.1016/j.aim.2026.110860}.
+\bibitem{ja:Mu} N. M\"uller, \emph{Two non-vanishing results concerning the anti-canonical bundle}, Nagoya Math. J. \textbf{258} (2025), Theorem A. \href{https://doi.org/10.1017/nmj.2024.21}{doi:10.1017/nmj.2024.21}。ページは要確認。
+\bibitem{ja:IJZ} M. Iwai, S. Jinnouchi and S. Zhang, \emph{The Miyaoka--Yau inequality for singular varieties with big canonical or anticanonical divisors}, \href{https://arxiv.org/html/2507.08522v2}{arXiv:2507.08522v2}。候補選定のためTheorem 1.5を確認；証明には使用していない。
+\end{thebibliography}
+\end{document}

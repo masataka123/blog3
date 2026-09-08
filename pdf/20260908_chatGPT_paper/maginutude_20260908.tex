@@ -1,0 +1,1148 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt]{amsart}
+\usepackage[no-math]{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont[AutoFakeBold=2,ItalicFont={HaranoAjiMincho-Regular.otf},SmallCapsFont={HaranoAjiMincho-Regular.otf}]{HaranoAjiMincho-Regular.otf}
+\setCJKsansfont{HaranoAjiMincho-Regular.otf}
+\setCJKmonofont{HaranoAjiMincho-Regular.otf}
+\xeCJKsetup{PunctStyle=plain}
+
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{bbm}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Added for the present note; no existing macro is redefined.
+\DeclareMathOperator{\MH}{MH}
+\DeclareMathOperator{\MC}{MC}
+\setlength{\emergencystretch}{2em}
+
+
+% Integration-only support. Original bodies below are byte-for-byte copies.
+\usepackage{etoolbox}
+\hypersetup{pdfauthor={chatGPT 6 Astra},bookmarksnumbered=true}
+\makeatletter
+% Allow both original AMS title/abstract blocks; preserve their layout.
+\let\@cleartopmattertags\relax
+\let\@setabstract\@setabstracta
+\patchcmd{\@setauthors}{\MakeUppercase{\authors}}{\authors}{}{\errmessage{Author patch failed}}
+\AtBeginDocument{%
+  \let\MergedMakeTitle\maketitle
+  \renewcommand{\maketitle}{\MergedMakeTitle\markboth{chatGPT 6 Astra}{\shorttitle}}%
+}
+\newcommand{\MergedLanguage}{en}
+\newcommand{\MergedStart}[1]{%
+  \def\MergedLanguage{#1}%
+  \def\authors{}\def\shortauthors{}\def\addresses{}%
+  \setcounter{section}{0}\setcounter{subsection}{0}\setcounter{subsubsection}{0}%
+  \setcounter{thm}{0}\setcounter{equation}{0}%
+  \setcounter{cl}{0}\setcounter{step}{0}\setcounter{case}{0}%
+  \setcounter{figure}{0}\setcounter{table}{0}\setcounter{footnote}{0}%
+}
+\renewcommand{\theHsection}{\MergedLanguage.\arabic{section}}
+\renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}
+\renewcommand{\theHsubsubsection}{\theHsubsection.\arabic{subsubsection}}
+\renewcommand{\theHequation}{\theHsection.\arabic{equation}}
+\providecommand{\theHthm}{}
+\renewcommand{\theHthm}{\theHsection.\arabic{thm}}
+\NewCommandCopy\MergedLabel\label
+\RenewDocumentCommand{\label}{m}{\MergedLabel{\MergedLanguage:#1}}
+\let\ltx@label\label
+\AtBeginDocument{%
+  \NewCommandCopy\MergedRef\ref
+  \RenewDocumentCommand{\ref}{s m}{\IfBooleanTF{#1}{\MergedRef*{\MergedLanguage:#2}}{\MergedRef{\MergedLanguage:#2}}}%
+}
+% Citation lists and optional locators retain the original syntax.
+\NewCommandCopy\MergedCite\cite
+\NewCommandCopy\MergedBibitem\bibitem
+\RenewDocumentCommand{\bibitem}{o m}{%
+  \IfNoValueTF{#1}{\MergedBibitem{\MergedLanguage:#2}}{\MergedBibitem[#1]{\MergedLanguage:#2}}}
+\ExplSyntaxOn
+\RenewDocumentCommand{\cite}{o m}{
+  \clist_clear:N \l_tmpa_clist
+  \clist_map_inline:nn {#2}{\clist_put_right:Nx \l_tmpa_clist{\MergedLanguage :##1}}
+  \IfNoValueTF{#1}
+    {\exp_args:NV \MergedCite \l_tmpa_clist}
+    {\exp_args:NnV \MergedCiteWithNote {#1}\l_tmpa_clist}
+}
+\cs_new_protected:Npn \MergedCiteWithNote #1#2 {\MergedCite[#1]{#2}}
+\ExplSyntaxOff
+\makeatother
+
+\begin{document}
+\begingroup
+\MergedStart{en}
+\title[Magnitude homology of annuli]{Magnitude homology of annuli and holomorphic maps: a research note}
+\author{chatGPT 6 Astra}
+
+
+
+
+
+\date{7 September 2026, version 0.01}
+\subjclass[2020]{Primary 30F45; Secondary 32F45, 55N35}
+\keywords{Magnitude homology, Kobayashi distance, annulus, conformal modulus, holomorphic covering, Carath\'eodory distance}
+\pdfbookmark[0]{English version}{en-version}
+% BEGIN ORIGINAL BODY en
+
+\begin{abstract}
+We calculate ordinary integral magnitude homology for circular annuli and the punctured disk with their Kobayashi distances. For $A_r=\{r<|z|<1\}$, $0<r<1$, the group in degree $2q$ has continuum rank precisely at lengths $\ell\ge q\pi^2/(2\log(1/r))$; every positive odd degree vanishes. Consequently, the length grading determines the conformal type of a bounded doubly connected plane domain. We also prove that a holomorphic map between any two of these domains induces zero in every positive degree unless it is biholomorphic. This includes all nontrivial finite coverings. The calculations apply Gomi's description of nonbranching geodesic spaces; the map statement uses a contraction criterion for its cycle representatives. For comparison, the Carath\'eodory distance on a disk with discrete punctures gives vanishing in every positive degree. This is a research note; priority for the stated holomorphic-map consequence has not been established.
+\end{abstract}
+\maketitle
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}\label{sec:intro}
+Which part of a complex domain can ordinary magnitude homology detect when the distance is intrinsic to complex analysis? Uniquely geodesic examples are a serious first limitation: Gomi's vanishing theorem \cite[Corollary 5.24]{Gomi} applies, in particular, to the disk with its Kobayashi distance. In contrast, a multiply connected domain can have two minimizing real geodesics between the same endpoints. The circular annulus provides a setting where these pairs can be found exactly.
+
+Throughout, the coefficient ring is $\Z$ and the normalization is
+\begin{equation}\label{eq:disk}
+k_{\D}(z,w)=\operatorname{arctanh}\left|\frac{z-w}{1-\overline w z}\right|.
+\end{equation}
+Thus the Poincar\'e metric has curvature $-4$. Put
+\[
+ A_r=\{z\in\C:r<|z|<1\}\quad(0\le r<1),\qquad A_0=\D^*.
+\]
+Write $\Z^{(\mathfrak c)}$ for a free abelian group of rank $\mathfrak c=|\R|$, a direct sum, not a direct product. The notation $\MH_{k,\ell}(X)$ keeps homological degree $k$ separate from length $\ell$.
+
+\begin{thm}[Complete calculation]\label{thm:calculation}
+Let $0<r<1$ and set $\tau_r=\pi^2/(2\log(1/r))$. For every integer $q\ge1$ and every real $\ell>0$,
+\begin{equation}\label{eq:annulus-homology}
+ \MH_{2q,\ell}(A_r,k_{A_r})\cong
+ \begin{cases}\Z^{(\mathfrak c)},&\ell\ge q\tau_r,\\0,&0<\ell<q\tau_r.\end{cases}
+\end{equation}
+For the punctured disk,
+\begin{equation}\label{eq:cusp-homology}
+ \MH_{2q,\ell}(A_0,k_{A_0})\cong\Z^{(\mathfrak c)}\qquad(q\ge1,\ \ell>0).
+\end{equation}
+For all these domains, positive odd degrees vanish. Also $\MH_{0,0}(A_r)=\Z[A_r]$, while $\MH_{0,\ell}=0$ for $\ell>0$ and $\MH_{k,0}=0$ for $k>0$.
+More precisely, for $a,b\in A_r$ and $\ell>0$, the component with endpoints $a,b$ satisfies
+\begin{equation}\label{eq:endpoint-homology}
+ \MH_{2,\ell}(A_r;a,b)\cong
+ \begin{cases}\Z,& a/b\in\R_{<0}\ \text{and}\ \ell=k_{A_r}(a,b),\\0,&\text{otherwise}.\end{cases}
+\end{equation}
+Here the last assertion includes $r=0$.
+\end{thm}
+
+\begin{cor}[Modulus within the family]\label{cor:modulus}
+For $0<r<1$, define $\sigma(A_r)=\inf\{\ell>0:\MH_{2,\ell}(A_r,k_{A_r})\ne0\}$. Then
+\begin{equation}\label{eq:modulus}
+ \sigma(A_r)=\tau_r,\qquad
+ \operatorname{Mod}(A_r):=\frac{\log(1/r)}{2\pi}=\frac{\pi}{4\sigma(A_r)}.
+\end{equation}
+For $r=0$, the infimum is zero and is not attained. For $r,s\in[0,1)$, the magnitude homology groups of $A_r$ and $A_s$ are isomorphic as bigraded abelian groups, with the real length labels preserved, if and only if $r=s$. Consequently, for bounded doubly connected plane domains $\Omega_1,\Omega_2$, the groups $\MH_{*,*}(\Omega_1,k_{\Omega_1})$ and $\MH_{*,*}(\Omega_2,k_{\Omega_2})$ are isomorphic with lengths preserved if and only if the domains are biholomorphic. Here doubly connected means that the complement in the Riemann sphere has exactly two connected components.
+\end{cor}
+The recovery assertion is restricted to bounded doubly connected plane domains. It is not a recovery theorem for general complex manifolds, nor does it use labeled finite subsets.
+
+\begin{thm}[Holomorphic maps]\label{thm:maps}
+Let $r,s\in[0,1)$, and let $f:A_r\to A_s$ be any holomorphic map. If $f$ is not biholomorphic, then
+\begin{equation}\label{eq:map-zero}
+\begin{gathered}
+ f_*:\MH_{k,\ell}(A_r,k_{A_r})\longrightarrow\MH_{k,\ell}(A_s,k_{A_s}),\\
+ f_*=0\qquad(k\ge1,\ \ell\ge0).
+\end{gathered}
+\end{equation}
+If $f$ is biholomorphic, all induced maps are isomorphisms. Consequently, $f$ is biholomorphic if and only if $f_*$ is nonzero for at least one positive homological degree and one length. The same dichotomy holds for holomorphic maps between bounded doubly connected plane domains.
+\end{thm}
+In particular, $z\mapsto z^m:A_r\to A_{r^m}$, $m\ge2$, acts trivially in positive degrees, despite being a holomorphic local isometry. The distinction between local isometries and isometries of distances is essential.
+
+\subsection*{Relation to previous results}
+The underlying homology theory is due to Leinster--Shulman \cite[Definitions 3.3--3.4]{LS}. Kaneta--Yoshinaga \cite{KY} express suitable parts of it through interval posets. Gomi \cite[Theorem 5.22]{Gomi} gives the all-degree computation for nonbranching geodesic spaces used here. Accordingly, Theorem~\ref{thm:calculation} is an explicit geometric application of existing machinery, not a new general computation theorem. Asao \cite[Theorem 5.3, Corollary 6.5]{Asao} already relates nonvanishing and vanishing ranges to closed geodesics and injectivity radii. We compute all lengths, and also handle a cusp where there is no positive threshold.
+
+The additional argument for Theorem~\ref{thm:maps} is given in Lemma~\ref{lem:contraction}: shortening pairs with multiple minimizing geodesics is enough to kill every positive degree. Schwarz--Pick and the cyclic covering geometry verify its hypothesis. We did not find this annular holomorphic-map statement in the sources examined, but do not assert established novelty. The separate research audit records the search and the distinction between proof status and priority.
+
+The hyperbolic geometry is classical; a detailed reference is Beardon--Minda \cite[\S\S3,10,12]{BM}. Their distances are twice ours, and their annular modulus in \S12 uses a different convention. The formulas below are derived with our normalization. The proof of the degree-two calculation is also supplied directly, so its verification does not require the higher-degree spectral sequence.
+
+\section{Definitions and the homological input}\label{sec:prelim}
+\subsection{Chains, boundary, and maps}
+\begin{defn}\label{def:chains}
+For a metric space $(X,d)$, let $\MC_{k,\ell}(X)$ be the free abelian group on tuples $(x_0,\ldots,x_k)$ such that $x_i\ne x_{i+1}$ and $\sum_{i=0}^{k-1}d(x_i,x_{i+1})=\ell$. Only adjacent repetitions are excluded. Put
+\begin{equation}\label{eq:boundary}
+ \partial(x_0,\ldots,x_k)=
+ \sum_{\substack{1\le i\le k-1\\d(x_{i-1},x_{i+1})=d(x_{i-1},x_i)+d(x_i,x_{i+1})}}
+ (-1)^i(x_0,\ldots,\widehat{x_i},\ldots,x_k).
+\end{equation}
+Then $\MH_{k,\ell}(X)=H_k(\MC_{*,\ell}(X),\partial)$.
+\end{defn}
+For completeness, start with the simplicial set whose simplices are all tuples of points of $X$, with deletion and repetition as face and degeneracy maps. Its normalized chain differential squares to zero: deleting two positions in the two possible orders gives opposite signs. Filter by total length. Every face decreases or preserves length by the triangle inequality. The quotient of the chains of length at most $\ell$ by those of length strictly less than $\ell$ is exactly \eqref{eq:boundary}. End faces strictly decrease length on every positive-dimensional proper tuple. This proves $\partial^2=0$.
+
+If $f:X\to Y$ is $1$-Lipschitz, its chain map is
+\begin{equation}\label{eq:functor}
+ f_\#(x_0,\ldots,x_k)=
+ \begin{cases}(f(x_0),\ldots,f(x_k)),&\sum d_Y(f(x_i),f(x_{i+1}))=\ell,\\
+ 0,&\sum d_Y(f(x_i),f(x_{i+1}))<\ell.
+ \end{cases}
+\end{equation}
+In the first case each edge length is preserved, so adjacent images remain distinct. The map on all tuples preserves the filtration and commutes with faces and degeneracies; passing to the same quotient proves the chain-map assertion. Composition follows because lost length cannot be regained. This is the usual functoriality, also described in \cite[Definition 2.1]{Hepworth}. In particular, if every distinct pair is strictly shortened, $f_\#=0$ in positive degree.
+
+For $k\ge1$, endpoints are unchanged by the boundary; hence
+\begin{equation}\label{eq:endpoint-sum}
+ \MH_{k,\ell}(X)=\bigoplus_{a,b\in X}\MH_{k,\ell}(X;a,b).
+\end{equation}
+The filtration used to justify the differential does not supply structure maps between ordinary groups at different exact lengths. We make no persistence assertion. Otter's blurred construction \cite[Definition 28, Theorem 29]{Otter} instead uses a genuinely filtered theory.
+
+\subsection{Geodesics and an elementary degree-two calculation}
+All geodesics here are minimizing real geodesics, parametrized by arc length. Say that a geodesic space satisfies condition (NB) if two geodesics with the same endpoints that meet at an interior point coincide. This is Gomi's Assumption 4.8. A complete connected Riemannian manifold satisfies (NB): splice two minimizing paths at the common point. The splice is again minimizing and therefore has no corner. Uniqueness for the geodesic differential equation now identifies the paths.
+
+\begin{lem}[Degree two]\label{lem:degree-two}
+Let $X$ be a geodesic space satisfying (NB). Let $\mathcal G(a,b)$ be its set of minimizing geodesics from $a$ to $b$. For distinct $a,b$,
+\[
+ \MH_{2,\ell}(X;a,b)=0\quad(\ell\ne d(a,b)),\qquad
+ \MH_{2,d(a,b)}(X;a,b)\cong\ker\bigl(\Z[\mathcal G(a,b)]\xrightarrow{\epsilon}\Z\bigr),
+\]
+where $\epsilon(g)=1$. For $a=b$, all positive-length degree-two groups are zero.
+\end{lem}
+\begin{proof}
+There are no chains when $\ell<d(a,b)$. If $\ell>d(a,b)$, each generator $(a,x,b)$ is a cycle. Choose $y$ on a minimizing segment from $x$ to $b$, sufficiently close to $b$, so that
+\[
+ d(a,y)<d(a,x)+d(x,y).
+\]
+This is possible because the strict inequality holds at $y=b$ and distances are continuous. Choose $y\ne x,b$. Then $\partial(a,x,y,b)=(a,x,b)$: deletion of $x$ is forbidden and deletion of $y$ is allowed. This includes $a=b$.
+
+Suppose $\ell=d(a,b)>0$. Every triple $(a,x,b)$ has boundary $-(a,b)$, so a cycle has coefficients summing to zero. The interior points form the interval poset
+\[
+ I(a,b)=\{x:d(a,x)+d(x,b)=d(a,b),\ x\ne a,b\},
+\]
+ordered along minimizing segments. A four-point chain of total length $d(a,b)$ gives precisely the relation $(a,u,b)=(a,v,b)$ when $u<v$. By (NB), the interval is the disjoint union of the interiors of the geodesics in $\mathcal G(a,b)$, each totally ordered. Points on different geodesics cannot be comparable, since concatenating segments would give a minimizing geodesic containing both. Quotienting therefore leaves one generator for each geodesic, and the cycle condition is exactly augmentation zero. This proves the assertion, which is the nonbranching case of \cite[Corollary 3.15]{Gomi}.
+\end{proof}
+
+\subsection{The input in higher degrees}
+We use the following consequence, including its specified representatives, of \cite[Definition 5.11, Proposition 5.15, Theorem 5.22]{Gomi}. In a geodesic space satisfying (NB), positive odd homology vanishes. In degree $2q$, choose endpoints $p_0,\ldots,p_q$, with $p_{i-1}\ne p_i$, and lengths $d_i=d(p_{i-1},p_i)>0$ summing to $\ell$. For every adjacent pair choose one reference minimizing geodesic and one different geodesic. These choices index a free basis of $\MH_{2q,\ell}(X)$.
+
+The corresponding class is represented by an alternating sum
+\begin{equation}\label{eq:gomi-cycle}
+ \Gamma=(p_0,u_1-v_1,p_1,\ldots,p_{q-1},u_q-v_q,p_q),
+\end{equation}
+where $u_i,v_i$ lie on the interiors of the two chosen geodesics, and the choices can be made so that every $p_i$ is nonsmooth in each expanded tuple. Here nonsmooth means that deleting it strictly shortens the tuple. Different admissible choices give the same class. In the boundary, terms deleting $u_i$ or $v_i$ cancel in pairs, while the seam terms vanish. We use this existing basis theorem, not a new spectral sequence claim.
+
+\begin{lem}[A contraction criterion]\label{lem:contraction}
+Let $X$ be a geodesic space satisfying (NB), let $Y$ be any metric space, and let $f:X\to Y$ be $1$-Lipschitz. Suppose
+\begin{equation}\label{eq:cut-contraction}
+ d_Y(f(a),f(b))<d_X(a,b)
+\end{equation}
+for every pair admitting at least two minimizing geodesics in $X$. Then $f_*$ is zero in every positive homological degree and every length.
+\end{lem}
+\begin{proof}
+Odd degrees vanish by the stated basis theorem; positive degree at length zero vanishes by definition. Take a basis class \eqref{eq:gomi-cycle} in degree $2q$. Set
+\[
+ \delta=d_X(p_0,p_1)-d_Y(f(p_0),f(p_1))>0.
+\]
+We may move $u_1,v_1$ toward $p_0$ on their respective geodesics until their distances from $p_0$ are less than $\delta/2$, while keeping all other choices fixed and admissibility intact. Here is the reason for this last point. For $q\ge2$ and $y=u_2$ or $v_2$, one has
+\[
+ d_X(p_0,y)<d_X(p_0,p_1)+d_X(p_1,y).
+\]
+Otherwise the two distinct geodesics from $p_0$ to $p_1$, followed by the same segment to $y$, would be distinct minimizing geodesics with the common interior point $p_1$, contrary to (NB). By continuity this inequality persists with either sufficiently nearby choice in place of $p_0$. It ensures that the first seam stays nonsmooth. For $q=1$ there is no seam to check. Gomi's representative independence applies; alternatively, inserting the old and new points consecutively gives a three-step boundary realizing each such slide.
+
+For either new point $u$, put $t=d_X(p_0,u)<\delta/2$. Nonexpansiveness and the triangle inequality give
+\begin{align*}
+ d_Y(f(u),f(p_1))&\le t+d_Y(f(p_0),f(p_1))\\
+ &=t+d_X(p_0,p_1)-\delta\\
+ &<d_X(p_0,p_1)-t=d_X(u,p_1).
+\end{align*}
+Thus every expanded tuple of the new representative has a strictly shortened edge. Equation~\eqref{eq:functor} sends each tuple to zero. The basis classes span all even-degree homology, which finishes the proof.
+\end{proof}
+
+\section{The Kobayashi distance and its minimizing geodesics}\label{sec:geometry}
+\subsection{Covering formula and normalization}
+The Kobayashi pseudodistance is the infimum of sums of disk distances \eqref{eq:disk} over chains of holomorphic disks connecting two points. Holomorphic maps are nonexpansive by composition of these chains. For the domains in this note it is a genuine distance.
+
+Let $p:\mathbb H\to X$ be either of the explicit universal coverings below, with deck group $\Lambda$. The upper half-plane metric and distance are
+\begin{equation}\label{eq:halfplane}
+ ds_{\mathbb H}=\frac{|dv|}{2\operatorname{Im}v},\qquad
+ \cosh(2k_{\mathbb H}(v,w))=1+\frac{|v-w|^2}{2\operatorname{Im}v\operatorname{Im}w}.
+\end{equation}
+The disk formula gives these identities under the Cayley map. Moreover,
+\begin{equation}\label{eq:quotient}
+ k_X(p(v),p(w))=\inf_{\gamma\in\Lambda}k_{\mathbb H}(v,\gamma w).
+\end{equation}
+To verify this, projection gives one inequality. Conversely, lift a chain of holomorphic disks successively, starting at $v$; disks lift because they are simply connected. Its terminal point is some $\gamma w$. Schwarz--Pick on each lifted disk and the triangle inequality give the reverse inequality. This is also the covering formula recorded in \cite[Proposition 1.1]{Winkelmann}.
+
+In both cases below the distances to translates tend to infinity as the translate index tends to infinity. The infimum is a minimum, is positive for distinct quotient points, and gives the quotient of the complete Poincar\'e Riemannian metric. Completeness follows also from path lifting: join a subsequence of a Cauchy sequence by minimizing segments whose lengths have finite sum. Their concatenation lifts isometrically to a finite-length path in the complete upper half-plane, and its endpoint limit projects to a limit of the original sequence. A minimizing segment is the projection of a segment to a nearest translate; conversely any minimizing segment lifts to one. Thus we count all minimizing segments, not just a selected family of curves. The quotient is a connected complete Riemannian surface and satisfies (NB).
+
+\subsection{A finite annulus}
+Put $a=\log(1/r)>0$. The logarithmic cover $\zeta\mapsto e^\zeta$ identifies $A_r$ with the strip $-a<\operatorname{Re}\zeta<0$ modulo $\zeta\mapsto\zeta+2\pi i$. The map
+\[
+ v=\exp\bigl(\pi i(\zeta+a)/a\bigr)
+\]
+is a biholomorphism from the strip to $\mathbb H$. Its deck transformation is multiplication by $e^{-T}$, where
+\begin{equation}\label{eq:T}
+ T=\frac{2\pi^2}{a},\qquad \tau_r=T/4.
+\end{equation}
+Write $v=e^{s+i\alpha}$ with $s\in\R$ and $0<\alpha<\pi$. For an original point $z$,
+\[
+ s=-\frac{\pi\arg z}{a}\pmod T,\qquad
+ \alpha=\frac{\pi(\log|z|+a)}{a}.
+\]
+For another point with coordinates $(t,\beta)$ set $\Delta=\min_{j\in\Z}|s-t+jT|\in[0,T/2]$. Expanding \eqref{eq:halfplane} yields
+\begin{equation}\label{eq:annulus-distance}
+ \cosh(2k_{A_r}(z,w))=
+ \frac{\cosh\Delta-\cos\alpha\cos\beta}{\sin\alpha\sin\beta}.
+\end{equation}
+Indeed, before taking the minimum, $|v-w|^2=e^{2s}+e^{2t}-2e^{s+t}\cos(\alpha-\beta)$. Substitution in \eqref{eq:halfplane} gives \eqref{eq:annulus-distance} with $|s-t|$ in place of $\Delta$.
+
+\begin{lem}\label{lem:annulus-cuts}
+There is one minimizing geodesic unless $z/w\in\R_{<0}$, in which case there are exactly two. The distances of these latter pairs range over $[\tau_r,\infty)$. The distance equals $\tau_r$ precisely when $|z|=|w|=\sqrt r$ and $z=-w$.
+\end{lem}
+\begin{proof}
+For fixed $\alpha,\beta$, the right side of \eqref{eq:annulus-distance} is strictly increasing in the nonnegative displacement. A nearest integer translate is unique except at displacement $T/2$, when exactly two are tied. The two lifts project to distinct paths by uniqueness of path lifting. The coordinate relation for $s$ identifies this tie with argument difference $\pi$.
+
+At a tie put $C=\cosh(T/2)>1$. Then
+\begin{align*}
+ C-\cos\alpha\cos\beta-C\sin\alpha\sin\beta
+ &=(C-1)(1-\sin\alpha\sin\beta)\\
+ &\quad+1-\cos(\alpha-\beta)\ge0.
+\end{align*}
+Consequently $\cosh(2k)\ge C$ and $k\ge T/4$. Equality requires $\alpha=\beta=\pi/2$, and these values also suffice. They mean that both points lie on the core circle $|z|=\sqrt r$.
+
+For equal radii, $\alpha=\beta$, the tie distance satisfies
+\begin{equation}\label{eq:equal-radius}
+ \cosh(2k)=1+\frac{C-1}{\sin^2\alpha}.
+\end{equation}
+As $\alpha$ ranges from $\pi/2$ toward zero, this varies continuously and strictly from $C$ to infinity. Hence every distance at least $\tau_r$ occurs.
+\end{proof}
+On the core the metric is $|ds|/2$, so its circumference is $T/2=2\tau_r$. Thus the first nonvanishing length is half this circumference, with the constant fixed by \eqref{eq:disk}.
+
+\subsection{The punctured disk}
+The map $v\mapsto e^{2\pi i v}$ identifies $A_0$ with $\mathbb H/\langle v\mapsto v+1\rangle$. Write $v=x+iy$, $w=x'+iy'$ and put $\Delta=\min_{j\in\Z}|x-x'+j|\in[0,1/2]$. Then
+\begin{equation}\label{eq:cusp-distance}
+ \cosh(2k_{A_0}(p(v),p(w)))=1+\frac{\Delta^2+(y-y')^2}{2yy'}.
+\end{equation}
+There are exactly two minimizing geodesics when $\Delta=1/2$, again exactly when the original quotient points have argument difference $\pi$. Otherwise there is one. At equal heights $y=y'$ the tie distance is
+\begin{equation}\label{eq:cusp-equal-height}
+ k=\operatorname{arsinh}\frac1{4y}.
+\end{equation}
+This ranges over every positive number as $y$ ranges over $(0,\infty)$. There is no smallest positive tie distance. In particular, a positive threshold for every nonsimply connected complete hyperbolic surface would be false.
+
+\section{Proofs of the main statements}\label{sec:proofs}
+\subsection{Calculation and modulus}
+\begin{proof}[Proof of Theorem~\ref{thm:calculation}]
+The degree-two formula follows from Lemma~\ref{lem:degree-two} and the count of geodesics in Section~\ref{sec:geometry}: the augmentation kernel on two generators is $\Z$, and on one generator is zero.
+
+For higher degrees apply Gomi's basis theorem, whose geodesic and nonbranching hypotheses were verified above. Each nonzero basis label in degree $2q$ is a tuple $(p_0,\ldots,p_q)$ such that consecutive points have opposite arguments and the sum of the $q$ distances is $\ell$. There is only one nonreference geodesic at each such pair. In a finite annulus, every summand distance is at least $\tau_r$. There are therefore no labels if $\ell<q\tau_r$.
+
+If $\ell\ge q\tau_r$, choose an opposite pair $a,b$ of equal radii at distance $\ell/q$ using \eqref{eq:equal-radius}, and use the alternating tuple $(a,b,a,b,\ldots)$ of $q+1$ points. Such tuples are allowed: nonadjacent repetitions are not prohibited. Simultaneously rotating the pair through all angles gives continuum many distinct basis labels at the same length. Conversely, there are at most continuum many labels, since a label uses finitely many points of a surface and at most two geodesics per pair. Thus the rank is exactly $\mathfrak c$.
+
+For the punctured disk the identical alternating construction uses \eqref{eq:cusp-equal-height} at distance $\ell/q$ for any $\ell>0$, with the same cardinality bounds. Odd-degree vanishing comes from Gomi's theorem; the zero-degree and zero-length assertions follow directly from Definition~\ref{def:chains}.
+\end{proof}
+At $\ell=q\tau_r$, every adjacent pair in a basis label is antipodal on the core, so the label is an alternating sequence determined by its first point. After a choice of signs, this gives a basis indexed by the core circle itself. The continuum rank records cardinality, not a topology on that basis.
+
+\begin{proof}[Proof of Corollary~\ref{cor:modulus}]
+Theorem~\ref{thm:calculation} says that the length support of degree two is $[\tau_r,\infty)$ for $r>0$, and $(0,\infty)$ for $r=0$. Taking the infimum gives the first claim, and substituting $\tau_r$ gives \eqref{eq:modulus}. If two bigraded groups are isomorphic, their degree-two supports agree. This first separates $r=0$ from $r>0$, and then gives $\log(1/r)=\log(1/s)$, hence $r=s$. The reverse implication is immediate from equality of the domains. For the statement about $\Omega_i$, use the classical conformal classification \cite[\S12]{BM}: each such bounded domain is biholomorphic to a unique $A_r$, with $0\le r<1$. Transfer the distance and the chain complex by these biholomorphisms and apply the preceding conclusion.
+\end{proof}
+
+\subsection{Holomorphic maps and coverings}
+\begin{proof}[Proof of Theorem~\ref{thm:maps}]
+Fix universal covers $p_X:\mathbb H\to A_r$ and $p_Y:\mathbb H\to A_s$. Lift $f\circ p_X$ to a holomorphic map $F:\mathbb H\to\mathbb H$. The lift exists because $\mathbb H$ is simply connected, and is holomorphic because covering charts are biholomorphic.
+
+If $F$ is not an automorphism, the strict Schwarz--Pick lemma \cite[Theorem 3.2]{BM} gives $k_{\mathbb H}(Fv,Fw)<k_{\mathbb H}(v,w)$ for $v\ne w$. Given distinct $a,b\in A_r$, choose lifts $v,w$ realizing the minimum in \eqref{eq:quotient}. Then
+\[
+ k_{A_s}(f(a),f(b))\le k_{\mathbb H}(Fv,Fw)
+ <k_{\mathbb H}(v,w)=k_{A_r}(a,b).
+\]
+Thus \eqref{eq:functor} is identically zero in positive degree.
+
+Suppose $F$ is an automorphism. If $\Lambda_X,\Lambda_Y$ are the respective deck groups, the identity $p_Y\circ F\circ\gamma=p_Y\circ F$ shows
+\[
+ F\Lambda_XF^{-1}\subset\Lambda_Y.
+\]
+Both groups are nontrivial infinite cyclic groups. The subgroup therefore has finite index $m\ge1$ and is generated by the $m$th power of a generator of $\Lambda_Y$. After identifying the source covering plane using $F$, the map $f$ is the natural quotient from this subgroup to $\Lambda_Y$. For $m=1$ the quotient map is biholomorphic. For $m\ge2$ we show that every pair with two source minimizing geodesics is strictly shortened.
+
+A nonzero power of a hyperbolic deck transformation remains hyperbolic; a nonzero power of a parabolic one remains parabolic. Hence in this case source and target have the same type. In the hyperbolic type, normalize the target generator as $v\mapsto e^U v$ with $U>0$. The source generator is $v\mapsto e^{mU}v$. A source tie has longitudinal displacement $mU/2$ modulo $mU$, whereas the target admits a displacement at most $U/2<mU/2$. Formula~\eqref{eq:annulus-distance}, with the same $\alpha,\beta$, is strictly increasing in displacement, so the distance strictly decreases.
+
+In the parabolic type, normalize the target generator as $v\mapsto v+h$, $h>0$. The source period is $mh$. A source tie has horizontal displacement $mh/2$, while a target translate has displacement at most $h/2<mh/2$. Formula~\eqref{eq:cusp-distance}, with periods rescaled and the same heights, again gives strict decrease. Lemma~\ref{lem:contraction} now proves \eqref{eq:map-zero} in all positive degrees.
+
+Finally, a biholomorphism and its inverse are both Kobayashi nonexpansive, hence isometric, so induce inverse chain maps. There is a nonzero positive-degree group on every $A_r$ by Theorem~\ref{thm:calculation}. This proves the last equivalence. The assertion for bounded doubly connected domains follows by their conformal classification and conjugating $f$ by the resulting biholomorphisms; functoriality transfers the induced maps.
+\end{proof}
+
+\section{Examples and limitations}\label{sec:examples}
+\begin{eg}[A covering is not a global isometry]\label{eg:power}
+For $m\ge2$, $f(z)=z^m$ maps $A_r$ onto $A_{r^m}$ as an unramified covering. In a finite annulus, the source core has circumference $2\tau_r$ and the target core has circumference $2\tau_r/m$. Source antipodes map to the same point when $m$ is even; when $m$ is odd their target distance is $\tau_r/m<\tau_r$. Arbitrarily short segments are preserved locally, so $f_\#$ need not be zero on all positive-degree chains. Its induced positive-degree homology maps are nevertheless zero by Theorem~\ref{thm:maps}.
+\end{eg}
+
+\begin{prop}[Carath\'eodory distance and removable punctures]\label{prop:caratheodory}
+Let $E\subset\D$ be relatively closed and discrete, possibly empty, and put $U=\D\setminus E$. Define
+\[
+ c_U(z,w)=\sup_{g\in\mathcal O(U,\D)}k_{\D}(g(z),g(w)).
+\]
+Then $c_U=k_{\D}|_{U\times U}$, a genuine distance, and $\MH_{k,\ell}(U,c_U)=0$ for all $k\ge1$ and $\ell\ge0$.
+\end{prop}
+\begin{proof}
+A bounded holomorphic function on $U$ extends across each isolated point of $E$ by the removable singularity theorem. Since $E$ has no accumulation point in $\D$, these extensions give one holomorphic function on $\D$. An extension of a map to $\D$ still takes values in $\D$, by the maximum principle. Schwarz--Pick gives $c_U\le k_{\D}|_U$, and the inclusion $U\hookrightarrow\D$ gives the opposite inequality.
+
+Use this restricted metric, not the path distance internal to $U$. Its interval posets are subsets of the totally ordered disk geodesics. They are nonempty for distinct endpoints, since $U$ is open and a short initial segment from either endpoint remains in $U$. There are no $4$-cuts: if both middle points of a proper four-point tuple are smooth, the two disk geodesic segments agree on their common nontrivial segment; they lie on one oriented hyperbolic geodesic, where all consecutive lengths add to the endpoint distance. These equalities are unchanged upon restriction to $U$.
+
+Thus $U$ is geodetic, has $m_U=\infty$ in the notation of \cite{KY}, and has no empty interval between distinct points. Kaneta--Yoshinaga's thin-frame theorem \cite[Theorem 5.2]{KY} applies at every finite positive length. Every positive-degree frame has a consecutive pair, whose interval is nonempty; there are no thin frames. This proves vanishing. The assertion at length zero follows from the chain definition.
+\end{proof}
+For $U=\D^*$, Proposition~\ref{prop:caratheodory} and Theorem~\ref{thm:calculation} give different answers on the same complex domain. The Carath\'eodory metric is incomplete here. It is not the complete Kobayashi distance; it is also not legitimate to apply the geodesic-space theorem to this restricted metric without further verification. This example disproves the expectation that punctures alone force ordinary magnitude homology to be nonzero.
+
+\begin{eg}[The disk and the role of length]\label{eg:disk}
+The disk has unique minimizing geodesics, so its positive magnitude homology vanishes by \cite[Corollary 5.24]{Gomi}. Finite annuli are distinguished by their length supports, although all their nonzero groups have the same abstract rank. If the exact real length labels are forgotten, these computations do not distinguish the annuli. Moreover, complex conjugation is an isometry for the distances used here. No claim of detecting a chosen complex orientation is made.
+\end{eg}
+
+\begin{eg}[An exact finite sample]\label{eg:finite}
+In $\mathbb H/\langle v\mapsto16v\rangle$, take the four core points represented by $i,2i,4i,8i$. Their distances, in units $h=(\log2)/2$, are
+\[
+ \begin{pmatrix}0&1&2&1\\1&0&1&2\\2&1&0&1\\1&2&1&0\end{pmatrix}.
+\]
+The accompanying program enumerates proper tuples, constructs the integer matrices \eqref{eq:boundary}, checks their successive products are zero, and computes ranks over $\Q$. It covers $0\le k\le4$, $0\le\ell/h\le4$, with degree-five chains included for incoming boundaries. The actual output includes
+\[
+ \dim_{\Q}\MH_{1,h}(\text{sample};\Q)=8,\qquad
+ \dim_{\Q}\MH_{2,2h}(\text{sample};\Q)=12.
+\]
+The first number differs from the zero value for the full annulus. The second counts eight backtracking triples as well as four independent differences between paths to opposite vertices. Subdivisions available in the continuum kill the former triples. No conclusion about the full annulus is deduced from this sample. Its role is to verify the boundary convention and expose the danger of replacing a continuous space by finitely many points. The script also checks symbolic distance identities and rational covering comparisons; none of those finite checks substitutes for the general proofs.
+\end{eg}
+
+\subsection*{Scope of the results}
+Hepworth's recovery theorem \cite[Theorem 3.1]{Hepworth} assumes a positive lower bound on distances between distinct points, which these domains do not satisfy; his Example 3.4 already warns against arbitrary continuous recovery. Do\~na Mateo--Leinster \cite{DML} study Euclidean subsets, including closed annuli with restricted Euclidean distance. That is a different metric and a different homology-equivalence question. Our statements concern ordinary homology, not the asymptotics of numerical magnitude or a newly defined relative theory. They neither recover general complex structures nor furnish a new proof of the classical classification of doubly connected domains.
+
+\section{Further questions}\label{sec:questions}
+\begin{ques}\label{ques:cover}
+For a noncyclic quotient of $\mathbb H$, which holomorphic coverings preserve the distance of at least one pair admitting several minimizing geodesics? Lemma~\ref{lem:contraction} gives a sufficient condition for zero induced homology, but this note gives no converse for arbitrary coverings.
+\end{ques}
+\begin{ques}\label{ques:caratheodory}
+What is ordinary magnitude homology of a finite annulus with its Carath\'eodory distance? The removable-puncture proof does not apply when the omitted set has interior, and the geodesic hypotheses for Gomi's theorem have not been verified for this distance.
+\end{ques}
+These questions are not assumptions in any of the preceding results. The remaining uncertainty for the proved annular statements concerns external novelty and independent checking, not an unstated lemma.
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem[Asa21]{Asao}
+Y.~Asao, \emph{Magnitude homology of geodesic metric spaces with an upper curvature bound}, Algebr. Geom. Topol. \textbf{21} (2021), 647--664.
+\href{https://arxiv.org/abs/1903.11794v3}{arXiv:1903.11794v3}.
+
+\bibitem[BM06]{BM}
+A.~F. Beardon and D.~Minda, \emph{The hyperbolic metric and geometric function theory}, Proceedings of the International Workshop on Quasiconformal Mappings and their Applications (IWQCMA05), manuscript version of 19 October 2006, pp.~9--56.
+\href{https://www.math.stonybrook.edu/~bishop/classes/math401.F09/Beardon-Minda.pdf}{Author manuscript}.
+
+\bibitem[DML26]{DML}
+A.~Do\~na Mateo and T.~Leinster, \emph{Magnitude homology equivalence of Euclidean sets},
+\href{https://arxiv.org/abs/2406.11722v2}{arXiv:2406.11722v2}, 20 February 2026.
+
+\bibitem[Gom25]{Gomi}
+K.~Gomi, \emph{Magnitude homology of geodesic space},
+\href{https://arxiv.org/abs/1902.07044v3}{arXiv:1902.07044v3}, 29 April 2025.
+
+\bibitem[Hep22]{Hepworth}
+R.~Hepworth, \emph{Magnitude cohomology}, Math. Z. \textbf{301} (2022), 3617--3640.
+\href{https://arxiv.org/abs/1807.06832v2}{arXiv:1807.06832v2}.
+
+\bibitem[KY21]{KY}
+R.~Kaneta and M.~Yoshinaga, \emph{Magnitude homology of metric spaces and order complexes}, Bull. Lond. Math. Soc. \textbf{53} (2021), 893--905.
+\href{https://arxiv.org/abs/1803.04247v3}{arXiv:1803.04247v3}.
+
+\bibitem[LS21]{LS}
+T.~Leinster and M.~Shulman, \emph{Magnitude homology of enriched categories and metric spaces}, Algebr. Geom. Topol. \textbf{21} (2021), 2175--2221.
+\href{https://arxiv.org/abs/1711.00802v4}{arXiv:1711.00802v4}.
+
+\bibitem[Ott22]{Otter}
+N.~Otter, \emph{Magnitude meets persistence. Homology theories for filtered simplicial sets}, Homology Homotopy Appl. \textbf{24} (2022), no.~2.
+\href{https://arxiv.org/abs/1807.01540v3}{arXiv:1807.01540v3}.
+
+\bibitem[Win22]{Winkelmann}
+J.~Winkelmann, \emph{Unexpected examples for the Kobayashi pseudo distance},
+\href{https://arxiv.org/abs/2209.06281v2}{arXiv:2209.06281v2}, 9 October 2022.
+\end{thebibliography}
+% END ORIGINAL BODY en
+
+\newpage
+\endgroup
+\begingroup
+\MergedStart{ja}
+\title[円環のマグニチュードホモロジー]{円環のマグニチュードホモロジーと正則写像：研究ノート}
+\author{chatGPT 6 Astra}
+
+
+
+
+
+\date{7 September 2026, version 0.01}
+\subjclass[2020]{Primary 30F45; Secondary 32F45, 55N35}
+\keywords{Magnitude homology, Kobayashi distance, annulus, conformal modulus, holomorphic covering, Carath\'eodory distance}
+\pdfbookmark[0]{日本語版}{ja-version}
+% BEGIN ORIGINAL BODY ja
+
+\begin{abstract}
+円環および穴あき円板にKobayashi距離を入れ、通常の整数係数マグニチュードホモロジーを計算する。$A_r=\{r<|z|<1\}$、$0<r<1$ に対し、次数 $2q$ の群が連続体濃度の階数を持つのは、ちょうど $\ell\ge q\pi^2/(2\log(1/r))$ のときであり、正の奇数次数はすべて消滅する。したがって、有界二重連結平面領域の共形型は長さ次数から決まる。さらに、これらの領域の間の正則写像は、双正則でない限り、すべての正次数で零写像を誘導することを示す。この結論は非自明な有限被覆にも適用される。群の計算にはGomiの非分岐測地空間の記述を用い、写像に関する主張には、そのサイクル代表元についての距離縮小補題を用いる。比較として、離散的な点集合を除いた円板のCarath\'eodory距離では正次数がすべて消滅することも示す。本稿は研究ノートであり、正則写像についての帰結の新規性は確定していない。
+\end{abstract}
+\maketitle
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}\label{sec:intro}
+複素解析に内在する距離を用いたとき、通常のマグニチュードホモロジーは領域の何を検出するのだろうか。一意測地的な例には、最初から重要な制限がある。Gomiの消滅定理 \cite[Corollary 5.24]{Gomi} は、特にKobayashi距離を入れた円板に適用される。一方、多重連結な領域では、同じ端点を結ぶ最短実測地線が二つ存在し得る。円環では、そのような端点の組を正確に求めることができる。
+
+係数環は一貫して $\Z$ とし、距離は
+\begin{equation}\label{eq:disk}
+k_{\D}(z,w)=\operatorname{arctanh}\left|\frac{z-w}{1-\overline w z}\right|
+\end{equation}
+で正規化する。したがってPoincar\'e計量の曲率は $-4$ である。以下、
+\[
+ A_r=\{z\in\C:r<|z|<1\}\quad(0\le r<1),\qquad A_0=\D^*
+\]
+とおく。$\Z^{(\mathfrak c)}$ は階数 $\mathfrak c=|\R|$ の自由アーベル群を表す。これは直和であり直積ではない。$\MH_{k,\ell}(X)$ において、ホモロジー次数 $k$ と長さ次数 $\ell$ を区別する。
+
+\begin{thm}[全次数の計算]\label{thm:calculation}
+$0<r<1$ とし、$\tau_r=\pi^2/(2\log(1/r))$ とおく。任意の整数 $q\ge1$ と実数 $\ell>0$ に対して、
+\begin{equation}\label{eq:annulus-homology}
+ \MH_{2q,\ell}(A_r,k_{A_r})\cong
+ \begin{cases}\Z^{(\mathfrak c)},&\ell\ge q\tau_r,\\0,&0<\ell<q\tau_r\end{cases}
+\end{equation}
+が成り立つ。穴あき円板については、
+\begin{equation}\label{eq:cusp-homology}
+ \MH_{2q,\ell}(A_0,k_{A_0})\cong\Z^{(\mathfrak c)}\qquad(q\ge1,\ \ell>0)
+\end{equation}
+である。これらすべての領域について、正の奇数次数は消滅する。また $\MH_{0,0}(A_r)=\Z[A_r]$ であり、$\ell>0$ なら $\MH_{0,\ell}=0$、$k>0$ なら $\MH_{k,0}=0$ である。
+さらに、端点 $a,b\in A_r$ と $\ell>0$ に対して、端点を固定した成分は
+\begin{equation}\label{eq:endpoint-homology}
+ \MH_{2,\ell}(A_r;a,b)\cong
+ \begin{cases}\Z,& a/b\in\R_{<0}\ \text{かつ}\ \ell=k_{A_r}(a,b),\\0,&\text{それ以外}
+ \end{cases}
+\end{equation}
+となる。最後の主張には $r=0$ も含まれる。
+\end{thm}
+
+\begin{cor}[この族の内部でのモジュラス]\label{cor:modulus}
+$0<r<1$ に対して $\sigma(A_r)=\inf\{\ell>0:\MH_{2,\ell}(A_r,k_{A_r})\ne0\}$ と定める。このとき
+\begin{equation}\label{eq:modulus}
+ \sigma(A_r)=\tau_r,\qquad
+ \operatorname{Mod}(A_r):=\frac{\log(1/r)}{2\pi}=\frac{\pi}{4\sigma(A_r)}
+\end{equation}
+である。$r=0$ の場合、この下限は零であり達成されない。$r,s\in[0,1)$ について、実数の長さラベルを保つ二重次数付きアーベル群として $A_r$ と $A_s$ のマグニチュードホモロジーが同型であることと、$r=s$ であることは同値である。さらに、有界二重連結平面領域 $\Omega_1,\Omega_2$ に対し、$\MH_{*,*}(\Omega_1,k_{\Omega_1})$ と $\MH_{*,*}(\Omega_2,k_{\Omega_2})$ が長さを保つ二重次数付き群として同型であることと、両領域が双正則であることは同値である。ここで二重連結とは、Riemann球面内での補集合の連結成分がちょうど二つあることをいう。
+\end{cor}
+復元の主張は、有界二重連結平面領域に限定される。一般の複素多様体についての復元定理ではなく、ラベル付き有限部分集合を入力として使うものでもない。
+
+\begin{thm}[正則写像]\label{thm:maps}
+$r,s\in[0,1)$ とし、$f:A_r\to A_s$ を任意の正則写像とする。$f$ が双正則でなければ、
+\begin{equation}\label{eq:map-zero}
+\begin{gathered}
+ f_*:\MH_{k,\ell}(A_r,k_{A_r})\longrightarrow\MH_{k,\ell}(A_s,k_{A_s}),\\
+ f_*=0\qquad(k\ge1,\ \ell\ge0).
+\end{gathered}
+\end{equation}
+$f$ が双正則なら、すべての誘導写像は同型である。したがって、$f$ が双正則であることと、ある正のホモロジー次数およびある長さにおいて $f_*$ が非零であることは同値である。同じ二者択一は、有界二重連結平面領域間の正則写像にも成り立つ。
+\end{thm}
+特に $z\mapsto z^m:A_r\to A_{r^m}$、$m\ge2$ は、正則な局所等長写像であるにもかかわらず、正次数で零写像を誘導する。局所等長性と二点間距離を保つ等長性との区別が本質的である。
+
+\subsection*{既存結果との関係}
+ホモロジー理論の基礎はLeinster--Shulman \cite[Definitions 3.3--3.4]{LS} による。Kaneta--Yoshinaga \cite{KY} は適切な部分をinterval posetによって記述する。ここで用いる非分岐測地空間の全次数の計算はGomi \cite[Theorem 5.22]{Gomi} の定理である。したがって定理~\ref{thm:calculation} は既存の理論の具体的な幾何的応用であり、新しい一般計算定理ではない。Asao \cite[Theorem 5.3, Corollary 6.5]{Asao} は、閉測地線や単射半径と、非消滅・消滅範囲との関係を既に示している。本稿ではすべての長さを計算し、正の閾値を持たないカスプも扱う。
+
+定理~\ref{thm:maps} のために加える議論は補題~\ref{lem:contraction} である。最短測地線が複数ある端点の組の距離を短くすれば、すべての正次数で誘導写像が零になる。Schwarz--Pickの補題と巡回被覆の幾何によって、その仮定を確認する。調べた文献では、この円環の正則写像についての主張そのものは見つからなかったが、新規性を確定したとは主張しない。検索の範囲、および証明状況と優先権の区別は別の研究監査報告に記録する。
+
+双曲幾何自体は古典的であり、詳しい文献としてBeardon--Minda \cite[\S\S3,10,12]{BM} がある。同文献の距離は本稿の二倍であり、\S12の円環のモジュラスにも別の規約が用いられている。以下では本稿の正規化で各式を導く。また、第二ホモロジーの計算は直接証明するので、その確認には高次数のスペクトル系列は必要ない。
+
+\section{定義とホモロジーの既知結果}\label{sec:prelim}
+\subsection{チェイン、境界、誘導写像}
+\begin{defn}\label{def:chains}
+距離空間 $(X,d)$ に対し、$\MC_{k,\ell}(X)$ を、$x_i\ne x_{i+1}$ および $\sum_{i=0}^{k-1}d(x_i,x_{i+1})=\ell$ を満たす組 $(x_0,\ldots,x_k)$ を基底とする自由アーベル群とする。禁止するのは隣接する点の重複だけである。境界を
+\begin{equation}\label{eq:boundary}
+ \partial(x_0,\ldots,x_k)=
+ \sum_{\substack{1\le i\le k-1\\d(x_{i-1},x_{i+1})=d(x_{i-1},x_i)+d(x_i,x_{i+1})}}
+ (-1)^i(x_0,\ldots,\widehat{x_i},\ldots,x_k)
+\end{equation}
+と定め、$\MH_{k,\ell}(X)=H_k(\MC_{*,\ell}(X),\partial)$ とおく。
+\end{defn}
+$\partial^2=0$ を確認しておく。$X$ の点のすべての組を単体とし、削除と重複を面写像と退化写像とする単体的集合から始める。その正規化チェインの境界は、二点を削除する二通りの順序が逆符号を与えるので、二乗が零になる。これを全長でフィルターする。三角不等式によって各面写像は長さを増加させない。長さが $\ell$ 以下のチェインを、$\ell$ 未満のチェインで割った商は、まさに \eqref{eq:boundary} の複体である。正次元のproperな組では、端の点の削除は必ず長さを短くする。これで主張が従う。
+
+$f:X\to Y$ が $1$-Lipschitzなら、そのチェイン写像は
+\begin{equation}\label{eq:functor}
+ f_\#(x_0,\ldots,x_k)=
+ \begin{cases}(f(x_0),\ldots,f(x_k)),&\sum d_Y(f(x_i),f(x_{i+1}))=\ell,\\
+ 0,&\sum d_Y(f(x_i),f(x_{i+1}))<\ell
+ \end{cases}
+\end{equation}
+である。第一の場合には各辺の長さが保たれるので、隣接する像も異なる。すべての組に作用する写像はフィルトレーションを保ち、面写像・退化写像と可換である。同じ商を取ると、上の写像が境界と可換であることが分かる。短くなった長さは後の写像で回復できないので、合成とも整合的である。これは通常の関手性であり、\cite[Definition 2.1]{Hepworth} にも記されている。特に、異なる二点の距離をすべて真に短くする写像は、正次数のチェイン上で零になる。
+
+$k\ge1$ では境界は端点を変えない。したがって
+\begin{equation}\label{eq:endpoint-sum}
+ \MH_{k,\ell}(X)=\bigoplus_{a,b\in X}\MH_{k,\ell}(X;a,b)
+\end{equation}
+という分解がある。境界を説明するために用いたフィルトレーションは、異なる正確な長さの通常のホモロジー群の間に構造写像を与えるものではない。本稿はpersistenceの主張を行わない。Otterのblurredな構成 \cite[Definition 28, Theorem 29]{Otter} は、実際にフィルターされた別の理論である。
+
+\subsection{測地線と第二ホモロジーの直接計算}
+以下の測地線はすべて弧長でパラメータ付けた最短実測地線である。同じ端点を結ぶ二本の測地線が内点で交われば一致するとき、測地空間は条件(NB)を満たすという。これはGomiのAssumption 4.8である。完備連結Riemann多様体は(NB)を満たす。実際、共通の内点で二本の最短路をつなぎ替えても最短路であるため、つなぎ目に角はない。測地線の微分方程式の初期値問題の一意性により、二本は一致する。
+
+\begin{lem}[第二ホモロジー]\label{lem:degree-two}
+$X$ を(NB)を満たす測地空間とし、$\mathcal G(a,b)$ を $a$ から $b$ への最短測地線の集合とする。$a\ne b$ に対して、
+\[
+ \MH_{2,\ell}(X;a,b)=0\quad(\ell\ne d(a,b)),\qquad
+ \MH_{2,d(a,b)}(X;a,b)\cong\ker\bigl(\Z[\mathcal G(a,b)]\xrightarrow{\epsilon}\Z\bigr)
+\]
+が成り立つ。ただし $\epsilon(g)=1$ とする。$a=b$ の場合、正長さの第二ホモロジーはすべて零である。
+\end{lem}
+\begin{proof}
+$\ell<d(a,b)$ ならチェイン自体が存在しない。$\ell>d(a,b)$ なら、各生成元 $(a,x,b)$ はサイクルである。$x$ から $b$ への最短測地線上で、$b$ に十分近い点 $y$ を取り、
+\[
+ d(a,y)<d(a,x)+d(x,y)
+\]
+となるようにする。$y=b$ でこの不等式が真に成り立つので、距離の連続性からそのように選べる。$y\ne x,b$ としてよい。すると $x$ の削除は許されず、$y$ の削除は許されるので、$\partial(a,x,y,b)=(a,x,b)$ である。この議論は $a=b$ も含む。
+
+$\ell=d(a,b)>0$ とする。すべての三点チェイン $(a,x,b)$ の境界は $-(a,b)$ であるから、サイクルの係数の和は零である。内点はinterval poset
+\[
+ I(a,b)=\{x:d(a,x)+d(x,b)=d(a,b),\ x\ne a,b\}
+\]
+をなし、最短測地線に沿う順序を入れる。全長が $d(a,b)$ の四点チェインは、$u<v$ のときにちょうど関係式 $(a,u,b)=(a,v,b)$ を与える。(NB)により、このintervalは $\mathcal G(a,b)$ の各測地線の内部の非交和であり、それぞれが全順序集合である。異なる測地線上の点が比較可能なら、それらを含む最短測地線を部分線分の連結で作れてしまうので、そのような比較可能性はない。したがって商を取ると、測地線一本につき一つの生成元が残り、サイクル条件はちょうどaugmentationが零であるという条件になる。これは \cite[Corollary 3.15]{Gomi} の非分岐の場合である。
+\end{proof}
+
+\subsection{高次数で用いる結果}
+\cite[Definition 5.11, Proposition 5.15, Theorem 5.22]{Gomi} の次の記述を、代表元の指定も含めて用いる。(NB)を満たす測地空間では、正の奇数次数は消滅する。次数 $2q$ では、$p_{i-1}\ne p_i$ を満たす点列 $p_0,\ldots,p_q$ を取り、正の距離 $d_i=d(p_{i-1},p_i)$ の和を $\ell$ とする。各隣接点対について基準最短測地線を一本選び、それと異なる最短測地線を一本選ぶ。これらの選択が $\MH_{2q,\ell}(X)$ の自由基底を添字付ける。
+
+対応する類は、交代和
+\begin{equation}\label{eq:gomi-cycle}
+ \Gamma=(p_0,u_1-v_1,p_1,\ldots,p_{q-1},u_q-v_q,p_q)
+\end{equation}
+で代表される。$u_i,v_i$ は選んだ二本の測地線の内点であり、展開した各組において、すべての $p_i$ がnonsmoothとなるよう選択できる。ここでnonsmoothとは、その点を削除すると全長が真に短くなるという意味である。この条件を満たす選択を変えても類は変わらない。境界では $u_i,v_i$ の削除項が対になって相殺し、つなぎ目の項は零になる。本稿はこの既存の基底定理を使い、新たなスペクトル系列の主張は行わない。
+
+\begin{lem}[距離縮小による消滅]\label{lem:contraction}
+$X$ を(NB)を満たす測地空間、$Y$ を任意の距離空間、$f:X\to Y$ を $1$-Lipschitz写像とする。$X$ において二本以上の最短測地線を持つすべての端点対に対して、
+\begin{equation}\label{eq:cut-contraction}
+ d_Y(f(a),f(b))<d_X(a,b)
+\end{equation}
+が成り立つと仮定する。このとき $f_*$ は、すべての正のホモロジー次数およびすべての長さで零写像である。
+\end{lem}
+\begin{proof}
+奇数次数は上の基底定理から消滅し、長さ零の正次数は定義から消滅する。次数 $2q$ の基底の類 \eqref{eq:gomi-cycle} を取り、
+\[
+ \delta=d_X(p_0,p_1)-d_Y(f(p_0),f(p_1))>0
+\]
+とおく。$u_1,v_1$ をそれぞれの測地線上で $p_0$ に近付け、$p_0$ からの距離を $\delta/2$ 未満にできる。このとき他の選択を固定したまま、代表元の条件を保てることを確認する。$q\ge2$ の場合、$y=u_2$ または $v_2$ に対して
+\[
+ d_X(p_0,y)<d_X(p_0,p_1)+d_X(p_1,y)
+\]
+である。そうでなければ、$p_0$ から $p_1$ への異なる二本の測地線に、$y$ までの同じ線分を続けることで、内点 $p_1$ を共有する異なる二本の最短測地線ができ、(NB)に反する。連続性により、$p_0$ を十分近い点に変えても不等式は保たれる。このことが最初のつなぎ目をnonsmoothに保つ。$q=1$ ではつなぎ目の確認は不要である。Gomiの代表元の独立性が適用できる。また、古い点と新しい点を続けて挿入したチェインの境界によって、それぞれの移動を直接実現してもよい。
+
+移動後のいずれかの点を $u$ とし、$t=d_X(p_0,u)<\delta/2$ とおく。非拡大性と三角不等式から
+\begin{align*}
+ d_Y(f(u),f(p_1))&\le t+d_Y(f(p_0),f(p_1))\\
+ &=t+d_X(p_0,p_1)-\delta\\
+ &<d_X(p_0,p_1)-t=d_X(u,p_1)
+\end{align*}
+を得る。したがって新しい代表元の展開に現れるすべての組には、真に短くなる辺がある。\eqref{eq:functor} は各組を零に送る。これらの基底の類が偶数次数のホモロジー全体を生成するので、証明が終わる。
+\end{proof}
+
+\section{Kobayashi距離と最短測地線}\label{sec:geometry}
+\subsection{被覆公式と正規化}
+Kobayashi擬距離は、二点を結ぶ正則円板の鎖に沿った円板距離 \eqref{eq:disk} の和の下限である。正則写像が非拡大であることは、鎖を合成することで従う。本稿の領域では、これは真の距離になる。
+
+$p:\mathbb H\to X$ を以下で与える二種類の普遍被覆のいずれかとし、被覆変換群を $\Lambda$ とする。上半平面の計量と距離は
+\begin{equation}\label{eq:halfplane}
+ ds_{\mathbb H}=\frac{|dv|}{2\operatorname{Im}v},\qquad
+ \cosh(2k_{\mathbb H}(v,w))=1+\frac{|v-w|^2}{2\operatorname{Im}v\operatorname{Im}w}
+\end{equation}
+である。Cayley写像によって円板の公式から従う。さらに、
+\begin{equation}\label{eq:quotient}
+ k_X(p(v),p(w))=\inf_{\gamma\in\Lambda}k_{\mathbb H}(v,\gamma w)
+\end{equation}
+が成り立つ。実際、射影によって一方の不等式が得られる。逆に、正則円板の鎖を $v$ から順に持ち上げる。円板は単連結なので持ち上げ可能であり、終点はある $\gamma w$ となる。持ち上げた各円板にSchwarz--Pickの補題を適用し、三角不等式を使うと逆の不等式を得る。この被覆公式は \cite[Proposition 1.1]{Winkelmann} にも記されている。
+
+以下の二つの場合には、被覆変換の整数添字が無限大に向かうと、変換した点までの距離も無限大に向かう。したがって下限は最小値であり、異なる商の点の距離は正で、これは完備Poincar\'e Riemann計量の商の距離になる。完備性は道の持ち上げからも分かる。Cauchy列の部分列を、長さの和が有限になる最短線分で順につなぐ。この連結は上半平面の有限長の道に等長的に持ち上がり、上半平面の完備性から終点の極限を持つ。その像は元の列の極限となる。最短線分は最近接の被覆変換像への線分を射影したものであり、逆に任意の最短線分はそのような線分に持ち上がる。したがって以下で数えるのは、選んだ一部の曲線だけでなく、最短測地線のすべてである。商は完備連結Riemann曲面なので(NB)を満たす。
+
+\subsection{有限モジュラスの円環}
+$a=\log(1/r)>0$ とおく。対数被覆 $\zeta\mapsto e^\zeta$ により、$A_r$ は帯状領域 $-a<\operatorname{Re}\zeta<0$ を $\zeta\mapsto\zeta+2\pi i$ で割った商と同一視される。写像
+\[
+ v=\exp\bigl(\pi i(\zeta+a)/a\bigr)
+\]
+はこの帯から $\mathbb H$ への双正則写像である。被覆変換は $e^{-T}$ 倍となり、
+\begin{equation}\label{eq:T}
+ T=\frac{2\pi^2}{a},\qquad \tau_r=T/4
+\end{equation}
+である。$v=e^{s+i\alpha}$、$s\in\R$、$0<\alpha<\pi$ と書く。元の点 $z$ に対して、
+\[
+ s=-\frac{\pi\arg z}{a}\pmod T,\qquad
+ \alpha=\frac{\pi(\log|z|+a)}{a}
+\]
+である。別の点の座標を $(t,\beta)$ とし、$\Delta=\min_{j\in\Z}|s-t+jT|\in[0,T/2]$ とおく。\eqref{eq:halfplane} を展開すると
+\begin{equation}\label{eq:annulus-distance}
+ \cosh(2k_{A_r}(z,w))=
+ \frac{\cosh\Delta-\cos\alpha\cos\beta}{\sin\alpha\sin\beta}
+\end{equation}
+を得る。実際、最小化する前は $|v-w|^2=e^{2s}+e^{2t}-2e^{s+t}\cos(\alpha-\beta)$ である。これを \eqref{eq:halfplane} に代入すると、$\Delta$ の代わりに $|s-t|$ を用いた \eqref{eq:annulus-distance} が得られる。
+
+\begin{lem}\label{lem:annulus-cuts}
+$z/w\in\R_{<0}$ の場合には、最短測地線はちょうど二本存在し、それ以外では一本である。二本ある場合の距離の値域は $[\tau_r,\infty)$ である。その距離が $\tau_r$ となるのは、ちょうど $|z|=|w|=\sqrt r$ かつ $z=-w$ の場合である。
+\end{lem}
+\begin{proof}
+$\alpha,\beta$ を固定すると、\eqref{eq:annulus-distance} の右辺は非負の変位に関して狭義単調増加である。最も近い整数平行移動は、変位が $T/2$ である場合を除いて一意であり、$T/2$ のときはちょうど二つが同距離となる。道の持ち上げの一意性により、その二本の線分の射影は異なる。$s$ の座標公式から、この場合は偏角の差が $\pi$ であることと同値である。
+
+同距離となる場合に $C=\cosh(T/2)>1$ とおくと、
+\begin{align*}
+ C-\cos\alpha\cos\beta-C\sin\alpha\sin\beta
+ &=(C-1)(1-\sin\alpha\sin\beta)\\
+ &\quad+1-\cos(\alpha-\beta)\ge0
+\end{align*}
+である。したがって $\cosh(2k)\ge C$、すなわち $k\ge T/4$ となる。等号には $\alpha=\beta=\pi/2$ が必要であり、この条件は十分でもある。これは両方の点が中心の閉測地線 $|z|=\sqrt r$ 上にあることを意味する。
+
+半径が等しい場合、$\alpha=\beta$ であるから、二本の最短測地線の長さは
+\begin{equation}\label{eq:equal-radius}
+ \cosh(2k)=1+\frac{C-1}{\sin^2\alpha}
+\end{equation}
+を満たす。$\alpha$ を $\pi/2$ から零へ動かすと、右辺は $C$ から無限大まで連続かつ狭義単調に動く。よって $\tau_r$ 以上のすべての距離が実現する。
+\end{proof}
+中心の閉測地線上では計量は $|ds|/2$ である。その周長は $T/2=2\tau_r$ となる。したがって最初の非消滅長はこの周長の半分であり、係数は \eqref{eq:disk} の正規化によって固定されている。
+
+\subsection{穴あき円板}
+写像 $v\mapsto e^{2\pi i v}$ により、$A_0$ は $\mathbb H/\langle v\mapsto v+1\rangle$ と同一視される。$v=x+iy$、$w=x'+iy'$ と書き、$\Delta=\min_{j\in\Z}|x-x'+j|\in[0,1/2]$ とおく。このとき
+\begin{equation}\label{eq:cusp-distance}
+ \cosh(2k_{A_0}(p(v),p(w)))=1+\frac{\Delta^2+(y-y')^2}{2yy'}
+\end{equation}
+である。$\Delta=1/2$、すなわち元の商の点の偏角差が $\pi$ の場合にちょうど二本の最短測地線があり、それ以外は一本である。同じ高さ $y=y'$ では、その距離は
+\begin{equation}\label{eq:cusp-equal-height}
+ k=\operatorname{arsinh}\frac1{4y}
+\end{equation}
+となる。$y$ が $(0,\infty)$ を動くと、これはすべての正の値を取る。最小の正の値はない。特に、単連結でない完備双曲曲面なら常に正の非消滅閾値がある、という主張は偽である。
+
+\section{主結果の証明}\label{sec:proofs}
+\subsection{群の計算とモジュラス}
+\begin{proof}[定理~\ref{thm:calculation} の証明]
+第二ホモロジーの式は、補題~\ref{lem:degree-two} と第\ref{sec:geometry}節の測地線の個数から従う。二つの生成元に対するaugmentationの核は $\Z$ であり、一つの生成元に対しては零だからである。
+
+高次数ではGomiの基底定理を用いる。測地性と非分岐性の仮定は既に確認した。次数 $2q$ の非零基底は、隣り合う点の偏角が反対であり、$q$ 個の距離の和が $\ell$ であるような点列 $(p_0,\ldots,p_q)$ で添字付けられる。各隣接点対には、基準測地線以外の測地線がちょうど一本ある。有限モジュラスの円環では、各距離は $\tau_r$ 以上である。よって $\ell<q\tau_r$ では添字が存在しない。
+
+$\ell\ge q\tau_r$ とする。\eqref{eq:equal-radius} により、距離が $\ell/q$ で半径が等しい反対偏角の点対 $a,b$ を選び、$q+1$ 点からなる交互の点列 $(a,b,a,b,\ldots)$ を使う。このような組は許される。隣接していない点の重複は禁止されていないからである。この点対をすべての角度で同時に回転すると、同じ長さで連続体濃度個の異なる基底添字を得る。逆に、添字は曲面の有限個の点と各点対につき高々二本の測地線で決まるので、その個数は連続体濃度以下である。したがって階数はちょうど $\mathfrak c$ となる。
+
+穴あき円板では、任意の $\ell>0$ について \eqref{eq:cusp-equal-height} から距離 $\ell/q$ の点対を選べる。同じ交互の点列と濃度評価が適用される。奇数次数の消滅はGomiの定理による。零次数および零長さの主張は定義~\ref{def:chains} から直接従う。
+\end{proof}
+$\ell=q\tau_r$ では、基底添字の各隣接点対は中心の閉測地線上の対蹠点である。したがって添字は最初の点で決まる交互の点列となる。符号を選ぶと、中心の閉測地線の点で添字付けられる基底を得る。連続体濃度の階数が記録するのは集合の濃度であり、基底に位相が備わると主張しているわけではない。
+
+\begin{proof}[系~\ref{cor:modulus} の証明]
+定理~\ref{thm:calculation} によると、第二ホモロジーの長さに関する台は、$r>0$ では $[\tau_r,\infty)$、$r=0$ では $(0,\infty)$ である。下限を取ると最初の主張を得て、$\tau_r$ の値を代入すると \eqref{eq:modulus} を得る。二重次数付き群が同型なら、第二ホモロジーの台も一致する。まず $r=0$ と $r>0$ が区別され、次いで $\log(1/r)=\log(1/s)$、したがって $r=s$ が従う。逆向きは領域自体が等しいことから従う。$\Omega_i$ についての主張には、古典的な共形分類 \cite[\S12]{BM} を使う。そのような有界領域は、$0\le r<1$ を満たす一意の $A_r$ と双正則である。これらの双正則写像によって距離とチェイン複体を移し、先の結論を適用すればよい。
+\end{proof}
+
+\subsection{正則写像と被覆}
+\begin{proof}[定理~\ref{thm:maps} の証明]
+普遍被覆 $p_X:\mathbb H\to A_r$、$p_Y:\mathbb H\to A_s$ を固定し、$f\circ p_X$ を正則写像 $F:\mathbb H\to\mathbb H$ に持ち上げる。$\mathbb H$ が単連結なので持ち上げが存在し、被覆の局所座標が双正則なので持ち上げも正則である。
+
+$F$ が自己同型でない場合、Schwarz--Pickの狭義不等式 \cite[Theorem 3.2]{BM} により、$v\ne w$ に対して $k_{\mathbb H}(Fv,Fw)<k_{\mathbb H}(v,w)$ となる。異なる $a,b\in A_r$ を取り、\eqref{eq:quotient} の最小値を実現する持ち上げ $v,w$ を選ぶと、
+\[
+ k_{A_s}(f(a),f(b))\le k_{\mathbb H}(Fv,Fw)
+ <k_{\mathbb H}(v,w)=k_{A_r}(a,b)
+\]
+である。したがって \eqref{eq:functor} は正次数のチェイン上で恒等的に零である。
+
+$F$ が自己同型の場合を考える。被覆変換群をそれぞれ $\Lambda_X,\Lambda_Y$ とすると、$p_Y\circ F\circ\gamma=p_Y\circ F$ から
+\[
+ F\Lambda_XF^{-1}\subset\Lambda_Y
+\]
+を得る。両方とも非自明な無限巡回群なので、この部分群は有限指数 $m\ge1$ を持ち、$\Lambda_Y$ の生成元の $m$ 乗で生成される。$F$ によって被覆空間を同一視した後では、$f$ はこの部分群の商から $\Lambda_Y$ の商への自然な射影である。$m=1$ なら双正則である。$m\ge2$ なら、源で最短測地線が二本あるすべての点対が真に短くなることを示す。
+
+双曲型の被覆変換の非零の冪は双曲型のままであり、放物型の非零の冪は放物型のままである。したがって、この場合には源と標的の型は等しい。双曲型では、標的の生成元を $v\mapsto e^U v$、$U>0$ と正規化する。源の生成元は $v\mapsto e^{mU}v$ となる。源で二本の最短測地線がある点対の縦方向の変位は、$mU$ を法として $mU/2$ である。一方、標的では変位が高々 $U/2<mU/2$ となる被覆変換像を選べる。同じ $\alpha,\beta$ を用いた式 \eqref{eq:annulus-distance} は変位について狭義単調増加なので、距離は真に短くなる。
+
+放物型では、標的の生成元を $v\mapsto v+h$、$h>0$ と正規化する。源の周期は $mh$ である。源で二本ある点対の水平変位は $mh/2$ だが、標的では高々 $h/2<mh/2$ の変位を持つ被覆変換像がある。周期を変更し高さをそのままにした式 \eqref{eq:cusp-distance} によって、再び距離が真に短くなる。補題~\ref{lem:contraction} を適用すると、すべての正次数において \eqref{eq:map-zero} が従う。
+
+最後に、双正則写像とその逆写像はともにKobayashi距離に関して非拡大なので等長写像であり、互いに逆なチェイン写像を誘導する。定理~\ref{thm:calculation} によって、すべての $A_r$ には非零な正次数の群がある。これで最後の同値性も証明された。有界二重連結領域については、共形分類から得られる双正則写像によって $f$ を共役し、関手性により誘導写像を移せば従う。
+\end{proof}
+
+\section{具体例と限界}\label{sec:examples}
+\begin{eg}[被覆は大域的な等長写像とは限らない]\label{eg:power}
+$m\ge2$ のとき、$f(z)=z^m$ は $A_r$ から $A_{r^m}$ への不分岐被覆である。有限モジュラスの円環では、源の中心閉測地線の周長は $2\tau_r$、標的では $2\tau_r/m$ である。源の対蹠点は、$m$ が偶数なら同じ点に写り、奇数なら標的での距離が $\tau_r/m<\tau_r$ となる。十分短い線分は局所的に保存されるので、$f_\#$ が正次数のすべてのチェイン上で零であるとは限らない。それでも、誘導される正次数ホモロジー写像は定理~\ref{thm:maps} により零である。
+\end{eg}
+
+\begin{prop}[Carath\'eodory距離と可除な点の除去]\label{prop:caratheodory}
+$E\subset\D$ を相対的に閉じた離散集合とし、空集合も許す。$U=\D\setminus E$ とおき、
+\[
+ c_U(z,w)=\sup_{g\in\mathcal O(U,\D)}k_{\D}(g(z),g(w))
+\]
+と定める。このとき $c_U=k_{\D}|_{U\times U}$ は真の距離であり、すべての $k\ge1$ と $\ell\ge0$ に対して $\MH_{k,\ell}(U,c_U)=0$ である。
+\end{prop}
+\begin{proof}
+$U$ 上の有界正則関数は、可除特異点定理によって $E$ の各孤立点を越えて延長される。$E$ は $\D$ 内に集積点を持たないので、延長は $\D$ 全体の一つの正則関数となる。$\D$ への写像の延長は、最大値原理によって依然として $\D$ に値を取る。Schwarz--Pickの補題から $c_U\le k_{\D}|_U$ を得て、包含写像 $U\hookrightarrow\D$ から逆向きの不等式を得る。
+
+用いるのはこの制限距離であり、$U$ の内部の道の長さから定める距離ではない。そのinterval posetは、全順序を持つ円板の測地線の部分集合である。異なる端点に対してintervalは空でない。$U$ が開いているので、端点からの十分短い最短線分は $U$ 内に残るからである。また $4$-cut は存在しない。properな四点の組の中央二点がともにsmoothなら、二つの円板測地線は共通の非自明な線分上で一致する。したがって一つの向き付けられた双曲測地線上に並び、連続する距離の和は端点間距離となる。$U$ への制限によって、これらの等式は変わらない。
+
+よって $U$ はgeodeticで、\cite{KY} の記号では $m_U=\infty$ であり、異なる二点の間のintervalは常に空でない。Kaneta--Yoshinagaのthin frameによる定理 \cite[Theorem 5.2]{KY} は、すべての有限の正長さに適用できる。正次数のframeには隣接点対があり、そのintervalは空でないので、thin frameは存在しない。これで消滅を得る。長さ零の主張はチェインの定義による。
+\end{proof}
+$U=\D^*$ とすると、命題~\ref{prop:caratheodory} と定理~\ref{thm:calculation} は同じ複素領域に対して異なる答えを与える。このCarath\'eodory距離は不完備であり、完備なKobayashi距離とは異なる。また、制限距離に対して追加の確認なしに測地空間の定理を適用してはならない。この例は、穴の存在だけで通常のマグニチュードホモロジーの非消滅が強制される、という期待を否定する。
+
+\begin{eg}[円板と長さ次数の役割]\label{eg:disk}
+円板の最短測地線は一意なので、\cite[Corollary 5.24]{Gomi} により正次数は消滅する。有限モジュラスの円環は長さに関する台で区別される一方、その非零な各群の抽象的な階数は等しい。正確な実数の長さラベルを忘れると、これらの計算では円環を区別できない。また複素共役は本稿の距離の等長写像である。選んだ複素的な向きを検出するとは主張しない。
+\end{eg}
+
+\begin{eg}[厳密な有限標本計算]\label{eg:finite}
+$\mathbb H/\langle v\mapsto16v\rangle$ において、$i,2i,4i,8i$ を代表元とする中心閉測地線上の四点を取る。$h=(\log2)/2$ を単位とした距離行列は
+\[
+ \begin{pmatrix}0&1&2&1\\1&0&1&2\\2&1&0&1\\1&2&1&0\end{pmatrix}
+\]
+である。添付のプログラムはproperな組を列挙し、\eqref{eq:boundary} の整数行列を構成し、連続する境界行列の積が零であることを確認して、$\Q$ 上の階数を求める。計算範囲は $0\le k\le4$、$0\le\ell/h\le4$ であり、入ってくる境界のために次数五のチェインも含めた。実際の出力には
+\[
+ \dim_{\Q}\MH_{1,h}(\text{標本};\Q)=8,\qquad
+ \dim_{\Q}\MH_{2,2h}(\text{標本};\Q)=12
+\]
+が含まれる。第一の値は、円環全体では零であることと異なる。第二の値は、八つの往復三点チェインと、反対の頂点に至る道の四つの独立な差を数える。連続空間では細分する点が利用できるため、前者の往復チェインは消える。この標本から円環全体についての結論を導いてはいない。その役割は境界の規約を確認し、連続空間を有限個の点で置き換える危険を示すことである。コードでは距離の恒等式の記号的確認と有理数による被覆の比較も行ったが、いずれの有限計算も一般の証明に代わるものではない。
+\end{eg}
+
+\subsection*{適用範囲}
+Hepworthの復元定理 \cite[Theorem 3.1]{Hepworth} は、異なる二点の距離に一様な正の下限があることを仮定するが、本稿の領域はこの仮定を満たさない。同文献のExample 3.4も、任意の連続空間の復元ができないことを示している。Do\~na Mateo--Leinster \cite{DML} はEuclid空間の部分集合を研究しており、Euclid距離を制限した閉円環も登場する。その距離とホモロジー同値の問題は本稿とは異なる。本稿の対象は通常のホモロジーであり、数値的magnitudeの漸近展開や、新しく定義したrelativeな理論ではない。一般の複素構造の復元も、二重連結領域の古典的分類の新証明も主張しない。
+
+\section{今後の問い}\label{sec:questions}
+\begin{ques}\label{ques:cover}
+非巡回群による $\mathbb H$ の商では、どのような正則被覆が、複数の最短測地線を持つ少なくとも一組の点対の距離を保つだろうか。補題~\ref{lem:contraction} は誘導写像の消滅の十分条件を与えるが、本稿は任意の被覆についてその逆を示していない。
+\end{ques}
+\begin{ques}\label{ques:caratheodory}
+有限モジュラスの円環にCarath\'eodory距離を入れた場合の通常のマグニチュードホモロジーは何か。除去集合に内部がある場合には可除な点についての証明を使えず、この距離についてGomiの測地性の仮定も確認していない。
+\end{ques}
+これらの問いは、先に述べた結果の仮定ではない。証明した円環についての主張に残る不確実性は、文献上の新規性と独立検証に関するものであり、隠れた未証明補題ではない。
+
+\begin{thebibliography}{99}
+\raggedright
+\bibitem[Asa21]{Asao}
+Y.~Asao, \emph{Magnitude homology of geodesic metric spaces with an upper curvature bound}, Algebr. Geom. Topol. \textbf{21} (2021), 647--664.
+\href{https://arxiv.org/abs/1903.11794v3}{arXiv:1903.11794v3}.
+
+\bibitem[BM06]{BM}
+A.~F. Beardon and D.~Minda, \emph{The hyperbolic metric and geometric function theory}, Proceedings of the International Workshop on Quasiconformal Mappings and their Applications (IWQCMA05), manuscript version of 19 October 2006, pp.~9--56.
+\href{https://www.math.stonybrook.edu/~bishop/classes/math401.F09/Beardon-Minda.pdf}{Author manuscript}.
+
+\bibitem[DML26]{DML}
+A.~Do\~na Mateo and T.~Leinster, \emph{Magnitude homology equivalence of Euclidean sets},
+\href{https://arxiv.org/abs/2406.11722v2}{arXiv:2406.11722v2}, 20 February 2026.
+
+\bibitem[Gom25]{Gomi}
+K.~Gomi, \emph{Magnitude homology of geodesic space},
+\href{https://arxiv.org/abs/1902.07044v3}{arXiv:1902.07044v3}, 29 April 2025.
+
+\bibitem[Hep22]{Hepworth}
+R.~Hepworth, \emph{Magnitude cohomology}, Math. Z. \textbf{301} (2022), 3617--3640.
+\href{https://arxiv.org/abs/1807.06832v2}{arXiv:1807.06832v2}.
+
+\bibitem[KY21]{KY}
+R.~Kaneta and M.~Yoshinaga, \emph{Magnitude homology of metric spaces and order complexes}, Bull. Lond. Math. Soc. \textbf{53} (2021), 893--905.
+\href{https://arxiv.org/abs/1803.04247v3}{arXiv:1803.04247v3}.
+
+\bibitem[LS21]{LS}
+T.~Leinster and M.~Shulman, \emph{Magnitude homology of enriched categories and metric spaces}, Algebr. Geom. Topol. \textbf{21} (2021), 2175--2221.
+\href{https://arxiv.org/abs/1711.00802v4}{arXiv:1711.00802v4}.
+
+\bibitem[Ott22]{Otter}
+N.~Otter, \emph{Magnitude meets persistence. Homology theories for filtered simplicial sets}, Homology Homotopy Appl. \textbf{24} (2022), no.~2.
+\href{https://arxiv.org/abs/1807.01540v3}{arXiv:1807.01540v3}.
+
+\bibitem[Win22]{Winkelmann}
+J.~Winkelmann, \emph{Unexpected examples for the Kobayashi pseudo distance},
+\href{https://arxiv.org/abs/2209.06281v2}{arXiv:2209.06281v2}, 9 October 2022.
+\end{thebibliography}
+% END ORIGINAL BODY ja
+
+\par
+\clearpage
+\endgroup
+\end{document}

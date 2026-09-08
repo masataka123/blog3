@@ -1,0 +1,1345 @@
+\documentclass[12pt]{amsart}
+\usepackage{luatexja} % Added solely for Japanese text.
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{bbm}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+% XY-pic is unused here and is omitted for LuaLaTeX compatibility.
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Bilingual additions to the supplied template.
+\theoremstyle{plain}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jprop}[thm]{命題}
+\newtheorem{jlem}[thm]{補題}
+\theoremstyle{definition}
+\newtheorem{jeg}[thm]{例}
+\theoremstyle{remark}
+\newtheorem{jrem}[thm]{注意}
+\newcommand{\notelanguage}{en}
+\renewcommand{\theHsection}{\notelanguage.\arabic{section}}
+\renewcommand{\theHsubsection}{\theHsection.\arabic{subsection}}
+\renewcommand{\theHsubsubsection}{\theHsubsection.\arabic{subsubsection}}
+\renewcommand{\theHequation}{\notelanguage.\thesection.\arabic{equation}}
+\providecommand{\theHthm}{}
+\renewcommand{\theHthm}{\notelanguage.\thesection.\arabic{thm}}
+\hypersetup{
+ pdftitle={A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties},
+ pdfauthor={},
+ bookmarksnumbered=true
+}
+\title[Toric Miyaoka--Yau inequality]{
+A combinatorial proof of the delta-corrected
+Miyaoka--Yau inequality for toric Fano varieties}
+% Author, affiliation, email, funding and date are intentionally unset.
+\author{chat GPT-6 Astra}
+\date{\today}
+\bibliographystyle{alpha}
+\begin{document}
+
+
+\pdfbookmark[0]{English version}{english-version}
+\begin{abstract}Hisamoto and Iwai established a Miyaoka--Yau inequality involving the delta invariant for projective klt Fano varieties and asked for a combinatorial proof in the toric case. We give such a proof. We first identify the orbifold second Chern number with a weighted sum of codimension-two face volumes of the anticanonical polytope, including when the variety is not $\mathbb Q$-factorial. We then prove the required inequality for real convex polytopes. The convex argument combines the known bound for the volume of a facet pyramid with apex at the centroid, a quadratic estimate for two probability vectors, and the concavity of the support-volume function furnished by the Brunn--Minkowski inequality.\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}\label{en:sec:intro}
+Let $X$ be a projective klt Fano variety of dimension $n\ge2$ over $\mathbb C$. Write $H=-K_X$ and $d=\min\{1,\delta(X)\}$. In \cite[Theorem~1.1, equivalently Theorem~7.2]{en:HI}, Hisamoto and Iwai proved the following inequality.
+\begin{thm}[Hisamoto--Iwai, toric case]\label{en:thm:main}
+If $X$ is toric, then
+\begin{equation}\label{en:eq:main}
+ \bigl(2(n+1)\widehat c_2(X)-nc_1(X)^2\bigr)\cdot H^{n-2}
+ \ge -n(1-d)^2H^n.
+\end{equation}
+Here $c_1(X)=c_1(H)$ and $\widehat c_2(X)=\widehat c_2(\mathcal T_X)$ is the orbifold, or $\mathbb Q$-, second Chern class. Equivalently,
+\begin{equation}\label{en:eq:main-equivalent}
+ 2(n+1)\widehat c_2(X)\cdot H^{n-2}\ge nd(2-d)H^n.
+\end{equation}
+\end{thm}
+The equivalence follows from $c_1(X)^2H^{n-2}=H^n$ and $1-(1-d)^2=d(2-d)$.
+
+At the end of Example~7.5 in \cite[\S7.2]{en:HI}, after a direct computation for well-formed weighted projective spaces, the authors ask whether their inequality admits a combinatorial proof for toric varieties. The purpose of this note is to give a proof in that setting. The inequality itself is the result of Hisamoto--Iwai; the argument below is an alternative proof. We use the nonequivariant statement in Theorem~1.1 of the specified version of \cite{en:HI}, not its weighted equivariant or soliton analogue.
+
+The proof has two distinct parts. Toric intersection theory and the quotient-stack interpretation of $\mathbb Q$-Chern classes give a dictionary between the terms of \eqref{en:eq:main-equivalent} and polytope data. After this dictionary is established, the argument takes place in real convex geometry. The central estimate concerns the normalized volumes of the facet pyramids based at the origin and at the centroid. A probability-vector decomposition produces the factor $d(2-d)$. The Brunn--Minkowski inequality then converts this estimate into a bound for the sum of ridge volumes.
+
+We do not assume smoothness, $\mathbb Q$-factoriality, the Gorenstein property, Picard number one, or K-semistability. In particular, the anticanonical polytope is not assumed to be a lattice polytope. The proof does not use the Hisamoto--Iwai inequality, a Bogomolov--Gieseker or Langer inequality, or the existence of a special metric as an input to the convex argument.
+
+\section{Preliminaries and the toric dictionary}\label{en:sec:dictionary}
+Let $N$ be the lattice of one-parameter subgroups, let $M=\operatorname{Hom}(N,\mathbb Z)$, and let $\Sigma$ be the fan of $X$. Denote the primitive generator of a ray $\rho$ by $v_\rho$. Our normals are inward-pointing, and
+\begin{equation}\label{en:eq:polytope}
+ P=\{u\in M_{\mathbb R}:\langle u,v_\rho\rangle\ge-1
+       \text{ for every }\rho\in\Sigma(1)\},\qquad
+ b=\frac{\int_Pu\,du}{\operatorname{Vol}_M(P)}.
+\end{equation}
+The measure $du$ gives a fundamental domain of $M$ volume one. Face volumes use the lattice in the parallel linear space of the face, without a factorial normalization. A point has volume one. Since $H$ is ample, $\Sigma$ is the normal fan of $P$ with this inward convention, and the inequalities in \eqref{en:eq:polytope} are the facets of $P$. The origin is in the interior of $P$. The usual polar, defined by pairings at most one, is $\operatorname{conv}\{-v_\rho\}$.
+
+The degree-volume formula is
+\begin{equation}\label{en:eq:degree}
+ H^n=n!\operatorname{Vol}_M(P).
+\end{equation}
+For completeness, choose a sufficiently divisible $k>0$ such that $kH$ is very ample Cartier. Toric sections of $\ell kH$ are indexed by $\ell kP\cap M$. Comparing leading terms of the Hilbert polynomial and the lattice-point count gives
+$(kH)^n/n!=\operatorname{Vol}_M(kP)=k^n\operatorname{Vol}_M(P)$, which proves \eqref{en:eq:degree}. This is the degree-volume theorem of \cite[Theorem~13.4.3]{en:CLS}; that book uses a factorial-normalized volume, whereas our convention is fixed by \eqref{en:eq:degree}.
+
+The delta invariant can be specified by its valuative formula
+\[
+ \delta(X)=\inf_E\frac{A_X(E)}{S_H(E)},\qquad
+ S_H(E)=\frac1{H^n}\int_0^\infty
+       \operatorname{vol}(\pi^*H-tE)\,dt.
+\]
+Here $E$ ranges over prime divisors on smooth projective birational models
+$\pi:Y\to X$, and $A_X(E)$ denotes log discrepancy.
+
+\begin{prop}[Blum--Jonsson]\label{en:prop:delta}
+For the toric variety $X$ above,
+\begin{equation}\label{en:eq:delta}
+ \delta(X)=\min_{\rho\in\Sigma(1)}
+       \frac1{1+\langle b,v_\rho\rangle}.
+\end{equation}
+In particular, $0<\delta(X)\le1$, so $d=\delta(X)$.
+\end{prop}
+\begin{proof}
+The formula is \cite[Corollary~7.16 and \S7.6]{en:BJ}, with inward primitive normals and coefficients $b_i=1$ in the notation of that paper. The assumptions in its toric setup are properness, a $\mathbb Q$-Cartier canonical divisor, and an ample polarization; these hold here. The Cartier formula also yields the $\mathbb Q$-Cartier formula by applying it to $kH$ and using $\delta(kH)=\delta(H)/k$. This scaling follows from $S_{kH}(E)=kS_H(E)$.
+
+Each denominator is positive because $b$ is interior to $P$. If $b=0$, the formula gives $\delta(X)=1$. If $b\ne0$, some ray has $\langle b,v_\rho\rangle>0$: otherwise the functional $\langle b,-\rangle$ would be nonpositive on every cone and hence, by completeness, on all of $N_{\mathbb R}$, which is impossible for a nonzero functional. Thus $\delta(X)<1$ in this case.
+\end{proof}
+
+For $\sigma=\operatorname{cone}(v_{\rho_1},v_{\rho_2})\in\Sigma(2)$, put
+\[
+ N_\sigma=N\cap\operatorname{span}_{\mathbb R}(\sigma),\qquad
+ \operatorname{mult}(\sigma)
+ =[N_\sigma:\mathbb Zv_{\rho_1}+\mathbb Zv_{\rho_2}],
+\]
+and let $F_\sigma$ be the codimension-two face where the two corresponding inequalities are equalities.
+
+\begin{prop}\label{en:prop:chern}
+The orbifold second Chern number is
+\begin{equation}\label{en:eq:chern}
+ \widehat c_2(X)\cdot H^{n-2}
+ =(n-2)!\sum_{\sigma\in\Sigma(2)}
+ \frac{\operatorname{Vol}_{M\cap\sigma^\perp}(F_\sigma)}
+      {\operatorname{mult}(\sigma)}.
+\end{equation}
+This formula does not require $X$ to be $\mathbb Q$-factorial.
+\end{prop}
+\begin{proof}
+Remove only the orbits of codimension at least three:
+\begin{equation}\label{en:eq:open}
+ Z=\bigcup_{\dim\tau\ge3}V(\tau),\qquad
+ U=X\setminus Z=X_{\Sigma_{\le2}},\qquad
+ \dim Z\le n-3.
+\end{equation}
+All cones of $\Sigma_{\le2}$ are simplicial. The canonical toric stack
+$p:\mathcal U\to U$ is therefore a smooth Deligne--Mumford stack with trivial stabilizers in codimension one. Its existence and Cox presentation are given in
+\cite[Theorem~4.11 and Corollary~4.13]{en:FMN}, whose statements do not require completeness.
+
+This is the quasi-etale orbifold structure used for the Chern class in the theorem. Indeed, in a quotient chart the reflexive pullback of $\mathcal T_U$ agrees with the tangent bundle of the smooth chart: the two agree over the etale locus and extend across its codimension-two complement by reflexivity. The construction of $\mathbb Q$-Chern classes and its comparison with smooth DM stacks are given in \cite[Theorem~3.13 and \S\S3.10--3.11 of the arXiv version]{en:GKPT}.
+
+Write $r=|\Sigma(1)|$. In the Cox quotient, the acting group is the diagonalizable kernel of $(\mathbb C^*)^r\to T_N$. The rays span $N_{\mathbb R}$, so its dimension is $r-n$, even when it is disconnected. Its adjoint action is trivial and all stabilizers are finite. The quotient tangent sequence is thus
+\begin{equation}\label{en:eq:euler-stack}
+ 0\longrightarrow\mathcal O_{\mathcal U}^{\oplus(r-n)}
+ \longrightarrow\bigoplus_\rho\mathcal O_{\mathcal U}(\mathcal D_\rho)
+ \longrightarrow\mathcal T_{\mathcal U}\longrightarrow0.
+\end{equation}
+Here $\mathcal D_\rho$ is a coordinate boundary divisor. This construction can also be compared with the quotient-tangent calculation in \cite[\S4.1]{en:EM}. Whitney's formula gives
+$c_2(\mathcal T_{\mathcal U})=\sum_{\rho<\eta}\mathcal D_\rho\mathcal D_\eta$.
+The intersections are empty unless the two rays span a cone of $\Sigma(2)$; in that case they are transverse coordinate intersections of multiplicity one.
+
+At the generic point of the orbit of $\sigma$, the transverse chart is
+$\mathbb A^2/G_\sigma$, where
+$|G_\sigma|=[N_\sigma:\mathbb Zv_{\rho_1}+\mathbb Zv_{\rho_2}]$.
+The rays are primitive, so this chart is quasi-etale. The cycle of the corresponding stack stratum pushes forward with coefficient
+$\deg BG_\sigma=1/|G_\sigma|$. This local calculation gives the same multiplicity factor as \cite[Definition~3.1 and Proposition~3.2]{en:EM}. The latter proposition is stated for complete fans; we use the local generic-stabilizer calculation here, not an integration statement on the nonproper space $U$.
+
+Chow localization gives
+$A_{n-2}(Z)_{\mathbb Q}\to A_{n-2}(X)_{\mathbb Q}
+\to A_{n-2}(U)_{\mathbb Q}\to0$.
+The first group is zero, so the cycle computed on $U$ has a unique extension to $X$. By the construction in \cite[\S3.10]{en:GKPT}, this yields
+\begin{equation}\label{en:eq:cycle}
+ \widehat c_2(X)\cap[X]
+ =\sum_{\sigma\in\Sigma(2)}
+     \frac{[V(\sigma)]}{\operatorname{mult}(\sigma)}
+ \quad\text{in }A_{n-2}(X)_{\mathbb Q}.
+\end{equation}
+The notation on the left denotes the cycle defining the numerical
+$\mathbb Q$-Chern form. One may also choose a sufficiently divisible $k$
+and $n-2$ general members of $|kH|$. Their complete intersection avoids
+$Z$, since $\dim Z\le n-3$, and calculates the same Chern number.
+For $n=2$ the set $Z$ is empty.
+
+The character lattice of the dense torus of $V(\sigma)$ is $M\cap\sigma^\perp$. For a sufficiently divisible $k$, a Cartier datum translates the polytope of
+$(kH)|_{V(\sigma)}$ to $kF_\sigma$ in this character space. The same Hilbert-leading-coefficient argument as above gives
+\begin{equation}\label{en:eq:orbit-degree}
+ H^{n-2}\cdot[V(\sigma)]
+ =(n-2)!\operatorname{Vol}_{M\cap\sigma^\perp}(F_\sigma).
+\end{equation}
+For $n=2$ this says that a closed orbit point has degree one. Intersecting
+\eqref{en:eq:cycle} on the proper variety $X$ proves \eqref{en:eq:chern}.
+\end{proof}
+
+\begin{lem}\label{en:lem:lattice}
+Choose a Euclidean structure in which a basis of $M$ is orthonormal.
+For independent $v_i,v_j\in N$, set
+$L=M\cap v_i^\perp\cap v_j^\perp$ and $J=\|v_i\wedge v_j\|$.
+Then
+\begin{equation}\label{en:eq:covol}
+ \operatorname{covol}(L)=J/\operatorname{mult}(v_i,v_j).
+\end{equation}
+Consequently, for a face $F$ parallel to $L_{\mathbb R}$,
+\begin{equation}\label{en:eq:euclidean}
+ \frac{\operatorname{Vol}_{L}(F)}{\operatorname{mult}(v_i,v_j)}
+ =\frac{\operatorname{Vol}_{E,n-2}(F)}{\|v_i\wedge v_j\|}.
+\end{equation}
+\end{lem}
+\begin{proof}
+Consider $A:M\to\mathbb Z^2$, $u\mapsto
+(\langle u,v_i\rangle,\langle u,v_j\rangle)$.
+Smith normal form shows that the index of $A(M)$ is the greatest common divisor of the rank-two minors, namely $\operatorname{mult}(v_i,v_j)$. The real Jacobian of $A$ is $J$. A basis of the kernel lattice together with lifts of a basis of $A(M)$ is a basis of $M$. Comparing its Euclidean determinant in kernel and orthogonal directions gives
+$1=\operatorname{covol}(L)\operatorname{mult}(v_i,v_j)/J$.
+This proves \eqref{en:eq:covol}; division by the face-lattice covolume proves
+\eqref{en:eq:euclidean}.
+\end{proof}
+
+\section{The convex inequality}\label{en:sec:convex}
+In this section the normals need not be integral. Let
+\begin{equation}\label{en:eq:real-polytope}
+ P=\{x\in\mathbb R^n:\langle x,v_i\rangle\ge-1,\ 1\le i\le r\}
+\end{equation}
+be a bounded full-dimensional polytope with all inequalities irredundant.
+Put $V=\operatorname{Vol}_n(P)$ and $b=\bar P$. For its facets $F_i$, define
+\begin{equation}\label{en:eq:weights}
+ s_i=1+\langle b,v_i\rangle,\qquad
+ d=(\max_i s_i)^{-1},\qquad
+ \alpha_i=\frac{\operatorname{Vol}_{n-1}(F_i)}{n\|v_i\|V},
+ \qquad q_i=s_i\alpha_i.
+\end{equation}
+The numbers $\alpha_i$ and $q_i$ are the relative volumes of the facet pyramids with apices $0$ and $b$, respectively. In particular, they are positive and
+$\sum_i\alpha_i=\sum_iq_i=1$. Since $\sum_i s_i\alpha_i=1$, we have $0<d\le1$.
+Define
+\begin{equation}\label{en:eq:ridge-sum}
+ S_2(P)=\sum_{\substack{i<j\\F_i\cap F_j\text{ a ridge}}}
+ \frac{\operatorname{Vol}_{n-2}(F_i\cap F_j)}
+      {\|v_i\wedge v_j\|}.
+\end{equation}
+
+Each ridge lies in exactly two facets: its two-dimensional normal cone has exactly two extreme rays.
+
+\begin{thm}\label{en:thm:convex}
+For every polytope \eqref{en:eq:real-polytope},
+\begin{equation}\label{en:eq:convex-main}
+ 2(n+1)S_2(P)\ge n^2(n-1)d(2-d)V.
+\end{equation}
+\end{thm}
+
+\begin{lem}[Facet pyramids; Freyer--Henk--Kipp]\label{en:lem:pyramid}
+If $K$ is an $n$-dimensional convex polytope, $F$ a facet, and $b_K$ its centroid, then
+\begin{equation}\label{en:eq:pyramid}
+ \operatorname{Vol}_n(\operatorname{conv}(b_K,F))
+ \le\operatorname{Vol}_n(K)/(n+1).
+\end{equation}
+\end{lem}
+\begin{proof}
+This is the single-point case of \cite[Theorem~1.1]{en:FHK}. We recall the section-comparison argument from the proof of \cite[Theorem~1.2(i)]{en:FHK} in the form needed here.
+
+Take inward Euclidean height $t$ above $F$, so $F$ lies in $\{t=0\}$.
+Write $A=\operatorname{Vol}_{n-1}(F)$, $W=\operatorname{Vol}_n(K)$,
+$T=\max_Kt$, and $f(t)=\operatorname{Vol}_{n-1}(K\cap\{t=\text{constant}\})$.
+Then $f(0)=A$ and $\int_0^T f=W$. The pyramid joining $F$ to a point at height $T$ lies in $K$, so $W\ge AT/n$. Put
+\begin{equation}\label{en:eq:comparison}
+ h=nW/A\ge T,\qquad
+ g(t)=A(1-t/h)^{n-1}\ (0\le t\le h),\qquad
+ \int_0^h g=W.
+\end{equation}
+The Brunn--Minkowski inequality \cite[Theorem~4.1]{en:Gardner}, in the form
+$\operatorname{Vol}_m((1-\lambda)K_0+\lambda K_1)^{1/m}
+\ge(1-\lambda)\operatorname{Vol}_m(K_0)^{1/m}
++\lambda\operatorname{Vol}_m(K_1)^{1/m}$,
+implies that $f^{1/(n-1)}$ is concave on $[0,T]$, because the Minkowski combination of two sections is contained in the intermediate section. Thus
+$\psi(t)=f(t)^{1/(n-1)}-A^{1/(n-1)}(1-t/h)$ is concave and $\psi(0)=0$.
+For $0<a<t$, concavity gives $\psi(a)/a\ge\psi(t)/t$. Hence $f-g$ changes sign at most once, from positive to negative. Extend $f$ by zero for $t>T$; this does not introduce a change in the opposite direction. Their integrals agree, so some $t_0\in[0,h]$ satisfies
+$(t-t_0)(f-g)\le0$. Consequently,
+\begin{equation}\label{en:eq:moment}
+ \int_0^h t f(t)\,dt
+ \le\int_0^h t g(t)\,dt
+ =Ah^2\int_0^1 z(1-z)^{n-1}\,dz
+ =\frac{Ah^2}{n(n+1)}.
+\end{equation}
+The centroid height is at most $h/(n+1)$. Multiplying it by $A/n$ gives
+\eqref{en:eq:pyramid}.
+\end{proof}
+
+\begin{lem}\label{en:lem:probability}
+The weights in \eqref{en:eq:weights} satisfy
+\begin{equation}\label{en:eq:sum-squares}
+ \sum_i\alpha_i^2\le\frac{1+n(1-d)^2}{n+1}.
+\end{equation}
+\end{lem}
+\begin{proof}
+Lemma~\ref{en:lem:pyramid} gives $q_i\le c:=1/(n+1)$.
+Since $ds_i\le1$, we have $\alpha_i-dq_i=(1-ds_i)\alpha_i\ge0$.
+If $d<1$, define the probability vector
+\begin{equation}\label{en:eq:mixture}
+ r_i=\frac{\alpha_i-dq_i}{1-d},\qquad
+ \alpha=dq+(1-d)r.
+\end{equation}
+The estimates
+$\sum_iq_i^2\le c\sum_iq_i=c$,
+$\sum_iq_ir_i\le c\sum_ir_i=c$, and
+$\sum_ir_i^2\le(\sum_ir_i)^2=1$ give
+\[
+ \sum_i\alpha_i^2
+ \le c d^2+2c d(1-d)+(1-d)^2
+ =\frac{1+n(1-d)^2}{n+1}.
+\]
+If $d=1$, then $\alpha_i\ge q_i$ and both sums are one, so $\alpha=q$ and the same conclusion follows.
+\end{proof}
+
+\begin{prop}\label{en:prop:ridge}
+For every polytope \eqref{en:eq:real-polytope},
+\begin{equation}\label{en:eq:ridge-bound}
+ 2S_2(P)\ge n(n-1)V\left(1-\sum_i\alpha_i^2\right).
+\end{equation}
+\end{prop}
+\begin{proof}
+First assume that $P$ is simple. For support numbers near $\mathbf1$, put
+\begin{equation}\label{en:eq:support}
+ P(h)=\{x:\langle x,v_i\rangle\ge-h_i\},\qquad
+ \mathcal V(h)=\operatorname{Vol}_n(P(h)).
+\end{equation}
+The combinatorial type is constant near $\mathbf1$. Every vertex is a linear function of $h$, determined by its $n$ active independent normals. A fixed triangulation therefore expresses $\mathcal V$ as a homogeneous polynomial of degree $n$ on this neighborhood.
+
+The inclusion
+$(1-t)P(h)+tP(k)\subseteq P((1-t)h+tk)$ and Brunn--Minkowski show that
+$\mathcal V^{1/n}$ is concave. Twice differentiating in the $i$th direction and evaluating at $\mathbf1$ gives
+\begin{equation}\label{en:eq:hessian-diagonal}
+ \mathcal V_{ii}\le\frac{n-1}{n}\frac{\mathcal V_i^2}{V}.
+\end{equation}
+Moving the $i$th supporting hyperplane changes volume at its facet area times its normal speed, which is $1/\|v_i\|$. Thus
+\begin{equation}\label{en:eq:first-variation}
+ \mathcal V_i=\frac{\operatorname{Vol}_{n-1}(F_i)}{\|v_i\|}
+ =nV\alpha_i,\qquad
+ \mathcal V_{ii}\le n(n-1)V\alpha_i^2.
+\end{equation}
+For $i\ne j$, keep the $i$th hyperplane fixed. Within it, moving the $j$th hyperplane has speed
+$1/\|\operatorname{proj}_{v_i^\perp}v_j\|$. The same first-variation calculation in dimension $n-1$ gives, for adjacent facets,
+\begin{equation}\label{en:eq:mixed-variation}
+ \mathcal V_{ij}
+ =\frac{\operatorname{Vol}_{n-2}(F_i\cap F_j)}
+ {\|v_i\|\|\operatorname{proj}_{v_i^\perp}v_j\|}
+ =\frac{\operatorname{Vol}_{n-2}(F_i\cap F_j)}
+ {\|v_i\wedge v_j\|}.
+\end{equation}
+For nonadjacent facets the derivative is zero. Distinct parallel facets are disjoint, so the displayed fraction is not used in that case. Finally,
+\begin{equation}\label{en:eq:euler-volume}
+ \sum_{i,j}\mathcal V_{ij}=n(n-1)V,\qquad
+ 2S_2(P)=n(n-1)V-\sum_i\mathcal V_{ii},
+\end{equation}
+by differentiating $\mathcal V(t\mathbf1)=t^nV$ twice. Equations
+\eqref{en:eq:first-variation} and \eqref{en:eq:euler-volume} prove
+\eqref{en:eq:ridge-bound} in the simple case.
+
+In dimension two every polytope is already simple. For a general $P$ in dimension at least three, choose generic positive support vectors
+$h^{(\varepsilon)}\to\mathbf1$. Avoiding the finitely many extra concurrence conditions makes $P_\varepsilon=P(h^{(\varepsilon)})$ simple. Each original facet survives: at a point in its relative interior all other inequalities are strict, and a small translated patch remains feasible. The polytope stays uniformly bounded and contains the origin in its interior.
+
+Apply the simple-case result to the normalized normals
+$w_i^{(\varepsilon)}=v_i/h_i^{(\varepsilon)}$.
+The corresponding origin weights are
+$\alpha_i^{(\varepsilon)}
+=h_i^{(\varepsilon)}\operatorname{Vol}_{n-1}(F_i^{(\varepsilon)})
+ /(n\|v_i\|\operatorname{Vol}(P_\varepsilon))$; in particular, the factor
+$h_i^{(\varepsilon)}$ is retained. Its ridge sum is
+\begin{equation}\label{en:eq:perturbed-ridge}
+ S_2(P_\varepsilon)=
+ \sum_{\text{ridges }F_{ij}^{(\varepsilon)}}
+ h_i^{(\varepsilon)}h_j^{(\varepsilon)}
+ \frac{\operatorname{Vol}_{n-2}(F_{ij}^{(\varepsilon)})}
+ {\|v_i\wedge v_j\|}.
+\end{equation}
+An original ridge survives and converges: its relative interior has strict inequalities for all facets except its two defining ones. Moving those two equations slightly preserves patches exhausting its relative interior. The reverse inclusion in the Hausdorff limit follows from the inequalities. Its volume therefore converges.
+
+Any new ridge has all limit points in the original $F_i\cap F_j$, which is empty or has dimension at most $n-3$. After a small translation its parallel space is fixed. Its $(n-2)$-volume is bounded by that of a shrinking neighborhood of a bounded lower-dimensional set, so it tends to zero. There are only finitely many pairs of facets. It follows that $S_2(P_\varepsilon)\to S_2(P)$. Facet areas and total volume also converge, so $\alpha_i^{(\varepsilon)}\to\alpha_i$. Taking the limit proves \eqref{en:eq:ridge-bound}.
+
+This approximation uses real polytopes only. No lattice structure or Fano property of a variety associated with a perturbed polytope is required.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en:thm:convex}]
+Combining Lemma~\ref{en:lem:probability} and Proposition~\ref{en:prop:ridge} gives
+\[
+ 2S_2(P)\ge n(n-1)V
+ \left(1-\frac{1+n(1-d)^2}{n+1}\right)
+ =\frac{n^2(n-1)}{n+1}d(2-d)V.
+\]
+This is \eqref{en:eq:convex-main}.
+\end{proof}
+
+\section{Proof of the main theorem}\label{en:sec:main-proof}
+\begin{proof}[Proof of Theorem~\ref{en:thm:main}]
+Apply Theorem~\ref{en:thm:convex} to the anticanonical polytope, using a lattice-orthonormal Euclidean structure as in Lemma~\ref{en:lem:lattice}. Proposition~\ref{en:prop:delta} identifies its parameter $d$ with $\delta(X)=\min\{1,\delta(X)\}$. Lemma~\ref{en:lem:lattice} identifies its ridge sum with the finite sum in Proposition~\ref{en:prop:chern}. Therefore
+\begin{equation}\label{en:eq:return}
+ \begin{aligned}
+ 2(n+1)\widehat c_2(X)H^{n-2}
+ &=2(n+1)(n-2)!S_2(P)\\
+ &\ge n^2(n-1)(n-2)!\,d(2-d)\operatorname{Vol}_M(P)\\
+ &=nd(2-d)H^n.
+ \end{aligned}
+\end{equation}
+The last equality uses $n^2(n-1)(n-2)!=n\,n!$. This proves
+\eqref{en:eq:main-equivalent} and hence \eqref{en:eq:main}, with all the assumptions stated in Theorem~\ref{en:thm:main}.
+\end{proof}
+
+\section{Examples and remarks}\label{en:sec:examples}
+\begin{eg}[Weighted projective spaces]\label{en:ex:wps}
+Let $X=\mathbb P(a_0,\ldots,a_n)$ be well formed, meaning that the gcd of the weights after any one is omitted is one, with
+$1\le a_0\le\cdots\le a_n$, and put $S=\sum_i a_i$, $Q=\prod_i a_i$,
+and $e_2(a)=\sum_{i<j}a_i a_j$. The formulas in
+\cite[Example~7.5, (7.7)--(7.10)]{en:HI} are
+\begin{equation}\label{en:eq:wps}
+ H^n=\frac{S^n}{Q},\qquad
+ \widehat c_2H^{n-2}=\frac{e_2(a)S^{n-2}}Q,\qquad
+ d=\frac{(n+1)a_0}{S}.
+\end{equation}
+The Chern formula follows from the weighted Euler sequence: well-formedness makes the weighted projective stack have trivial codimension-one stabilizers, so its tangent Chern class computes the required orbifold class. Its hyperplane class has top degree $1/Q$. The delta formula is Proposition~\ref{en:prop:delta} for its simplex.
+
+Writing $b_i=a_i-a_0$, $B=\sum_i b_i$, and expanding gives
+\begin{equation}\label{en:eq:wps-gap}
+ 2(n+1)\widehat c_2H^{n-2}-nd(2-d)H^n
+ =\frac{2(n+1)S^{n-2}}Q\sum_{i<j}b_i b_j.
+\end{equation}
+Indeed, substitute $S=(n+1)a_0+B$ and
+$e_2(a)=\binom{n+1}{2}a_0^2+na_0B+\sum_{i<j}b_i b_j$
+into \eqref{en:eq:wps}. The constant and linear terms in the $b_i$ cancel.
+Thus $\mathbb P(1,\ldots,1,b)$ gives equality. For $b=1$ this yields
+$H^n=(n+1)^n$ and $\widehat c_2H^{n-2}=n(n+1)^{n-1}/2$, as required for $\mathbb P^n$. The non-Gorenstein example $\mathbb P(1,1,3)$ gives
+$H^2=25/3$, $\widehat c_2=7/3$, and $d=3/5$, again with equality.
+
+Well-formedness is essential in this computation. The stack with weights
+$(1,2,2)$ has second Chern degree $2$, whereas its coarse variety is
+$\mathbb P^2$ and has orbifold second Chern degree $3$. Its second Veronese ring is $\mathbb C[x^2,y,z]$, and the weighted stack has a codimension-one stabilizer. It is not the quasi-etale stack used in the theorem.
+\end{eg}
+
+\begin{eg}[Products of projective spaces]\label{en:ex:products}
+For $X=\prod_{\nu=1}^k\mathbb P^{m_\nu}$, $n=\sum_\nu m_\nu$, the anticanonical polytope is a product of centered simplices, so $d=1$.
+Whitney's formula for the direct sum of the pulled-back tangent bundles and the multinomial expansion give
+\begin{equation}\label{en:eq:product}
+ \begin{gathered}
+ H^n=n!\prod_\nu\frac{(m_\nu+1)^{m_\nu}}{m_\nu!},\\
+ \frac{c_2H^{n-2}}{H^n}
+ =\frac{\displaystyle
+   \sum_\nu\frac{m_\nu^2(m_\nu-1)}{2(m_\nu+1)}
+   +\sum_{\nu<\mu}m_\nu m_\mu}{n(n-1)}.
+ \end{gathered}
+\end{equation}
+A factor contributes its second Chern number with multinomial weight
+$m_\nu(m_\nu-1)/(n(n-1))$, and a pair contributes the product of first Chern classes with weight $m_\nu m_\mu/(n(n-1))$; these give the second formula.
+For $\mathbb P^2\times\mathbb P^2$ the two Chern numbers are $486$ and $216$, and the difference in \eqref{en:eq:main-equivalent} is $216$.
+\end{eg}
+
+\begin{eg}[A nonsimplicial fan]\label{en:ex:nonsimplicial}
+Take $M=N=\mathbb Z^3$ and
+\[P=\operatorname{conv}(\pm e_1,\pm e_2,\pm e_3).\]
+Its inward primitive normals are the eight vectors $(\pm1,\pm1,\pm1)$.
+Four facets meet at each vertex, so its toric variety is not $\mathbb Q$-factorial. The polytope is a lattice polytope with facet constants one, hence its normal fan defines a Gorenstein toric Fano variety. It is klt: on a cone the anticanonical height function is positive on every nonzero point, so the log discrepancies of primitive vectors on toric subdivisions are positive.
+
+There are twelve edges of lattice length one. Each corresponding pair of normals has multiplicity two, as follows from the greatest common divisor of its rank-two minors. The dictionary gives
+\begin{equation}\label{en:eq:octahedron}
+ \operatorname{Vol}_M(P)=\frac43,\qquad
+ H^3=8,\qquad \widehat c_2H=6,\qquad d=1,\qquad
+ 8\widehat c_2H-3H^3=24.
+\end{equation}
+This example detects the factor $1/\operatorname{mult}(\sigma)$ in the Chern formula.
+\end{eg}
+
+\begin{rem}\label{en:rem:scope}
+The origin weights and centroid weights are distinct. For the simplex of
+$\mathbb P(1,1,2)$ they are \[\alpha=(1/4,1/4,1/2),\qquad q=(1/3,1/3,1/3),\qquad d=3/4.\] In particular, the assertion
+$\alpha_i\le1/(n+1)$ is false; the mixture in Lemma~\ref{en:lem:probability}
+is essential.
+
+The core of the proof is the passage from the known centroid-pyramid bound to
+\eqref{en:eq:sum-squares}, followed by the support-volume estimate
+\eqref{en:eq:ridge-bound}. The integral lattice enters only in the toric dictionary. In the singular case the calculation concerns the quasi-etale orbifold tangent class, not the Chern--Schwartz--MacPherson, stringy, or Todd class. Removing the codimension-three set in \eqref{en:eq:open} is a cycle computation; it is not a claim that Chern numbers can be integrated on a nonproper open set. No classification of all geometric equality cases is needed for the proof.
+\end{rem}
+\begin{thebibliography}{99}
+\bibitem[HI]{en:HI}
+T.~Hisamoto and M.~Iwai,
+\emph{The Miyaoka--Yau inequality and the delta invariant for Fano varieties},
+arXiv:2607.25181v2 (2026).
+\bibitem[BJ]{en:BJ}
+H.~Blum and M.~Jonsson,
+\emph{Thresholds, valuations, and K-stability},
+Adv. Math. \textbf{365} (2020), 107062.
+DOI: 10.1016/j.aim.2020.107062.
+Citations refer to arXiv:1706.04548v2.
+\bibitem[GKPT]{en:GKPT}
+D.~Greb, S.~Kebekus, T.~Peternell and B.~Taji,
+\emph{The Miyaoka--Yau inequality and uniformisation of canonical models},
+Ann. Sci. \'Ec. Norm. Sup\'er. (4) \textbf{52} (2019), 1487--1535.
+DOI: 10.24033/asens.2414.
+The detailed construction cited here is in arXiv:1511.08822v3,
+Theorem~3.13 and Sections~3.10--3.11.
+\bibitem[FMN]{en:FMN}
+B.~Fantechi, \'E.~Mann and F.~Nironi,
+\emph{Smooth toric Deligne--Mumford stacks},
+J. reine angew. Math. \textbf{648} (2010), 201--244.
+DOI: 10.1515/CRELLE.2010.084.
+Citations refer to arXiv:0708.1254v2.
+\bibitem[EM]{en:EM}
+D.~Edidin and Y.~More,
+\emph{Integration on Artin toric stacks and Euler characteristics},
+Proc. Amer. Math. Soc. \textbf{141} (2013), 3689--3699.
+DOI: 10.1090/S0002-9939-2013-11849-6.
+Citations refer to arXiv:1201.2104v1.
+\bibitem[CLS]{en:CLS}
+D.~A.~Cox, J.~B.~Little and H.~K.~Schenck,
+\emph{Toric Varieties},
+Graduate Studies in Mathematics \textbf{124},
+American Mathematical Society, 2011.
+DOI: 10.1090/gsm/124.
+\bibitem[FHK]{en:FHK}
+A.~Freyer, M.~Henk and C.~Kipp,
+\emph{Affine subspace concentration conditions for centered polytopes},
+Mathematika \textbf{69} (2023), 458--472.
+DOI: 10.1112/mtk.12189.
+Citations refer to arXiv:2207.08477v1.
+\bibitem[Gardner]{en:Gardner}
+R.~J.~Gardner,
+\emph{The Brunn--Minkowski inequality},
+Bull. Amer. Math. Soc. (N.S.) \textbf{39} (2002), 355--405.
+DOI: 10.1090/S0273-0979-02-00941-2.
+\end{thebibliography}
+
+
+% The page break below is explicitly requested by the user.
+\newpage
+\renewcommand{\notelanguage}{ja}
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\pdfbookmark[0]{日本語版}{japanese-version}
+\markboth{TORIC MIYAOKA--YAU 不等式}{TORIC MIYAOKA--YAU 不等式}
+\begin{center}
+{\large\bfseries Toric Fano 多様体の $\delta$ 補正付き\\
+Miyaoka--Yau 不等式の組合せ的証明\par}
+\vspace{0.8em}
+日本語版
+\end{center}
+\begin{quote}\small
+\noindent\textbf{概要.}\quad
+Hisamoto--Iwai は projective klt Fano 多様体について $\delta$ 不変量を用いた Miyaoka--Yau 不等式を証明し，toric の場合の組合せ的証明を求めた．本稿ではその場合の別証明を与える．まず orbifold 第二 Chern 数を，反標準多面体の余次元二の面の体積と局所格子指数による有限和で表す．この計算は非 $\mathbb Q$-factorial な場合も含む．次に，必要な不等式を実凸多面体について証明する．凸幾何の議論は，重心を頂点とする facet の角錐の既知の体積評価，二つの確率ベクトルの二乗和の比較，および Brunn--Minkowski 不等式による支持数の体積関数の凹性を組み合わせるものである．
+\end{quote}
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+\section{序論}\label{ja:sec:intro}
+$X$ を複素数体上の $n\ge2$ 次元 projective klt Fano 多様体とし，$H=-K_X$，$d=\min\{1,\delta(X)\}$ と置く．Hisamoto--Iwai は \cite[Theorem~1.1, equivalently Theorem~7.2]{ja:HI} において，次の不等式を証明した．
+
+\begin{jthm}[Hisamoto--Iwai の不等式の toric の場合]\label{ja:thm:main}
+$X$ が toric ならば，
+\begin{equation}\label{ja:eq:main}
+ \bigl(2(n+1)\widehat c_2(X)-nc_1(X)^2\bigr)\cdot H^{n-2}
+ \ge -n(1-d)^2H^n.
+\end{equation}
+ここで $c_1(X)=c_1(H)$，$\widehat c_2(X)=\widehat c_2(\mathcal T_X)$ は orbifold，すなわち $\mathbb Q$-第二 Chern 類である．同値な形は
+\begin{equation}\label{ja:eq:main-equivalent}
+ 2(n+1)\widehat c_2(X)\cdot H^{n-2}\ge nd(2-d)H^n.
+\end{equation}
+である．
+\end{jthm}
+同値性は $c_1(X)^2H^{n-2}=H^n$ と $1-(1-d)^2=d(2-d)$ から従う．
+
+\cite[\S7.2]{ja:HI} の Example~7.5 の末尾では，well-formed weighted projective space の直接計算を踏まえ，toric の場合の組合せ的証明を求める問題が述べられている．本稿の目的は，この場合の別証明を与えることである．不等式そのものは Hisamoto--Iwai の結果であり，以下の議論はその別証明に位置づけられる．参照版は arXiv:2607.25181v2 である．対象は同論文の Theorem~1.1 の非同変な不等式であり，Theorem~1.2 の weighted equivariant 版または soliton 版とは区別する．
+
+証明は二段階からなる．第一段階では toric intersection theory と $\mathbb Q$-Chern 類の quotient stack による記述を用い，\eqref{ja:eq:main-equivalent} の各量を多面体のデータに移す．第二段階は実凸幾何の議論である．原点と重心をそれぞれ頂点とする facet の角錐の相対体積を比較し，確率ベクトルの分解によって $d(2-d)$ を得る．Brunn--Minkowski 不等式は，この比較を余次元二の面の体積和の評価へ移すために用いる．
+
+Smooth，$\mathbb Q$-factorial，Gorenstein，Picard number one，K-semistable という仮定は置かない．反標準多面体が格子多面体であるとも仮定しない．凸幾何の証明への入力として，Hisamoto--Iwai の主不等式，Bogomolov--Gieseker または Langer の不等式，特別な計量の存在定理を用いることはない．
+
+\section{準備と toric な辞書}\label{ja:sec:dictionary}
+$N$ を一径数部分群の格子，$M=\operatorname{Hom}(N,\mathbb Z)$ を指標格子とし，$\Sigma$ を $X$ の fan とする．Ray $\rho$ の primitive generator を $v_\rho$ と書く．内向き法線の convention を用い，
+\begin{equation}\label{ja:eq:polytope}
+ P=\{u\in M_{\mathbb R}:\langle u,v_\rho\rangle\ge-1
+       \text{ for every }\rho\in\Sigma(1)\},\qquad
+ b=\frac{\int_Pu\,du}{\operatorname{Vol}_M(P)}.
+\end{equation}
+とする．測度 $du$ は $M$ の基本領域の体積を $1$ とする．面の体積には，その平行方向の格子の基本領域の体積を $1$ とする測度を用い，階乗を含めない．零次元の面の体積は $1$ とする．$H$ は ample なので，この内向き convention における $P$ の normal fan は $\Sigma$ であり，各不等式は facet を定める．原点は $P$ の内部にある．Pairing が $1$ 以下という通常の極多面体の convention では，$P^\circ=\operatorname{conv}\{-v_\rho\}$ である．
+
+次数と体積の関係は
+\begin{equation}\label{ja:eq:degree}
+ H^n=n!\operatorname{Vol}_M(P).
+\end{equation}
+である．実際，十分可除な $k>0$ に対し $kH$ を very ample Cartier とする．$\ell kH$ の toric sections は $\ell kP\cap M$ で添字づけられる．Hilbert 多項式と格子点数の最高次項の比較から
+\[
+(kH)^n/n!=\operatorname{Vol}_M(kP)=k^n\operatorname{Vol}_M(P)
+\]
+を得るので，$k^n$ で割ればよい．これは \cite[Theorem~13.4.3]{ja:CLS} の次数と体積の公式である．同書の normalized volume は階乗を含む点に注意する．
+
+安定性閾値には次の valuative な記述を用いる：
+\[
+\delta(X)=\inf_E\frac{A_X(E)}{S_H(E)},\qquad
+S_H(E)=\frac1{H^n}\int_0^\infty\operatorname{vol}(\pi^*H-tE)\,dt.
+\]
+ここで $E$ は滑らかな射影的双有理モデル $\pi:Y\to X$ 上の素因子を動き，$A_X(E)$ は log discrepancy である．
+
+\begin{jprop}[Blum--Jonsson]\label{ja:prop:delta}
+上述の toric 多様体 $X$ について，
+\begin{equation}\label{ja:eq:delta}
+ \delta(X)=\min_{\rho\in\Sigma(1)}
+       \frac1{1+\langle b,v_\rho\rangle}.
+\end{equation}
+が成立する．特に $0<\delta(X)\le1$ なので，$d=\delta(X)$ である．
+\end{jprop}
+\begin{proof}
+公式は \cite[Corollary~7.16 and \S7.6]{ja:BJ} であり，同文献の内向き primitive normals と係数 $b_i=1$ を用いる．Toric な設定で必要な proper 性，canonical divisor の $\mathbb Q$-Cartier 性，偏極の ample 性は，今回全て満たされる．Cartier の場合から $\mathbb Q$-Cartier の場合へ移るには $kH$ に適用する．体積の斉次性と $t=kz$ への置換により $S_{kH}(E)=kS_H(E)$ であり，$\delta(kH)=\delta(H)/k$ となる．対応する多面体と重心は $kP$ と $kb$ である．
+
+$b$ は $P$ の内部にあるので，各分母は正である．$b=0$ なら公式から $\delta(X)=1$ を得る．$b\ne0$ のとき，ある ray に対して $\langle b,v_\rho\rangle>0$ である．そうでなければ，この線形形式は各 cone 上で非正であり，fan の complete 性から $N_{\mathbb R}$ 全体で非正となる．これは非零線形形式では不可能である．従って $b\ne0$ なら $\delta(X)<1$ となる．また \eqref{ja:eq:delta} は $\max_\rho(1+\langle b,v_\rho\rangle)$ の逆数である．
+\end{proof}
+
+$\sigma=\operatorname{cone}(v_{\rho_1},v_{\rho_2})\in\Sigma(2)$ に対して
+\[
+N_\sigma=N\cap\operatorname{span}_{\mathbb R}(\sigma),\qquad
+\operatorname{mult}(\sigma)
+=[N_\sigma:\mathbb Zv_{\rho_1}+\mathbb Zv_{\rho_2}]
+\]
+と置く．二つの対応する不等式が等号になる余次元二の面を $F_\sigma$ と書く．
+
+\begin{jprop}\label{ja:prop:chern}
+Orbifold 第二 Chern 数は
+\begin{equation}\label{ja:eq:chern}
+ \widehat c_2(X)\cdot H^{n-2}
+ =(n-2)!\sum_{\sigma\in\Sigma(2)}
+ \frac{\operatorname{Vol}_{M\cap\sigma^\perp}(F_\sigma)}
+      {\operatorname{mult}(\sigma)}.
+\end{equation}
+で与えられる．$X$ の $\mathbb Q$-factorial 性は必要ない．
+\end{jprop}
+\begin{proof}
+余次元三以上の軌道を除き，
+\begin{equation}\label{ja:eq:open}
+ Z=\bigcup_{\dim\tau\ge3}V(\tau),\qquad
+ U=X\setminus Z=X_{\Sigma_{\le2}},\qquad
+ \dim Z\le n-3.
+\end{equation}
+と置く．$\Sigma_{\le2}$ の cone は全て simplicial である．従って canonical toric stack $p:\mathcal U\to U$ は滑らかな Deligne--Mumford stack であり，余次元一の stabilizer は自明である．その存在と Cox 商による表示には \cite[Theorem~4.11 and Corollary~4.13]{ja:FMN} を用いる．これらの主張に complete 性の仮定はない．
+
+これは今回の Chern 類を定義する quasi-\'{e}tale な orbifold structure である．Quotient chart 上で $\mathcal T_U$ の reflexive pullback と滑らかな chart の接束は，\'{e}tale locus 上で一致する．その補集合は余次元二以上であり，双方が reflexive なので，この一致は chart 全体へ延長する．$\mathbb Q$-Chern 類の構成と smooth DM stack との比較は \cite[Theorem~3.13 and \S\S3.10--3.11 of the arXiv version]{ja:GKPT} に記されている．
+
+$r=|\Sigma(1)|$ とする．Cox 商の作用群は $(\mathbb C^*)^r\to T_N$ の diagonalizable な核である．Rays は $N_{\mathbb R}$ を張るので，群が非連結でもその次元は $r-n$ である．Adjoint action は自明であり，stabilizer が有限かつ標数零なので infinitesimal action は injective である．従って接束の完全列
+\begin{equation}\label{ja:eq:euler-stack}
+ 0\longrightarrow\mathcal O_{\mathcal U}^{\oplus(r-n)}
+ \longrightarrow\bigoplus_\rho\mathcal O_{\mathcal U}(\mathcal D_\rho)
+ \longrightarrow\mathcal T_{\mathcal U}\longrightarrow0.
+\end{equation}
+を得る．$\mathcal D_\rho$ は座標境界因子である．\cite[\S4.1]{ja:EM} も参照されたい．Whitney 公式から
+\[
+c_2(\mathcal T_{\mathcal U})
+=\sum_{\rho<\eta}\mathcal D_\rho\mathcal D_\eta
+\]
+となる．二つの rays が $\Sigma(2)$ の cone を張らなければその交差は空である．張る場合には Cox 座標で横断的な交差となり，重複度は $1$ である．
+
+$\sigma$ の軌道の一般点における横断的 chart は $\mathbb A^2/G_\sigma$ であり，
+\[
+|G_\sigma|=[N_\sigma:\mathbb Zv_{\rho_1}+\mathbb Zv_{\rho_2}]
+=\operatorname{mult}(\sigma)
+\]
+となる．Rays が primitive なので chart は quasi-\'{e}tale である．対応する stack stratum の pushforward の係数は $\deg BG_\sigma=1/|G_\sigma|$ である．従って $U$ 上の cycle として
+\[
+p_*\bigl(c_2(\mathcal T_{\mathcal U})\cap[\mathcal U]\bigr)
+=\sum_{\sigma\in\Sigma(2)}
+\frac{[V(\sigma)\cap U]}{\operatorname{mult}(\sigma)}
+\]
+を得る．この局所計算は \cite[Definition~3.1 and Proposition~3.2]{ja:EM} の multiplicity の convention と一致する．同 Proposition は complete 性を仮定しているため，非properな $U$ に直接適用しているのではない．ここで使うのは proper な粗空間射による cycle pushforward であり，$U$ 上の数値的積分ではない．
+
+Chow localization は
+\[
+A_{n-2}(Z)_{\mathbb Q}\longrightarrow
+A_{n-2}(X)_{\mathbb Q}\longrightarrow
+A_{n-2}(U)_{\mathbb Q}\longrightarrow0
+\]
+を与える．左端は零なので，得られた cycle は $X$ へ一意に延長する．\cite[\S3.10]{ja:GKPT} の構成により，
+\begin{equation}\label{ja:eq:cycle}
+ \widehat c_2(X)\cap[X]
+ =\sum_{\sigma\in\Sigma(2)}
+     \frac{[V(\sigma)]}{\operatorname{mult}(\sigma)}
+ \quad\text{in }A_{n-2}(X)_{\mathbb Q}.
+\end{equation}
+となる．左辺は数値的な $\mathbb Q$-Chern form を定める延長 cycle を表す．十分可除な $k$ に対し $|kH|$ の一般の $n-2$ 個の元を取ることもできる．その完全交差は $\dim Z\le n-3$ によって $Z$ を避け，同じ Chern 数を計算する．$n=2$ なら $Z$ は空である．
+
+$V(\sigma)$ の稠密 torus の指標格子は $M\cap\sigma^\perp$ である．Cartier datum による平行移動で，$(kH)|_{V(\sigma)}$ の多面体は，この指標空間内の $kF_\sigma$ と同定される．Hilbert 多項式の最高次項の比較から
+\begin{equation}\label{ja:eq:orbit-degree}
+ H^{n-2}\cdot[V(\sigma)]
+ =(n-2)!\operatorname{Vol}_{M\cap\sigma^\perp}(F_\sigma).
+\end{equation}
+を得る．$n=2$ では閉軌道点の次数が $1$ であることを述べている．Proper な $X$ 上で \eqref{ja:eq:cycle} と交点を取れば \eqref{ja:eq:chern} が従う．この証明では，$X$ 上の個々の非 $\mathbb Q$-Cartier Weil 因子を掛けていない．
+\end{proof}
+
+\begin{jlem}\label{ja:lem:lattice}
+$M$ の格子基底を正規直交基底とする Euclidean 構造を選ぶ．独立な $v_i,v_j\in N$ に対し，
+\[
+L=M\cap v_i^\perp\cap v_j^\perp,\qquad J=\|v_i\wedge v_j\|
+\]
+と置く．このとき
+\begin{equation}\label{ja:eq:covol}
+ \operatorname{covol}(L)=J/\operatorname{mult}(v_i,v_j).
+\end{equation}
+である．従って $L_{\mathbb R}$ に平行な面 $F$ に対し，
+\begin{equation}\label{ja:eq:euclidean}
+ \frac{\operatorname{Vol}_{L}(F)}{\operatorname{mult}(v_i,v_j)}
+ =\frac{\operatorname{Vol}_{E,n-2}(F)}{\|v_i\wedge v_j\|}.
+\end{equation}
+が成立する．
+\end{jlem}
+\begin{proof}
+整数線形写像 $A:M\to\mathbb Z^2$，$u\mapsto(\langle u,v_i\rangle,\langle u,v_j\rangle)$ を考える．Smith normal form によれば，$A(M)$ の指数は rank-two minors の最大公約数，すなわち $\operatorname{mult}(v_i,v_j)$ に等しい．実線形写像 $A$ の Jacobian は $J$ である．核格子の基底と像格子の基底の持ち上げを合わせると $M$ の基底になる．その行列式を核方向と直交方向に分けて計算すると
+\[
+1=\operatorname{covol}(L)\operatorname{mult}(v_i,v_j)/J
+\]
+を得る．これが \eqref{ja:eq:covol} である．格子体積は Euclidean 体積を共体積で割ったものなので，\eqref{ja:eq:euclidean} が従う．
+\end{proof}
+
+\section{組合せ的不等式}\label{ja:sec:convex}
+この節の法線には格子性を仮定しない．
+\begin{equation}\label{ja:eq:real-polytope}
+ P=\{x\in\mathbb R^n:\langle x,v_i\rangle\ge-1,\ 1\le i\le r\}
+\end{equation}
+を有界で full-dimensional な多面体とし，全不等式が非冗長であるとする．$V=\operatorname{Vol}_n(P)$，$b=\bar P$ と置く．Facets $F_i$ に対して
+\begin{equation}\label{ja:eq:weights}
+ s_i=1+\langle b,v_i\rangle,\qquad
+ d=(\max_i s_i)^{-1},\qquad
+ \alpha_i=\frac{\operatorname{Vol}_{n-1}(F_i)}{n\|v_i\|V},
+ \qquad q_i=s_i\alpha_i.
+\end{equation}
+と定義する．これらは原点と重心をそれぞれ頂点とする facet の角錐の相対体積である．従って正であり，$\sum_i\alpha_i=\sum_iq_i=1$ となる．$\sum_i s_i\alpha_i=1$ より $0<d\le1$ である．
+
+余次元二の面を ridge と呼び，
+\begin{equation}\label{ja:eq:ridge-sum}
+ S_2(P)=\sum_{\substack{i<j\\F_i\cap F_j\text{ a ridge}}}
+ \frac{\operatorname{Vol}_{n-2}(F_i\cap F_j)}
+      {\|v_i\wedge v_j\|}.
+\end{equation}
+と置く．各 ridge はちょうど二つの facets に含まれる．その二次元 normal cone が，ちょうど二本の extreme rays を持つためである．
+
+\begin{jthm}\label{ja:thm:convex}
+$n\ge2$ の任意の多面体 \eqref{ja:eq:real-polytope} について，
+\begin{equation}\label{ja:eq:convex-main}
+ 2(n+1)S_2(P)\ge n^2(n-1)d(2-d)V.
+\end{equation}
+が成立する．
+\end{jthm}
+
+\begin{jlem}[Facet の角錐；Freyer--Henk--Kipp]\label{ja:lem:pyramid}
+$K$ を $n$ 次元凸多面体，$F$ をその facet，$b_K$ を重心とすると，
+\begin{equation}\label{ja:eq:pyramid}
+ \operatorname{Vol}_n(\operatorname{conv}(b_K,F))
+ \le\operatorname{Vol}_n(K)/(n+1).
+\end{equation}
+が成立する．
+\end{jlem}
+\begin{proof}
+これは \cite[Theorem~1.1]{ja:FHK} の一点の場合である．以下では \cite[Theorem~1.2(i) の証明]{ja:FHK} の断面比較を，今回必要な形で記す．
+
+$F$ からの内向き Euclidean 高さを $t$ とする．$A=\operatorname{Vol}_{n-1}(F)$，$W=\operatorname{Vol}_n(K)$，$T=\max_Kt$ と置き，平行断面の体積を $f(t)$ と書く．$f(0)=A$，$\int_0^T f=W$ である．高さ $T$ の点と $F$ の凸包は $K$ に含まれるので，$W\ge AT/n$ となる．そこで
+\begin{equation}\label{ja:eq:comparison}
+ h=nW/A\ge T,\qquad
+ g(t)=A(1-t/h)^{n-1}\ (0\le t\le h),\qquad
+ \int_0^h g=W.
+\end{equation}
+と置く．
+
+Brunn--Minkowski 不等式 \cite[Theorem~4.1]{ja:Gardner} は，$\mathbb R^m$ の凸体 $C,D$ に対して
+\[
+\operatorname{Vol}_m((1-\lambda)C+\lambda D)^{1/m}
+\ge(1-\lambda)\operatorname{Vol}_m(C)^{1/m}
++\lambda\operatorname{Vol}_m(D)^{1/m}
+\]
+を与える．二つの平行断面の Minkowski 凸結合は中間の断面に含まれるため，$f^{1/(n-1)}$ は $[0,T]$ 上で凹である．従って
+\[
+\psi(t)=f(t)^{1/(n-1)}-A^{1/(n-1)}(1-t/h)
+\]
+も凹であり，$\psi(0)=0$ である．$0<a<t$ に対し，凹性から $\psi(a)/a\ge\psi(t)/t$ を得る．よって $f-g$ の符号は正から負へ高々一度しか変わらない．$t>T$ では $f$ を零と延長しても，逆向きの符号変化は生じない．
+
+両積分は等しいので，ある $t_0\in[0,h]$ により $(t-t_0)(f-g)\le0$ と書ける．一方の符号しか現れない場合は，積分の等しさから $f=g$ がほとんど至る所で成立し，同じ結論を得る．従って
+\begin{equation}\label{ja:eq:moment}
+ \int_0^h t f(t)\,dt
+ \le\int_0^h t g(t)\,dt
+ =Ah^2\int_0^1 z(1-z)^{n-1}\,dz
+ =\frac{Ah^2}{n(n+1)}.
+\end{equation}
+となる．$W=Ah/n$ で割ると重心の高さは $h/(n+1)$ 以下となる．これに $A/n$ を掛ければ \eqref{ja:eq:pyramid} を得る．
+\end{proof}
+
+\begin{jlem}\label{ja:lem:probability}
+\eqref{ja:eq:weights} の重みについて，
+\begin{equation}\label{ja:eq:sum-squares}
+ \sum_i\alpha_i^2\le\frac{1+n(1-d)^2}{n+1}.
+\end{equation}
+が成立する．
+\end{jlem}
+\begin{proof}
+補題~\ref{ja:lem:pyramid} により $q_i\le c:=1/(n+1)$ である．$ds_i\le1$ なので $\alpha_i-dq_i=(1-ds_i)\alpha_i\ge0$ となる．$d<1$ なら確率ベクトル
+\begin{equation}\label{ja:eq:mixture}
+ r_i=\frac{\alpha_i-dq_i}{1-d},\qquad
+ \alpha=dq+(1-d)r.
+\end{equation}
+を定義できる．$q,r$ は確率ベクトルなので
+\[
+\sum_iq_i^2\le c,\qquad \sum_iq_ir_i\le c,\qquad \sum_ir_i^2\le1
+\]
+である．従って
+\[
+\sum_i\alpha_i^2
+\le cd^2+2cd(1-d)+(1-d)^2=\frac{1+n(1-d)^2}{n+1}
+\]
+を得る．$d=1$ なら $\alpha_i\ge q_i$ と総和の等しさから $\alpha=q$ となり，同じ結論が従う．
+\end{proof}
+
+\begin{jprop}\label{ja:prop:ridge}
+任意の多面体 \eqref{ja:eq:real-polytope} について，
+\begin{equation}\label{ja:eq:ridge-bound}
+ 2S_2(P)\ge n(n-1)V\left(1-\sum_i\alpha_i^2\right).
+\end{equation}
+が成立する．
+\end{jprop}
+\begin{proof}
+まず $P$ が simple の場合を考える．$\mathbf1$ の近傍の支持数に対して
+\begin{equation}\label{ja:eq:support}
+ P(h)=\{x:\langle x,v_i\rangle\ge-h_i\},\qquad
+ \mathcal V(h)=\operatorname{Vol}_n(P(h)).
+\end{equation}
+と置く．$\mathbf1$ の近傍では組合せ型は一定である．各頂点は，そこで active な $n$ 本の独立な法線により定まり，$h$ の線形関数になる．固定した triangulation の行列式表示から，$\mathcal V$ はこの近傍で次数 $n$ の斉次多項式となる．
+
+包含関係 $(1-t)P(h)+tP(k)\subseteq P((1-t)h+tk)$ と Brunn--Minkowski 不等式から，$\mathcal V^{1/n}$ は凹である．第 $i$ 方向に二回微分し，$\mathbf1$ で評価すると
+\begin{equation}\label{ja:eq:hessian-diagonal}
+ \mathcal V_{ii}\le\frac{n-1}{n}\frac{\mathcal V_i^2}{V}.
+\end{equation}
+を得る．実際，二階微分は
+\[
+\frac1nV^{1/n-1}\mathcal V_{ii}
+-\frac{n-1}{n^2}V^{1/n-2}\mathcal V_i^2\le0
+\]
+である．
+
+$h_i$ を増やすと第 $i$ 支持面は外向きに速度 $1/\|v_i\|$ で動く．生じる薄い層の体積を計算して
+\begin{equation}\label{ja:eq:first-variation}
+ \mathcal V_i=\frac{\operatorname{Vol}_{n-1}(F_i)}{\|v_i\|}
+ =nV\alpha_i,\qquad
+ \mathcal V_{ii}\le n(n-1)V\alpha_i^2.
+\end{equation}
+を得る．$i\ne j$ とし，第 $i$ 支持面を固定する．その面の中で，第 $j$ 支持面による境界は速度 $1/\|\operatorname{proj}_{v_i^\perp}v_j\|$ で動く．$n-1$ 次元で同じ一次変分を計算すると，隣接 facets について
+\begin{equation}\label{ja:eq:mixed-variation}
+ \mathcal V_{ij}
+ =\frac{\operatorname{Vol}_{n-2}(F_i\cap F_j)}
+ {\|v_i\|\|\operatorname{proj}_{v_i^\perp}v_j\|}
+ =\frac{\operatorname{Vol}_{n-2}(F_i\cap F_j)}
+ {\|v_i\wedge v_j\|}.
+\end{equation}
+となる．Simple polytope では，交わる二つの facets は ridge で交わる．交わらない場合は対応する制約が $F_i$ 上で strict なので，微分は零である．平行な facets は交わらず，\eqref{ja:eq:mixed-variation} の分数は適用しない．
+
+$\mathcal V(t\mathbf1)=t^nV$ を二回微分すると
+\begin{equation}\label{ja:eq:euler-volume}
+ \sum_{i,j}\mathcal V_{ij}=n(n-1)V,\qquad
+ 2S_2(P)=n(n-1)V-\sum_i\mathcal V_{ii},
+\end{equation}
+を得る．\eqref{ja:eq:first-variation} と合わせれば，simple の場合の \eqref{ja:eq:ridge-bound} が従う．
+
+二次元の多面体は全て simple である．一般の場合は次元を三以上とし，一般位置の正の支持数 $h^{(\varepsilon)}\to\mathbf1$ を選ぶ．有限個の余分な共点条件を避けると $P_\varepsilon=P(h^{(\varepsilon)})$ は simple になる．元の各 facet は残る．その相対内部には他の不等式を全て strict に満たす点があり，小さな平行移動後も面の小片が残るためである．多面体は一様に有界であり，原点も内部に残る．
+
+法線を $w_i^{(\varepsilon)}=v_i/h_i^{(\varepsilon)}$ として支持数を $1$ に正規化する．原点からの角錐重みは
+\[
+\alpha_i^{(\varepsilon)}
+=\frac{h_i^{(\varepsilon)}
+\operatorname{Vol}_{n-1}(F_i^{(\varepsilon)})}
+{n\|v_i\|\operatorname{Vol}(P_\varepsilon)}
+\]
+であり，ridge の和は
+\begin{equation}\label{ja:eq:perturbed-ridge}
+ S_2(P_\varepsilon)=
+ \sum_{\text{ridges }F_{ij}^{(\varepsilon)}}
+ h_i^{(\varepsilon)}h_j^{(\varepsilon)}
+ \frac{\operatorname{Vol}_{n-2}(F_{ij}^{(\varepsilon)})}
+ {\|v_i\wedge v_j\|}.
+\end{equation}
+となる．
+
+元の ridge は存続して収束する．その相対内部では，定義する二つ以外の不等式は全て strict である．二つの等式を微小変形すると，相対内部を尽くす面の小片が残る．逆向きの Hausdorff 極限の包含は不等式から従う．平行な affine 空間を一つの空間へ平行移動して比較すれば，面の体積も収束する．
+
+新しく現れた ridge の極限点は，元の $F_i\cap F_j$ に含まれる．この交差は空であるか，次元が高々 $n-3$ である．小さな平行移動で平行方向の空間を固定すると，一様有界性により，その $(n-2)$ 次元体積は有界な低次元集合の縮小近傍の体積で上から評価される．従って零に収束する．法線対は有限個なので $S_2(P_\varepsilon)\to S_2(P)$ を得る．Facet の体積と全体の体積も収束し，$\alpha_i^{(\varepsilon)}\to\alpha_i$ となる．Simple case の不等式で極限を取れば，\eqref{ja:eq:ridge-bound} が従う．
+
+この近似は実多面体だけを用いる．近似多面体の格子性や，それに対応する多様体の Fano 性は必要ない．
+\end{proof}
+
+\begin{proof}[定理~\ref{ja:thm:convex} の証明]
+補題~\ref{ja:lem:probability} と命題~\ref{ja:prop:ridge} から
+\[
+\begin{aligned}
+2S_2(P)
+&\ge n(n-1)V\left(1-\frac{1+n(1-d)^2}{n+1}\right)\\
+&=\frac{n^2(n-1)}{n+1}d(2-d)V
+\end{aligned}
+\]
+を得る．$n+1$ を掛ければ \eqref{ja:eq:convex-main} となる．
+\end{proof}
+
+\section{主定理の証明}\label{ja:sec:main-proof}
+\begin{proof}[定理~\ref{ja:thm:main} の証明]
+補題~\ref{ja:lem:lattice} の格子基底を正規直交とする Euclidean 構造を用い，反標準多面体に定理~\ref{ja:thm:convex} を適用する．命題~\ref{ja:prop:delta} はその $d$ を $\delta(X)=\min\{1,\delta(X)\}$ と同定する．補題~\ref{ja:lem:lattice} は ridge の和を命題~\ref{ja:prop:chern} の有限和と同定する．従って
+\begin{equation}\label{ja:eq:return}
+ \begin{aligned}
+ 2(n+1)\widehat c_2(X)H^{n-2}
+ &=2(n+1)(n-2)!S_2(P)\\
+ &\ge n^2(n-1)(n-2)!\,d(2-d)\operatorname{Vol}_M(P)\\
+ &=nd(2-d)H^n.
+ \end{aligned}
+\end{equation}
+最後は $n^2(n-1)(n-2)!=n\,n!$ と \eqref{ja:eq:degree} を用いた．これで \eqref{ja:eq:main-equivalent}，従って \eqref{ja:eq:main} が示された．非 $\mathbb Q$-factorial な場合は命題~\ref{ja:prop:chern} に含まれ，simple の仮定は命題~\ref{ja:prop:ridge} で除かれている．
+\end{proof}
+
+\section{例と注意}\label{ja:sec:examples}
+\begin{jeg}[Weighted projective spaces]\label{ja:ex:wps}
+$X=\mathbb P(a_0,\ldots,a_n)$，$1\le a_0\le\cdots\le a_n$ とし，well formed と仮定する．すなわち，どの一つの重みを除いても残りの最大公約数は $1$ とする．$S=\sum_i a_i$，$Q=\prod_i a_i$，$e_2(a)=\sum_{i<j}a_i a_j$ と置くと，
+\begin{equation}\label{ja:eq:wps}
+ H^n=\frac{S^n}{Q},\qquad
+ \widehat c_2H^{n-2}=\frac{e_2(a)S^{n-2}}Q,\qquad
+ d=\frac{(n+1)a_0}{S}.
+\end{equation}
+となる．これらは \cite[Example~7.5, (7.7)--(7.10)]{ja:HI} で用いられている公式である．Well-formed 条件により weighted projective stack の余次元一の stabilizer は自明となる．Weighted Euler 列が今回の orbifold Chern 類を計算し，hyperplane class の最高次の次数は $1/Q$ である．$\delta$ の公式は，単体に対する命題~\ref{ja:prop:delta} から従う．
+
+$b_i=a_i-a_0$，$B=\sum_i b_i$ と置く．
+\[
+S=(n+1)a_0+B,\qquad
+e_2(a)=\binom{n+1}{2}a_0^2+na_0B+\sum_{i<j}b_i b_j
+\]
+を \eqref{ja:eq:wps} に代入すると，$b_i$ に関する定数項と一次項が相殺し，
+\begin{equation}\label{ja:eq:wps-gap}
+ 2(n+1)\widehat c_2H^{n-2}-nd(2-d)H^n
+ =\frac{2(n+1)S^{n-2}}Q\sum_{i<j}b_i b_j.
+\end{equation}
+を得る．従って $\mathbb P(1,\ldots,1,b)$ では等号が成立する．$b=1$，すなわち $\mathbb P^n$ では
+\[
+H^n=(n+1)^n,\qquad c_2H^{n-2}=\frac n2(n+1)^{n-1},\qquad d=1
+\]
+を得る．Non-Gorenstein の例 $\mathbb P(1,1,3)$ では $H^2=25/3$，$\widehat c_2=7/3$，$d=3/5$ となり，やはり等号が成立する．
+
+Well-formed 条件は必要である．重み $(1,2,2)$ の stack の第二 Chern 数は $2$ であるが，粗空間は $\mathbb P^2$ であり，その第二 Chern 数は $3$ である．二次 Veronese ring は $\mathbb C[x^2,y,z]$ となる．Weighted stack には余次元一の $\mu_2$ stabilizer があるので，今回用いた quasi-\'{e}tale な stack ではない．
+\end{jeg}
+
+\begin{jeg}[射影空間の積]\label{ja:ex:products}
+$X=\prod_{\nu=1}^k\mathbb P^{m_\nu}$，$n=\sum_\nu m_\nu$ とする．反標準多面体は重心が原点の単体の積なので $d=1$ である．Whitney 公式と多項展開から
+\begin{equation}\label{ja:eq:product}
+ \begin{gathered}
+ H^n=n!\prod_\nu\frac{(m_\nu+1)^{m_\nu}}{m_\nu!},\\
+ \frac{c_2H^{n-2}}{H^n}
+ =\frac{\displaystyle
+   \sum_\nu\frac{m_\nu^2(m_\nu-1)}{2(m_\nu+1)}
+   +\sum_{\nu<\mu}m_\nu m_\mu}{n(n-1)}.
+ \end{gathered}
+\end{equation}
+を得る．実際，引き戻した hyperplane classes を $h_\nu$ とすると
+\[
+\begin{aligned}
+H&=\sum_\nu(m_\nu+1)h_\nu,\\
+c_2&=\sum_\nu\binom{m_\nu+1}{2}h_\nu^2
++\sum_{\nu<\mu}(m_\nu+1)(m_\mu+1)h_\nu h_\mu.
+\end{aligned}
+\]
+必要な多項係数の比は
+\[
+\frac{H^{n-2}h_\nu^2}{H^n}
+=\frac{m_\nu(m_\nu-1)}{n(n-1)(m_\nu+1)^2},
+\qquad
+\frac{H^{n-2}h_\nu h_\mu}{H^n}
+=\frac{m_\nu m_\mu}{n(n-1)(m_\nu+1)(m_\mu+1)}
+\]
+であり，これらが第二式を与える．$\mathbb P^2\times\mathbb P^2$ では $H^4=486$，$c_2H^2=216$ であり，\eqref{ja:eq:main-equivalent} の両辺の差は $216$ となる．
+\end{jeg}
+
+\begin{jeg}[Non-simplicial な fan]\label{ja:ex:nonsimplicial}
+$M=N=\mathbb Z^3$ とし，
+\[P=\operatorname{conv}(\pm e_1,\pm e_2,\pm e_3)\]
+とする．内向き primitive normals は $(\pm1,\pm1,\pm1)$ の八本である．各頂点に四つの facets が集まるので，対応する toric 多様体は非 $\mathbb Q$-factorial である．格子多面体で全 facet の支持定数が $1$ なので，normal fan は Gorenstein toric Fano 多様体を定める．また，各 cone 上の反標準 height function は primitive ray generators に値 $1$ を取り，cone の非零点で正である．Toric resolution の primitive rays の log discrepancies はこの関数の値なので正であり，$X$ は klt である．
+
+十二本の edges の格子長は全て $1$ である．隣接 facets の法線は一つの符号だけが異なり，rank-two minors の最大公約数は $2$ となる．従って対応する cone の multiplicity は全て $2$，ridge の和は $12/2=6$ である．辞書から
+\begin{equation}\label{ja:eq:octahedron}
+ \operatorname{Vol}_M(P)=\frac43,\qquad
+ H^3=8,\qquad \widehat c_2H=6,\qquad d=1,\qquad
+ 8\widehat c_2H-3H^3=24.
+\end{equation}
+を得る．局所指数を省略すると第二 Chern 数を二倍にしてしまう．
+\end{jeg}
+
+\begin{jrem}\label{ja:rem:scope}
+原点と重心からの角錐重みは異なる．$\mathbb P(1,1,2)$ の単体では，
+\[\alpha=(1/4,1/4,1/2),\qquad q=(1/3,1/3,1/3),\qquad d=3/4\]
+である．従って $\alpha_i\le1/(n+1)$ は一般には偽であり，補題~\ref{ja:lem:probability} の混合表示が必要となる．
+
+証明の核心は，既知の重心角錐評価と \eqref{ja:eq:sum-squares}，および支持数の体積評価 \eqref{ja:eq:ridge-bound} の組合せにある．整数格子は辞書を通じて現れる．特異な場合の類は quasi-\'{e}tale な orbifold tangent class であり，Chern--Schwartz--MacPherson 類，stringy Chern 類，Todd 類ではない．余次元三の集合を除く操作は cycle の計算であって，非properな開集合上の積分ではない．既知の主不等式を凸幾何の証明へ戻し入れてはいない．幾何学的な等号成立例の全分類は必要ない．
+\end{jrem}
+\begin{thebibliography}{99}
+\bibitem[HI]{ja:HI}
+T.~Hisamoto and M.~Iwai,
+\emph{The Miyaoka--Yau inequality and the delta invariant for Fano varieties},
+arXiv:2607.25181v2 (2026).
+\bibitem[BJ]{ja:BJ}
+H.~Blum and M.~Jonsson,
+\emph{Thresholds, valuations, and K-stability},
+Adv. Math. \textbf{365} (2020), 107062.
+DOI: 10.1016/j.aim.2020.107062.
+Citations refer to arXiv:1706.04548v2.
+\bibitem[GKPT]{ja:GKPT}
+D.~Greb, S.~Kebekus, T.~Peternell and B.~Taji,
+\emph{The Miyaoka--Yau inequality and uniformisation of canonical models},
+Ann. Sci. \'Ec. Norm. Sup\'er. (4) \textbf{52} (2019), 1487--1535.
+DOI: 10.24033/asens.2414.
+The detailed construction cited here is in arXiv:1511.08822v3,
+Theorem~3.13 and Sections~3.10--3.11.
+\bibitem[FMN]{ja:FMN}
+B.~Fantechi, \'E.~Mann and F.~Nironi,
+\emph{Smooth toric Deligne--Mumford stacks},
+J. reine angew. Math. \textbf{648} (2010), 201--244.
+DOI: 10.1515/CRELLE.2010.084.
+Citations refer to arXiv:0708.1254v2.
+\bibitem[EM]{ja:EM}
+D.~Edidin and Y.~More,
+\emph{Integration on Artin toric stacks and Euler characteristics},
+Proc. Amer. Math. Soc. \textbf{141} (2013), 3689--3699.
+DOI: 10.1090/S0002-9939-2013-11849-6.
+Citations refer to arXiv:1201.2104v1.
+\bibitem[CLS]{ja:CLS}
+D.~A.~Cox, J.~B.~Little and H.~K.~Schenck,
+\emph{Toric Varieties},
+Graduate Studies in Mathematics \textbf{124},
+American Mathematical Society, 2011.
+DOI: 10.1090/gsm/124.
+\bibitem[FHK]{ja:FHK}
+A.~Freyer, M.~Henk and C.~Kipp,
+\emph{Affine subspace concentration conditions for centered polytopes},
+Mathematika \textbf{69} (2023), 458--472.
+DOI: 10.1112/mtk.12189.
+Citations refer to arXiv:2207.08477v1.
+\bibitem[Gardner]{ja:Gardner}
+R.~J.~Gardner,
+\emph{The Brunn--Minkowski inequality},
+Bull. Amer. Math. Soc. (N.S.) \textbf{39} (2002), 355--405.
+DOI: 10.1090/S0273-0979-02-00941-2.
+\end{thebibliography}
+
+\end{document}

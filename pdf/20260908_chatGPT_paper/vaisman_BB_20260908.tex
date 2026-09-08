@@ -1,0 +1,2207 @@
+\documentclass[12pt]{amsart}
+\usepackage{luatex85}
+\usepackage{luatexja-fontspec}
+\IfFontExistsTF{Noto Serif CJK JP}
+  {\setmainjfont{Noto Serif CJK JP}}
+  {\setmainjfont{HaranoAjiMincho-Regular}}
+\ltjsetparameter{jacharrange={-2}}
+
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+% Unused package unavailable here: dsfont
+% Unused package unavailable here: bbm
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+% Unused package unavailable here: ulem
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+% Duplicate enumitem load removed.
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+\usepackage{booktabs,longtable}
+\newcommand{\BC}{\mathrm{BC}}
+\newcommand{\bas}{\mathrm{B}}
+\newcommand{\virt}{\mathrm{virt}}
+\newcommand{\Hol}{\operatorname{Hol}}
+\newcommand{\SU}{\operatorname{SU}}
+\newcommand{\Sp}{\operatorname{Sp}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\ddc}{dd^{c}}
+\newcommand{\wt}{\omega_{T}}
+\newcommand{\rhoT}{\rho_{T}}
+\newcommand{\rhoC}{\rho_{C}}
+\newcommand{\AIstatus}[1]{\textnormal{\textsf{[#1]}}}
+\newcommand{\Qfac}{\mathcal{Q}}
+\emergencystretch=2em
+\raggedbottom
+\hypersetup{urlcolor=blue}
+
+% BEGIN integration support (no manuscript prose)
+% Author capitalization is the sole change to title typography.
+\usepackage{etoolbox}
+% Write bookmarks while each language namespace is active.
+\usepackage{bookmark}
+\makeatletter
+\patchcmd{\@setauthors}{\MakeUppercase{\authors}}{\authors}{}{\errmessage{Author patch failed}}
+\apptocmd{\maketitle}{\markboth{chatGPT 6 Astra}{\shorttitle}}{}{\errmessage{Author header patch failed}}
+\let\MergeSetAbstract\@setabstract
+\let\MergeSectionNumber\thesection
+\let\MergeSectionName\sectionname
+\let\MergeHSection\theHsection
+\let\MergeChapterApp\Hy@chapapp
+\newcommand{\MergeLanguage}{en}
+% Namespaces affect internal lookup and PDF destinations, never source arguments.
+\renewcommand*{\HyperDestNameFilter}[1]{\MergeLanguage.#1}
+\renewcommand*{\pdfbookmark}[3][0]{%
+  \bookmark[level=#1,dest={\HyperDestNameFilter{#3.#1}}]{#2}%
+  \hyper@anchorstart{#3.#1}\hyper@anchorend}
+\AtBeginDocument{%
+  \let\MergeOriginalLabel\label
+  \NewCommandCopy\MergeOriginalRef\ref
+  \let\MergeOriginalCite\@citex
+  \let\MergeOriginalBibitem\bibitem
+  \RenewDocumentCommand\label{m}{\MergeOriginalLabel{\MergeLanguage:#1}}%
+  \let\ltx@label\label % amsmath display labels use this saved entry point.
+  \RenewDocumentCommand\ref{s m}{\IfBooleanTF{#1}{\MergeOriginalRef*{\MergeLanguage:#2}}{\MergeOriginalRef{\MergeLanguage:#2}}}%
+  \def\@citex[#1]#2{%
+    \def\MergeKeys{}%
+    \@for\MergeKey:=#2\do{%
+      \ifx\MergeKeys\@empty
+        \edef\MergeKeys{\MergeLanguage:\MergeKey}%
+      \else\edef\MergeKeys{\MergeKeys,\MergeLanguage:\MergeKey}\fi}%
+    \MergeOriginalCite[#1]{\MergeKeys}}%
+  \RenewDocumentCommand\bibitem{o m}{%
+    \IfNoValueTF{#1}{\MergeOriginalBibitem{\MergeLanguage:#2}}{\MergeOriginalBibitem[#1]{\MergeLanguage:#2}}}%
+  % Snapshot original counter values; page numbers intentionally remain continuous.
+  \def\MergeResetCounters{}%
+  \begingroup
+    \def\@elt#1{\ifstrequal{#1}{page}{}{%
+      \xappto\MergeResetCounters{\noexpand\setcounter{#1}{\number\csname c@#1\endcsname}}}}%
+    \cl@@ckpt
+  \endgroup
+}
+% Two independent Contents files, with original heading and formatting.
+\newswitch{entoc}
+\newswitch{jatoc}
+\let\MergeOriginalStarttoc\@starttoc
+\def\@starttoc#1#2{\MergeOriginalStarttoc{\MergeLanguage#1}{#2}}
+\let\MergeOriginalAddtocontents\addtocontents
+\renewcommand\addtocontents[2]{\MergeOriginalAddtocontents{\MergeLanguage#1}{#2}}
+\newcommand{\MergeStart}[1]{%
+  \def\MergeLanguage{#1}%
+  \MergeResetCounters
+  \let\thesection\MergeSectionNumber
+  \let\sectionname\MergeSectionName
+  \let\theHsection\MergeHSection
+  \global\let\Hy@chapapp\MergeChapterApp
+  \global\let\@setabstract\MergeSetAbstract
+  \global\let\authors\@empty
+  \gdef\shortauthors{chatGPT 6 Astra}%
+  \global\let\addresses\@empty
+}
+\makeatother
+
+% END integration support
+\begin{document}
+
+\begingroup
+\MergeStart{en}
+\title[Basic Chern vanishing on Vaisman manifolds]{Basic Chern vanishing and Beauville--Bogomolov structure in Vaisman geometry}
+\author{chatGPT 6 Astra}
+
+
+
+
+
+
+
+\date{8 September 2026, working note, version 0.1}
+\renewcommand{\subjclassname}{\textup{2020} Mathematics Subject Classification}
+\subjclass[2020]{Primary 53C55; Secondary 32Q25, 32M25, 57R18}
+\keywords{Vaisman manifold, basic Chern class, Bott--Chern cohomology,
+transverse Calabi--Yau geometry, elliptic orbi-bundle, virtual first Betti number}
+\hypersetup{pdftitle={Basic Chern vanishing and Beauville--Bogomolov structure in Vaisman geometry},pdfauthor={chatGPT 6 Astra},pdfsubject={Expository working note; AI-generated; not human-verified}}
+
+
+\pdfbookmark[0]{English version}{language-en}
+
+\begin{abstract}
+For a compact non-K\"ahler Vaisman manifold, vanishing of the first real
+basic Chern class is equivalent to vanishing of the first Bott--Chern class
+of the complex manifold. We explain this equivalence without assuming a
+leaf space, and apply Istrati's existing structure theorem. The resulting
+Beauville--Bogomolov decomposition belongs to the transverse geometry and
+to a finite orbifold cover of the leaf space. The total space remains a
+definite elliptic orbi-bundle. We compute its first and virtual first Betti
+numbers, describe its fundamental group and Albanese map, and give explicit
+examples with small first Betti number. Further elementary consequences
+concern bundle reconstruction, product obstructions, and a vanishing second
+basic Chern class. This is an expository working note; no new decomposition
+theorem or verified claim of originality is asserted.
+\end{abstract}
+\maketitle
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+\tableofcontents
+
+\section{The precise answer and the status of the results}
+\label{sec:intro}
+Throughout, $M$ is connected and compact, $\dim_{\C}M=n\geq2$, and
+$(J,g,\omega,\theta)$ is Vaisman with $\theta\ne0$. Put $m=n-1$.
+The hypothesis in this note is exactly
+\begin{equation}\label{eq:hyp}
+c_1^{\bas}(Q^{1,0})=0\quad\text{in }H^2_{\bas}(M,\R).
+\end{equation}
+It imposes no condition on $c_2^{\bas}$. The complex structure $J$ is fixed.
+
+\begin{thm}[Answer to the main question]\label{thm:main}
+Under \eqref{eq:hyp}, the original canonical foliation is quasi-regular.
+There is a connected finite holomorphic \emph{\'etale} cover $M'\to M$ and
+a holomorphic principal elliptic orbi-bundle
+\begin{equation}\label{eq:BB}
+E\longrightarrow M'\xrightarrow{\pi}B,
+\qquad B=A\times\prod_i Y_i\times\prod_j Z_j=A\times\Qfac.
+\end{equation}
+Here $A$ is an abelian variety of dimension $a$, and the other factors are
+projective pure K\"ahler orbifolds, simply connected in the \emph{orbifold}
+sense, with Ricci-flat metrics and irreducible holonomy respectively
+$\SU(d_i)$ and $\Sp(e_j)$. Their complex dimensions are $d_i$ and $2e_j$.
+In particular,
+\begin{equation}\label{eq:dimension}
+a+\sum_i d_i+\sum_j2e_j=m.
+\end{equation}
+The product decomposition is holomorphic and isometric on the base for
+the induced Ricci-flat metric. The total space is generally twisted; indeed
+no finite \'etale cover of $M$ is a product of two positive-dimensional
+compact complex manifolds. Furthermore,
+\begin{equation}\label{eq:mainBetti}
+b_1(M')=b_1^{\virt}(M)=2a+1,
+\qquad b_1(M)\leq2a+1\leq2n-1.
+\end{equation}
+After choosing origins, $\Alb(M')=A$ and its Albanese map is
+$\pr_A\circ\pi$. Its fibers have dimension $n-a$, and are the canonical
+leaves precisely when $\Qfac$ is a point.
+\end{thm}
+
+The equivalence of Chern conditions and the structure assertion are
+\AIstatus{KNOWN}: see Istrati \cite[Definition 4.1, Lemma 4.4,
+Corollary 5.2, Theorem 5.3]{Istrati}. We supply the bridge and the
+applications in detail. The virtual Betti formula and bundle computations
+are \AIstatus{DERIVED} here, which is not a claim of novelty.
+The integral fundamental-group descriptions below refine the explanation
+of \cite[Corollary 5.10]{Istrati}. The bound and maximal case already appear
+in \cite[Corollary 5.11]{Istrati}.
+
+\begin{rem}[Version and notation policy]\label{rem:versions}
+All numbered references to Istrati mean arXiv:2304.02582v1 (5 April 2023).
+The publisher confirms JEMS online first, 11 March 2025,
+DOI 10.4171/JEMS/1633. Its subscription full text was not accessible in this
+run; a correspondence with published numbering is therefore not asserted.
+Gomes means arXiv:2604.04134v2 (21 May 2026), including its revised title.
+His real dimension $2r+2$ corresponds to our $r=m=n-1$; his maximal value
+$2r+1$ is our $2n-1$. His Theorems 1.1 and 6.6 give a classification with
+left-invariant complex structure and identify the leaf fibration with the
+Albanese map. His proof uses a deformation of $J$, with a separate return
+argument in Theorem 4.3. We do not transfer a statement from a deformed
+complex structure: our route uses Istrati directly on $(M,J)$.
+\end{rem}
+
+\section{Definitions and transverse Hodge theory}\label{sec:defs}
+We use $\omega(X,Y)=g(JX,Y)$ and set $J\alpha=-\alpha\circ J$ for a real
+one-form. Multiplying $g$ by the positive constant $|\theta|_g^2$ makes
+$|\theta|=1$, without changing $J$, $\theta$, or its Levi-Civita
+parallelness. With
+\begin{equation}\label{eq:vaisman}
+U=\theta^\sharp,\quad V=JU,\quad\eta=J\theta,
+\quad\wt=-d\eta,\quad \omega=\wt+\theta\wedge\eta,
+\end{equation}
+the form $\wt$ is closed, semipositive, of complex rank $m$, and its kernel
+is $T\cF=\langle U,V\rangle_{\R}$. This is the transverse K\"ahler
+structure. These standard Vaisman identities are recalled in
+\cite[Section 2.1]{Istrati}, \cite[Theorem 2.2]{IO}.
+
+\begin{defn}\label{def:basic}
+A differential form $\alpha$ is basic if $\iota_X\alpha=\cL_X\alpha=0$
+for every vector field $X$ tangent to $\cF$. Equivalently it is horizontal
+and invariant for $U,V$. The complex $(\Omega_{\bas}^{\bullet},d_{\bas})$
+has cohomology $H_{\bas}^{\bullet}(M,\R)$. Its complexification decomposes
+by transverse type and $d_{\bas}=\partial_{\bas}+\bar\partial_{\bas}$.
+We set
+\begin{align}\label{eq:cohomdef}
+H_{\bas}^{p,q}&=\frac{\ker(\bar\partial_{\bas}:\Omega_{\bas}^{p,q}
+\to\Omega_{\bas}^{p,q+1})}{\bar\partial_{\bas}\Omega_{\bas}^{p,q-1}},\\
+H_{\BC,\bas}^{1,1}(M,\R)&=
+\frac{\{\alpha\in\Omega_{\bas}^{1,1}:d\alpha=0,\ \bar\alpha=\alpha\}}
+{\{i\partial_{\bas}\bar\partial_{\bas}f:f\in C^\infty_{\bas}(M,\R)\}}.
+\notag
+\end{align}
+Replacing basic forms and functions by ordinary ones defines
+$H_{\BC}^{1,1}(M,\R)$.
+\end{defn}
+
+The holomorphic normal bundle is $Q^{1,0}=(TM/T\cF)^{1,0}$ of rank $m$.
+In a transverse holomorphic chart, its Hermitian metric $h_T$ has Chern
+connection matrix $h_T^{-1}\partial_{\bas}h_T$ and curvature $F_T$.
+The invariant local matrices glue as a basic connection, equivalently a
+connection extending the leafwise Bott partial connection. Define
+\begin{equation}\label{eq:chern}
+c^{\bas}(Q^{1,0})=
+\left[\det\left(I+\frac{i}{2\pi}F_T\right)\right]_{\bas},
+\quad \rhoT=i\tr F_T=-i\partial_{\bas}\bar\partial_{\bas}\log\det h_T.
+\end{equation}
+Changes of basic Hermitian metric change the Chern forms by basic exact
+forms. For $TM$, the same convention gives
+$\rhoC=-i\partial\bar\partial\log\det g$ and
+$c_1^{\BC}(M)=[\rhoC/(2\pi)]_{\BC}$.
+Thus we use Chern classes of \emph{tangent} bundles; the canonical bundle
+has their negative first class. Our template macro
+$\ddbar$ includes $1/(2\pi)$, whereas $i\partial\bar\partial$ does not.
+
+\begin{lem}[The basic potential lemma]\label{lem:ddbar}
+The canonical foliation is a transversely oriented Riemannian K\"ahler
+foliation with minimal leaves. The basic $\partial\bar\partial$ lemma
+applies. In particular, a real, basic, $d_{\bas}$-exact $(1,1)$-form
+$\alpha$ can be written $\alpha=i\partial_{\bas}\bar\partial_{\bas}f$
+with $f$ real and basic.
+\end{lem}
+\begin{proof}
+The fields $U,V$ commute and are real holomorphic Killing fields of unit
+length. Since $U$ is parallel, $\nabla_UU=\nabla_VU=0$; commutation gives
+$\nabla_UV=0$, and the constant length Killing identity gives
+$\nabla_VV=-\tfrac12\operatorname{grad}|V|^2=0$. The leaves are totally
+geodesic, so their mean curvature vanishes. The metric is bundle-like,
+and $\wt^m$ orients the normal bundle. Basic Hodge theory and the K\"ahler
+identities therefore apply: \cite[Sections 3.3--3.4, Proposition 3.5.1]{EK},
+\cite[Section 2.2]{IO}. These hypotheses are satisfied before there is any
+global quotient orbifold.
+
+For clarity, the required degree-two consequence has the following
+Hodge-theoretic proof. Write $\chi=\theta\wedge\eta$; then
+$d\chi=\theta\wedge\wt$. Integrating a basic exact form against
+$\wt^{m-1}\wedge\chi$ gives zero by Stokes: the extra term contains
+a transverse form of degree $2m+1$, so vanishes. In particular,
+the trace $\Lambda_T\alpha$ has mean zero. The basic scalar Laplacian,
+equivalently $f\mapsto\Lambda_T(i\partial_{\bas}\bar\partial_{\bas}f)$
+up to a fixed nonzero scalar, is self-adjoint and has kernel the constants.
+Compact basic Hodge theory solves
+\[
+\Lambda_T(i\partial_{\bas}\bar\partial_{\bas}f)=\Lambda_T\alpha.
+\]
+The difference $\beta$ is closed and primitive. For $m\geq2$ its
+transverse Hodge star is
+$*_T\beta=-\beta\wedge\wt^{m-2}/(m-2)!$, so it is also basic
+coclosed. Since it is basic exact, its squared norm is zero. For $m=1$,
+a trace-free $(1,1)$-form is already zero. This proves the assertion.
+The same basic Hodge theory gives $H_{\bas}^{2m}(M,\R)=\R$; this is
+the homological orientability required in El Kacimi-Alaoui's formulation.
+\end{proof}
+
+\begin{defn}\label{def:orb}
+The canonical foliation is \emph{quasi-regular} when its leaves are compact,
+or equivalently its effective Lee group is a compact complex
+one-dimensional group. It is \emph{regular} when this group acts freely.
+For a quasi-regular foliation the quotient $\cB$ is a complex orbifold.
+A holomorphic principal $E$-orbi-bundle is locally of the form
+$(\widetilde W\times E)/\Gamma\to\widetilde W/\Gamma$, with holomorphic
+transition functions acting by translations of $E$; the isotropy acts on
+the fiber by translations. The diagonal action is free when the total
+space is a manifold. An ordinary principal bundle has a smooth base and
+no orbifold isotropy.
+
+A pure orbifold has no divisorial isotropy; it can still have quotient
+singularities in codimension at least two. We write
+$H^k_{\orb}(\cB,\Lambda)=H^k(B\cB,\Lambda)$ and
+$\pi_k^{\orb}(\cB)=\pi_k(B\cB)$ for its classifying space.
+Real orbifold cohomology agrees with orbifold de Rham cohomology and the
+real cohomology of the underlying space. Integral cohomology need not.
+An orbifold covering is locally a change from a finite chart group to
+a subgroup. It need not be an \'etale cover of the underlying singular
+spaces. By a finite \'etale cover of manifolds we mean a finite unramified
+holomorphic covering of the total spaces.
+\end{defn}
+
+The LCK rank is the rank of the period group of $\theta$ (equivalently
+the smallest rational subspace containing $[\theta]$). Rank one is not
+the definition of either regularity or quasi-regularity. No rank-one
+assumption is used in our structure theorem.
+
+\section{The bridge to Bott--Chern vanishing}\label{sec:bridge}
+\begin{lem}[Ricci comparison; Istrati's Lemma 4.4]\label{lem:ricci}
+For a normalized Vaisman metric, as ordinary forms on $M$,
+\begin{equation}\label{eq:ricci}
+\rhoC=\rhoT.
+\end{equation}
+\end{lem}
+\begin{proof}
+Take a transverse holomorphic submersion $p:W\to T$ and a local
+holomorphic frame $\sigma_T$ of $K_T$. The form
+$\theta^{1,0}=(\theta+i\eta)/2$ is generally \emph{not} holomorphic.
+Nevertheless
+\[
+\sigma=\theta^{1,0}\wedge p^*\sigma_T
+\]
+is a nonvanishing holomorphic frame of $K_M|_W$:
+$\bar\partial\theta^{1,0}=-i\wt/2$, whose wedge with the horizontal
+top form is zero. Its squared norm is
+$|\sigma|_g^2=\tfrac12p^*|\sigma_T|_{h_T}^2$.
+For a holomorphic canonical frame the tangent Ricci form is
+$i\partial\bar\partial\log|\sigma|^2$. The constant $1/2$ disappears
+upon differentiation, proving \eqref{eq:ricci}. This also checks the sign
+and the absence of an additional multiple of $\wt$.
+\end{proof}
+
+\begin{prop}[Comparison of the three conditions]\label{prop:bridge}
+For every compact non-K\"ahler Vaisman manifold,
+\begin{equation}\label{eq:equiv}
+c_1^{\bas}(Q^{1,0})=0
+\ \Longleftrightarrow\ c_1^{\BC}(M)=0
+\ \Longrightarrow\ c_1(M)=0\text{ in }H^2(M,\R).
+\end{equation}
+The last implication cannot be reversed.
+\end{prop}
+\begin{proof}
+There is a commuting square of natural maps
+\[
+\begin{array}{ccc}
+H_{\BC,\bas}^{1,1}(M,\R)&\xrightarrow{j}&H_{\BC}^{1,1}(M,\R)\\
+\big\downarrow&&\big\downarrow\\
+H_{\bas}^{2}(M,\R)&\longrightarrow&H^{2}(M,\R)
+\end{array}
+\]
+The left map is injective by Lemma~\ref{lem:ddbar}, and its image is the
+real transverse $(1,1)$-part. If $c_1^{\bas}=0$, that lemma applied to
+$\rhoT$ gives $\rhoT=i\partial_{\bas}\bar\partial_{\bas}f$.
+A basic function is an ordinary global smooth function, and the restricted
+operators agree with $\partial,\bar\partial$ on it.
+Lemma~\ref{lem:ricci} therefore proves Bott--Chern vanishing.
+
+The reverse direction also holds before quasi-regularity is known.
+Let $K$ be the closure of the flows of $U,V$ inside the compact isometry
+group. It consists of holomorphic isometries. If a basic real $(1,1)$-form
+$\alpha=i\partial\bar\partial f$, average $f$ over $K$ with Haar
+probability measure. Since $\alpha$ is invariant, the average satisfies
+$i\partial\bar\partial\bar f=\alpha$ and is invariant under $U,V$,
+hence basic. This proves injectivity of $j$, and applied to $\rhoT=\rhoC$
+proves the converse in \eqref{eq:equiv}. The last map is simply forgetting
+Bott--Chern information.
+\end{proof}
+
+Here is an explicit description of the information that is forgotten.
+\begin{lem}\label{lem:lowdegree}
+For any compact non-K\"ahler Vaisman manifold,
+\begin{align}\label{eq:lowdegree}
+H^1(M,\R)&=H^1_{\bas}(M,\R)\oplus\R[\theta],\\
+\ker\bigl(H^2_{\bas}(M,\R)\to H^2(M,\R)\bigr)&=\R[\wt]_{\bas}.
+\notag
+\end{align}
+In particular $[\wt]_{\bas}\ne0$, although $\wt=-d\eta$ on $M$.
+\end{lem}
+\begin{proof}
+Averaging over $K$ does not change ordinary de Rham classes because its
+elements are isotopic to the identity. An invariant one-form uniquely
+has the shape $\beta+u\theta+v\eta$, with $\beta$ basic and $u,v$ basic
+functions. Its derivative is
+$d_{\bas}\beta+du\wedge\theta+dv\wedge\eta-v\wt$.
+If this is basic, contraction with $U,V$ gives $du=dv=0$.
+The class $[\wt]_{\bas}$ is nonzero: a hypothetical basic primitive
+would, by Stokes as in Lemma~\ref{lem:ddbar}, force
+$\int_M\wt^m\wedge\chi=0$, whereas the integrand is positive.
+Thus closed invariant one-forms have $v=0$, proving the first formula.
+The sum is direct because contraction of an invariant exact one-form
+$df$ with $U$ is zero after averaging $f$. Applying the same argument to
+a primitive of any ordinary exact basic two-form proves the second
+formula. This is also consistent with \cite[Sections 3--5]{IO}.
+\end{proof}
+
+For the scalar Hopf manifold
+$(\C^n\setminus\{0\})/\langle q\rangle$, $0<q<1$, the leaf space is
+$\mP^{n-1}$ and $c_1^{\bas}=nH\ne0$, while $H^2(M,\R)=0$.
+Thus it is a counterexample to the reverse of the last implication only;
+it is \emph{not} an example satisfying our main hypothesis.
+Equivalently, $c_1(M)=0$ permits a nonzero multiple of
+$[\wt]_{\bas}$ in place of zero.
+
+\section{Applying the known structure theorem}\label{sec:structure}
+\begin{proof}[Proof of the structural part of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:bridge} supplies exactly the hypothesis in Istrati's
+Definition 4.1. Compactness, the Vaisman condition, and nonzero Lee form
+are already part of the setting. Istrati's Corollary 5.2 gives a
+Chern--Ricci-flat Vaisman metric on the same complex manifold, in a
+prescribed admissible Lee class, unique up to scale. By
+Lemma~\ref{lem:ricci} its transverse metric is Ricci-flat.
+
+Theorem 5.3 of that paper proves, without a preliminary quotient
+assumption, that $\Autop_0(M)$ is a compact complex one-dimensional group
+and equals the Lee group. Its universal complex Lie group is $\C$ and
+its kernel is a cocompact rank-two lattice; hence it is an elliptic curve
+$E=\C/\Lambda$. The locally free action gives the original foliation
+its compact leaves. Its quotient is now available. This is the step
+that proves quasi-regularity and avoids a circular use of a K\"ahler
+orbifold quotient.
+
+For orientation, the mechanism in that theorem is that the uniqueness
+of the canonical metric makes every element of $\Autop_0(M)$ an
+isometry: it preserves the Lee class and total volume. The compact
+automorphism-group result then identifies it with the Lee group. The
+rest of Istrati's theorem applies an orbifold splitting theorem and
+proves purity after a finite cover using the definite Seifert bundle.
+For pure orbifolds, the decomposition used is
+\cite[Theorem 6.4 and Definition 6.5]{Campana}. Its hypotheses are
+compactness, K\"ahler geometry and vanishing orbifold first Chern class.
+Here the last follows by identifying basic forms with quotient
+orbifold forms and using \eqref{eq:hyp}. We use Istrati's purity argument
+as part of the known theorem, rather than postulating purity initially.
+
+The quotient has an integral positive class coming from the definite
+bundle; hence it is projective. Every factor of its finite product
+cover is projective by restriction of an ample class. Thus the flat
+complex torus is an abelian variety, not just an arbitrary complex
+torus. The meaning of simple connectivity is
+$\pi_1^{\orb}(Y_i)=\pi_1^{\orb}(Z_j)=0$. Holonomy is that of the
+Ricci-flat metric on the smooth locus of the pure orbifold, as in
+Campana's definition. We label the $\SU$ factors by $Y_i$, reversing
+the letters used for the two types in Istrati's Theorem 5.3.
+The overlap $\SU(2)=\Sp(1)$ may be assigned to the symplectic type once;
+it is not counted twice.
+
+Finally, form the orbifold fiber product with this finite covering of
+the quotient. Locally it is induced from
+$(\widetilde W\times E)/\Gamma'\to(\widetilde W\times E)/\Gamma$,
+where $\Gamma'\subset\Gamma$. Since the diagonal action on the original
+total space is free, this is a genuine unramified covering of manifolds.
+The complex structures and Vaisman metrics pull back. Taking a connected
+component if necessary yields $M'$. This proves \eqref{eq:BB} and
+\eqref{eq:dimension}. Neither regularity nor smoothness of the factors
+has been asserted. Istrati's Corollary 5.4 also gives that $K_M$ is
+holomorphically torsion.
+\end{proof}
+
+The transverse Calabi--Yau input can equivalently be expressed as follows:
+for a compact homologically orientable transversely K\"ahler foliation,
+each real basic $(1,1)$ representative of $2\pi c_1^{\bas}$ is the
+Ricci form of a unique transverse K\"ahler metric in a fixed basic
+K\"ahler class \cite[Section 3.5.5]{EK}. In transverse dimension one the
+statement reduces to the scalar elliptic equation. The fixed-$J$
+Vaisman implementation is \cite[Theorem 4.1, Lemma 4.2]{OV} and
+Istrati's Corollary 5.2. We do not assume that an arbitrary conformal
+change to a Chern--Ricci-flat Hermitian metric is still Vaisman.
+
+\section{Betti numbers, finite covers, and the Albanese map}\label{sec:betti}
+\begin{prop}[Transgression calculation]\label{prop:betti}
+For the cover in \eqref{eq:BB},
+\begin{equation}\label{eq:betti}
+b_1(M')=2a+1.
+\end{equation}
+\end{prop}
+\begin{proof}
+A connection on the principal $E$-orbi-bundle gives its characteristic
+class $c\in H^2_{\orb}(B,\Lambda)$. The Vaisman connection has
+curvature proportional to $\wt$ in a single nonzero direction of
+$\Lambda\otimes\R$. One way to see this is to use $\theta,\eta$
+on the two-dimensional vertical tangent space: $d\theta=0$ and
+$d\eta=-\wt$. Choosing a period basis only applies an invertible real
+linear change to these two curvature components. Hence their span in
+$H^2_{\orb}(B,\R)$ has rank one, not zero. Positivity and compactness
+give $[\wt]^m\ne0$ on the base.
+
+The real Leray--Serre sequence of classifying spaces has its degree-one
+exact part
+\begin{equation}\label{eq:five}
+0\longrightarrow H^1_{\orb}(B,\R)\longrightarrow H^1(M',\R)
+\longrightarrow H^1(E,\R)\xrightarrow{d_2}H^2_{\orb}(B,\R).
+\end{equation}
+There is no local coefficient monodromy on $H^1(E)$ because transition
+functions are translations. If $u,v$ are the dual period basis,
+$d_2(u),d_2(v)$ are the two characteristic classes, up to the common
+choice of sign for transgression. Thus $\rank d_2=1$ and
+$\dim\ker d_2=1$. Orbifold simple connectivity gives
+$H^1_{\orb}(\Qfac,\R)=0$, so $b_1^{\orb}(B)=2a$. Taking dimensions
+in \eqref{eq:five} proves the formula.
+\end{proof}
+
+\begin{prop}[Virtual first Betti number]\label{prop:virtual}
+Define $b_1^{\virt}(M)$ as the supremum of $b_1(N)$ over connected finite
+holomorphic \'etale covers $N\to M$. Then the supremum is achieved and
+equals $2a+1$. In particular,
+\begin{equation}\label{eq:gap}
+b_1^{\virt}(M)\in\{1,3,\ldots,2n-5\}\cup\{2n-1\},
+\end{equation}
+where the first set is empty for $n=2$. The value $2n-3$ is excluded
+for the virtual invariant, but need not be excluded for $b_1(M)$.
+\end{prop}
+\begin{proof}
+On any finite cover, the pulled-back transverse Ricci-flat metric has
+the same restricted transverse holonomy. The basic Bochner identity,
+valid here because mean curvature is zero, gives for a basic harmonic
+one-form $\alpha$
+\[
+0=\|\nabla^T\alpha\|_{L^2}^2+
+\int\Ric^T(\alpha^\sharp,\alpha^\sharp)\,dv
+=\|\nabla^T\alpha\|_{L^2}^2.
+\]
+Thus basic harmonic one-forms are parallel. The nonflat irreducible
+$\SU$ and $\Sp$ factors have no invariant covectors. The space of
+parallel transverse covectors on any finite cover of $M'$ therefore
+has dimension at most $2a$. Lemma~\ref{lem:lowdegree} bounds its ordinary
+first Betti number by $2a+1$. For a finite cover of $M$, take a connected
+component of its fiber product with $M'$; transfer makes pullback in
+real cohomology injective. The same bound follows. It is attained by
+$M'$ by Proposition~\ref{prop:betti}.
+
+Every nonflat factor has complex dimension at least two. A one-dimensional
+Ricci-flat K\"ahler orbifold factor would be flat and belong to $A$;
+it cannot be a positive-dimensional simply connected factor of this
+decomposition. Hence either $a=m$ or $a\leq m-2$, proving
+\eqref{eq:gap}. The Bochner step is also the mechanism behind
+\cite[Proposition 6.4]{Gomes}, with its foliation hypotheses supplied here.
+\end{proof}
+
+\begin{prop}[Albanese description]\label{prop:alb}
+One has $\dim\Alb(M)=(b_1(M)-1)/2$ and
+$\Alb(M')\cong A$, with Albanese map $\pr_A\pi$ up to translation.
+The Albanese map of $M$ is a surjective submersion. In general it is
+not the quotient by the canonical foliation.
+\end{prop}
+\begin{proof}
+For a compact Vaisman manifold, holomorphic one-forms are closed and
+basic, and are exactly the basic harmonic forms of type $(1,0)$;
+the period quotient is a genuine complex torus
+\cite[Sections 2--3, Theorem 3.3]{Gomes}, \cite[Section 3]{IO}.
+Basic Hodge symmetry and Lemma~\ref{lem:lowdegree} give the dimension.
+On $M'$, these forms are exactly pullbacks of holomorphic one-forms
+of $A$: the simply connected factors have none, by Ricci-flat Bochner
+theory. The map $\pi_1(M')\to\pi_1^{\orb}(B)\to\pi_1(A)$ is
+surjective because the fiber and $\Qfac$ are connected. Consequently
+the period lattices, not only their rational spans, agree. The universal
+property of the Albanese map now identifies it with $\pr_A\pi$.
+Its fibers are the connected elliptic orbi-bundles over $\Qfac$.
+
+For $M$ itself, using its Chern--Ricci-flat Vaisman metric, a basis of
+holomorphic one-forms consists of transverse parallel forms. Their
+pointwise independence follows from parallelness and independence at
+one point. Thus the Albanese map has full target rank everywhere. Its
+image is open by submersivity and closed by compactness, hence is the
+whole connected Albanese torus.
+\end{proof}
+
+If $\widehat M\to M$ is a Galois cover with group $F$, then
+$H^1(M,\R)=H^1(\widehat M,\R)^F$. This is the precise second source
+of a small $b_1$: the finite group can remove transverse parallel forms.
+It must be distinguished from the reduction in $a$ caused by $\Qfac$.
+The statement $b_1(M)=2n-1$ if and only if $M$ is a Kodaira manifold
+is \cite[Corollary 5.11]{Istrati}; the regular Albanese fibration and
+left-invariant complex description are \cite[Theorems 1.1, 6.6]{Gomes}.
+Without \eqref{eq:hyp} there is no dimension-only bound $2n-1$:
+the circle-bundle construction of Section~\ref{sec:examples} over a
+genus-$g$ curve gives Vaisman surfaces with $b_1=2g+1$ for all $g\geq2$.
+
+\section{Characteristic classes and the limits of product decomposition}
+\label{sec:twist}
+For $E=\C/\Lambda$, principal holomorphic elliptic orbi-bundles are
+classified by $H^1_{\orb}(B,\cO_B(E))$. The sequence
+\begin{equation}\label{eq:exp}
+0\longrightarrow\Lambda\longrightarrow\cO_B\longrightarrow
+\cO_B(E)\longrightarrow0
+\end{equation}
+defines $c(M')\in H^2_{\orb}(B,\Lambda)$. Thus this characteristic
+class is only part of the data: the fiber over a fixed class is a torsor
+under the image of $H^1(B,\cO_B)$, namely the quotient by the image
+of $H^1_{\orb}(B,\Lambda)$. One must retain the lattice of $E$ and
+the holomorphic torsor class.
+
+\begin{prop}[The line-bundle model and reconstruction]\label{prop:reconstruct}
+For the product cover $B$ in \eqref{eq:BB}, choose an orientation of a
+primitive lattice element $e$ and a complementary element $f$. Then
+\begin{equation}\label{eq:char}
+c(M')=\kappa\otimes e,
+\qquad \kappa\in H^2_{\orb}(B,\Z),\quad \kappa\text{ a K\"ahler class}.
+\end{equation}
+There is an ample holomorphic line orbi-bundle $L$ with $c_1(L)=\kappa$
+and $q\in\C^*$, $|q|<1$, such that
+\begin{equation}\label{eq:line}
+M'\cong L^{\times}/\langle q\rangle.
+\end{equation}
+One can write
+$L\cong\pr_A^*L_A\otimes\bigotimes_i\pr_{Y_i}^*L_i
+\otimes\bigotimes_j\pr_{Z_j}^*L_j'$.
+The elliptic torsor is the Baer sum of the pullbacks of the corresponding
+factor torsors, using the same $E$ and $q$.
+\end{prop}
+\begin{proof}
+The real curvature calculation in Proposition~\ref{prop:betti} has
+one-dimensional image. Evaluating its integral class on integral
+two-cycles shows that this direction contains a nonzero lattice vector;
+its line is therefore rational. Taking a primitive vector and its sign
+gives a positive class $\kappa$ modulo torsion. On the product cover,
+$H_1^{\orb}(B,\Z)=\Z^{2a}$, so the universal coefficient theorem
+makes $H^2_{\orb}(B,\Z)$ torsion-free. Consequently no torsion term
+remains and \eqref{eq:char} holds integrally.
+
+The orbifold exponential sequence and the K\"ahler $(1,1)$ theorem
+give a line orbi-bundle $L_0$ with this first Chern class. Identify
+$\Lambda=\Z+\tau\Z$, $\operatorname{Im}\tau>0$, sending $e$ to $1$.
+Then $E=\C^*/\langle q\rangle$, $q=e^{2\pi i\tau}$, and the torsor
+$L_0^{\times}/\langle q\rangle$ has the prescribed characteristic
+class. By \eqref{eq:exp} its difference from $M'$ lies in the image
+of $H^1(B,\cO_B)$. The ordinary exponential sequence for line
+orbi-bundles maps that same $H^1(B,\cO_B)$ to $\Pic^0_{\orb}(B)$.
+Tensoring $L_0$ by its image absorbs the difference. This proves
+\eqref{eq:line} without assuming that a topological class alone
+determines a holomorphic bundle. Positivity is unaffected by a
+$\Pic^0$ twist. This is the setting of \cite[Theorem 2.4]{Istrati}.
+
+For the factorization, integral K\"unneth in degree two has no cross
+terms involving a simply connected factor. Thus $c_1(L)$ is the sum
+of the pullbacks of its restrictions to the factors. The quotient of
+$L$ by the tensor product of those restrictions has zero first class.
+Also $H^1(B,\cO_B)=H^1(A,\cO_A)$, by K\"ahler Hodge theory and
+$H^1_{\orb}(\Qfac,\C)=0$. Its remaining $\Pic^0$ term therefore
+comes from $A$ and can be absorbed into $L_A$.
+
+Explicitly, write $P_k\to B$ for the pulled-back factor torsors.
+On their fiber product quotient by
+\[
+\ker(E^r\xrightarrow{\mathrm{sum}}E)
+\]
+acting by translations. Locally the fiber is $E^r/\ker(\mathrm{sum})=E$.
+The resulting transition functions are the sums of the factor transition
+functions, which in multiplicative $\C^*$ coordinates are the products
+of the line-bundle transition functions. They are precisely those of
+\eqref{eq:line}. This proves the reconstruction assertion.
+\end{proof}
+
+Before this cover a definite bundle can have integral torsion in addition
+to its positive rank-one real class. Here torsion disappears because
+the specific product cover has torsion-free $H_1$, not because every
+torsion class on every orbifold can always be removed by an arbitrary
+finite cover. The positive class never disappears under a finite base
+cover: the real transfer identity $p_*p^*=(\deg p)\id$ makes pullback
+injective. Fiber isogenies likewise do not annihilate it over $\R$.
+
+\begin{prop}[A stronger obstruction to holomorphic products]\label{prop:noproduct}
+A compact non-K\"ahler Vaisman manifold cannot be biholomorphic to
+$X_1\times X_2$ with both $X_i$ compact and positive-dimensional.
+The assertion persists under finite \'etale covers.
+\end{prop}
+\begin{proof}
+Restrict the exact semipositive form $\wt$ to either compact slice
+$X_i$, of dimension $r_i$. Stokes gives
+$\int_{X_i}\wt^{r_i}=0$. Semipositivity then implies that the
+restriction has deficient rank at every point. For a semipositive
+Hermitian form, a vector of zero norm is in its full kernel. Hence
+$T X_i\cap\ker\wt\ne0$ for both factors at every point of the
+product. Since $\ker\wt$ is a complex line, it would have to lie in
+both complementary tangent factors, a contradiction. A finite \'etale
+cover is again Vaisman, so the argument repeats. This recovers the
+product obstruction mentioned in \cite[Introduction]{Istrati}.
+\end{proof}
+
+In the line model, choose any Hermitian norm. Writing a nonzero vector
+as its unit vector times its positive radius identifies $L^{\times}$
+smoothly with $S(L)\times\R$. If $q$ has argument $\varphi$, the
+quotient is a mapping torus of circle rotation by $\varphi$ on $S(L)$.
+That rotation is isotopic to the identity, so
+\begin{equation}\label{eq:smooth}
+M'\simeq_{\mathrm{diff}} S(L)\times S^1.
+\end{equation}
+The unit-circle total space is smooth in our situation because the
+isotropy acts freely on the nonzero line. For a suitable norm this
+is the Sasaki construction. Formula \eqref{eq:smooth} is a real smooth
+product and does not assert any holomorphic product. In particular
+$E\times B$ would have first Betti number $2a+2$, different from
+\eqref{eq:betti}. \emph{The BB analogy is a product theorem for the
+base and transverse metric, and a bundle/extension theorem for the
+total space.}
+
+\section{The fundamental group}\label{sec:pi}
+The homotopy exact sequence, interpreted on classifying spaces, is
+\begin{equation}\label{eq:pi}
+\pi_2^{\orb}(B)\xrightarrow{\langle c,\cdot\rangle}\Lambda
+\longrightarrow\pi_1(M')\longrightarrow\Z^{2a}\longrightarrow1.
+\end{equation}
+The first arrow must not be omitted. In particular, an elliptic fiber
+does not necessarily inject its fundamental group into the total space.
+
+\begin{prop}\label{prop:pi}
+If $\Qfac$ is a point, $\pi_1(M')$ is the product of $\Z$ with a
+lattice in the real $(2a+1)$-dimensional Heisenberg group. It is not
+virtually abelian. If $\dim\Qfac>0$, $\pi_1(M)$ is virtually
+$\Z^{2a+1}$. These are the two cases in
+\cite[Corollary 5.10]{Istrati}.
+\end{prop}
+\begin{proof}
+When $B=A$, $\pi_2(B)=0$. A polarization basis puts $\kappa$ in
+elementary-divisor form $(d_1,\ldots,d_a)$, all $d_i>0$. With a
+choice of orientation of the central circle, a presentation is
+\begin{equation}\label{eq:heis}
+\langle x_i,y_i,z,t\mid z,t\text{ central},\
+[x_i,y_j]=z^{d_i\delta_{ij}},\ [x_i,x_j]=[y_i,y_j]=1\rangle.
+\end{equation}
+The radial circle gives $t$. This presentation follows by lifting the
+fundamental parallelograms of $A$: their circle winding numbers are
+the evaluations of $c_1(L)$. The alternating commutator pairing is
+nondegenerate over $\Q$, so no subgroup of finite index is abelian.
+
+When $\Qfac$ has positive dimension, orbifold Hurewicz gives
+$\pi_2^{\orb}(\Qfac)\cong H_2^{\orb}(\Qfac,\Z)$.
+The restriction of the K\"ahler class $\kappa$ is nonzero, so the
+image of the first arrow in \eqref{eq:pi} is $d\Z e$ for some $d>0$.
+The kernel of the last arrow is therefore $\Z/d\oplus\Z$.
+In the line model the $\Z$ factor splits off smoothly by
+\eqref{eq:smooth}. The circle-bundle group is a central extension of
+$\Z^{2a}$ by $\Z/d$, because the structure group consists of circle
+translations. Its commutators are finite. The inverse image of
+$d\Z^{2a}$ is abelian: commutators of lifts of multiples by $d$
+are $d^2$-powers of commutators. It is finitely generated abelian,
+so contains a torsion-free finite-index subgroup of rank $2a$.
+Restoring the radial $\Z$ gives $\Z^{2a+1}$ up to finite index.
+Passing from $M'$ to $M$ does not change this virtual conclusion.
+\end{proof}
+
+\section{Explicit examples and boundary cases}\label{sec:examples}
+\begin{eg}[The construction used in the examples]\label{eg:construction}
+Let $B$ be smooth projective, $H$ ample, $\kappa=c_1(H)$, and put
+$L=H^{-1}$. Take a Hermitian metric $h$ on $L$ with
+$i\partial\bar\partial\log h=2\pi\kappa_h>0$ and let
+$F(v)=|v|_h^2$ on $L^{\times}$. Then
+\begin{equation}\label{eq:cone}
+\Omega_K=i\partial\bar\partial F>0,\qquad
+\Omega_V=F^{-1}\Omega_K,\qquad\theta=-d\log F.
+\end{equation}
+Indeed, the horizontal term is $2\pi F\kappa_h$ and the vertical
+term is $iF\partial\log F\wedge\bar\partial\log F$, both positive
+in their respective directions. Thus $d\Omega_V=\theta\wedge\Omega_V$.
+In the logarithmic radial coordinate its metric is a constant multiple
+of a product $dt^2+g_{S(L)}$, so $\theta$ is parallel. Multiplication
+by $q$, $0<q<1$, preserves $\Omega_V$ and $\theta$; the quotient
+$M(H,q)=L^{\times}/\langle q\rangle$ is compact Vaisman.
+The canonical leaves are its $E=\C^*/\langle q\rangle$ fibers,
+and the quotient is $B$. In the counterclockwise fiber orientation,
+\begin{equation}\label{eq:exchar}
+c(M(H,q))=(-\kappa,0),\qquad
+c_j^{\bas}(M(H,q))=c_j(TB).
+\end{equation}
+Replacing the first period generator by its negative gives the positive
+convention of \eqref{eq:char}. The inversion $v\mapsto v^{-1}$
+identifies the punctured bundles of $H$ and $H^{-1}$ with reversed
+$\C^*$ action, so this sign choice agrees with the ample-line model.
+The same local construction applies to a positive line orbi-bundle
+whose nonzero total space is smooth.
+\end{eg}
+
+\begin{eg}[Maximal $b_1$: Kodaira manifolds]\label{eg:torus}
+Let $B=A$ be a polarized abelian variety of dimension $m$, and use
+Example~\ref{eg:construction}. The resulting manifold has dimension
+$n=m+1$, is regular, has $c_j^{\bas}=0$ for every $j>0$, and
+$b_1=2m+1=2n-1$. Its fundamental group is \eqref{eq:heis}, with
+the sign of $z$ changed if necessary. Its Albanese map is the elliptic
+bundle projection. These are exactly the models in
+\cite[Example 7.2, Corollary 5.11]{Istrati}, compatible with
+\cite[Theorem 6.6]{Gomes}. The standard model metric has LCK rank one;
+this is not an assertion about every Vaisman metric on this complex
+manifold. For $m=1$ it is a primary Kodaira surface.
+\end{eg}
+
+\begin{eg}[A K3 base and $b_1=1$]\label{eg:k3}
+Let $S\subset\mP^3$ be a smooth quartic K3 surface and
+$H=\cO_S(1)$. Adjunction gives $K_S\cong\cO_S$, and $S$ is
+simply connected by the Lefschetz hyperplane theorem. Its hyperplane
+class $h$ is primitive: $h^2=4$, and a possible divisibility $h=2u$
+would give $u^2=1$, contradicting the even intersection form of a K3
+surface. No larger divisibility is numerically possible. The intersection
+pairing is unimodular by Poincar\'e duality, so evaluation of $h$ on
+$H_2(S,\Z)$ is onto $\Z$.
+For the K3 cohomology and lattice facts used here, see
+\cite[Chapters 1 and 14]{Huybrechts}.
+
+For $M=M(H,q)$, $n=3$, the canonical foliation is regular with base
+$S$, and
+\begin{equation}\label{eq:k3numbers}
+c_1^{\bas}=0,\quad \int_S c_2^{\bas}=24,\quad
+b_1(M)=b_1^{\virt}(M)=1,\quad \pi_1(M)=\Z.
+\end{equation}
+The $c_2$ calculation follows directly from
+$c(TS)=(1+h)^4/(1+4h)$: its degree-two term is $6h^2$, whose
+integral is $24$. The circle-bundle sequence
+$\pi_2(S)\to\Z\to\pi_1(S(L))\to0$, together with primitivity,
+gives $\pi_1(S(L))=0$. The radial circle supplies the displayed
+fundamental group. The characteristic pair is $(-h,0)$.
+The Albanese is a point, although the leaf space is a K3 surface.
+Smoothly $M=S(L)\times S^1$; holomorphically it admits no nontrivial
+compact product decomposition.
+\end{eg}
+
+\begin{eg}[Small $b_1$ caused by a finite group]\label{eg:secondary}
+Take an elliptic curve $C$, the symmetric negative line bundle
+$L=\cO_C(-[0])$, and the involution $\iota:x\mapsto-x$.
+It has a line-bundle lift $\beta$ with $\beta^2=1$ (rescale any lift
+by a constant square root). Choose a $\beta$-invariant negative
+Hermitian metric and $0<q<1$. Set
+\begin{equation}\label{eq:secondary}
+P=L^{\times}/\langle q^2\rangle,
+\qquad X=L^{\times}/\langle q\beta\rangle.
+\end{equation}
+The induced involution on $P$ is free. A fixed point would require
+$q\beta(v)=q^{2k}v$ for some $k\in\Z$; taking norms gives
+$q=q^{2k}$, which is impossible. The invariant metric descends, so
+$P\to X$ is an \'etale double cover of Vaisman surfaces. On
+$H^1(P,\R)=H^1(C,\R)\oplus\R[\theta]$, the involution acts as
+$-1$ and $+1$ respectively. Therefore
+\begin{equation}\label{eq:secondarynumbers}
+b_1(X)=1,\qquad b_1(P)=b_1^{\virt}(X)=3.
+\end{equation}
+The leaf space of $X$ is the flat orbifold
+$C/\{\pm1\}=\mP^1(2,2,2,2)$, so $c_1^{\bas}(X)=0$.
+It is quasi-regular and not regular. Its characteristic class pulls
+back to $(-[0],0)$ on $C$, and has nonzero rank-one real part;
+the local order-two stabilizers act on the fiber by translation by
+$q\beta|_{L_x}$ in $\C^*/\langle q^2\rangle$. This specifies the
+isotropy data in addition to the pulled-back characteristic class.
+
+For a compatible standard square-torus model, the group is
+\[
+\pi_1(X)=\langle x,y,z,s\mid z\text{ central},\ [x,y]=z,
+\ sxs^{-1}=x^{-1},\ sys^{-1}=y^{-1},\ szs^{-1}=z\rangle.
+\]
+Equivalently it is $H_{\Z}\rtimes\Z$, with generator $s$ acting by
+horizontal inversion. The subgroup generated by $x,y,z,s^2$ is
+$H_{\Z}\times\Z$ of index two. One sees this model directly on the
+real Heisenberg group with multiplication
+$(x,y,z)(x',y',z')=(x+x',y+y',z+z'+xy')$: horizontal inversion
+$(x,y,z)\mapsto(-x,-y,z)$ preserves its integral lattice and its
+standard Sasaki structure. Translation by half the radial period makes
+the quotient action free. This realizes the holomorphic construction
+for the induced degree-one polarization. These are secondary Kodaira
+examples, as in \cite[Example 7.3]{Istrati}.
+\end{eg}
+
+\begin{eg}[An orbifold factor that cannot be made smooth]\label{eg:orb}
+The weighted degree-five polynomial
+\[
+f=z_0^2z_1+z_1^5+z_2^5+z_3^5,
+\qquad (w_0,w_1,w_2,w_3)=(2,1,1,1)
+\]
+defines a smooth punctured hypersurface $W=\{f=0\}\setminus\{0\}$.
+Indeed its four partial derivatives have common zero only at the
+origin. Quotient by the weighted $\C^*$ action gives a projective
+K3 orbifold $B\subset\mP(2,1,1,1)$, with an $A_1$ orbifold point
+at $[1,0,0,0]$ and no divisorial isotropy. Adjunction gives trivial
+orbifold canonical bundle since $5=2+1+1+1$. The quotient
+$W/\langle q\rangle$ by weighted multiplication is a smooth compact
+Vaisman threefold with $c_1^{\bas}=0$.
+
+These are the explicit data of \cite[Example 7.4]{Istrati}. The link
+of this isolated hypersurface singularity of complex dimension three
+is simply connected by the hypersurface-link connectivity theorem
+\cite[Chapter 5]{Milnor}. The sequence of its circle orbi-bundle
+therefore gives $\pi_1^{\orb}(B)=0$. Hence $B$ has no nontrivial
+connected orbifold covering at all, and in particular no finite smooth
+orbifold cover. The total space has $\pi_1=\Z$ and $b_1=1$ from
+the simply connected punctured cone and its infinite cyclic deck group.
+Its characteristic pair is that of the tautological negative line
+orbi-bundle $\cO_B(-1)$, namely $(-c_1^{\orb}(\cO_B(1)),0)$.
+The local $\Z/2$ acts faithfully on the punctured tautological line.
+This is an actual obstruction to replacing ``orbifold'' by ``manifold''
+in the structure theorem, not merely an absence of such a proof.
+\end{eg}
+
+The three principal examples can be compared without conflating a
+manifold and its cover:
+\begin{center}\small
+\begin{tabular}{lllll}\toprule
+Example & $n$ & base & $b_1$ & $b_1^{\virt}$\\\midrule
+Kodaira manifold & $m+1$ & $A^m$ & $2m+1$ & $2m+1$\\
+K3 construction & $3$ & $S$ & $1$ & $1$\\
+Secondary Kodaira & $2$ & $C/\{\pm1\}$ & $1$ & $3$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Further consequences proved in this note}\label{sec:extra}
+\begin{cor}[Attainable values]\label{cor:values}
+For each fixed $n\geq2$, every value in \eqref{eq:gap} occurs as a
+virtual first Betti number. The ordinary first Betti numbers occurring
+under \eqref{eq:hyp} are exactly $1,3,\ldots,2n-1$.
+\end{cor}
+\begin{proof}
+The virtual maximum is Example~\ref{eg:torus}. For $0\leq a\leq m-2$,
+put $k=m-a\geq2$ and let $Q_k$ be a smooth degree-$k+2$ hypersurface
+of $\mP^{k+1}$. Adjunction gives $K_{Q_k}\cong\cO$ and Lefschetz
+gives simple connectivity. Its Ricci-flat metric has no flat factor,
+since any such factor would give nonzero $H^1$. Apply
+Example~\ref{eg:construction} to $A^a\times Q_k$ with an exterior
+tensor-product polarization. Propositions~\ref{prop:betti} and
+\ref{prop:virtual} give $b_1=b_1^{\virt}=2a+1$.
+
+For the ordinary invariant choose a product $A=C^m$ of elliptic
+curves and its product symmetric polarization. Let $\beta$ cover the
+involution that is the identity on $\ell$ factors and $-1$ on the
+remaining factors, $0\leq\ell<m$. The construction
+\eqref{eq:secondary} works verbatim: radial contraction ensures
+freeness even over fixed points. Its invariant transverse one-forms
+have dimension $2\ell$, giving $b_1=2\ell+1$ and virtual invariant
+$2m+1$. The case $\ell=m$ is the torus-base model itself.
+Oddness follows in all cases from basic Hodge symmetry and
+Lemma~\ref{lem:lowdegree}, and the upper bound was proved above.
+\end{proof}
+
+\begin{cor}[Adding the second basic Chern class]\label{cor:c2}
+Under \eqref{eq:hyp}, the following are equivalent:
+\begin{enumerate}
+\item $c_2^{\bas}(Q^{1,0})=0$ in real basic cohomology;
+\item there is a transverse flat K\"ahler metric for the fixed canonical
+foliation and transverse complex structure;
+\item $b_1^{\virt}(M)=2n-1$;
+\item $M$ has a finite \'etale cover which is a Kodaira manifold.
+\end{enumerate}
+For $n=2$, the first condition is automatic and all four hold.
+\end{cor}
+\begin{proof}
+Work on the quotient with its Ricci-flat metric, or on its finite
+product cover. For $m\geq2$ its unitary Chern curvature $F$ has
+$\tr F=0$ and $\Lambda F=0$. With the norm induced by $-\tr$ on
+skew-Hermitian matrices, the primitive-form Hodge identity gives
+\begin{equation}\label{eq:c2}
+\int_B c_2(TB)\wedge\frac{\omega_B^{m-2}}{(m-2)!}
+=\frac1{8\pi^2}\int_B |F|^2\frac{\omega_B^m}{m!}.
+\end{equation}
+Indeed $c_2=(8\pi^2)^{-1}\tr(F\wedge F)$ when $\tr F=0$,
+and $*F=-F\wedge\omega_B^{m-2}/(m-2)!$. Both formulas apply in
+orbifold charts with the usual division by stabilizer order in the
+integral. Vanishing of the basic class therefore forces $F=0$.
+In transverse dimension one, Ricci-flatness itself is flatness.
+A compact flat K\"ahler orbifold has a finite torus orbifold cover
+(the flat case of the splitting theorem used above); pulling it back
+gives a Kodaira cover. Equivalently the nonflat factors in
+\eqref{eq:BB} are absent. Proposition~\ref{prop:virtual} then gives
+the third assertion. Conversely a Kodaira cover has zero basic Chern
+classes, and real transfer for the lifted foliation is injective, so
+the second basic class downstairs vanishes. The same decomposition
+also proves directly that (3) implies (4).
+\end{proof}
+
+These consequences are proved here from existing structure and Hodge
+theorems. The searches made for this note did not establish that they
+are new in the literature; no originality claim is made.
+
+\appendix
+\section{Dependencies, checks, and what is not claimed}\label{sec:audit}
+The logical route is: minimal transverse K\"ahler foliation;
+basic potential lemma and Ricci comparison; equivalence
+\eqref{eq:equiv}; Istrati's fixed-$J$ existence and quasi-regularity;
+its finite orbifold BB decomposition; characteristic-class calculation;
+Betti, Albanese, and fundamental-group consequences.
+
+Compactness is used for Hodge theory, averaging, positivity integrals,
+the automorphism group argument, and the Albanese image. The Vaisman
+condition supplies minimal leaves, holomorphic Killing fields and
+\eqref{eq:vaisman}. The first basic Chern condition enters precisely
+at \eqref{eq:equiv} and transverse Ricci-flatness. Quasi-regularity is
+only used after the known theorem proves it. Finite covers remove
+transverse finite holonomy and the specified integral torsion; they do
+not erase positive curvature classes. Orbifold structures are retained
+in all homotopy, integral cohomology and covering arguments. Projectivity
+comes from positivity and is used to choose the explicit algebraic
+examples and factor polarizations.
+
+The central question is answered by known results. No unresolved step
+is deliberately used as a proved theorem here. We have not classified
+all finite group actions on the factor torsors, or all isomorphisms
+between their unmarked total spaces. These are further classification
+problems, not missing hypotheses in Theorem~\ref{thm:main}.
+No assertion that every orbifold is finitely smoothable is used.
+No claim about arbitrary LCK manifolds follows from our proof.
+
+The audit distinguishes \AIstatus{KNOWN}, \AIstatus{DERIVED},
+\AIstatus{CANDIDATE}, \AIstatus{REFUTED}, and \AIstatus{GAP}.
+Here the false implications ``de Rham vanishing implies basic
+vanishing'', ``small $b_1$ forces a non-torus factor'', and ``a finite
+cover makes every base smooth'' are \AIstatus{REFUTED} by explicit
+examples. No \AIstatus{CANDIDATE} is presented as a theorem.
+The inaccessible published Istrati numbering and the lack of an
+exhaustive novelty search are bibliographic limitations, recorded in
+\texttt{research\_audit\_ja.md}. Theorem numbers of the three requested
+arXiv papers were checked in their actual bodies. The precise numbering
+of the general hypersurface-link connectivity theorem in Milnor's
+book was not checked; only its standard chapter-level attribution is
+used. All references to deep inputs state the hypotheses needed here.
+The separate README records compilation and visual verification.
+
+\clearpage
+% Bibliography recovered solely from the corresponding supplied PDF.
+\begin{thebibliography}{EKA90}
+\bibitem[Cam04]{Campana}
+Frédéric Campana. Orbifoldes à première classe de Chern nulle. In \emph{The Fano Conference}, pages 339--351. Università di Torino, 2004. Theorem 6.4 and Definition 6.5 checked in arXiv:math/0402243v1.
+
+\bibitem[EKA90]{EK}
+Aziz El Kacimi-Alaoui. Opérateurs transversalement elliptiques sur un feuilletage riemannien et applications. \emph{Compositio Mathematica}, 73(1):57--106, 1990.
+
+\bibitem[Gom26]{Gomes}
+Lucas H. S. Gomes. On the classification of Vaisman manifolds with vanishing first basic Chern class and large first Betti number, 2026. arXiv:2604.04134v2, 21 May 2026.
+
+\bibitem[Huy16]{Huybrechts}
+Daniel Huybrechts. \emph{Lectures on K3 Surfaces}. Cambridge University Press, 2016. Author's online manuscript, Chapters 1 and 14 consulted.
+
+\bibitem[IO23]{IO}
+Nicolina Istrati and Alexandra Otiman. Bott--Chern cohomology of compact Vaisman manifolds. \emph{Transactions of the American Mathematical Society}, 376(6):3919--3936, 2023. Numbered citations refer to the final preprint arXiv:2206.07312v2, 26 September 2022.
+
+\bibitem[Ist25]{Istrati}
+Nicolina Istrati. Vaisman manifolds with vanishing first Chern class. \emph{Journal of the European Mathematical Society}, 2025. Published online first, 11 March 2025. Numbered citations in this note refer to arXiv:2304.02582v1, 5 April 2023.
+
+\bibitem[Mil68]{Milnor}
+John Milnor. \emph{Singular Points of Complex Hypersurfaces}, volume 61 of \emph{Annals of Mathematics Studies}. Princeton University Press, 1968. Chapter 5; precise theorem number for link connectivity not verified in this run.
+
+\bibitem[OV24]{OV}
+Liviu Ornea and Misha Verbitsky. A Calabi--Yau theorem for Vaisman manifolds. \emph{Communications in Analysis and Geometry}, 32(10):2889--2900, 2024. Numbered citations refer to arXiv:2206.08808v2, 24 August 2022.
+
+\end{thebibliography}
+
+
+
+% Language boundary: drain English floats before changing state.
+\newpage
+\clearpage
+\endgroup
+
+\begingroup
+\MergeStart{ja}
+\title[Vaisman多様体の第一basic Chern類と構造]{Vaisman幾何における第一basic Chern類の消滅とBeauville--Bogomolov型構造}
+\author{chatGPT 6 Astra}
+
+
+
+
+
+
+
+\date{8 September 2026, working note, version 0.1}
+\renewcommand{\subjclassname}{\textup{2020} Mathematics Subject Classification}
+\subjclass[2020]{Primary 53C55; Secondary 32Q25, 32M25, 57R18}
+\keywords{Vaisman manifold, basic Chern class, Bott--Chern cohomology,
+transverse Calabi--Yau geometry, elliptic orbi-bundle, virtual first Betti number}
+\hypersetup{pdftitle={Vaisman幾何における第一basic Chern類の消滅とBeauville--Bogomolov型構造},pdfauthor={chatGPT 6 Astra},pdfsubject={Expository working note; AI-generated; not human-verified}}
+
+
+\pdfbookmark[0]{日本語版}{language-ja}
+
+\begin{abstract}
+コンパクト非K\"ahler Vaisman多様体について，第一実basic Chern類の消滅は，
+複素多様体自身の第一Bott--Chern類の消滅と同値である．本稿では，葉空間の存在を
+仮定せずにこの同値を説明し，Istratiの既存の構造定理を適用する．得られる
+Beauville--Bogomolov分解は横断幾何と葉空間の有限orbifold被覆に関するものであり，
+全空間はdefiniteな楕円曲線orbi-bundleとして残る．第一Betti数とvirtual第一Betti数を
+計算し，基本群とAlbanese写像を記述するとともに，第一Betti数が小さい具体例を与える．
+さらに，束の再構成，積分解の障害，第二basic Chern類の消滅に関する初等的な帰結を示す．
+本稿は解説的な作業ノートであり，新しい分解定理や確認済みの新規性を主張しない．
+\end{abstract}
+\maketitle
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+\tableofcontents
+
+\section{中心問題への正確な回答と結果の位置づけ}\label{sec:intro}
+以下，$M$はコンパクト連結，$\dim_{\C}M=n\geq2$とし，
+$(J,g,\omega,\theta)$は$\theta\ne0$を満たすVaisman構造とする．$m=n-1$とおく．
+本稿の仮定は正確に
+\begin{equation}\label{eq:hyp}
+c_1^{\bas}(Q^{1,0})=0\quad\text{in }H^2_{\bas}(M,\R)
+\end{equation}
+である．$c_2^{\bas}$には何も仮定しない．複素構造$J$は固定する．
+
+\begin{thm}[中心問題への回答]\label{thm:main}
+\eqref{eq:hyp}のもとで，元のcanonical foliationはquasi-regularである．
+連結な有限正則\emph{\'etale}被覆$M'\to M$と，正則principal elliptic orbi-bundle
+\begin{equation}\label{eq:BB}
+E\longrightarrow M'\xrightarrow{\pi}B,
+\qquad B=A\times\prod_i Y_i\times\prod_j Z_j=A\times\Qfac
+\end{equation}
+が存在する．ここで$A$は次元$a$のabelian varietyであり，残りの因子は
+\emph{orbifoldの意味で}単連結な射影的pure K\"ahler orbifoldである．
+これらにはRicci-flat計量があり，既約holonomyはそれぞれ$\SU(d_i)$と$\Sp(e_j)$，
+複素次元は$d_i$と$2e_j$である．特に
+\begin{equation}\label{eq:dimension}
+a+\sum_i d_i+\sum_j2e_j=m
+\end{equation}
+が成り立つ．底の分解は，誘導されるRicci-flat計量に関して，正則かつ等長的である．
+全空間には束のねじれが残る．実際，$M$のどの有限\'etale被覆も，正の次元をもつ
+二つのコンパクト複素多様体の積にはならない．さらに
+\begin{equation}\label{eq:mainBetti}
+b_1(M')=b_1^{\virt}(M)=2a+1,
+\qquad b_1(M)\leq2a+1\leq2n-1
+\end{equation}
+が成り立つ．原点を選ぶと$\Alb(M')=A$で，Albanese写像は$\pr_A\circ\pi$である．
+そのファイバーの次元は$n-a$であり，canonical foliationの葉と一致するのは
+$\Qfac$が一点の場合に限る．
+\end{thm}
+
+Chern条件の同値と構造に関する主張は\AIstatus{KNOWN}である．
+Istrati \cite[Definition 4.1, Lemma 4.4, Corollary 5.2, Theorem 5.3]{Istrati}
+を参照されたい．本稿では条件の橋渡しと適用を詳しく説明する．virtual Betti数の式と
+束の計算は本稿で\AIstatus{DERIVED}と分類するが，これは新規性の主張ではない．
+後述の整係数での基本群の記述は\cite[Corollary 5.10]{Istrati}の説明を具体化する．
+上界と最大値の場合は\cite[Corollary 5.11]{Istrati}ですでに得られている．
+
+\begin{rem}[版と記号の規約]\label{rem:versions}
+Istratiの定理番号はすべてarXiv:2304.02582v1，2023年4月5日のものを用いる．
+出版社の情報から，JEMS online first，2025年3月11日公開，
+DOI 10.4171/JEMS/1633であることを確認した．今回，購読が必要な出版版本文には
+アクセスできなかったため，出版版との番号対応は断定しない．
+Gomesは改題後のarXiv:2604.04134v2，2026年5月21日を指す．
+同論文の実次元$2r+2$における$r$は，本稿の$m=n-1$であり，最大値$2r+1$は
+本稿の$2n-1$である．Theorems 1.1, 6.6は左不変複素構造による分類を与え，
+葉のファイブレーションをAlbanese写像と同定している．その証明は$J$の変形を用い，
+Theorem 4.3で元に戻すための独立した議論を行う．本稿では，変形した複素構造の結論を
+元の構造に移すのではなく，$(M,J)$にIstratiの定理を直接適用する．
+\end{rem}
+
+\section{定義と横断Hodge理論}\label{sec:defs}
+$\omega(X,Y)=g(JX,Y)$とし，実1形式に対して$J\alpha=-\alpha\circ J$と定める．
+$g$を正の定数$|\theta|_g^2$倍すると$|\theta|=1$となり，$J$，$\theta$，
+およびLevi-Civita接続についての平行性は変わらない．
+\begin{equation}\label{eq:vaisman}
+U=\theta^\sharp,\quad V=JU,\quad\eta=J\theta,
+\quad\wt=-d\eta,\quad \omega=\wt+\theta\wedge\eta
+\end{equation}
+とおく．$\wt$は閉かつ半正定値で，複素rankは$m$，核は
+$T\cF=\langle U,V\rangle_{\R}$である．これが横断K\"ahler構造を定める．
+これらの標準的なVaisman恒等式は\cite[Section 2.1]{Istrati}，
+\cite[Theorem 2.2]{IO}にも記載されている．
+
+\begin{defn}\label{def:basic}
+微分形式$\alpha$がbasicであるとは，$\cF$に接するすべてのベクトル場$X$について
+$\iota_X\alpha=\cL_X\alpha=0$となることをいう．これは$U,V$について水平かつ
+不変であることと同値である．複体$(\Omega_{\bas}^{\bullet},d_{\bas})$のcohomologyを
+$H_{\bas}^{\bullet}(M,\R)$と書く．複素化は横断的な型に分解され，
+$d_{\bas}=\partial_{\bas}+\bar\partial_{\bas}$となる．
+\begin{align}\label{eq:cohomdef}
+H_{\bas}^{p,q}&=\frac{\ker(\bar\partial_{\bas}:\Omega_{\bas}^{p,q}
+\to\Omega_{\bas}^{p,q+1})}{\bar\partial_{\bas}\Omega_{\bas}^{p,q-1}},\\
+H_{\BC,\bas}^{1,1}(M,\R)&=
+\frac{\{\alpha\in\Omega_{\bas}^{1,1}:d\alpha=0,\ \bar\alpha=\alpha\}}
+{\{i\partial_{\bas}\bar\partial_{\bas}f:f\in C^\infty_{\bas}(M,\R)\}}
+\notag
+\end{align}
+と定義する．basic形式とbasic関数を通常の形式と関数に置き換えると，
+$H_{\BC}^{1,1}(M,\R)$が得られる．
+\end{defn}
+
+横断正則接束は$Q^{1,0}=(TM/T\cF)^{1,0}$で，rankは$m$である．
+横断正則座標におけるHermitian計量$h_T$のChern接続行列は
+$h_T^{-1}\partial_{\bas}h_T$であり，その曲率を$F_T$とする．不変な局所行列は
+basic接続として貼り合わさる．これは葉方向のBott部分接続を延長する接続である．
+\begin{equation}\label{eq:chern}
+c^{\bas}(Q^{1,0})=
+\left[\det\left(I+\frac{i}{2\pi}F_T\right)\right]_{\bas},
+\quad \rhoT=i\tr F_T=-i\partial_{\bas}\bar\partial_{\bas}\log\det h_T
+\end{equation}
+と定める．basic Hermitian計量の変更によるChern形式の差はbasic exactである．
+$TM$について同じ規約を用いると，$\rhoC=-i\partial\bar\partial\log\det g$，
+$c_1^{\BC}(M)=[\rhoC/(2\pi)]_{\BC}$となる．
+したがって本稿で扱うのは\emph{接束}のChern類であり，標準束の第一Chern類は
+その符号を反転したものである．テンプレートのマクロ$\ddbar$には$1/(2\pi)$が
+含まれるが，$i\partial\bar\partial$には含まれない．
+
+\begin{lem}[basicポテンシャル補題]\label{lem:ddbar}
+canonical foliationは横断的に向きづけられたRiemannian K\"ahler foliationであり，
+葉は極小である．basic $\partial\bar\partial$補題が適用できる．特に，実basic
+$d_{\bas}$-exactな$(1,1)$形式$\alpha$は，実basic関数$f$を用いて
+$\alpha=i\partial_{\bas}\bar\partial_{\bas}f$と書ける．
+\end{lem}
+\begin{proof}
+$U,V$は可換な実正則Killing場で，長さは1である．$U$の平行性から
+$\nabla_UU=\nabla_VU=0$，可換性から$\nabla_UV=0$となる．
+また定長Killing場の恒等式から
+$\nabla_VV=-\tfrac12\operatorname{grad}|V|^2=0$である．
+したがって葉は全測地的で，平均曲率は消える．計量はbundle-likeであり，
+$\wt^m$が法束を向きづける．よってbasic Hodge理論とK\"ahler恒等式が使える．
+\cite[Sections 3.3--3.4, Proposition 3.5.1]{EK}，\cite[Section 2.2]{IO}を参照．
+これらの仮定は，大域的な商orbifoldが存在する前から成立している．
+
+必要な次数2の帰結については，次のHodge理論的な証明を書ける．
+$\chi=\theta\wedge\eta$とおくと$d\chi=\theta\wedge\wt$である．
+basic exact形式を$\wt^{m-1}\wedge\chi$に掛けて積分すると，Stokesにより0となる．
+余分な項は横断次数$2m+1$の形式を含むため消える．したがって
+$\Lambda_T\alpha$の平均は0である．basicな関数のLaplacian，すなわち非零の
+定数倍を除いて$f\mapsto\Lambda_T(i\partial_{\bas}\bar\partial_{\bas}f)$は，
+自己共役で，核は定数関数からなる．コンパクトなbasic Hodge理論により
+\[
+\Lambda_T(i\partial_{\bas}\bar\partial_{\bas}f)=\Lambda_T\alpha
+\]
+を解ける．差$\beta$は閉かつprimitiveである．$m\geq2$のとき，横断Hodge starは
+$*_T\beta=-\beta\wedge\wt^{m-2}/(m-2)!$なので，$\beta$はbasic coclosedでもある．
+basic exactでもあることから，そのノルムの二乗は0となる．$m=1$ではtrace-freeな
+$(1,1)$形式自体が0である．これで主張が示された．同じbasic Hodge理論から
+$H_{\bas}^{2m}(M,\R)=\R$も従う．これはEl Kacimi-Alaouiの定式化で必要な
+homological orientabilityである．
+\end{proof}
+
+\begin{defn}\label{def:orb}
+canonical foliationが\emph{quasi-regular}であるとは葉がコンパクトであることをいい，
+有効Lee群がコンパクトな複素1次元群であることと同値である．その作用が自由なとき
+\emph{regular}という．quasi-regularの場合，商$\cB$は複素orbifoldである．
+正則principal $E$-orbi-bundleとは，局所的に
+$(\widetilde W\times E)/\Gamma\to\widetilde W/\Gamma$と書け，遷移関数が
+$E$の平行移動として作用する正則束をいう．isotropyもファイバーに平行移動として
+作用する．全空間が多様体である場合，対角作用は自由である．通常のprincipal bundleは，
+底が滑らかでorbifold isotropyのない場合にあたる．
+
+pure orbifoldとは因子的なisotropyを持たないorbifoldをいう．余次元2以上には
+商特異点が残り得る．分類空間$B\cB$を用いて
+$H^k_{\orb}(\cB,\Lambda)=H^k(B\cB,\Lambda)$，
+$\pi_k^{\orb}(\cB)=\pi_k(B\cB)$と書く．実orbifold cohomologyはorbifold de Rham
+cohomologyおよび台空間の実cohomologyと一致するが，整係数では一致するとは限らない．
+orbifold被覆とは，局所的に有限な座標群をその部分群に変更する被覆をいう．
+台となる特異空間の\'etale被覆とは限らない．多様体の有限\'etale被覆とは，
+全空間の有限不分岐正則被覆を意味する．
+\end{defn}
+
+LCK rankは$\theta$の周期群のrankであり，同値に$[\theta]$を含む最小の有理部分空間の
+次元である．rank 1はregularityともquasi-regularityとも定義が異なる．
+構造定理にrank 1の仮定は用いない．
+
+\section{Bott--Chern消滅への橋渡し}\label{sec:bridge}
+\begin{lem}[Ricci形式の比較：IstratiのLemma 4.4]\label{lem:ricci}
+正規化したVaisman計量について，$M$上の通常の微分形式として
+\begin{equation}\label{eq:ricci}
+\rhoC=\rhoT
+\end{equation}
+が成り立つ．
+\end{lem}
+\begin{proof}
+横断正則submersion $p:W\to T$と，$K_T$の局所正則frame $\sigma_T$を取る．
+$\theta^{1,0}=(\theta+i\eta)/2$は一般に正則\emph{ではない}．しかし
+\[
+\sigma=\theta^{1,0}\wedge p^*\sigma_T
+\]
+は$K_M|_W$の零点のない正則frameである．実際，
+$\bar\partial\theta^{1,0}=-i\wt/2$と水平な最高次形式との外積は0になる．
+そのノルムの二乗は$|\sigma|_g^2=\tfrac12p^*|\sigma_T|_{h_T}^2$である．
+正則な標準束のframeについて，接束のRicci形式は
+$i\partial\bar\partial\log|\sigma|^2$と書ける．定数$1/2$は微分すると消えるので
+\eqref{eq:ricci}を得る．これにより符号と，余分な$\wt$の倍数が出ないことも確認できる．
+\end{proof}
+
+\begin{prop}[三つの条件の比較]\label{prop:bridge}
+任意のコンパクト非K\"ahler Vaisman多様体について
+\begin{equation}\label{eq:equiv}
+c_1^{\bas}(Q^{1,0})=0
+\ \Longleftrightarrow\ c_1^{\BC}(M)=0
+\ \Longrightarrow\ c_1(M)=0\text{ in }H^2(M,\R)
+\end{equation}
+が成り立つ．最後の含意は逆にできない．
+\end{prop}
+\begin{proof}
+自然な比較写像による可換図式
+\[
+\begin{array}{ccc}
+H_{\BC,\bas}^{1,1}(M,\R)&\xrightarrow{j}&H_{\BC}^{1,1}(M,\R)\\
+\big\downarrow&&\big\downarrow\\
+H_{\bas}^{2}(M,\R)&\longrightarrow&H^{2}(M,\R)
+\end{array}
+\]
+がある．左の写像は補題\ref{lem:ddbar}により単射で，像は実横断$(1,1)$部分である．
+$c_1^{\bas}=0$なら，この補題を$\rhoT$に適用して
+$\rhoT=i\partial_{\bas}\bar\partial_{\bas}f$を得る．basic関数は$M$上の通常の
+大域的滑らかな関数であり，それに作用する制限された微分作用素は
+$\partial,\bar\partial$と一致する．補題\ref{lem:ricci}からBott--Chern消滅が従う．
+
+逆向きも，quasi-regularityが分かる前に示せる．コンパクトな等長変換群の中で
+$U,V$のflowの閉包を$K$とする．これは正則等長変換からなる．実basic $(1,1)$形式が
+$\alpha=i\partial\bar\partial f$と書けるとき，Haar確率測度で$f$を$K$について
+平均する．$\alpha$の不変性から，平均$\bar f$は
+$i\partial\bar\partial\bar f=\alpha$を満たし，$U,V$で不変なのでbasicである．
+これは$j$の単射性を示す．$\rhoT=\rhoC$に適用すると\eqref{eq:equiv}の逆向きが従う．
+最後の写像はBott--Chernの情報を忘れる写像である．
+\end{proof}
+
+忘れられる情報は次のように明示できる．
+\begin{lem}\label{lem:lowdegree}
+任意のコンパクト非K\"ahler Vaisman多様体について
+\begin{align}\label{eq:lowdegree}
+H^1(M,\R)&=H^1_{\bas}(M,\R)\oplus\R[\theta],\\
+\ker\bigl(H^2_{\bas}(M,\R)\to H^2(M,\R)\bigr)&=\R[\wt]_{\bas}
+\notag
+\end{align}
+が成り立つ．特に，$M$上では$\wt=-d\eta$であるにもかかわらず，
+$[\wt]_{\bas}\ne0$である．
+\end{lem}
+\begin{proof}
+$K$の各元は恒等写像とisotopicなので，$K$による平均は通常のde Rham類を変えない．
+不変な1形式は，$\beta$をbasic形式，$u,v$をbasic関数として，
+$\beta+u\theta+v\eta$と一意に書ける．その外微分は
+$d_{\bas}\beta+du\wedge\theta+dv\wedge\eta-v\wt$である．
+これがbasicなら，$U,V$との縮約から$du=dv=0$が従う．
+$[\wt]_{\bas}$は0ではない．basicなprimitiveが存在すると，
+補題\ref{lem:ddbar}と同じStokesの計算により
+$\int_M\wt^m\wedge\chi=0$となり，被積分形式の正値性に矛盾する．
+したがって閉じた不変1形式は$v=0$を満たし，第一式を得る．和が直和であることは，
+不変なexact 1形式$df$について$f$も平均すれば，$U$との縮約が0になることから分かる．
+通常の意味でexactなbasic 2形式のprimitiveに同じ議論を行うと第二式が従う．
+これは\cite[Sections 3--5]{IO}とも整合する．
+\end{proof}
+
+scalar Hopf多様体$(\C^n\setminus\{0\})/\langle q\rangle$，$0<q<1$の葉空間は
+$\mP^{n-1}$であり，$c_1^{\bas}=nH\ne0$である一方，$H^2(M,\R)=0$である．
+したがって，これは最後の含意の逆に対する反例であって，本稿の主仮定を満たす例
+\emph{ではない}．別の言い方をすれば，$c_1(M)=0$はbasic類が0である代わりに
+$[\wt]_{\bas}$の非零倍である可能性を許してしまう．
+
+\section{既知の構造定理の適用}\label{sec:structure}
+\begin{proof}[定理\ref{thm:main}の構造に関する部分の証明]
+命題\ref{prop:bridge}により，IstratiのDefinition 4.1の条件が正確に満たされる．
+コンパクト性，Vaisman条件，Lee形式が非零であることはすでに仮定されている．
+同論文のCorollary 5.2は，同じ複素多様体上で，指定された許容Lee類をもつ
+Chern--Ricci-flat Vaisman計量を与え，これは定数倍を除いて一意である．
+補題\ref{lem:ricci}により，その横断計量はRicci-flatである．
+
+同論文のTheorem 5.3は，あらかじめ商を仮定することなく，$\Autop_0(M)$が
+コンパクトな複素1次元群であり，Lee群に一致することを示す．
+その普遍複素Lie群は$\C$で，核は余コンパクトなrank 2の格子である．
+したがって$E=\C/\Lambda$は楕円曲線である．局所自由な作用の軌道が，
+元のfoliationのコンパクトな葉となり，ここで初めて商を取ることができる．
+この段階がquasi-regularityを証明し，K\"ahler orbifold商を循環的に仮定することを避ける．
+
+同定理の仕組みを説明すると，canonical計量の一意性によって$\Autop_0(M)$の各元が
+等長変換になる．各元がLee類と全体積を保つからである．次にコンパクト自己同型群に
+関する結果によって，それをLee群と同定する．残りの部分ではorbifold分解定理を適用し，
+definiteなSeifert束を用いて，有限被覆後のpurityを証明する．
+pure orbifoldに対して用いる分解は\cite[Theorem 6.4, Definition 6.5]{Campana}である．
+必要な仮定はコンパクト性，K\"ahler性，orbifold第一Chern類の消滅である．
+最後の仮定は，basic形式を商のorbifold形式と同定し，\eqref{eq:hyp}を用いて得られる．
+本稿ではIstratiのpurityの議論を既知定理の一部として用い，最初からpurityを置かない．
+
+商にはdefiniteな束に由来する整な正値類があるため，射影的である．
+その有限積被覆の各因子も，ample類を制限すれば射影的になる．
+したがって平坦な複素トーラスは，単なる複素トーラスではなくabelian varietyである．
+単連結性の意味は$\pi_1^{\orb}(Y_i)=\pi_1^{\orb}(Z_j)=0$である．
+holonomyはCampanaの定義と同様，pure orbifoldの滑らかな部分のRicci-flat計量の
+holonomyを意味する．本稿は$\SU$型因子を$Y_i$と書くので，IstratiのTheorem 5.3とは
+二種類の因子の文字の割当てを入れ替えている．$\SU(2)=\Sp(1)$の重複は，
+一度だけsymplectic型に分類してよく，二重に数えない．
+
+最後に，商のこの有限被覆に関してorbifold fiber productを取る．局所的には
+$(\widetilde W\times E)/\Gamma'\to(\widetilde W\times E)/\Gamma$，
+$\Gamma'\subset\Gamma$から誘導される．元の全空間での対角作用が自由なので，
+これは多様体の真の不分岐被覆になる．複素構造とVaisman計量は引き戻される．
+必要なら連結成分を選んで$M'$を得る．これで\eqref{eq:BB}，\eqref{eq:dimension}が示された．
+regularityや因子の滑らかさは主張していない．またIstratiのCorollary 5.4により
+$K_M$は正則にtorsionである．
+\end{proof}
+
+横断Calabi--Yau定理の入力は，次のようにも表せる．コンパクトでhomologically
+orientableな横断K\"ahler foliationについて，$2\pi c_1^{\bas}$の任意の実basic
+$(1,1)$代表元は，固定したbasic K\"ahler類に属する一意な横断K\"ahler計量の
+Ricci形式になる\cite[Section 3.5.5]{EK}．横断複素次元1では，これは関数の楕円型
+方程式に帰着する．$J$を固定したVaisman構造としての実現には
+\cite[Theorem 4.1, Lemma 4.2]{OV}とIstratiのCorollary 5.2を用いる．
+任意の共形変換で得られたChern--Ricci-flat Hermitian計量が，なおVaismanであるとは
+仮定していない．
+
+\section{Betti数，有限被覆，Albanese写像}\label{sec:betti}
+\begin{prop}[transgressionの計算]\label{prop:betti}
+\eqref{eq:BB}の被覆について
+\begin{equation}\label{eq:betti}
+b_1(M')=2a+1
+\end{equation}
+が成り立つ．
+\end{prop}
+\begin{proof}
+principal $E$-orbi-bundleの接続は，特性類
+$c\in H^2_{\orb}(B,\Lambda)$を与える．Vaisman接続の曲率は，
+$\Lambda\otimes\R$の一つの非零方向における$\wt$の倍数である．
+実際，2次元の垂直接空間で$\theta,\eta$を用いると，
+$d\theta=0$，$d\eta=-\wt$である．周期の基底を選ぶ操作は，
+この二つの曲率成分に可逆な実線形変換を施すだけである．
+したがって二成分が$H^2_{\orb}(B,\R)$内で張る空間のrankは1であって，0ではない．
+正値性とコンパクト性により，底上で$[\wt]^m\ne0$だからである．
+
+分類空間に対する実Leray--Serre列の次数1の完全列は
+\begin{equation}\label{eq:five}
+0\longrightarrow H^1_{\orb}(B,\R)\longrightarrow H^1(M',\R)
+\longrightarrow H^1(E,\R)\xrightarrow{d_2}H^2_{\orb}(B,\R)
+\end{equation}
+である．遷移関数が平行移動なので，$H^1(E)$の局所係数のmonodromyは自明である．
+$u,v$を周期基底の双対とすると，$d_2(u),d_2(v)$は，transgressionの共通の符号規約を
+除いて二つの特性類に等しい．よって$\rank d_2=1$，$\dim\ker d_2=1$である．
+orbifold単連結性から$H^1_{\orb}(\Qfac,\R)=0$となるので，
+$b_1^{\orb}(B)=2a$である．\eqref{eq:five}の次元を数えて結論を得る．
+\end{proof}
+
+\begin{prop}[virtual第一Betti数]\label{prop:virtual}
+$b_1^{\virt}(M)$を，連結な有限正則\'etale被覆$N\to M$にわたる$b_1(N)$の上限とする．
+この上限は達成され，$2a+1$に等しい．特に
+\begin{equation}\label{eq:gap}
+b_1^{\virt}(M)\in\{1,3,\ldots,2n-5\}\cup\{2n-1\}
+\end{equation}
+である．$n=2$では最初の集合を空集合と解釈する．$2n-3$はvirtual不変量の値として
+除外されるが，$b_1(M)$の値として除外されるとは限らない．
+\end{prop}
+\begin{proof}
+任意の有限被覆上で，引き戻した横断Ricci-flat計量の制限holonomyは変わらない．
+平均曲率が0なので，basic調和1形式$\alpha$に対するbasic Bochner恒等式から
+\[
+0=\|\nabla^T\alpha\|_{L^2}^2+
+\int\Ric^T(\alpha^\sharp,\alpha^\sharp)\,dv
+=\|\nabla^T\alpha\|_{L^2}^2
+\]
+を得る．したがってbasic調和1形式は平行である．非平坦な既約$\SU$型，$\Sp$型の
+因子には不変な余ベクトルが存在しない．よって$M'$の任意の有限被覆上の平行な横断
+余ベクトルの空間は次元$2a$以下である．補題\ref{lem:lowdegree}から，通常の第一
+Betti数は$2a+1$以下となる．$M$の有限被覆については，$M'$とのfiber productの
+連結成分を取る．transferにより実cohomologyの引き戻しは単射なので，同じ上界が従う．
+命題\ref{prop:betti}により，この値は$M'$で達成される．
+
+非平坦な因子の複素次元は少なくとも2である．複素1次元のRicci-flat K\"ahler
+orbifold因子は平坦であり，$A$に含まれるべきものである．この分解における正次元の
+単連結因子にはなれない．したがって$a=m$または$a\leq m-2$であり，
+\eqref{eq:gap}を得る．Bochner法の部分は\cite[Proposition 6.4]{Gomes}の仕組みでもある．
+本稿では，そこで必要となるfoliationの仮定を明示して満たしている．
+\end{proof}
+
+\begin{prop}[Albanese写像の記述]\label{prop:alb}
+$\dim\Alb(M)=(b_1(M)-1)/2$，$\Alb(M')\cong A$であり，$M'$のAlbanese写像は
+平行移動を除いて$\pr_A\pi$である．$M$のAlbanese写像は全射submersionである．
+一般にはcanonical foliationによる商写像とは一致しない．
+\end{prop}
+\begin{proof}
+コンパクトVaisman多様体の正則1形式は閉かつbasicであり，$(1,0)$型のbasic調和形式に
+正確に一致する．その周期による商は真の複素トーラスである．
+\cite[Sections 2--3, Theorem 3.3]{Gomes}，\cite[Section 3]{IO}を参照されたい．
+basic Hodge対称性と補題\ref{lem:lowdegree}から次元の式が従う．
+$M'$上では，これらの形式は$A$の正則1形式の引き戻しに正確に一致する．
+単連結因子には，Ricci-flat Bochner理論により正則1形式が存在しないからである．
+ファイバーと$\Qfac$が連結なので，
+$\pi_1(M')\to\pi_1^{\orb}(B)\to\pi_1(A)$は全射である．
+したがって周期格子は，単にその有理的な広がりだけでなく，整格子として一致する．
+Albanese写像の普遍性から，それは$\pr_A\pi$に一致する．ファイバーは$\Qfac$上の
+連結な楕円曲線orbi-bundleである．
+
+$M$自身については，Chern--Ricci-flat Vaisman計量を用いると，正則1形式の基底は
+横断的に平行な形式からなる．一点での独立性と平行性から，各点で独立になる．
+よってAlbanese写像は各点で標的の次元に等しいrankをもつ．像はsubmersionにより開，
+コンパクト性により閉であり，連結なAlbaneseトーラス全体に等しい．
+\end{proof}
+
+$\widehat M\to M$が群$F$のGalois被覆なら，
+$H^1(M,\R)=H^1(\widehat M,\R)^F$である．
+有限群が横断的な平行形式を取り除くことが，小さい$b_1$を生じさせる第二の機構である．
+これは$\Qfac$があるために$a$が小さくなる機構と区別しなければならない．
+$b_1(M)=2n-1$であることと$M$がKodaira多様体であることの同値は
+\cite[Corollary 5.11]{Istrati}にある．regularなAlbanese fibrationと左不変複素構造の
+記述は\cite[Theorems 1.1, 6.6]{Gomes}による．
+\eqref{eq:hyp}がなければ，次元だけによる上界$2n-1$は成り立たない．
+第\ref{sec:examples}節の円周束の構成を種数$g$の曲線に適用すると，任意の$g\geq2$に
+対して$b_1=2g+1$をもつVaisman曲面が得られる．
+
+\section{特性類と積分解の限界}\label{sec:twist}
+$E=\C/\Lambda$に対して，正則principal elliptic orbi-bundleは
+$H^1_{\orb}(B,\cO_B(E))$で分類される．完全列
+\begin{equation}\label{eq:exp}
+0\longrightarrow\Lambda\longrightarrow\cO_B\longrightarrow
+\cO_B(E)\longrightarrow0
+\end{equation}
+が$c(M')\in H^2_{\orb}(B,\Lambda)$を定める．
+したがって特性類はデータの一部にすぎない．一つの特性類を固定したとき，その上の
+ファイバーは$H^1(B,\cO_B)$の像，すなわち$H^1_{\orb}(B,\Lambda)$の像による商の
+下でtorsorとなる．$E$の格子と正則torsorの類も保持しなければならない．
+
+\begin{prop}[線束モデルと再構成]\label{prop:reconstruct}
+\eqref{eq:BB}の積被覆$B$上で，primitiveな格子元$e$の向きと，補完する格子元$f$を
+選ぶと
+\begin{equation}\label{eq:char}
+c(M')=\kappa\otimes e,
+\qquad \kappa\in H^2_{\orb}(B,\Z),\quad \kappa\text{はK\"ahler類}
+\end{equation}
+と書ける．$c_1(L)=\kappa$を満たすampleな正則line orbi-bundle $L$と，
+$q\in\C^*$，$|q|<1$が存在して
+\begin{equation}\label{eq:line}
+M'\cong L^{\times}/\langle q\rangle
+\end{equation}
+となる．さらに
+$L\cong\pr_A^*L_A\otimes\bigotimes_i\pr_{Y_i}^*L_i
+\otimes\bigotimes_j\pr_{Z_j}^*L_j'$と書ける．
+楕円曲線torsorは，同じ$E,q$を用いた各因子のtorsorの引き戻しのBaer和である．
+\end{prop}
+\begin{proof}
+命題\ref{prop:betti}の実曲率の計算では像は1次元である．その整特性類を整2-cycleに
+評価すると，この方向に非零の格子ベクトルが含まれることが分かる．したがって，
+この直線は有理的である．primitiveなベクトルとその符号を選ぶと，torsionを除いて
+正の類$\kappa$が得られる．積被覆では$H_1^{\orb}(B,\Z)=\Z^{2a}$なので，
+普遍係数定理から$H^2_{\orb}(B,\Z)$はtorsion-freeである．よってtorsion項は残らず，
+\eqref{eq:char}が整係数で成り立つ．
+
+orbifold指数完全列とK\"ahler $(1,1)$定理により，この第一Chern類をもつ
+line orbi-bundle $L_0$が得られる．$e$を1に送って
+$\Lambda=\Z+\tau\Z$，$\operatorname{Im}\tau>0$と同定する．
+すると$E=\C^*/\langle q\rangle$，$q=e^{2\pi i\tau}$であり，
+$L_0^{\times}/\langle q\rangle$の特性類は指定したものに等しい．
+\eqref{eq:exp}により，これと$M'$との差は$H^1(B,\cO_B)$の像に入る．
+line orbi-bundleの指数完全列は，同じ$H^1(B,\cO_B)$を$\Pic^0_{\orb}(B)$に送る．
+$L_0$にその像をtensorすることで差を吸収できる．
+これで，位相的な類だけが正則束を決めるとは仮定せずに\eqref{eq:line}を示した．
+$\Pic^0$によるねじれは正値性を変えない．これは
+\cite[Theorem 2.4]{Istrati}で扱われる設定である．
+
+因子分解について，整K\"unneth公式の次数2では，単連結因子を含む交差項が存在しない．
+したがって$c_1(L)$は，各因子への制限の引き戻しの和となる．
+$L$をそれらの制限のtensor積で割ったものの第一Chern類は0である．
+またK\"ahler Hodge理論と$H^1_{\orb}(\Qfac,\C)=0$から
+$H^1(B,\cO_B)=H^1(A,\cO_A)$を得る．
+残る$\Pic^0$項は$A$から来るので，$L_A$に吸収できる．
+
+具体的には，因子のtorsorを$B$に引き戻したものを$P_k\to B$と書き，
+そのfiber productを，平行移動で作用する
+\[
+\ker(E^r\xrightarrow{\mathrm{sum}}E)
+\]
+で割る．局所的なファイバーは$E^r/\ker(\mathrm{sum})=E$である．
+得られる遷移関数は各因子の遷移関数の和であり，乗法的な$\C^*$座標では線束の
+遷移関数の積となる．これは\eqref{eq:line}の遷移関数に正確に一致する．
+よって再構成の主張が示された．
+\end{proof}
+
+この被覆を取る前には，definiteな束は正のrank 1の実特性類に加えて整torsionを
+もち得る．ここでtorsionが消える理由は，特定の積被覆の$H_1$がtorsion-freeだからで
+あって，任意のorbifold上のtorsion類を任意の有限被覆でいつでも消せるからではない．
+正の類は有限な底の被覆では消えない．実transfer公式
+$p_*p^*=(\deg p)\id$が引き戻しの単射性を与えるからである．
+ファイバーのisogenyでも，実係数でこの類を消すことはできない．
+
+\begin{prop}[双正則な積に対する，より強い障害]\label{prop:noproduct}
+コンパクト非K\"ahler Vaisman多様体は，両因子が正次元のコンパクト複素多様体である
+積$X_1\times X_2$と双正則にはならない．この主張は有限\'etale被覆後も成り立つ．
+\end{prop}
+\begin{proof}
+exactかつ半正定値な形式$\wt$を，次元$r_i$のコンパクトslice $X_i$に制限する．
+Stokesにより$\int_{X_i}\wt^{r_i}=0$である．半正定値性から，制限のrankは各点で
+落ちている．半正定値Hermitian形式では，ノルムが0のベクトルは形式全体の核に入る．
+したがって，積の各点で両方の因子について$TX_i\cap\ker\wt\ne0$となる．
+$\ker\wt$は複素直線なので，これは相補的な二つの接空間の両方に含まれる必要があり，
+矛盾する．有限\'etale被覆もVaismanなので，同じ議論が使える．
+これは\cite[Introduction]{Istrati}で言及される積分解の障害を再現する．
+\end{proof}
+
+線束モデルでHermitianノルムを選ぶ．零でないベクトルを単位ベクトルと正の長さに
+分けると，$L^{\times}$は滑らかに$S(L)\times\R$と同定される．
+$q$の偏角が$\varphi$なら，商は$S(L)$上の角度$\varphi$の円周回転のmapping torusである．
+この回転は恒等写像とisotopicなので
+\begin{equation}\label{eq:smooth}
+M'\simeq_{\mathrm{diff}}S(L)\times S^1
+\end{equation}
+となる．本稿の状況では，isotropyが非零の線上に自由に作用するので，単位円周束の
+全空間は滑らかである．適切なノルムを取るとSasaki幾何の構成になる．
+\eqref{eq:smooth}は実多様体の微分同相としての積であり，双正則な積を主張しない．
+特に$E\times B$の第一Betti数は$2a+2$で，\eqref{eq:betti}とは異なる．
+\emph{BB型の類似は底と横断計量については積分解として，全空間については束と群の
+拡大による記述として成立する．}
+
+\section{基本群}\label{sec:pi}
+分類空間の意味でのhomotopy完全列は
+\begin{equation}\label{eq:pi}
+\pi_2^{\orb}(B)\xrightarrow{\langle c,\cdot\rangle}\Lambda
+\longrightarrow\pi_1(M')\longrightarrow\Z^{2a}\longrightarrow1
+\end{equation}
+である．最初の矢印を省いてはいけない．特に，楕円曲線ファイバーの基本群は
+全空間の基本群に単射で入るとは限らない．
+
+\begin{prop}\label{prop:pi}
+$\Qfac$が一点なら，$\pi_1(M')$は$\Z$と実$(2a+1)$次元Heisenberg群の格子の積であり，
+virtually abelianではない．$\dim\Qfac>0$なら，$\pi_1(M)$はvirtually
+$\Z^{2a+1}$である．これらは\cite[Corollary 5.10]{Istrati}の二つの場合に対応する．
+\end{prop}
+\begin{proof}
+$B=A$なら$\pi_2(B)=0$である．偏極の基底を選び，$\kappa$をすべての$d_i>0$からなる
+単因子形$(d_1,\ldots,d_a)$にする．中心の円周の向きを選ぶと，表示は
+\begin{equation}\label{eq:heis}
+\langle x_i,y_i,z,t\mid z,t\text{は中心的},\
+[x_i,y_j]=z^{d_i\delta_{ij}},\ [x_i,x_j]=[y_i,y_j]=1\rangle
+\end{equation}
+となる．動径方向の円周が$t$を与える．この表示は$A$の基本平行四辺形を持ち上げる
+ことで得られる．円周方向の巻き数は$c_1(L)$の評価に等しい．交代的な交換子pairingは
+$\Q$上で非退化なので，どの有限指数部分群も可換ではない．
+
+$\Qfac$が正次元なら，orbifold Hurewiczにより
+$\pi_2^{\orb}(\Qfac)\cong H_2^{\orb}(\Qfac,\Z)$である．
+K\"ahler類$\kappa$の制限は非零なので，\eqref{eq:pi}の最初の写像の像は，ある$d>0$に
+ついて$d\Z e$である．したがって最後の写像の核は$\Z/d\oplus\Z$となる．
+線束モデルでは，\eqref{eq:smooth}により$\Z$因子が滑らかに分離する．
+円周束の基本群は$\Z^{2a}$の$\Z/d$による中心拡大である．構造群が円周の平行移動
+からなるためである．その交換子は有限である．$d\Z^{2a}$の逆像は可換となる．
+$d$倍の元の持ち上げ同士の交換子は，元の交換子の$d^2$乗だからである．
+この逆像は有限生成可換群なので，rank $2a$のtorsion-freeな有限指数部分群を含む．
+動径方向の$\Z$を戻すと，有限指数を除いて$\Z^{2a+1}$が得られる．
+$M'$から$M$に移っても，このvirtualな結論は変わらない．
+\end{proof}
+
+\section{具体例と境界例}\label{sec:examples}
+\begin{eg}[具体例に用いる構成]\label{eg:construction}
+$B$を滑らかな射影多様体，$H$をample線束とし，$\kappa=c_1(H)$，$L=H^{-1}$とおく．
+$i\partial\bar\partial\log h=2\pi\kappa_h>0$を満たす$L$のHermitian計量$h$を選び，
+$L^{\times}$上で$F(v)=|v|_h^2$とおく．このとき
+\begin{equation}\label{eq:cone}
+\Omega_K=i\partial\bar\partial F>0,\qquad
+\Omega_V=F^{-1}\Omega_K,\qquad\theta=-d\log F
+\end{equation}
+である．実際，水平部分は$2\pi F\kappa_h$，垂直部分は
+$iF\partial\log F\wedge\bar\partial\log F$となり，各々の方向に正である．
+よって$d\Omega_V=\theta\wedge\Omega_V$となる．対数動径座標において，計量は積
+$dt^2+g_{S(L)}$の定数倍なので，$\theta$は平行である．$0<q<1$による乗法は
+$\Omega_V,\theta$を保つため，商$M(H,q)=L^{\times}/\langle q\rangle$は
+コンパクトVaisman多様体となる．canonicalな葉は
+$E=\C^*/\langle q\rangle$ファイバーで，商は$B$である．
+ファイバーを反時計回りに向きづけると
+\begin{equation}\label{eq:exchar}
+c(M(H,q))=(-\kappa,0),\qquad
+c_j^{\bas}(M(H,q))=c_j(TB)
+\end{equation}
+となる．最初の周期生成元の符号を変えると，\eqref{eq:char}の正の規約になる．
+反転$v\mapsto v^{-1}$は，$\C^*$作用の向きを逆にして$H$と$H^{-1}$の零切断を除いた
+束を同定するので，この符号の選択はample線束のモデルと整合する．
+非零全空間が滑らかである正のline orbi-bundleにも，同じ局所的構成を適用できる．
+\end{eg}
+
+\begin{eg}[$b_1$が最大：Kodaira多様体]\label{eg:torus}
+$B=A$を次元$m$の偏極abelian varietyとし，例\ref{eg:construction}を適用する．
+得られる多様体の次元は$n=m+1$で，regularであり，すべての$j>0$について
+$c_j^{\bas}=0$，また$b_1=2m+1=2n-1$となる．基本群は，必要なら$z$の符号を変えて
+\eqref{eq:heis}で与えられる．Albanese写像は楕円曲線束の射影である．
+これらは\cite[Example 7.2, Corollary 5.11]{Istrati}のモデルに正確に一致し，
+\cite[Theorem 6.6]{Gomes}とも整合する．標準モデル計量はLCK rank 1をもつが，
+これは同じ複素多様体上のすべてのVaisman計量についての主張ではない．
+$m=1$ならprimary Kodaira曲面である．
+\end{eg}
+
+\begin{eg}[K3を底とし$b_1=1$となる例]\label{eg:k3}
+$S\subset\mP^3$を滑らかな四次K3曲面とし，$H=\cO_S(1)$とおく．
+随伴公式から$K_S\cong\cO_S$であり，Lefschetz超平面定理により$S$は単連結である．
+超平面類$h$はprimitiveである．実際，$h^2=4$であり，$h=2u$と書けたとすると
+$u^2=1$となってK3曲面の交点形式が偶であることに反する．
+それより大きな可除性は数値的に不可能である．Poincar\'e双対性から交点pairingは
+unimodularなので，$h$を$H_2(S,\Z)$に評価する写像は$\Z$へ全射である．
+ここで用いたK3のcohomologyと格子の事実については
+\cite[Chapters 1 and 14]{Huybrechts}を参照されたい．
+
+$M=M(H,q)$に対し，$n=3$で，canonical foliationは底$S$をもつregularなfoliationであり，
+\begin{equation}\label{eq:k3numbers}
+c_1^{\bas}=0,\quad \int_S c_2^{\bas}=24,\quad
+b_1(M)=b_1^{\virt}(M)=1,\quad \pi_1(M)=\Z
+\end{equation}
+が成り立つ．$c_2$は$c(TS)=(1+h)^4/(1+4h)$から直接計算でき，次数2の項は$6h^2$，
+その積分は24である．円周束の完全列
+$\pi_2(S)\to\Z\to\pi_1(S(L))\to0$とprimitivityから
+$\pi_1(S(L))=0$が従う．動径方向の円周が，表示した基本群を与える．
+特性類の組は$(-h,0)$である．葉空間はK3曲面だがAlbaneseは一点である．
+滑らかな多様体としては$M=S(L)\times S^1$であり，双正則な意味では非自明な
+コンパクト積分解をもたない．
+\end{eg}
+
+\begin{eg}[有限群によって$b_1$が小さくなる例]\label{eg:secondary}
+楕円曲線$C$，対称な負の線束$L=\cO_C(-[0])$，対合$\iota:x\mapsto-x$を取る．
+これは$\beta^2=1$となる線束の持ち上げ$\beta$をもつ．任意の持ち上げを定数の平方根で
+rescaleすればよい．$\beta$不変な負のHermitian計量と$0<q<1$を選び，
+\begin{equation}\label{eq:secondary}
+P=L^{\times}/\langle q^2\rangle,
+\qquad X=L^{\times}/\langle q\beta\rangle
+\end{equation}
+とおく．$P$に誘導される対合は自由である．固定点があれば，ある$k\in\Z$について
+$q\beta(v)=q^{2k}v$となるが，ノルムを取ると$q=q^{2k}$となって矛盾する．
+不変計量が降下するので，$P\to X$はVaisman曲面の\'etale二重被覆である．
+$H^1(P,\R)=H^1(C,\R)\oplus\R[\theta]$において，対合はそれぞれ$-1$と$+1$で作用する．
+したがって
+\begin{equation}\label{eq:secondarynumbers}
+b_1(X)=1,\qquad b_1(P)=b_1^{\virt}(X)=3
+\end{equation}
+である．$X$の葉空間は平坦orbifold
+$C/\{\pm1\}=\mP^1(2,2,2,2)$なので，$c_1^{\bas}(X)=0$である．
+これはquasi-regularだがregularではない．特性類を$C$に引き戻すと$(-[0],0)$となり，
+実係数部分は非零のrank 1をもつ．局所的な位数2の固定部分群は，
+$\C^*/\langle q^2\rangle$の元$q\beta|_{L_x}$による平行移動としてファイバーに作用する．
+これは，引き戻した特性類に加えてisotropyのデータを指定している．
+
+対応する標準的な正方トーラスのモデルでは，基本群は
+\[
+\pi_1(X)=\langle x,y,z,s\mid z\text{は中心的},\ [x,y]=z,
+\ sxs^{-1}=x^{-1},\ sys^{-1}=y^{-1},\ szs^{-1}=z\rangle
+\]
+である．同値に，生成元$s$が水平方向の反転として作用する
+$H_{\Z}\rtimes\Z$である．$x,y,z,s^2$で生成される部分群は
+$H_{\Z}\times\Z$で，指数は2である．このモデルは，群演算
+$(x,y,z)(x',y',z')=(x+x',y+y',z+z'+xy')$をもつ実Heisenberg群で直接見られる．
+水平反転$(x,y,z)\mapsto(-x,-y,z)$は整格子と標準Sasaki構造を保つ．
+動径周期の半分だけ平行移動することで商の作用が自由になる．
+これにより，誘導される次数1の偏極に対して上記の正則構成が実現される．
+これらは\cite[Example 7.3]{Istrati}と同じsecondary Kodaira型の例である．
+\end{eg}
+
+\begin{eg}[有限被覆で滑らかにできないorbifold因子]\label{eg:orb}
+重み付き次数5の多項式
+\[
+f=z_0^2z_1+z_1^5+z_2^5+z_3^5,
+\qquad(w_0,w_1,w_2,w_3)=(2,1,1,1)
+\]
+を考える．$W=\{f=0\}\setminus\{0\}$は滑らかである．
+四つの偏微分の共通零点が原点だけだからである．重み付き$\C^*$作用の商は
+射影K3 orbifold $B\subset\mP(2,1,1,1)$となり，$[1,0,0,0]$に$A_1$ orbifold点を
+もつが，因子的なisotropyはない．$5=2+1+1+1$なので，随伴公式からorbifold標準束は
+自明である．重み付き乗法による商$W/\langle q\rangle$は，
+$c_1^{\bas}=0$を満たす滑らかなコンパクトVaisman三次元多様体である．
+
+これは\cite[Example 7.4]{Istrati}にある明示的なデータである．
+複素次元3のこの孤立超曲面特異点のlinkは，超曲面linkの連結性定理
+\cite[Chapter 5]{Milnor}によって単連結である．その円周orbi-bundleの完全列から
+$\pi_1^{\orb}(B)=0$が従う．したがって$B$には非自明な連結orbifold被覆が一つもなく，
+特に有限な滑らかなorbifold被覆は存在しない．全空間は，単連結な原点を除いた錐を
+無限巡回群で割ったものなので，$\pi_1=\Z$，$b_1=1$となる．
+特性類の組はtautologicalな負のline orbi-bundle $\cO_B(-1)$に対応する
+$(-c_1^{\orb}(\cO_B(1)),0)$である．局所群$\Z/2$は，零切断を除いたtautologicalな
+線に忠実に作用する．これは構造定理の「orbifold」を「多様体」に置き換えることへの
+実際の障害であり，単にその証明を得られていないということではない．
+\end{eg}
+
+多様体とその被覆を区別して主要な三例を比較すると，次のようになる．
+\begin{center}\small
+\begin{tabular}{lllll}\toprule
+例 & $n$ & 底 & $b_1$ & $b_1^{\virt}$\\\midrule
+Kodaira多様体 & $m+1$ & $A^m$ & $2m+1$ & $2m+1$\\
+K3上の構成 & $3$ & $S$ & $1$ & $1$\\
+secondary Kodaira & $2$ & $C/\{\pm1\}$ & $1$ & $3$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section{本稿で証明する追加の帰結}\label{sec:extra}
+\begin{cor}[実現する値]\label{cor:values}
+各$n\geq2$について，\eqref{eq:gap}の各値はvirtual第一Betti数として実現する．
+\eqref{eq:hyp}のもとで現れる通常の第一Betti数は，正確に$1,3,\ldots,2n-1$である．
+\end{cor}
+\begin{proof}
+virtualな最大値は例\ref{eg:torus}で実現する．$0\leq a\leq m-2$に対して
+$k=m-a\geq2$とおき，$Q_k$を$\mP^{k+1}$の滑らかな次数$k+2$の超曲面とする．
+随伴公式から$K_{Q_k}\cong\cO$，Lefschetzから単連結性が従う．
+そのRicci-flat計量は平坦因子をもたない．そのような因子があれば$H^1$が非零に
+なるからである．$A^a\times Q_k$に外部tensor積の偏極を入れ，
+例\ref{eg:construction}を適用する．命題\ref{prop:betti}，\ref{prop:virtual}から
+$b_1=b_1^{\virt}=2a+1$を得る．
+
+通常の不変量については，楕円曲線の積$A=C^m$と積の対称な偏極を取る．
+$0\leq\ell<m$として，$\ell$個の因子で恒等，残りの因子で$-1$となる対合を
+持ち上げたものを$\beta$とする．\eqref{eq:secondary}の構成をそのまま適用できる．
+動径方向の縮小が，底の固定点の上でも作用の自由性を保証する．
+不変な横断1形式の次元は$2\ell$であり，$b_1=2\ell+1$，
+virtualな値は$2m+1$となる．$\ell=m$はトーラスを底とするモデル自身である．
+すべての場合の奇数性はbasic Hodge対称性と補題\ref{lem:lowdegree}から従い，
+上界はすでに証明した．
+\end{proof}
+
+\begin{cor}[第二basic Chern類を追加した場合]\label{cor:c2}
+\eqref{eq:hyp}のもとで，次は同値である．
+\begin{enumerate}
+\item 実basic cohomologyにおいて$c_2^{\bas}(Q^{1,0})=0$である．
+\item 固定したcanonical foliationと横断複素構造に対し，横断的に平坦な
+K\"ahler計量が存在する．
+\item $b_1^{\virt}(M)=2n-1$である．
+\item Kodaira多様体となる$M$の有限\'etale被覆が存在する．
+\end{enumerate}
+$n=2$では最初の条件は自動的で，四条件はすべて成り立つ．
+\end{cor}
+\begin{proof}
+商，またはその有限積被覆にRicci-flat計量を入れて考える．
+$m\geq2$ではunitary Chern曲率$F$は$\tr F=0$，$\Lambda F=0$を満たす．
+skew-Hermitian行列上の$-\tr$が定めるノルムを用いると，primitive形式の
+Hodge恒等式から
+\begin{equation}\label{eq:c2}
+\int_B c_2(TB)\wedge\frac{\omega_B^{m-2}}{(m-2)!}
+=\frac1{8\pi^2}\int_B |F|^2\frac{\omega_B^m}{m!}
+\end{equation}
+を得る．実際，$\tr F=0$なら$c_2=(8\pi^2)^{-1}\tr(F\wedge F)$であり，
+$*F=-F\wedge\omega_B^{m-2}/(m-2)!$である．
+両式はorbifold座標で適用でき，積分には通常どおり固定部分群の位数の逆数を掛ける．
+したがってbasic類が消えると$F=0$となる．横断複素次元1ではRicci-flat性自体が
+平坦性を意味する．コンパクト平坦K\"ahler orbifoldは，有限なトーラスorbifold被覆を
+もつ．これは先に用いた分解定理の平坦な場合である．その引き戻しがKodaira被覆を与える．
+同値に，\eqref{eq:BB}に非平坦因子が存在しない．命題\ref{prop:virtual}から第三の
+条件を得る．逆にKodaira被覆上ではbasic Chern類は0である．持ち上げたfoliationの
+実transferにより引き戻しは単射なので，下の第二basic類も消える．
+同じ分解から，(3)が(4)を導くことも直接分かる．
+\end{proof}
+
+これらの帰結は既存の構造定理とHodge理論から本稿で証明したものである．
+今回の検索では，文献上新しい結果であることは確認できなかった．新規性は主張しない．
+
+\appendix
+\section{依存関係，確認事項，主張しないこと}\label{sec:audit}
+論理の流れは，極小な横断K\"ahler foliation，basicポテンシャル補題とRicci比較，
+同値\eqref{eq:equiv}，Istratiによる固定$J$での計量の存在とquasi-regularity，
+その有限orbifold BB分解，特性類の計算，Betti数・Albanese・基本群の帰結，の順である．
+
+コンパクト性はHodge理論，平均，正値性の積分，自己同型群の議論，Albaneseの像に
+用いた．Vaisman条件は極小な葉，正則Killing場，\eqref{eq:vaisman}を与える．
+第一basic Chern条件は\eqref{eq:equiv}と横断Ricci-flat性に入る．quasi-regularityは
+既知定理で証明した後にのみ用いた．有限被覆は横断的な有限holonomyと指定された
+整torsionを除くが，正の曲率類は消さない．homotopy，整cohomology，被覆の議論では
+orbifold構造を維持した．射影性は正値性から得られ，代数的な具体例と因子の偏極の
+選択に用いた．
+
+中心問題は既知の結果によって解決される．本稿では未解決の段階を意図的に証明済みの
+定理として用いてはいない．各因子のtorsor上のすべての有限群作用や，標識を忘れた
+全空間同士のすべての同型は分類していない．これらは今後の分類問題であって，
+定理\ref{thm:main}の欠けた仮定ではない．すべてのorbifoldが有限被覆で滑らかになる
+という主張は用いない．一般のLCK多様体に関する主張も，本稿の証明からは導かない．
+
+監査では\AIstatus{KNOWN}，\AIstatus{DERIVED}，\AIstatus{CANDIDATE}，
+\AIstatus{REFUTED}，\AIstatus{GAP}を区別する．
+「de Rham消滅ならbasic消滅」，「小さい$b_1$なら非トーラス因子が存在」，
+「有限被覆ですべての底が滑らかになる」という偽の含意は，具体例で
+\AIstatus{REFUTED}となった．\AIstatus{CANDIDATE}を定理として提示してはいない．
+Istratiの出版版の番号を確認できなかったこと，網羅的な新規性調査ではないことは，
+書誌上の限界として\texttt{research\_audit\_ja.md}に記録した．
+指定された三つのarXiv論文の定理番号は実際の本文で確認した．
+Milnorの本における一般の超曲面linkの連結性定理の正確な番号は未確認であり，
+標準的な章単位の参照のみを用いた．深い入力については，ここで必要な仮定をすべて
+明示した．コンパイルと描画による検証の結果は別のREADMEに記録する．
+
+\clearpage
+% Bibliography recovered solely from the corresponding supplied PDF.
+\begin{thebibliography}{EKA90}
+\bibitem[Cam04]{Campana}
+Frédéric Campana. Orbifoldes à première classe de Chern nulle. In \emph{The Fano Conference}, pages 339--351. Università di Torino, 2004. Theorem 6.4 and Definition 6.5 checked in arXiv:math/0402243v1.
+
+\bibitem[EKA90]{EK}
+Aziz El Kacimi-Alaoui. Opérateurs transversalement elliptiques sur un feuilletage riemannien et applications. \emph{Compositio Mathematica}, 73(1):57--106, 1990.
+
+\bibitem[Gom26]{Gomes}
+Lucas H. S. Gomes. On the classification of Vaisman manifolds with vanishing first basic Chern class and large first Betti number, 2026. arXiv:2604.04134v2, 21 May 2026.
+
+\bibitem[Huy16]{Huybrechts}
+Daniel Huybrechts. \emph{Lectures on K3 Surfaces}. Cambridge University Press, 2016. Author's online manuscript, Chapters 1 and 14 consulted.
+
+\bibitem[IO23]{IO}
+Nicolina Istrati and Alexandra Otiman. Bott--Chern cohomology of compact Vaisman manifolds. \emph{Transactions of the American Mathematical Society}, 376(6):3919--3936, 2023. Numbered citations refer to the final preprint arXiv:2206.07312v2, 26 September 2022.
+
+\bibitem[Ist25]{Istrati}
+Nicolina Istrati. Vaisman manifolds with vanishing first Chern class. \emph{Journal of the European Mathematical Society}, 2025. Published online first, 11 March 2025. Numbered citations in this note refer to arXiv:2304.02582v1, 5 April 2023.
+
+\bibitem[Mil68]{Milnor}
+John Milnor. \emph{Singular Points of Complex Hypersurfaces}, volume 61 of \emph{Annals of Mathematics Studies}. Princeton University Press, 1968. Chapter 5; precise theorem number for link connectivity not verified in this run.
+
+\bibitem[OV24]{OV}
+Liviu Ornea and Misha Verbitsky. A Calabi--Yau theorem for Vaisman manifolds. \emph{Communications in Analysis and Geometry}, 32(10):2889--2900, 2024. Numbered citations refer to arXiv:2206.08808v2, 24 August 2022.
+
+\end{thebibliography}
+
+
+
+\clearpage
+\endgroup
+\end{document}

@@ -77,7 +77,6 @@
 - [研究室の写真 (before 2025/08)](https://masataka123.github.io/blog3/sub6/picture_room_2/)
 - [研究室の写真 (before 2025/06)](https://masataka123.github.io/blog3/sub6/picture_room/)
 
-
 ## 競技プログラミング
 2018年4月から始めた. 言語はPython3です. ただ現在は興味失ってやっていません.
 プロフィールにも書いてある通り本戦に2回出場.

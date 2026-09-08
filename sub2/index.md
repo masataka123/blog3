@@ -82,6 +82,15 @@
 [久本さんとの研究](https://arxiv.org/abs/2607.25181)でAppendix Aを示した際に, 今まで苦手だった微分幾何学が意外とできることがわかった. その勢いのまま「今までブラックボックスにしていた定理を示していこう!」と思い, 一気に作った. 今まで楕円型偏微分作用素, Yauの定理, 榎先生のgeneric nefness, -Kxがnefの基本群など, 結構適当に理解していたが, ちゃんと文章や証明を埋めてよかった気がする. まあchatGPTのおかげですね. 
 
 
+# **chatGPTが書いたノート**
+chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あってるか知らないので注意すること
+
+- [A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/toric_MY_20260908.pdf) 
+- [Maximal relative anticanonical growth\\and finite \'etale splitting](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/anticanonical_20260908.pdf) 
+- [Magnitude homology of annuli and holomorphic maps](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/maginutude_20260908.pdf) 
+- [Basic Chern vanishing and Beauville--Bogomolov structure in Vaisman geometry](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/vaisman_BB_20260908.pdf) 
+- [Fixed-Lee positive cones on point blow-ups of exact LCK surfaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/LCK_20260908.pdf) 
+
 # **数学以外の論文・プレプリント**
 - Masataka Iwai. ‘地震発生の新しい統計則に関する数理的研究.’ 数理科学実践研究レター. [Article link](https://www.ms.u-tokyo.ac.jp/lmsr/pdf/2019-6.pdf)
 - Masataka Iwai, Takahito Kashiwabara, Ichiro Sato and Ryosuke Yano. ‘Earthquake-network in Japan based on Abe-Suzuki model and its characteristics.’ DOI: 10.13140/RG.2.2.12494.61766
@@ -90,6 +99,7 @@
 # **その他**
 - 修論 [PDF](https://masataka123.github.io/blog3/pdf/weak_geodesic.pdf) 
 - Ph.D Thesis. [PDF](https://masataka123.github.io/blog3/pdf/phd_iwai.pdf)
+
 
 
 <!---
