@@ -13,6 +13,7 @@ layout: default
 - 9月26日(日本時間)にBirational Geometry Seminar [2026](https://www.math.ucla.edu/~jmoraga/BGS2026)で講演します. 
 - [ノート](https://masataka123.github.io/blog3/sub2/)に[Yauの定理とその応用](https://masataka123.github.io/blog3/pdf/20260813_Yau_theorem/Yau_theorem_application_2026_0818.pdf) を追加しました. 
 - 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 
+- [chatGPTが書いたノート](https://masataka123.github.io/blog3/sub2/)を追加しました. AIが気になる方は見てみてください.
 
 ## **Geometry Paper Digest**
 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 代数幾何学・複素幾何学・多変数複素解析をカバーしてます. 大阪公立大学の松澤陽介さんに深く感謝いたします. 

@@ -86,7 +86,7 @@
 chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あってるか知らないので注意すること
 
 - [A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/toric_MY_20260908.pdf) 
-- [Maximal relative anticanonical growth\\and finite \'etale splitting](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/anticanonical_20260908.pdf) 
+- [Maximal relative anticanonical growth and finite etale splitting](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/anticanonical_20260908.pdf) 
 - [RC-positivity of induced symmetric powers and positive mean curvature](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_positive_2.pdf) 
 - [Positive curvature averages without a common RC direction](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_positive_1.pdf) 
 - [Mean RC curvature and pinched volume rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_DS_continues.pdf) 
@@ -98,6 +98,15 @@ chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あっ�
 - [p-Kahler thresholds for two-step nilmanifolds from rational normal curves](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/nil_solv_research_bilingual.pdf) 
 - [Heat-semigroup defects, gaussian approximation, and spectral multiplicities on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_bilingual.pdf) 
 - [Spectral cluster multiplicities from almost gaussian eigenfunctions on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_2.pdf) 
+
+近年流行っている分野の単語をいれてプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. 私は概念くらいしか知りません. 近年流行っている分野を選んだのは問題が作りやすいと思ったためです. みたらわかるが, 修士論文でこれが出てきても特に何も思わないし, むしろよくできていると思う. 
+
+しかし恐ろしい時代になったものである. 
+証明を知ってなくても上の論文を自分の論文だと言い張って出すことはできるからである. 
+多分こういったことをする人は増えていくと思う. 
+
+ちなみに私はしょうもないプライドがあるので, 絶対にしないつもりである. そもそもこんな簡単な論文を書いて出しても面白くないためである. まあそれも状況が変わればどうなるかわかりませんが. 
+
 
 
 # **数学以外の論文・プレプリント**
