@@ -1,0 +1,1341 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+% dsfont unavailable; unused in the manuscript.
+% bbm unavailable; unused in the manuscript.
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+% ulem omitted: unavailable and unused.
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[unicode,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions specific to this paper.
+\newcommand{\pk}{p\text{-K\"ahler}}
+\newcommand{\gfr}{\mathfrak g}
+\newcommand{\Eex}{\mathcal E}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\ev}{\operatorname{ev}}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\langtag}{en}
+\renewcommand{\theHsection}{\langtag.\arabic{section}}
+\renewcommand{\theHequation}{\langtag.\arabic{section}.\arabic{equation}}
+\providecommand{\theHthm}{}
+\renewcommand{\theHthm}{\langtag.\arabic{section}.\arabic{thm}}
+\setlength{\emergencystretch}{2em}
+\hypersetup{pdftitle={p-Kahler thresholds for two-step nilmanifolds from rational normal curves},pdfauthor={chatGPT 6 Astra}}
+\title[$p$-K\"ahler thresholds for two-step nilmanifolds]{$p$-K\"ahler thresholds for two-step nilmanifolds from rational normal curves}
+\author{chatGPT 6 Astra}
+\date{September 8, 2026}
+\subjclass[2020]{Primary 53C55; Secondary 22E25, 32J27}
+\keywords{$p$-K\"ahler structure, complex nilmanifold, central extension, Vandermonde matrix, rational normal curve}
+\begin{document}
+\begin{abstract}
+We determine all degrees admitting closed transverse forms on a family of
+complex parallelizable two-step nilmanifolds. The structure equations are
+$d x_i=d y_i=0$ and $d z_a=\sum_{i=1}^m\lambda_i^{a-1}x_i\wedge y_i$,
+where $1\leq r\leq m$, $1\leq a\leq r$, and the $\lambda_i$ are distinct.
+Every compact quotient has a $p$-K\"ahler structure precisely when
+$m+2r-1\leq p\leq 2m+r-1$. Gaussian rational parameters admit explicit
+lattices. The proof combines degeneration of decomposable forms under
+diagonal automorphisms with a Lagrange interpolation functional on a
+square-zero algebra. A second example shows that dimension, center dimension,
+and minimum rank of invariant holomorphic exact two-forms do not determine this threshold.
+The one-dimensional-center case is classical; the proposed contribution
+is the evaluation-matrix calculation for higher-dimensional centers and
+the rank comparison. The literature audit records the remaining priority
+uncertainty separately from the complete proofs given here.
+\end{abstract}
+\maketitle
+
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+The existence of a $p$-K\"ahler structure asks for a closed real $(p,p)$-form
+whose restriction to every complex $p$-plane is a positive volume form.
+It measures which dimensions of complex planes can be detected by closed
+positive forms. On a non-K\"ahler nilmanifold the answer need not be confined
+to the balanced degree $p=n-1$. We calculate the entire range for central
+extensions governed by polynomial evaluation.
+
+Fix integers $1\leq r\leq m$ and distinct numbers
+$\lambda_1,\ldots,\lambda_m\in\C$. Put $n=2m+r$. Consider the complex Lie
+algebra with dual basis $x_i,y_i$ ($1\leq i\leq m$), $z_a$ ($1\leq a\leq r$)
+and differential
+\begin{equation}\label{en:equations}
+ d x_i=d y_i=0,\qquad
+ d z_a=\sum_{i=1}^m\lambda_i^{a-1}e_i,\qquad e_i=x_i\wedge y_i.
+\end{equation}
+Its simply connected complex Lie group is denoted by $G_{m,r}(\lambda)$.
+We regard it as a real Lie group of dimension $2n$, with its fixed
+bi-invariant complex structure.
+
+\begin{thm}\label{en:main}
+Let $M=\Gamma\backslash G_{m,r}(\lambda)$, where $\Gamma$ is a discrete
+cocompact subgroup. For $1\leq p\leq n-1$,
+\begin{equation}\label{en:threshold}
+ M\text{ is }p\text{-K\"ahler}
+ \quad\Longleftrightarrow\quad p\geq m+2r-1.
+\end{equation}
+Existence can be realized by an invariant form; nonexistence applies to
+all smooth forms. For every choice of distinct
+$\lambda_i\in\Q(\ii)$ a lattice exists. The center and derived algebra
+both have complex dimension $r$, so the Lie algebra has no nonzero
+abelian direct factor.
+\end{thm}
+
+For $r\geq2$, the evaluation matrix has projective columns
+$[1:\lambda_i:\cdots:\lambda_i^{r-1}]$ on a rational normal curve.
+Thus the hypothesis describes a geometric configuration of bracket
+directions. The theorem remains valid after invertible row operations,
+permutation of columns, and nonzero rescaling of individual columns:
+these are changes of the $z_a$, of the pairs, and of the $y_i$.
+For $r\geq2$, any finite set of distinct points on a rational normal curve
+can be put in this form. Indeed, choose the point at infinity outside the
+finite set and use the degree-$(r-1)$ monomials as homogeneous coordinates.
+
+\subsection{Comparison with previous results}
+Alessandrini--Bassanelli's exact-form criterion and their complex
+Heisenberg examples are recalled in \cite[Proposition 2.15 and
+Example 2.16]{en:LM}; the latter give the case $r=1$ of
+Theorem~\ref{en:main}. The original reference is \cite{en:AB}; its full
+text was not obtained in this audit. Sferruzza--Tardini
+\cite[Theorem 2.3]{en:ST} give an obstruction from the number of closed
+coframe elements. Lo Giudice \cite[Theorem 4.1]{en:LG} proves upward
+propagation under Gaussian rationality. Lo Giudice--Mainenti
+\cite[Theorems 5.4--5.5 and Lemma 5.7]{en:LM} prove propagation and
+dimension/rank obstructions without that rationality restriction.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+Result & Input relevant here & Output in the present family \\
+\midrule
+\cite[Th.~2.3]{en:ST} & $2m$ closed coframe elements & No $r$-K\"ahler form \\
+\cite[Lem.~5.7]{en:LM} & Minimum half-rank $m-r+1$ & Necessary bound $p\geq m+2r-1$ \\
+Theorem~\ref{en:main} & Polynomial evaluation configuration & Sufficiency at the bound and the full range \\
+Proposition~\ref{en:counter} & Same minimum rank, different configuration & The bound need not be sufficient \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+The necessary bound is therefore not a new obstruction. The additional
+argument is the sufficiency calculation: it excludes decomposable
+boundaries in every complementary degree up to $m-r+1$. Neither the
+exact-form criterion alone nor propagation supplies that exclusion.
+The counterexample below also prevents replacing the evaluation
+hypothesis by the corresponding rank condition. Fino--Mainenti's
+averaging result \cite[Lemma 2.4]{en:FM} is compatible with our conclusion,
+but is unnecessary here. The fibration obstruction in
+\cite[Theorem 3.1]{en:FGM} concerns a semipositive $(1,1)$-class and does
+not supply this sufficiency calculation for $(2,0)$ brackets.
+
+The concrete difference from these inspected results supports a claim
+of additional content for $1<r<m$. This is not an assertion of exhaustive
+priority: the full 1991 paper, the full published revision of
+\cite{en:LG}, and all related algebra literature have not been checked.
+No unproved conjecture or cohomology comparison enters the proofs.
+
+\subsection{Proof mechanism}
+Write $\Eex^k=d(\Lambda^{k-1}\gfr^*)$. An invariant decomposable element of
+$\Eex^k$ obstructs a $p$-K\"ahler structure for $k=n-p$. Diagonal
+automorphisms reduce such an element to products of single $x_i$ or $y_i$,
+paired factors $e_i$, and central covectors. Closedness excludes central
+covectors in the relevant range. Exactness of what remains becomes
+membership of a squarefree monomial in an ideal generated by evaluation
+linear forms. A functional with squared Vandermonde coefficients
+annihilates this ideal and is nonzero on every such monomial.
+
+\section{Groups, quotients, and the positivity criterion}
+\subsection{An explicit group and lattice}
+It is useful to allow any rank-$r$ matrix $A=(A_{ai})\in M_{r,m}(\C)$
+with nonzero columns, replacing $\lambda_i^{a-1}$ by $A_{ai}$ in
+\eqref{en:equations}. Denote the resulting group by $G_A$.
+On $\C^m\times\C^m\times\C^r$ set
+\begin{equation}\label{en:law}
+ (u,v,w)(u',v',w')=
+ \left(u+u',v+v',w+w'-A(u_i v'_i)_{i=1}^m\right).
+\end{equation}
+Bilinearity gives associativity: the central cross terms on both sides
+are $-A(u_i v'_i+u_i v''_i+u'_i v''_i)_i$. The identity is zero and the
+inverse is $(-u,-v,-w-A(u_i v_i)_i)$. The underlying space is simply
+connected. The left-invariant holomorphic coframe is
+\[
+ x_i=du_i,\quad y_i=dv_i,\quad
+ z_a=dw_a+\sum_i A_{ai}u_i\,dv_i.
+\]
+This verifies the structure equations and $d^2=0$, and proves
+integrability and holomorphic parallelizability directly.
+All commutators are central. Nonzero columns imply that a central vector
+has no $u$ or $v$ component; rank $r$ then gives
+$Z(\gfr)=[\gfr,\gfr]=\C^r$. An abelian direct factor would contribute to
+the center but not to the derived algebra, so cannot occur.
+
+If $A\in M_{r,m}(\Q(\ii))$, choose an integer $D>0$ with
+$DA_{ai}\in\Z[\ii]$. Then
+\begin{equation}\label{en:lattice}
+ \Gamma_A=\Z[\ii]^m\times\Z[\ii]^m\times D^{-1}\Z[\ii]^r
+\end{equation}
+is a subgroup by \eqref{en:law} and the inverse formula, and is discrete.
+Left multiplication first reduces $u$ and $v$ modulo $\Z[\ii]$ and then
+reduces $w$ modulo $D^{-1}\Z[\ii]^r$. Every orbit therefore meets the
+closure of a bounded product of fundamental squares, proving
+cocompactness. Left translations are holomorphic, so the coframe descends
+to the compact quotient. For non-Gaussian-rational parameters we assert
+the geometric theorem only when a lattice is given.
+
+\subsection{Conventions and a self-contained criterion}
+All exterior powers in the algebraic proof are over $\C$ and refer to
+the holomorphic coframe. Thus $d:\Lambda^j\gfr^*\to\Lambda^{j+1}\gfr^*$
+is the holomorphic Chevalley--Eilenberg differential, not the full
+complexified real complex. A form is \emph{decomposable} if it is a wedge
+of one-forms. We use positive volume $\ii^{n^2}\nu\wedge\bar\nu$ for a
+nonzero holomorphic volume $\nu$. A real $(p,p)$-form $\Omega$ is
+\emph{transverse} if
+\[
+ \Omega\wedge\ii^{k^2}\eta\wedge\bar\eta>0,
+ \qquad k=n-p,
+\]
+for every nonzero decomposable $(k,0)$-form $\eta$ at each point.
+A $p$-K\"ahler form is a closed transverse form. No condition that it be
+a power of a Hermitian form is imposed for intermediate $p$.
+
+\begin{lem}[Exact-form criterion]\label{en:criterion}
+For a compact quotient of $G_A$ and $1\leq p\leq n-1$, a $p$-K\"ahler
+form exists if and only if $\Eex^{n-p}$ contains no nonzero decomposable
+element. If it exists, an invariant choice is
+\begin{equation}\label{en:positive}
+ \Omega=\ii^{p^2}\sum_j\phi_j\wedge\bar\phi_j,
+ \qquad \{\phi_j\}\text{ a basis of }\ker(d:\Lambda^p\to\Lambda^{p+1}).
+\end{equation}
+\end{lem}
+\begin{proof}
+This is the classical criterion recalled above, with its proof included.
+If $0\ne\eta=d\xi$ is decomposable, then $\eta\wedge\bar\eta$
+is exact. Stokes contradicts the positive integral against any closed
+transverse $\Omega$, whether or not $\Omega$ is invariant.
+For the converse, $d\Lambda^{n-1}\gfr^*=0$: a basis monomial omits
+only one generator, and replacing any $z_a$ by any $e_i$ repeats at
+least one horizontal generator. The perfect wedge pairing consequently
+identifies $\Ann(\Eex^{n-p})$ with $\ker d|_{\Lambda^p}$, since
+$0=d(\phi\wedge\xi)=d\phi\wedge\xi+(-1)^p\phi\wedge d\xi$.
+If a decomposable $\eta\ne0$ is not in $\Eex^{n-p}$, some
+$\phi_j\wedge\eta$ is nonzero. Writing $\phi_j\wedge\eta=c_j\nu$,
+\eqref{en:positive} gives
+\[
+ \Omega\wedge\ii^{k^2}\eta\wedge\bar\eta
+ =\sum_j|c_j|^2\ii^{n^2}\nu\wedge\bar\nu>0.
+\]
+Conjugation proves that $\Omega$ is real; its summands are closed and
+descend to the quotient.
+\end{proof}
+
+This argument neither identifies manifold cohomology with Lie algebra
+cohomology nor requires the algebraic automorphisms used below to
+preserve the lattice.
+
+\section{Diagonal degeneration and polynomial evaluation}
+\subsection{Reduction of decomposable boundaries}
+Put $Z^*=\Span\{z_1,\ldots,z_r\}$. The torus $(\C^*)^m$ acts on the
+coframe by $x_i\mapsto t_i x_i$, $y_i\mapsto t_i^{-1}y_i$, fixing $Z^*$.
+It commutes with $d$ for every matrix $A$.
+
+\begin{lem}\label{en:fixed}
+If $\Eex^k$ contains a nonzero decomposable form, it contains one of the
+form
+\begin{equation}\label{en:normal}
+ \alpha_S\wedge e_D\wedge\theta,
+ \qquad k=s+2d+q.
+\end{equation}
+Here $S,D\subset\{1,\ldots,m\}$ are disjoint, $s=|S|$, $d=|D|$,
+$\alpha_S$ chooses one of $x_i,y_i$ for each $i\in S$,
+$e_D=\bigwedge_{i\in D}e_i$, and
+$\theta=\theta_1\wedge\cdots\wedge\theta_q\in\Lambda^q Z^*$ is nonzero
+and decomposable. Empty products equal $1$.
+\end{lem}
+\begin{proof}
+Act on an assumed decomposable boundary by the one-parameter subgroup
+$t_i=t^i$. Divide by the smallest power of $t$ occurring and let $t\to0$.
+The limit is nonzero, lies in the closed linear space $\Eex^k$, and is
+decomposable because the Pl\"ucker relations are polynomial. It is an
+eigenvector. Its associated $k$-plane, recovered as
+$\{v\in\gfr^*:v\wedge\eta=0\}$, is invariant under this subgroup.
+The one-form weights $1,\ldots,m,-1,\ldots,-m,0$ are distinct except
+on $Z^*$. An invariant subspace splits into its weight spaces, hence
+selects individual $x_i,y_i$ and a subspace of $Z^*$. This gives
+\eqref{en:normal}.
+\end{proof}
+
+Let $a_i\in(Z^*)^*$ denote evaluation by the $i$th column:
+$a_i(z_a)=A_{ai}$. Set $U=\{1,\ldots,m\}\setminus S$ and $F=U\setminus D$.
+Closedness of \eqref{en:normal} gives
+\begin{equation}\label{en:contractions}
+ \iota_{a_i}\theta=0\quad(i\in F).
+\end{equation}
+Indeed the terms $\alpha_S e_D e_i$ for distinct $i\in F$ are independent;
+the other terms in the differential vanish by repetition.
+For a nonzero decomposable $\theta$ of positive degree,
+\eqref{en:contractions} means that each $a_i$ annihilates
+$\Span\{\theta_1,\ldots,\theta_q\}$.
+
+If $q=0$, the torus weight component of the exterior complex containing
+$\alpha_S e_D$ is, up to the fixed factor $\alpha_S$, the complex
+\begin{equation}\label{en:boolean}
+ B_U\otimes\Lambda Z^*,\quad
+ B_U=\C[e_i:i\in U]/(e_i^2:i\in U),\quad
+ d z_a=L_a^U=\sum_{i\in U}A_{ai}e_i.
+\end{equation}
+The variables $e_i$ commute and have holomorphic degree $2$; their
+\emph{polynomial} degree in $B_U$ is $1$.
+One may take the same torus weight component of a primitive since $d$
+preserves weights. To obtain central degree zero its relevant component
+has central degree one. Consequently
+\begin{equation}\label{en:ideal}
+ \alpha_S e_D\in\Eex^{s+2d}
+ \quad\Longleftrightarrow\quad
+ e_D\in(L_1^U,\ldots,L_r^U)\subset B_U.
+\end{equation}
+This is an equality in an explicitly defined complex, not a claim about
+Dolbeault or Bott--Chern cohomology.
+
+\subsection{A separating functional}
+\begin{lem}\label{en:interpolation}
+Let $t_i$ ($i\in U$) be $u=|U|$ distinct complex numbers and let
+$L_a=\sum_{i\in U}t_i^{a-1}e_i$, $1\leq a\leq r$. If $d\geq1$ and
+$2d\leq u-r+1$, no squarefree monomial $e_D$ of degree $d$ belongs to
+$(L_1,\ldots,L_r)$ in $B_U$.
+\end{lem}
+\begin{proof}
+Define
+\begin{equation}\label{en:functional}
+ w_i=\frac1{\prod_{j\in U\setminus\{i\}}(t_i-t_j)},\qquad
+ F_d(e_I)=
+ \prod_{\substack{i,j\in I\\i<j}}(t_i-t_j)^2\prod_{i\in I}w_i
+ \quad(|I|=d).
+\end{equation}
+Every displayed value is nonzero. Lagrange interpolation, by comparing
+the coefficient of $T^{u-1}$, gives
+\begin{equation}\label{en:lagrange}
+ \sum_{i\in U}w_i P(t_i)=0\qquad(\deg P\leq u-2).
+\end{equation}
+For completeness, interpolate $P$ by
+$\sum_i P(t_i)w_i\prod_{j\ne i}(T-t_j)$; equality holds because both
+polynomials have degree at most $u-1$ and agree at $u$ distinct points.
+
+For $|J|=d-1$, put
+$c_J=\prod_{i<j\in J}(t_i-t_j)^2\prod_{i\in J}w_i$. Then
+\begin{equation}\label{en:annihilation}
+ F_d(L_a e_J)=c_J\sum_{i\in U}w_i t_i^{a-1}
+                         \prod_{j\in J}(t_i-t_j)^2=0.
+\end{equation}
+Terms with $i\in J$ vanish. The polynomial in the sum has degree at most
+$r-1+2(d-1)=r+2d-3\leq u-2$, so \eqref{en:lagrange} applies.
+Thus $F_d$ annihilates the degree-$d$ part of the ideal and is nonzero on
+every $e_D$, proving the assertion. In degree zero the corresponding
+nonmembership follows from homogeneity.
+\end{proof}
+
+\section{Proof of the threshold theorem}
+\subsection{Existence}
+\begin{prop}\label{en:noexact}
+For \eqref{en:equations}, the space $\Eex^k$ contains no nonzero
+decomposable element if $1\leq k\leq m-r+1$.
+\end{prop}
+\begin{proof}
+Assume otherwise and use Lemma~\ref{en:fixed}. If $q>0$, then
+\[
+ |F|=m-s-d=m-k+d+q\geq r-1+d+q\geq r.
+\]
+Any $r$ evaluation columns are independent by the Vandermonde determinant.
+Equation~\eqref{en:contractions} would make every element of $(Z^*)^*$
+annihilate the nonzero subspace spanned by the $\theta_j$, a contradiction.
+Hence $q=0$. If $d=0$, \eqref{en:ideal} contradicts homogeneity.
+If $d>0$, then $u=m-s$ and
+$s+2d=k\leq m-r+1$ imply $2d\leq u-r+1$.
+Lemma~\ref{en:interpolation}, with $t_i=\lambda_i$ on $U$, contradicts
+\eqref{en:ideal}.
+\end{proof}
+
+By Lemma~\ref{en:criterion}, this proves existence for
+$p=n-k\geq m+2r-1$, including the boundary. Formula~\eqref{en:positive}
+is a finite linear-algebra construction of the form: compute a basis of
+closed holomorphic $p$-forms and sum their Hermitian squares. The argument
+establishes transversality on all planes, not only on coordinate planes.
+
+\subsection{Nonexistence in every remaining degree}
+Choose a subset $H$ of size $r-1$ and set
+\[
+ Q(T)=\prod_{j\in H}(T-\lambda_j)
+     =\sum_{a=1}^r c_a T^{a-1},\qquad z_Q=\sum_a c_a z_a.
+\]
+Its support $I=\{1,\ldots,m\}\setminus H$ has size $m-r+1$.
+Fix $h\in I$ and let $\alpha=\bigwedge_{i\in I\setminus\{h\}}x_i$.
+Then
+\begin{equation}\label{en:firstboundary}
+ d(z_Q\wedge\alpha)=Q(\lambda_h)e_h\wedge\alpha\ne0
+\end{equation}
+is decomposable of degree $m-r+2$. Wedging its primitive with any needed
+complementary horizontal basis covectors gives nonzero decomposable
+boundaries of every degree from $m-r+2$ through $2m$.
+
+Here is a construction for the remaining degrees, valid for every $A$
+with nonzero columns. Let $E=\prod_{j=1}^m e_j$, fix $i$, choose
+$\zeta\in Z^*$ with $a_i(\zeta)=1$, and choose independent
+$\theta_1,\ldots,\theta_q\in\ker a_i$ for $0\leq q\leq r-1$.
+Writing $E_{\widehat i}=\prod_{j\ne i}e_j$ and
+$\theta=\theta_1\wedge\cdots\wedge\theta_q$, we have
+\begin{equation}\label{en:topboundary}
+ d(E_{\widehat i}\wedge\zeta\wedge\theta)=E\wedge\theta.
+\end{equation}
+Only the $e_i$ component survives multiplication by $E_{\widehat i}$;
+it is $1$ for $d\zeta$ and $0$ for each $d\theta_j$.
+The right side is nonzero and decomposable of degree $2m+q$.
+Thus decomposable boundaries occur in every degree
+$m-r+2\leq k\leq n-1$. Lemma~\ref{en:criterion} proves nonexistence
+for all $p\leq m+2r-2$. Together with the group and lattice construction,
+this completes Theorem~\ref{en:main}.
+
+\section{Rank comparison and sharpness}
+For any rank-$r$ coefficient matrix define
+\[
+ s(A)=\min_{0\ne c\in\C^r}
+       \#\{i:\textstyle\sum_a c_a A_{ai}\ne0\}.
+\]
+The ordinary matrix rank of the associated nonzero two-form
+$\sum_{a,i}c_aA_{ai}e_i$ is twice its support size, since its skew matrix
+is a direct sum of $2\times2$ blocks. If every set of $r$ columns is
+independent, then $s(A)=m-r+1$: a nonzero functional vanishes on at most
+$r-1$ columns, and one can choose it to vanish on a prescribed $r-1$.
+The construction in \eqref{en:firstboundary}, applied to a minimum-support
+row combination, gives a boundary of degree $s(A)+1$.
+The following shows why the corresponding rank obstruction has no
+general converse.
+
+\begin{prop}\label{en:counter}
+Let
+\begin{equation}\label{en:counterA}
+ A=\begin{pmatrix}
+ 1&0&0&1&1&1\\
+ 0&1&0&1&2&3\\
+ 0&0&1&1&4&9
+ \end{pmatrix},\qquad
+ V=(\lambda_i^{a-1})_{\substack{1\leq a\leq3\\1\leq i\leq6}},
+ \quad\lambda_i=i-1.
+\end{equation}
+Both groups admit lattices and have complex dimension $15$, center
+dimension $3$, and minimum rank $8$ in $d(\gfr^*)\setminus\{0\}$.
+For compact quotients with their indicated complex structures,
+\[
+ \{p:1\leq p\leq14,\ M_V\text{ is }p\text{-K\"ahler}\}=\{11,12,13,14\},
+\]
+whereas
+\[
+ \{p:1\leq p\leq14,\ M_A\text{ is }p\text{-K\"ahler}\}=\{12,13,14\}.
+\]
+\end{prop}
+\begin{proof}
+The last three columns of $A$ are $(1,t,t^2)^t$ for $t=1,2,3$.
+Every three columns are independent: three coordinate columns have
+determinant $1$; two coordinate columns reduce to a nonzero entry;
+one coordinate column reduces to a nonzero two-by-two minor of these
+three evaluation columns; all three evaluation columns have Vandermonde
+determinant $2$. The same independence holds for $V$. Thus $s(A)=s(V)=4$.
+Section 2 supplies the lattices (here $D=1$), the dimensions, and the
+center description. The range for $V$ follows from Theorem~\ref{en:main}.
+
+For $A$, set
+\[
+ S_1=e_4+e_5+e_6,\quad S_2=e_4+2e_5+3e_6,\quad
+ S_3=e_4+4e_5+9e_6,
+\]
+so $d z_a=e_a+S_a$. Since $e_a^2=0$ and the $e_i$ commute,
+\begin{equation}\label{en:counterprimitive}
+ e_4e_5=d\left\{\frac18\left(
+ 18z_1(S_1-e_1)-9z_2(S_2-e_2)+z_3(S_3-e_3)\right)\right\}.
+\end{equation}
+To check the coefficients, put $R_a=S_a^2/2$. Their coefficients on
+$(e_4e_5,e_4e_6,e_5e_6)$ are respectively
+$(1,1,1)$, $(2,3,6)$, $(4,9,36)$; hence
+$18R_1-9R_2+R_3=4e_4e_5$.
+This decomposable boundary rules out $p=11$. Multiplication by
+complementary horizontal covectors, followed by
+\eqref{en:topboundary}, rules out all $p\leq11$.
+
+It remains to prove existence for $p=12,13,14$, equivalently absence of
+decomposable boundaries of degrees $k\leq3$. Use Lemma~\ref{en:fixed}.
+If $q>0$, then $|F|=6-k+d+q\geq4$; its columns span $\C^3$, contradicting
+\eqref{en:contractions}. For $q=0$ there are only two possibilities:
+$d=0$, which is excluded by homogeneity, or $d=1$ and $s\leq1$.
+In the latter case $e_j\in(L_1^U,L_2^U,L_3^U)$ would give a row
+combination vanishing at every column of $U\setminus\{j\}$, a set of
+at least four columns containing three independent ones. The row
+combination must be zero and cannot yield $e_j$.
+Apply Lemma~\ref{en:criterion}.
+\end{proof}
+
+The example also shows that the column-independence data alone does not
+determine the range: both matrices have every three columns independent.
+It supplies a specific failed extension of the main theorem, not a
+classification of all coefficient matrices.
+
+\begin{rem}\label{en:boundary}
+The assumptions have visible roles. If $r=1$, the theorem recovers the
+classical complex Heisenberg threshold $m+1$. If $r=m$, changing the
+central basis gives $d z_i=e_i$, a product of three-dimensional complex
+Heisenberg algebras; only $p=n-1$ occurs. Neither boundary case is claimed
+as new. Distinctness cannot simply be omitted: with $m=3$, $r=2$ and
+$\lambda=(0,0,1)$, the matrix still has rank two but $d z_2=e_3$ is
+decomposable. The predicted $6$-K\"ahler structure in dimension eight
+is then obstructed. Finally, compactness is essential to the necessity
+argument: the group itself is biholomorphic to $\C^n$ and carries a
+non-invariant Euclidean K\"ahler metric.
+\end{rem}
+
+\section{Scope, verification, and remaining questions}
+The statements concern the specified bi-invariant complex structure.
+They do not classify other complex structures on the same smooth
+manifold. Varying $\lambda$ varies the group data; we have not constructed
+a deformation on one fixed compact manifold or classified parameters
+up to biholomorphism. The explicit Gaussian rational lattices establish
+compact examples in all the asserted dimensions. The result for any
+other lattice is conditional only on its existence, not on an
+unproved cohomological assertion.
+
+The file \texttt{verify\_algebra.py} checks exact rational interpolation
+identities on all subsets of eight specified rational points, the first
+boundary for $1\leq r\leq m\leq5$, $d^2$ on coframe monomials through
+degree three in those cases, and \eqref{en:counterprimitive} with exterior
+signs. It also checks all twenty maximal minors of $A$. The degree-two
+ideal multiplication matrices for $A$ and $V$ have size $15\times18$
+and ranks $15$ and $14$, respectively. These finite computations are
+checks; the proofs above do not depend on an extrapolation from them.
+
+The proofs are complete within the stated setting and have undergone
+the internal checks just described, not independent peer review.
+The exact-form criterion, the rank obstruction, and the $r=1$ case are
+known. The proposed additional results are the evaluation-family
+sufficiency theorem and the explicit equal-rank comparison. Their
+priority remains subject to the literature limitations stated in the
+Introduction and in the audit.
+
+A remaining problem is to determine which configurations of $m$ bracket
+directions in $\mathbb P^{r-1}$ satisfy the sharp rank bound. For $r\geq3$
+the comparison above shows that independence of every $r$ columns is
+insufficient. The weight reduction \eqref{en:boolean}--\eqref{en:ideal}
+isolates an algebraic obstruction, but the present interpolation proof
+only settles the rational-normal-curve configuration. No general
+classification or deformation-stability assertion is made here.
+
+\begin{thebibliography}{FGM26}
+\bibitem[AB91]{en:AB} L. Alessandrini and G. Bassanelli,
+\emph{Compact $p$-K\"ahler manifolds}, Geom. Dedicata \textbf{38} (1991),
+199--210. \href{https://doi.org/10.1007/BF00181219}{doi:10.1007/BF00181219}.
+The original full text was not accessed; the criterion and Heisenberg
+case were checked through \cite[Proposition 2.15 and Example 2.16]{en:LM}.
+\bibitem[FM24]{en:FM} A. Fino and A. Mainenti,
+\emph{A note on $p$-K\"ahler structures on compact quotients of Lie groups},
+Ann. Mat. Pura Appl. \textbf{203} (2024), 2111--2124.
+\href{https://arxiv.org/abs/2310.16726v3}{arXiv:2310.16726v3},
+Lemma 2.4 and Theorems 3.8, 4.2 (preprint numbering).
+\bibitem[FGM26]{en:FGM} A. Fino, G. Grantcharov, and A. Mainenti,
+\emph{$p$-K\"ahler structures on fibrations and reductive Lie groups},
+\href{https://arxiv.org/abs/2601.21849}{arXiv:2601.21849} (2026), Theorem 3.1.
+\bibitem[LG26]{en:LG} E. Lo Giudice,
+\emph{$p$-K\"ahler structures on compact complex manifolds},
+Math. Z. \textbf{312} (2026), article 66.
+\href{https://doi.org/10.1007/s00209-026-03966-0}{doi:10.1007/s00209-026-03966-0}.
+Text checked: \href{https://arxiv.org/abs/2506.13546v1}{arXiv:2506.13546v1},
+Theorem 4.1; published full text not accessed.
+\bibitem[LM26]{en:LM} E. Lo Giudice and A. Mainenti,
+\emph{$p$-K\"ahler structures on nilmanifolds and holomorphically parallelizable manifolds},
+\href{https://arxiv.org/abs/2607.29506v1}{arXiv:2607.29506v1} (2026),
+Proposition 2.15, Example 2.16, Theorems 5.4--5.5, Lemma 5.7,
+and Proposition 5.8.
+\bibitem[ST22]{en:ST} T. Sferruzza and N. Tardini,
+\emph{$p$-K\"ahler and balanced structures on nilmanifolds with nilpotent complex structures},
+Ann. Global Anal. Geom. \textbf{62} (2022), 869--881, Theorem 2.3.
+\href{https://doi.org/10.1007/s10455-022-09867-9}{doi:10.1007/s10455-022-09867-9}.
+\end{thebibliography}
+\newpage
+\renewcommand{\langtag}{ja}
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\setcounter{footnote}{0}
+\renewcommand{\theHfootnote}{ja.\arabic{footnote}}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jprop}[thm]{命題}
+\theoremstyle{remark}
+\newtheorem{jrem}[thm]{注意}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\markboth{chatGPT 6 Astra}{二段冪零多様体の $p$-K\"ahler 閾値}
+\begin{center}
+{\Large\bfseries 有理正規曲線から定まる二段冪零多様体の\par
+$p$-K\"ahler 閾値}\par\medskip
+chatGPT 6 Astra\par\smallskip
+2026年9月8日
+\end{center}
+\begin{quotation}\small
+\noindent\textbf{概要.}
+複素平行化可能な二段冪零多様体のある族について，閉横断形式が存在する次数をすべて決定する．
+構造方程式は $d x_i=d y_i=0$ および
+$d z_a=\sum_{i=1}^m\lambda_i^{a-1}x_i\wedge y_i$ であり，
+$1\leq r\leq m$，$1\leq a\leq r$ とし，$\lambda_i$ は相異なるとする．
+任意のコンパクト商が $p$-K\"ahler 構造を持つための必要十分条件は
+$m+2r-1\leq p\leq2m+r-1$ である．Gaussian 有理数のパラメータに対しては格子を明示的に構成する．
+証明は，対角自己同型による分解可能形式の退化と，平方零代数上の Lagrange 補間汎関数を組み合わせる．
+さらに，次元，中心の次元，不変正則完全2形式の最小ランクが一致しても閾値が異なる例を与える．
+中心が1次元の場合は古典的である．今回の追加部分として提示するのは，高次元の中心を持つ評価行列の計算と，ランクを比較する反例である．
+以下に完全な証明を与え，先取性について残る不確実性は文献監査で別に記録する．
+\end{quotation}
+
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+$p$-K\"ahler 構造の存在とは，各複素 $p$ 次元平面への制限が正の体積形式となる，閉実 $(p,p)$ 形式の存在を意味する．
+これは，どの次元の複素平面を閉正形式によって検出できるかを測る条件である．
+非 K\"ahler な冪零多様体においても，存在する次数は balanced に対応する $p=n-1$ だけとは限らない．
+本稿では，多項式の評価によって定まる中心拡大について，存在次数の全範囲を計算する．
+
+整数 $1\leq r\leq m$ と相異なる複素数 $\lambda_1,\ldots,\lambda_m\in\C$ を固定し，$n=2m+r$ とおく．
+双対基底 $x_i,y_i$（$1\leq i\leq m$），$z_a$（$1\leq a\leq r$）を持ち，微分が
+\begin{equation}\label{ja:equations}
+ d x_i=d y_i=0,\qquad
+ d z_a=\sum_{i=1}^m\lambda_i^{a-1}e_i,\qquad e_i=x_i\wedge y_i
+\end{equation}
+で与えられる複素 Lie 代数を考える．対応する単連結複素 Lie 群を
+$G_{m,r}(\lambda)$ と書く．これを実次元 $2n$ の Lie 群とみなし，指定された両側不変複素構造を固定する．
+
+\begin{jthm}\label{ja:main}
+$\Gamma$ を離散余コンパクト部分群とし，$M=\Gamma\backslash G_{m,r}(\lambda)$ とする．
+$1\leq p\leq n-1$ に対して
+\begin{equation}\label{ja:threshold}
+ M\text{ が }p\text{-K\"ahler}
+ \quad\Longleftrightarrow\quad p\geq m+2r-1
+\end{equation}
+が成り立つ．存在する場合には不変形式を選べ，非存在の主張は任意の滑らかな形式に適用される．
+相異なる $\lambda_i\in\Q(\ii)$ の任意の選択に対して格子が存在する．
+中心と導来代数の複素次元はいずれも $r$ であり，この Lie 代数は非零の可換直積因子を持たない．
+\end{jthm}
+
+$r\geq2$ のとき，評価行列の射影的な列
+$[1:\lambda_i:\cdots:\lambda_i^{r-1}]$ は有理正規曲線上にある．
+したがって，この仮定は括弧の値の方向の幾何学的配置を指定している．
+行の可逆変換，列の置換，各列の非零定数倍を行っても定理は成立する．
+これらはそれぞれ $z_a$，対 $(x_i,y_i)$，$y_i$ の基底変換に対応する．
+$r\geq2$ では，有理正規曲線上の相異なる有限個の点はこの形に書ける．
+実際，有限集合の外に無限遠点を選び，次数 $r-1$ の単項式を斉次座標として使えばよい．
+
+\subsection{先行研究との比較}
+Alessandrini--Bassanelli による完全形式の判定法と複素 Heisenberg 多様体の例は，
+\cite[Proposition 2.15, Example 2.16]{ja:LM} に再掲されており，後者は定理~\ref{ja:main} の $r=1$ の場合を与える．
+原論文は \cite{ja:AB} であるが，今回の監査ではその全文を入手できなかった．
+Sferruzza--Tardini \cite[Theorem 2.3]{ja:ST} は閉コフレーム要素の個数から障害を与えている．
+Lo Giudice \cite[Theorem 4.1]{ja:LG} は Gaussian 有理性の下で上の次数への伝播を証明した．
+Lo Giudice--Mainenti \cite[Theorems 5.4--5.5, Lemma 5.7]{ja:LM} は，その有理性を仮定せず，伝播と次元・ランクによる障害を証明している．
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+結果 & 今回に関係する入力 & 本稿の族で得られる結論 \\
+\midrule
+\cite[Th.~2.3]{ja:ST} & 閉コフレーム要素が $2m$ 個 & $r$-K\"ahler 形式の非存在 \\
+\cite[Lem.~5.7]{ja:LM} & 最小半ランク $m-r+1$ & 必要条件 $p\geq m+2r-1$ \\
+定理~\ref{ja:main} & 多項式の評価による配置 & 境界での十分性と存在次数の全範囲 \\
+命題~\ref{ja:counter} & 最小ランクは同じで配置が異なる & この必要条件は一般には十分でない \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+したがって，必要条件そのものを新しい障害として主張するわけではない．
+追加した議論は十分性の計算であり，補次数 $m-r+1$ 以下のすべての次数で分解可能な境界が存在しないことを示す．
+完全形式の判定法だけでも，伝播だけでも，この排除は得られない．
+また，後述の反例により，評価行列という仮定を対応するランク条件に置き換えることもできない．
+Fino--Mainenti の平均化の結果 \cite[Lemma 2.4]{ja:FM} は本稿の結論と整合するが，ここでは用いない．
+\cite[Theorem 3.1]{ja:FGM} のファイブレーションの障害は半正な $(1,1)$ 類に関するものであり，
+$(2,0)$ 型の括弧に対する今回の十分性の計算を与えるものではない．
+
+以上の確認済み結果との具体的な差は，$1<r<m$ における追加的内容を主張する根拠となる．
+ただし先取性を網羅的に確定したという意味ではない．1991年の原論文全文，\cite{ja:LG} の出版版全文，および関連する代数の文献すべてを確認したわけではない．
+証明では未証明の予想やコホモロジー比較定理を使用しない．
+
+\subsection{証明の仕組み}
+$\Eex^k=d(\Lambda^{k-1}\gfr^*)$ と書く．$\Eex^k$ に属する分解可能な不変形式は，$k=n-p$ のとき $p$-K\"ahler 構造を妨げる．
+対角自己同型によって，そのような形式を単独の $x_i$ または $y_i$，対になった因子 $e_i$，中心方向の共変ベクトルの積へ帰着する．
+問題の次数範囲では，閉性から中心方向の共変ベクトルを排除できる．
+残った形式の完全性は，平方因子を持たない単項式が評価一次式で生成されるイデアルに属するかという問題となる．
+Vandermonde 積の平方を係数とする汎関数が，このイデアルを消しながら各単項式上で非零になる．
+
+\section{Lie 群，商，および正値性の判定}
+\subsection{群と格子の明示的構成}
+ここでは，各列が非零の任意のランク $r$ の行列 $A=(A_{ai})\in M_{r,m}(\C)$ を許し，
+\eqref{ja:equations} の $\lambda_i^{a-1}$ を $A_{ai}$ に置き換えると便利である．
+対応する群を $G_A$ とする．$\C^m\times\C^m\times\C^r$ 上に
+\begin{equation}\label{ja:law}
+ (u,v,w)(u',v',w')=
+ \left(u+u',v+v',w+w'-A(u_i v'_i)_{i=1}^m\right)
+\end{equation}
+と定める．双線形性から結合律が従う．実際，両辺の中心成分に現れる交差項は
+$-A(u_i v'_i+u_i v''_i+u'_i v''_i)_i$ で一致する．
+単位元は零で，逆元は $(-u,-v,-w-A(u_i v_i)_i)$ である．台空間は単連結であり，左不変正則コフレームは
+\[
+ x_i=du_i,\quad y_i=dv_i,\quad
+ z_a=dw_a+\sum_i A_{ai}u_i\,dv_i
+\]
+で与えられる．これにより構造方程式と $d^2=0$ を検証でき，可積分性と正則平行化可能性も直接従う．
+すべての交換子は中心に入る．各列が非零であることから，中心のベクトルは $u,v$ 成分を持たない．
+さらに行列のランクが $r$ なので $Z(\gfr)=[\gfr,\gfr]=\C^r$ である．
+可換直積因子は中心には寄与するが導来代数には寄与しないため，非零のものは存在しない．
+
+$A\in M_{r,m}(\Q(\ii))$ のとき，$DA_{ai}\in\Z[\ii]$ となる整数 $D>0$ を選ぶ．すると
+\begin{equation}\label{ja:lattice}
+ \Gamma_A=\Z[\ii]^m\times\Z[\ii]^m\times D^{-1}\Z[\ii]^r
+\end{equation}
+は \eqref{ja:law} と逆元の公式から部分群であり，離散的である．
+左乗法により，まず $u,v$ を $\Z[\ii]$ を法として基本領域に移し，その後 $w$ を $D^{-1}\Z[\ii]^r$ を法として基本領域に移す．
+したがって各軌道は有界な基本正方形の積の閉包と交わり，余コンパクト性が従う．
+左移動は正則なので，コフレームはコンパクト商に降下する．
+Gaussian 有理数でないパラメータについては，格子が与えられた場合にのみ幾何学的な定理を主張する．
+
+\subsection{規約と自己完結した判定法}
+代数的な証明での外積はすべて $\C$ 上で取り，正則コフレームに関するものとする．
+したがって $d:\Lambda^j\gfr^*\to\Lambda^{j+1}\gfr^*$ は正則 Chevalley--Eilenberg 微分であり，
+実 Lie 代数の複素化された全複体を意味しない．1形式の外積に書ける形式を\emph{分解可能}という．
+非零の正則体積形式 $\nu$ に対して $\ii^{n^2}\nu\wedge\bar\nu$ を正の体積とする．
+実 $(p,p)$ 形式 $\Omega$ が\emph{横断的}であるとは，各点で，すべての非零分解可能 $(k,0)$ 形式 $\eta$ に対して
+\[
+ \Omega\wedge\ii^{k^2}\eta\wedge\bar\eta>0,
+ \qquad k=n-p
+\]
+が成り立つことをいう．閉横断形式を $p$-K\"ahler 形式という．
+中間次数 $p$ では，Hermitian 形式の冪であるという条件は課さない．
+
+\begin{jlem}[完全形式による判定]\label{ja:criterion}
+$G_A$ のコンパクト商と $1\leq p\leq n-1$ に対して，$p$-K\"ahler 形式が存在することと，
+$\Eex^{n-p}$ が非零分解可能要素を含まないことは同値である．存在する場合には
+\begin{equation}\label{ja:positive}
+ \Omega=\ii^{p^2}\sum_j\phi_j\wedge\bar\phi_j,
+ \qquad \{\phi_j\}\text{ は }\ker(d:\Lambda^p\to\Lambda^{p+1})\text{ の基底}
+\end{equation}
+という不変形式を選べる．
+\end{jlem}
+\begin{proof}
+これは上述の古典的な判定法であり，ここに証明を含める．
+$0\ne\eta=d\xi$ が分解可能なら，$\eta\wedge\bar\eta$ は完全である．
+閉横断形式 $\Omega$ との積分の正値性は Stokes の定理に矛盾する．ここで $\Omega$ の不変性は不要である．
+逆に，$d\Lambda^{n-1}\gfr^*=0$ が成り立つ．実際，基底単項式は生成元を一つだけ除いた形をしており，
+任意の $z_a$ を任意の $e_i$ で置き換えると，少なくとも一つの水平方向の生成元が重複する．
+完全な外積対に関して，これにより $\Ann(\Eex^{n-p})$ と $\ker d|_{\Lambda^p}$ が一致する．
+すなわち $0=d(\phi\wedge\xi)=d\phi\wedge\xi+(-1)^p\phi\wedge d\xi$ を使えばよい．
+分解可能な $\eta\ne0$ が $\Eex^{n-p}$ に属さなければ，ある $j$ で $\phi_j\wedge\eta\ne0$ である．
+$\phi_j\wedge\eta=c_j\nu$ と書くと，\eqref{ja:positive} から
+\[
+ \Omega\wedge\ii^{k^2}\eta\wedge\bar\eta
+ =\sum_j|c_j|^2\ii^{n^2}\nu\wedge\bar\nu>0
+\]
+を得る．複素共役を取れば $\Omega$ が実であることが分かる．各項は閉であり，商に降下する．
+\end{proof}
+
+この議論では，多様体のコホモロジーと Lie 代数コホモロジーを同一視しない．
+また，以下で使う代数的自己同型が格子を保存することも要求しない．
+
+\section{対角退化と多項式の評価}
+\subsection{分解可能な境界の帰着}
+$Z^*=\Span\{z_1,\ldots,z_r\}$ とおく．トーラス $(\C^*)^m$ はコフレームに
+$x_i\mapsto t_i x_i$，$y_i\mapsto t_i^{-1}y_i$ と作用し，$Z^*$ を固定する．
+この作用は任意の行列 $A$ について $d$ と可換である．
+
+\begin{jlem}\label{ja:fixed}
+$\Eex^k$ が非零分解可能形式を含むなら，次の形のものも含む：
+\begin{equation}\label{ja:normal}
+ \alpha_S\wedge e_D\wedge\theta,
+ \qquad k=s+2d+q.
+\end{equation}
+ここで $S,D\subset\{1,\ldots,m\}$ は互いに素で，$s=|S|$，$d=|D|$ とする．
+$\alpha_S$ は各 $i\in S$ について $x_i,y_i$ の一方を選んだ外積，
+$e_D=\bigwedge_{i\in D}e_i$ であり，
+$\theta=\theta_1\wedge\cdots\wedge\theta_q\in\Lambda^q Z^*$ は非零分解可能形式である．空の積は $1$ とする．
+\end{jlem}
+\begin{proof}
+仮定した分解可能な境界に，1径数部分群 $t_i=t^i$ を作用させる．
+現れる $t$ の最小冪で割り，$t\to0$ とする．極限は非零であり，閉線形空間 $\Eex^k$ に属する．
+Pl\"ucker 関係式は多項式なので極限も分解可能である．また，極限は固有ベクトルである．
+対応する $k$ 次元平面は $\{v\in\gfr^*:v\wedge\eta=0\}$ として復元でき，この部分群で不変である．
+1形式上の重み $1,\ldots,m,-1,\ldots,-m,0$ は $Z^*$ 上を除いて相異なる．
+不変部分空間は重み空間に分裂するため，個々の $x_i,y_i$ と $Z^*$ の部分空間を選ぶ形になる．
+これが \eqref{ja:normal} を与える．
+\end{proof}
+
+$i$ 番目の列による評価を $a_i\in(Z^*)^*$ と書く．すなわち $a_i(z_a)=A_{ai}$ である．
+$U=\{1,\ldots,m\}\setminus S$，$F=U\setminus D$ とおく．\eqref{ja:normal} の閉性は
+\begin{equation}\label{ja:contractions}
+ \iota_{a_i}\theta=0\quad(i\in F)
+\end{equation}
+を与える．実際，相異なる $i\in F$ に対する $\alpha_S e_D e_i$ は独立で，微分の他の項は重複により消える．
+正の次数の非零分解可能形式 $\theta$ に対して，\eqref{ja:contractions} は，
+各 $a_i$ が $\Span\{\theta_1,\ldots,\theta_q\}$ 上で零となることを意味する．
+
+$q=0$ の場合，$\alpha_S e_D$ を含む外積複体のトーラス重み成分は，固定因子 $\alpha_S$ を除けば
+\begin{equation}\label{ja:boolean}
+ B_U\otimes\Lambda Z^*,\quad
+ B_U=\C[e_i:i\in U]/(e_i^2:i\in U),\quad
+ d z_a=L_a^U=\sum_{i\in U}A_{ai}e_i
+\end{equation}
+である．変数 $e_i$ は可換で，正則次数は $2$ だが，$B_U$ での\emph{多項式次数}は $1$ とする．
+$d$ は重みを保存するため，原始形式も同じトーラス重み成分に取れる．
+中心方向の次数が零の結果を得るには，原始形式の関係する成分の中心方向の次数は一である．したがって
+\begin{equation}\label{ja:ideal}
+ \alpha_S e_D\in\Eex^{s+2d}
+ \quad\Longleftrightarrow\quad
+ e_D\in(L_1^U,\ldots,L_r^U)\subset B_U
+\end{equation}
+を得る．これは明示された複体内の等式であり，Dolbeault や Bott--Chern コホモロジーに関する主張ではない．
+
+\subsection{分離汎関数}
+\begin{jlem}\label{ja:interpolation}
+$t_i$（$i\in U$）を $u=|U|$ 個の相異なる複素数とし，
+$L_a=\sum_{i\in U}t_i^{a-1}e_i$（$1\leq a\leq r$）とおく．
+$d\geq1$ かつ $2d\leq u-r+1$ なら，次数 $d$ の平方因子を持たない単項式 $e_D$ は，
+$B_U$ のイデアル $(L_1,\ldots,L_r)$ に属さない．
+\end{jlem}
+\begin{proof}
+次のように定める：
+\begin{equation}\label{ja:functional}
+ w_i=\frac1{\prod_{j\in U\setminus\{i\}}(t_i-t_j)},\qquad
+ F_d(e_I)=
+ \prod_{\substack{i,j\in I\\i<j}}(t_i-t_j)^2\prod_{i\in I}w_i
+ \quad(|I|=d).
+\end{equation}
+表示した値はすべて非零である．Lagrange 補間で $T^{u-1}$ の係数を比較すると
+\begin{equation}\label{ja:lagrange}
+ \sum_{i\in U}w_i P(t_i)=0\qquad(\deg P\leq u-2)
+\end{equation}
+を得る．具体的には，$P$ を
+$\sum_i P(t_i)w_i\prod_{j\ne i}(T-t_j)$ で補間する．両辺の次数は $u-1$ 以下であり，相異なる $u$ 点で一致するので等しい．
+
+$|J|=d-1$ に対し，
+$c_J=\prod_{i<j\in J}(t_i-t_j)^2\prod_{i\in J}w_i$ とおく．すると
+\begin{equation}\label{ja:annihilation}
+ F_d(L_a e_J)=c_J\sum_{i\in U}w_i t_i^{a-1}
+                         \prod_{j\in J}(t_i-t_j)^2=0
+\end{equation}
+である．$i\in J$ の項は消える．和の中の多項式の次数は
+$r-1+2(d-1)=r+2d-3\leq u-2$ 以下なので，\eqref{ja:lagrange} が適用できる．
+したがって $F_d$ はイデアルの次数 $d$ の部分を消し，各 $e_D$ 上では非零であり，主張が従う．
+次数零での対応する非所属は斉次性から従う．
+\end{proof}
+
+\section{閾値定理の証明}
+\subsection{存在}
+\begin{jprop}\label{ja:noexact}
+\eqref{ja:equations} に対して，$1\leq k\leq m-r+1$ ならば，$\Eex^k$ は非零分解可能要素を含まない．
+\end{jprop}
+\begin{proof}
+存在すると仮定し，補題~\ref{ja:fixed} を用いる．$q>0$ なら
+\[
+ |F|=m-s-d=m-k+d+q\geq r-1+d+q\geq r
+\]
+である．Vandermonde 行列式により，任意の $r$ 本の評価列は独立である．
+すると \eqref{ja:contractions} は，$(Z^*)^*$ のすべての要素が，$\theta_j$ の張る非零部分空間上で零になることを意味し，矛盾する．
+したがって $q=0$ である．$d=0$ なら \eqref{ja:ideal} は斉次性に矛盾する．
+$d>0$ なら，$u=m-s$ および $s+2d=k\leq m-r+1$ より $2d\leq u-r+1$ である．
+$U$ 上で $t_i=\lambda_i$ として補題~\ref{ja:interpolation} を適用すると，\eqref{ja:ideal} に矛盾する．
+\end{proof}
+
+補題~\ref{ja:criterion} により，境界を含む $p=n-k\geq m+2r-1$ での存在が従う．
+\eqref{ja:positive} は，有限次元線形代数による形式の構成を与えている．
+すなわち閉正則 $p$ 形式の基底を計算し，その Hermitian 平方を足せばよい．
+上の議論は，座標平面だけでなくすべての平面上の横断性を示している．
+
+\subsection{残るすべての次数での非存在}
+$|H|=r-1$ となる部分集合 $H$ を選び，
+\[
+ Q(T)=\prod_{j\in H}(T-\lambda_j)
+     =\sum_{a=1}^r c_a T^{a-1},\qquad z_Q=\sum_a c_a z_a
+\]
+とおく．その台 $I=\{1,\ldots,m\}\setminus H$ の大きさは $m-r+1$ である．
+$h\in I$ を固定し，$\alpha=\bigwedge_{i\in I\setminus\{h\}}x_i$ とおくと，
+\begin{equation}\label{ja:firstboundary}
+ d(z_Q\wedge\alpha)=Q(\lambda_h)e_h\wedge\alpha\ne0
+\end{equation}
+は次数 $m-r+2$ の分解可能形式である．
+その原始形式に必要な補完的な水平方向の基底共変ベクトルを外積すれば，
+次数 $m-r+2$ から $2m$ までの各次数で非零分解可能な境界を得る．
+
+残りの次数については，各列が非零の任意の $A$ に適用できる次の構成を用いる．
+$E=\prod_{j=1}^m e_j$ とし，$i$ を固定する．
+$a_i(\zeta)=1$ となる $\zeta\in Z^*$ と，$0\leq q\leq r-1$ に対し
+$\ker a_i$ の独立な要素 $\theta_1,\ldots,\theta_q$ を選ぶ．
+$E_{\widehat i}=\prod_{j\ne i}e_j$，$\theta=\theta_1\wedge\cdots\wedge\theta_q$ と書けば
+\begin{equation}\label{ja:topboundary}
+ d(E_{\widehat i}\wedge\zeta\wedge\theta)=E\wedge\theta
+\end{equation}
+である．$E_{\widehat i}$ を掛けた後には $e_i$ 成分だけが残り，
+その係数は $d\zeta$ では $1$，各 $d\theta_j$ では $0$ である．
+右辺は次数 $2m+q$ の非零分解可能形式である．
+したがって，すべての $m-r+2\leq k\leq n-1$ で分解可能な境界が存在する．
+補題~\ref{ja:criterion} から，すべての $p\leq m+2r-2$ で非存在が従う．
+群と格子の構成を合わせて，定理~\ref{ja:main} の証明が完了する．
+
+\section{ランクの比較と仮定の鋭さ}
+ランク $r$ の任意の係数行列に対して
+\[
+ s(A)=\min_{0\ne c\in\C^r}
+       \#\{i:\textstyle\sum_a c_a A_{ai}\ne0\}
+\]
+と定める．対応する非零2形式 $\sum_{a,i}c_aA_{ai}e_i$ の通常の行列ランクは台の大きさの2倍である．
+実際，その歪対称行列は $2\times2$ ブロックの直和である．
+任意の $r$ 本の列が独立なら，$s(A)=m-r+1$ となる．
+非零汎関数は高々 $r-1$ 本の列でしか零にならず，指定された $r-1$ 本の列上で零になる汎関数を選べるからである．
+最小台の行結合に \eqref{ja:firstboundary} の構成を適用すると，次数 $s(A)+1$ の境界を得る．
+次の結果は，対応するランク障害に一般的な逆がない理由を示す．
+
+\begin{jprop}\label{ja:counter}
+\begin{equation}\label{ja:counterA}
+ A=\begin{pmatrix}
+ 1&0&0&1&1&1\\
+ 0&1&0&1&2&3\\
+ 0&0&1&1&4&9
+ \end{pmatrix},\qquad
+ V=(\lambda_i^{a-1})_{\substack{1\leq a\leq3\\1\leq i\leq6}},
+ \quad\lambda_i=i-1
+\end{equation}
+とする．両群は格子を持ち，複素次元 $15$，中心次元 $3$ であり，
+$d(\gfr^*)\setminus\{0\}$ における最小ランクは $8$ である．
+指定した複素構造を持つコンパクト商に対して，
+\[
+ \{p:1\leq p\leq14,\ M_V\text{ が }p\text{-K\"ahler}\}=\{11,12,13,14\}
+\]
+である一方，
+\[
+ \{p:1\leq p\leq14,\ M_A\text{ が }p\text{-K\"ahler}\}=\{12,13,14\}
+\]
+である．
+\end{jprop}
+\begin{proof}
+$A$ の最後の3列は，$t=1,2,3$ に対する $(1,t,t^2)^t$ である．
+任意の3列は独立である．実際，3本とも座標列なら行列式は $1$，2本が座標列なら非零成分に帰着し，
+1本が座標列ならこれら評価列の非零な2次小行列式に帰着する．
+3本とも評価列なら Vandermonde 行列式は $2$ である．$V$ にも同じ独立性が成り立つ．
+よって $s(A)=s(V)=4$ である．第2節の構成が格子（ここでは $D=1$），次元，中心の記述を与える．
+$V$ の存在範囲は定理~\ref{ja:main} から従う．
+
+$A$ に対して
+\[
+ S_1=e_4+e_5+e_6,\quad S_2=e_4+2e_5+3e_6,\quad
+ S_3=e_4+4e_5+9e_6
+\]
+とおくと $d z_a=e_a+S_a$ である．$e_a^2=0$ であり $e_i$ は可換なので，
+\begin{equation}\label{ja:counterprimitive}
+ e_4e_5=d\left\{\frac18\left(
+ 18z_1(S_1-e_1)-9z_2(S_2-e_2)+z_3(S_3-e_3)\right)\right\}
+\end{equation}
+を得る．係数の確認のため $R_a=S_a^2/2$ とおく．
+$(e_4e_5,e_4e_6,e_5e_6)$ に関する係数は順に
+$(1,1,1)$，$(2,3,6)$，$(4,9,36)$ なので，$18R_1-9R_2+R_3=4e_4e_5$ となる．
+この分解可能な境界は $p=11$ を排除する．補完的な水平方向の共変ベクトルを掛け，
+さらに \eqref{ja:topboundary} を用いると，すべての $p\leq11$ が排除される．
+
+残るのは $p=12,13,14$ での存在，すなわち次数 $k\leq3$ で分解可能な境界がないことの証明である．
+補題~\ref{ja:fixed} を用いる．$q>0$ なら $|F|=6-k+d+q\geq4$ であり，
+対応する列は $\C^3$ を張るので \eqref{ja:contractions} に矛盾する．
+$q=0$ では，斉次性から排除される $d=0$ の場合と，$d=1$，$s\leq1$ の場合しかない．
+後者で $e_j\in(L_1^U,L_2^U,L_3^U)$ なら，$U\setminus\{j\}$ のすべての列上で零になる行結合を得る．
+この集合は少なくとも4本の列を含み，そのうち3本は独立である．
+したがって行結合は零であり，$e_j$ を与えることはできない．補題~\ref{ja:criterion} を適用すればよい．
+\end{proof}
+
+この例は，列の独立性のデータだけでも存在範囲を決定できないことを示す．
+両行列では任意の3列が独立だからである．これは主定理の拡張が失敗する具体例を与えるものであり，
+すべての係数行列を分類するものではない．
+
+\begin{jrem}\label{ja:boundary}
+各仮定の役割は具体的に確認できる．$r=1$ では，古典的な複素 Heisenberg の閾値 $m+1$ を再現する．
+$r=m$ では中心基底を変えると $d z_i=e_i$ となり，複素3次元 Heisenberg 代数の直積である．
+この場合には $p=n-1$ だけが存在する．これら二つの境界の場合に新規性は主張しない．
+相異なるという条件も単純には除けない．$m=3$，$r=2$，$\lambda=(0,0,1)$ では，
+行列はなおランク2だが，$d z_2=e_3$ が分解可能であり，複素8次元で予測される $6$-K\"ahler 構造は妨げられる．
+また，必要性の議論にはコンパクト性が本質的である．群自身は $\C^n$ と双正則で，
+不変ではない Euclid 的 K\"ahler 計量を持つ．
+\end{jrem}
+
+\section{適用範囲，検証，および残された問題}
+主張の対象は指定された両側不変複素構造であり，同じ滑らかな多様体上の他の複素構造を分類するものではない．
+$\lambda$ の変化は群のデータの変化である．一つの固定されたコンパクト多様体上の変形は構成しておらず，
+パラメータの双正則同型による分類も行っていない．
+Gaussian 有理数の場合の明示的な格子により，主張したすべての次元でコンパクトな例が存在する．
+それ以外の格子に対する結果で条件となるのは格子の存在のみであり，未証明のコホモロジー上の主張ではない．
+
+\texttt{verify\_algebra.py} は，指定された8個の有理点の全部分集合上での有理数による補間恒等式，
+$1\leq r\leq m\leq5$ に対する最初の境界，これらの場合の次数3以下のコフレーム単項式上の $d^2$，
+および外積の符号を含む \eqref{ja:counterprimitive} を検算する．
+$A$ の20個すべての最大小行列式も確認する．
+$A,V$ に対する次数2のイデアル乗法行列は $15\times18$ で，ランクはそれぞれ $15,14$ である．
+これらは有限個の検算であり，上述の証明はこれらからの外挿に依存しない．
+
+証明は明記した設定の中で完結しており，上記の内部検証を行った．独立した第三者の査読を受けたという意味ではない．
+完全形式による判定法，ランク障害，$r=1$ の場合は既知である．
+追加的な結果として提示するのは，評価行列の族についての十分性定理と，同じランクを持つ明示的な比較である．
+その先取性には，序論と監査記録で述べた文献確認上の制限が残る．
+
+残された問題は，$\mathbb P^{r-1}$ 内の $m$ 個の括弧の方向の配置のうち，どれが鋭いランク下界を達成するかを決定することである．
+$r\geq3$ では，上の比較により，任意の $r$ 本の列の独立性だけでは不十分である．
+重みによる帰着 \eqref{ja:boolean}--\eqref{ja:ideal} は代数的障害を取り出すが，
+今回の補間による証明が解決するのは有理正規曲線上の配置に限られる．
+ここでは一般の分類や変形安定性を主張しない．
+
+\begin{thebibliography}{FGM26}
+\bibitem[AB91]{ja:AB} L. Alessandrini and G. Bassanelli,
+\emph{Compact $p$-K\"ahler manifolds}, Geom. Dedicata \textbf{38} (1991),
+199--210. \href{https://doi.org/10.1007/BF00181219}{doi:10.1007/BF00181219}.
+原論文全文は未入手．判定法と Heisenberg の場合は
+\cite[Proposition 2.15, Example 2.16]{ja:LM} を通じて確認した．
+\bibitem[FM24]{ja:FM} A. Fino and A. Mainenti,
+\emph{A note on $p$-K\"ahler structures on compact quotients of Lie groups},
+Ann. Mat. Pura Appl. \textbf{203} (2024), 2111--2124.
+\href{https://arxiv.org/abs/2310.16726v3}{arXiv:2310.16726v3},
+Lemma 2.4, Theorems 3.8, 4.2（番号はプレプリントによる）．
+\bibitem[FGM26]{ja:FGM} A. Fino, G. Grantcharov, and A. Mainenti,
+\emph{$p$-K\"ahler structures on fibrations and reductive Lie groups},
+\href{https://arxiv.org/abs/2601.21849}{arXiv:2601.21849} (2026), Theorem 3.1.
+\bibitem[LG26]{ja:LG} E. Lo Giudice,
+\emph{$p$-K\"ahler structures on compact complex manifolds},
+Math. Z. \textbf{312} (2026), article 66.
+\href{https://doi.org/10.1007/s00209-026-03966-0}{doi:10.1007/s00209-026-03966-0}.
+本文を確認した版は \href{https://arxiv.org/abs/2506.13546v1}{arXiv:2506.13546v1}，Theorem 4.1．
+出版版全文は未入手．
+\bibitem[LM26]{ja:LM} E. Lo Giudice and A. Mainenti,
+\emph{$p$-K\"ahler structures on nilmanifolds and holomorphically parallelizable manifolds},
+\href{https://arxiv.org/abs/2607.29506v1}{arXiv:2607.29506v1} (2026),
+Proposition 2.15, Example 2.16, Theorems 5.4--5.5, Lemma 5.7,
+Proposition 5.8.
+\bibitem[ST22]{ja:ST} T. Sferruzza and N. Tardini,
+\emph{$p$-K\"ahler and balanced structures on nilmanifolds with nilpotent complex structures},
+Ann. Global Anal. Geom. \textbf{62} (2022), 869--881, Theorem 2.3.
+\href{https://doi.org/10.1007/s10455-022-09867-9}{doi:10.1007/s10455-022-09867-9}.
+\end{thebibliography}
+
+\end{document}

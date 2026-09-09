@@ -1,0 +1,1726 @@
+
+% !TEX program = lualatex
+\documentclass[12pt]{amsart}
+
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{\let\mathbbm\mathbb}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{ulem.sty}{\usepackage[normalem]{ulem}}{}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical macros retained from the supplied template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions for this bilingual manuscript.
+\newcommand{\m}{\mathfrak m}
+\newcommand{\RCD}{\mathrm{RCD}}
+\emergencystretch=1.5em
+\newtheoremstyle{jpplain}{6pt}{6pt}{\normalfont}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{jpplain}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jcor}[thm]{系}
+\newtheorem{jrem}[thm]{注意}
+\newtheorem{jsetup}[thm]{設定}
+\providecommand{\theHthm}{}
+\newcommand{\anchorlanguage}[1]{%
+  \renewcommand{\theHsection}{#1.\arabic{section}}%
+  \renewcommand{\theHsubsection}{#1.\arabic{section}.\arabic{subsection}}%
+  \renewcommand{\theHequation}{#1.\arabic{section}.\arabic{equation}}%
+  \renewcommand{\theHthm}{#1.\arabic{section}.\arabic{thm}}%
+}
+\makeatletter
+% Preserve the requested capitalization in the printed author name.
+\def\@setauthors{\begingroup\trivlist
+  \centering\footnotesize\@topsep30\p@\relax
+  \advance\@topsep by -\baselineskip
+  \item\relax\author@andify\authors\authors
+  \endtrivlist\endgroup}
+\makeatother
+\title[Gaussian approximation and spectral multiplicities]{Heat-semigroup defects, Gaussian approximation,\protect\\
+and spectral multiplicities on RCD spaces}
+\author{chatGPT 6 Astra}
+\date{September 8, 2026}
+\keywords{Synthetic Ricci curvature, Gaussian approximation, heat semigroup,
+spectral multiplicity}
+\hypersetup{pdftitle={Heat-semigroup defects, Gaussian approximation, and spectral multiplicities on RCD spaces},pdfauthor={chatGPT 6 Astra}}
+\bibliographystyle{alpha}
+\begin{document}
+\anchorlanguage{en}
+\begin{abstract}
+Let $f_1,\ldots,f_k$ be orthonormal eigenfunctions on an
+$\RCD(1,\infty)$ probability space with eigenvalues in $[1,1+\varepsilon]$.
+We prove an explicit bound of order
+$k\varepsilon(1+\log(\sqrt{k}/\varepsilon))$ for the Wasserstein distance
+between their joint law and the standard Gaussian.  The proof controls a
+positive semidefinite heat-gradient defect and balances its linear growth
+against exponential mixing.  We also prove that, for every fixed $r$ and
+$0<a<1/2$, the spectral band of radius $C(k,r,a)\varepsilon^a$ around each
+integer $1\leq n\leq r$ has rank at least $\binom{k+n-1}{n}$.
+The argument includes the generator-domain and Gram-matrix estimates needed
+for unbounded multivariate Hermite quasimodes.  Singular quotient examples
+show that the multiplicity lower bounds are sharp.  The proofs are complete
+relative to standard RCD analytic inputs; bibliographic priority remains
+subject to further checking.
+\end{abstract}
+\maketitle
+\markboth{\normalfont chatGPT 6 Astra}{Gaussian approximation and spectral multiplicities}
+\pdfbookmark[0]{English version}{english-version}
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+
+Let $M$ be a complete smooth weighted Riemannian manifold with probability
+measure.  If $\Ric+\operatorname{Hess}V\geq g$, a nonconstant $L^2$ eigenfunction of
+eigenvalue $1$ produces a parallel gradient and a Gaussian factor.
+The smooth proof uses the Bochner identity to make the Hessian vanish
+and integrates the resulting parallel vector field.  The nonsmooth counterpart,
+including several Gaussian directions, is already established in
+\cite[Theorem 1.1]{en:GKKO}.  We investigate two quantitative consequences of
+almost equality: the distribution of a finite family of eigenfunctions and
+the multiplicities of the higher spectral bands that this family generates.
+
+The nearest quantitative result is Bertrand--Fathi
+\cite[Theorems 1.2 and 1.3]{en:BF}: a low eigenfunction has a Gaussian law up to
+an $O(\sqrt\varepsilon)$ Wasserstein error, and produces spectral points near
+the positive integers.  Their introduction explicitly anticipates multivariate
+Gaussian approximation.  Thus multivariate approximation by itself is not
+the difference considered here.  Euclidean almost-product estimates such as
+\cite[Theorem 1.2]{en:CF} concern additional geometric information.
+
+Our first result is a heat-semigroup estimate for the entire matrix
+$A=(\Gamma(f_i,f_j))$.  If the eigenvalues lie in $[1,1+\varepsilon]$,
+then, for $k$ orthonormal eigenfunctions,
+\[
+ W_1(F_\#\m,\gamma_k)
+ \leq36\sqrt{2/\pi}\,k\varepsilon
+       \bigl(1+\log(\sqrt{k}/\varepsilon)\bigr).
+\]
+For fixed $k$ this is $o(\sqrt\varepsilon)$.  The second result gives at least
+$\binom{k+n-1}{n}$ spectral dimensions in a band of width
+$C(k,r,a)\varepsilon^a$ around every integer $1\leq n\leq r$, for every
+$0<a<1/2$.  In particular, one obtains the Gaussian multiplicities rather
+than only one spectral point per band.  The precise statements are
+Theorems~\ref{en:thm-gaussian} and \ref{en:thm-bands}.
+
+There are two analytic obstacles.  Eigenfunctions need not be bounded or
+globally Lipschitz, so their unbounded polynomial expressions require a
+generator-domain argument.  Also, small scalar residuals do not establish
+linear independence of the resulting quasimodes.  We address the first issue
+by hypercontractive moment bounds and cutoffs in the target $\R^k$, and the
+second by a quantitative Gaussian moment recursion.  The core matrix estimate
+uses positivity of the heat-gradient defect and exponential mixing; it does
+not use a smooth approximation of the space or a flow of an almost parallel
+vector field.
+
+The results hold for the full class specified below, without an upper
+dimension bound, a noncollapse assumption, or a needle decomposition.
+Finite quotients of high-dimensional spheres provide compact singular
+examples with arbitrarily small deficit.  The conclusions concern probability
+laws and spectral subspaces, not an almost isometry to a product.
+
+\begin{rem}[Status of the contribution]
+All estimates asserted here are proved below from the stated RCD analytic
+inputs.  The logarithmic rate and the quantitative spectral-rank statement
+are distinct from the checked comparison statements.  Priority in the wider
+literature has not been certified.  The separate audit records the sources,
+versions, and remaining bibliographic checks.  In particular, we do not
+claim a new exact splitting theorem or a new Stein principle.
+\end{rem}
+
+\section{Preliminaries and conventions}
+
+Throughout, $(X,d,\m)$ is a complete separable geodesic metric space with a
+full-support Borel probability measure and
+$\int d(x,x_0)^2\,d\m(x)<\infty$.  The entropy is
+\[
+ \operatorname{Ent}_{\m}(\rho\m)=\int\rho\log\rho\,d\m
+\]
+(equal to $+\infty$ off the measures absolutely continuous with respect to
+$\m$).  Here $\mathcal P_2(X)$ denotes the probabilities with finite second
+moment, and
+\[
+ W_p(\mu,\nu)^p=\inf_{\pi\in\Pi(\mu,\nu)}\int d(x,y)^p\,d\pi(x,y)
+ \quad(p=1,2),
+\]
+We use the EVI definition of $\RCD(1,\infty)$
+\cite[Definition 2.19 and Theorem 5.1]{en:AGS}: for every
+$\mu_0\in\mathcal P_2(X)$ there is a locally absolutely continuous curve
+$(\mu_t)_{t>0}$ in $(\mathcal P_2(X),W_2)$ with finite entropy,
+$W_2(\mu_t,\mu_0)\to0$ as $t\downarrow0$, and
+\[
+ \frac12\frac{d}{dt}W_2(\mu_t,\nu)^2
+ +\frac12W_2(\mu_t,\nu)^2
+ \leq\operatorname{Ent}_{\m}(\nu)-\operatorname{Ent}_{\m}(\mu_t)
+\]
+for every finite-entropy $\nu\in\mathcal P_2(X)$ and almost every $t>0$.
+This entails the strong curvature-dimension condition and quadratic
+Cheeger energy by the cited equivalence.  The Cheeger energy is the
+$L^2$ lower semicontinuous relaxation of
+$\frac12\int(\operatorname{lip}u)^2\,d\m$ on Lipschitz functions.  Its domain
+is $W^{1,2}(X)$, and $2\operatorname{Ch}(u)=\int|\nabla u|^2\,d\m$.
+We use its bilinear carré du champ
+\[
+ \Gamma(u,v)=\tfrac14\bigl(|\nabla(u+v)|^2-|\nabla(u-v)|^2\bigr),
+ \qquad\Gamma(u)=\Gamma(u,u).
+\]
+These are almost-everywhere objects.  The weak Laplacian is specified by
+\begin{equation}\label{en:eq-generator}
+ u\in D(\Delta),\ \Delta u=h
+ \quad\Longleftrightarrow\quad
+ \int\Gamma(u,v)\,d\m=-\int hv\,d\m
+ \quad\text{for every }v\in W^{1,2}(X).
+\end{equation}
+In this definition $u\in W^{1,2}(X)$ and $h\in L^2(\m)$.
+Thus $-\Delta$ is nonnegative and self-adjoint, and $P_t=e^{t\Delta}$ is a
+conservative symmetric Markov semigroup.  All norms below use $\m$ unless a
+different measure is displayed.
+
+We use the following standard analytic inputs, with this normalization:
+\begin{align}
+ \Gamma(P_tu)&\leq e^{-2t}P_t\Gamma(u),\label{en:eq-BE}\\
+ (e^{2t}-1)\Gamma(P_tu)&\leq P_t(u^2),\label{en:eq-reverse}\\
+ \|P_tu-\m(u)\|_2&\leq e^{-t}\|u-\m(u)\|_2,\label{en:eq-mixing}\\
+ \|P_tu\|_q&\leq\|u\|_2\quad(2\leq q\leq1+e^{2t}).\label{en:eq-hyper}
+\end{align}
+The first estimate holds for $u\in W^{1,2}$, the second for $u\in L^2$,
+and the last two for $u\in L^2$.  In the checked preprint version of
+Ambrosio--Gigli--Savaré, the first two are Theorems 6.2 and 6.8
+\cite{en:AGS}.  The global Poincaré and logarithmic Sobolev inequalities
+are recalled in \cite[\S2.1]{en:GKKO}; their semigroup consequences are
+\eqref{en:eq-mixing} and \eqref{en:eq-hyper}.  For example, differentiating
+$\|P_tu-\m(u)\|_2^2$ and applying Poincaré gives
+\eqref{en:eq-mixing}.  The eigenfunction moment consequence of
+\eqref{en:eq-hyper} is also recorded in \cite[Proposition 3.2(i)]{en:BF}.
+We use the Sobolev chain and Leibniz rules associated with this strongly
+local Dirichlet form; no pointwise classical derivatives on $X$ are assumed.
+
+For a real matrix $B$, write $\|B\|_{S_1}$ for the sum of its singular
+values, $\|B\|_{\mathrm{HS}}$ for its Hilbert--Schmidt norm, and
+$\|B\|_{\mathrm{op}}$ for its operator norm.  In particular
+$\|B\|_{S_1}=\tr B$ for $B\geq0$ and
+$\|B\|_{S_1}\leq\sqrt{k}\|B\|_{\mathrm{HS}}$ for $k\times k$ matrices.
+The probability measure $\gamma_k$ is the standard Gaussian on $\R^k$.
+The distance $W_1(F_\#\m,\gamma_k)$ uses the Euclidean distance on $\R^k$;
+it is not a distance between metric measure spaces.
+
+\section{Main results}
+
+\begin{setup}\label{en:setup}
+Let $k\geq1$ and $0\leq\varepsilon\leq1$.  Let $f_1,\ldots,f_k$ be real
+functions in $D(\Delta)$ such that
+\begin{equation}\label{en:eq-eigen}
+ -\Delta f_i=\lambda_i f_i,\qquad
+ \int f_i f_j\,d\m=\delta_{ij},\qquad
+ 1\leq\lambda_i\leq1+\varepsilon.
+\end{equation}
+Set $F=(f_1,\ldots,f_k)$,
+$A_{ij}=\Gamma(f_i,f_j)$, and
+$\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_k)$.
+Then $\m(f_i)=0$ and $\m(A)=\Lambda$ by
+\eqref{en:eq-generator}.  The map $F$ is defined up to a null set, which
+does not affect $F_\#\m$.
+\end{setup}
+
+\begin{thm}[Matrix defect and Gaussian approximation]\label{en:thm-gaussian}
+Under Setup~\ref{en:setup}, for every $t\geq0$,
+\begin{equation}\label{en:eq-main-matrix}
+ \int\|A-\Lambda\|_{S_1}\,d\m
+ \leq8k\varepsilon t+36k^{3/2}e^{-t}.
+\end{equation}
+If $0<\varepsilon\leq1$, then
+\begin{equation}\label{en:eq-main-W}
+ W_1(F_\#\m,\gamma_k)
+ \leq36\sqrt{\frac2\pi}\,k\varepsilon
+ \left(1+\log\frac{\sqrt{k}}{\varepsilon}\right).
+\end{equation}
+For $\varepsilon=0$, $A=I_k$ almost everywhere and $F_\#\m=\gamma_k$.
+\end{thm}
+
+For a Borel set $I\subset\R$, let
+$E_I=\mathbf1_I(-\Delta)$ be the spectral projection.  Its rank is the
+dimension of its range, possibly infinite.  This convention makes the next
+statement independent of any additional compact-resolvent theorem.
+
+\begin{thm}[Propagation of Gaussian spectral multiplicities]\label{en:thm-bands}
+Fix $k,r\geq1$ and $0<a<1/2$.  There exist constants $C>0$ and
+$\varepsilon_0\in(0,1]$, depending only on $k,r,a$, such that
+Setup~\ref{en:setup} with $0<\varepsilon\leq\varepsilon_0$ implies
+\begin{equation}\label{en:eq-bands}
+ \rank E_{[n-C\varepsilon^a,n+C\varepsilon^a]}
+ \geq\binom{k+n-1}{n}\qquad(1\leq n\leq r).
+\end{equation}
+The constants may be chosen so that $C\varepsilon_0^a<1/2$.
+Consequently,
+\begin{equation}\label{en:eq-count}
+ \rank E_{[0,r+C\varepsilon^a]}\geq\binom{k+r}{r}.
+\end{equation}
+For $\varepsilon=0$, the same bounds hold with zero-width bands.
+\end{thm}
+
+The constants in Theorem~\ref{en:thm-bands} are uniform over the ambient
+spaces, but are not claimed to have optimal dependence on $k,r,a$.
+If the spectrum is discrete and
+$0=\mu_0\leq\mu_1\leq\cdots$ lists eigenvalues with multiplicity,
+\eqref{en:eq-count} gives
+$\mu_{\binom{k+r}{r}-1}\leq r+C\varepsilon^a$.
+Additional eigenvalues from other directions are allowed.
+
+\begin{cor}[A spectral obstruction]\label{en:cor-obstruction}
+Use the constants of Theorem~\ref{en:thm-bands}, and fix
+$1\leq n\leq r$ and $0<\delta\leq C\varepsilon_0^a$.
+If
+\[
+ \rank E_{[n-\delta,n+\delta]}<\binom{k+n-1}{n},
+\]
+then no orthonormal family as in \eqref{en:eq-eigen} can have all its
+eigenvalues in $[1,1+(\delta/C)^{1/a}]$.
+\end{cor}
+\begin{proof}
+Apply \eqref{en:eq-bands} with
+$\varepsilon=(\delta/C)^{1/a}$ to any such family.
+\end{proof}
+
+\section{Proof of the matrix estimate}
+
+\begin{lem}[Uniform integrability]\label{en:lem-moments}
+Under Setup~\ref{en:setup}, for $q\geq2$ and $p\geq1$,
+\begin{equation}\label{en:eq-integrability}
+ \|f_i\|_q\leq(q-1)^{\lambda_i/2}\leq q-1,
+ \qquad \|A_{ij}\|_p\leq(4p-2)^2.
+\end{equation}
+In particular, $\|A_{ij}\|_2\leq36$.
+\end{lem}
+\begin{proof}
+Set $t=\frac12\log(q-1)$ in \eqref{en:eq-hyper} and use
+$P_tf_i=e^{-\lambda_i t}f_i$.  This proves the first estimate, including
+$q=2$ directly.  Put $s=\frac12\log2$ in
+\eqref{en:eq-reverse}.  Since $e^{2s}-1=1$, we obtain
+\[
+ A_{ii}\leq2^{\lambda_i}P_s(f_i^2),\qquad
+ \|A_{ii}\|_p\leq2^{\lambda_i}\|f_i\|_{2p}^2
+             \leq(4p-2)^{\lambda_i}\leq(4p-2)^2.
+\]
+Here the Markov contraction on $L^p$ applies because the first estimate
+gives $f_i\in L^{2p}$.  Finally,
+$|A_{ij}|\leq\sqrt{A_{ii}A_{jj}}$ and Hölder give the claim.
+\end{proof}
+
+\begin{proof}[Proof of \eqref{en:eq-main-matrix}]
+Set
+\[
+ C_t=\operatorname{diag}(e^{-(\lambda_i-1)t}),\qquad
+ D_t=P_tA-C_tAC_t,
+\]
+where $P_t$ acts entrywise.  Apply \eqref{en:eq-BE} to
+$\sum_i v_i f_i$ and multiply by $e^{2t}$ to get $v^TD_tv\geq0$.
+First doing this for $v\in\Q^k$ and then using continuity in $v$ gives
+$D_t\geq0$ outside a single null set.  Conservation of the integral yields
+\begin{equation}\label{en:eq-defect-trace}
+ \int\|D_t\|_{S_1}\,d\m
+ =\sum_i\lambda_i(1-e^{-2(\lambda_i-1)t})
+ \leq4k\varepsilon t.
+\end{equation}
+We used $1-e^{-s}\leq s$ and $\lambda_i\leq2$.
+
+The matrix $A-C_tAC_t$ need not be positive semidefinite.  Instead use
+\[
+ A-C_tAC_t=(I-C_t)A+C_tA(I-C_t).
+\]
+Since $A\geq0$, $\|C_t\|_{\mathrm{op}}\leq1$ and
+$\|I-C_t\|_{\mathrm{op}}\leq\varepsilon t$, the ideal property of the
+trace norm gives
+\[
+ \int\|A-C_tAC_t\|_{S_1}\,d\m
+ \leq2\varepsilon t\int\tr A\,d\m
+ \leq4k\varepsilon t.
+\]
+Combining this with \eqref{en:eq-defect-trace},
+\begin{equation}\label{en:eq-time-defect}
+ \int\|A-P_tA\|_{S_1}\,d\m\leq8k\varepsilon t.
+\end{equation}
+For the remaining term, apply \eqref{en:eq-mixing} to each entry and then
+Cauchy--Schwarz:
+\begin{align*}
+ \int\|P_tA-\Lambda\|_{S_1}\,d\m
+ &\leq\sqrt{k}\left(\sum_{i,j}
+       \|P_t(A_{ij}-\m(A_{ij}))\|_2^2\right)^{1/2}\\
+ &\leq\sqrt{k}e^{-t}
+       \left(\sum_{i,j}\|A_{ij}-\m(A_{ij})\|_2^2\right)^{1/2}\\
+ &\leq36k^{3/2}e^{-t}.
+\end{align*}
+Subtracting a mean decreases the $L^2$ norm, so the last line follows from
+Lemma~\ref{en:lem-moments}.  The triangle inequality proves the result.
+For $\varepsilon=0$, let $t\to\infty$.
+\end{proof}
+
+\section{Proof of Gaussian approximation}
+
+We include the transport step to specify the matrix norm and its constant.
+
+\begin{lem}[Gaussian Stein estimate]\label{en:lem-Stein}
+In Setup~\ref{en:setup},
+\begin{equation}\label{en:eq-Stein}
+ W_1(F_\#\m,\gamma_k)
+ \leq\sqrt{2/\pi}\int\|A-\Lambda\|_{S_1}\,d\m.
+\end{equation}
+\end{lem}
+\begin{proof}
+Let $h:\R^k\to\R$ be smooth and $1$-Lipschitz.  Write $Q_t$ for the
+Gaussian Ornstein--Uhlenbeck semigroup and put
+\[
+ u(x)=-\int_0^\infty\bigl(Q_th(x)-\gamma_k(h)\bigr)\,dt.
+\]
+The integral converges since its integrand is bounded in absolute value by
+$e^{-t}(|x|+\int|y|\,d\gamma_k(y))$.  The function $u$ solves
+\[
+ (\Delta_{\R^k}-x\cdot\nabla)u=h-\gamma_k(h),\qquad
+ \|\nabla u\|_\infty\leq1.
+\]
+For unit vectors $v,w$, the Mehler formula and Gaussian integration by parts
+give, with $b=e^{-t}$ and $s=(1-e^{-2t})^{1/2}$,
+\[
+ D^2Q_th(x)[v,w]
+ =\frac{b^2}{s}\int(w\cdot y)\,Dh(bx+sy)[v]\,d\gamma_k(y).
+\]
+It follows that
+\begin{equation}\label{en:eq-Hess-Stein}
+ \|D^2u\|_{\mathrm{op},\infty}
+ \leq\sqrt{\frac2\pi}
+       \int_0^\infty\frac{e^{-2t}}{\sqrt{1-e^{-2t}}}\,dt
+ =\sqrt{\frac2\pi}.
+\end{equation}
+The integral is $1$, by the substitution $z=e^{-2t}$.
+These bounds justify differentiating the semigroup integral; alternatively
+one first uses time cutoffs and passes to the limit.
+
+Each $\partial_i u\circ F$ belongs to $W^{1,2}(X)$: it is bounded and is
+a Lipschitz smooth composition of Sobolev functions.  Equation
+\eqref{en:eq-generator} and the chain rule therefore give
+\begin{equation}\label{en:eq-IBP-Stein}
+ \int f_i\partial_i u(F)\,d\m
+ =\lambda_i^{-1}\sum_j\int A_{ij}\partial_{ij}u(F)\,d\m.
+\end{equation}
+Hence the difference of the expectations of $h$ is the integral of
+$\sum_{i,j}(\delta_{ij}-\lambda_i^{-1}A_{ij})\partial_{ij}u(F)$.
+Trace duality, \eqref{en:eq-Hess-Stein}, and
+$\|\Lambda^{-1}\|_{\mathrm{op}}\leq1$ bound its absolute value by the
+right-hand side of \eqref{en:eq-Stein}.  This step does not assume that
+$A$ commutes with $\Lambda$.
+
+Convolution approximates any $1$-Lipschitz $h$ by smooth $1$-Lipschitz
+functions with uniformly vanishing error.  Both laws have finite first
+moment by \eqref{en:eq-eigen}, so passage to the limit and the
+Kantorovich--Rubinstein dual formula prove \eqref{en:eq-Stein}.
+\end{proof}
+
+\begin{proof}[Completion of Theorem~\ref{en:thm-gaussian}]
+For $\varepsilon>0$, take $t=\log(\sqrt{k}/\varepsilon)\geq0$ in
+\eqref{en:eq-main-matrix}.  The right-hand side becomes
+\[
+ k\varepsilon\bigl(8\log(\sqrt{k}/\varepsilon)+36\bigr)
+ \leq36k\varepsilon\bigl(1+\log(\sqrt{k}/\varepsilon)\bigr).
+\]
+Apply Lemma~\ref{en:lem-Stein}.  The zero-deficit conclusion follows by
+letting $t\to\infty$ in the matrix estimate and using the same lemma.
+\end{proof}
+
+\section{Polynomial calculus and spectral multiplicities}
+
+\begin{lem}[Interpolation with the correct exponent]\label{en:lem-interp}
+For every $1<p<\infty$ and $0<b<1/p$, there is $C(k,p,b)$ such that
+\begin{equation}\label{en:eq-Lp}
+ \|A_{ij}-\lambda_i\delta_{ij}\|_p\leq C(k,p,b)\varepsilon^b
+ \qquad(0<\varepsilon\leq1).
+\end{equation}
+\end{lem}
+\begin{proof}
+Choose $q>p$ so that
+$\alpha=(1/p-1/q)/(1-1/q)>b$.  Theorem~\ref{en:thm-gaussian} gives an
+$L^1$ bound $C(k)\varepsilon(1+|\log\varepsilon|)$ for each entry, while
+Lemma~\ref{en:lem-moments} gives a uniform $L^q$ bound.  Hölder
+interpolation, with $1/p=\alpha+(1-\alpha)/q$, yields
+\[
+ \|A_{ij}-\lambda_i\delta_{ij}\|_p
+ \leq C(k,q)\{\varepsilon(1+|\log\varepsilon|)\}^{\alpha}
+ \leq C(k,p,b)\varepsilon^b.
+\]
+The last inequality uses the boundedness of
+$\varepsilon^{\alpha-b}(1+|\log\varepsilon|)^\alpha$ on $(0,1]$.
+\end{proof}
+
+\begin{lem}[Unbounded polynomial compositions]\label{en:lem-domain}
+For every polynomial $P$ on $\R^k$, $P(F)\in D(\Delta)$ and
+\begin{equation}\label{en:eq-chain}
+ \Delta(P(F))=-\sum_i\lambda_i f_i\partial_iP(F)
+              +\sum_{i,j}A_{ij}\partial_{ij}P(F).
+\end{equation}
+Every term belongs to $L^2$.  Also, for every polynomial $Q$,
+\begin{equation}\label{en:eq-poly-IBP}
+ \int f_iQ(F)\,d\m
+ =\lambda_i^{-1}\sum_j\int A_{ij}\partial_jQ(F)\,d\m.
+\end{equation}
+\end{lem}
+\begin{proof}
+Fix $\chi\in C_c^\infty(\R^k)$ with $\chi=1$ on the unit ball and let
+$P_R(x)=\chi(x/R)P(x)$.  The bounded first and second derivatives of
+$P_R$ give the weak chain formula as follows.  For
+$v\in W^{1,2}\cap L^\infty$, apply \eqref{en:eq-generator} for $f_i$ to
+the test function $v\partial_iP_R(F)$ and expand its weak gradient.
+Summation in $i$ gives \eqref{en:eq-chain} with $P_R$.
+Its right-hand side is in $L^2$ by Lemma~\ref{en:lem-moments}; truncating
+arbitrary Sobolev test functions extends the identity to all $W^{1,2}$.
+Thus $P_R(F)\in D(\Delta)$.
+
+As $R\to\infty$, $P_R(F)\to P(F)$ in $L^2$.  The differentiated cutoff
+terms are supported on $|F|\geq R$ and are dominated, uniformly for
+$R\geq1$, by a fixed polynomial in $1+|F|$.  Lemma~\ref{en:lem-moments}
+and Hölder show that the right-hand sides of the chain formula also
+converge in $L^2$.  Closedness of $\Delta$ proves
+\eqref{en:eq-chain} and membership in its domain.  Finally $Q(F)$ is
+an admissible test function for $f_i$ in \eqref{en:eq-generator}; its
+Sobolev chain rule follows from the same cutoffs.  This gives
+\eqref{en:eq-poly-IBP}.
+\end{proof}
+
+Write $|P|_{\mathrm{coef}}$ for the sum of the absolute values of the
+monomial coefficients of $P$.
+
+\begin{lem}[Quantitative polynomial moments]\label{en:lem-Gram}
+For $d\geq0$ and $0<a<1/2$, every polynomial of degree at most $d$ satisfies
+\begin{equation}\label{en:eq-moment-comparison}
+ \left|\int P(F)\,d\m-\int P\,d\gamma_k\right|
+ \leq C(k,d,a)|P|_{\mathrm{coef}}\varepsilon^a.
+\end{equation}
+\end{lem}
+\begin{proof}
+Equation \eqref{en:eq-poly-IBP} gives
+\[
+ \int f_iQ(F)\,d\m-\int\partial_iQ(F)\,d\m
+ =\lambda_i^{-1}\sum_j\int
+       (A_{ij}-\lambda_i\delta_{ij})\partial_jQ(F)\,d\m.
+\]
+Its absolute value is at most
+$C(k,d,a)|Q|_{\mathrm{coef}}\varepsilon^a$ for $\deg Q\leq d-1$,
+using \eqref{en:eq-Lp} with $p=2$ and the polynomial $L^2$ bounds from
+Lemma~\ref{en:lem-moments}.  For a monomial $x^\beta$ choose $i$ with
+$\beta_i>0$ and use $Q=x^{\beta-e_i}$.  This yields
+\[
+ \int F^\beta\,d\m
+ =(\beta_i-1)\int F^{\beta-2e_i}\,d\m+O_{k,d,a}(\varepsilon^a),
+\]
+where the term with coefficient zero is omitted.  Gaussian moments obey
+the identical recursion without the error, by one-dimensional integration
+by parts.  Induction on $|\beta|$, starting with the constant and the
+centered first moments, proves the claim for monomials.  Summing their
+coefficient-weighted estimates proves \eqref{en:eq-moment-comparison}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en:thm-bands}]
+Let $H_j$ be the probabilists' Hermite polynomial,
+$H_0=1$, $H_1=x$, and $H_{j+1}=xH_j-jH_{j-1}$.
+For a multi-index $\alpha\in\N_0^k$ put
+\[
+ h_\alpha(x)=\prod_i\frac{H_{\alpha_i}(x_i)}{\sqrt{\alpha_i!}},
+ \qquad u_\alpha=h_\alpha(F),\qquad
+ \rho_\alpha=\sum_i\alpha_i\lambda_i.
+\]
+Gaussian integration by parts gives
+$\int h_\alpha h_\beta\,d\gamma_k=\delta_{\alpha\beta}$ and
+\[
+ \sum_i\lambda_i(\partial_{ii}-x_i\partial_i)h_\alpha
+ =-\rho_\alpha h_\alpha.
+\]
+For a fixed $n\leq r$, there are
+$M_n=\binom{k+n-1}{n}$ indices of degree $n$.
+By Lemma~\ref{en:lem-Gram} applied to their pairwise products, the Gram
+matrix $G_n=(\langle u_\alpha,u_\beta\rangle)_{|\alpha|=|\beta|=n}$ satisfies
+\begin{equation}\label{en:eq-Gram}
+ \|G_n-I\|_{\mathrm{op}}\leq C(k,r,a)\varepsilon^a.
+\end{equation}
+After reducing $\varepsilon_0$, this is at most $1/2$.
+In particular the $u_\alpha$ are linearly independent.
+
+Lemma~\ref{en:lem-domain} gives
+\begin{equation}\label{en:eq-residual}
+ (\Delta+\rho_\alpha)u_\alpha
+ =\sum_{i,j}(A_{ij}-\lambda_i\delta_{ij})
+                   \partial_{ij}h_\alpha(F).
+\end{equation}
+Choose $p>2$ such that $a<1/p$, and set $q=2p/(p-2)$, so that
+$1/2=1/p+1/q$.  Apply \eqref{en:eq-Lp} with exponent $a$ and use the
+uniform $L^q$ bounds for the polynomial derivatives.  Hölder bounds the
+right-hand side of \eqref{en:eq-residual} in $L^2$ by
+$C(k,r,a)\varepsilon^a$.  Since $|\rho_\alpha-n|\leq n\varepsilon$,
+\begin{equation}\label{en:eq-quasimode}
+ \|(-\Delta-n)u_\alpha\|_2\leq C(k,r,a)\varepsilon^a.
+\end{equation}
+The choice $p>2$, rather than $p=2$ for the product, is necessary here.
+
+Let $V_n=\operatorname{span}\{u_\alpha:|\alpha|=n\}$.  For
+$v=\sum c_\alpha u_\alpha$, \eqref{en:eq-Gram} gives
+$\|v\|_2\geq|c|/\sqrt2$, while \eqref{en:eq-quasimode} and
+Cauchy--Schwarz give
+\[
+ \|(-\Delta-n)v\|_2\leq B(k,r,a)\varepsilon^a\|v\|_2.
+\]
+Choose $C=2B$.  If $E_{[n-C\varepsilon^a,n+C\varepsilon^a]}v=0$,
+the spectral theorem implies
+\[
+ \|(-\Delta-n)v\|_2^2
+ \geq C^2\varepsilon^{2a}\|v\|_2^2.
+\]
+Together these inequalities force $v=0$.  The projection is therefore
+injective on the $M_n$-dimensional space $V_n$, proving
+\eqref{en:eq-bands}.  Decrease $\varepsilon_0$ again so that the bands
+are disjoint and avoid $0$.  Their ranges, and the constant function,
+give \eqref{en:eq-count}, using
+$1+\sum_{n=1}^r\binom{k+n-1}{n}=\binom{k+r}{r}$.
+
+When $\varepsilon=0$, Theorem~\ref{en:thm-gaussian} gives $F_\#\m=\gamma_k$
+and $A=I$.  Thus the same Hermite functions are exactly orthonormal and
+\eqref{en:eq-residual} is zero.  They are exact eigenfunctions of eigenvalue
+$n$, as required.
+\end{proof}
+
+\section{Examples, sharpness, and limitations}
+
+\subsection{Singular spaces realizing the multiplicities}
+Let $k\geq1$, $q\geq2$ and $L>1$.  Start with $\R^k\times\R^q$,
+its Euclidean metric, and the probability density proportional to
+\[
+ \exp\left(-\frac{|x|^2}{2}-\frac{L|y|^2}{2}\right).
+\]
+Take the quotient by $(x,y)\mapsto(x,-y)$, with the quotient distance and
+the pushforward measure.  The weighted Ricci tensor of the original
+space is $\operatorname{diag}(I_k,LI_q)$.  The quotient is
+$\RCD(1,\infty)$ by \cite[Theorem 1.1]{en:GGKMS} and is singular along
+$\R^k\times\{0\}$: its transverse tangent cone is
+$\R^q/\{\pm1\}$, not Euclidean.
+
+The functions $f_i=x_i$ descend to the quotient.  The Sobolev identification
+in \cite[Theorem 5.12]{en:GGKMS} identifies the quotient generator with
+the restriction to invariant functions: the invariant subspace reduces
+the original Dirichlet form, and the weak identity
+\eqref{en:eq-generator} restricts accordingly.  The Hermite basis upstairs
+has eigenvalues $|\alpha|+L|\beta|$.  Invariance means that $|\beta|$ is
+even.  Thus, if $2L>r+1$, the multiplicity of each integer $1\leq n\leq r$
+is exactly $\binom{k+n-1}{n}$.  This proves sharpness of the rank lower
+bound, including on singular spaces.
+
+Replace $|x|^2/2$ in the density by $(1+\varepsilon)|x|^2/2$ and set
+$f_i=\sqrt{1+\varepsilon}\,x_i$.  Then
+$\lambda_i=1+\varepsilon$, $A=\Lambda$, and the law of $F$ remains exactly
+$\gamma_k$.  The generated degree-$n$ eigenvalues move to
+$n(1+\varepsilon)$.  In particular, already for $n=1$, spectral windows
+of radius $o(\varepsilon)$ centered at $n$ cannot suffice uniformly.
+This does not establish optimality of the exponent $a<1/2$.
+
+\subsection{Compact singular examples with small deficit}
+Fix $k$, take $N\geq\max\{2,k+1\}$, and put $q=N+1-k\geq2$.
+Let $S^N(\sqrt{N-1})\subset\R^k\times\R^q$ have normalized volume,
+and quotient by $(x,y)\mapsto(x,-y)$.  Its Ricci tensor is $g$, so the
+quotient is $\RCD(1,\infty)$.  The fixed locus is $S^{k-1}$, with
+non-Euclidean transverse quotient tangent, hence the space is not a
+smooth Riemannian manifold.
+
+The invariant functions
+\[
+ f_i=\sqrt{\frac{N+1}{N-1}}\,x_i
+ \quad(1\leq i\leq k)
+\]
+are orthonormal and have
+$\lambda_i=N/(N-1)=1+1/(N-1)$.
+Indeed the mean square of $x_i$ is $(N-1)/(N+1)$ and the coordinate
+eigenvalue is $N/(N-1)$.  The quotient identification above preserves
+these identities.  Also a direct tangential-gradient calculation gives
+\[
+ A_{ij}=\frac{N+1}{N-1}\delta_{ij}-\frac{f_i f_j}{N-1},
+ \qquad
+ A_{ij}-\lambda_i\delta_{ij}
+ =\frac{\delta_{ij}-f_i f_j}{N-1}.
+\]
+Thus the hypothesis is realized with $\varepsilon\downarrow0$ in a
+class of compact singular spaces.  No fixed finite dimension bound is
+asserted along this sequence.  Compactness also precludes an exact
+Euclidean metric factor, although the quantitative conclusions apply.
+
+\subsection{The curvature condition cannot be replaced by a spectral gap}
+On the flat torus $(\R/2\pi\Z)^d$, $d\geq2$, with normalized volume,
+the spectral gap is $1$ and $f=\sqrt2\cos x_1$ is centered and normalized.
+Its law is supported on $[-\sqrt2,\sqrt2]$.  For
+$h(z)=(|z|-\sqrt2)_+$, a $1$-Lipschitz test function,
+\[
+ W_1(f_\#\m,\gamma_1)\geq\int h\,d\gamma_1>0.
+\]
+Therefore the zero-deficit conclusion is false under the spectral-gap
+assumption alone.  The torus has Ricci curvature $0$ and does not satisfy
+the positive-curvature hypothesis; this is an obstruction to dropping
+\eqref{en:eq-BE}, not a counterexample to our theorem.
+
+\subsection{Normalization and geometric limits of the conclusions}
+Orthogonality is indispensable: repeating the same Gaussian eigenfunction
+gives a law on a diagonal instead of $\gamma_k$.  Probability normalization
+is used in the $L^2$ to $L^1$ estimates.  For $K>0$, replace the metric by
+$\sqrt K\,d$; the corresponding generator and carré du champ are
+$\Delta/K$ and $\Gamma/K$.  Hence all results apply to
+$\RCD(K,\infty)$ when $\lambda_i/K\in[1,1+\varepsilon]$, and the
+spectral bands in the original normalization are centered at $nK$ with
+radius $KC\varepsilon^a$.
+
+At zero deficit the metric-measure Gaussian splitting follows from the
+existing theorem \cite[Theorem 1.1]{en:GKKO}.  For positive deficit our
+proof gives no metric product approximation, no topology statement, and
+no upper bound on the number of eigenvalues in a band.  In particular,
+one cannot replace $F_\#\m\approx\gamma_k$ by an almost-isometry claim.
+
+\section{Further questions}
+
+Can the logarithm in \eqref{en:eq-main-W} be removed under the stated
+assumptions?  It arises from balancing a defect growing linearly in time
+against exponential mixing, so removing it requires an additional idea.
+Can one obtain spectral bands of order $\varepsilon$, or an endpoint
+$\varepsilon^{1/2}$ bound with controlled constants?  The shifted Gaussian
+example only excludes uniform $o(\varepsilon)$ bands.  Finally, it remains
+to determine what further geometric information upgrades these estimates
+for observables and spectral projections to a quantitative metric-measure
+splitting.  None of these questions is asserted to be settled here.
+
+\begin{thebibliography}{GGKMS}
+\bibitem[AGS]{en:AGS}
+L. Ambrosio, N. Gigli and G. Savar\'e,
+\emph{Metric measure spaces with Riemannian Ricci curvature bounded from below},
+\href{https://arxiv.org/abs/1109.0222v2}{arXiv:1109.0222v2} (2012).
+References in the text use this preprint's numbering: Definition 2.19,
+\S4.3, and Theorems 5.1, 6.2 and 6.8.
+
+\bibitem[BF]{en:BF}
+J. Bertrand and M. Fathi,
+\emph{Stability of eigenvalues and observable diameter in
+$\RCD(1,\infty)$ spaces},
+J. Geom. Anal. \textbf{32} (2022), article 270,
+\href{https://doi.org/10.1007/s12220-022-00999-9}{doi:10.1007/s12220-022-00999-9}.
+The theorem numbers used here refer to
+\href{https://arxiv.org/abs/2107.05324v1}{arXiv:2107.05324v1} (2021).
+The \href{https://www.math.univ-toulouse.fr/~bertrand/BertrandFathi.pdf}{author-hosted version}
+dated November 24, 2021, renumbers Theorems 1.2 and 1.3 as 1.3 and 1.4.
+
+\bibitem[CF]{en:CF}
+T. A. Courtade and M. Fathi,
+\emph{Stability of the Bakry--\'Emery theorem on $\R^n$},
+\href{https://arxiv.org/abs/1807.09845v2}{arXiv:1807.09845v2} (2018),
+Theorem 1.2.
+
+\bibitem[GGKMS]{en:GGKMS}
+F. Galaz-Garc\'ia, M. Kell, A. Mondino and G. Sosa,
+\emph{On quotients of spaces with Ricci curvature bounded below},
+\href{https://arxiv.org/abs/1704.05428v1}{arXiv:1704.05428v1} (2017),
+Theorems 1.1 and 5.12.
+
+\bibitem[GKKO]{en:GKKO}
+N. Gigli, C. Ketterer, K. Kuwada and S.-i. Ohta,
+\emph{Rigidity for the spectral gap on $\RCD(K,\infty)$-spaces},
+\href{https://arxiv.org/abs/1709.04017v1}{arXiv:1709.04017v1} (2017),
+Theorem 1.1 and \S2.
+\end{thebibliography}
+
+\newpage
+\setcounter{section}{0}
+\setcounter{subsection}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\anchorlanguage{ja}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\markboth{chatGPT 6 Astra}{Gaussian近似とスペクトル重複度}
+\thispagestyle{plain}
+\pdfbookmark[0]{日本語版}{japanese-version}
+\begin{center}
+{\Large\bfseries RCD空間上の熱半群の欠損，Gaussian近似，\\[3pt]
+およびスペクトル重複度\par}
+\vspace{12pt}
+{\normalsize chatGPT 6 Astra\par}
+\vspace{6pt}
+2026年9月8日
+\end{center}
+\vspace{5pt}
+\begin{quote}\small
+\textbf{概要.}
+$\RCD(1,\infty)$確率空間上の正規直交固有関数$f_1,\ldots,f_k$の固有値が
+$[1,1+\varepsilon]$に属するとする．その同時分布と標準Gaussian分布との
+Wasserstein距離について，
+$k\varepsilon(1+\log(\sqrt{k}/\varepsilon))$のオーダーの明示的評価を証明する．
+証明では，熱半群の勾配評価における半正定値の差を制御し，その線形増大と
+指数的な混合を釣り合わせる．さらに，固定した$r$と$0<a<1/2$に対し，
+各整数$1\leq n\leq r$の周囲の半径$C(k,r,a)\varepsilon^a$のスペクトル帯が，
+少なくとも$\binom{k+n-1}{n}$の階数を持つことを示す．非有界な多変数Hermite
+近似固有関数に必要な生成作用素の定義域の確認とGram行列の評価を証明に含める．
+特異な商空間の例により，重複度の下界が鋭いことを示す．標準的なRCD解析の
+結果に基づく証明は完結しているが，文献上の先取性には追加確認が必要である．
+\end{quote}
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+
+完備な滑らかな重み付きRiemannian確率多様体上で
+$\Ric+\operatorname{Hess}V\geq g$が成り立つとき，固有値$1$の非定数
+$L^2$固有関数から平行な勾配とGaussian因子が得られる．平滑な証明では，
+Bochner恒等式によりHessianが消えることを示し，得られる平行ベクトル場を
+積分する．複数のGaussian
+方向を含む非平滑な場合の対応物は，すでに
+\cite[Theorem 1.1]{ja:GKKO}で確立されている．本稿では，ほぼ等号が
+成り立つ場合について，有限個の固有関数の分布と，それらが生成する
+高次スペクトル帯の重複度という二つの定量的帰結を調べる．
+
+最も近い定量的結果はBertrand--Fathi
+\cite[Theorems 1.2 and 1.3]{ja:BF}である．低固有関数の分布はWasserstein
+距離で$O(\sqrt\varepsilon)$の誤差を除いてGaussianとなり，正整数の
+近くにスペクトル点が生じる．同論文の序論では，多変数のGaussian近似も
+明示的に予告されている．したがって，多変数化自体が今回の差分ではない．
+\cite[Theorem 1.2]{ja:CF}のようなEuclid空間上のほぼ積分解の評価は，
+さらに幾何学的な情報を扱うものである．
+
+第一の結果は，行列$A=(\Gamma(f_i,f_j))$全体に対する熱半群の評価である．
+$k$個の正規直交固有関数の固有値が$[1,1+\varepsilon]$に属するならば，
+\[
+ W_1(F_\#\m,\gamma_k)
+ \leq36\sqrt{2/\pi}\,k\varepsilon
+       \bigl(1+\log(\sqrt{k}/\varepsilon)\bigr)
+\]
+が成り立つ．$k$を固定すると，これは$o(\sqrt\varepsilon)$である．
+第二の結果は，任意の$0<a<1/2$に対し，各整数$1\leq n\leq r$の周囲の
+幅$C(k,r,a)\varepsilon^a$の帯に，少なくとも$\binom{k+n-1}{n}$次元の
+スペクトル部分空間を与える．特に，各帯の一点だけでなく，Gaussianの
+重複度が得られる．正確な主張は定理~\ref{ja:thm-gaussian}と
+定理~\ref{ja:thm-bands}である．
+
+解析的な障害は二つある．固有関数は有界とも大域的Lipschitzとも限らないため，
+その非有界な多項式合成が生成作用素の定義域に属することを示す必要がある．
+また，個々の残差が小さいだけでは，構成した近似固有関数の線形独立性は
+分からない．第一の問題には超縮小性によるモーメント評価と値域$\R^k$上の
+切断関数を用い，第二の問題にはGaussianモーメントの定量的な漸化式を用いる．
+中心となる行列評価は，熱半群の勾配評価に現れる差の半正定値性と指数的な
+混合を用いる．空間の平滑近似や，ほぼ平行なベクトル場の流れは用いない．
+
+結果は後述の空間のクラス全体に成立し，次元の上界，noncollapseの仮定，
+needle decompositionを必要としない．高次元球面の有限商は，欠損量を
+任意に小さくできるコンパクトな特異例を与える．結論は確率分布とスペクトル
+部分空間に関するものであり，積へのほぼ等長写像を与えるものではない．
+
+\begin{jrem}[成果の位置付け]
+本稿で主張するすべての評価は，明記したRCD解析の既知の結果から本文中で
+証明する．対数を伴う収束率と定量的なスペクトル階数の主張には，確認した
+比較対象との差がある．ただし，より広い文献における先取性は確定していない．
+別添の監査記録に，参照先，版，残された文献上の確認事項を記す．特に，
+厳密な分裂定理やSteinの原理自体を新たに証明したとは主張しない．
+\end{jrem}
+
+\section{準備と規約}
+
+以下，$(X,d,\m)$は完備可分な測地距離空間とし，$\m$は台が$X$全体である
+Borel確率測度で，$\int d(x,x_0)^2\,d\m(x)<\infty$を満たすとする．
+エントロピーを
+\[
+ \operatorname{Ent}_{\m}(\rho\m)=\int\rho\log\rho\,d\m
+\]
+と定める（$\m$に絶対連続でない測度では$+\infty$とする）．
+$\mathcal P_2(X)$は有限二次モーメントを持つ確率測度全体であり，
+\[
+ W_p(\mu,\nu)^p=\inf_{\pi\in\Pi(\mu,\nu)}\int d(x,y)^p\,d\pi(x,y)
+ \quad(p=1,2)
+\]
+とする．本稿では$\RCD(1,\infty)$のEVIによる定義
+\cite[Definition 2.19 and Theorem 5.1]{ja:AGS}を採用する．すなわち，
+任意の$\mu_0\in\mathcal P_2(X)$に対して，有限エントロピーを持つ
+$(\mathcal P_2(X),W_2)$内の局所絶対連続曲線$(\mu_t)_{t>0}$が存在し，
+$t\downarrow0$で$W_2(\mu_t,\mu_0)\to0$となり，
+\[
+ \frac12\frac{d}{dt}W_2(\mu_t,\nu)^2
+ +\frac12W_2(\mu_t,\nu)^2
+ \leq\operatorname{Ent}_{\m}(\nu)-\operatorname{Ent}_{\m}(\mu_t)
+\]
+が任意の有限エントロピーの$\nu\in\mathcal P_2(X)$に対し，ほとんど
+すべての$t>0$で成立することをいう．引用した同値性により，強い
+曲率次元条件とCheegerエネルギーの二次性が従う．Cheegerエネルギーは，Lipschitz関数上の
+$\frac12\int(\operatorname{lip}u)^2\,d\m$の$L^2$下半連続緩和である．
+その定義域を$W^{1,2}(X)$と書き，
+$2\operatorname{Ch}(u)=\int|\nabla u|^2\,d\m$とする．対応する双線形の
+carré du champを
+\[
+ \Gamma(u,v)=\tfrac14\bigl(|\nabla(u+v)|^2-|\nabla(u-v)|^2\bigr),
+ \qquad\Gamma(u)=\Gamma(u,u)
+\]
+と定める．これらはほとんど至る所で定義される対象である．弱Laplacianは
+\begin{equation}\label{ja:eq-generator}
+ u\in D(\Delta),\ \Delta u=h
+ \quad\Longleftrightarrow\quad
+ \int\Gamma(u,v)\,d\m=-\int hv\,d\m
+ \quad\text{for every }v\in W^{1,2}(X)
+\end{equation}
+によって定める．この定義では$u\in W^{1,2}(X)$および$h\in L^2(\m)$を
+要求する．したがって$-\Delta$は非負自己共役作用素であり，
+$P_t=e^{t\Delta}$は保存的な対称Markov半群である．以下，別の測度を
+表示しないノルムはすべて$\m$に関するものとする．
+
+この正規化で，次の標準的な解析的結果を用いる：
+\begin{align}
+ \Gamma(P_tu)&\leq e^{-2t}P_t\Gamma(u),\label{ja:eq-BE}\\
+ (e^{2t}-1)\Gamma(P_tu)&\leq P_t(u^2),\label{ja:eq-reverse}\\
+ \|P_tu-\m(u)\|_2&\leq e^{-t}\|u-\m(u)\|_2,\label{ja:eq-mixing}\\
+ \|P_tu\|_q&\leq\|u\|_2\quad(2\leq q\leq1+e^{2t}).\label{ja:eq-hyper}
+\end{align}
+第一の評価は$u\in W^{1,2}$，第二の評価は$u\in L^2$，最後の二つは
+$u\in L^2$に対して成立する．確認したAmbrosio--Gigli--Savaréの
+プレプリント版では，最初の二つはTheorems 6.2 and 6.8である
+\cite{ja:AGS}．大域的Poincaré不等式と対数Sobolev不等式は
+\cite[\S2.1]{ja:GKKO}に記されており，その半群に対する帰結が
+\eqref{ja:eq-mixing}と\eqref{ja:eq-hyper}である．例えば，
+$\|P_tu-\m(u)\|_2^2$を微分してPoincaré不等式を適用すると
+\eqref{ja:eq-mixing}を得る．\eqref{ja:eq-hyper}から得られる固有関数の
+モーメント評価は\cite[Proposition 3.2(i)]{ja:BF}にも記されている．
+この強局所Dirichlet形式に付随するSobolevの連鎖律とLeibniz則を用い，
+$X$上の古典的な点ごとの微分は仮定しない．
+
+実行列$B$に対し，$\|B\|_{S_1}$を特異値の和，
+$\|B\|_{\mathrm{HS}}$をHilbert--Schmidtノルム，
+$\|B\|_{\mathrm{op}}$を作用素ノルムとする．特に，$B\geq0$ならば
+$\|B\|_{S_1}=\tr B$であり，$k\times k$行列に対して
+$\|B\|_{S_1}\leq\sqrt{k}\|B\|_{\mathrm{HS}}$である．
+$\gamma_k$は$\R^k$上の標準Gaussian確率測度を表す．
+$W_1(F_\#\m,\gamma_k)$には$\R^k$のEuclid距離を用いる．これは
+測度距離空間の間の距離ではない．
+
+\section{主結果}
+
+\begin{jsetup}\label{ja:setup}
+$k\geq1$，$0\leq\varepsilon\leq1$とする．実数値関数
+$f_1,\ldots,f_k\in D(\Delta)$が
+\begin{equation}\label{ja:eq-eigen}
+ -\Delta f_i=\lambda_i f_i,\qquad
+ \int f_i f_j\,d\m=\delta_{ij},\qquad
+ 1\leq\lambda_i\leq1+\varepsilon
+\end{equation}
+を満たすとする．$F=(f_1,\ldots,f_k)$，
+$A_{ij}=\Gamma(f_i,f_j)$，
+$\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_k)$と置く．
+\eqref{ja:eq-generator}から$\m(f_i)=0$および$\m(A)=\Lambda$が従う．
+写像$F$の定義には零集合上の自由度があるが，$F_\#\m$には影響しない．
+\end{jsetup}
+
+\begin{jthm}[行列の欠損とGaussian近似]\label{ja:thm-gaussian}
+設定~\ref{ja:setup}の下で，任意の$t\geq0$に対し
+\begin{equation}\label{ja:eq-main-matrix}
+ \int\|A-\Lambda\|_{S_1}\,d\m
+ \leq8k\varepsilon t+36k^{3/2}e^{-t}
+\end{equation}
+が成り立つ．$0<\varepsilon\leq1$ならば
+\begin{equation}\label{ja:eq-main-W}
+ W_1(F_\#\m,\gamma_k)
+ \leq36\sqrt{\frac2\pi}\,k\varepsilon
+ \left(1+\log\frac{\sqrt{k}}{\varepsilon}\right)
+\end{equation}
+である．$\varepsilon=0$ならば$A=I_k$がほとんど至る所で成立し，
+$F_\#\m=\gamma_k$である．
+\end{jthm}
+
+Borel集合$I\subset\R$に対し，
+$E_I=\mathbf1_I(-\Delta)$をスペクトル射影とする．その階数は像の次元で
+あり，無限でもよい．この規約により，次の主張はレゾルベントのコンパクト性
+に関する追加の定理に依存しない．
+
+\begin{jthm}[Gaussianスペクトル重複度の伝播]\label{ja:thm-bands}
+$k,r\geq1$と$0<a<1/2$を固定する．$k,r,a$のみに依存する定数$C>0$と
+$\varepsilon_0\in(0,1]$が存在し，設定~\ref{ja:setup}で
+$0<\varepsilon\leq\varepsilon_0$ならば
+\begin{equation}\label{ja:eq-bands}
+ \rank E_{[n-C\varepsilon^a,n+C\varepsilon^a]}
+ \geq\binom{k+n-1}{n}\qquad(1\leq n\leq r)
+\end{equation}
+が成り立つ．定数は$C\varepsilon_0^a<1/2$を満たすように取れる．特に
+\begin{equation}\label{ja:eq-count}
+ \rank E_{[0,r+C\varepsilon^a]}\geq\binom{k+r}{r}
+\end{equation}
+である．$\varepsilon=0$の場合には，同じ下界が幅零の帯に対して成立する．
+\end{jthm}
+
+定理~\ref{ja:thm-bands}の定数は周囲の空間について一様であるが，
+$k,r,a$への依存性が最適であるとは主張しない．スペクトルが離散的で，
+$0=\mu_0\leq\mu_1\leq\cdots$が重複度込みで固有値を並べたものならば，
+\eqref{ja:eq-count}から
+$\mu_{\binom{k+r}{r}-1}\leq r+C\varepsilon^a$を得る．他の方向から
+生じる追加の固有値が存在してもよい．
+
+\begin{jcor}[スペクトルによる障害]\label{ja:cor-obstruction}
+定理~\ref{ja:thm-bands}の定数を用い，$1\leq n\leq r$と
+$0<\delta\leq C\varepsilon_0^a$を固定する．
+\[
+ \rank E_{[n-\delta,n+\delta]}<\binom{k+n-1}{n}
+\]
+ならば，\eqref{ja:eq-eigen}のような正規直交族で，すべての固有値が
+$[1,1+(\delta/C)^{1/a}]$に属するものは存在しない．
+\end{jcor}
+\begin{proof}
+そのような族が存在するとして，
+$\varepsilon=(\delta/C)^{1/a}$で\eqref{ja:eq-bands}を適用すればよい．
+\end{proof}
+
+\section{行列評価の証明}
+
+\begin{jlem}[一様な可積分性]\label{ja:lem-moments}
+設定~\ref{ja:setup}の下で，$q\geq2$および$p\geq1$に対し
+\begin{equation}\label{ja:eq-integrability}
+ \|f_i\|_q\leq(q-1)^{\lambda_i/2}\leq q-1,
+ \qquad \|A_{ij}\|_p\leq(4p-2)^2
+\end{equation}
+が成り立つ．特に$\|A_{ij}\|_2\leq36$である．
+\end{jlem}
+\begin{proof}
+\eqref{ja:eq-hyper}で$t=\frac12\log(q-1)$とし，
+$P_tf_i=e^{-\lambda_i t}f_i$を用いると最初の評価を得る．$q=2$の場合も
+直接成立する．\eqref{ja:eq-reverse}で$s=\frac12\log2$と置くと，
+$e^{2s}-1=1$より
+\[
+ A_{ii}\leq2^{\lambda_i}P_s(f_i^2),\qquad
+ \|A_{ii}\|_p\leq2^{\lambda_i}\|f_i\|_{2p}^2
+             \leq(4p-2)^{\lambda_i}\leq(4p-2)^2
+\]
+を得る．最初の評価から$f_i\in L^{2p}$なので，ここでMarkov半群の
+$L^p$縮小性を適用できる．最後に
+$|A_{ij}|\leq\sqrt{A_{ii}A_{jj}}$とHölder不等式を用いればよい．
+\end{proof}
+
+\begin{proof}[\eqref{ja:eq-main-matrix}の証明]
+\[
+ C_t=\operatorname{diag}(e^{-(\lambda_i-1)t}),\qquad
+ D_t=P_tA-C_tAC_t
+\]
+と置く．$P_t$は各行列成分に作用する．\eqref{ja:eq-BE}を
+$\sum_i v_i f_i$に適用し，$e^{2t}$を掛けると$v^TD_tv\geq0$を得る．
+まず$v\in\Q^k$に対してこれを行い，次に$v$に関する連続性を用いると，
+一つの零集合の外で$D_t\geq0$が成立する．積分の保存性から
+\begin{equation}\label{ja:eq-defect-trace}
+ \int\|D_t\|_{S_1}\,d\m
+ =\sum_i\lambda_i(1-e^{-2(\lambda_i-1)t})
+ \leq4k\varepsilon t
+\end{equation}
+である．ここで$1-e^{-s}\leq s$および$\lambda_i\leq2$を用いた．
+
+行列$A-C_tAC_t$は半正定値とは限らない．そこで
+\[
+ A-C_tAC_t=(I-C_t)A+C_tA(I-C_t)
+\]
+を用いる．$A\geq0$，$\|C_t\|_{\mathrm{op}}\leq1$および
+$\|I-C_t\|_{\mathrm{op}}\leq\varepsilon t$なので，トレースノルムの
+イデアル性より
+\[
+ \int\|A-C_tAC_t\|_{S_1}\,d\m
+ \leq2\varepsilon t\int\tr A\,d\m
+ \leq4k\varepsilon t
+\]
+を得る．これと\eqref{ja:eq-defect-trace}を合わせると
+\begin{equation}\label{ja:eq-time-defect}
+ \int\|A-P_tA\|_{S_1}\,d\m\leq8k\varepsilon t
+\end{equation}
+となる．残りの項には\eqref{ja:eq-mixing}を各成分に適用し，
+Cauchy--Schwarz不等式を用いる：
+\begin{align*}
+ \int\|P_tA-\Lambda\|_{S_1}\,d\m
+ &\leq\sqrt{k}\left(\sum_{i,j}
+       \|P_t(A_{ij}-\m(A_{ij}))\|_2^2\right)^{1/2}\\
+ &\leq\sqrt{k}e^{-t}
+       \left(\sum_{i,j}\|A_{ij}-\m(A_{ij})\|_2^2\right)^{1/2}\\
+ &\leq36k^{3/2}e^{-t}.
+\end{align*}
+平均を引くと$L^2$ノルムは増えないので，最後の行は
+補題~\ref{ja:lem-moments}による．三角不等式から主張を得る．
+$\varepsilon=0$の場合には$t\to\infty$とすればよい．
+\end{proof}
+
+\section{Gaussian近似の証明}
+
+用いる行列ノルムと定数を明確にするため，輸送距離を評価する段階も記す．
+
+\begin{jlem}[Gaussian Stein評価]\label{ja:lem-Stein}
+設定~\ref{ja:setup}の下で
+\begin{equation}\label{ja:eq-Stein}
+ W_1(F_\#\m,\gamma_k)
+ \leq\sqrt{2/\pi}\int\|A-\Lambda\|_{S_1}\,d\m
+\end{equation}
+が成り立つ．
+\end{jlem}
+\begin{proof}
+$h:\R^k\to\R$を滑らかな$1$-Lipschitz関数とする．$Q_t$をGaussian
+Ornstein--Uhlenbeck半群とし，
+\[
+ u(x)=-\int_0^\infty\bigl(Q_th(x)-\gamma_k(h)\bigr)\,dt
+\]
+と置く．被積分関数の絶対値は
+$e^{-t}(|x|+\int|y|\,d\gamma_k(y))$以下なので，この積分は収束する．
+関数$u$は
+\[
+ (\Delta_{\R^k}-x\cdot\nabla)u=h-\gamma_k(h),\qquad
+ \|\nabla u\|_\infty\leq1
+\]
+を満たす．単位ベクトル$v,w$に対し，Mehler公式とGaussianの部分積分から，
+$b=e^{-t}$，$s=(1-e^{-2t})^{1/2}$として
+\[
+ D^2Q_th(x)[v,w]
+ =\frac{b^2}{s}\int(w\cdot y)\,Dh(bx+sy)[v]\,d\gamma_k(y)
+\]
+を得る．したがって
+\begin{equation}\label{ja:eq-Hess-Stein}
+ \|D^2u\|_{\mathrm{op},\infty}
+ \leq\sqrt{\frac2\pi}
+       \int_0^\infty\frac{e^{-2t}}{\sqrt{1-e^{-2t}}}\,dt
+ =\sqrt{\frac2\pi}.
+\end{equation}
+最後の積分が$1$であることは$z=e^{-2t}$と置けば分かる．これらの評価により
+半群の積分の微分を正当化できる．時間積分を切断してから極限を取ってもよい．
+
+各$\partial_i u\circ F$は$W^{1,2}(X)$に属する．実際，これは有界で，
+Sobolev関数と滑らかなLipschitz関数との合成である．よって
+\eqref{ja:eq-generator}と連鎖律から
+\begin{equation}\label{ja:eq-IBP-Stein}
+ \int f_i\partial_i u(F)\,d\m
+ =\lambda_i^{-1}\sum_j\int A_{ij}\partial_{ij}u(F)\,d\m
+\end{equation}
+を得る．したがって$h$の期待値の差は
+$\sum_{i,j}(\delta_{ij}-\lambda_i^{-1}A_{ij})\partial_{ij}u(F)$の積分である．
+トレース双対性，\eqref{ja:eq-Hess-Stein}および
+$\|\Lambda^{-1}\|_{\mathrm{op}}\leq1$から，その絶対値は
+\eqref{ja:eq-Stein}の右辺以下となる．この段階で$A$と$\Lambda$の可換性は
+仮定していない．
+
+畳み込みにより，任意の$1$-Lipschitz関数$h$を滑らかな$1$-Lipschitz関数で
+一様誤差が零に収束するように近似できる．\eqref{ja:eq-eigen}により
+両分布の一次モーメントは有限なので，極限移行と
+Kantorovich--Rubinsteinの双対公式から\eqref{ja:eq-Stein}を得る．
+\end{proof}
+
+\begin{proof}[定理~\ref{ja:thm-gaussian}の証明の完結]
+$\varepsilon>0$ならば\eqref{ja:eq-main-matrix}で
+$t=\log(\sqrt{k}/\varepsilon)\geq0$と取る．右辺は
+\[
+ k\varepsilon\bigl(8\log(\sqrt{k}/\varepsilon)+36\bigr)
+ \leq36k\varepsilon\bigl(1+\log(\sqrt{k}/\varepsilon)\bigr)
+\]
+となるので，補題~\ref{ja:lem-Stein}を適用すればよい．欠損量が零の場合は，
+行列評価で$t\to\infty$として同じ補題を用いる．
+\end{proof}
+
+\section{多項式の微分計算とスペクトル重複度}
+
+\begin{jlem}[指数を明示した補間]\label{ja:lem-interp}
+任意の$1<p<\infty$と$0<b<1/p$に対し，定数$C(k,p,b)$が存在して
+\begin{equation}\label{ja:eq-Lp}
+ \|A_{ij}-\lambda_i\delta_{ij}\|_p\leq C(k,p,b)\varepsilon^b
+ \qquad(0<\varepsilon\leq1)
+\end{equation}
+が成り立つ．
+\end{jlem}
+\begin{proof}
+$q>p$を$\alpha=(1/p-1/q)/(1-1/q)>b$となるように選ぶ．
+定理~\ref{ja:thm-gaussian}から各成分に対する
+$L^1$評価$C(k)\varepsilon(1+|\log\varepsilon|)$を得る．一方，
+補題~\ref{ja:lem-moments}は一様な$L^q$評価を与える．
+$1/p=\alpha+(1-\alpha)/q$を満たすHölder補間により
+\[
+ \|A_{ij}-\lambda_i\delta_{ij}\|_p
+ \leq C(k,q)\{\varepsilon(1+|\log\varepsilon|)\}^{\alpha}
+ \leq C(k,p,b)\varepsilon^b
+\]
+である．最後に，
+$\varepsilon^{\alpha-b}(1+|\log\varepsilon|)^\alpha$が$(0,1]$上で
+有界であることを用いた．
+\end{proof}
+
+\begin{jlem}[非有界な多項式合成]\label{ja:lem-domain}
+$\R^k$上の任意の多項式$P$について$P(F)\in D(\Delta)$であり，
+\begin{equation}\label{ja:eq-chain}
+ \Delta(P(F))=-\sum_i\lambda_i f_i\partial_iP(F)
+              +\sum_{i,j}A_{ij}\partial_{ij}P(F)
+\end{equation}
+が成り立つ．各項は$L^2$に属する．また，任意の多項式$Q$に対し
+\begin{equation}\label{ja:eq-poly-IBP}
+ \int f_iQ(F)\,d\m
+ =\lambda_i^{-1}\sum_j\int A_{ij}\partial_jQ(F)\,d\m
+\end{equation}
+である．
+\end{jlem}
+\begin{proof}
+単位球上で$1$となる$\chi\in C_c^\infty(\R^k)$を固定し，
+$P_R(x)=\chi(x/R)P(x)$とする．$P_R$の一階・二階微分が有界であることから，
+次のように弱い連鎖律を示せる．$v\in W^{1,2}\cap L^\infty$に対して，
+$f_i$の\eqref{ja:eq-generator}に試験関数$v\partial_iP_R(F)$を代入し，
+その弱勾配を展開する．$i$について足すと，$P_R$に対する
+\eqref{ja:eq-chain}を得る．右辺は補題~\ref{ja:lem-moments}によって
+$L^2$に属する．一般のSobolev試験関数を切断することで，等式はすべての
+$W^{1,2}$試験関数に拡張される．したがって$P_R(F)\in D(\Delta)$である．
+
+$R\to\infty$で$P_R(F)\to P(F)$が$L^2$で成立する．切断関数の微分を
+含む項は$|F|\geq R$に台を持ち，$R\geq1$によらない
+$1+|F|$のある固定した多項式で支配される．補題~\ref{ja:lem-moments}と
+Hölder不等式により，連鎖律の右辺も$L^2$で収束する．$\Delta$の閉性から，
+\eqref{ja:eq-chain}と定義域への所属を得る．最後に，$Q(F)$は
+$f_i$の\eqref{ja:eq-generator}に代入できる試験関数である．そのSobolev
+連鎖律も同じ切断関数から従い，\eqref{ja:eq-poly-IBP}を得る．
+\end{proof}
+
+$|P|_{\mathrm{coef}}$を，多項式$P$の単項式係数の絶対値の和とする．
+
+\begin{jlem}[多項式モーメントの定量評価]\label{ja:lem-Gram}
+$d\geq0$と$0<a<1/2$に対し，次数$d$以下の任意の多項式は
+\begin{equation}\label{ja:eq-moment-comparison}
+ \left|\int P(F)\,d\m-\int P\,d\gamma_k\right|
+ \leq C(k,d,a)|P|_{\mathrm{coef}}\varepsilon^a
+\end{equation}
+を満たす．
+\end{jlem}
+\begin{proof}
+\eqref{ja:eq-poly-IBP}から
+\[
+ \int f_iQ(F)\,d\m-\int\partial_iQ(F)\,d\m
+ =\lambda_i^{-1}\sum_j\int
+       (A_{ij}-\lambda_i\delta_{ij})\partial_jQ(F)\,d\m
+\]
+を得る．\eqref{ja:eq-Lp}の$p=2$の場合と，補題~\ref{ja:lem-moments}に
+よる多項式の$L^2$評価から，$\deg Q\leq d-1$ならば，この絶対値は
+$C(k,d,a)|Q|_{\mathrm{coef}}\varepsilon^a$以下である．
+単項式$x^\beta$について$\beta_i>0$となる$i$を選び，
+$Q=x^{\beta-e_i}$とすると
+\[
+ \int F^\beta\,d\m
+ =(\beta_i-1)\int F^{\beta-2e_i}\,d\m+O_{k,d,a}(\varepsilon^a)
+\]
+を得る．係数が零の項は省略する．Gaussianモーメントは，一変数の部分積分
+により，誤差のない同じ漸化式を満たす．定数と平均零の一次モーメントを
+出発点とする$|\beta|$についての帰納法により，単項式に対する主張を得る．
+これらの評価に係数を掛けて足せば\eqref{ja:eq-moment-comparison}となる．
+\end{proof}
+
+\begin{proof}[定理~\ref{ja:thm-bands}の証明]
+$H_j$を確率論の規約のHermite多項式とする．すなわち，$H_0=1$，
+$H_1=x$，$H_{j+1}=xH_j-jH_{j-1}$である．
+多重指数$\alpha\in\N_0^k$に対して
+\[
+ h_\alpha(x)=\prod_i\frac{H_{\alpha_i}(x_i)}{\sqrt{\alpha_i!}},
+ \qquad u_\alpha=h_\alpha(F),\qquad
+ \rho_\alpha=\sum_i\alpha_i\lambda_i
+\]
+と置く．Gaussianの部分積分から
+$\int h_\alpha h_\beta\,d\gamma_k=\delta_{\alpha\beta}$および
+\[
+ \sum_i\lambda_i(\partial_{ii}-x_i\partial_i)h_\alpha
+ =-\rho_\alpha h_\alpha
+\]
+を得る．$n\leq r$を固定すると，次数$n$の多重指数は
+$M_n=\binom{k+n-1}{n}$個ある．それらの関数の二つずつの積に
+補題~\ref{ja:lem-Gram}を適用すると，Gram行列
+$G_n=(\langle u_\alpha,u_\beta\rangle)_{|\alpha|=|\beta|=n}$は
+\begin{equation}\label{ja:eq-Gram}
+ \|G_n-I\|_{\mathrm{op}}\leq C(k,r,a)\varepsilon^a
+\end{equation}
+を満たす．$\varepsilon_0$を小さくすれば，右辺は$1/2$以下となる．
+特に，$u_\alpha$たちは線形独立である．
+
+補題~\ref{ja:lem-domain}により
+\begin{equation}\label{ja:eq-residual}
+ (\Delta+\rho_\alpha)u_\alpha
+ =\sum_{i,j}(A_{ij}-\lambda_i\delta_{ij})
+                   \partial_{ij}h_\alpha(F)
+\end{equation}
+である．$a<1/p$を満たす$p>2$を選び，$q=2p/(p-2)$とする．すると
+$1/2=1/p+1/q$である．\eqref{ja:eq-Lp}を指数$a$で適用し，多項式の
+微分に対する一様な$L^q$評価を用いる．Hölder不等式により
+\eqref{ja:eq-residual}の右辺の$L^2$ノルムは
+$C(k,r,a)\varepsilon^a$以下となる．また$|\rho_\alpha-n|\leq n\varepsilon$
+なので
+\begin{equation}\label{ja:eq-quasimode}
+ \|(-\Delta-n)u_\alpha\|_2\leq C(k,r,a)\varepsilon^a
+\end{equation}
+を得る．ここでは積を評価するため，$p=2$ではなく$p>2$と取ることが必要である．
+
+$V_n=\operatorname{span}\{u_\alpha:|\alpha|=n\}$と置く．
+$v=\sum c_\alpha u_\alpha$に対し，\eqref{ja:eq-Gram}から
+$\|v\|_2\geq|c|/\sqrt2$を得る．一方，\eqref{ja:eq-quasimode}と
+Cauchy--Schwarz不等式から
+\[
+ \|(-\Delta-n)v\|_2\leq B(k,r,a)\varepsilon^a\|v\|_2
+\]
+である．$C=2B$と選ぶ．
+$E_{[n-C\varepsilon^a,n+C\varepsilon^a]}v=0$ならば，スペクトル定理から
+\[
+ \|(-\Delta-n)v\|_2^2
+ \geq C^2\varepsilon^{2a}\|v\|_2^2
+\]
+を得る．両不等式から$v=0$である．したがって，この射影は$M_n$次元空間
+$V_n$上で単射となり，\eqref{ja:eq-bands}が従う．
+$\varepsilon_0$をさらに小さくし，各帯が互いに交わらず$0$も含まないように
+する．これらの像と定数関数を合わせ，
+$1+\sum_{n=1}^r\binom{k+n-1}{n}=\binom{k+r}{r}$を用いると
+\eqref{ja:eq-count}を得る．
+
+$\varepsilon=0$ならば，定理~\ref{ja:thm-gaussian}から
+$F_\#\m=\gamma_k$かつ$A=I$である．したがって，同じHermite関数たちは
+厳密に正規直交し，\eqref{ja:eq-residual}の右辺は零となる．
+それらは固有値$n$の厳密な固有関数であり，主張を得る．
+\end{proof}
+
+\section{例，鋭さ，限界}
+
+\subsection{重複度を実現する特異空間}
+$k\geq1$，$q\geq2$，$L>1$とする．$\R^k\times\R^q$にEuclid距離と，
+\[
+ \exp\left(-\frac{|x|^2}{2}-\frac{L|y|^2}{2}\right)
+\]
+に比例する確率密度を入れる．$(x,y)\mapsto(x,-y)$による商を取り，商距離と
+押し出し測度を与える．元の空間の重み付きRicciテンソルは
+$\operatorname{diag}(I_k,LI_q)$である．
+\cite[Theorem 1.1]{ja:GGKMS}により，この商は$\RCD(1,\infty)$空間である．
+また，$\R^k\times\{0\}$に沿って特異である．実際，横断的な接錐は
+$\R^q/\{\pm1\}$であり，Euclid空間ではない．
+
+関数$f_i=x_i$は商に降下する．\cite[Theorem 5.12]{ja:GGKMS}のSobolev空間の
+同一視は，商の生成作用素を不変関数への制限と同一視する．実際，不変部分空間
+は元のDirichlet形式を還元し，弱い等式\eqref{ja:eq-generator}も対応して
+制限される．商を取る前のHermite基底の固有値は$|\alpha|+L|\beta|$である．
+不変性は$|\beta|$が偶数であることを意味する．したがって，$2L>r+1$ならば，
+各整数$1\leq n\leq r$の重複度は厳密に$\binom{k+n-1}{n}$である．
+これにより，特異空間を含め，階数の下界の鋭さが分かる．
+
+密度の$|x|^2/2$を$(1+\varepsilon)|x|^2/2$に置き換え，
+$f_i=\sqrt{1+\varepsilon}\,x_i$とする．このとき
+$\lambda_i=1+\varepsilon$，$A=\Lambda$であり，$F$の分布は依然として
+厳密に$\gamma_k$である．生成される次数$n$の固有値は$n(1+\varepsilon)$に
+移動する．特に，すでに$n=1$で，$n$を中心とする半径$o(\varepsilon)$の
+スペクトル帯では一様な結論は成立しない．これは指数$a<1/2$の最適性を
+示すものではない．
+
+\subsection{欠損量が小さいコンパクトな特異例}
+$k$を固定し，$N\geq\max\{2,k+1\}$を取り，$q=N+1-k\geq2$と置く．
+$S^N(\sqrt{N-1})\subset\R^k\times\R^q$に正規化体積測度を与え，
+$(x,y)\mapsto(x,-y)$による商を取る．Ricciテンソルは$g$なので，商は
+$\RCD(1,\infty)$空間である．固定点集合は$S^{k-1}$で，横断的な商接錐は
+Euclid空間ではない．したがって，この空間は滑らかなRiemannian多様体ではない．
+
+不変関数
+\[
+ f_i=\sqrt{\frac{N+1}{N-1}}\,x_i
+ \quad(1\leq i\leq k)
+\]
+は正規直交し，$\lambda_i=N/(N-1)=1+1/(N-1)$を満たす．
+実際，$x_i$の二乗平均は$(N-1)/(N+1)$であり，座標関数の固有値は
+$N/(N-1)$である．上記の商に関する同一視により，これらの等式は保存される．
+また，接方向の勾配を直接計算すると
+\[
+ A_{ij}=\frac{N+1}{N-1}\delta_{ij}-\frac{f_i f_j}{N-1},
+ \qquad
+ A_{ij}-\lambda_i\delta_{ij}
+ =\frac{\delta_{ij}-f_i f_j}{N-1}
+\]
+を得る．したがって，コンパクトな特異空間のクラスで$\varepsilon\downarrow0$
+となるように仮定が実現される．この列に沿って，固定された有限の次元上界が
+存在するとは主張していない．また，コンパクト性により厳密なEuclid距離因子は
+存在し得ないが，定量的な結論は適用できる．
+
+\subsection{曲率条件はスペクトルギャップだけでは置き換えられない}
+$d\geq2$の平坦トーラス$(\R/2\pi\Z)^d$に正規化体積測度を与える．
+そのスペクトルギャップは$1$であり，$f=\sqrt2\cos x_1$は平均零で
+正規化されている．その分布の台は$[-\sqrt2,\sqrt2]$に含まれる．
+$1$-Lipschitz試験関数$h(z)=(|z|-\sqrt2)_+$を用いると
+\[
+ W_1(f_\#\m,\gamma_1)\geq\int h\,d\gamma_1>0
+\]
+である．したがって，スペクトルギャップの仮定だけでは欠損量零の結論は
+成立しない．このトーラスのRicci曲率は$0$であり，正の曲率の仮定を
+満たさない．これは\eqref{ja:eq-BE}を除くことへの障害であり，本稿の定理への
+反例ではない．
+
+\subsection{正規化と幾何学的結論の限界}
+正規直交性は必要である．同じGaussian固有関数を繰り返すと，分布は
+$\gamma_k$ではなく対角線上に台を持つ．確率測度への正規化は，$L^2$評価を
+$L^1$評価に移す際に用いた．$K>0$について，距離を$\sqrt K\,d$に
+置き換えると，生成作用素とcarré du champは$\Delta/K$および$\Gamma/K$
+となる．したがって，$\lambda_i/K\in[1,1+\varepsilon]$ならば，すべての結果が
+$\RCD(K,\infty)$空間にも適用できる．元の正規化でのスペクトル帯の中心は
+$nK$，半径は$KC\varepsilon^a$である．
+
+欠損量が零の場合の測度距離空間としてのGaussian分裂は，既存の定理
+\cite[Theorem 1.1]{ja:GKKO}から従う．欠損量が正の場合，本稿の証明は
+距離の意味での積近似，位相的主張，各帯の固有値数の上界を与えない．
+特に，$F_\#\m\approx\gamma_k$を，ほぼ等長性の主張に置き換えてはならない．
+
+\section{今後の問題}
+
+現在の仮定の下で\eqref{ja:eq-main-W}の対数を除けるだろうか．この対数は，
+時間について線形に増大する欠損と指数的な混合を釣り合わせることから生じる．
+したがって，これを除くには追加の着想が必要である．スペクトル帯について，
+$\varepsilon$のオーダー，あるいは定数を制御した端点
+$\varepsilon^{1/2}$の評価を得られるだろうか．移動したGaussianの例が
+否定するのは，一様な$o(\varepsilon)$の帯だけである．最後に，観測量と
+スペクトル射影に対するこれらの評価を，定量的な測度距離空間の分裂へ
+強めるために必要な追加の幾何学的情報を明らかにする問題が残る．
+これらの問題を本稿で解決したとは主張しない．
+
+
+\begin{thebibliography}{GGKMS}
+\bibitem[AGS]{ja:AGS}
+L. Ambrosio, N. Gigli and G. Savar\'e,
+\emph{Metric measure spaces with Riemannian Ricci curvature bounded from below},
+\href{https://arxiv.org/abs/1109.0222v2}{arXiv:1109.0222v2} (2012).
+本文の参照番号はこのプレプリントに従う： Definition 2.19,
+\S4.3, and Theorems 5.1, 6.2 and 6.8.
+
+\bibitem[BF]{ja:BF}
+J. Bertrand and M. Fathi,
+\emph{Stability of eigenvalues and observable diameter in
+$\RCD(1,\infty)$ spaces},
+J. Geom. Anal. \textbf{32} (2022), article 270,
+\href{https://doi.org/10.1007/s12220-022-00999-9}{doi:10.1007/s12220-022-00999-9}.
+本文の定理番号は
+\href{https://arxiv.org/abs/2107.05324v1}{arXiv:2107.05324v1} (2021)に従う．
+\href{https://www.math.univ-toulouse.fr/~bertrand/BertrandFathi.pdf}{著者公開版}（2021年11月24日付）では，Theorems 1.2 and 1.3が1.3 and 1.4に変更されている．
+
+\bibitem[CF]{ja:CF}
+T. A. Courtade and M. Fathi,
+\emph{Stability of the Bakry--\'Emery theorem on $\R^n$},
+\href{https://arxiv.org/abs/1807.09845v2}{arXiv:1807.09845v2} (2018),
+Theorem 1.2.
+
+\bibitem[GGKMS]{ja:GGKMS}
+F. Galaz-Garc\'ia, M. Kell, A. Mondino and G. Sosa,
+\emph{On quotients of spaces with Ricci curvature bounded below},
+\href{https://arxiv.org/abs/1704.05428v1}{arXiv:1704.05428v1} (2017),
+Theorems 1.1 and 5.12.
+
+\bibitem[GKKO]{ja:GKKO}
+N. Gigli, C. Ketterer, K. Kuwada and S.-i. Ohta,
+\emph{Rigidity for the spectral gap on $\RCD(K,\infty)$-spaces},
+\href{https://arxiv.org/abs/1709.04017v1}{arXiv:1709.04017v1} (2017),
+Theorem 1.1 and \S2.
+\end{thebibliography}
+
+\end{document}

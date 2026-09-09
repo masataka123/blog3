@@ -1,0 +1,1629 @@
+% !TEX program = lualatex
+\documentclass[12pt]{amsart}
+
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+
+\emergencystretch=2em
+
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+% Omitted unused package unavailable in this environment: \usepackage{dsfont}
+% Omitted unused package unavailable in this environment: \usepackage{bbm}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+% Omitted unused package unavailable in this environment: \usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical macros retained from the supplied template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+\theoremstyle{definition}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jcor}[thm]{系}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@setauthors}{\MakeUppercase{\authors}}{\authors}{}{
+  \PackageError{author-case}{Failed to preserve the requested author spelling}{}}
+\makeatother
+\hypersetup{pdftitle={RC-positivity of induced symmetric powers and positive mean curvature},
+ pdfauthor={chatGPT 6 Astra}, bookmarksnumbered=true}
+\title[RC-positivity of induced symmetric powers]
+{RC-positivity of induced symmetric powers\\and positive mean curvature}
+\author{chatGPT 6 Astra}
+\date{September 8, 2026}
+\subjclass[2020]{Primary 32L05; Secondary 53C55, 14M22}
+\keywords{Chern curvature, RC-positivity, symmetric powers, mean curvature, Hermitian metrics}
+\begin{document}
+\raggedbottom
+\renewcommand{\theHsection}{en.\arabic{section}}
+\begin{abstract}
+For a fixed smooth Hermitian holomorphic vector bundle, we characterize
+RC-positivity of an induced symmetric power of degree at least two by
+positive Chern mean curvature for a suitable background Hermitian metric.
+For a rank-$r$ bundle, the same condition is detected by the $r$-fold
+orthogonal sum. A positive-semidefinite alternative and a symmetric tensor
+encoding prove the converse to the known positive-mean-curvature
+implication. We realize the sharpness of the number of copies on
+$\mathcal O_{\mathbb P^r}(k)^{\oplus r}$: its prescribed metric has
+RC-positive sums of fewer than $r$ copies, but the $r$-fold sum and every
+induced symmetric power of degree at least two fail at a point.
+The bundles also admit other Griffiths-positive metrics. The geometric
+application is a reformulation of an existing rational-connectedness
+criterion. Bibliographic novelty of the fixed-metric characterization
+and sharpness construction remains subject to further verification.
+\end{abstract}
+\maketitle
+\markboth{chatGPT 6 Astra}{RC-positivity of induced symmetric powers}
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+
+The curvature of a tensor power is a sum of curvature operators. For
+uniform RC-positivity one tangent direction makes every summand positive.
+For RC-positivity the direction may depend on the vector in the fiber, so
+this argument is unavailable. This note identifies exactly the additional
+condition needed for an \emph{induced} symmetric or tensor power to remain
+RC-positive. Throughout, the metric on the original bundle is fixed.
+
+Yang proved that positive mean curvature implies RC-positivity of induced
+tensor and exterior powers \cite[Theorem 3.6]{en:Yan18}. We prove a converse:
+RC-positivity of just the induced symmetric square already forces positive
+mean curvature for a suitable background Hermitian metric. We also
+construct compact examples showing that RC-positivity of the original
+metric alone does not suffice. The examples occur in every rank at least
+two, on split ample bundles over projective space.
+
+Write $h_{\mathrm{sym},m}$ for the restriction of $h^{\otimes m}$ to the
+parallel symmetric subbundle $\Sym^m E\subset E^{\otimes m}$. Write
+$h^{\oplus q}$ for the orthogonal sum metric, and
+$K_{\gamma,h}=\tr_\gamma R^h$ for the Chern mean curvature endomorphism.
+The background metric $\gamma$ and the bundle metric $h$ are independent.
+
+\begin{thm}[Detection by a symmetric power]\label{en:main}
+Let $X$ be a smooth compact complex manifold of positive dimension, and
+let $(E,h)$ be a smooth Hermitian holomorphic vector bundle of rank $r\geq1$.
+The following conditions are equivalent.
+\begin{enumerate}
+\item $(\Sym^m E,h_{\mathrm{sym},m})$ is RC-positive for some $m\geq2$.
+\item $(E^{\otimes m},h^{\otimes m})$ is RC-positive for some $m\geq2$.
+\item $(E^{\oplus r},h^{\oplus r})$ is RC-positive.
+\item There is a smooth Hermitian metric $\gamma$ on $X$ such that
+$K_{\gamma,h}>0$ everywhere.
+\end{enumerate}
+If these conditions hold, all positive tensor powers, all positive
+symmetric powers, all nonzero exterior powers, and every finite orthogonal
+sum of copies of $(E,h)$ are RC-positive with their induced metrics.
+The equivalence also holds at each individual point, with condition (4)
+replaced by the existence of a positive definite contravariant Hermitian
+form at that point.
+\end{thm}
+
+The implication from (4) to tensor and exterior powers is the cited
+result of Yang. The reverse implication uses a specific symmetric tensor
+that records an arbitrary positive semidefinite endomorphism of the fiber.
+Convex separation then produces a common \emph{weighted trace}, rather
+than a common tangent direction. The construction of $\gamma$ uses a
+partition of unity on inverse metrics; it does not require a globally
+chosen tangent vector field. It does not assert that $\gamma$ is K\"ahler.
+
+\begin{thm}[Sharpness on a compact projective base]\label{en:sharp}
+For each integer $r\geq2$, there are an integer $k>0$ and a smooth
+Hermitian metric $h$ on
+\[
+ E=\mathcal O_{\mathbb P^r}(k)^{\oplus r}
+\]
+with the following properties.
+\begin{enumerate}
+\item $(E^{\oplus q},h^{\oplus q})$ is RC-positive everywhere for
+$1\leq q<r$.
+\item At a point $p$, $(E^{\oplus r},h^{\oplus r})$ is not RC-positive.
+For every $m\geq2$, neither $(\Sym^m E,h_{\mathrm{sym},m})$ nor
+$(E^{\otimes m},h^{\otimes m})$ is RC-positive at $p$.
+\item The curvature of $(\det E,\det h)$ is negative definite at $p$.
+In particular no background Hermitian metric has $K_{\gamma,h}>0$
+everywhere.
+\end{enumerate}
+The underlying bundle $E$ also admits a different Griffiths-positive metric.
+Thus these are obstructions for the specified induced metrics, not
+obstructions to the existence of other positive metrics on the bundles.
+\end{thm}
+
+Li--Zhang--Zhang \cite[Proposition 3.6]{en:LZZ} already place positive mean
+curvature between uniform RC-positivity and RC-positivity. Their
+Theorems 1.4 and 1.7 concern existence of bundle metrics and rational
+connectedness. Wu's subsequent work \cite[Theorem 3]{en:Wu25},
+\cite[Theorem 7]{en:Wu26} constructs metrics from uniform weak
+RC-positivity. Our claims retain the initial metric $h$ and test its
+induced powers. They do not settle the existence questions about weak
+RC-positivity.
+
+The proof and compact realization below are complete within the stated
+smooth setting. We have not located their precise statements in the
+sources examined, including the above 2025--2026 preprints. Their
+bibliographic status is \textsc{potentially new}, not a claim of established
+priority. The application to rational connectedness in
+Section~\ref{en:applications} is explicitly a corollary of existing
+geometric criteria.
+
+\section{Curvature conventions and the scope of the problem}
+\label{en:conventions}
+
+We use the Chern connection. In a holomorphic frame, write the squared
+norm of a column vector $a$ as $a^*Ha$. Our curvature convention is
+\begin{equation}\label{en:chern}
+ R^h_{i\bar j}=-\partial_{\bar j}(H^{-1}\partial_iH),\qquad
+ R^h(u,\bar u)=\sum_{i,j}u^i\overline{u^j}R^h_{i\bar j}.
+\end{equation}
+Thus a line metric $e^{-\phi}$ has curvature coefficients
+$\partial_i\partial_{\bar j}\phi$, and $\mathcal O_{\mathbb P^n}(1)$
+with its Fubini--Study metric is positive. We abbreviate
+\[
+ R^h(u,\bar u,a,\bar a)=a^*H R^h(u,\bar u)a.
+\]
+This expression is real. For a background metric $\gamma$, the contraction
+$K_{\gamma,h}$ is equivalently $\sum_jR^h(e_j,\bar e_j)$ in a
+$\gamma$-orthonormal tangent frame.
+
+At each point, RC-positivity means
+\begin{equation}\label{en:rc}
+ \forall a\ne0\ \exists u\ne0:\quad
+ R^h(u,\bar u,a,\bar a)>0.
+\end{equation}
+Uniform RC-positivity means
+\begin{equation}\label{en:uniform}
+ \exists u\ne0\ \forall a\ne0:\quad
+ R^h(u,\bar u,a,\bar a)>0.
+\end{equation}
+These are Yang's Definitions 2.2 and 2.6 in \cite{en:Yan20}, using the
+numbering of arXiv v2. Replacing $>$ by $\geq$ specifies the semipositive
+variants used here. Uniform RC-quasi-positivity means uniform
+RC-semipositivity everywhere and uniform RC-positivity at at least one
+point, as in Definition 1.1 of that version. No quasi-positive RC
+hypothesis is used in Theorems~\ref{en:main} and \ref{en:sharp}.
+
+On a compact base, a fixed background metric and a fixed uniformly
+RC-positive bundle metric give a positive lower bound after normalizing
+both vectors. This is already \cite[Proposition 2.9]{en:Yan20}; it is not
+an additional result of this note. It also does not produce a smooth
+nonvanishing tangent vector field.
+
+For a Hermitian tangent metric $\omega$, our normalizations are
+\begin{equation}\label{en:hsc}
+ H_\omega(v)=\frac{R^\omega(v,\bar v,v,\bar v)}{|v|_\omega^4},\qquad
+ B_\omega(u,v)=\frac{R^\omega(u,\bar u,v,\bar v)}
+ {|u|_\omega^2|v|_\omega^2}.
+\end{equation}
+Here BSC means precisely \emph{holomorphic bisectional curvature} $B$.
+Orthogonal BSC restricts this expression to $u\perp v$. Real bisectional
+curvature instead contracts $\sum_{i,j}R_{i\bar i j\bar j}a_i a_j$
+with $a_i\geq0$, divided by $\sum_i a_i^2$, in a unitary frame. We never
+identify these conditions. For K\"ahler metrics the Chern and
+Levi--Civita connections agree on the holomorphic tangent bundle; none
+of that symmetry is used for a general bundle below.
+
+Quasi-positive HSC means $H\geq0$ everywhere and $H>0$ in every
+nonzero tangent direction at one point. Quasi-negative HSC is the
+corresponding all-directions condition with signs reversed. Positivity
+or negativity in just one direction at one point is weaker. For example,
+a positive-curvature curve times a flat torus has some positive
+directions but never positive HSC in all directions at a point.
+
+The initial literature check rules out presenting several neighboring
+statements as new. Quasi-positive K\"ahler HSC implies rational
+connectedness by Zhang--Zhang \cite[Theorem 1.5]{en:ZZ}; their criterion
+in fact uses the absence of nonzero truly flat vectors at one point.
+Matsumura \cite[Theorem 1.1 and Remark 1.2]{en:Mat} gives a locally
+constant rationally connected fibration over a finite \emph{\'etale}
+quotient of a torus in the compact K\"ahler semipositive setting.
+On the negative side, Wu--Yau's projective result
+\cite[Theorem 2]{en:WY}, the K\"ahler extension of Tosatti--Yang
+\cite[Theorem 1.1 and Corollary 1.2]{en:TY}, and Diverio--Trapani's
+quasi-negative theorem \cite[Theorem 1.2]{en:DT} already address the
+corresponding positivity of the canonical bundle. These results motivate
+our restriction to the behavior of induced bundle metrics; they are not
+inputs to the proofs below.
+
+\section{Positive contractions and symmetric tensors}
+\label{en:proofmain}
+
+Fix a point and put $V=T_x^{1,0}X$, $W=E_x$. Fix inner products for
+normalization. A positive semidefinite contravariant Hermitian tensor
+$B=\sum_j b_j u_j\otimes\bar u_j$, with $b_j\geq0$, determines
+\begin{equation}\label{en:contraction}
+ \mathcal R(B)=\sum_j b_jR^h(u_j,\bar u_j)\in\operatorname{Herm}(W).
+\end{equation}
+This is an intrinsic linear contraction. In particular it is independent
+of the displayed decomposition. Every $B>0$ is the inverse of a
+Hermitian metric on $V$.
+
+\begin{lem}[A positive-semidefinite alternative]\label{en:alternative}
+Exactly one of the following holds:
+\begin{enumerate}
+\item there is $B>0$ with $\mathcal R(B)>0$;
+\item there is $0\ne\rho\geq0$ in $\operatorname{Herm}(W)$ such that
+\begin{equation}\label{en:obstruction}
+ \tr\bigl(\rho R^h(u,\bar u)\bigr)\leq0\quad\text{for every }u\in V.
+\end{equation}
+\end{enumerate}
+\end{lem}
+\begin{proof}
+First, existence of $B\geq0$ with $\mathcal R(B)>0$ is equivalent to
+(1): replace $B$ by $B+\epsilon I_V$ for sufficiently small
+$\epsilon>0$. Let
+\[
+ C=\{\mathcal R(B):B\geq0,\ \tr B=1\}.
+\]
+It is a compact convex subset of the real vector space
+$\operatorname{Herm}(W)$ with inner product $\tr(AB)$. Suppose (1)
+fails. For $\epsilon>0$, the closed convex set
+$D_\epsilon=\epsilon I_W+\{P:P\geq0\}$ is disjoint from $C$.
+A pair $c_\epsilon\in C$, $d_\epsilon\in D_\epsilon$ of minimum
+distance exists, and $Z_\epsilon=d_\epsilon-c_\epsilon\ne0$.
+The first variation of squared distance gives
+\[
+ \langle Z_\epsilon,c-c_\epsilon\rangle\leq0,\qquad
+ \langle Z_\epsilon,d-d_\epsilon\rangle\geq0
+ \quad(c\in C,\ d\in D_\epsilon).
+\]
+Taking $d=d_\epsilon+tP$ shows $Z_\epsilon\geq0$. Taking
+$d=\epsilon I_W$ then shows
+\[
+ \langle Z_\epsilon,c\rangle\leq
+ \langle Z_\epsilon,d_\epsilon\rangle-|Z_\epsilon|^2
+ \leq\epsilon\tr Z_\epsilon.
+\]
+Normalize $\rho_\epsilon=Z_\epsilon/\tr Z_\epsilon$ and take a
+convergent subsequence as $\epsilon\downarrow0$. Its limit $\rho$ is
+positive semidefinite, has trace one, and satisfies
+$\tr(\rho c)\leq0$ for every $c\in C$. Since $R^h(u,\bar u)\in C$
+for unit $u$, this proves (2). Finally (1) and (2) cannot coexist:
+contraction with the positive tensor $B$ in (1) would give
+$\tr(\rho\mathcal R(B))\leq0$, whereas a nonzero positive
+semidefinite matrix paired with a positive definite matrix has positive
+trace.
+\end{proof}
+
+For a Hermitian endomorphism $A$ of $W$, write
+\[
+ A^{[m]}=\sum_{\nu=1}^m
+ I_W^{\otimes(\nu-1)}\otimes A\otimes
+ I_W^{\otimes(m-\nu)}.
+\]
+This is the infinitesimal tensor action, not the tensor product $A^{\otimes m}$.
+
+\begin{lem}[Encoding a positive matrix]\label{en:encoding}
+Let $m\geq2$ and let $\rho\geq0$ have trace one. Choose an orthonormal
+eigenbasis with $\rho e_j=\lambda_j e_j$, and put
+\begin{equation}\label{en:encodedvector}
+ s_{\rho,m}=\sum_{j=1}^r\sqrt{\lambda_j}\,e_j^{\otimes m}
+ \in\Sym^m W.
+\end{equation}
+Then $|s_{\rho,m}|=1$ and, for every Hermitian $A$,
+\begin{equation}\label{en:traceencoding}
+ \langle A^{[m]}s_{\rho,m},s_{\rho,m}\rangle
+ =m\tr(\rho A).
+\end{equation}
+\end{lem}
+\begin{proof}
+The tensors $e_j^{\otimes m}$ are orthonormal. In a cross term with
+indices $i\ne j$, each of the $m$ summands of $A^{[m]}$ leaves
+$m-1\geq1$ slots unchanged, and one such slot contributes
+$\langle e_i,e_j\rangle=0$. The diagonal term with index $j$ is
+$m\langle Ae_j,e_j\rangle$. Multiplication by $\lambda_j$ and summation
+give \eqref{en:traceencoding}. The disappearance of these cross terms
+is precisely why the argument requires $m\geq2$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en:main}]
+Work first at one point. Curvature of the tensor connection is
+\begin{equation}\label{en:tensorcurvature}
+ R^{h^{\otimes m}}(u,\bar u)=\bigl(R^h(u,\bar u)\bigr)^{[m]}.
+\end{equation}
+The symmetrizing orthogonal projection commutes with this connection.
+Thus its image is parallel and the curvature of $\Sym^m E$ is the
+restriction of \eqref{en:tensorcurvature}; its second fundamental form
+vanishes. This also proves that (2) implies (1), without invoking the
+false assertion that arbitrary subbundles inherit RC-positivity.
+
+If (1) holds and there is no positive contraction, apply
+Lemma~\ref{en:alternative} and normalize $\tr\rho=1$.
+Lemmas~\ref{en:encoding} and \eqref{en:tensorcurvature} give
+\[
+ R^{h_{\mathrm{sym},m}}(u,\bar u,s_{\rho,m},\bar s_{\rho,m})
+ =m\tr(\rho R^h(u,\bar u))\leq0
+\]
+for all $u$. This contradicts RC-positivity, proving (1) implies (4)
+pointwise.
+
+For a tuple $a=(a_1,\ldots,a_q)$ in an orthogonal sum, the corresponding
+curvature is
+\begin{equation}\label{en:sumcurvature}
+\begin{aligned}
+ R^{h^{\oplus q}}(u,\bar u,a,\bar a)
+ &=\sum_{\nu=1}^q\langle R^h(u,\bar u)a_\nu,a_\nu\rangle\\
+ &=\tr(\rho_aR^h(u,\bar u)),\qquad
+ \rho_a=\sum_{\nu=1}^q a_\nu a_\nu^*.
+\end{aligned}
+\end{equation}
+Every positive semidefinite matrix on $W$ is $\rho_a$ for a tuple of
+length $r$, by spectral decomposition. Consequently (3) and the
+nonexistence of obstruction (2) of Lemma~\ref{en:alternative} are
+equivalent. This proves (3) is equivalent to (4) pointwise.
+
+Conversely suppose $K=\mathcal R(B)>0$. Its induced infinitesimal action
+on $W^{\otimes m}$ is positive definite: in an eigenbasis of $K$ its
+eigenvalues are sums of $m$ positive eigenvalues. The restrictions to
+symmetric and exterior powers are also positive. On an orthogonal sum
+of copies it is block diagonal with block $K$. For every nonzero vector
+in any of these spaces, its positive pairing with the induced $K$ is a
+positive weighted sum of directional curvature pairings. At least one
+of those directional pairings is positive. This proves the remaining
+implications and all asserted functorial conclusions.
+
+Finally, at every $x$ choose a positive tensor $B_x$ with
+$\mathcal R_x(B_x)>0$. Extend $B_x$ smoothly near $x$ using a tangent
+frame. Both inequalities persist after shrinking the neighborhood.
+Take a finite cover $U_\alpha$ and a subordinate smooth partition of
+unity $\chi_\alpha$. The contravariant tensor
+\[
+ B=\sum_\alpha\chi_\alpha B_\alpha
+\]
+is positive definite, and
+$\mathcal R(B)=\sum_\alpha\chi_\alpha\mathcal R(B_\alpha)>0$.
+Let $\gamma$ be its inverse. There are no derivatives of
+$\chi_\alpha$ in this curvature contraction: $h$ has not been changed.
+Thus $K_{\gamma,h}>0$ globally, as required.
+\end{proof}
+
+\section{Compact realization and the sharp number of copies}
+\label{en:compact}
+
+\subsection{The local model}
+Let $r\geq2$, identify both the tangent space and the fiber with
+$\mathbb C^r$, and fix $0<t<1/r$. Consider
+\begin{equation}\label{en:model}
+ R_t(u,\bar u)=t|u|^2I_r-uu^*.
+\end{equation}
+For a tuple $a=(a_1,\ldots,a_q)$ with $\sum_\nu|a_\nu|^2=1$, put
+$D=\sum_\nu a_\nu a_\nu^*$. Then
+\begin{equation}\label{en:margin}
+ \max_{|u|=1}\sum_{\nu=1}^q\langle R_t(u,\bar u)a_\nu,a_\nu\rangle
+ =t-\lambda_{\min}(D).
+\end{equation}
+If $q<r$, the matrix $D$ has a nonzero kernel, so this maximum is exactly
+$t>0$. In contrast, the tuple $a_j=e_j/\sqrt r$, $1\leq j\leq r$,
+has $D=I_r/r$ and gives
+\begin{equation}\label{en:badtuple}
+ \sum_{j=1}^r\langle R_t(u,\bar u)a_j,a_j\rangle
+ =(t-1/r)|u|^2<0\quad(u\ne0).
+\end{equation}
+For each $m\geq2$, the unit symmetric tensor
+$s_m=r^{-1/2}\sum_je_j^{\otimes m}$ satisfies
+\begin{equation}\label{en:badtensor}
+ \langle R_t(u,\bar u)^{[m]}s_m,s_m\rangle
+ =m(t-1/r)|u|^2<0.
+\end{equation}
+Moreover,
+\begin{equation}\label{en:baddet}
+ \tr R_t(u,\bar u)=(rt-1)|u|^2<0.
+\end{equation}
+Thus this model separates RC-positivity from positive mean curvature,
+even though all sums of fewer than $r$ copies are RC-positive.
+
+It is a genuine Chern curvature model. On a neighborhood of $0\in\mathbb C^r$
+put
+\begin{equation}\label{en:localmetric}
+ H_0(z)=I_r-t|z|^2I_r+zz^*.
+\end{equation}
+The eigenvalues are $1-t|z|^2$ on $z^\perp$ and
+$1+(1-t)|z|^2$ along $z$; hence $H_0>0$ for $t|z|^2<1$.
+At zero, $H_0=I_r$ and $\partial H_0=0$. Formula~\eqref{en:chern}
+therefore gives
+\[
+ R^{H_0}_{i\bar j}(0)=t\delta_{ij}I_r-E_{ij},
+\]
+where $E_{ij}$ is the elementary matrix, proving \eqref{en:model}.
+The minimum over unit tuples of length $r-1$ of the maximum over unit
+$u$ is $t$ at zero. Continuity of this minimum--maximum, on compact unit
+spheres in a local trivialization, implies that $H_0^{\oplus(r-1)}$
+is RC-positive throughout a sufficiently small neighborhood. This is a
+local openness argument, not a conclusion drawn from numerical samples.
+
+\subsection{Preserving a local metric inside a positive global twist}
+We record the precise globalization needed here.
+
+\begin{lem}[Globalization on projective space]\label{en:glue}
+Let $H_0$ be a smooth positive matrix metric on a trivial rank-$r$ bundle
+near $p\in\mathbb P^n$. Suppose $H_0^{\oplus q}$ is RC-positive near
+$p$, for a fixed $q\geq1$. There exist $k>0$ and a metric $h$ on
+$\mathcal O_{\mathbb P^n}(k)^{\oplus r}$ such that
+$h^{\oplus q}$ is RC-positive everywhere, and the curvature of $h$
+agrees with that of $H_0$ on a neighborhood of $p$, under the local
+identification.
+\end{lem}
+\begin{proof}
+Take affine coordinates $z$ centered at $p$ and put
+$\phi(z)=\log(1+|z|^2)$. Choose $0<a<b<c<d$ so small that $H_0$
+is defined and $H_0^{\oplus q}$ is RC-positive on a neighborhood of
+$\{\phi\leq d\}$.
+Choose a smooth nondecreasing function $\eta$ with
+$\eta=0$ on $(-\infty,a]$, $\eta>0$ on $(a,\infty)$, and
+$\eta=1$ on $[b,\infty)$. Choose the constant of integration so that
+$f'=\eta$ and $f(s)=s$ for $s\geq b$. Thus $f$ is smooth and convex.
+Replacing the local Fubini--Study line metric $e^{-\phi}$ by
+$e^{-f(\phi)}$ defines a global metric $h_A$ on $\mathcal O(1)$,
+because it is unchanged outside a relatively compact subset of the chart.
+Writing forms as their Hermitian coefficient tensors, its curvature is
+\begin{equation}\label{en:flatten}
+ \beta=f'(\phi)\omega_{\rm FS}
+       +f''(\phi)\,\partial\phi\otimes\overline{\partial\phi}.
+\end{equation}
+It is semipositive everywhere, zero where $\phi\leq a$, and equal
+to $\omega_{\rm FS}$ where $\phi\geq b$ and outside the chart.
+
+Choose a smooth cutoff $0\leq\chi\leq1$ equal to one for $\phi\leq c$ and
+zero on a neighborhood of $\{\phi\geq d\}$. The matrix metric
+\[
+ G=I_r+\chi(H_0-I_r)
+\]
+extends by $I_r$ to the trivial bundle on $\mathbb P^n$ and is positive,
+since it is a convex combination of positive matrices.
+Set $h=h_A^kG$. Tensoring with a line bundle gives the exact formula
+\begin{equation}\label{en:twist}
+ R^h(u,\bar u)=R^G(u,\bar u)+k\beta(u,\bar u)I_r.
+\end{equation}
+On $\{\phi\leq c\}$, the first term is the curvature of $H_0$.
+For every nonzero $q$-tuple its RC-positive direction remains positive
+after the semipositive scalar addition.
+
+On the compact complement of $\{\phi<c\}$, we have
+$\beta=\omega_{\rm FS}$. Smoothness gives a finite $C\geq0$ such that
+\[
+ \langle R^G(u,\bar u)v,v\rangle_G
+ \geq-C|u|_{\rm FS}^2|v|_G^2
+\]
+there. Choose an integer $k>C$. Formula~\eqref{en:twist} makes $h$
+Griffiths-positive on that complement, so its orthogonal $q$-fold sum
+is RC-positive there as well. Near $p$, the line metric is constant
+and $G=H_0$, hence its added curvature is zero. This proves all claims.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en:sharp}]
+Take $n=r$, $t=1/(2r)$ and the metric \eqref{en:localmetric}.
+Apply Lemma~\ref{en:glue} with $q=r-1$. RC-positivity of the
+$(r-1)$-fold sum implies that of every shorter orthogonal sum, by
+padding a tuple with zero vectors and using \eqref{en:sumcurvature}.
+At $p$ the curvature is still $R_t$. Equations
+\eqref{en:badtuple}--\eqref{en:baddet} give all failures asserted
+in (2) and the negative determinant curvature in (3).
+For any positive definite background contraction $B$ at $p$,
+\[
+ \tr\mathcal R_t(B)=(rt-1)\tr B<0,
+\]
+so $\mathcal R_t(B)$ cannot be positive definite. Finally the direct
+sum of $r$ copies of the usual Fubini--Study metric on $\mathcal O(k)$
+is a different Griffiths-positive metric on $E$.
+\end{proof}
+
+The integer $r$ in Theorem~\ref{en:main}(3) is therefore sharp as a
+bound valid for every base dimension and rank. We do not claim that it
+is the smallest possible bound for each separately fixed pair $(\dim X,r)$.
+Already at $r=2$ the example shows that taking two identical RC-positive
+Hermitian bundles need not preserve RC-positivity with the sum metric.
+The failure of the tensor square follows from an explicit symmetric
+vector, not from a test on decomposable tensors alone.
+
+\section{Geometric consequences and boundary cases}
+\label{en:applications}
+
+\subsection{A reformulation of a known rational-connectedness criterion}
+\begin{cor}\label{en:rcgeometry}
+For a smooth connected compact K\"ahler manifold $X$ of positive dimension, the
+following conditions are equivalent:
+\begin{enumerate}
+\item $X$ is projective and rationally connected;
+\item there is a smooth Hermitian metric $h$ on $T_X$ for which
+$(\Sym^2T_X,h_{\mathrm{sym},2})$ is RC-positive;
+\item there is a smooth Hermitian metric $h$ on $T_X$ for which every
+positive induced tensor power is RC-positive.
+\end{enumerate}
+\end{cor}
+\begin{proof}
+By Li--Zhang--Zhang \cite[Theorem 1.7]{en:LZZ}, condition (1) is
+equivalent to the existence of Hermitian metrics $\gamma,h$ with
+$K_{\gamma,h}>0$. Theorem~\ref{en:main} identifies this with (2)
+and (3). The forward geometric implication from positive mean curvature
+is also Yang's \cite[Corollary 1.5]{en:Yan18}; its compact K\"ahler
+hypothesis is satisfied here.
+\end{proof}
+This corollary is a \textsc{direct corollary} of the cited criterion and
+our fixed-metric theorem. It is not a new theorem asserting rational
+connectedness under quasi-positive HSC. Neither $h$ nor $\gamma$ is
+asserted to be K\"ahler, and an arbitrary RC-positive metric on
+$\Sym^2T_X$ is not assumed to be induced from $T_X$.
+
+For completeness, the usual tensor vanishing has a direct analytic proof
+under the conditions of Theorem~\ref{en:main}:
+\begin{equation}\label{en:vanishing}
+ H^0(X,(E^*)^{\otimes m})=0\quad(m\geq1).
+\end{equation}
+Indeed the dual tensor mean curvature is negative definite. For a
+holomorphic section $s$ the Chern Bochner formula, contracted with
+$\gamma$, reads
+\[
+ \gamma^{i\bar j}\partial_i\partial_{\bar j}|s|^2
+ =|\nabla' s|_\gamma^2-\langle K_{\gamma,(h^*)^{\otimes m}}s,s\rangle.
+\]
+At a positive maximum of $|s|^2$ the left side is nonpositive and the
+right side is strictly positive. Hence $s=0$. This formula for a section
+of a Hermitian holomorphic bundle uses no K\"ahler symmetry or discarded
+torsion term. The vanishing itself is known from positive mean curvature.
+
+\subsection{Positive mean curvature need not give a common direction}
+On $\mathbb P^n$, $n\geq2$, let
+\[
+ E=T_{\mathbb P^n}\otimes\mathcal O(-1)
+\]
+with the metric induced by Fubini--Study metrics. Normalize
+$\omega_{\rm FS}$ by the potential $\log(1+|z|^2)$, so that its HSC
+is $2$. At zero, expansion of this potential gives
+\[
+ R_{i\bar j k\bar\ell}
+ =\delta_{ij}\delta_{k\ell}+\delta_{i\ell}\delta_{kj}.
+\]
+Unitary invariance gives the same formula in every unitary frame.
+Tensoring by $\mathcal O(-1)$ subtracts the first term. Consequently
+\[
+ R^E(u,\bar u,a,\bar a)=|\langle u,a\rangle|^2,
+ \qquad K_{\omega_{\rm FS},h}=I_E.
+\]
+Every $R^E(u,\bar u)$ with $u\ne0$ has rank one and a nonzero
+kernel. The given metric is not uniformly RC-positive at any point,
+although it satisfies all four conditions of Theorem~\ref{en:main}.
+Together with Theorem~\ref{en:sharp}, this proves strictness, for fixed
+metrics, of both implications
+\[
+ \text{uniform RC-positive}
+ \ \Longrightarrow\ \text{positive mean curvature for some }\gamma
+ \ \Longrightarrow\ \text{RC-positive}.
+\]
+The first implication is already \cite[Proposition 3.6]{en:LZZ}.
+The calculation here distinguishes the two conditions without changing
+the metric.
+
+\subsection{Why a semipositive substitution is insufficient}
+Let $X=\mathbb P^1\times\mathbb P^1$ and let
+$L=\operatorname{pr}_2^*\mathcal O_{\mathbb P^1}(-1)$ with the
+pullback Fubini--Study metric. Its curvature has coefficients
+$-\operatorname{pr}_2^*\omega_{\rm FS}$. Every nonzero horizontal
+vector has zero curvature. Thus all tensor powers and all orthogonal
+sums are RC-semipositive with the induced metrics. For every positive
+definite background metric $\gamma$, however,
+\[
+ K_{\gamma,L}=-\tr_\gamma\operatorname{pr}_2^*\omega_{\rm FS}<0.
+\]
+There is no nonnegative mean curvature for this fixed line metric.
+Allowing a \emph{degenerate} contravariant tensor supported in the first
+factor would give zero contraction; its inverse is not a Hermitian metric.
+This explains the precise obstruction to replacing all strict inequalities
+in Theorem~\ref{en:main} by non-strict ones.
+
+\section{Limitations and verification}
+\label{en:limitations}
+
+The main results concern Chern curvature of fixed smooth bundle metrics.
+They do not give a K\"ahler metric, a new HSC structure theorem, a
+classification of RC-positive holomorphic bundles, or a counterexample
+to a metric-existence conjecture. The compact examples are abstract
+bundles; the local tensor \eqref{en:model} is not asserted to have the
+additional symmetries required of a K\"ahler tangent curvature tensor.
+No assertion about singular spaces or finite monodromy is made.
+
+The proofs use only Chern curvature formulas, finite-dimensional convex
+geometry, and a scalar positive twist. Exact polynomial differentiation
+checks the curvature of \eqref{en:localmetric}; independent calculations
+check the trace and the balanced tensor identities. The accompanying
+code also tests \eqref{en:traceencoding} in complex, non-real eigenframes.
+These computations check signs and contractions. Global RC-positivity
+of the constructed metrics follows from Lemma~\ref{en:glue}, not from
+finite sampling.
+
+The principal bibliographic uncertainty is whether the converse in
+Theorem~\ref{en:main} or the compact sharpness construction has appeared
+under different terminology. The comparison was repeated after the proof,
+including the mean-curvature work of Li--Zhang--Zhang, both recent papers
+of Kuang-Ru Wu, and Wang--Yang--Yau \cite{en:WYY}. We found no
+containing statement in the portions examined. This is a bounded
+literature audit, not proof of novelty. The companion
+\texttt{research\_audit.md} specifies the checked versions, locations,
+rejected candidates, and the status of each claim.
+
+\medskip
+\noindent Numbered results cited in the text refer to the specified arXiv versions.
+\begin{thebibliography}{Yan20}
+\bibitem[Yan18]{en:Yan18} X.~Yang, \emph{RC-positivity, rational connectedness and Yau's conjecture},
+Cambridge J. Math. \textbf{6} (2018), 183--212.
+\href{https://arxiv.org/abs/1708.06713v3}{arXiv:1708.06713v3}.
+
+\bibitem[Yan20]{en:Yan20} X.~Yang, \emph{RC-positive metrics on rationally connected manifolds},
+Forum Math. Sigma \textbf{8} (2020), e53.
+\href{https://arxiv.org/abs/1807.03510v2}{arXiv:1807.03510v2}.
+
+\bibitem[LZZ]{en:LZZ} C.~Li, C.~Zhang and X.~Zhang,
+\emph{Mean curvature positivity and rational connectedness},
+\href{https://arxiv.org/abs/2112.00488v3}{arXiv:2112.00488v3} (2024).
+
+\bibitem[Wu25]{en:Wu25} K.-R.~Wu, \emph{Uniform RC-positivity of direct image bundles},
+\href{https://arxiv.org/abs/2512.10845v1}{arXiv:2512.10845v1} (2025).
+
+\bibitem[Wu26]{en:Wu26} K.-R.~Wu, \emph{Uniform weak RC-positivity and rational connectedness},
+\href{https://arxiv.org/abs/2604.05981v1}{arXiv:2604.05981v1} (2026).
+
+\bibitem[WYY]{en:WYY} M.~Wang, X.~Yang and S.-T.~Yau,
+\emph{Existence of Hermitian metrics with prescribed Hermitian-Yang-Mills tensors I},
+\href{https://arxiv.org/abs/2603.10611v4}{arXiv:2603.10611v4} (2026).
+
+\bibitem[WY]{en:WY} D.~Wu and S.-T.~Yau,
+\emph{Negative holomorphic curvature and positive canonical bundle},
+Invent. Math. \textbf{204} (2016), 595--604.
+\href{https://arxiv.org/abs/1505.05802v1}{arXiv:1505.05802v1}.
+
+\bibitem[TY]{en:TY} V.~Tosatti and X.~Yang, \emph{An extension of a theorem of Wu--Yau},
+J. Differential Geom. \textbf{107} (2017), 573--579.
+\href{https://arxiv.org/abs/1506.01145v3}{arXiv:1506.01145v3}.
+
+\bibitem[DT]{en:DT} S.~Diverio and S.~Trapani,
+\emph{Quasi-negative holomorphic sectional curvature and positivity of the canonical bundle},
+\href{https://arxiv.org/abs/1606.01381v4}{arXiv:1606.01381v4} (2018).
+
+\bibitem[ZZ]{en:ZZ} S.~Zhang and X.~Zhang,
+\emph{On the structure of compact K\"ahler manifolds with nonnegative holomorphic sectional curvature},
+\href{https://arxiv.org/abs/2311.18779v4}{arXiv:2311.18779v4} (2024).
+
+\bibitem[Mat]{en:Mat} S.-i.~Matsumura,
+\emph{Fundamental groups of compact K\"ahler manifolds with semi-positive holomorphic sectional curvature},
+\href{https://arxiv.org/abs/2502.00367v1}{arXiv:2502.00367v1} (2025).
+
+\end{thebibliography}
+
+\newpage
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\let\thm\jthm\let\endthm\endjthm
+\let\lem\jlem\let\endlem\endjlem
+\let\cor\jcor\let\endcor\endjcor
+\markboth{chatGPT 6 Astra}{誘導対称冪のRC-positivityと平均曲率の正値性}
+\thispagestyle{plain}
+\begin{center}
+{\large\bfseries 誘導対称冪のRC-positivityと平均曲率の正値性\par}
+\medskip
+chatGPT 6 Astra\par
+\smallskip
+2026年9月8日
+\end{center}
+\begin{quote}\small
+\textbf{概要．}
+固定した滑らかなHermitian正則ベクトル束について，次数$2$以上の誘導対称冪の
+RC-positivityが，適切な背景Hermitian計量に関するChern平均曲率の正値性と
+同値であることを示す．階数$r$の束では，同じ条件を$r$個の直交直和で判定できる．
+半正定値行列による二者択一と対称テンソルによる符号化を用い，
+平均曲率の正値性からの既知の含意の逆を証明する．
+さらに，$\mathcal O_{\mathbb P^r}(k)^{\oplus r}$上で直和の個数の最適性を実現する．
+指定した計量では$r$個未満の直和はRC-positiveだが，$r$個の直和と
+次数$2$以上のすべての誘導対称冪は，ある一点でこの性質を失う．
+これらの束には別のGriffiths-positive計量も存在する．
+幾何学的応用は既知の有理連結性の判定の言い換えである．
+固定計量についての判定と最適性の構成の文献上の新規性には，さらなる確認を要する．
+\end{quote}
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+
+テンソル冪の曲率は曲率作用素の和である．Uniform RC-positivityのもとでは，
+一つの接方向によって各項を正にできる．一方，RC-positivityでは，接方向は
+ファイバーのベクトルに依存してよいため，この議論は使えない．本稿では，
+\emph{誘導計量}を備えた対称冪またはテンソル冪がRC-positiveになるための
+追加条件を正確に記述する．全体を通じて，元の束の計量は固定する．
+
+Yangは，平均曲率の正値性から誘導計量を備えたテンソル冪・外冪の
+RC-positivityを示した\cite[Theorem 3.6]{ja:Yan18}．本稿ではその逆方向を示す．
+すなわち，誘導計量を備えた対称二乗のRC-positivityだけから，適切な背景
+Hermitian計量に関する平均曲率の正値性が従う．さらに，元の計量の
+RC-positivityだけでは不十分であることを示すコンパクトな例を構成する．
+これらの例は，任意の階数$2$以上について，射影空間上の直和型のample束で実現する．
+
+$h_{\mathrm{sym},m}$は$h^{\otimes m}$を平行な対称部分束
+$\Sym^m E\subset E^{\otimes m}$に制限した計量とし，$h^{\oplus q}$を
+直交直和計量とする．また，$K_{\gamma,h}=\tr_\gamma R^h$をChern平均曲率
+自己準同型とする．背景計量$\gamma$と束の計量$h$は独立である．
+
+\begin{thm}[対称冪による判定]\label{ja:main}
+$X$を正次元の滑らかなコンパクト複素多様体とし，$(E,h)$を階数$r\geq1$の
+滑らかなHermitian正則ベクトル束とする．次の条件は同値である．
+\begin{enumerate}
+\item ある$m\geq2$について，$(\Sym^m E,h_{\mathrm{sym},m})$がRC-positiveである．
+\item ある$m\geq2$について，$(E^{\otimes m},h^{\otimes m})$がRC-positiveである．
+\item $(E^{\oplus r},h^{\oplus r})$がRC-positiveである．
+\item $X$上に滑らかなHermitian計量$\gamma$が存在し，至るところで
+$K_{\gamma,h}>0$となる．
+\end{enumerate}
+これらが成立するとき，すべての正のテンソル冪，すべての正の対称冪，
+すべての非零の外冪，および$(E,h)$の任意の有限個の直交直和は，
+それぞれの誘導計量についてRC-positiveである．
+この同値性は各点でも成立する．その場合，条件(4)は，その点における
+正定値の反変Hermitian形式による曲率の縮約が正定値となることに置き換える．
+\end{thm}
+
+(4)からテンソル冪・外冪への含意は，上記のYangの結果である．逆方向では，
+ファイバー上の任意の半正定値自己準同型を記録する特定の対称テンソルを用いる．
+その後，凸集合の分離によって，共通の接方向ではなく共通の\emph{重み付きトレース}を
+得る．$\gamma$の構成には逆計量に対する1の分割を用いるので，接ベクトル場を
+大域的に選ぶ必要はない．$\gamma$がK\"ahlerであるとは主張しない．
+
+\begin{thm}[コンパクト射影的な底空間上での最適性]\label{ja:sharp}
+任意の整数$r\geq2$に対して，整数$k>0$と
+\[
+ E=\mathcal O_{\mathbb P^r}(k)^{\oplus r}
+\]
+上の滑らかなHermitian計量$h$が存在し，次の性質を満たす．
+\begin{enumerate}
+\item $1\leq q<r$について，$(E^{\oplus q},h^{\oplus q})$は
+至るところRC-positiveである．
+\item ある点$p$で，$(E^{\oplus r},h^{\oplus r})$はRC-positiveではない．
+すべての$m\geq2$について，$(\Sym^m E,h_{\mathrm{sym},m})$も
+$(E^{\otimes m},h^{\otimes m})$も$p$でRC-positiveではない．
+\item $(\det E,\det h)$の曲率は$p$で負定値である．特に，
+$K_{\gamma,h}>0$が至るところで成立するような背景Hermitian計量は存在しない．
+\end{enumerate}
+正則束$E$そのものは，別のGriffiths-positiveな計量も持つ．
+したがって，これらは指定された誘導計量に対する障害であり，束上に別の
+正曲率計量が存在することへの障害ではない．
+\end{thm}
+
+Li--Zhang--Zhang\cite[Proposition 3.6]{ja:LZZ}は，平均曲率の正値性が
+uniform RC-positivityとRC-positivityの間に位置することを既に示している．
+同論文のTheorems 1.4, 1.7は束の計量の存在と有理連結性を扱う．
+さらにWuの後続研究\cite[Theorem 3]{ja:Wu25}，\cite[Theorem 7]{ja:Wu26}は，
+uniform weak RC-positivityから計量を構成する．本稿では初めの計量$h$を
+保ったまま，その誘導冪を判定する．Weak RC-positivityに関する計量の存在問題を
+解決したとは主張しない．
+
+以下の証明とコンパクトな実現は，明記した滑らかな設定のもとで完結している．
+上記の2025--2026年のプレプリントを含む調査文献では，これらと正確に一致する
+主張を見いだせなかった．文献上の位置づけは\textsc{potentially new}であり，
+優先性が確定したという主張ではない．第\ref{ja:applications}節の有理連結性への
+応用は，既存の幾何学的判定定理の系として明示する．
+
+\section{曲率の規約と研究の範囲}
+\label{ja:conventions}
+
+Chern接続を用いる．正則枠において，列ベクトル$a$のノルムの二乗を
+$a^*Ha$と書く．曲率の符号規約は
+\begin{equation}\label{ja:chern}
+ R^h_{i\bar j}=-\partial_{\bar j}(H^{-1}\partial_iH),\qquad
+ R^h(u,\bar u)=\sum_{i,j}u^i\overline{u^j}R^h_{i\bar j}
+\end{equation}
+とする．したがって，直線束の計量$e^{-\phi}$の曲率係数は
+$\partial_i\partial_{\bar j}\phi$であり，Fubini--Study計量を備えた
+$\mathcal O_{\mathbb P^n}(1)$は正である．以下では
+\[
+ R^h(u,\bar u,a,\bar a)=a^*H R^h(u,\bar u)a
+\]
+と略記する．この量は実数である．背景計量$\gamma$に関する縮約
+$K_{\gamma,h}$は，$\gamma$-正規直交接枠を用いて
+$\sum_jR^h(e_j,\bar e_j)$とも書ける．
+
+各点におけるRC-positivityとは，
+\begin{equation}\label{ja:rc}
+ \forall a\ne0\ \exists u\ne0:\quad
+ R^h(u,\bar u,a,\bar a)>0
+\end{equation}
+をいう．Uniform RC-positivityとは，
+\begin{equation}\label{ja:uniform}
+ \exists u\ne0\ \forall a\ne0:\quad
+ R^h(u,\bar u,a,\bar a)>0
+\end{equation}
+をいう．これらは，\cite{ja:Yan20}のarXiv v2におけるDefinitions 2.2, 2.6である．
+本稿で用いる半正の変種は，$>$を$\geq$に置き換えたものとする．
+Uniform RC-quasi-positivityは，至るところuniform RC-semipositiveで，
+少なくとも一点でuniform RC-positiveであることを意味する．これは同じ版の
+Definition 1.1に従う．定理\ref{ja:main}と定理\ref{ja:sharp}では，
+RC曲率の準正の仮定は用いない．
+
+コンパクトな底空間上では，背景計量とuniformly RC-positiveな束の計量を
+固定すると，両ベクトルを正規化した後に正の下界が得られる．
+これは既に\cite[Proposition 2.9]{ja:Yan20}であり，本稿の追加結果ではない．
+また，そこから滑らかな非消滅接ベクトル場が得られるわけでもない．
+
+接束のHermitian計量$\omega$については，次の正規化を用いる．
+\begin{equation}\label{ja:hsc}
+ H_\omega(v)=\frac{R^\omega(v,\bar v,v,\bar v)}{|v|_\omega^4},\qquad
+ B_\omega(u,v)=\frac{R^\omega(u,\bar u,v,\bar v)}
+ {|u|_\omega^2|v|_\omega^2}.
+\end{equation}
+本稿のBSCは，正確に\emph{正則双断面曲率}$B$を意味する．
+Orthogonal BSCは，この式を$u\perp v$に制限したものである．
+一方，real bisectional curvatureは，正規直交枠と$a_i\geq0$を用いて
+$\sum_{i,j}R_{i\bar i j\bar j}a_i a_j$を$\sum_i a_i^2$で割った量である．
+これらを同一視しない．K\"ahler計量ではChern接続とLevi--Civita接続は
+正則接束上で一致するが，以下の一般の束の議論では，その対称性を用いない．
+
+準正HSCとは，至るところ$H\geq0$であり，ある一点のすべての非零接方向で
+$H>0$となることをいう．準負HSCは，同じ全方向の条件で符号を反転したものとする．
+一点の一方向だけで正または負であることは，これらより弱い．
+例えば，正曲率の曲線と平坦トーラスの積には正の方向があるが，
+ある点の全方向でHSCが正となることはない．
+
+最初の文献確認により，隣接するいくつかの命題を新結果として扱うことは
+できないと分かる．準正のK\"ahler HSCから有理連結性が従うことは
+Zhang--Zhang\cite[Theorem 1.5]{ja:ZZ}による．実際の判定条件は，
+ある一点で非零のtruly flat vectorが存在しないことである．
+Matsumura\cite[Theorem 1.1 and Remark 1.2]{ja:Mat}は，コンパクト
+K\"ahler半正HSCの設定で，トーラスの有限\'etale商を底空間とする
+局所定数な有理連結ファイブレーションを与えている．負曲率側では，
+Wu--Yauの射影的な場合の結果\cite[Theorem 2]{ja:WY}，
+Tosatti--YangのK\"ahler拡張\cite[Theorem 1.1 and Corollary 1.2]{ja:TY}，
+およびDiverio--Trapaniの準負の場合の定理\cite[Theorem 1.2]{ja:DT}が，
+対応する標準束の正値性を既に扱っている．これらの結果を踏まえ，本稿では
+誘導された束の計量の振る舞いに対象を絞る．以下の証明の入力としては用いない．
+
+\section{正の縮約と対称テンソル}
+\label{ja:proofmain}
+
+一点を固定し，$V=T_x^{1,0}X$，$W=E_x$とおく．正規化のための内積を固定する．
+半正定値の反変Hermitianテンソル
+$B=\sum_j b_j u_j\otimes\bar u_j$，$b_j\geq0$に対して，
+\begin{equation}\label{ja:contraction}
+ \mathcal R(B)=\sum_j b_jR^h(u_j,\bar u_j)\in\operatorname{Herm}(W)
+\end{equation}
+と定める．これは内在的な線形縮約であり，表示した分解に依存しない．
+特に，任意の$B>0$は$V$上のあるHermitian計量の逆である．
+
+\begin{lem}[半正定値行列による二者択一]\label{ja:alternative}
+次のいずれか一方だけが成立する．
+\begin{enumerate}
+\item $B>0$で$\mathcal R(B)>0$となるものが存在する．
+\item $\operatorname{Herm}(W)$の元$0\ne\rho\geq0$が存在して，
+\begin{equation}\label{ja:obstruction}
+ \tr\bigl(\rho R^h(u,\bar u)\bigr)\leq0\quad(\text{すべての }u\in V)
+\end{equation}
+となる．
+\end{enumerate}
+\end{lem}
+\begin{proof}
+まず，$B\geq0$で$\mathcal R(B)>0$となるものが存在することは(1)と同値である．
+十分小さい$\epsilon>0$に対し，$B$を$B+\epsilon I_V$に置き換えればよい．
+\[
+ C=\{\mathcal R(B):B\geq0,\ \tr B=1\}
+\]
+とおく．これは，内積$\tr(AB)$を備えた実ベクトル空間
+$\operatorname{Herm}(W)$のコンパクト凸部分集合である．(1)が成立しないと仮定する．
+$\epsilon>0$に対して，閉凸集合
+$D_\epsilon=\epsilon I_W+\{P:P\geq0\}$は$C$と交わらない．
+距離を最小にする組$c_\epsilon\in C$，$d_\epsilon\in D_\epsilon$が存在し，
+$Z_\epsilon=d_\epsilon-c_\epsilon\ne0$である．距離の二乗の第一変分より，
+\[
+ \langle Z_\epsilon,c-c_\epsilon\rangle\leq0,\qquad
+ \langle Z_\epsilon,d-d_\epsilon\rangle\geq0
+ \quad(c\in C,\ d\in D_\epsilon)
+\]
+を得る．$d=d_\epsilon+tP$とすると$Z_\epsilon\geq0$が分かる．
+さらに$d=\epsilon I_W$とすれば，
+\[
+ \langle Z_\epsilon,c\rangle\leq
+ \langle Z_\epsilon,d_\epsilon\rangle-|Z_\epsilon|^2
+ \leq\epsilon\tr Z_\epsilon
+\]
+となる．$\rho_\epsilon=Z_\epsilon/\tr Z_\epsilon$と正規化し，
+$\epsilon\downarrow0$に対して収束する部分列をとる．極限$\rho$は半正定値で
+トレースが$1$であり，すべての$c\in C$について$\tr(\rho c)\leq0$を満たす．
+単位ベクトル$u$に対して$R^h(u,\bar u)\in C$なので，(2)が従う．
+最後に，(1)と(2)は同時には成立しない．(1)の正のテンソル$B$で縮約すると
+$\tr(\rho\mathcal R(B))\leq0$となるが，非零半正定値行列と正定値行列の
+積のトレースは正だからである．
+\end{proof}
+
+$W$のHermitian自己準同型$A$について，
+\[
+ A^{[m]}=\sum_{\nu=1}^m
+ I_W^{\otimes(\nu-1)}\otimes A\otimes
+ I_W^{\otimes(m-\nu)}
+\]
+と書く．これはテンソル表現の無限小作用であり，テンソル積$A^{\otimes m}$ではない．
+
+\begin{lem}[正の行列の符号化]\label{ja:encoding}
+$m\geq2$とし，$\rho\geq0$のトレースを$1$とする．
+$\rho e_j=\lambda_j e_j$を満たす正規直交固有基底を選び，
+\begin{equation}\label{ja:encodedvector}
+ s_{\rho,m}=\sum_{j=1}^r\sqrt{\lambda_j}\,e_j^{\otimes m}
+ \in\Sym^m W
+\end{equation}
+とおく．このとき$|s_{\rho,m}|=1$であり，任意のHermitian自己準同型$A$について
+\begin{equation}\label{ja:traceencoding}
+ \langle A^{[m]}s_{\rho,m},s_{\rho,m}\rangle
+ =m\tr(\rho A)
+\end{equation}
+が成立する．
+\end{lem}
+\begin{proof}
+$e_j^{\otimes m}$は正規直交系である．添字$i\ne j$の交差項について，
+$A^{[m]}$の各項は$m-1\geq1$個のスロットを変えない．
+そのうち一つから$\langle e_i,e_j\rangle=0$が現れるので，交差項は消える．
+添字$j$の対角項は$m\langle Ae_j,e_j\rangle$である．
+これに$\lambda_j$を掛けて和をとれば\eqref{ja:traceencoding}を得る．
+$m\geq2$が必要なのは，まさにこの交差項の消滅のためである．
+\end{proof}
+
+\begin{proof}[定理\ref{ja:main}の証明]
+まず一点で議論する．テンソル接続の曲率は
+\begin{equation}\label{ja:tensorcurvature}
+ R^{h^{\otimes m}}(u,\bar u)=\bigl(R^h(u,\bar u)\bigr)^{[m]}
+\end{equation}
+である．対称化を与える直交射影はこの接続と可換である．
+したがって，その像は平行であり，$\Sym^m E$の曲率は
+\eqref{ja:tensorcurvature}の制限である．第二基本形式は消滅する．
+これから(2)ならば(1)も分かる．任意の部分束がRC-positivityを受け継ぐという
+誤った主張を用いているわけではない．
+
+(1)が成立し，正の縮約は存在しないと仮定する．補題\ref{ja:alternative}を適用し，
+$\tr\rho=1$と正規化する．補題\ref{ja:encoding}と
+\eqref{ja:tensorcurvature}より，すべての$u$について
+\[
+ R^{h_{\mathrm{sym},m}}(u,\bar u,s_{\rho,m},\bar s_{\rho,m})
+ =m\tr(\rho R^h(u,\bar u))\leq0
+\]
+となる．これはRC-positivityに反する．したがって，点ごとに(1)から(4)が従う．
+
+直交直和の元$a=(a_1,\ldots,a_q)$に対応する曲率は
+\begin{equation}\label{ja:sumcurvature}
+\begin{aligned}
+ R^{h^{\oplus q}}(u,\bar u,a,\bar a)
+ &=\sum_{\nu=1}^q\langle R^h(u,\bar u)a_\nu,a_\nu\rangle\\
+ &=\tr(\rho_aR^h(u,\bar u)),\qquad
+ \rho_a=\sum_{\nu=1}^q a_\nu a_\nu^*
+\end{aligned}
+\end{equation}
+である．スペクトル分解により，$W$上の任意の半正定値行列は，
+長さ$r$の組を用いて$\rho_a$と書ける．したがって，(3)は
+補題\ref{ja:alternative}の障害(2)が存在しないことと同値である．
+これにより，点ごとに(3)と(4)の同値性が示される．
+
+逆に，$K=\mathcal R(B)>0$とする．$W^{\otimes m}$上に誘導される
+無限小作用は正定値である．実際，$K$の固有基底を用いると，その固有値は
+$m$個の正の固有値の和である．対称冪・外冪への制限も正であり，
+複数のコピーの直交直和では各ブロックが$K$となる．
+これらの空間の任意の非零ベクトルについて，誘導された$K$との正のペアリングは，
+方向別曲率のペアリングの正の重み付き和である．そのうち少なくとも一つの
+方向別ペアリングは正となる．これで残りの含意と，すべての束操作に関する
+結論が示された．
+
+最後に，各点$x$で$\mathcal R_x(B_x)>0$となる正のテンソル$B_x$を選ぶ．
+接枠を用いて$B_x$を$x$の近傍に滑らかに延長する．近傍を縮めると，
+両方の正値性が保たれる．有限被覆$U_\alpha$と，これに従属する滑らかな
+1の分割$\chi_\alpha$をとる．反変テンソル
+\[
+ B=\sum_\alpha\chi_\alpha B_\alpha
+\]
+は正定値であり，
+$\mathcal R(B)=\sum_\alpha\chi_\alpha\mathcal R(B_\alpha)>0$
+である．その逆を$\gamma$とする．$h$は変更していないので，この曲率の縮約には
+$\chi_\alpha$の微分は現れない．よって，大域的に$K_{\gamma,h}>0$となる．
+\end{proof}
+
+\section{コンパクトな実現と直和の個数の最適性}
+\label{ja:compact}
+
+\subsection{局所モデル}
+$r\geq2$とし，接空間とファイバーをともに$\mathbb C^r$と同一視する．
+$0<t<1/r$を固定し，
+\begin{equation}\label{ja:model}
+ R_t(u,\bar u)=t|u|^2I_r-uu^*
+\end{equation}
+を考える．$\sum_\nu|a_\nu|^2=1$を満たす組$a=(a_1,\ldots,a_q)$に対し，
+$D=\sum_\nu a_\nu a_\nu^*$とおく．すると
+\begin{equation}\label{ja:margin}
+ \max_{|u|=1}\sum_{\nu=1}^q\langle R_t(u,\bar u)a_\nu,a_\nu\rangle
+ =t-\lambda_{\min}(D)
+\end{equation}
+である．$q<r$ならば，$D$は非零の核を持つため，この最大値は正確に$t>0$である．
+一方，$a_j=e_j/\sqrt r$，$1\leq j\leq r$という組では$D=I_r/r$となり，
+\begin{equation}\label{ja:badtuple}
+ \sum_{j=1}^r\langle R_t(u,\bar u)a_j,a_j\rangle
+ =(t-1/r)|u|^2<0\quad(u\ne0)
+\end{equation}
+を得る．各$m\geq2$に対し，単位対称テンソル
+$s_m=r^{-1/2}\sum_je_j^{\otimes m}$は
+\begin{equation}\label{ja:badtensor}
+ \langle R_t(u,\bar u)^{[m]}s_m,s_m\rangle
+ =m(t-1/r)|u|^2<0
+\end{equation}
+を満たす．さらに，
+\begin{equation}\label{ja:baddet}
+ \tr R_t(u,\bar u)=(rt-1)|u|^2<0
+\end{equation}
+である．したがって，このモデルでは$r$個未満のすべての直和がRC-positiveで
+あるにもかかわらず，RC-positivityと平均曲率の正値性が区別される．
+
+これは実際のChern曲率として実現する．$0\in\mathbb C^r$の近傍で
+\begin{equation}\label{ja:localmetric}
+ H_0(z)=I_r-t|z|^2I_r+zz^*
+\end{equation}
+とおく．固有値は$z^\perp$上で$1-t|z|^2$，$z$方向で
+$1+(1-t)|z|^2$である．よって，$t|z|^2<1$ならば$H_0>0$である．
+原点では$H_0=I_r$，$\partial H_0=0$となるので，\eqref{ja:chern}から
+\[
+ R^{H_0}_{i\bar j}(0)=t\delta_{ij}I_r-E_{ij}
+\]
+を得る．ここで$E_{ij}$は行列単位である．これで\eqref{ja:model}が実現した．
+長さ$r-1$の単位ベクトルの組について最小値をとり，単位接方向$u$について
+最大値をとった値は，原点で$t$である．局所自明化におけるコンパクトな単位球面上での
+この最小・最大値の連続性より，十分小さい近傍全体で
+$H_0^{\oplus(r-1)}$はRC-positiveとなる．これは局所的な開性による議論であり，
+数値サンプルからの結論ではない．
+
+\subsection{正の大域的な捻りの内部で局所計量を保つ}
+必要な大域化を正確に述べる．
+
+\begin{lem}[射影空間上での大域化]\label{ja:glue}
+$p\in\mathbb P^n$の近傍の自明な階数$r$の束上に，滑らかな正定値行列計量
+$H_0$が与えられているとする．ある固定した$q\geq1$について，
+$H_0^{\oplus q}$は$p$の近傍でRC-positiveと仮定する．このとき，
+$k>0$と$\mathcal O_{\mathbb P^n}(k)^{\oplus r}$上の計量$h$が存在し，
+$h^{\oplus q}$は至るところRC-positiveとなり，局所的な同一視のもとで
+$h$と$H_0$の曲率は$p$の近傍で一致する．
+\end{lem}
+\begin{proof}
+$p$を中心とするアフィン座標$z$をとり，$\phi(z)=\log(1+|z|^2)$とおく．
+$0<a<b<c<d$を十分小さく選び，$\{\phi\leq d\}$の近傍で$H_0$が定義され，
+$H_0^{\oplus q}$がRC-positiveとなるようにする．
+$(-\infty,a]$で$\eta=0$，$(a,\infty)$で$\eta>0$，$[b,\infty)$で$\eta=1$となる
+滑らかな単調非減少関数$\eta$を選ぶ．$f'=\eta$かつ$s\geq b$で$f(s)=s$となるように
+積分定数を選ぶ．この$f$は滑らかで凸である．
+局所的なFubini--Study直線束計量$e^{-\phi}$を$e^{-f(\phi)}$に置き換えると，
+$\mathcal O(1)$上の大域計量$h_A$が定まる．実際，この変更は座標近傍の相対コンパクトな
+部分集合の外では何も変えない．微分形式をそのHermitian係数テンソルで表示すると，
+その曲率は
+\begin{equation}\label{ja:flatten}
+ \beta=f'(\phi)\omega_{\rm FS}
+       +f''(\phi)\,\partial\phi\otimes\overline{\partial\phi}
+\end{equation}
+である．これは至るところ半正であり，$\phi\leq a$では零，
+$\phi\geq b$および座標近傍の外では$\omega_{\rm FS}$に等しい．
+
+$0\leq\chi\leq1$を満たし，$\phi\leq c$で$1$，$\{\phi\geq d\}$の近傍で$0$となる滑らかなcutoff関数
+$\chi$を選ぶ．行列計量
+\[
+ G=I_r+\chi(H_0-I_r)
+\]
+は，外側で$I_r$とすることにより，$\mathbb P^n$上の自明束に延長される．
+正定値行列の凸結合なので$G$は正定値である．$h=h_A^kG$とおく．
+直線束とのテンソル積の曲率公式により，
+\begin{equation}\label{ja:twist}
+ R^h(u,\bar u)=R^G(u,\bar u)+k\beta(u,\bar u)I_r
+\end{equation}
+が正確に成立する．$\{\phi\leq c\}$では，第一項は$H_0$の曲率である．
+任意の非零の$q$個のベクトルの組について，RC-positivityを与える方向の曲率は，
+半正のスカラー項を加えても正のままである．
+
+$\{\phi<c\}$のコンパクトな補集合では，$\beta=\omega_{\rm FS}$である．
+滑らかさより，この補集合上で
+\[
+ \langle R^G(u,\bar u)v,v\rangle_G
+ \geq-C|u|_{\rm FS}^2|v|_G^2
+\]
+となる有限の$C\geq0$が存在する．整数$k>C$を選ぶ．
+式\eqref{ja:twist}により，この補集合で$h$はGriffiths-positiveとなるので，
+その$q$個の直交直和もRC-positiveである．$p$の近傍では直線束計量が定数であり，
+$G=H_0$だから，付加された曲率は零である．以上で主張が示された．
+\end{proof}
+
+\begin{proof}[定理\ref{ja:sharp}の証明]
+$n=r$，$t=1/(2r)$とし，\eqref{ja:localmetric}の計量をとる．
+$q=r-1$として補題\ref{ja:glue}を適用する．
+$r-1$個の直交直和のRC-positivityから，それより短い直和のRC-positivityも従う．
+実際，組に零ベクトルを補って\eqref{ja:sumcurvature}を使えばよい．
+$p$における曲率は引き続き$R_t$である．
+式\eqref{ja:badtuple}--\eqref{ja:baddet}により，(2)で述べたすべての不成立と，
+(3)の行列式曲率の負定値性が従う．$p$における任意の正定値の背景縮約$B$について，
+\[
+ \tr\mathcal R_t(B)=(rt-1)\tr B<0
+\]
+であるから，$\mathcal R_t(B)$は正定値にはならない．
+最後に，$\mathcal O(k)$の通常のFubini--Study計量を$r$個直和すると，
+$E$上の別のGriffiths-positiveな計量が得られる．
+\end{proof}
+
+したがって，定理\ref{ja:main}(3)の整数$r$は，すべての底空間の次元と階数に
+通用する上界として最適である．個々の組$(\dim X,r)$を別々に固定したときにも，
+常に最小の上界であるとは主張しない．$r=2$の場合だけでも，同じ
+RC-positive Hermitian束を二つとっても，その直和計量はRC-positiveになるとは
+限らないことが分かる．テンソル二乗についての不成立は，明示的な対称ベクトルから
+従うものであり，可分解テンソルだけを検査して得たものではない．
+
+\section{幾何学的帰結と境界例}
+\label{ja:applications}
+
+\subsection{既知の有理連結性の判定の言い換え}
+\begin{cor}\label{ja:rcgeometry}
+$X$を正次元の滑らかな連結コンパクトK\"ahler多様体とする．次の条件は同値である．
+\begin{enumerate}
+\item $X$は射影的かつ有理連結である．
+\item $T_X$上に滑らかなHermitian計量$h$が存在し，
+$(\Sym^2T_X,h_{\mathrm{sym},2})$がRC-positiveとなる．
+\item $T_X$上に滑らかなHermitian計量$h$が存在し，
+すべての正の誘導テンソル冪がRC-positiveとなる．
+\end{enumerate}
+\end{cor}
+\begin{proof}
+Li--Zhang--Zhang\cite[Theorem 1.7]{ja:LZZ}により，(1)は
+$K_{\gamma,h}>0$となるHermitian計量$\gamma,h$が存在することと同値である．
+定理\ref{ja:main}により，これは(2)および(3)と同値である．
+平均曲率の正値性から幾何学的結論への含意は，Yangの
+\cite[Corollary 1.5]{ja:Yan18}でもある．そこで必要なコンパクトK\"ahlerという仮定は
+ここで満たされている．
+\end{proof}
+この系は，引用した判定定理と本稿の固定計量に関する定理の
+\textsc{direct corollary}である．準正HSCから有理連結性を示す新定理ではない．
+$h$と$\gamma$のいずれについてもK\"ahlerとは主張しない．
+また，$\Sym^2T_X$上の任意のRC-positive計量が$T_X$から誘導されると
+仮定しているわけではない．
+
+補足として，定理\ref{ja:main}の条件のもとでの通常のテンソル消滅
+\begin{equation}\label{ja:vanishing}
+ H^0(X,(E^*)^{\otimes m})=0\quad(m\geq1)
+\end{equation}
+には，直接的な解析的証明がある．実際，双対テンソルの平均曲率は負定値である．
+正則切断$s$に対するChernのBochner公式を$\gamma$で縮約すると，
+\[
+ \gamma^{i\bar j}\partial_i\partial_{\bar j}|s|^2
+ =|\nabla' s|_\gamma^2-\langle K_{\gamma,(h^*)^{\otimes m}}s,s\rangle
+\]
+となる．$|s|^2$の正の最大点では，左辺は非正，右辺は正である．よって$s=0$である．
+このHermitian正則束の切断に対する公式では，K\"ahler対称性は不要であり，
+torsion項を省略してもいない．消滅結果そのものは平均曲率の正値性から知られている．
+
+\subsection{平均曲率が正でも共通方向があるとは限らない}
+$\mathbb P^n$，$n\geq2$上で，
+\[
+ E=T_{\mathbb P^n}\otimes\mathcal O(-1)
+\]
+にFubini--Study計量から誘導される計量を入れる．
+$\omega_{\rm FS}$はポテンシャル$\log(1+|z|^2)$で正規化し，HSCが$2$となるようにする．
+原点でこのポテンシャルを展開すると，
+\[
+ R_{i\bar j k\bar\ell}
+ =\delta_{ij}\delta_{k\ell}+\delta_{i\ell}\delta_{kj}
+\]
+を得る．Unitary不変性により，任意の点の正規直交枠で同じ公式が成立する．
+$\mathcal O(-1)$とのテンソル積をとると第一項が差し引かれるので，
+\[
+ R^E(u,\bar u,a,\bar a)=|\langle u,a\rangle|^2,
+ \qquad K_{\omega_{\rm FS},h}=I_E
+\]
+となる．$u\ne0$に対する$R^E(u,\bar u)$はすべて階数$1$で，非零の核を持つ．
+与えられた計量はどの点でもuniformly RC-positiveではないが，
+定理\ref{ja:main}の四条件をすべて満たす．
+これと定理\ref{ja:sharp}を合わせると，固定した計量についての二つの含意
+\[
+ \text{uniform RC-positive}
+ \ \Longrightarrow\ \text{ある }\gamma\text{ に関する平均曲率が正}
+ \ \Longrightarrow\ \text{RC-positive}
+\]
+はいずれも真の含意であると分かる．最初の含意は既に
+\cite[Proposition 3.6]{ja:LZZ}である．ここでの計算は，計量を変更せずに
+二条件を区別している．
+
+\subsection{半正への置き換えが不十分な理由}
+$X=\mathbb P^1\times\mathbb P^1$とし，
+$L=\operatorname{pr}_2^*\mathcal O_{\mathbb P^1}(-1)$に
+引き戻したFubini--Study計量を入れる．曲率の係数は
+$-\operatorname{pr}_2^*\omega_{\rm FS}$である．任意の非零水平ベクトルに沿って
+曲率は零となる．したがって，すべてのテンソル冪およびすべての直交直和は，
+誘導計量についてRC-semipositiveである．ところが，任意の正定値の背景計量
+$\gamma$について，
+\[
+ K_{\gamma,L}=-\tr_\gamma\operatorname{pr}_2^*\omega_{\rm FS}<0
+\]
+となる．この固定した直線束計量には，非負の平均曲率を与える背景計量はない．
+第一因子に支持された\emph{退化した}反変テンソルを許せば縮約は零になるが，
+その逆はHermitian計量ではない．これが，定理\ref{ja:main}のすべての狭義不等号を
+非狭義不等号に置き換える際の正確な障害である．
+
+\section{限界と検証}
+\label{ja:limitations}
+
+主結果は，固定した滑らかな束の計量のChern曲率に関するものである．
+K\"ahler計量，新たなHSCの構造定理，RC-positiveな正則束の分類，
+あるいは計量の存在予想への反例を与えたものではない．
+コンパクトな例は抽象的な束であり，局所テンソル\eqref{ja:model}が
+K\"ahler接束の曲率に必要な追加の対称性を持つとは主張しない．
+特異空間やmonodromyの有限性についても主張しない．
+
+証明に用いたのは，Chern曲率の公式，有限次元の凸幾何，および
+正のスカラー曲率を持つ直線束による捻りだけである．
+厳密な多項式の微分で\eqref{ja:localmetric}の曲率を確認し，独立した計算で
+トレースと等重みテンソルの恒等式を確認した．添付コードでは，実成分に限らない
+複素固有基底でも\eqref{ja:traceencoding}を検査する．
+これらは符号と縮約の検算である．構成した計量の大域的なRC-positivityは，
+有限個のサンプルではなく補題\ref{ja:glue}によって証明される．
+
+文献上の主な不確実性は，定理\ref{ja:main}の逆方向やコンパクトな最適性の構成が，
+別の用語で既に現れている可能性である．証明後にも比較を繰り返し，
+Li--Zhang--Zhangの平均曲率の研究，Kuang-Ru Wuの最近の二論文，
+およびWang--Yang--Yau\cite{ja:WYY}を確認した．
+確認した箇所には本稿の主張を含むstatementは見いだせなかった．
+これは範囲を限定した文献監査であり，新規性の証明ではない．
+付属の\texttt{research\_audit.md}に，確認した版・参照箇所，
+採用しなかった候補，および各主張の状態を記録する．
+
+\medskip
+\noindent 本文で引用する定理等の番号は，以下に指定したarXivの版に従う．
+\begin{thebibliography}{Yan20}
+\bibitem[Yan18]{ja:Yan18} X.~Yang, \emph{RC-positivity, rational connectedness and Yau's conjecture},
+Cambridge J. Math. \textbf{6} (2018), 183--212.
+\href{https://arxiv.org/abs/1708.06713v3}{arXiv:1708.06713v3}.
+
+\bibitem[Yan20]{ja:Yan20} X.~Yang, \emph{RC-positive metrics on rationally connected manifolds},
+Forum Math. Sigma \textbf{8} (2020), e53.
+\href{https://arxiv.org/abs/1807.03510v2}{arXiv:1807.03510v2}.
+
+\bibitem[LZZ]{ja:LZZ} C.~Li, C.~Zhang and X.~Zhang,
+\emph{Mean curvature positivity and rational connectedness},
+\href{https://arxiv.org/abs/2112.00488v3}{arXiv:2112.00488v3} (2024).
+
+\bibitem[Wu25]{ja:Wu25} K.-R.~Wu, \emph{Uniform RC-positivity of direct image bundles},
+\href{https://arxiv.org/abs/2512.10845v1}{arXiv:2512.10845v1} (2025).
+
+\bibitem[Wu26]{ja:Wu26} K.-R.~Wu, \emph{Uniform weak RC-positivity and rational connectedness},
+\href{https://arxiv.org/abs/2604.05981v1}{arXiv:2604.05981v1} (2026).
+
+\bibitem[WYY]{ja:WYY} M.~Wang, X.~Yang and S.-T.~Yau,
+\emph{Existence of Hermitian metrics with prescribed Hermitian-Yang-Mills tensors I},
+\href{https://arxiv.org/abs/2603.10611v4}{arXiv:2603.10611v4} (2026).
+
+\bibitem[WY]{ja:WY} D.~Wu and S.-T.~Yau,
+\emph{Negative holomorphic curvature and positive canonical bundle},
+Invent. Math. \textbf{204} (2016), 595--604.
+\href{https://arxiv.org/abs/1505.05802v1}{arXiv:1505.05802v1}.
+
+\bibitem[TY]{ja:TY} V.~Tosatti and X.~Yang, \emph{An extension of a theorem of Wu--Yau},
+J. Differential Geom. \textbf{107} (2017), 573--579.
+\href{https://arxiv.org/abs/1506.01145v3}{arXiv:1506.01145v3}.
+
+\bibitem[DT]{ja:DT} S.~Diverio and S.~Trapani,
+\emph{Quasi-negative holomorphic sectional curvature and positivity of the canonical bundle},
+\href{https://arxiv.org/abs/1606.01381v4}{arXiv:1606.01381v4} (2018).
+
+\bibitem[ZZ]{ja:ZZ} S.~Zhang and X.~Zhang,
+\emph{On the structure of compact K\"ahler manifolds with nonnegative holomorphic sectional curvature},
+\href{https://arxiv.org/abs/2311.18779v4}{arXiv:2311.18779v4} (2024).
+
+\bibitem[Mat]{ja:Mat} S.-i.~Matsumura,
+\emph{Fundamental groups of compact K\"ahler manifolds with semi-positive holomorphic sectional curvature},
+\href{https://arxiv.org/abs/2502.00367v1}{arXiv:2502.00367v1} (2025).
+
+\end{thebibliography}
+
+\end{document}

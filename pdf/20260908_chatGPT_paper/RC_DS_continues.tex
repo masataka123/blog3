@@ -1,0 +1,1589 @@
+% !TEX program = lualatex
+\documentclass[12pt]{amsart}
+
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+% dsfont is absent; its unused alphabet is replaced by mathbb.
+\providecommand{\mathds}[1]{\mathbb{#1}}
+% bbm is absent; its unused alphabet is replaced by mathbb.
+\providecommand{\mathbbm}[1]{\mathbb{#1}}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+% ulem is absent and no text decoration from it is used.
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical notation retained from the template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions needed for this bilingual research note.
+\usepackage{booktabs}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@setauthors}{\MakeUppercase{\authors}}{\authors}{}{\errmessage{Author case patch failed}}
+\makeatother
+\emergencystretch=2em
+\newcommand{\HS}{\mathrm{HS}}
+\newcommand{\op}{\mathrm{op}}
+\theoremstyle{plain}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jprop}[thm]{命題}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jcor}[thm]{系}
+\theoremstyle{remark}
+\newtheorem{jrem}[thm]{注意}
+\theoremstyle{definition}
+\newtheorem{jeg}[thm]{例}
+\hypersetup{pdftitle={Mean RC curvature and pinched volume rigidity},pdfauthor={chatGPT 6 Astra}}
+\title[Mean RC curvature and pinched volume rigidity]{Mean RC curvature and pinched volume rigidity:\\an integral estimate for the Ricci defect}
+\author{chatGPT 6 Astra}
+\date{8 September 2026}
+\subjclass[2020]{Primary 53C55; Secondary 32Q15, 32Q20}
+\keywords{mean RC curvature, K\"ahler geometry, volume deficit, Ricci curvature, Fubini--Study metric}
+\begin{document}
+\begin{abstract}
+We prove a quantitative rigidity theorem for compact K\"ahler manifolds with
+mean RC curvature at least $(n+1)/n$, under the explicit additional hypothesis
+$\|\mathscr R-\mathscr R_*\|_{\rm op}<1/(1+\sqrt n)$.
+Here $\mathscr R$ is the curvature contraction on Hermitian endomorphisms
+and $\mathscr R_*(A)=A+(\tr A)I$.
+The volume deficit controls the squared $L^2$ norm of
+$\Ric^\sharp-(n+1)I$ in every complex dimension $n\geq2$.
+Maximal volume forces the normalized Fubini--Study metric.
+The main ingredient is an exact formula for mean RC curvature in terms
+of the trace-free Ricci endomorphism and a feasible optimizing density matrix.
+We construct compact perturbations satisfying our hypotheses while failing
+both $H\geq2$ and $\Ric\geq(n+1)\omega$.
+Algebraic examples isolate two obstructions to the unrestricted equality
+problem of Datar--Seshadri, which remains unresolved in this note.
+\end{abstract}
+\maketitle
+\renewcommand{\theHsection}{en.\arabic{section}}
+\renewcommand{\theHthm}{en.\thesection.\arabic{thm}}
+\renewcommand{\theHequation}{en.\thesection.\arabic{equation}}
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction and main result}
+
+Let $(X,\omega)$ be a compact connected K\"ahler manifold of complex dimension
+$n\geq2$. We use $\omega=\sqrt{-1}g_{i\bar j}\,dz^i\wedge d\bar z^j$ and
+\[
+ R_{i\bar j k\bar l}=-\partial_i\partial_{\bar j}g_{k\bar l}
+ +g^{p\bar q}(\partial_i g_{k\bar q})(\partial_{\bar j}g_{p\bar l}).
+\]
+The Fubini--Study normalization is $H_{\rm FS}=2$ and
+$[\omega_{\rm FS}]=2\pi c_1(\cO_{\mathbb P^n}(1))$.
+
+Here is the operator used throughout the paper. On the real Hilbert space
+$\mathcal H_x$ of Hermitian endomorphisms of $T_x^{1,0}X$, with
+$\langle A,B\rangle=\tr(AB)$, let $\mathscr R_x$ be determined by
+\begin{equation}\label{en:Rdef}
+ \langle\mathscr R_x(P_u),P_v\rangle=R(u,\bar u,v,\bar v),
+ \qquad P_u(w)=\langle w,u\rangle u\quad (|u|=1),
+\end{equation}
+and real bilinear extension. Rank-one projections span $\mathcal H_x$;
+equivalently, for $A=\sum a_iP_{u_i}$,
+$\mathscr R_x(A)=\sum a_iR_{u_i\bar u_i}$.
+K\"ahler symmetry makes this operator self-adjoint. Set
+\begin{equation}\label{en:model}
+ \mathscr R_*(A)=A+(\tr A)I,
+ \qquad \mu(x)=\max_{B\geq0,\ \tr B=1}\lambda_{\min}(\mathscr R_x(B)).
+\end{equation}
+Thus $\mathscr R_*$ is the pointwise space-form model and $\mu$ is exactly
+the mean RC curvature of Datar--Seshadri. Operator norms of $\mathscr R$
+refer to $\mathcal H_x$ with its Hilbert--Schmidt norm, not to a curvature
+operator on symmetric complex two-tensors.
+
+Datar--Seshadri prove the optimal volume bound under
+$\mu\geq(n+1)/n$, and identify the average scalar curvature at maximal
+volume \cite[Theorems 1.1 and 5.2]{en:DS}. Their general equality question
+remains outside the scope of a pointwise scalar-curvature comparison:
+the latter can fail even for a positive bisectional curvature tensor
+(Section~\ref{en:obstructions}). We obtain a comparison in an explicit
+neighborhood of $\mathscr R_*$ and convert it into an integral estimate.
+
+\begin{thm}[Volume deficit under curvature pinching]\label{en:main}
+Suppose that, everywhere on $X$,
+\begin{equation}\label{en:assumptions}
+ \mu\geq\frac{n+1}{n},\qquad
+ \|\mathscr R-\mathscr R_*\|_{\rm op}\leq\varepsilon,
+ \qquad 0\leq\varepsilon<\frac1{1+\sqrt n}.
+\end{equation}
+Write
+\[
+ V=\int_X\omega^n,\qquad v=\frac{V}{(2\pi)^n},
+ \qquad E=\Ric^\sharp-(n+1)I,
+\]
+where $\Ric^\sharp$ is the Hermitian endomorphism of the Ricci form.
+Then $X$ is biholomorphic to $\mathbb P^n$, $0<v\leq1$, and
+\begin{align}
+ \frac1{(2\pi)^n}\int_X |E|_{\rm HS}^2\,\omega^n
+ &\leq (1+2\varepsilon)n(n+1)
+       \bigl(v^{(n-1)/n}-v\bigr)\label{en:sharpform}\\
+ &\leq (1+2\varepsilon)(n+1)(1-v).\label{en:deficit}
+\end{align}
+In particular, $v=1$ if and only if $(X,\omega)$ is biholomorphically
+isometric to $(\mathbb P^n,\omega_{\rm FS})$.
+\end{thm}
+
+The volume constant is optimal. We make no optimality claim for the
+pinching radius or the coefficient in \eqref{en:deficit}. The conclusion
+quantifies the Einstein defect in an explicitly specified integral norm;
+it does not assert convergence in a metric distance or a $C^k$ topology.
+Riemannian volume is $V/n!$, and the norm in the theorem is the complex
+Hermitian endomorphism norm. These choices are part of the statement.
+
+The biholomorphic classification in this theorem is already supplied by
+positive bisectional curvature and the Frankel theorem
+\cite{en:SY}; we use the verified formulation
+\cite[Theorem 0.1]{en:FLW}. The additional conclusion concerns the given
+metric. Its proof uses a formula for the optimizing density matrix:
+\begin{equation}\label{en:identityintro}
+ n^2\mu=S-\langle r,\mathcal A^{-1}r\rangle,
+ \qquad r=\Ric^\sharp-\frac Sn I,
+ \qquad \mathcal A=\Pi\mathscr R|_{\mathcal H_0},
+\end{equation}
+where $S=\tr\Ric^\sharp$, $\mathcal H_0=\{A:\tr A=0\}$, and
+$\Pi$ is orthogonal projection onto $\mathcal H_0$. We prove the formula
+under explicit positivity and feasibility hypotheses, and verify those
+hypotheses from \eqref{en:assumptions}. Completing a quadratic form is
+elementary; the point requiring care is that its critical point must lie
+inside the positive density matrices. Section~\ref{en:obstructions}
+shows that omitting this issue gives false statements.
+
+\begin{prop}[The hypotheses include additional compact metrics]\label{en:family}
+For every $n\geq2$ there are K\"ahler metrics $\widehat\omega_t$ on
+$\mathbb P^n$, $0<t<t_0$, with $\widehat\omega_t\to\omega_{\rm FS}$
+smoothly, such that
+\[
+ \min_X\mu_{\widehat\omega_t}=\frac{n+1}{n},\qquad
+ \int_X\widehat\omega_t^n<(2\pi)^n,
+\]
+while neither $H_{\widehat\omega_t}\geq2$ nor
+$\Ric_{\widehat\omega_t}\geq(n+1)\widehat\omega_t$ holds.
+For every fixed $0<\varepsilon<(1+\sqrt n)^{-1}$, all sufficiently small
+$t>0$ satisfy the pinching in \eqref{en:assumptions}.
+\end{prop}
+
+Thus the main estimate is not an application of either curvature branch
+of \cite[Corollary 1.2]{en:DS}. The explicit family will also check the
+normalization and show that the added hypotheses do not assume the
+Einstein equation. The finite-dimensional identity, its volume-deficit
+consequence, and this separating family are the results established in
+this note. Their novelty is assessed separately in the accompanying audit.
+
+\section{The optimizing matrix and the Ricci defect}\label{en:algebra}
+
+\subsection{Quantifiers and normalizations}
+For a Hermitian holomorphic bundle $F$, RC positivity means
+$\forall x\ \forall v\ne0\ \exists u\ne0:\ R^F(u,\bar u,v,\bar v)>0$.
+Uniform RC positivity reverses the last two quantifiers:
+$\forall x\ \exists u\ne0\ \forall v\ne0$ with the same strict inequality
+\cite[Definition 1.1]{en:Yang}. The condition used here is instead
+\[
+ \forall x\ \exists B\geq0,\ \tr B=1\ \forall v:
+ \langle\mathscr R_x(B)v,v\rangle\geq\frac{n+1}{n}|v|^2.
+\]
+The admissible $B$ may have any rank. No smooth choice is part of this
+definition. The maximum exists because the density matrices form a
+compact set and the least eigenvalue is continuous.
+
+For completeness, minimization over unit vectors equals minimization
+over density matrices, by diagonalizing a Hermitian endomorphism. The
+bilinear form $\langle\mathscr R(B),A\rangle$ is continuous on the product
+of two compact convex sets, so the finite-dimensional minimax theorem
+gives
+\[
+ \mu=\max_B\min_A\langle\mathscr R(B),A\rangle
+     =\min_A\max_B\langle\mathscr R(B),A\rangle
+\]
+with both variables ranging over density matrices
+\cite[Remark 2.1]{en:DS}. Our calculation below proves its particular
+value by matching upper and lower certificates; it does not exchange
+optimizations without a certificate.
+
+Our sign conventions give
+\[
+ \rho=-\sqrt{-1}\partial\bar\partial\log\det g,
+ \quad [\rho]=2\pi c_1(X),\quad \mathscr R(I)=\Ric^\sharp,
+ \quad \rho\wedge\omega^{n-1}=\frac Sn\omega^n.
+\]
+In particular $S_{\rm FS}=n(n+1)$, and Riemannian scalar curvature is
+$2S$. All manifolds in this note are smooth. Ordinary Chern classes,
+rather than orbifold or reflexive Chern classes, are used.
+
+\begin{lem}[An interior formula]\label{en:formula}
+Let $R$ be an algebraic K\"ahler curvature tensor on a Hermitian
+$n$-space. Define $\mathscr R,S,r,\Pi,\mathcal A$ as above. Suppose
+$\mathcal A$ is positive definite and
+\begin{equation}\label{en:feasible}
+ B_*:=\frac1n\bigl(I-\mathcal A^{-1}r\bigr)>0.
+\end{equation}
+Then $B_*$ is the unique maximizing density matrix, and
+\begin{equation}\label{en:formulaeq}
+ \mathscr R(B_*)=\mu I,\qquad
+ n^2\mu=S-\langle r,\mathcal A^{-1}r\rangle.
+\end{equation}
+Consequently, if $aI\leq\mathcal A\leq bI$ with $a>0$, then
+\begin{equation}\label{en:twosided}
+ \frac{|r|^2}{b}\leq S-n^2\mu\leq\frac{|r|^2}{a}.
+\end{equation}
+The same value formula holds if $B_*$ is only semidefinite, although the
+assertion about a unique maximizing matrix is not needed in that case.
+\end{lem}
+
+\begin{proof}
+The endomorphism $\mathcal A^{-1}r$ is trace free, so $\tr B_*=1$.
+Since $\Pi\mathscr R(I)=r$, we have
+\[
+ \Pi\mathscr R(B_*)=\frac1n\bigl(r-\mathcal A\mathcal A^{-1}r\bigr)=0.
+\]
+Thus $\mathscr R(B_*)=\lambda I$. Self-adjointness gives
+\[
+ n\lambda=\langle\mathscr R(B_*),I\rangle
+ =\langle B_*,\mathscr R(I)\rangle
+ =\frac1n\bigl(S-\langle\mathcal A^{-1}r,r\rangle\bigr).
+\]
+The choice $B_*$ is admissible, and hence $\mu\geq\lambda$.
+For any admissible $B$, its least eigenvalue satisfies
+\[
+ \lambda_{\min}(\mathscr R(B))
+ \leq\langle\mathscr R(B),B_*\rangle
+ =\langle B,\mathscr R(B_*)\rangle=\lambda.
+\]
+This proves $\mu=\lambda$ without choosing eigenvectors smoothly.
+
+If $B$ is another maximizer, then $C=\mathscr R(B)-\mu I\geq0$ and
+$\tr(CB_*)=0$. Positive definiteness of $B_*$ implies $C=0$:
+indeed $B_*^{1/2}CB_*^{1/2}$ is semidefinite with zero trace.
+Writing $B=I/n+b_0$ with $\tr b_0=0$ now gives
+$r/n+\mathcal A b_0=0$, hence $B=B_*$. Finally, the spectral bounds on
+$\mathcal A^{-1}$ imply \eqref{en:twosided}.
+\end{proof}
+
+\begin{lem}[An explicit feasible region]\label{en:pinch}
+If $\|\mathscr R-\mathscr R_*\|_{\rm op}\leq\varepsilon<
+(1+\sqrt n)^{-1}$, then
+\[
+ (1-\varepsilon)I\leq\mathcal A\leq(1+\varepsilon)I,
+ \qquad B_*>0.
+\]
+Under the additional condition $\mu\geq(n+1)/n$, one has
+\begin{align}
+ S-n(n+1)&\geq\frac{|r|^2}{1+\varepsilon}\geq0,\label{en:scalar}\\
+ |\Ric^\sharp-(n+1)I|^2
+ &\leq(1+2\varepsilon)\bigl(S-n(n+1)\bigr).\label{en:pointwiseE}
+\end{align}
+\end{lem}
+
+\begin{proof}
+Put $D=\mathscr R-\mathscr R_*$. Since $\mathscr R_*$ is the identity on
+$\mathcal H_0$, compression gives the asserted bounds on $\mathcal A$.
+Also $r=\Pi D(I)$ and $|I|_{\rm HS}=\sqrt n$, so
+\[
+ |r|_{\rm HS}\leq\varepsilon\sqrt n,
+ \qquad \|\mathcal A^{-1}r\|_{\rm end}
+ \leq|\mathcal A^{-1}r|_{\rm HS}
+ \leq\frac{\varepsilon\sqrt n}{1-\varepsilon}<1.
+\]
+Here $\|\cdot\|_{\rm end}$ is the usual norm of an endomorphism of the
+tangent space. This distinction between two operator norms is essential.
+Every eigenvalue of $I-\mathcal A^{-1}r$ is positive. Lemma~\ref{en:formula}
+therefore proves \eqref{en:scalar}.
+
+Let $q=S-n(n+1)$. The same operator estimate yields
+\[
+ 0\leq q=\langle D(I),I\rangle\leq n\varepsilon.
+\]
+Orthogonality of the scalar and trace-free parts gives
+\[
+ |\Ric^\sharp-(n+1)I|^2=|r|^2+\frac{q^2}{n}
+ \leq(1+\varepsilon)q+\varepsilon q,
+\]
+as required. In this region $B_*$ varies smoothly with the curvature
+tensor: inversion is smooth on invertible operators. Smoothness is thus
+proved from a formula, not assumed for a general pointwise optimizer.
+\end{proof}
+
+\section{Global consequences}\label{en:global}
+
+\begin{proof}[Proof of Theorem~\ref{en:main}]
+For unit tangent vectors $u,v$, equation~\eqref{en:Rdef} and
+$|P_u|_{\rm HS}=|P_v|_{\rm HS}=1$ give
+\[
+ R(u,\bar u,v,\bar v)
+ \geq1+|\langle u,v\rangle|^2-\varepsilon>0.
+\]
+Thus $X$ is compact K\"ahler with positive orthogonal bisectional
+curvature. Theorem~0.1 of \cite{en:FLW} applies and identifies $X$
+biholomorphically with $\mathbb P^n$. This step does not identify its metric.
+
+Let $h=c_1(\cO_{\mathbb P^n}(1))$, with $\int h^n=1$. Since the K\"ahler
+cone of $\mathbb P^n$ is the positive ray, $[\omega]=2\pi a h$ for a real
+$a>0$. No rationality assumption on $a$ is used. The Euler sequence
+$0\to\cO\to\cO(1)^{\oplus(n+1)}\to T\mathbb P^n\to0$
+gives $c_1(X)=(n+1)h$. It follows that
+\begin{equation}\label{en:average}
+ v=a^n,\qquad
+ \int_X S\omega^n
+ =n\int_X\rho\wedge\omega^{n-1}
+ =n(n+1)(2\pi)^n a^{n-1}.
+\end{equation}
+By \eqref{en:scalar}, the average of $S$ is at least $n(n+1)$; equation
+\eqref{en:average} gives $a\leq1$. Integrating \eqref{en:pointwiseE}
+and using \eqref{en:average} proves \eqref{en:sharpform}.
+For $0<v\leq1$, concavity of $v^{(n-1)/n}$ implies
+\[
+ v^{(n-1)/n}\leq1+\frac{n-1}{n}(v-1),
+\]
+which proves \eqref{en:deficit}.
+
+If $v=1$, the nonnegative continuous function $|E|^2$ has zero integral,
+so $\rho=(n+1)\omega$ everywhere. Together with $V=(2\pi)^n$, this
+meets exactly the Ricci hypotheses of \cite[Corollary 5.3(2)]{en:DS},
+which gives the asserted biholomorphic isometry. Equivalently, one can
+use uniqueness of the positive K\"ahler--Einstein metric on $\mathbb P^n$
+up to automorphisms, as in that corollary. Conversely the normalized
+Fubini--Study metric satisfies all the assumptions and $v=1$.
+\end{proof}
+
+\begin{rem}\label{en:dependencies}
+The defect estimate and the volume inequality in this proof do not use
+the higher-order jet estimate or Theorem~5.2 of \cite{en:DS}. They follow
+from the new pointwise identity and the known complex classification.
+Only the final identification of an Einstein metric is delegated to the
+Ricci rigidity theorem. In particular, the proof does not assume that
+holomorphic sectional positivity implies the required Ricci bound.
+\end{rem}
+
+There is also a formulation not requiring a fixed distance from the
+space-form tensor.
+
+\begin{cor}[An interior criterion for equality rigidity]\label{en:interior}
+Suppose $\mu\geq(n+1)/n$, $\int_X\omega^n=(2\pi)^n$, and at every point
+\[
+ \mathcal A>0,\qquad I-\mathcal A^{-1}r>0.
+\]
+Then $(X,\omega)$ is biholomorphically isometric to
+$(\mathbb P^n,\omega_{\rm FS})$.
+\end{cor}
+
+\begin{proof}
+Lemma~\ref{en:formula} gives
+\[
+ S-n(n+1)=n^2\left(\mu-\frac{n+1}{n}\right)
+          +\langle r,\mathcal A^{-1}r\rangle\geq0.
+\]
+Theorem~5.2 of \cite{en:DS} gives that the integral of the left side
+against $\omega^n$ is zero. Thus both terms vanish at every point,
+$r=0$, and $S=n(n+1)$. Consequently $\rho=(n+1)\omega$, and
+\cite[Corollary 5.3(2)]{en:DS} applies. The hypotheses of the cited
+average-scalar theorem are precisely compact K\"ahler, the stated mean RC
+lower bound, and maximal volume; no Fano assumption is inserted.
+\end{proof}
+
+\section{A compact family beyond the two original bounds}\label{en:examples}
+
+\begin{proof}[Proof of Proposition~\ref{en:family}]
+On $\mathbb P^n$ set
+\[
+ p_j([Z])=\frac{|Z_j|^2}{\sum_{k=0}^n|Z_k|^2},\quad
+ m=p_0-p_1,\quad u=p_0+p_1,
+\]
+and define the globally smooth real function
+\begin{equation}\label{en:f}
+ f=m^2-\frac2{n+3}u+\frac2{(n+2)(n+3)}.
+\end{equation}
+Write $\omega_0=\omega_{\rm FS}$ and
+$\omega_t=\omega_0+t\sqrt{-1}\partial\bar\partial f$.
+For all sufficiently small real $t$, compactness and positivity of
+$\omega_0$ ensure that this is K\"ahler, with $[\omega_t]=[\omega_0]$.
+
+We use the complex Laplacian $\Delta=g_0^{i\bar j}\partial_i\partial_{\bar j}$,
+which has nonpositive eigenvalues. Direct differentiation of the moment
+functions gives
+\[
+ \Delta m=-(n+1)m,\quad \Delta u=2-(n+1)u,
+ \quad |\partial m|^2=u-m^2.
+\]
+For example the last identity follows from
+$\sum_{i,j}g_0^{i\bar j}(\partial_i m)(\partial_{\bar j}m)$
+in the affine Fubini--Study metric
+$g_{0,i\bar j}=\delta_{ij}/(1+|z|^2)-\bar z_i z_j/(1+|z|^2)^2$.
+The product rule now gives
+$\Delta(m^2)=2u-2(n+2)m^2$. Substituting \eqref{en:f} proves
+\begin{equation}\label{en:eigenfunction}
+ \Delta f=-2(n+2)f.
+\end{equation}
+The inequalities $m^2\leq u^2$ and $0\leq u\leq1$ show that the maximum
+of $f$ occurs precisely at $[1:0:\cdots:0]$ and $[0:1:0:\cdots:0]$:
+the convex function $u^2-2u/(n+3)$ has its larger endpoint value at $u=1$.
+Its value there is
+\[
+ f_{\max}=\frac{n+1}{n+3}+\frac2{(n+2)(n+3)}.
+\]
+
+Differentiate $\rho_t=-\sqrt{-1}\partial\bar\partial\log\det g_t$.
+Since $\Ric^\sharp_0=(n+1)I$, differentiation of the inverse metric in
+$S_t=\tr_{\omega_t}\rho_t$ yields
+\begin{equation}\label{en:variation}
+ S'_0=-\Delta(\Delta+n+1)f
+     =-2(n+2)(n+3)f.
+\end{equation}
+The formula in Lemma~\ref{en:formula} is smooth near $\omega_0$ and
+$r_0=0$. Its quadratic term has zero first variation, so, uniformly on
+$\mathbb P^n$,
+\begin{equation}\label{en:muvariation}
+ \mu_{\omega_t}=\frac{n+1}{n}+\frac{t}{n^2}S'_0+O(t^2).
+\end{equation}
+Consequently, for $t\downarrow0$,
+\[
+ \min_X\mu_{\omega_t}=\frac{n+1}{n}+\frac{d_n}{n^2}t+O(t^2),
+ \qquad d_n=-2(n^2+3n+4)<0.
+\]
+Taking a minimum is justified by the uniform remainder: evaluating at
+a minimizer of $S'_0$ gives the matching upper estimate. No smooth
+dependence of minimizing points is assumed.
+
+Set
+\begin{equation}\label{en:scale}
+ a_t=\frac n{n+1}\min_X\mu_{\omega_t},\qquad
+ \widehat\omega_t=a_t\omega_t.
+\end{equation}
+Under constant rescaling by $a>0$, $\mu_{a\omega}=a^{-1}\mu_\omega$.
+Therefore $\min\mu_{\widehat\omega_t}=(n+1)/n$, and
+\[
+ a_t=1+\frac{d_n}{n(n+1)}t+O(t^2)<1,
+ \qquad \frac1{(2\pi)^n}\int_X\widehat\omega_t^n=a_t^n<1.
+\]
+Moreover $\widehat\omega_t\to\omega_0$ smoothly as metrics on $X$,
+so it satisfies every fixed positive pinching bound in the proposition
+for sufficiently small $t$.
+
+We verify the failure of both original bounds at $p=[1:0:\cdots:0]$.
+Use coordinates $z_j=Z_j/Z_0$, $1\leq j\leq n$, and put
+$q_j=|z_j|^2$. At $p$, $g_0=I$ and first derivatives of $g_t$ vanish.
+The expansion of \eqref{en:f} gives
+\[
+ f_{1\bar1}(p)=-4,\qquad
+ f_{j\bar j}(p)=-\frac{2(n+2)}{n+3}\quad (j\geq2).
+\]
+The coefficients of $q_1^2$ and $q_j^2$ ($j\geq2$) in that expansion
+are respectively $8$ and $3-2/(n+3)$. Equation~\eqref{en:eigenfunction}
+gives
+\[
+ \left.\frac d{dt}\right|_0
+       \bigl(\rho_t-(n+1)\omega_t\bigr)
+ =(n+3)\sqrt{-1}\partial\bar\partial f.
+\]
+The first eigenvalue of
+$\Ric^\sharp_{\widehat\omega_t}-(n+1)I$ at $p$, along $\partial_{z_1}$,
+is consequently
+\begin{equation}\label{en:ricfailure}
+ \left(-4(n+3)-\frac{d_n}{n}\right)t+O(t^2)
+ =-\frac{2(n-1)(n+4)}n t+O(t^2)<0.
+\end{equation}
+
+For the sectional curvature computation, if $h=f_{1\bar1}(p)$ and
+$c$ is the coefficient of $q_1^2$, then
+$R'_{1\bar1 1\bar1}(p)=-4c$ and differentiating its denominator
+$g_{1\bar1}^2$ gives $H'_0(\partial_{z_1})=-4c-4h=-16$.
+Rescaling as in \eqref{en:scale} therefore gives
+\begin{align}\label{en:hfailure}
+ H_{\widehat\omega_t}(\partial_{z_1})-2
+ &=\left(-16-\frac{2d_n}{n(n+1)}\right)t+O(t^2)\notag\\
+ &=-\frac{4(n-1)(3n+4)}{n(n+1)}t+O(t^2)<0.
+\end{align}
+All coefficients in \eqref{en:ricfailure} and \eqref{en:hfailure} are
+strictly negative for $n\geq2$. This proves the asserted failures on
+actual compact K\"ahler manifolds, rather than only on algebraic tensors.
+\end{proof}
+
+\begin{rem}[Scaling check]
+For $\omega=a\omega_{\rm FS}$ one has
+$\mathscr R=a^{-1}\mathscr R_*$, $\mu=(n+1)/(na)$, $S=n(n+1)/a$,
+and $v=a^n$. Thus the mean lower bound has the correct direction
+$a\leq1$. The family above is not a family of rescaled space forms,
+as witnessed by its nonzero trace-free Ricci variation.
+\end{rem}
+
+\section{Obstructions to removing the hypotheses}\label{en:obstructions}
+
+The following calculations test potential extensions of the proof. They
+do not give compact counterexamples to the question in \cite[Section 6]{en:DS}.
+
+\begin{prop}[Failure of the unrestricted scalar comparison]\label{en:counter}
+There is an algebraic K\"ahler curvature tensor in dimension two with
+positive holomorphic bisectional curvature such that
+$\mu=3/2$ and $S=72/13<6$.
+\end{prop}
+
+\begin{proof}
+In a unitary basis let
+\[
+ R_{1\bar1 1\bar1}=\frac6{13}=\alpha,\quad
+ R_{2\bar2 2\bar2}=\frac{18}{13}=\beta,\quad
+ R_{1\bar1 2\bar2}=\frac{24}{13}=\gamma,
+\]
+include all terms required by the K\"ahler and conjugation symmetries,
+and set the other components to zero. For a unit vector $u$,
+$R_{u\bar u}$ has diagonal entries
+$\alpha|u_1|^2+\gamma|u_2|^2$ and
+$\gamma|u_1|^2+\beta|u_2|^2$, and an off-diagonal entry of modulus
+$\gamma|u_1u_2|$. Its determinant is
+\[
+ \alpha\gamma|u_1|^4+\alpha\beta|u_1u_2|^2
+       +\beta\gamma|u_2|^4>0.
+\]
+The positive diagonal entries show that this is positive definite for
+every $u\ne0$, proving strict bisectional positivity.
+
+For $B=\operatorname{diag}(1/4,3/4)$ direct multiplication gives
+$\mathscr R(B)=(3/2)I$. Hence $\mu\geq3/2$. The same $B$ is an
+upper certificate, because for any density matrix $C$,
+$\lambda_{\min}(\mathscr R(C))\leq\langle\mathscr R(C),B\rangle=3/2$.
+Thus $\mu=3/2$, whereas
+$S=\alpha+\beta+2\gamma=72/13$.
+The trace-free diagonal direction has $\mathcal A$-eigenvalue
+$(\alpha+\beta-2\gamma)/2=-12/13$. This identifies exactly why the
+positive quadratic defect argument fails.
+\end{proof}
+
+\begin{rem}[Local realization]
+This tensor is realized at the origin by the K\"ahler potential
+\[
+ \Phi=|z_1|^2+|z_2|^2-\frac\alpha4|z_1|^4
+       -\frac\beta4|z_2|^4-\gamma|z_1|^2|z_2|^2.
+\]
+Its complex Hessian is positive on a sufficiently small neighborhood;
+at the origin its first derivatives vanish and $R=-\partial\bar\partial g$
+has the specified components. A small positive scalar multiple of the
+curvature tensor preserves $S<4\mu$. Increasing the tensor by a factor
+slightly larger than one makes $\mu>3/2$ at the origin, and on a smaller
+neighborhood, while still keeping $S<6$ at the origin. This local
+realization does not provide a compact metric with the global lower bound
+and maximal volume.
+\end{rem}
+
+\begin{eg}[Convexity without feasibility is insufficient]\label{en:boundary}
+In dimension three take a torus-invariant K\"ahler tensor determined by
+\[
+ C_{ij}=R_{i\bar i j\bar j},\qquad
+ C=ww^t+\frac1{10}I,\qquad w=(3,1,1)^t,
+\]
+with its K\"ahler-symmetric companions and all other components zero.
+On diagonal Hermitian matrices the curvature operator is $C$; on each
+off-diagonal real two-plane it is multiplication by $C_{ij}>0$.
+Thus $\mathscr R$ and $\mathcal A$ are positive definite.
+The density matrix $P_1$ has
+$\mathscr R(P_1)=\operatorname{diag}(91/10,3,3)$, giving $\mu\geq3$.
+For any density matrix $B$,
+\[
+ \lambda_{\min}(\mathscr R(B))
+ \leq\frac{(\mathscr R(B))_{22}+(\mathscr R(B))_{33}}2
+ =3B_{11}+\frac{21}{20}(B_{22}+B_{33})\leq3.
+\]
+Therefore $\mu=3>S/9=253/90$. The candidate in \eqref{en:feasible}
+cannot be positive semidefinite, by Lemma~\ref{en:formula}.
+In particular, positive curvature operator alone does not justify
+\eqref{en:identityintro} with a nonnegative defect.
+\end{eg}
+
+\section{Scope, prior results, and remaining questions}
+
+The available arXiv record for \cite{en:DS}, checked on 8 September 2026,
+listed v1 (16 August 2026). We read its 19-page PDF, including the
+vanishing, jet, and equality arguments. The broader equality question
+was not resolved in the later material located by our searches. This is
+a statement about the sources inspected, not a certification that no
+unlocated solution exists.
+
+The comparison with the closest sources is as follows.
+\begin{enumerate}
+\item The general volume theorem and average-scalar equality are due to
+\cite{en:DS}. Our contribution is the pointwise identity on its stated
+feasible region and the resulting estimate \eqref{en:deficit}. The
+compact family in Section~\ref{en:examples} separates the hypotheses
+from the two original metric lower bounds.
+\item The complex classification under positive orthogonal bisectional
+curvature is known \cite{en:FLW}. It supplies $c_1(X)$ and the K\"ahler
+cone in our proof, but it does not identify an arbitrary metric or give
+our Einstein-defect estimate.
+\item The recent Calabi-operator result \cite[Theorem 1.4]{en:DFL}
+starts with a K\"ahler--Einstein metric and uses an operator on
+$\Sym^2T^{1,0}X$. Our operator acts on Hermitian endomorphisms, and
+the Einstein equation is a conclusion at maximal volume.
+These are different hypotheses; no identification of the two operators
+is used.
+\end{enumerate}
+
+Removing pinching requires an argument which can tolerate a negative
+trace-free compression or an optimizer on the boundary of the density
+matrices. The two examples in Section~\ref{en:obstructions} separate
+these obstacles. The unrestricted maximal-volume rigidity problem is
+not solved here, nor is a compact counterexample produced. Another
+question is whether the integral control proved here can be upgraded
+to control modulo automorphisms in a geometric topology; that would
+require additional analytic work not supplied by the integral inequality.
+
+\medskip
+\noindent\textit{Research status.} This is an AI-generated research
+manuscript with complete arguments for the statements above, relying
+on the explicitly cited established geometric theorems. It has not
+received independent human verification or peer review. The accompanying
+audit records the literature search and the independent symbolic and
+linear-programming checks. Those checks are supplementary, not proofs
+of the general statements. Novelty remains subject to expert assessment
+and further literature verification.
+
+\begin{thebibliography}{FLW}
+\bibitem[DS]{en:DS}
+V. Datar and H. Seshadri,
+\textit{Volume comparison and rigidity for positive holomorphic sectional curvature},
+arXiv:2608.15850v1 (16 August 2026), 19 pp.
+\url{https://arxiv.org/abs/2608.15850v1}.
+\bibitem[FLW]{en:FLW}
+H. Feng, K. Liu and X. Wan,
+\textit{Compact K\"ahler manifolds with positive orthogonal bisectional curvature},
+Math. Res. Lett. \textbf{24} (2017), no. 3, 767--780.
+Theorem 0.1 in the inspected arXiv:1710.10240v1.
+\url{https://arxiv.org/abs/1710.10240v1}.
+\bibitem[SY]{en:SY}
+Y.-T. Siu and S.-T. Yau,
+\textit{Compact K\"ahler manifolds of positive bisectional curvature},
+Invent. Math. \textbf{59} (1980), 189--204.
+\url{https://doi.org/10.1007/BF01390043}.
+The original full text was not accessible in this run; the classification
+used here is explicitly verified in [FLW, Theorem 0.1].
+\bibitem[Y]{en:Yang}
+X. Yang,
+\textit{RC-positive metrics on rationally connected manifolds},
+Forum Math. Sigma \textbf{8} (2020), e53.
+Definition 1.1 in the inspected arXiv:1807.03510v2 (4 September 2018).
+\url{https://arxiv.org/abs/1807.03510v2}.
+\bibitem[DFL]{en:DFL}
+Z.-L. Dai, H.-P. Fu and Y. Lu,
+\textit{K\"ahler Einstein manifolds and the Calabi curvature operator},
+arXiv:2609.05106v1 (4 September 2026), Theorems 1.1 and 1.4.
+\url{https://arxiv.org/abs/2609.05106v1}.
+\end{thebibliography}
+
+\newpage
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHthm}{ja.\thesection.\arabic{thm}}
+\renewcommand{\theHequation}{ja.\thesection.\arabic{equation}}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\markboth{chatGPT 6 Astra}{mean RC曲率とpinchingの下での体積剛性}
+\begin{center}
+{\large\bfseries mean RC曲率とpinchingの下での体積剛性\par
+Ricci曲率のずれに対する積分評価}\par\medskip
+chatGPT 6 Astra\par\smallskip
+2026年9月8日
+\end{center}
+\begin{quote}\small
+\textbf{要旨．}
+mean RC曲率が$(n+1)/n$以上のコンパクトK\"ahler多様体について，
+明示的な追加仮定$\|\mathscr R-\mathscr R_*\|_{\rm op}<1/(1+\sqrt n)$の下で
+定量的な剛性定理を証明する．ここで$\mathscr R$はHermitian自己準同型上の
+曲率の縮約であり，$\mathscr R_*(A)=A+(\tr A)I$である．
+すべての複素次元$n\geq2$で，体積欠損が$\Ric^\sharp-(n+1)I$の
+$L^2$ノルムの二乗を制御する．最大体積の場合には正規化された
+Fubini--Study計量が得られる．中心となるのは，トレース0のRicci自己準同型と，
+許容される最適化密度行列によってmean RC曲率を表す厳密な公式である．
+本稿の仮定を満たすが$H\geq2$と$\Ric\geq(n+1)\omega$の両方を満たさない
+コンパクト計量の変形を構成する．代数的な例により，Datar--Seshadriの
+一般の等号問題への二つの障害を分離する．この一般問題は本稿では未解決である．
+\end{quote}
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+\section{導入と主結果}
+
+$(X,\omega)$を複素次元$n\geq2$のコンパクト連結K\"ahler多様体とする．
+$\omega=\sqrt{-1}g_{i\bar j}\,dz^i\wedge d\bar z^j$と書き，曲率の符号を
+\[
+ R_{i\bar j k\bar l}=-\partial_i\partial_{\bar j}g_{k\bar l}
+ +g^{p\bar q}(\partial_i g_{k\bar q})(\partial_{\bar j}g_{p\bar l})
+\]
+で定める．Fubini--Study計量の正規化は$H_{\rm FS}=2$および
+$[\omega_{\rm FS}]=2\pi c_1(\cO_{\mathbb P^n}(1))$とする．
+
+本稿で用いる作用素を定義する．$T_x^{1,0}X$のHermitian自己準同型全体を
+$\mathcal H_x$とし，実内積$\langle A,B\rangle=\tr(AB)$を入れる．
+$\mathscr R_x$を
+\begin{equation}\label{ja:Rdef}
+ \langle\mathscr R_x(P_u),P_v\rangle=R(u,\bar u,v,\bar v),
+ \qquad P_u(w)=\langle w,u\rangle u\quad (|u|=1)
+\end{equation}
+と実双線形性によって定める．階数1の直交射影は$\mathcal H_x$を張る．
+同値な定義として，$A=\sum a_iP_{u_i}$に対し
+$\mathscr R_x(A)=\sum a_iR_{u_i\bar u_i}$である．
+K\"ahler対称性より，この作用素は自己共役である．
+\begin{equation}\label{ja:model}
+ \mathscr R_*(A)=A+(\tr A)I,
+ \qquad \mu(x)=\max_{B\geq0,\ \tr B=1}\lambda_{\min}(\mathscr R_x(B))
+\end{equation}
+と置く．$\mathscr R_*$は各点における複素空間形のモデルであり，$\mu$は
+Datar--Seshadriのmean RC曲率そのものである．$\mathscr R$の作用素ノルムは
+Hilbert--Schmidtノルムを持つ$\mathcal H_x$に関するものであり，複素対称
+2階テンソル上の曲率作用素のノルムではない．
+
+Datar--Seshadriは$\mu\geq(n+1)/n$の下で最適な体積上界を示し，最大体積の
+場合の平均スカラー曲率を決定した\cite[Theorems 1.1 and 5.2]{ja:DS}．
+しかし一般の等号問題は，点ごとのスカラー曲率比較だけでは扱えない．
+実際，その比較は正の正則双断面曲率を持つ代数的曲率テンソルに対してさえ
+成立しない（第\ref{ja:obstructions}節）．本稿では$\mathscr R_*$の明示的な
+近傍で比較を示し，積分評価に結びつける．
+
+\Needspace{19\baselineskip}
+\begin{jthm}[曲率pinchingの下での体積欠損評価]\label{ja:main}
+$X$のすべての点で
+\begin{equation}\label{ja:assumptions}
+ \mu\geq\frac{n+1}{n},\qquad
+ \|\mathscr R-\mathscr R_*\|_{\rm op}\leq\varepsilon,
+ \qquad 0\leq\varepsilon<\frac1{1+\sqrt n}
+\end{equation}
+が成り立つと仮定する．
+\[
+ V=\int_X\omega^n,\qquad v=\frac{V}{(2\pi)^n},
+ \qquad E=\Ric^\sharp-(n+1)I
+\]
+と置く．ここで$\Ric^\sharp$はRicci形式に対応するHermitian自己準同型である．
+このとき$X$は$\mathbb P^n$と双正則であり，$0<v\leq1$かつ
+\begin{align}
+ \frac1{(2\pi)^n}\int_X |E|_{\rm HS}^2\,\omega^n
+ &\leq (1+2\varepsilon)n(n+1)
+       \bigl(v^{(n-1)/n}-v\bigr)\label{ja:sharpform}\\
+ &\leq (1+2\varepsilon)(n+1)(1-v)\label{ja:deficit}
+\end{align}
+が成り立つ．特に$v=1$であることと，$(X,\omega)$が
+$(\mathbb P^n,\omega_{\rm FS})$と双正則等長であることは同値である．
+\end{jthm}
+
+体積上界の定数は最適である．pinchingの半径および\eqref{ja:deficit}の
+係数が最適であるとは主張しない．結論はEinstein方程式からのずれを，
+明記した積分ノルムで評価するものであり，計量間の距離や$C^k$位相での
+収束を主張してはいない．Riemann体積は$V/n!$であり，定理のノルムは
+複素Hermitian自己準同型のノルムである．これらの規約も定理文の一部である．
+
+この定理における双正則分類は，正の正則双断面曲率とFrankelの定理から
+すでに得られる\cite{ja:SY}．本稿では本文を確認した
+\cite[Theorem 0.1]{ja:FLW}の定式化を用いる．追加される結論は，与えられた
+計量に関するものである．証明では，最適化を達成する密度行列の公式
+\begin{equation}\label{ja:identityintro}
+ n^2\mu=S-\langle r,\mathcal A^{-1}r\rangle,
+ \qquad r=\Ric^\sharp-\frac Sn I,
+ \qquad \mathcal A=\Pi\mathscr R|_{\mathcal H_0}
+\end{equation}
+を用いる．ここで$S=\tr\Ric^\sharp$，$\mathcal H_0=\{A:\tr A=0\}$であり，
+$\Pi$は$\mathcal H_0$への直交射影である．この公式を，正値性と密度行列としての
+許容性に関する明示的な仮定の下で証明し，\eqref{ja:assumptions}からそれらの
+仮定を確認する．二次形式の平方完成自体は初等的であるが，その臨界点が
+正の密度行列の内部に入ることには注意が必要である．この点を省略すると
+誤った主張になることを第\ref{ja:obstructions}節で示す．
+
+\begin{jprop}[仮定が扱う新たなコンパクト計量]\label{ja:family}
+各$n\geq2$に対し，$\mathbb P^n$上のK\"ahler計量
+$\widehat\omega_t$，$0<t<t_0$で，$\widehat\omega_t\to\omega_{\rm FS}$が
+滑らかに成り立ち，
+\[
+ \min_X\mu_{\widehat\omega_t}=\frac{n+1}{n},\qquad
+ \int_X\widehat\omega_t^n<(2\pi)^n
+\]
+を満たす一方，$H_{\widehat\omega_t}\geq2$も
+$\Ric_{\widehat\omega_t}\geq(n+1)\widehat\omega_t$も成り立たないものが存在する．
+任意の固定した$0<\varepsilon<(1+\sqrt n)^{-1}$に対し，十分小さいすべての
+$t>0$で\eqref{ja:assumptions}のpinchingが成立する．
+\end{jprop}
+
+従って主評価は\cite[Corollary 1.2]{ja:DS}の二つの曲率条件のいずれかを
+適用したものではない．この明示的な族は正規化の検算も兼ね，追加の仮定が
+Einstein方程式を仮定していないことも示す．有限次元の恒等式，その体積欠損への
+帰結，および二つの既知条件との違いを示すこの族が，本稿で証明した結果である．
+新規性については別添の監査メモで独立に評価する．
+
+\section{最適化行列とRicci曲率のずれ}\label{ja:algebra}
+
+\subsection{量化と正規化}
+Hermitian正則ベクトル束$F$のRC正値性とは，
+$\forall x\ \forall v\ne0\ \exists u\ne0:\ R^F(u,\bar u,v,\bar v)>0$
+という条件である．uniform RC正値性では最後の二つの量化を交換し，
+$\forall x\ \exists u\ne0\ \forall v\ne0$に対して同じ狭義不等式を要求する
+\cite[Definition 1.1]{ja:Yang}．これに対し本稿で用いる条件は
+\[
+ \forall x\ \exists B\geq0,\ \tr B=1\ \forall v:
+ \langle\mathscr R_x(B)v,v\rangle\geq\frac{n+1}{n}|v|^2
+\]
+である．許容される$B$の階数は任意である．滑らかな選択の存在は定義に
+含まれない．密度行列全体はコンパクトで最小固有値は連続なので，最大値は存在する．
+
+確認のために述べると，Hermitian自己準同型を対角化すれば，単位ベクトル上の
+最小化は密度行列上の最小化に等しい．双線形形式
+$\langle\mathscr R(B),A\rangle$は二つのコンパクト凸集合の積上で連続なので，
+有限次元のminimax定理から
+\[
+ \mu=\max_B\min_A\langle\mathscr R(B),A\rangle
+     =\min_A\max_B\langle\mathscr R(B),A\rangle
+\]
+を得る．ここで両変数とも密度行列を動く\cite[Remark 2.1]{ja:DS}．
+以下では上界と下界を同時に達成する行列を示して値を決定する．根拠なく
+最適化の順序を交換することはしない．
+
+本稿の符号規約では
+\[
+ \rho=-\sqrt{-1}\partial\bar\partial\log\det g,
+ \quad [\rho]=2\pi c_1(X),\quad \mathscr R(I)=\Ric^\sharp,
+ \quad \rho\wedge\omega^{n-1}=\frac Sn\omega^n
+\]
+である．特に$S_{\rm FS}=n(n+1)$であり，Riemannスカラー曲率は$2S$である．
+本稿の多様体はすべて滑らかであり，orbifoldや反射的なChern類ではなく，
+通常のChern類を用いる．
+
+\begin{jlem}[内部での公式]\label{ja:formula}
+$R$をHermitian $n$次元空間上の代数的K\"ahler曲率テンソルとし，
+$\mathscr R,S,r,\Pi,\mathcal A$を上のように定める．$\mathcal A$が正定値であり，
+\begin{equation}\label{ja:feasible}
+ B_*:=\frac1n\bigl(I-\mathcal A^{-1}r\bigr)>0
+\end{equation}
+と仮定する．このとき$B_*$は最大値を達成する唯一の密度行列であり，
+\begin{equation}\label{ja:formulaeq}
+ \mathscr R(B_*)=\mu I,\qquad
+ n^2\mu=S-\langle r,\mathcal A^{-1}r\rangle
+\end{equation}
+が成り立つ．従って$aI\leq\mathcal A\leq bI$，$a>0$ならば
+\begin{equation}\label{ja:twosided}
+ \frac{|r|^2}{b}\leq S-n^2\mu\leq\frac{|r|^2}{a}
+\end{equation}
+である．$B_*$が半正定値でしかない場合にも値の公式は成立するが，その場合には
+最大化行列の一意性はここでは主張しない．
+\end{jlem}
+
+\begin{proof}
+$\mathcal A^{-1}r$のトレースは0なので，$\tr B_*=1$である．
+$\Pi\mathscr R(I)=r$より
+\[
+ \Pi\mathscr R(B_*)=\frac1n\bigl(r-\mathcal A\mathcal A^{-1}r\bigr)=0
+\]
+であり，$\mathscr R(B_*)=\lambda I$と書ける．自己共役性より
+\[
+ n\lambda=\langle\mathscr R(B_*),I\rangle
+ =\langle B_*,\mathscr R(I)\rangle
+ =\frac1n\bigl(S-\langle\mathcal A^{-1}r,r\rangle\bigr)
+\]
+となる．$B_*$は許容されるので$\mu\geq\lambda$である．任意の許容行列$B$に対し
+\[
+ \lambda_{\min}(\mathscr R(B))
+ \leq\langle\mathscr R(B),B_*\rangle
+ =\langle B,\mathscr R(B_*)\rangle=\lambda
+\]
+であるから$\mu=\lambda$を得る．ここでは固有ベクトルの滑らかな選択を用いていない．
+
+$B$が別の最大化行列ならば，$C=\mathscr R(B)-\mu I\geq0$かつ
+$\tr(CB_*)=0$である．$B_*$の正定値性より$C=0$となる．実際，
+$B_*^{1/2}CB_*^{1/2}$は半正定値でトレースが0である．
+$B=I/n+b_0$，$\tr b_0=0$と書くと$r/n+\mathcal A b_0=0$なので，
+$B=B_*$を得る．最後に$\mathcal A^{-1}$の固有値の評価から
+\eqref{ja:twosided}が従う．
+\end{proof}
+
+\begin{jlem}[許容性が保証される明示的な範囲]\label{ja:pinch}
+$\|\mathscr R-\mathscr R_*\|_{\rm op}\leq\varepsilon<
+(1+\sqrt n)^{-1}$ならば
+\[
+ (1-\varepsilon)I\leq\mathcal A\leq(1+\varepsilon)I,
+ \qquad B_*>0
+\]
+である．さらに$\mu\geq(n+1)/n$ならば
+\begin{align}
+ S-n(n+1)&\geq\frac{|r|^2}{1+\varepsilon}\geq0,\label{ja:scalar}\\
+ |\Ric^\sharp-(n+1)I|^2
+ &\leq(1+2\varepsilon)\bigl(S-n(n+1)\bigr)\label{ja:pointwiseE}
+\end{align}
+が成り立つ．
+\end{jlem}
+
+\begin{proof}
+$D=\mathscr R-\mathscr R_*$と置く．$\mathscr R_*$は$\mathcal H_0$上で恒等作用素
+なので，その圧縮を取ると$\mathcal A$の評価を得る．また$r=\Pi D(I)$および
+$|I|_{\rm HS}=\sqrt n$より
+\[
+ |r|_{\rm HS}\leq\varepsilon\sqrt n,
+ \qquad \|\mathcal A^{-1}r\|_{\rm end}
+ \leq|\mathcal A^{-1}r|_{\rm HS}
+ \leq\frac{\varepsilon\sqrt n}{1-\varepsilon}<1
+\]
+である．ここで$\|\cdot\|_{\rm end}$は接空間の自己準同型としての通常のノルムである．
+二種類の作用素ノルムを区別する必要がある．$I-\mathcal A^{-1}r$の固有値は
+すべて正であり，補題\ref{ja:formula}から\eqref{ja:scalar}を得る．
+
+$q=S-n(n+1)$と置くと，同じ作用素評価から
+\[
+ 0\leq q=\langle D(I),I\rangle\leq n\varepsilon
+\]
+となる．スカラー部分とトレース0の部分の直交性より
+\[
+ |\Ric^\sharp-(n+1)I|^2=|r|^2+\frac{q^2}{n}
+ \leq(1+\varepsilon)q+\varepsilon q
+\]
+であり，主張が従う．この範囲では$B_*$は曲率テンソルに滑らかに依存する．
+可逆な作用素の逆行列を取る操作が滑らかだからである．従って滑らかさは
+公式から証明されており，一般の点ごとの最適化行列について仮定したものではない．
+\end{proof}
+
+\section{大域的な帰結}\label{ja:global}
+
+\begin{proof}[定理\ref{ja:main}の証明]
+単位接ベクトル$u,v$に対し，\eqref{ja:Rdef}と
+$|P_u|_{\rm HS}=|P_v|_{\rm HS}=1$より
+\[
+ R(u,\bar u,v,\bar v)
+ \geq1+|\langle u,v\rangle|^2-\varepsilon>0
+\]
+である．従って$X$は正の直交正則双断面曲率を持つコンパクトK\"ahler多様体であり，
+\cite[Theorem 0.1]{ja:FLW}を適用すると$X$は$\mathbb P^n$と双正則である．
+この段階では計量は同定されていない．
+
+$h=c_1(\cO_{\mathbb P^n}(1))$とし，$\int h^n=1$と正規化する．
+$\mathbb P^n$のK\"ahler錐は正の半直線なので，実数$a>0$を用いて
+$[\omega]=2\pi a h$と書ける．$a$の有理性は用いない．
+$\mathbb P^n$のEuler完全列
+$0\to\cO\to\cO(1)^{\oplus(n+1)}\to T\mathbb P^n\to0$より
+$c_1(X)=(n+1)h$であるから
+\begin{equation}\label{ja:average}
+ v=a^n,\qquad
+ \int_X S\omega^n
+ =n\int_X\rho\wedge\omega^{n-1}
+ =n(n+1)(2\pi)^n a^{n-1}
+\end{equation}
+を得る．\eqref{ja:scalar}より$S$の平均は$n(n+1)$以上なので，
+\eqref{ja:average}から$a\leq1$である．\eqref{ja:pointwiseE}を積分し
+\eqref{ja:average}を用いると\eqref{ja:sharpform}が従う．
+$0<v\leq1$では$v^{(n-1)/n}$の凹性より
+\[
+ v^{(n-1)/n}\leq1+\frac{n-1}{n}(v-1)
+\]
+であり，\eqref{ja:deficit}を得る．
+
+$v=1$ならば非負連続関数$|E|^2$の積分が0なので，すべての点で
+$\rho=(n+1)\omega$となる．$V=(2\pi)^n$と合わせると
+\cite[Corollary 5.3(2)]{ja:DS}のRicci曲率に関する仮定がそのまま満たされ，
+求める双正則等長性が従う．同値な方法として，同系の証明と同様に
+$\mathbb P^n$上の正のK\"ahler--Einstein計量の自己同型を除く一意性を
+用いてもよい．逆に，正規化されたFubini--Study計量はすべての仮定と$v=1$を満たす．
+\end{proof}
+
+\begin{jrem}\label{ja:dependencies}
+この証明における曲率のずれの評価と体積不等式は，\cite{ja:DS}の高階jet評価や
+Theorem~5.2を用いていない．今回の点ごとの恒等式と，既知の複素多様体の分類から
+従っている．最後のEinstein計量の同定だけにRicci剛性定理を用いた．
+特に，正則断面曲率の正値性から必要なRicci下界が従うとは仮定していない．
+\end{jrem}
+
+空間形の曲率テンソルからの距離を固定しない定式化も得られる．
+
+\begin{jcor}[内部条件による等号剛性]\label{ja:interior}
+$\mu\geq(n+1)/n$，$\int_X\omega^n=(2\pi)^n$を仮定し，各点で
+\[
+ \mathcal A>0,\qquad I-\mathcal A^{-1}r>0
+\]
+が成り立つとする．このとき$(X,\omega)$は
+$(\mathbb P^n,\omega_{\rm FS})$と双正則等長である．
+\end{jcor}
+
+\begin{proof}
+補題\ref{ja:formula}から
+\[
+ S-n(n+1)=n^2\left(\mu-\frac{n+1}{n}\right)
+          +\langle r,\mathcal A^{-1}r\rangle\geq0
+\]
+である．\cite[Theorem 5.2]{ja:DS}によれば，左辺の$\omega^n$に関する積分は0である．
+従って右辺の両項は各点で0となり，$r=0$かつ$S=n(n+1)$を得る．
+よって$\rho=(n+1)\omega$であり，\cite[Corollary 5.3(2)]{ja:DS}を適用できる．
+引用した平均スカラー曲率の定理の仮定は，コンパクトK\"ahlerであること，
+指定のmean RC下界，および最大体積であり，Fano性は追加していない．
+\end{proof}
+
+\section{原論文の二つの下界を外れるコンパクト計量族}\label{ja:examples}
+
+\begin{proof}[命題\ref{ja:family}の証明]
+$\mathbb P^n$上で
+\[
+ p_j([Z])=\frac{|Z_j|^2}{\sum_{k=0}^n|Z_k|^2},\quad
+ m=p_0-p_1,\quad u=p_0+p_1
+\]
+と置き，大域的に滑らかな実関数
+\begin{equation}\label{ja:f}
+ f=m^2-\frac2{n+3}u+\frac2{(n+2)(n+3)}
+\end{equation}
+を定める．$\omega_0=\omega_{\rm FS}$とし，
+$\omega_t=\omega_0+t\sqrt{-1}\partial\bar\partial f$と置く．
+コンパクト性と$\omega_0$の正値性より，十分小さい実数$t$に対してこれは
+K\"ahler計量であり，$[\omega_t]=[\omega_0]$である．
+
+固有値が非正になる複素Laplacian
+$\Delta=g_0^{i\bar j}\partial_i\partial_{\bar j}$を用いる．
+モーメント関数を直接微分すると
+\[
+ \Delta m=-(n+1)m,\quad \Delta u=2-(n+1)u,
+ \quad |\partial m|^2=u-m^2
+\]
+を得る．例えば最後の等式は，アフィン座標でのFubini--Study計量
+$g_{0,i\bar j}=\delta_{ij}/(1+|z|^2)-\bar z_i z_j/(1+|z|^2)^2$を用いて
+$\sum_{i,j}g_0^{i\bar j}(\partial_i m)(\partial_{\bar j}m)$を計算すれば従う．
+積の微分則より$\Delta(m^2)=2u-2(n+2)m^2$であり，\eqref{ja:f}を代入すると
+\begin{equation}\label{ja:eigenfunction}
+ \Delta f=-2(n+2)f
+\end{equation}
+を得る．$m^2\leq u^2$と$0\leq u\leq1$より，$f$の最大点はちょうど
+$[1:0:\cdots:0]$と$[0:1:0:\cdots:0]$である．実際，凸関数
+$u^2-2u/(n+3)$の端点での値は$u=1$の方が大きい．その最大値は
+\[
+ f_{\max}=\frac{n+1}{n+3}+\frac2{(n+2)(n+3)}
+\]
+である．
+
+$\rho_t=-\sqrt{-1}\partial\bar\partial\log\det g_t$を微分する．
+$\Ric^\sharp_0=(n+1)I$であり，$S_t=\tr_{\omega_t}\rho_t$における
+逆計量の微分も含めると
+\begin{equation}\label{ja:variation}
+ S'_0=-\Delta(\Delta+n+1)f
+     =-2(n+2)(n+3)f
+\end{equation}
+となる．補題\ref{ja:formula}の公式は$\omega_0$の近傍で滑らかであり，
+$r_0=0$なので，その二次項の第一変分は0である．従って$\mathbb P^n$上一様に
+\begin{equation}\label{ja:muvariation}
+ \mu_{\omega_t}=\frac{n+1}{n}+\frac{t}{n^2}S'_0+O(t^2)
+\end{equation}
+が成り立つ．よって$t\downarrow0$に対し
+\[
+ \min_X\mu_{\omega_t}=\frac{n+1}{n}+\frac{d_n}{n^2}t+O(t^2),
+ \qquad d_n=-2(n^2+3n+4)<0
+\]
+である．最小値を取る操作は剰余項の一様性によって正当化される．
+$S'_0$の最小点で評価すると対応する上からの評価も得られる．
+最小点の滑らかな依存性は仮定していない．
+
+\begin{equation}\label{ja:scale}
+ a_t=\frac n{n+1}\min_X\mu_{\omega_t},\qquad
+ \widehat\omega_t=a_t\omega_t
+\end{equation}
+と置く．定数$a>0$による拡大縮小では$\mu_{a\omega}=a^{-1}\mu_\omega$なので，
+$\min\mu_{\widehat\omega_t}=(n+1)/n$であり，
+\[
+ a_t=1+\frac{d_n}{n(n+1)}t+O(t^2)<1,
+ \qquad \frac1{(2\pi)^n}\int_X\widehat\omega_t^n=a_t^n<1
+\]
+となる．さらに$X$上の計量として$\widehat\omega_t\to\omega_0$が滑らかに
+成り立つので，命題の任意の固定した正のpinching定数に対し，十分小さい$t$で
+そのpinchingが成立する．
+
+原論文の二つの下界が成り立たないことを$p=[1:0:\cdots:0]$で確かめる．
+座標$z_j=Z_j/Z_0$，$1\leq j\leq n$を取り，$q_j=|z_j|^2$と置く．
+$p$では$g_0=I$であり，$g_t$の一階微分は0である．\eqref{ja:f}を展開すると
+\[
+ f_{1\bar1}(p)=-4,\qquad
+ f_{j\bar j}(p)=-\frac{2(n+2)}{n+3}\quad (j\geq2)
+\]
+を得る．この展開における$q_1^2$と$q_j^2$（$j\geq2$）の係数は，それぞれ
+$8$と$3-2/(n+3)$である．\eqref{ja:eigenfunction}から
+\[
+ \left.\frac d{dt}\right|_0
+       \bigl(\rho_t-(n+1)\omega_t\bigr)
+ =(n+3)\sqrt{-1}\partial\bar\partial f
+\]
+である．従って$p$における
+$\Ric^\sharp_{\widehat\omega_t}-(n+1)I$の$\partial_{z_1}$方向の固有値は
+\begin{equation}\label{ja:ricfailure}
+ \left(-4(n+3)-\frac{d_n}{n}\right)t+O(t^2)
+ =-\frac{2(n-1)(n+4)}n t+O(t^2)<0
+\end{equation}
+となる．
+
+正則断面曲率を計算する．$h=f_{1\bar1}(p)$とし，$c$を$q_1^2$の係数とすると，
+$R'_{1\bar1 1\bar1}(p)=-4c$である．分母$g_{1\bar1}^2$も微分することにより
+$H'_0(\partial_{z_1})=-4c-4h=-16$を得る．従って\eqref{ja:scale}の拡大縮小後には
+\begin{align}\label{ja:hfailure}
+ H_{\widehat\omega_t}(\partial_{z_1})-2
+ &=\left(-16-\frac{2d_n}{n(n+1)}\right)t+O(t^2)\notag\\
+ &=-\frac{4(n-1)(3n+4)}{n(n+1)}t+O(t^2)<0
+\end{align}
+となる．\eqref{ja:ricfailure}と\eqref{ja:hfailure}の一次係数はすべて$n\geq2$で
+狭義に負である．これにより，代数的テンソルだけでなく実際のコンパクトK\"ahler
+多様体上で二つの下界がともに成立しないことが証明された．
+\end{proof}
+
+\begin{jrem}[拡大縮小の検算]
+$\omega=a\omega_{\rm FS}$に対し，
+$\mathscr R=a^{-1}\mathscr R_*$，$\mu=(n+1)/(na)$，$S=n(n+1)/a$，
+$v=a^n$である．従ってmean RC下界は正しい向きの条件$a\leq1$を与える．
+上の族は，トレース0のRicci部分の変分が0でないことから分かるように，
+空間形を拡大縮小した族ではない．
+\end{jrem}
+
+\section{仮定を取り除く際の障害}\label{ja:obstructions}
+
+以下の計算は証明の拡張可能性を検査するものであり，
+\cite[Section 6]{ja:DS}の問題に対するコンパクトな反例ではない．
+
+\begin{jprop}[無条件のスカラー比較の不成立]\label{ja:counter}
+複素次元2において，正の正則双断面曲率を持ち，$\mu=3/2$および
+$S=72/13<6$を満たす代数的K\"ahler曲率テンソルが存在する．
+\end{jprop}
+
+\begin{proof}
+ユニタリ基底において
+\[
+ R_{1\bar1 1\bar1}=\frac6{13}=\alpha,\quad
+ R_{2\bar2 2\bar2}=\frac{18}{13}=\beta,\quad
+ R_{1\bar1 2\bar2}=\frac{24}{13}=\gamma
+\]
+と定め，K\"ahler対称性と共役対称性から必要な成分を含め，それ以外を0とする．
+単位ベクトル$u$に対し，$R_{u\bar u}$の対角成分は
+$\alpha|u_1|^2+\gamma|u_2|^2$と$\gamma|u_1|^2+\beta|u_2|^2$であり，
+非対角成分の絶対値は$\gamma|u_1u_2|$である．その行列式は
+\[
+ \alpha\gamma|u_1|^4+\alpha\beta|u_1u_2|^2
+       +\beta\gamma|u_2|^4>0
+\]
+である．対角成分も正なので，これはすべての$u\ne0$に対して正定値であり，
+正則双断面曲率は正である．
+
+$B=\operatorname{diag}(1/4,3/4)$に対して直接計算すると
+$\mathscr R(B)=(3/2)I$なので，$\mu\geq3/2$である．同じ$B$は上からの評価も
+与える．実際，任意の密度行列$C$に対し
+$\lambda_{\min}(\mathscr R(C))\leq\langle\mathscr R(C),B\rangle=3/2$
+である．従って$\mu=3/2$だが，$S=\alpha+\beta+2\gamma=72/13$である．
+トレース0の対角方向における$\mathcal A$の固有値は
+$(\alpha+\beta-2\gamma)/2=-12/13$である．これが正の二次形式による評価が
+使えない箇所を正確に示している．
+\end{proof}
+
+\begin{jrem}[局所的な実現]
+このテンソルはK\"ahlerポテンシャル
+\[
+ \Phi=|z_1|^2+|z_2|^2-\frac\alpha4|z_1|^4
+       -\frac\beta4|z_2|^4-\gamma|z_1|^2|z_2|^2
+\]
+により原点で実現される．十分小さい近傍では複素Hessianは正定値であり，
+原点では計量の一階微分が0なので$R=-\partial\bar\partial g$は指定した成分を持つ．
+曲率テンソルを正の小さい定数倍しても$S<4\mu$は保存される．1より少し大きい
+定数倍を取れば，原点とその十分小さい近傍で$\mu>3/2$となり，なお原点で
+$S<6$を保つことができる．この局所実現は，大域的な下界と最大体積を持つ
+コンパクト計量を構成するものではない．
+\end{jrem}
+
+\begin{jeg}[凸性だけでは許容性を代替できない]\label{ja:boundary}
+複素次元3において
+\[
+ C_{ij}=R_{i\bar i j\bar j},\qquad
+ C=ww^t+\frac1{10}I,\qquad w=(3,1,1)^t
+\]
+で定まるトーラス不変K\"ahlerテンソルを考える．K\"ahler対称性から必要な成分を
+含め，その他を0とする．対角Hermitian行列上では曲率作用素は$C$であり，
+非対角の各実2次元部分空間上では$C_{ij}>0$倍である．従って$\mathscr R$と
+$\mathcal A$はともに正定値である．密度行列$P_1$について
+$\mathscr R(P_1)=\operatorname{diag}(91/10,3,3)$なので$\mu\geq3$を得る．
+任意の密度行列$B$に対し
+\[
+ \lambda_{\min}(\mathscr R(B))
+ \leq\frac{(\mathscr R(B))_{22}+(\mathscr R(B))_{33}}2
+ =3B_{11}+\frac{21}{20}(B_{22}+B_{33})\leq3
+\]
+である．よって$\mu=3>S/9=253/90$となる．補題\ref{ja:formula}より，
+\eqref{ja:feasible}の候補行列は半正定値ではあり得ない．特に，曲率作用素の
+正定値性だけでは，非負の補正項を持つ\eqref{ja:identityintro}を正当化できない．
+\end{jeg}
+
+\section{適用範囲，先行研究，残された問題}
+
+2026年9月8日に確認した\cite{ja:DS}のarXiv記録には，v1（2026年8月16日）が
+掲載されていた．消滅定理，jet，等号の場合の議論を含む19ページのPDFを読んだ．
+今回の検索で確認できた後続の資料では，一般の等号問題の解決は確認できなかった．
+これは調査した資料についての報告であり，未発見の解決が存在しないことの
+保証ではない．
+
+最も近い先行研究との比較は次の通りである．
+\begin{enumerate}
+\item 一般の体積定理と平均スカラー曲率の等号は\cite{ja:DS}による．
+本稿で追加したのは，指定した許容領域での点ごとの恒等式と，それから得られる
+評価\eqref{ja:deficit}である．第\ref{ja:examples}節のコンパクト計量族は，
+仮定が原論文の二つの計量下界と異なることを示す．
+\item 正の直交正則双断面曲率の下での複素多様体の分類は既知である
+\cite{ja:FLW}．これは本稿の証明に$c_1(X)$とK\"ahler錐の情報を与えるが，
+任意の与えられた計量を同定したり，今回のEinstein方程式からのずれを評価したり
+するものではない．
+\item 最近のCalabi作用素に関する\cite[Theorem 1.4]{ja:DFL}は，
+K\"ahler--Einstein計量を出発点とし，$\Sym^2T^{1,0}X$上の作用素を用いる．
+本稿の作用素はHermitian自己準同型上に作用し，Einstein方程式は最大体積の場合の
+結論である．仮定は異なっており，両作用素を同一視する議論は用いていない．
+\end{enumerate}
+
+pinchingを取り除くには，トレース0の部分への圧縮が負の方向を持つ場合，
+あるいは最適化行列が密度行列全体の境界にある場合を扱える議論が必要である．
+第\ref{ja:obstructions}節の二つの例は，これらの障害を分けて示している．
+本稿は一般の最大体積剛性問題を解決しておらず，コンパクトな反例も与えていない．
+さらに，今回の積分評価を自己同型を除く幾何学的位相での評価に強められるかも
+問題である．これには積分不等式だけでは得られない追加の解析が必要となる．
+
+\medskip
+\noindent\textit{研究原稿の位置づけ．}
+本稿はAIが作成した研究原稿であり，明記した既知の幾何学的定理を用いて，
+上記の各命題の完全な議論を記載したものである．人間の専門家による独立検証や
+査読は受けていない．別添の監査メモには文献調査と，独立な記号計算および
+線形計画による検算を記録した．これらの検算は補助であり，一般の主張の証明を
+代替しない．新規性については，専門家による評価と追加の文献確認が必要である．
+
+\begin{thebibliography}{FLW}
+\bibitem[DS]{ja:DS}
+V. Datar and H. Seshadri,
+\textit{Volume comparison and rigidity for positive holomorphic sectional curvature},
+arXiv:2608.15850v1 (16 August 2026), 19 pp.
+\url{https://arxiv.org/abs/2608.15850v1}.
+\bibitem[FLW]{ja:FLW}
+H. Feng, K. Liu and X. Wan,
+\textit{Compact K\"ahler manifolds with positive orthogonal bisectional curvature},
+Math. Res. Lett. \textbf{24} (2017), no. 3, 767--780.
+確認した版のTheorem 0.1: arXiv:1710.10240v1.
+\url{https://arxiv.org/abs/1710.10240v1}.
+\bibitem[SY]{ja:SY}
+Y.-T. Siu and S.-T. Yau,
+\textit{Compact K\"ahler manifolds of positive bisectional curvature},
+Invent. Math. \textbf{59} (1980), 189--204.
+\url{https://doi.org/10.1007/BF01390043}.
+原論文の全文には今回アクセスできなかった．本稿で用いる分類は
+[FLW, Theorem 0.1]で明示的に確認した．
+\bibitem[Y]{ja:Yang}
+X. Yang,
+\textit{RC-positive metrics on rationally connected manifolds},
+Forum Math. Sigma \textbf{8} (2020), e53.
+確認した版のDefinition 1.1: arXiv:1807.03510v2 (4 September 2018).
+\url{https://arxiv.org/abs/1807.03510v2}.
+\bibitem[DFL]{ja:DFL}
+Z.-L. Dai, H.-P. Fu and Y. Lu,
+\textit{K\"ahler Einstein manifolds and the Calabi curvature operator},
+arXiv:2609.05106v1 (4 September 2026), Theorems 1.1 and 1.4.
+\url{https://arxiv.org/abs/2609.05106v1}.
+\end{thebibliography}
+
+\end{document}

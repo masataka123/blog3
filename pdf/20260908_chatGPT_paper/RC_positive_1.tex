@@ -1,0 +1,1118 @@
+% !TEX program = lualatex
+\documentclass[12pt]{amsart}
+
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+\DeclareMathOperator{\Disc}{Disc}
+\DeclareMathOperator{\Spec}{Spec}
+\newcommand{\FS}{\mathrm{FS}}
+\newcommand{\urc}{\mathrm{uRC}}
+\newcommand{\rc}{\mathrm{RC}}
+\newcommand{\E}{E_{n,m,k}}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\cst}{\delta_{n,m,k}}
+\newcommand{\ddc}{\sqrt{-1}\partial\bar\partial}
+\newcommand{\hzero}{h_0}
+\newcommand{\state}[2]{\textnormal{\textsf{#1 / #2}}}
+\newcommand{\eref}[1]{\eqref{en:#1}}
+\newcommand{\jref}[1]{\eqref{ja:#1}}
+\emergencystretch=2em
+\makeatletter
+\renewcommand{\@setauthors}{\begin{center}\normalfont\authors\end{center}}
+\makeatother
+\title[Curvature averages and RC directions]{Positive curvature averages without a common RC direction}
+\author{chatGPT 6 Astra}
+\date{September 8, 2026}
+\keywords{RC-positivity, uniform RC-positivity, symmetric cotangent bundles, projective bundles, discriminants}
+\hypersetup{pdftitle={Positive curvature averages without a common RC direction / English and Japanese},pdfauthor={chatGPT 6 Astra},urlcolor=blue}
+\begin{document}
+\begin{abstract}
+We construct compact projective bundles for which a tautological curvature form has a strictly positive average in the base directions, although no base direction is positive over the whole fiber. The examples disprove the fixed-metric converse of Lemma~6 in Kuang-Ru Wu's 2026 preprint. They arise from $E_{n,m,k}=\Sym^m\Omega^1_{\Pp^n}\otimes\mathcal O(k)$. For $n,m\ge2$, we compute the exact RC and uniform RC constants of the natural metric as $k-m-m/n$ and $k-2m$, respectively. A discriminant obstruction shows that $E_{n,m,k}$ admits an RC-positive Hermitian metric precisely when $nk>m(n+1)$. In the intervening range no scalar conformal deformation of the natural metric is uniformly RC-positive. The negative assertion concerns a prescribed metric and its conformal class; it does not exclude other uniformly RC-positive metrics. The proofs are complete, while publication priority remains unverified.
+\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction and the main result}
+
+Positive mean curvature averages several tangent directions. Uniform RC-positivity requires a single tangent direction that works for every vector in a fiber. We give a compact geometric realization of the difference and compute its thresholds exactly.
+
+The closest statement is \cite[Lemma~6]{en:Wu26}. For a relatively positive line-bundle curvature $\Theta$ on a compact holomorphic fibration, a common positive base direction over each fiber implies
+\[
+\Theta^{d+1}\wedge\pi^*\alpha^{n-1}>0
+\]
+for a suitable Hermitian metric $\alpha$ on the $n$-dimensional base; here $d$ is the fiber dimension. The paragraph following that lemma explicitly leaves its converse without an example. Theorem~\ref{en:main} gives counterexamples to that converse \emph{for the fixed curvature form}. It does not answer an existence question in which $\Theta$ may be replaced by the curvature of an unrelated metric.
+
+Put
+\begin{equation}\label{en:parameters}
+\begin{gathered}
+X=\Pp^n,\qquad
+\E=\Sym^m\Omega_X^1\otimes\mathcal O_X(k),\\
+r=\binom{n+m-1}{m},\qquad
+\cst=k-m-\frac mn.
+\end{gathered}
+\end{equation}
+Throughout the main result $n,m\ge2$ and $k\in\Z$. Let $\omega$ be the Fubini--Study metric normalized by $R^{\mathcal O(1)}=\omega$ as a real curvature form, so that its HSC equals $2$. Let $h_0$ be the induced metric on $\E$. For a real $(1,1)$-form $\eta=\sqrt{-1}\eta_{A\bar B}dz^A\wedge d\bar z^B$, write $\eta[v]=\eta_{A\bar B}v^A\bar v^B$.
+
+\begin{thm}[Compact counterexamples with sharp thresholds]\label{en:main}
+Suppose
+\begin{equation}\label{en:gap}
+\frac{m(n+1)}n<k\le2m.
+\end{equation}
+Let $\pi:Z=\Pp(\E^*)\to X$ parametrize lines in $\E^*$, and let $L=\mathcal O_Z(1)$ have the metric $\ell_0$ dual to the tautological metric induced by $h_0^*$. Denote its real Chern curvature by $\Theta$.
+\begin{enumerate}
+\item $Z$ is smooth projective and $\Theta$ is positive on every fiber of $\pi$. On $Z$ one has the identity of top-degree forms
+\begin{equation}\label{en:wedge}
+\Theta^r\wedge\pi^*\omega^{n-1}
+=r\cst\,\Theta^{r-1}\wedge\pi^*\omega^n>0.
+\end{equation}
+\item For every $x\in X$ and every $\omega$-unit $u\in T_x^{1,0}X$, there exist $z\in\pi^{-1}(x)$ and a lift $\widetilde u\in T_z^{1,0}Z$ such that
+\begin{equation}\label{en:badlift}
+\Theta[\widetilde u]=k-2m\le0.
+\end{equation}
+Thus $\Theta$ has no common strictly positive base direction over any fiber. If $k<2m$, the value in \eref{badlift} is strictly negative, and both this failure and the strict positivity in \eref{wedge} persist under sufficiently small $C^2$ changes of $\ell_0$.
+\item No metric $e^{-f}h_0$, $f\in C^\infty(X,\R)$, is uniformly RC-positive on $X$. If $k<2m$, none is uniformly RC-semipositive on all of $X$. Equivalently, the line metrics $e^{-\pi^*f}\ell_0$ cannot have the corresponding common-direction property everywhere.
+\end{enumerate}
+In particular, $m=2$, $k=3$, and every $n\ge3$ give strict examples in arbitrary base dimension.
+\end{thm}
+
+The following calculation also determines when the underlying bundle, without a prescribed metric, can be RC-positive.
+
+\begin{thm}[Metric existence and the natural metric]\label{en:classification}
+For all parameters in \eref{parameters} with $n,m\ge2$, the bundle $\E$ admits a smooth RC-positive Hermitian metric if and only if
+\begin{equation}\label{en:existence}
+nk>m(n+1).
+\end{equation}
+For the natural metric, define the pointwise constants, with $|u|_\omega=|a|_{h_0}=1$, by
+\begin{align}
+c_{\rc}(x)&=\min_a\max_u R^{\E,h_0}(u,\bar u,a,\bar a),\label{en:rcconstant}\\
+c_{\urc}(x)&=\max_u\min_a R^{\E,h_0}(u,\bar u,a,\bar a).\label{en:urcconstant}
+\end{align}
+They are independent of $x$ and satisfy
+\begin{equation}\label{en:constants}
+c_{\rc}=\cst,\qquad c_{\urc}=k-2m.
+\end{equation}
+Consequently, $h_0$ is RC-positive exactly when \eref{existence} holds, and is uniformly RC-positive exactly when $k>2m$. Its uniform RC-semipositivity is equivalent to $k\ge2m$.
+\end{thm}
+
+\paragraph{Comparison and scope.}
+Positive mean curvature implies RC-positivity by \cite[Theorem~3.6]{en:Y18}; the sufficient direction in Theorem~\ref{en:classification} is an instance of that known principle. The additional ingredients here are the exact optimization over symmetric tensors, the projective-bundle realization \eref{wedge}--\eref{badlift}, and a discriminant that obstructs \emph{every} RC-positive metric below the threshold. The conformal formula itself is \cite[Lemma~3.4]{en:Y20}; our obstruction uses it at a maximum of the conformal factor. It lies outside the deformation hypothesis of \cite[Theorem~3.5]{en:Y20}, which requires uniform positivity away from a controlled exceptional set.
+
+We also checked the mean-curvature results of \cite[Theorem~1.4]{en:LZZ}, the direct-image result \cite[Theorem~3]{en:Wu25}, and the more recent implications \cite[Theorems~3 and~7]{en:Wu26}. These do not identify a common positive direction for our specified metric. The prescribed mean-curvature theorem \cite[Theorem~1.1]{en:WYY} likewise concerns an averaged tensor. The explicit counterexamples above are classified as \state{PROVED}{POTENTIALLY NEW}; the unrestricted metric-existence classification is \state{PROVED}{NOVELTY UNRESOLVED}. These are claims about the present search, not a certification of priority.
+
+\section{Curvature conventions and definitions}
+
+All bundles and manifolds are smooth over $\C$. On a Hermitian holomorphic bundle $(E,h)$ we use the Chern connection and the sign convention
+\begin{equation}\label{en:chern}
+R_{i\bar j\alpha\bar\beta}
+=-\partial_i\partial_{\bar j}h_{\alpha\bar\beta}
++h^{\gamma\bar\delta}
+ (\partial_i h_{\alpha\bar\delta})(\partial_{\bar j}h_{\gamma\bar\beta}).
+\end{equation}
+The associated endomorphism is denoted by $\mathcal R_h(u,\bar u)$, so that $R^h(u,\bar u,a,\bar a)=h(\mathcal R_h(u,\bar u)a,a)$. For a line metric $h=e^{-\varphi}$, its real curvature is $\sqrt{-1}\partial\bar\partial\varphi$. No factor $2\pi$ is included; the first Chern class is represented by the real curvature divided by $2\pi$.
+
+For a Hermitian metric $g$ on $T_X$, our conventions are
+\[
+H_g(v)=\frac{R^g(v,\bar v,v,\bar v)}{|v|_g^4},\qquad
+B_g(u,v)=\frac{R^g(u,\bar u,v,\bar v)}{|u|_g^2|v|_g^2}.
+\]
+Here BSC means this holomorphic bisectional curvature. Orthogonal bisectional curvature restricts to $u\perp v$; real bisectional curvature is a different contraction, and neither is denoted by BSC here. Our calculations use the Kähler Fubini--Study metric, for which the Chern and Levi--Civita connections agree on $T^{1,0}X$. We use no Kähler symmetry on an arbitrary bundle metric.
+
+Semipositive HSC means $H_g(v)\ge0$ for every point and every nonzero $v$. Quasi-positive HSC additionally means that at one point it is positive in \emph{all} nonzero directions. Quasi-negative HSC is defined with the inequalities reversed. A positive value in just one direction is a weaker condition.
+
+At a fixed point, RC-positivity and uniform RC-positivity respectively mean
+\begin{align*}
+&\forall a\ne0\quad\exists u\ne0\quad R^h(u,\bar u,a,\bar a)>0,\\
+&\exists u\ne0\quad\forall a\ne0\quad R^h(u,\bar u,a,\bar a)>0.
+\end{align*}
+Replacing $>$ by $\ge$ gives the corresponding semipositive notions. Uniform RC-quasi-positivity means uniform RC-semipositivity everywhere and uniform RC-positivity at one point, as in \cite[Definition~1.1]{en:Y20}. The compactness argument giving a global positive lower bound after fixing background metrics is already \cite[Proposition~2.9]{en:Y20}. We do not regard it as new, and never choose a global nonvanishing tangent vector field.
+
+For $\pi:Z\to X$ and a line curvature positive on the fibers, the \emph{common-direction condition for that curvature} is
+\begin{equation}\label{en:common}
+\forall x\quad\exists u\ne0\quad
+\forall z\in\pi^{-1}(x)\quad\forall\widetilde u\text{ with }d\pi(\widetilde u)=u,
+\qquad\Theta[\widetilde u]>0.
+\end{equation}
+This is the curvature condition used for uniform weak RC-positivity in \cite[Definition~2]{en:Wu26}. Distinguish it from the assertion that a line bundle \emph{admits some} metric with this property.
+
+\section{Symmetric tensors and exact curvature thresholds}
+
+On the affine chart of $\Pp^n$, set
+\[
+\omega=\ddc\log(1+|z|^2),\qquad
+h_{\mathcal O(1)}=(1+|z|^2)^{-1}.
+\]
+The expansion $\log(1+|z|^2)=|z|^2-|z|^4/2+O(|z|^6)$ and \eref{chern} give, in a unitary frame at the origin,
+\begin{equation}\label{en:fs}
+R^{T_X}_{i\bar jk\bar l}
+=\delta_{ij}\delta_{kl}+\delta_{il}\delta_{kj}.
+\end{equation}
+The first derivatives of the metric vanish there. Unitary projective transformations transport this calculation to every point. In particular, HSC is $2$ and $R^{T_X}(u,\bar u)=|u|^2\Id+P_u$, with $P_u$ the rank-one operator of trace $|u|^2$.
+
+Let $u^\flat$ be the metric dual covector, an antilinear function of $u$, and for unit $u$ let $P_{u^\flat}$ be orthogonal projection onto its span. On $\Sym^m T_x^*X$ define
+\begin{equation}\label{en:number}
+N_u=\left.\sum_{s=1}^m
+\Id^{\otimes(s-1)}\otimes P_{u^\flat}\otimes\Id^{\otimes(m-s)}
+\right|_{\Sym^m T_x^*X}.
+\end{equation}
+The symmetric subspace is parallel under the tensor connection, so its curvature is the restriction of the sum of the factor curvatures. Dualizing \eref{fs} and adding the line twist therefore gives
+\begin{equation}\label{en:operator}
+\mathcal R_{h_0}(u,\bar u)=(k-m)\Id-N_u\qquad (|u|_\omega=1).
+\end{equation}
+This is an identity of endomorphisms, not a comparison of different metrics.
+
+\begin{lem}[Spectrum and a fiberwise density matrix]\label{en:density}
+The eigenvalues of $N_u$ are $j=0,\ldots,m$, with multiplicities
+\[
+\binom{n+m-j-2}{m-j}.
+\]
+For every unit $a\in\Sym^m T_x^*X$, the Hermitian form
+$u\mapsto\langle N_u a,a\rangle$, extended homogeneously to all $u$, has a positive semidefinite matrix $M_a$ of trace $m$. For $m\ge2$, some unit $a_0$ satisfies $M_{a_0}=(m/n)\Id$.
+\end{lem}
+
+\begin{proof}
+Choose a unitary covector frame $e_1,\ldots,e_n$ with $e_1=u^\flat$. The normalized symmetric monomials with $j$ occurrences of $e_1$ are eigenvectors of eigenvalue $j$. The remaining $m-j$ occurrences can be distributed among $n-1$ symbols in the indicated number of ways.
+
+The form defining $M_a$ is nonnegative because $N_u$ is a sum of nonnegative projections. For an orthonormal tangent basis $u_1,\ldots,u_n$, one has $\sum_iN_{u_i}=m\Id$; hence $\tr M_a=m$. Take
+\begin{equation}\label{en:balanced}
+a_0=\frac1{\sqrt n}\sum_{i=1}^n e_i^{\otimes m}.
+\end{equation}
+The pure powers are orthonormal. Each summand in \eref{number} changes at most one tensor factor. If $i\ne j$ and $m\ge2$, at least one untouched factor pairs $e_i$ with $e_j$, so every cross term between their pure powers vanishes. The diagonal terms give
+$\langle N_u a_0,a_0\rangle=(m/n)\sum_i|u_i|^2$. This proves the final assertion.
+\end{proof}
+
+\begin{proof}[Proof of the natural-metric assertions in Theorem~\ref{en:classification}]
+For fixed unit $a$, \eref{operator} implies
+\begin{equation}\label{en:optimization}
+\max_{|u|=1}R^{h_0}(u,\bar u,a,\bar a)
+=k-m-\lambda_{\min}(M_a)\ge k-m-\frac mn.
+\end{equation}
+Equality is attained by \eref{balanced}, so minimizing over $a$ gives $c_{\rc}=\cst$. For every unit $u$, the maximum eigenvalue of $N_u$ is $m$, attained by $(u^\flat)^{\otimes m}$. Thus the minimum eigenvalue of \eref{operator} is $k-2m$, independently of $u$, which proves the formula for $c_{\urc}$. The strict and non-strict positivity assertions follow with their stated quantifier order. Finally,
+\begin{equation}\label{en:mean}
+\tr_\omega\mathcal R_{h_0}
+=\bigl(n(k-m)-m\bigr)\Id=n\cst\Id.
+\end{equation}
+This also proves the sufficient metric-existence direction by a direct averaging argument.
+\end{proof}
+
+\begin{prop}[All positive contractions]\label{en:contraction}
+Let $A\ge0$ be a nonzero Hermitian endomorphism of $T_x^{1,0}X$, with eigenvalues $t_1,\ldots,t_n$ and an orthonormal eigenbasis $u_i$. Define $\mathcal C_A=\sum_i t_i\mathcal R_{h_0}(u_i,\bar u_i)$. Then
+\begin{equation}\label{en:weighted}
+\lambda_{\min}(\mathcal C_A)
+=(k-m)\tr A-m\lambda_{\max}(A).
+\end{equation}
+In particular, contraction over an orthonormal basis of any $q$-plane is positive definite exactly when $q(k-m)>m$.
+\end{prop}
+
+\begin{proof}
+In the corresponding covector frame, the operator $\sum_i t_iN_{u_i}$ has eigenvalues $\sum_i\alpha_i t_i$, where $\alpha_i\ge0$ are integers and $\sum_i\alpha_i=m$. Its largest eigenvalue is $m\max_i t_i$, realized by a pure power in a maximal eigendirection. Subtracting it from $(k-m)\tr A$ proves \eref{weighted}. For a $q$-plane, $A$ is its orthogonal projector, with trace $q$ and largest eigenvalue $1$.
+\end{proof}
+
+Thus a positive full average cannot in general be replaced by a positive rank-one contraction. This conclusion comes from the exact spectrum, rather than from a compactness estimate.
+
+\section{Projectivization and the proof of the main theorem}
+
+We give the curvature computation needed to connect the bundle calculation with the fibration condition. For any Hermitian holomorphic bundle $(E,h)$, let $Z=\Pp(E^*)$ parametrize lines, and equip $L=\mathcal O_Z(1)$ with the dual tautological metric. In local fiber coordinates $[\xi]$, its curvature is
+\begin{equation}\label{en:tautological}
+\Theta=\ddc\log|\xi|_{h^*}^2.
+\end{equation}
+The formula is independent of the local representative of $[\xi]$, since rescaling by a nonzero holomorphic function changes the logarithm by a pluriharmonic function.
+
+At any chosen base point take a holomorphic frame with $h=\Id$ and $\partial h=0$. The mixed base-fiber derivatives in \eref{tautological} then vanish. The vertical block is the positive Fubini--Study form. Since $\partial\bar\partial h^*=-\partial\bar\partial h$ at that point, the horizontal block is
+\begin{equation}\label{en:horizontal}
+\Theta_H[u]=\frac{R^h(u,\bar u,a,\bar a)}{|a|_h^2},
+\end{equation}
+where $a\in E_x$ is the metric dual of $\xi$. The Chern connection defines the resulting global smooth horizontal splitting. No holomorphic splitting is being asserted. In this splitting,
+\begin{equation}\label{en:lifts}
+\Theta[\widetilde u]=\Theta_H[u]+\Theta_V[v]
+\quad\text{if }\widetilde u=u^H+v,\quad v\in T^{1,0}_{Z/X}.
+\end{equation}
+Consequently, the common-direction condition \eref{common} is equivalent, for this induced metric, to uniform RC-positivity of $(E,h)$.
+
+\begin{proof}[Proof of Theorem~\ref{en:main}, parts (1) and (2)]
+The bundle $\E$ is algebraic, hence its projective bundle is smooth projective. In particular the fibration is proper, is a holomorphic submersion, and its total space is Kähler. Fiberwise positivity follows from \eref{tautological}. The vertical dimension is $r-1$. Degree counting gives
+\begin{align}
+\Theta^r\wedge\pi^*\omega^{n-1}
+&=r\Theta_V^{r-1}\wedge\Theta_H\wedge\pi^*\omega^{n-1}\notag\\
+&=\frac rn(\tr_\omega\Theta_H)\Theta_V^{r-1}\wedge\pi^*\omega^n.
+\label{en:degreecount}
+\end{align}
+Terms with fewer than $r-1$ vertical factors have too many horizontal factors; terms with more than $r-1$ vanish in the vertical directions. By \eref{horizontal} and \eref{mean}, $\tr_\omega\Theta_H=n\cst$ at every point of $Z$. Also
+$\Theta^{r-1}\wedge\pi^*\omega^n=\Theta_V^{r-1}\wedge\pi^*\omega^n>0$.
+This proves \eref{wedge}, including its coefficient and sign.
+
+For any unit $u$ choose $a=(u^\flat)^{\otimes m}$, tensored with a unit vector in $\mathcal O(k)_x$, and let $z$ be its metric-dual fiber point. By \eref{operator}, $R^{h_0}(u,\bar u,a,\bar a)=k-2m$. The horizontal lift at $z$ proves \eref{badlift}. The choice is pointwise and needs no global tangent field.
+
+For stability when $\beta=2m-k>0$, fix a smooth background metric on $Z$ for which the above horizontal lifts of unit vectors have length $1$. Write a changed line metric as $e^{-\psi}\ell_0$, with $\psi$ real and smooth. Its curvature is $\Theta_\psi=\Theta+\ddc\psi$. If the norm of $\ddc\psi$ is less than $\beta/2$, each of the same selected lifts has curvature less than $-\beta/2$. Vertical positivity and the strict top-form inequality persist for sufficiently small $C^2$ perturbations, since the relevant continuous positive functions have positive minima on compact $Z$. Thus the simultaneous properties form an open neighborhood of $\ell_0$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en:main}, part (3)]
+For $h_f=e^{-f}h_0$, substitution into \eref{chern} gives
+\begin{equation}\label{en:conformal}
+\mathcal R_{h_f}(u,\bar u)
+=\mathcal R_{h_0}(u,\bar u)
++(\partial\bar\partial f)(u,\bar u)\Id.
+\end{equation}
+Here $(\partial\bar\partial f)(u,\bar u)$ denotes the coefficient contraction $f_{i\bar j}u^i\bar u^j$; the factor $e^{-f}$ disappears upon raising the bundle index. At a global maximum $x_0$ of $f$, this Hermitian Hessian is nonpositive in every direction. For every unit $u$ the pure power used above gives an eigenvalue at most $k-2m$. If $k\le2m$, uniform RC-positivity fails at $x_0$; if $k<2m$, even uniform RC-semipositivity fails there. The induced metric on $L$ is $e^{-\pi^*f}\ell_0$, so \eref{horizontal}--\eref{lifts} give the asserted equivalence.
+\end{proof}
+
+The proof of parts (1) and (2) also shows that, for all $k$, the strict wedge inequality for $\omega$ is equivalent to $\cst>0$, while the common-direction property for $\Theta$ is equivalent to $k>2m$. If an arbitrary base Hermitian metric $\alpha$ replaces $\omega$, write its inverse relative to $\omega$ as $A>0$. By Proposition~\ref{en:contraction}, the wedge inequality holds over $x$ exactly when
+\begin{equation}\label{en:allaverages}
+(k-m)\tr A>m\lambda_{\max}(A).
+\end{equation}
+Thus the example also describes precisely which positive averages work.
+
+\section{An obstruction to every RC-positive metric}
+
+The necessity in Theorem~\ref{en:classification} must exclude arbitrary metrics, not merely $h_0$. We first record a familiar consequence of RC vanishing, with a direct proof to fix the quantifiers.
+
+\begin{lem}[Polynomial dual sections]\label{en:vanishing}
+If a holomorphic bundle $E$ on a compact complex manifold admits an RC-positive Hermitian metric, then
+\[
+H^0(X,\Sym^d E^*)=0\qquad(d\ge1).
+\]
+This also follows from \cite[Theorem~1.3]{en:Y18} by taking powers of any hypothetical nonzero section.
+\end{lem}
+
+\begin{proof}
+Let $s$ be such a section and suppose it is nonzero. On the projective bundle of lines in $E$ the function
+\[
+F(x,[a])=\frac{|s_x(a^{\otimes d})|^2}{|a|_h^{2d}}
+\]
+is well-defined, continuous, and has a positive global maximum at some $(x_0,[a_0])$. Nonzero symmetric multilinear forms give nonzero diagonal polynomials over $\C$, by polarization, so this maximum is indeed positive. Extend $a_0$ to a local holomorphic section $a$ with $\nabla^{1,0}a(x_0)=0$, using a Chern-normal holomorphic frame. The holomorphic function $s(a^{\otimes d})$ is nonzero near $x_0$. Hence at $x_0$,
+\begin{equation}\label{en:maxprinciple}
+\partial_u\partial_{\bar u}\log F(x,[a(x)])
+=d\,\frac{R^h(u,\bar u,a_0,\bar a_0)}{|a_0|_h^2}.
+\end{equation}
+The holomorphic numerator has zero logarithmic complex Hessian; for the denominator, \eref{chern} and $\nabla a(x_0)=0$ give the displayed sign. The left side is nonpositive in every direction at the maximum. RC-positivity first fixes this $a_0$ and then supplies a direction $u$ making the right side positive, a contradiction.
+\end{proof}
+
+\begin{lem}[The discriminant morphism]\label{en:discriminant}
+Let $V$ be a complex vector space of dimension $n\ge2$, and $m\ge2$. Put
+\begin{equation}\label{en:weights}
+D=n(m-1)^{n-1},\qquad W=m(m-1)^{n-1}.
+\end{equation}
+There is a nonzero natural linear map
+\begin{equation}\label{en:discmap}
+\Sym^D(\Sym^m V)\longrightarrow(\det V)^W.
+\end{equation}
+\end{lem}
+
+\begin{proof}
+Regard $a\in\Sym^m V$ as a degree-$m$ polynomial on $V^*$. The classical discriminant $\Disc(a)$ is homogeneous of degree $D$ in its coefficients and transforms as
+\begin{equation}\label{en:disctransform}
+\Disc((\Sym^m A)a)=(\det A)^W\Disc(a),\qquad A\in\GL(V).
+\end{equation}
+These two identities are \cite[Propositions~4.7(i) and~4.13]{en:BJ}, with their polynomial degree denoted here by $m$. They can also be checked from the resultant of the $n$ partial derivatives: its coefficient degree is $n(m-1)^{n-1}$, and the determinant exponents from differentiating and changing variables add to $(m-1)^{n-1}+(m-1)^n=W$. The discriminant is nonzero, for example on $e_1^m+\cdots+e_n^m$, whose partial derivatives have no common nonzero zero. Polarization of this homogeneous polynomial gives \eref{discmap}. Formula \eref{disctransform} ensures that it is independent of the chosen frame.
+\end{proof}
+
+\begin{proof}[Completion of Theorem~\ref{en:classification}]
+Apply Lemma~\ref{en:discriminant} to $V=\Omega_x^1$. Naturality glues the maps to a nonzero bundle morphism
+\begin{equation}\label{en:bundlemap}
+\Sym^D\E\longrightarrow K_X^W\otimes\mathcal O_X(kD).
+\end{equation}
+Each fiber map is a nonzero map to a one-dimensional vector space, so it is surjective. Since $K_{\Pp^n}=\mathcal O(-n-1)$, dualizing gives a line subbundle
+\begin{equation}\label{en:lineobstruction}
+\mathcal O_X(q)\lhook\joinrel\longrightarrow\Sym^D\E^*,\qquad
+q=(n+1)W-kD=-D\cst.
+\end{equation}
+If $nk\le m(n+1)$, then $q\ge0$. A nonzero homogeneous polynomial of degree $q$ supplies a nonzero global section of $\mathcal O(q)$, including the constant section when $q=0$. Its image contradicts Lemma~\ref{en:vanishing} for any proposed RC-positive metric on $\E$. This proves necessity. Sufficiency was proved in \eref{mean}.
+\end{proof}
+
+This argument separates a metric-independent obstruction from the weaker conformal obstruction. In the gap \eref{gap}, the obstruction line in \eref{lineobstruction} has negative degree and does not rule out unrelated uniformly RC-positive metrics.
+
+\section{Examples, boundary cases, and limitations}
+
+\begin{eg}[Strict examples in arbitrary dimension]\label{en:example}
+For $n\ge3$, $E=\Sym^2\Omega^1_{\Pp^n}(3)$ has rank $r=n(n+1)/2$ and
+\[
+c_{\rc}=1-\frac2n>0,\qquad c_{\urc}=-1,\qquad
+\tr_\omega\mathcal R=(n-2)\Id.
+\]
+In any unit tangent direction the curvature eigenvalues are $1,0,-1$, with multiplicities $n(n-1)/2$, $n-1$, and $1$. Its tautological curvature satisfies \eref{wedge} with coefficient $(n+1)(n-2)/2$.
+\end{eg}
+
+For perspective, the restriction to a projective line contains $\mathcal O(k-2m)$ as a direct summand. Indeed, restricting the Euler sequence gives
+\[
+\Omega^1_{\Pp^n}|_{\Pp^1}
+\simeq\mathcal O(-2)\oplus\mathcal O(-1)^{\oplus(n-1)};
+\]
+the two coordinates on the line give the $\mathcal O(-2)$ kernel, and the remaining coordinates give $\mathcal O(-1)$ summands. Taking symmetric powers proves the claim. Thus the strict examples with $k<2m$ are not nef: their restriction has a negative-degree line quotient. This is compatible with RC-positivity and is not an obstruction to arbitrary uniform RC metrics.
+
+\begin{center}
+\begin{tabular}{@{}ccccrrr@{}}
+\toprule
+$n$&$m$&$k$&$r$&$c_{\rc}$&$c_{\urc}$&$r c_{\rc}$\\
+\midrule
+3&2&3&6&$1/3$&$-1$&$2$\\
+4&2&3&10&$1/2$&$-1$&$5$\\
+2&3&5&4&$1/2$&$-1$&$2$\\
+2&2&3&3&$0$&$-1$&$0$\\
+2&2&4&3&$1$&$0$&$3$\\
+3&2&5&6&$7/3$&$1$&$14$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+At $\cst=0$ the natural metric is RC-semipositive, but the discriminant excludes an RC-positive metric of any kind. At $k=2m$ the natural metric is Griffiths semipositive and RC-positive, yet is not uniformly RC-positive. Small perturbation stability of the \emph{failure} of uniform positivity was claimed only for $k<2m$. At $k>2m$ all curvature endomorphisms in nonzero tangent directions are positive definite, so the metric is Griffiths positive.
+
+The restrictions $n,m\ge2$ are essential for the exact RC constant as stated. If $n=1$, the bundle is the line bundle $\mathcal O_{\Pp^1}(k-2m)$, and the two notions coincide. If $m=1$ and $n\ge2$, the density matrix of every unit covector has rank one, so $c_{\rc}=k-1$, not $k-1-1/n$. Its integral RC threshold is still $k\ge2$; for $k\le1$, the dual $T_{\Pp^n}(-k)$ has nonzero sections by the Euler sequence and a nonnegative line twist. The discontinuity of the formula at $m=1$ is why we did not extrapolate the balanced-state argument there.
+
+\paragraph{Normalization and verification.}
+The constants refer to unit vectors for the stated $\omega$ and $h_0$. Replacing only the background tangent normalization by $c\omega$ divides them by $c$; all sign assertions are unchanged. The code accompanying this note checks the Fubini--Study components exactly in dimensions $2$ and $3$, the discriminant weights in binary and quadratic cases, and the symmetric-tensor spectra and contractions for $2\le n\le5$, $2\le m\le4$. These finite checks verify implementations and examples; the proofs above cover all stated parameters.
+
+\paragraph{Relation to the HSC literature.}
+The broader search did not supply a new HSC structure theorem. Positive HSC and rational connectedness are covered by \cite[Theorem~1.7]{en:Y18}. For the quasi-positive and semipositive settings, we checked \cite[Theorems~1.4 and~1.5]{en:ZZ} and \cite[Theorem~1.1, Remark~1.2]{en:M25}. On the negative side the relevant results are \cite[Theorem~2]{en:WY}, \cite[Theorem~1.1, Corollary~1.2]{en:TY}, and \cite[Theorem~1.2]{en:DT}. They are background, not consequences proved here. Nor do we repackage the map rigidity theorem \cite[Theorem~1.1]{en:Ymaps} as new. The ambient base of our examples already has positive HSC and BSC; the phenomenon occurs in its associated vector bundles.
+
+\paragraph{What remains unsettled.}
+We have not decided whether some nonconformal Hermitian metric on $\E$ in \eref{gap} is uniformly RC-positive, or whether $L$ admits an unrelated metric with the common-direction property. A negative statement for $h_0$ is not a negative answer to either existence problem. No metric on $T_Z$ is constructed, and no HSC sign on $Z$ is asserted. The results are smooth and projective; no singular or noncompact extension is claimed. The search included primary sources through September 8, 2026, especially \cite{en:Wu26}, but was not an exhaustive citation-index audit. The precise priority of the family and classification therefore remains a matter for further literature and expert checking.
+
+\renewcommand{\refname}{References}
+\begin{thebibliography}{WYY26}
+\bibitem[BJ12]{en:BJ} L. Bus\'e and J.-P. Jouanolou, \emph{A computational approach to the discriminant of homogeneous polynomials}, arXiv:1210.4697v1 (2012). \url{https://arxiv.org/abs/1210.4697v1}.
+
+\bibitem[DT19]{en:DT} S. Diverio and S. Trapani, \emph{Quasi-negative holomorphic sectional curvature and positivity of the canonical bundle}, J. Differential Geom. 111 (2019), no.~2, 303--314; arXiv:1606.01381v4. \url{https://arxiv.org/abs/1606.01381v4}.
+
+\bibitem[LZZ25]{en:LZZ} C. Li, C. Zhang, and X. Zhang, \emph{Mean curvature positivity and rational connectedness}, Adv. Math. 483 (2025), article 110673; arXiv:2112.00488v3. \url{https://arxiv.org/abs/2112.00488v3}.
+
+\bibitem[M25]{en:M25} S.-i. Matsumura, \emph{Fundamental groups of compact K\"ahler manifolds with semi-positive holomorphic sectional curvature}, arXiv:2502.00367v1 (2025). \url{https://arxiv.org/abs/2502.00367v1}.
+
+\bibitem[TY17]{en:TY} V. Tosatti and X. Yang, \emph{An extension of a theorem of Wu--Yau}, J. Differential Geom. 107 (2017), no.~3, 573--579; arXiv:1506.01145v3. \url{https://arxiv.org/abs/1506.01145v3}.
+
+\bibitem[WYY26]{en:WYY} M. Wang, X. Yang, and S.-T. Yau, \emph{Existence of Hermitian metrics with prescribed Hermitian--Yang--Mills tensors I}, arXiv:2603.10611v4 (2026). \url{https://arxiv.org/abs/2603.10611v4}.
+
+\bibitem[Wu25]{en:Wu25} K.-R. Wu, \emph{Uniform RC-positivity of direct image bundles}, arXiv:2512.10845v1 (2025). \url{https://arxiv.org/abs/2512.10845v1}.
+
+\bibitem[Wu26]{en:Wu26} K.-R. Wu, \emph{Uniform weak RC-positivity and rational connectedness}, arXiv:2604.05981v1 (2026). \url{https://arxiv.org/abs/2604.05981v1}.
+
+\bibitem[WY16]{en:WY} D. Wu and S.-T. Yau, \emph{Negative holomorphic curvature and positive canonical bundle}, Invent. Math. 204 (2016), no.~2, 595--604; arXiv:1505.05802v1. \url{https://arxiv.org/abs/1505.05802v1}.
+
+\bibitem[Y18]{en:Y18} X. Yang, \emph{RC-positivity, rational connectedness and Yau's conjecture}, Camb. J. Math. 6 (2018), 183--212; arXiv:1708.06713v3. \url{https://arxiv.org/abs/1708.06713v3}.
+
+\bibitem[Ymap]{en:Ymaps} X. Yang, \emph{RC-positivity, vanishing theorems and rigidity of holomorphic maps}, arXiv:1807.02601v2 (2018). \url{https://arxiv.org/abs/1807.02601v2}.
+
+\bibitem[Y20]{en:Y20} X. Yang, \emph{RC-positive metrics on rationally connected manifolds}, Forum Math. Sigma 8 (2020), e53; arXiv:1807.03510v2. \url{https://arxiv.org/abs/1807.03510v2}.
+
+\bibitem[ZZ24]{en:ZZ} S. Zhang and X. Zhang, \emph{On the structure of compact K\"ahler manifolds with nonnegative holomorphic sectional curvature}, arXiv:2311.18779v4 (2024). \url{https://arxiv.org/abs/2311.18779v4}.
+
+\end{thebibliography}
+\newpage
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\setcounter{footnote}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHequation}{ja.\theequation}
+\providecommand{\theHthm}{\thethm}
+\renewcommand{\theHthm}{ja.\thethm}
+\renewcommand{\proofname}{証明}
+\markboth{chatGPT 6 Astra}{曲率の正の平均と共通RC方向}
+\begin{center}
+{\Large\bfseries 曲率の正の平均と共通のRC正方向の不在}\par\medskip
+{\normalsize chatGPT 6 Astra}\par\smallskip
+{\small 2026年9月8日}
+\end{center}
+\medskip
+\noindent\textbf{概要.}
+tautological直線束の曲率について、底空間の方向に関する平均は狭義に正であるが、ファイバー全体で共通する正の底方向は存在しないようなコンパクトな射影束を構成する。この例は、Kuang-Ru Wuの2026年のプレプリントのLemma~6について、固定された計量に関する逆向きを否定する。構成には
+$E_{n,m,k}=\Sym^m\Omega^1_{\Pp^n}\otimes\mathcal O(k)$
+を用いる。$n,m\ge2$のとき、自然な計量のRC定数と一様RC定数をそれぞれ$k-m-m/n$と$k-2m$と計算する。さらに判別式による障害から、$E_{n,m,k}$がRC-positiveなHermitian計量を持つための必要十分条件は$nk>m(n+1)$である。この閾値と一様RC正値性の閾値の間では、自然な計量のスカラー共形変形によって一様RC正値性を得ることはできない。この否定的結論は指定された計量とその共形類に関するものであり、その他の計量の存在を排除しない。証明は完結しているが、発表上の先取性は確定していない。
+
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+
+\section{序論と主結果}
+
+平均曲率の正値性は複数の接方向を平均する。一様RC正値性は、一つの接方向がファイバー内のすべてのベクトルに対して働くことを要求する。本稿ではこの差をコンパクトな幾何学的対象で実現し、その閾値を厳密に計算する。
+
+最も近い既知の主張は\cite[Lemma~6]{ja:Wu26}である。コンパクトな正則ファイブレーション上の直線束の曲率$\Theta$がファイバー方向に正であり、各ファイバー全体で共通する正の底方向を持つならば、底空間の適切なHermitian計量$\alpha$について
+\[
+\Theta^{d+1}\wedge\pi^*\alpha^{n-1}>0
+\]
+が成り立つ。ここで底空間の次元は$n$、ファイバーの次元は$d$である。同補題の直後の段落では、逆向きの反例がまだ示されていないと明記されている。定理\ref{ja:main}は、\emph{固定された曲率形式について}この逆向きへの反例を与える。$\Theta$を無関係な別の計量の曲率に取り替えてよいという存在問題を解くものではない。
+
+以下の記号を用いる。
+\begin{equation}\label{ja:parameters}
+\begin{gathered}
+X=\Pp^n,\qquad
+\E=\Sym^m\Omega_X^1\otimes\mathcal O_X(k),\\
+r=\binom{n+m-1}{m},\qquad
+\cst=k-m-\frac mn.
+\end{gathered}
+\end{equation}
+主結果では常に$n,m\ge2$、$k\in\Z$とする。$\omega$を、$\mathcal O(1)$の実曲率形式が$\omega$となるように正規化したFubini--Study計量とする。この正規化でHSCは$2$である。$h_0$を$\E$上の誘導計量とする。実$(1,1)$形式$\eta=\sqrt{-1}\eta_{A\bar B}dz^A\wedge d\bar z^B$について、$\eta[v]=\eta_{A\bar B}v^A\bar v^B$と書く。
+
+\begin{thm}[鋭い閾値を持つコンパクトな反例]\label{ja:main}
+\begin{equation}\label{ja:gap}
+\frac{m(n+1)}n<k\le2m
+\end{equation}
+を仮定する。$\pi:Z=\Pp(\E^*)\to X$は$\E^*$の直線をパラメータとする射影束とする。$L=\mathcal O_Z(1)$に、$h_0^*$から誘導されるtautological直線束の計量の双対計量$\ell_0$を入れ、その実Chern曲率を$\Theta$とする。
+\begin{enumerate}
+\item $Z$は滑らかな射影多様体であり、$\Theta$は各ファイバー上で正である。$Z$上で最高次形式の等式
+\begin{equation}\label{ja:wedge}
+\Theta^r\wedge\pi^*\omega^{n-1}
+=r\cst\,\Theta^{r-1}\wedge\pi^*\omega^n>0
+\end{equation}
+が成り立つ。
+\item 任意の$x\in X$と$\omega$に関する単位接ベクトル$u\in T_x^{1,0}X$に対し、$z\in\pi^{-1}(x)$および$u$の持ち上げ$\widetilde u\in T_z^{1,0}Z$が存在し、
+\begin{equation}\label{ja:badlift}
+\Theta[\widetilde u]=k-2m\le0
+\end{equation}
+となる。従って、どのファイバー上にも共通の狭義に正の底方向は存在しない。$k<2m$ならば\jref{badlift}は狭義に負であり、この共通方向の不在と\jref{wedge}の狭義の正値性は、$\ell_0$の十分小さい$C^2$変形の下でも保たれる。
+\item どの$f\in C^\infty(X,\R)$に対しても$e^{-f}h_0$は$X$全体で一様RC-positiveではない。$k<2m$ならば、$X$全体で一様RC-semipositiveとなるものも存在しない。同値な主張として、直線束の計量$e^{-\pi^*f}\ell_0$は、対応する共通方向の条件を全点で満たすことができない。
+\end{enumerate}
+特に$m=2$、$k=3$、任意の$n\ge3$により、任意次元の底空間上で狭義の反例が得られる。
+\end{thm}
+
+次の計算では、計量を指定しない場合に、正則束そのものがRC-positiveとなり得る条件も決定する。
+
+\begin{thm}[計量の存在と自然な計量]\label{ja:classification}
+\jref{parameters}の$n,m\ge2$を満たすすべてのパラメータについて、$\E$が滑らかなRC-positive Hermitian計量を持つための必要十分条件は
+\begin{equation}\label{ja:existence}
+nk>m(n+1)
+\end{equation}
+である。自然な計量について、$|u|_\omega=|a|_{h_0}=1$として
+\begin{align}
+c_{\rc}(x)&=\min_a\max_u R^{\E,h_0}(u,\bar u,a,\bar a),\label{ja:rcconstant}\\
+c_{\urc}(x)&=\max_u\min_a R^{\E,h_0}(u,\bar u,a,\bar a)\label{ja:urcconstant}
+\end{align}
+と定める。この二つの点ごとの定数は$x$に依存せず、
+\begin{equation}\label{ja:constants}
+c_{\rc}=\cst,\qquad c_{\urc}=k-2m
+\end{equation}
+を満たす。従って$h_0$のRC正値性は\jref{existence}と同値であり、一様RC正値性は$k>2m$と同値である。また一様RC半正値性は$k\ge2m$と同値である。
+\end{thm}
+
+\paragraph{既知結果との比較と射程.}
+平均曲率の正値性からRC正値性が従うことは\cite[Theorem~3.6]{ja:Y18}で知られており、定理\ref{ja:classification}の十分条件はその一例である。本稿で追加する要素は、対称テンソルに関する厳密な最適化、\jref{wedge}--\jref{badlift}の射影束による実現、および閾値以下で\emph{あらゆる}RC-positive計量を排除する判別式である。共形変形の公式自体は\cite[Lemma~3.4]{ja:Y20}にある。本稿では共形因子の最大点でこれを用いる。\cite[Theorem~3.5]{ja:Y20}の変形定理は、制御された例外集合の外で一様正値性を仮定するため、本稿の障害はその仮定の外にある。
+
+平均曲率に関する\cite[Theorem~1.4]{ja:LZZ}、直像束に関する\cite[Theorem~3]{ja:Wu25}、さらに\cite[Theorems~3 and~7]{ja:Wu26}も確認した。これらは本稿の指定された計量に共通の正方向を与えるものではない。平均曲率の処方定理\cite[Theorem~1.1]{ja:WYY}も、平均されたテンソルを対象とする。上記の明示的反例の位置付けは\state{PROVED}{POTENTIALLY NEW}、計量を限定しない存在条件の分類は\state{PROVED}{NOVELTY UNRESOLVED}とする。これは今回の調査に関する判定であり、先取性の保証ではない。
+
+\section{曲率の規約と定義}
+
+多様体と束はすべて$\C$上で滑らかである。Hermitian正則ベクトル束$(E,h)$にはChern接続を用い、符号を
+\begin{equation}\label{ja:chern}
+R_{i\bar j\alpha\bar\beta}
+=-\partial_i\partial_{\bar j}h_{\alpha\bar\beta}
++h^{\gamma\bar\delta}
+ (\partial_i h_{\alpha\bar\delta})(\partial_{\bar j}h_{\gamma\bar\beta})
+\end{equation}
+とする。対応する自己準同型を$\mathcal R_h(u,\bar u)$と書く。従って$R^h(u,\bar u,a,\bar a)=h(\mathcal R_h(u,\bar u)a,a)$である。直線束の計量$h=e^{-\varphi}$の実曲率は$\sqrt{-1}\partial\bar\partial\varphi$である。曲率には$2\pi$の因子を含めず、第1 Chern類は実曲率を$2\pi$で割った形式で表される。
+
+$T_X$上のHermitian計量$g$について
+\[
+H_g(v)=\frac{R^g(v,\bar v,v,\bar v)}{|v|_g^4},\qquad
+B_g(u,v)=\frac{R^g(u,\bar u,v,\bar v)}{|u|_g^2|v|_g^2}
+\]
+と定める。BSCはこの正則双断面曲率を意味する。直交双断面曲率は$u\perp v$への制限であり、real bisectional curvatureは別の縮約である。本稿ではそのどちらもBSCとは呼ばない。計算にはKählerであるFubini--Study計量を用いる。この場合、Chern接続とLevi--Civita接続は$T^{1,0}X$上で一致する。任意の束の計量にKähler対称性を仮定することはない。
+
+半正HSCとは、すべての点とすべての非零方向で$H_g(v)\ge0$が成り立つことをいう。準正HSCでは、さらにある一点の\emph{すべての}非零方向で正であることを要求する。準負HSCは不等号を逆にして定める。ある一方向における正値は、これより弱い条件である。
+
+点を固定したとき、RC正値性と一様RC正値性はそれぞれ
+\begin{align*}
+&\forall a\ne0\quad\exists u\ne0\quad R^h(u,\bar u,a,\bar a)>0,\\
+&\exists u\ne0\quad\forall a\ne0\quad R^h(u,\bar u,a,\bar a)>0
+\end{align*}
+を意味する。$>$を$\ge$に替えて対応する半正値性を定める。一様RC準正値性は、全点で一様RC半正値性を満たし、ある一点で一様RC正値性を満たすことを意味する。これは\cite[Definition~1.1]{ja:Y20}の定義である。背景計量を固定すると、コンパクト性から大域的な正の下界が得られることは\cite[Proposition~2.9]{ja:Y20}で既知であり、新しい結果とはみなさない。また大域的な非消滅接ベクトル場を選ぶことはない。
+
+$\pi:Z\to X$と、ファイバー方向で正の直線束曲率について、\emph{その曲率に関する共通方向の条件}を
+\begin{equation}\label{ja:common}
+\forall x\quad\exists u\ne0\quad
+\forall z\in\pi^{-1}(x)\quad\forall\widetilde u\text{ with }d\pi(\widetilde u)=u,
+\qquad\Theta[\widetilde u]>0
+\end{equation}
+とする。これは\cite[Definition~2]{ja:Wu26}でuniform weak RC-positivityに用いられる曲率条件である。直線束がこの条件を満たす\emph{何らかの}計量を持つという主張とは区別する。
+
+\section{対称テンソルと曲率の厳密な閾値}
+
+$\Pp^n$のアフィン座標で
+\[
+\omega=\ddc\log(1+|z|^2),\qquad
+h_{\mathcal O(1)}=(1+|z|^2)^{-1}
+\]
+とおく。展開$\log(1+|z|^2)=|z|^2-|z|^4/2+O(|z|^6)$と\jref{chern}から、原点のユニタリ枠において
+\begin{equation}\label{ja:fs}
+R^{T_X}_{i\bar jk\bar l}
+=\delta_{ij}\delta_{kl}+\delta_{il}\delta_{kj}
+\end{equation}
+を得る。計量の1階微分は原点で消える。ユニタリ射影変換によって、この計算はすべての点に移せる。特にHSCは$2$であり、$R^{T_X}(u,\bar u)=|u|^2\Id+P_u$である。ここで$P_u$はトレース$|u|^2$の階数1の作用素である。
+
+$u^\flat$を$u$の計量による双対共変ベクトルとする。これは$u$に反線形に依存する。単位$u$について$P_{u^\flat}$をその張る直線への直交射影とし、$\Sym^m T_x^*X$上で
+\begin{equation}\label{ja:number}
+N_u=\left.\sum_{s=1}^m
+\Id^{\otimes(s-1)}\otimes P_{u^\flat}\otimes\Id^{\otimes(m-s)}
+\right|_{\Sym^m T_x^*X}
+\end{equation}
+と定める。テンソル接続に関して対称部分空間は平行であるため、その曲率は各因子の曲率の和を制限したものである。従って\jref{fs}を双対化して直線束による捻りを加えると
+\begin{equation}\label{ja:operator}
+\mathcal R_{h_0}(u,\bar u)=(k-m)\Id-N_u\qquad (|u|_\omega=1)
+\end{equation}
+を得る。これは自己準同型の等式であり、異なる計量の間の比較ではない。
+
+\begin{lem}[スペクトルとファイバー上の密度行列]\label{ja:density}
+$N_u$の固有値は$j=0,\ldots,m$であり、その重複度は
+\[
+\binom{n+m-j-2}{m-j}
+\]
+である。単位ベクトル$a\in\Sym^m T_x^*X$について、Hermitian形式
+$u\mapsto\langle N_u a,a\rangle$を斉次性によってすべての$u$に拡張したものの行列$M_a$は、半正定値でトレース$m$である。$m\ge2$ならば、$M_{a_0}=(m/n)\Id$を満たす単位$a_0$が存在する。
+\end{lem}
+
+\begin{proof}
+$e_1=u^\flat$となるユニタリ共変枠$e_1,\ldots,e_n$を取る。$e_1$が$j$回現れる正規化された対称単項式は、固有値$j$の固有ベクトルである。残りの$m-j$個を$n-1$種類の記号に分配する方法の数が上記の重複度である。
+
+$N_u$は非負な射影の和なので、$M_a$を定める形式は非負である。正規直交接基底$u_1,\ldots,u_n$について$\sum_iN_{u_i}=m\Id$となるから、$\tr M_a=m$を得る。ここで
+\begin{equation}\label{ja:balanced}
+a_0=\frac1{\sqrt n}\sum_{i=1}^n e_i^{\otimes m}
+\end{equation}
+とおく。各純冪は互いに正規直交する。\jref{number}の各項は高々一つのテンソル因子しか変えない。$i\ne j$かつ$m\ge2$ならば、作用しない因子の少なくとも一つに$e_i$と$e_j$の内積が残るため、異なる純冪間の交差項はすべて消える。対角項を計算すると
+$\langle N_u a_0,a_0\rangle=(m/n)\sum_i|u_i|^2$であり、最後の主張を得る。
+\end{proof}
+
+\begin{proof}[定理\ref{ja:classification}の自然な計量に関する部分の証明]
+単位$a$を固定すると\jref{operator}から
+\begin{equation}\label{ja:optimization}
+\max_{|u|=1}R^{h_0}(u,\bar u,a,\bar a)
+=k-m-\lambda_{\min}(M_a)\ge k-m-\frac mn
+\end{equation}
+を得る。\jref{balanced}で等号が成立するから、$a$について最小を取れば$c_{\rc}=\cst$となる。各単位$u$について$N_u$の最大固有値は$m$であり、$(u^\flat)^{\otimes m}$がそれを実現する。従って\jref{operator}の最小固有値は$u$によらず$k-2m$であり、$c_{\urc}$の公式が従う。正値性と半正値性の主張は、記載した量化順序に従ってこれらから得られる。さらに
+\begin{equation}\label{ja:mean}
+\tr_\omega\mathcal R_{h_0}
+=\bigl(n(k-m)-m\bigr)\Id=n\cst\Id
+\end{equation}
+である。これは直接の平均の議論により、計量の存在に関する十分条件も示している。
+\end{proof}
+
+\begin{prop}[すべての正の縮約]\label{ja:contraction}
+$A\ge0$を$T_x^{1,0}X$の非零Hermitian自己準同型とし、固有値を$t_1,\ldots,t_n$、正規直交固有基底を$u_i$とする。$\mathcal C_A=\sum_i t_i\mathcal R_{h_0}(u_i,\bar u_i)$と定めると
+\begin{equation}\label{ja:weighted}
+\lambda_{\min}(\mathcal C_A)
+=(k-m)\tr A-m\lambda_{\max}(A)
+\end{equation}
+である。特に任意の$q$次元部分空間の正規直交基底についての縮約が正定値となるための必要十分条件は$q(k-m)>m$である。
+\end{prop}
+
+\begin{proof}
+対応する共変枠では、$\sum_i t_iN_{u_i}$の固有値は$\sum_i\alpha_i t_i$である。ここで$\alpha_i\ge0$は整数で、$\sum_i\alpha_i=m$を満たす。最大固有値は$m\max_i t_i$であり、最大固有値方向の純冪で実現される。これを$(k-m)\tr A$から引いて\jref{weighted}を得る。$q$次元部分空間の場合には、$A$をその直交射影とすれば$\tr A=q$、$\lambda_{\max}(A)=1$となる。
+\end{proof}
+
+従って、全方向の正の平均を正の階数1の縮約に置き換えられるとは限らない。この結論はスペクトルの厳密な計算に由来し、コンパクト性による評価だけから得られたものではない。
+
+\section{射影化と主定理の証明}
+
+束の計算とファイブレーションの曲率条件を結ぶ公式を示す。任意のHermitian正則ベクトル束$(E,h)$について、$Z=\Pp(E^*)$を直線の射影束とし、$L=\mathcal O_Z(1)$にtautological計量の双対計量を入れる。局所ファイバー座標$[\xi]$において、その曲率は
+\begin{equation}\label{ja:tautological}
+\Theta=\ddc\log|\xi|_{h^*}^2
+\end{equation}
+である。非零正則関数による$\xi$の取り替えは、対数に多重調和関数を加えるだけなので、この公式は局所代表元の選択によらない。
+
+底空間の一点を固定し、そこで$h=\Id$、$\partial h=0$を満たす正則枠を取る。\jref{tautological}の底方向とファイバー方向の混合微分はこの点で消える。垂直成分は正のFubini--Study形式である。またこの点で$\partial\bar\partial h^*=-\partial\bar\partial h$であるから、水平成分は
+\begin{equation}\label{ja:horizontal}
+\Theta_H[u]=\frac{R^h(u,\bar u,a,\bar a)}{|a|_h^2}
+\end{equation}
+となる。ここで$a\in E_x$は$\xi$の計量双対である。Chern接続から大域的な滑らかな水平分裂が定まる。正則な分裂を主張しているのではない。この分裂に関して
+\begin{equation}\label{ja:lifts}
+\Theta[\widetilde u]=\Theta_H[u]+\Theta_V[v]
+\quad\text{if }\widetilde u=u^H+v,\quad v\in T^{1,0}_{Z/X}
+\end{equation}
+である。従って、この誘導計量に対する共通方向の条件\jref{common}は、$(E,h)$の一様RC正値性と同値である。
+
+\begin{proof}[定理\ref{ja:main}の(1)、(2)の証明]
+$\E$は代数的な束なので、その射影束は滑らかな射影多様体である。特に$\pi$は固有な正則submersionであり、全空間はKählerである。ファイバー方向の正値性は\jref{tautological}から従う。垂直方向の次元は$r-1$である。次数を数えると
+\begin{align}
+\Theta^r\wedge\pi^*\omega^{n-1}
+&=r\Theta_V^{r-1}\wedge\Theta_H\wedge\pi^*\omega^{n-1}\notag\\
+&=\frac rn(\tr_\omega\Theta_H)\Theta_V^{r-1}\wedge\pi^*\omega^n
+\label{ja:degreecount}
+\end{align}
+となる。垂直因子が$r-1$個未満の項は水平因子が多すぎるため消え、$r-1$個より多い項は垂直次元の制約で消える。\jref{horizontal}と\jref{mean}により、$Z$の全点で$\tr_\omega\Theta_H=n\cst$である。また
+$\Theta^{r-1}\wedge\pi^*\omega^n=\Theta_V^{r-1}\wedge\pi^*\omega^n>0$
+である。これで\jref{wedge}の係数と符号を含めた証明が得られた。
+
+任意の単位$u$について、$a=(u^\flat)^{\otimes m}$と$\mathcal O(k)_x$の単位ベクトルとのテンソル積を取り、その計量双対が定めるファイバーの点を$z$とする。\jref{operator}により$R^{h_0}(u,\bar u,a,\bar a)=k-2m$である。$z$における水平持ち上げを取れば\jref{badlift}を得る。この選択は点ごとのものであり、大域的な接ベクトル場は不要である。
+
+$\beta=2m-k>0$の場合の変形に対する安定性を示す。上で用いた単位ベクトルの水平持ち上げの長さが$1$となるような、$Z$上の滑らかな背景計量を固定する。変形した直線束計量を$e^{-\psi}\ell_0$と書く。ここで$\psi$は実滑らかな関数である。その曲率は$\Theta_\psi=\Theta+\ddc\psi$である。$\ddc\psi$のノルムが$\beta/2$より小さければ、同じ持ち上げにおける曲率は$-\beta/2$未満となる。垂直方向の正値性と最高次形式の狭義の不等式も、十分小さい$C^2$変形で保たれる。実際、関係する連続な正の関数はコンパクトな$Z$上で正の最小値を持つ。従って、これらの性質を同時に満たす計量は$\ell_0$の開近傍をなす。
+\end{proof}
+
+\begin{proof}[定理\ref{ja:main}の(3)の証明]
+$h_f=e^{-f}h_0$を\jref{chern}に代入すると
+\begin{equation}\label{ja:conformal}
+\mathcal R_{h_f}(u,\bar u)
+=\mathcal R_{h_0}(u,\bar u)
++(\partial\bar\partial f)(u,\bar u)\Id
+\end{equation}
+を得る。ここで$(\partial\bar\partial f)(u,\bar u)$は係数の縮約$f_{i\bar j}u^i\bar u^j$を意味する。束の添字を上げる際に$e^{-f}$の因子は消える。$f$の大域的最大点$x_0$では、このHermitian Hessianはすべての方向で非正である。任意の単位$u$に対して、前述の純冪は$k-2m$以下の固有値を与える。従って$k\le2m$ならば$x_0$で一様RC正値性は成立せず、$k<2m$ならば一様RC半正値性も成立しない。$L$の誘導計量は$e^{-\pi^*f}\ell_0$であるから、\jref{horizontal}--\jref{lifts}によって対応する同値な主張も得られる。
+\end{proof}
+
+(1)、(2)の証明から、すべての$k$について、$\omega$に関する狭義の外積不等式は$\cst>0$と同値であり、$\Theta$に関する共通方向の条件は$k>2m$と同値であることも分かる。底空間の任意のHermitian計量$\alpha$を$\omega$の代わりに用い、その逆行列を$\omega$に関して$A>0$と書く。命題\ref{ja:contraction}により、$x$上で外積不等式が成立するための必要十分条件は
+\begin{equation}\label{ja:allaverages}
+(k-m)\tr A>m\lambda_{\max}(A)
+\end{equation}
+である。このように、どの正の平均が条件を満たすかも厳密に記述できる。
+
+\section{あらゆるRC-positive計量に対する障害}
+
+定理\ref{ja:classification}の必要条件では、$h_0$だけでなく任意の計量を排除する必要がある。まずRC消滅定理の既知の帰結を、量化順序が分かる直接の証明とともに記す。
+
+\begin{lem}[多項式的な双対切断]\label{ja:vanishing}
+コンパクト複素多様体上の正則束$E$がRC-positiveなHermitian計量を持つならば
+\[
+H^0(X,\Sym^d E^*)=0\qquad(d\ge1)
+\]
+である。この主張は、仮に存在する非零切断の冪を取って\cite[Theorem~1.3]{ja:Y18}を適用しても得られる。
+\end{lem}
+
+\begin{proof}
+非零な切断$s$が存在すると仮定する。$E$の直線の射影束上で
+\[
+F(x,[a])=\frac{|s_x(a^{\otimes d})|^2}{|a|_h^{2d}}
+\]
+はwell-definedな連続関数であり、ある$(x_0,[a_0])$で正の大域的最大値を取る。$\C$上では偏極により、非零な対称多重線形形式の対角多項式も非零なので、最大値は確かに正である。Chern正規正則枠を用い、$a_0$を$\nabla^{1,0}a(x_0)=0$となる局所正則切断$a$に延長する。正則関数$s(a^{\otimes d})$は$x_0$の近傍で非零である。従って$x_0$において
+\begin{equation}\label{ja:maxprinciple}
+\partial_u\partial_{\bar u}\log F(x,[a(x)])
+=d\,\frac{R^h(u,\bar u,a_0,\bar a_0)}{|a_0|_h^2}
+\end{equation}
+となる。分子の対数の複素Hessianは正則性から消え、分母については\jref{chern}と$\nabla a(x_0)=0$から上記の符号を得る。最大点では左辺はすべての方向で非正である。一方、RC正値性はまずこの$a_0$を固定した上で、右辺が正になる方向$u$を与える。これは矛盾である。
+\end{proof}
+
+\begin{lem}[判別式による射]\label{ja:discriminant}
+$V$を$n\ge2$次元の複素ベクトル空間、$m\ge2$とし、
+\begin{equation}\label{ja:weights}
+D=n(m-1)^{n-1},\qquad W=m(m-1)^{n-1}
+\end{equation}
+とおく。自然な非零線形写像
+\begin{equation}\label{ja:discmap}
+\Sym^D(\Sym^m V)\longrightarrow(\det V)^W
+\end{equation}
+が存在する。
+\end{lem}
+
+\begin{proof}
+$a\in\Sym^m V$を$V^*$上の$m$次斉次多項式とみなす。古典的な判別式$\Disc(a)$は係数に関して次数$D$の斉次式であり、
+\begin{equation}\label{ja:disctransform}
+\Disc((\Sym^m A)a)=(\det A)^W\Disc(a),\qquad A\in\GL(V)
+\end{equation}
+に従って変換する。この二つの公式は\cite[Propositions~4.7(i) and~4.13]{ja:BJ}である。同文献の多項式の次数を、本稿では$m$と書いている。$n$個の偏微分の終結式からも確認できる。係数に関する次数は$n(m-1)^{n-1}$であり、微分と変数変換から生じる行列式の指数の和は$(m-1)^{n-1}+(m-1)^n=W$となる。判別式は非零である。例えば$e_1^m+\cdots+e_n^m$の偏微分は原点以外に共通零点を持たない。この斉次多項式を偏極して\jref{discmap}を得る。\jref{disctransform}によって枠の選択によらないことが保証される。
+\end{proof}
+
+\begin{proof}[定理\ref{ja:classification}の証明の完結]
+補題\ref{ja:discriminant}を$V=\Omega_x^1$に適用する。自然性によって写像は貼り合わさり、非零な束の射
+\begin{equation}\label{ja:bundlemap}
+\Sym^D\E\longrightarrow K_X^W\otimes\mathcal O_X(kD)
+\end{equation}
+を得る。各ファイバーで1次元ベクトル空間への非零写像であるから全射である。$K_{\Pp^n}=\mathcal O(-n-1)$を用いて双対化すると、直線部分束
+\begin{equation}\label{ja:lineobstruction}
+\mathcal O_X(q)\lhook\joinrel\longrightarrow\Sym^D\E^*,\qquad
+q=(n+1)W-kD=-D\cst
+\end{equation}
+を得る。$nk\le m(n+1)$ならば$q\ge0$である。次数$q$の非零斉次多項式は$\mathcal O(q)$の非零大域切断を与える。$q=0$の場合には定数切断を用いる。その像は、どのようなRC-positive計量を$\E$に入れたとしても補題\ref{ja:vanishing}に矛盾する。これで必要条件が示された。十分条件は\jref{mean}で証明済みである。
+\end{proof}
+
+この議論によって、計量に依存しない障害と、それより弱い共形変形の障害が区別される。\jref{gap}の範囲では\jref{lineobstruction}の直線束の次数は負であり、この障害によって無関係な一様RC-positive計量を排除することはできない。
+
+\section{例、境界の場合、限界}
+
+\begin{eg}[任意次元の狭義の反例]\label{ja:example}
+$n\ge3$について$E=\Sym^2\Omega^1_{\Pp^n}(3)$の階数は$r=n(n+1)/2$であり、
+\[
+c_{\rc}=1-\frac2n>0,\qquad c_{\urc}=-1,\qquad
+\tr_\omega\mathcal R=(n-2)\Id
+\]
+となる。どの単位接方向においても曲率の固有値は$1,0,-1$であり、重複度はそれぞれ$n(n-1)/2$、$n-1$、$1$である。tautological曲率は、係数$(n+1)(n-2)/2$で\jref{wedge}を満たす。
+\end{eg}
+
+参考として、射影直線への制限は$\mathcal O(k-2m)$を直和因子として含む。実際、Euler列を制限すると
+\[
+\Omega^1_{\Pp^n}|_{\Pp^1}
+\simeq\mathcal O(-2)\oplus\mathcal O(-1)^{\oplus(n-1)}
+\]
+となる。直線上の二つの座標が$\mathcal O(-2)$という核を与え、残りの座標が$\mathcal O(-1)$の直和因子を与える。対称冪を取れば主張が従う。従って$k<2m$の狭義の例はnefではない。制限が負の次数の直線商束を持つからである。これはRC正値性と矛盾せず、任意の一様RC-positive計量の存在への障害でもない。
+
+\begin{center}
+\begin{tabular}{@{}ccccrrr@{}}
+\toprule
+$n$&$m$&$k$&$r$&$c_{\rc}$&$c_{\urc}$&$r c_{\rc}$\\
+\midrule
+3&2&3&6&$1/3$&$-1$&$2$\\
+4&2&3&10&$1/2$&$-1$&$5$\\
+2&3&5&4&$1/2$&$-1$&$2$\\
+2&2&3&3&$0$&$-1$&$0$\\
+2&2&4&3&$1$&$0$&$3$\\
+3&2&5&6&$7/3$&$1$&$14$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$\cst=0$では自然な計量はRC-semipositiveであるが、判別式はあらゆるRC-positive計量を排除する。$k=2m$では自然な計量はGriffiths semipositiveかつRC-positiveであるが、一様RC-positiveではない。一様正値性が\emph{成立しないこと}の小変形に対する安定性は、$k<2m$の場合に限って主張した。$k>2m$では、すべての非零接方向における曲率自己準同型が正定値であるから、計量はGriffiths positiveである。
+
+上記のRC定数の公式には$n,m\ge2$という制限が必要である。$n=1$では束は$\mathcal O_{\Pp^1}(k-2m)$という直線束であり、二つの正値性は一致する。$m=1$かつ$n\ge2$では、単位共変ベクトルの密度行列は常に階数1であるから、$c_{\rc}=k-1$であり、$k-1-1/n$ではない。ただし整数$k$に関するRC正値性の閾値はやはり$k\ge2$である。$k\le1$では、Euler列と非負の次数の直線束による捻りから、双対束$T_{\Pp^n}(-k)$は非零切断を持つ。$m=1$で公式が変わるため、均等な密度行列を用いる議論をこの場合へ外挿しなかった。
+
+\paragraph{正規化と検証.}
+各定数は指定した$\omega$と$h_0$に関する単位ベクトルで定義される。背景の接方向の正規化だけを$c\omega$に替えると、定数は$c$で割られるが、符号に関する主張は変わらない。付属コードは、2次元と3次元でFubini--Study曲率の成分を厳密に検算し、二変数および二次式の場合の判別式の重みを確認する。また$2\le n\le5$、$2\le m\le4$について対称テンソルのスペクトルと縮約を確認する。有限個の検算は実装と例を検証するものであり、すべてのパラメータに関する証明は本文で与えた。
+
+\paragraph{HSCに関する文献との関係.}
+広い文献調査から新しいHSC構造定理を得たわけではない。正のHSCと有理連結性の関係は\cite[Theorem~1.7]{ja:Y18}で扱われている。準正と半正の場合には\cite[Theorems~1.4 and~1.5]{ja:ZZ}と\cite[Theorem~1.1, Remark~1.2]{ja:M25}を確認した。負曲率側の対応する結果は\cite[Theorem~2]{ja:WY}、\cite[Theorem~1.1, Corollary~1.2]{ja:TY}、\cite[Theorem~1.2]{ja:DT}である。これらは背景であり、本稿で証明した帰結ではない。また写像の剛性定理\cite[Theorem~1.1]{ja:Ymaps}を新結果として扱うこともない。本稿の例の底空間は既に正のHSCとBSCを持っており、ここでの現象はそれに付随するベクトル束に生じている。
+
+\paragraph{未決定の点.}
+\jref{gap}の範囲にある$\E$が、自然な計量と共形でない一様RC-positive Hermitian計量を持つかは決定していない。また$L$が、共通方向の条件を持つ無関係な別の計量を持つかも決定していない。$h_0$に関する否定的結論は、これらの存在問題への否定的解答ではない。$T_Z$の計量は構成せず、$Z$上のHSCの符号も主張しない。結果は滑らかな射影の場合に関するものであり、特異空間や非コンパクト空間への拡張を主張しない。調査は2026年9月8日までの一次資料、特に\cite{ja:Wu26}を含むが、網羅的な引用索引の監査ではない。従って、この例の族と分類の厳密な先取性については、なお文献および専門家による確認が必要である。
+
+\renewcommand{\refname}{参考文献}
+\begin{thebibliography}{WYY26}
+\bibitem[BJ12]{ja:BJ} L. Bus\'e and J.-P. Jouanolou, \emph{A computational approach to the discriminant of homogeneous polynomials}, arXiv:1210.4697v1 (2012). \url{https://arxiv.org/abs/1210.4697v1}.
+
+\bibitem[DT19]{ja:DT} S. Diverio and S. Trapani, \emph{Quasi-negative holomorphic sectional curvature and positivity of the canonical bundle}, J. Differential Geom. 111 (2019), no.~2, 303--314; arXiv:1606.01381v4. \url{https://arxiv.org/abs/1606.01381v4}.
+
+\bibitem[LZZ25]{ja:LZZ} C. Li, C. Zhang, and X. Zhang, \emph{Mean curvature positivity and rational connectedness}, Adv. Math. 483 (2025), article 110673; arXiv:2112.00488v3. \url{https://arxiv.org/abs/2112.00488v3}.
+
+\bibitem[M25]{ja:M25} S.-i. Matsumura, \emph{Fundamental groups of compact K\"ahler manifolds with semi-positive holomorphic sectional curvature}, arXiv:2502.00367v1 (2025). \url{https://arxiv.org/abs/2502.00367v1}.
+
+\bibitem[TY17]{ja:TY} V. Tosatti and X. Yang, \emph{An extension of a theorem of Wu--Yau}, J. Differential Geom. 107 (2017), no.~3, 573--579; arXiv:1506.01145v3. \url{https://arxiv.org/abs/1506.01145v3}.
+
+\bibitem[WYY26]{ja:WYY} M. Wang, X. Yang, and S.-T. Yau, \emph{Existence of Hermitian metrics with prescribed Hermitian--Yang--Mills tensors I}, arXiv:2603.10611v4 (2026). \url{https://arxiv.org/abs/2603.10611v4}.
+
+\bibitem[Wu25]{ja:Wu25} K.-R. Wu, \emph{Uniform RC-positivity of direct image bundles}, arXiv:2512.10845v1 (2025). \url{https://arxiv.org/abs/2512.10845v1}.
+
+\bibitem[Wu26]{ja:Wu26} K.-R. Wu, \emph{Uniform weak RC-positivity and rational connectedness}, arXiv:2604.05981v1 (2026). \url{https://arxiv.org/abs/2604.05981v1}.
+
+\bibitem[WY16]{ja:WY} D. Wu and S.-T. Yau, \emph{Negative holomorphic curvature and positive canonical bundle}, Invent. Math. 204 (2016), no.~2, 595--604; arXiv:1505.05802v1. \url{https://arxiv.org/abs/1505.05802v1}.
+
+\bibitem[Y18]{ja:Y18} X. Yang, \emph{RC-positivity, rational connectedness and Yau's conjecture}, Camb. J. Math. 6 (2018), 183--212; arXiv:1708.06713v3. \url{https://arxiv.org/abs/1708.06713v3}.
+
+\bibitem[Ymap]{ja:Ymaps} X. Yang, \emph{RC-positivity, vanishing theorems and rigidity of holomorphic maps}, arXiv:1807.02601v2 (2018). \url{https://arxiv.org/abs/1807.02601v2}.
+
+\bibitem[Y20]{ja:Y20} X. Yang, \emph{RC-positive metrics on rationally connected manifolds}, Forum Math. Sigma 8 (2020), e53; arXiv:1807.03510v2. \url{https://arxiv.org/abs/1807.03510v2}.
+
+\bibitem[ZZ24]{ja:ZZ} S. Zhang and X. Zhang, \emph{On the structure of compact K\"ahler manifolds with nonnegative holomorphic sectional curvature}, arXiv:2311.18779v4 (2024). \url{https://arxiv.org/abs/2311.18779v4}.
+
+\end{thebibliography}
+
+\end{document}

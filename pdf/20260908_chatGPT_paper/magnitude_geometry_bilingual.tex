@@ -1,0 +1,1192 @@
+% !TEX program = lualatex
+\documentclass[12pt]{amsart}
+
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{\let\mathbbm\mathbb}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{ulem.sty}{\usepackage[normalem]{ulem}}{}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newcommand{\TheoremName}{Theorem}
+\newcommand{\CorollaryName}{Corollary}
+\newcommand{\PropositionName}{Proposition}
+\newcommand{\LemmaName}{Lemma}
+\newcommand{\DefinitionName}{Definition}
+\newcommand{\RemarkName}{Remark}
+\newtheorem{thm}{\TheoremName}[section]
+\newtheorem{theo}[thm]{\TheoremName}
+\newtheorem{cor}[thm]{\CorollaryName}
+\newtheorem{prop}[thm]{\PropositionName}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{\TheoremName}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{\LemmaName}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{\DefinitionName}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{\RemarkName}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions for this bilingual manuscript; original mathematical macros retained.
+\newcommand{\MH}{\mathrm{MH}}
+\newcommand{\MC}{\mathrm{MC}}
+\emergencystretch=2em
+\title[Magnitude homology of abelian surfaces]{Magnitude homology of abelian surfaces:\\
+a nonisogenous collision and two-torsion recovery}
+\author{chatGPT 6 Astra}
+\date{8 September 2026}
+\keywords{Magnitude homology, polarized abelian surface, flat torus, Voronoi cell, isogeny, two-torsion}
+\hypersetup{pdftitle={Magnitude homology of abelian surfaces: a nonisogenous collision and two-torsion recovery},pdfauthor={chatGPT 6 Astra},bookmarksnumbered=true}
+\renewcommand{\theHsection}{en.\arabic{section}}
+\renewcommand{\theHequation}{en.\arabic{section}.\arabic{equation}}
+\providecommand{\theHthm}{en.\arabic{section}.\arabic{thm}}
+\begin{document}
+\begin{abstract}
+We compute ordinary integral magnitude homology for a one-parameter family of principally polarized abelian surfaces with their polarization metrics. Two explicit members, with parameters $1/2$ and $(\sqrt{37}-3)/7$, are not isogenous but have isomorphic magnitude homology in every homological degree and every length. The calculation uses Gomi's theorem for non-branching geodesic spaces and an exact Voronoi computation. It identifies precisely the information lost when endpoint summands are forgotten. Keeping only the summands from the origin to the two-torsion points gives a finite length-graded profile that distinguishes the two surfaces and, more generally, recovers the parameter throughout the family. We give generators in degree two, prove the closest-vector assertions, and supply exact arithmetic checks. The proposed contribution is an explicit geometric application of existing magnitude-homology theory; its priority has not been established by the literature search.
+\end{abstract}
+\maketitle
+
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+
+\section{Introduction and main result}
+For a polarized abelian variety, its polarization determines a translation-invariant flat K\"ahler metric. This supplies a natural distance even though the Kobayashi pseudodistance of a complex torus vanishes. Our question is how much of the polarized complex geometry is retained by the ordinary, length-graded magnitude homology of this metric.
+
+For $0\leq t\leq 1/2$, put
+\begin{equation}\label{en:family}
+Y_t=\begin{pmatrix}1&t\\t&1\end{pmatrix},\qquad
+\Lambda_t=\Z^2+iY_t\Z^2,\qquad A_t=\C^2/\Lambda_t.
+\end{equation}
+The positive Hermitian form, linear in its second argument, is
+\begin{equation}\label{en:metric}
+H_t(v,w)=\overline v^{\,T}Y_t^{-1}w,\qquad
+g_t=\operatorname{Re}H_t.
+\end{equation}
+We use the quotient length distance $d_t$ of $g_t$. These are principally polarized abelian surfaces, and their Riemannian volumes equal one. Thus the normalization is fixed by the polarization, with no parameter-dependent rescaling.
+
+Write $\mathfrak c=|\R|$, and write $\Z^{(\mathfrak c)}$ for a free abelian group on a set of cardinality $\mathfrak c$; the parentheses denote a direct sum. For $n\geq1$, ordinary magnitude homology has an endpoint decomposition, denoted $\MH_n^\ell(A;p,q)$. We retain the following selected summand:
+\begin{equation}\label{en:torsiondefinition}
+\mathcal T_2^\ell(A):=
+\bigoplus_{u\in A[2]}\MH_2^\ell(A;0,u),
+\qquad A[2]=\{u\in A:2u=0\}.
+\end{equation}
+This is computed in the full metric space $A$. It is not magnitude homology of the finite metric subspace $A[2]$. Its definition retains the endpoint decomposition and the two-torsion subset, which are additional data beyond abstract bigraded groups.
+
+\begin{thm}\label{en:main}
+Set $\alpha=(\sqrt{37}-3)/7$ and $\beta=1/2$.
+\begin{enumerate}
+\item The abelian surfaces $A_\alpha$ and $A_\beta$ are not isogenous over $\C$, even after forgetting their polarizations.
+\item For $s\in\{\alpha,\beta\}$, all ordinary integral magnitude homology groups are given, up to abstract group isomorphism, by
+\begin{equation}\label{en:mainformula}
+\MH_n^\ell(A_s,d_s)\cong
+\begin{cases}
+\Z^{(\mathfrak c)},&n=0,\ \ell=0,\\
+\Z^{(\mathfrak c)},&n=2q,\ q\geq1,\quad
+q/2\leq\ell\leq q\sqrt7/3,\\
+0,&\text{otherwise}.
+\end{cases}
+\end{equation}
+In particular the two collections are isomorphic as bigraded abelian groups, without changing the length grading.
+\item Their two-torsion profiles differ:
+\begin{equation}\label{en:distinguish}
+\mathcal T_2^{1/2}(A_\alpha)\cong\Z^2,
+\qquad \mathcal T_2^{1/2}(A_\beta)\cong\Z^3.
+\end{equation}
+More generally, the length support of $\mathcal T_2^\ell(A_t)$ determines $t$ within the entire family $0\leq t\leq1/2$.
+\end{enumerate}
+\end{thm}
+
+The last assertion is made quantitative in Theorem~\ref{en:reconstruct}. The main result does not assert that the isomorphisms in~\eqref{en:mainformula} preserve endpoints, a group action, a cohomology product, or maps induced by geometric maps. Indeed,~\eqref{en:distinguish} obstructs an identification preserving the origin-to-two-torsion summands.
+
+\subsection{Comparison with previous results}
+Leinster--Shulman define magnitude homology for metric spaces \cite[Definitions 3.3--3.4]{en:LS}. Kaneta--Yoshinaga develop the interval-poset and frame method \cite{en:KY}. Gomi's geodesic description \cite[Corollary 3.15 and Theorem 5.22]{en:G} supplies the main homological input here. In particular, we do not claim a new general theorem computing the homology of non-branching spaces. The flat-torus group formula below is a consequence of that theorem and elementary Voronoi geometry.
+
+The additional work is the following specific combination: compute the radii of the polarization metrics in~\eqref{en:family}, solve their collision exactly, prove that the resulting surfaces are not isogenous, and compute the selected two-torsion summands that recover the parameter. Gomi's theorem alone does not specify such a pair of period matrices or prove the arithmetic distinction. The closest-vector computation supplies that missing geometric information.
+
+Asao's curvature results give small-length vanishing and closed-geodesic nonvanishing \cite[Corollaries 4.6, 6.5 and Theorem 5.3]{en:Asao}. They are consistent with the support computed here. They do not, by themselves, give the complete support or the torsion profile. Bottinelli--Kaiser's metric K\"unneth theorem uses the $\ell^1$ product \cite[Proposition 3.1]{en:BK}; the orthogonal decompositions used here have the $\ell^2$ distance, so that theorem is not applied.
+
+The search, checked on 8 September 2026, did not locate this explicit nonisogenous pair together with the two-torsion recovery statement. This is a candidate for a new concrete calculation and application, not a certified priority claim. The general metric mechanism and all imported results are recorded separately in \texttt{research\_audit.md}.
+
+\section{Conventions, metric geometry, and functoriality}
+\subsection{The ordinary chain complex}
+All coefficients are integers. For $\ell\geq0$, let
+\begin{equation}\label{en:chains}
+\MC_n^\ell(X)=
+\bigoplus_{\substack{x_0,\ldots,x_n\in X\\
+x_{i-1}\ne x_i,\ \sum_i d(x_{i-1},x_i)=\ell}}
+\Z[x_0,\ldots,x_n].
+\end{equation}
+The boundary is
+\begin{equation}\label{en:boundary}
+\partial[x_0,\ldots,x_n]=
+\sum_{\substack{1\leq i\leq n-1\\
+d(x_{i-1},x_i)+d(x_i,x_{i+1})=d(x_{i-1},x_{i+1})}}
+(-1)^i[x_0,\ldots,\widehat{x_i},\ldots,x_n].
+\end{equation}
+For $n=0$, chains have length zero; for $n>0$, there are no length-zero chains. We set $\MH_n^\ell=H_n(\MC_*^\ell,\partial)$. This is the normalized ordinary theory, not a blurred or persistent variant. The endpoints are not deleted by~\eqref{en:boundary}, so the complexes in positive degrees split by ordered endpoints.
+
+If $f:X\to Y$ is $1$-Lipschitz, its chain map sends a chain to its image if the image has the same length, and to zero otherwise \cite[\S1.3]{en:BK}. A shortened image remains shorter after any deletion. For an image of unchanged length, all successive edges have unchanged lengths; a deletion contributes precisely when it also preserves the length. These facts verify compatibility with~\eqref{en:boundary}. Isometries therefore induce length-preserving isomorphisms.
+
+An arbitrary holomorphic map between polarized abelian varieties need not be non-expanding for their polarization metrics. In particular, multiplication by an integer $m$ is $|m|$-Lipschitz, and its local length factor is $|m|$ when $m\ne0$. We do not use an induced map on ordinary magnitude homology for such an expanding map. The isogenies below are used only to compare the complex geometry. A group isomorphism preserving the polarization does preserve $H$, hence $g$, and sends $A[2]$ to $A[2]$; it preserves~\eqref{en:torsiondefinition}.
+
+\subsection{Why the polarization gives the stated metric}
+Write $z=x+iY_ty$ with $x,y\in\R^2$. Direct calculation gives
+\begin{equation}\label{en:realmetric}
+g_t=dx^TY_t^{-1}dx+dy^TY_tdy,\qquad
+\omega_t=\sum_{j=1}^2dx_j\wedge dy_j.
+\end{equation}
+The imaginary part of $H_t$ on $m+iY_tn$, $m'+iY_tn'$ is
+$m^Tn'-n^Tm'$, an integral unimodular alternating form. Positivity follows from the eigenvalues $1\pm t>0$. The Riemann polarization criterion therefore makes $A_t$ an abelian variety with a principal polarization represented by $\omega_t$; compare the period-matrix description in \cite[Lecture 5, p.~4; Lecture 7, pp.~1--3]{en:Schnell}. Moreover,
+$\int_{A_t}\omega_t^2/2=1$. The class, rather than a choice of a translated theta divisor, fixes this invariant metric.
+
+The distance is explicitly
+\begin{equation}\label{en:distance}
+\begin{aligned}
+d_t([z],[w])^2&=\min_{m,n\in\Z^2}\bigl\{
+(x-x'-m)^TY_t^{-1}(x-x'-m)\\
+&\qquad +(y-y'-n)^TY_t(y-y'-n)\bigr\}
+\end{aligned},
+\end{equation}
+where $w=x'+iY_ty'$. This is the intrinsic quotient Riemannian distance: every curve lifts to a curve between suitable lifts, and the shortest such lift is a straight segment. It is not a distance induced by a projective embedding. The minimum is attained and is positive for distinct quotient points, since the lattice is discrete. We consequently work with genuine metric spaces.
+
+For completeness, the Kobayashi pseudodistance is unsuitable here: its pullback along the surjective holomorphic covering $\C^2\to A_t$ is bounded by the identically zero pseudodistance of $\C^2$. The latter vanishes by applying discs of arbitrarily large radius in complex affine lines. This is the reason for using the polarization metric.
+
+\section{What the abstract groups retain for a flat torus}
+Let $T=V/\Lambda$ be a positive-dimensional compact Euclidean torus. Set
+\[
+\lambda_1=\min_{0\ne\lambda\in\Lambda}\|\lambda\|,
+\qquad r=\lambda_1/2,
+\qquad R=\max_{v\in V}\min_{\lambda\in\Lambda}\|v-\lambda\|.
+\]
+The number $\lambda_1$ is its systole, the length of a shortest noncontractible closed geodesic. The number $r$ is its injectivity radius, and $R$ is both its covering radius and its diameter. The last equality uses translation invariance.
+
+\begin{lem}\label{en:cut}
+If $\dim_\R V\geq2$, the distances between endpoints joined by at least two minimizing geodesics are exactly $[r,R]$.
+\end{lem}
+\begin{proof}
+The Voronoi cell at the origin is
+\[
+\mathcal V=\{v:2\langle v,\lambda\rangle\leq\|\lambda\|^2
+\text{ for every }\lambda\in\Lambda\}.
+\]
+It is a compact convex polytope containing zero in its interior. Indeed, inequalities from a lattice basis and its negatives bound it; within that bounded region only finitely many lattice inequalities can be active. An interior point has a unique nearest lattice point, whereas a boundary point has at least two. Minimizing geodesics to $[v]$ correspond to its nearest lattice lifts. Thus the required set is $\{\|v\|:v\in\partial\mathcal V\}$.
+
+If $v$ is on the boundary, some nonzero $\lambda$ satisfies
+$2\langle v,\lambda\rangle=\|\lambda\|^2$, so
+$\|v\|\geq\|\lambda\|/2\geq r$.
+For a shortest vector $\lambda$, its midpoint belongs to $\mathcal V$: for every nonzero $\mu\in\Lambda$,
+$\|\lambda/2-\mu\|\geq\|\mu\|-\|\lambda\|/2\geq r$.
+It lies on the boundary and has norm $r$. The maximal norm on $\mathcal V$ is $R$, and a maximizer is on the boundary. Finally, radial projection identifies $\partial\mathcal V$ with a sphere of dimension $\dim_\R V-1$; its inverse is the continuous radial intersection with the polytope. This sphere is connected. The continuous norm function therefore has image exactly $[r,R]$.
+\end{proof}
+
+Distinct minimizing geodesics with fixed endpoints in a flat torus have disjoint interiors. To check this, splice two such geodesics at an interior intersection. The resulting path is still minimizing. In a Euclidean coordinate neighborhood a minimizing path cannot have a corner, by strictness of the triangle inequality away from collinearity. The velocities therefore agree at the splice, and their straight lifts imply agreement everywhere. This verifies the non-branching hypothesis used below.
+
+\begin{prop}[Consequence of Gomi's theorem]\label{en:flat}
+For a compact Euclidean torus of real dimension at least two,
+\begin{equation}\label{en:flatformula}
+\MH_n^\ell(T)\cong
+\begin{cases}
+\Z^{(\mathfrak c)},&n=0,\ \ell=0,\\
+\Z^{(\mathfrak c)},&n=2q,\ q\geq1,\ qr\leq\ell\leq qR,\\
+0,&\text{otherwise}.
+\end{cases}
+\end{equation}
+Thus these abstract bigraded groups determine exactly the two numbers $r,R$ within this class: two such tori have isomorphic bigraded groups if and only if these numbers agree.
+\end{prop}
+\begin{proof}
+The torus is complete and geodesic, and satisfies the non-branching condition just proved. Gomi's Theorem 5.22 gives odd-degree vanishing. In degree $2q$ and length $\ell>0$, it gives a free basis indexed by
+\begin{equation}\label{en:gomiindex}
+(p_0,\ldots,p_q;\gamma_1,\ldots,\gamma_q),\qquad
+\sum_{j=1}^q d(p_{j-1},p_j)=\ell,
+\end{equation}
+where successive points differ, $\gamma_j$ is a minimizing geodesic between them, and $\gamma_j$ differs from a reference minimizing geodesic chosen for that ordered pair. Reference choices affect the basis, not the isomorphism type.
+
+A basis index can exist only when each segment length lies in $[r,R]$, by Lemma~\ref{en:cut}. Conversely, if $qr\leq\ell\leq qR$, choose a cut displacement $u\in T$ with $d(0,u)=\ell/q$, and alternate between $0$ and $u$. Each consecutive pair admits a nonreference geodesic. Translating this configuration by every point of $T$ produces $\mathfrak c$ different indices. There are at most $\mathfrak c$ indices, because there are at most $\mathfrak c$ finite point sequences and only finitely many minimizing lattice lifts for each pair. The rank is therefore exactly $\mathfrak c$. The degree-zero and length-zero cases follow from the definition. Finally, the support in degree two is precisely $[r,R]$, so it recovers both endpoints.
+\end{proof}
+
+\subsection{Degree-two generators and relations}
+For $p\ne q$, let $\mathcal N(p,q)$ be the finite set of shortest vectors from a fixed lift of $p$ to lifts of $q$. At $\ell=d(p,q)$ there is an identification
+\begin{equation}\label{en:augmentation}
+\MH_2^\ell(T;p,q)\cong
+\ker\bigl(\Z[\mathcal N(p,q)]\xrightarrow{\epsilon}\Z\bigr),
+\qquad \epsilon(v)=1.
+\end{equation}
+Here is a chain-level verification. Each length-$\ell$ two-chain has its intermediate point on one minimizing geodesic. Its boundary is $-[p,q]$. A length-$\ell$ three-chain lies on one minimizing geodesic, and its boundary identifies two intermediate points on that geodesic. Conversely, any two distinct interior points of the same geodesic are ordered and yield such a three-chain. No such relation joins distinct geodesics, because their interiors are disjoint. Thus the only relations identify points along each individual geodesic, and the cycle condition is that the total coefficient is zero. This proves both generation and independence in~\eqref{en:augmentation}.
+
+Choose $v_*\in\mathcal N(p,q)$, and let $m_v$ be the midpoint of the geodesic belonging to $v$. A free basis consists of
+\begin{equation}\label{en:cycles}
+[p,m_v,q]-[p,m_{v_*},q],\qquad v\ne v_*.
+\end{equation}
+For $\ell\ne d(p,q)$ the endpoint group in degree two vanishes by \cite[Corollary 3.15]{en:G}. This off-distance vanishing is an imported result; it does not follow merely by observing the cycles in~\eqref{en:cycles}.
+
+\section{The exact Voronoi calculation}
+Consider the quadratic form
+\begin{equation}\label{en:quad}
+Q_t(a,b)=a^2+b^2+2tab,
+\qquad C_t=(1-t^2)^{-1}.
+\end{equation}
+By~\eqref{en:realmetric}, the real lattice metric of $A_t$ is the orthogonal sum of $C_tQ_{-t}$ and $Q_t$. The reflection $(a,b)\mapsto(a,-b)$ identifies $Q_{-t}$ with $Q_t$.
+
+\begin{lem}\label{en:rhombus}
+For $0\leq t\leq1/2$, the lattice $(\Z^2,Q_t)$ has squared shortest-vector length $1$ and squared covering radius $1/(2(1+t))$. Its shortest vectors are $\pm e_1,\pm e_2$ for $t<1/2$; at $t=1/2$ there are also $\pm(e_1-e_2)$.
+\end{lem}
+\begin{proof}
+The identity
+\[
+Q_t(a,b)=(1-t)(a^2+b^2)+t(a+b)^2
+\]
+shows that a nonzero vector with $a^2+b^2\geq2$ has norm squared at least $2(1-t)\geq1$. Vectors with $a^2+b^2=1$ have norm squared one. Equality in the remaining cases gives precisely the asserted extra vectors at $t=1/2$.
+
+For a point $x=(x_1,x_2)$, use dual coordinates
+$h_1=x_1+tx_2$, $h_2=tx_1+x_2$.
+Its Voronoi cell is
+\begin{equation}\label{en:hexagon}
+|h_1|\leq\tfrac12,\qquad |h_2|\leq\tfrac12,
+\qquad |h_1-h_2|\leq1-t.
+\end{equation}
+To prove sufficiency, order the six vectors
+$e_1,e_2,e_2-e_1,-e_1,-e_2,e_1-e_2$ cyclically.
+Each adjacent pair $u,v$ is a lattice basis with $\langle u,v\rangle_t\geq0$.
+Every lattice vector belongs to one such cone and is $au+bv$ with nonnegative integers $a,b$. Then
+\[
+Q_t(au+bv)\geq aQ_t(u)+bQ_t(v).
+\]
+The inequalities for the six vectors imply
+$2\langle x,au+bv\rangle_t\leq aQ_t(u)+bQ_t(v)$, and hence every Voronoi inequality. Necessity is immediate from these six vectors.
+
+The vertices of~\eqref{en:hexagon} are the following three points and their negatives:
+\[
+(\tfrac12,\tfrac12),\qquad
+(\tfrac12,t-\tfrac12),\qquad
+(\tfrac12-t,-\tfrac12).
+\]
+At $t=0$ some coincide, giving the square. At each vertex,
+\[
+Q_t(x)=\frac{h_1^2+h_2^2-2th_1h_2}{1-t^2}
+=\frac1{2(1+t)}.
+\]
+A convex quadratic function on this compact polytope has maximum at a vertex, since each point is a convex combination of vertices. This proves the covering-radius formula.
+\end{proof}
+
+\begin{prop}\label{en:radii}
+The systole of $(A_t,d_t)$ is $1$, its injectivity radius is $1/2$, and its squared diameter is
+\begin{equation}\label{en:radius}
+F(t):=R_t^2=\frac{1+C_t}{2(1+t)}
+=\frac{2-t^2}{2(1-t)(1+t)^2}.
+\end{equation}
+\end{prop}
+\begin{proof}
+The two real orthogonal blocks have squared shortest lengths $C_t$ and $1$, respectively, and $C_t\geq1$. A shortest nonzero vector in their direct sum therefore has squared length one. The nearest-point problem separates into these blocks, so the Voronoi cell is their product and the squared covering radii add. Lemma~\ref{en:rhombus} gives~\eqref{en:radius}. The injectivity radius and diameter follow from their flat-torus descriptions.
+\end{proof}
+
+At $t=0$, the real torus is the unit cubical four-torus and $R_0^2=1$. At $t=1/2$, each real two-dimensional block is a scaled triangular lattice and $R_{1/2}^2=7/9$. These verify the normalization at both boundaries of the parameter interval.
+
+\section{A homological collision across isogeny classes}
+\begin{prop}\label{en:collision}
+The parameters $\alpha,\beta$ in Theorem~\ref{en:main} satisfy $0<\alpha<\beta$, $F(\alpha)=F(\beta)=7/9$, and $A_\alpha$ is not isogenous to $A_\beta$.
+\end{prop}
+\begin{proof}
+The equality of radii reduces to the exact factorization
+\begin{equation}\label{en:factor}
+F(t)-\frac79
+=\frac{(2t-1)(7t^2+6t-4)}{18(1-t)(1+t)^2}.
+\end{equation}
+The root of the quadratic in $[0,1/2]$ is $\alpha$. The inequalities follow from $3<\sqrt{37}<13/2$.
+
+Let $E_i=\C/(\Z+i\Z)$. Since $2\Lambda_\beta\subset\Z^2+i\Z^2$, multiplication by $2$ on the universal covers induces an isogeny
+\[
+A_\beta\longrightarrow E_i^2.
+\]
+The map has invertible differential, and the inclusion of two full lattices has finite index.
+
+On the other hand, $A_\alpha$ contains the elliptic curve
+\[
+E_\tau=\C/(\Z+\tau\Z),\qquad \tau=i(1+\alpha),
+\qquad [z]\longmapsto[(z,z)].
+\]
+To check injectivity, the intersection of the diagonal line with $\Lambda_\alpha$ consists exactly of diagonal vectors with entries in $\Z+i(1+\alpha)\Z$. Indeed, equality of the real coordinates requires $m_1=m_2$, and equality of the imaginary coordinates requires
+$(1-\alpha)(n_1-n_2)=0$, hence $n_1=n_2$.
+
+If $A_\alpha$ and $A_\beta$ were isogenous, there would be an isogeny $A_\alpha\to E_i^2$. The direction of an isogeny can always be reversed after multiplying its inverse linear lift by an integer that clears the finite lattice quotient. Its restriction to $E_\tau$ cannot be constant, since its kernel is finite. At least one projection would consequently give a nonzero holomorphic group map $E_\tau\to E_i$.
+
+Such a map lifts to multiplication by some $c\ne0$ on $\C$, with
+$c\in\Z+i\Z$ and $c\tau\in\Z+i\Z$. To see the linearity directly, the derivative of a lift is lattice-periodic and descends to a holomorphic function on a compact elliptic curve, so it is constant. Thus $\tau=(c\tau)/c\in\Q(i)$. This is impossible: $1+\alpha=(4+\sqrt{37})/7$ is irrational, whereas a purely imaginary element of $\Q(i)$ has rational imaginary part. This proves nonisogeny without appealing to a classification of complex multiplication.
+\end{proof}
+
+Propositions~\ref{en:flat}, \ref{en:radii}, and~\ref{en:collision} prove the first two assertions of Theorem~\ref{en:main}. They compare the entire continuous metric spaces, in all homological and length degrees.
+
+The family also has a useful complex-geometric description. Put
+$E_\pm(t)=\C/(\Z+i(1\pm t)\Z)$.
+The linear map
+\begin{equation}\label{en:gluing}
+E_+(t)\times E_-(t)\longrightarrow A_t,
+\qquad (z,w)\longmapsto(z+w,z-w)
+\end{equation}
+is an isogeny of degree four. In real and imaginary lattice coordinates its image has the same-parity condition in each copy of $\Z^2$, giving index $2\cdot2=4$. The pulled-back polarization has degree two on each elliptic factor and no mixed terms. Consequently this description involves a nontrivial finite quotient and its polarization metric; it is not an identification with a product of two elliptic curves carrying their principal product metrics. No assertion about simplicity or a Jacobian presentation is needed.
+
+\section{The two-torsion profile and recovery of the parameter}
+Represent the sixteen two-torsion points by
+\[
+u_{a,b}=\left[\frac{a+iY_tb}{2}\right],\qquad
+a,b\in\{0,e_1,e_2,h\},\quad h=e_1+e_2.
+\]
+Let $k_t(0)=0$, $k_t(e_1)=k_t(e_2)=1$, and $k_t(h)=2(1-t)$. Define
+\[
+\mu_t(0)=1,\qquad \mu_t(e_1)=\mu_t(e_2)=2,
+\qquad
+\mu_t(h)=\begin{cases}2,&t>0,\\4,&t=0.\end{cases}
+\]
+
+\begin{lem}\label{en:parity}
+For each parity class $a\in\Z^2/2\Z^2$, the minimum of $Q_t$ on $a+2\Z^2$ is $k_t(a)$, and the number of minimizers is $\mu_t(a)$. The same minimum and count hold for $Q_{-t}$.
+\end{lem}
+\begin{proof}
+The zero class has unique minimizer zero. In an axis class the vectors $\pm e_j$ have value one. Every other vector in that class has Euclidean squared norm at least five, and hence $Q_t\geq5(1-t)\geq5/2>1$. In the class $h$, the four vectors $(\pm1,\pm1)$ have values $2(1\pm t)$, and all other representatives have Euclidean squared norm at least ten, so $Q_t\geq5>2(1-t)$. For $t>0$ exactly the two opposite-sign vectors minimize; at $t=0$ all four do. Reflection in the second coordinate preserves parity classes and interchanges $Q_t$ and $Q_{-t}$.
+\end{proof}
+
+\begin{prop}\label{en:profile}
+For $(a,b)\ne(0,0)$, set
+\begin{equation}\label{en:torsionlength}
+L_{a,b}^2=\frac{C_t k_t(a)+k_t(b)}4.
+\end{equation}
+Then
+\begin{equation}\label{en:torsionrank}
+\MH_2^\ell(A_t;0,u_{a,b})\cong
+\begin{cases}
+\Z^{\mu_t(a)\mu_t(b)-1},&\ell=L_{a,b},\\
+0,&\ell\ne L_{a,b}.
+\end{cases}
+\end{equation}
+The endpoint $(0,0)$ contributes zero in degree two for every length.
+\end{prop}
+\begin{proof}
+A lift of $u_{a,b}$ has coordinates one half of vectors in the two respective parity classes. The nearest-point problem in~\eqref{en:distance} separates. Lemma~\ref{en:parity} gives~\eqref{en:torsionlength} and exactly $\mu_t(a)\mu_t(b)$ distinct minimizing geodesics. Equation~\eqref{en:augmentation} proves the rank and freedom, with the basis~\eqref{en:cycles}. Off-distance vanishing, also for equal endpoints at positive length, follows from Gomi's Corollary 3.15; at length zero there are no two-chains.
+\end{proof}
+
+For $0<t\leq1/2$, the full profile is recorded in Table~\ref{en:table}. Write
+\[
+u=\frac1{4(1-t^2)},\quad v=\frac1{2(1+t)},\quad
+w=\frac14,\quad z=\frac{1-t}{2},\qquad E=\{e_1,e_2\}.
+\]
+Each row contributes its displayed rank at the positive square root of the displayed number, once for each endpoint. When lengths coincide, their contributions are added.
+
+\begin{table}[ht]
+\centering
+\caption{All nonzero two-torsion endpoints for $0<t\leq1/2$.}\label{en:table}
+\begin{tabular}{ccccc}
+\hline
+$a$&$b$&Number of endpoints&$L_{a,b}^2$&Rank per endpoint\\\hline
+$0$&$E$&2&$w$&1\\
+$0$&$h$&1&$z$&1\\
+$E$&$0$&2&$u$&1\\
+$h$&$0$&1&$v$&1\\
+$E$&$E$&4&$u+w$&3\\
+$E$&$h$&2&$u+z$&3\\
+$h$&$E$&2&$v+w$&3\\
+$h$&$h$&1&$v+z$&3\\\hline
+\end{tabular}
+\end{table}
+
+\begin{thm}\label{en:reconstruct}
+Define, using only the length support of the selected profile,
+\begin{equation}\label{en:recover}
+D(A_t)=\max\{\ell^2:0<\ell^2\leq1/2,
+\ \mathcal T_2^\ell(A_t)\ne0\}.
+\end{equation}
+Then, for all $0\leq t\leq1/2$,
+\begin{equation}\label{en:recoverformula}
+D(A_t)=\frac1{2(1+t)},\qquad
+t=\frac1{2D(A_t)}-1.
+\end{equation}
+No labeling of the individual nonzero two-torsion points is required.
+\end{thm}
+\begin{proof}
+Suppose first that $t>0$. A mixed endpoint, with $a,b\ne0$, has squared length at least $u+w>1/2$. Indeed, $k_t(a),k_t(b)\geq1$ and $C_t>1$. The remaining endpoints have squared lengths $w,z,u,v$, all at most $1/2$. Their maximum is $v$, since
+\[
+v-z=\frac{t^2}{2(1+t)}\geq0,\qquad
+v-u=\frac{1-2t}{4(1-t^2)}\geq0,\qquad v\geq w.
+\]
+There is a nonzero endpoint group at squared length $v$, so the maximum is attained. At $t=0$, Proposition~\ref{en:profile} gives a nonzero group at squared length $1/2$, which is exactly the upper cutoff in~\eqref{en:recover}. This proves both formulas.
+\end{proof}
+
+\subsection{The collision pair and the product boundary}
+At $t=\beta=1/2$ we have $w=z=1/4$ and $u=v=1/3$. Thus the complete selected profile is
+\begin{equation}\label{en:betaprofile}
+\mathcal T_2^\ell(A_\beta)\cong
+\begin{cases}
+\Z^3,&\ell=1/2,\\
+\Z^3,&\ell=1/\sqrt3,\\
+\Z^{27},&\ell=\sqrt{7/12},\\
+0,&\text{otherwise}.
+\end{cases}
+\end{equation}
+At $t=\alpha<1/2$, the only endpoints of squared length $1/4$ are $u_{0,e_1}$ and $u_{0,e_2}$. They each contribute one independent midpoint-difference class. This proves~\eqref{en:distinguish} and completes the proof of Theorem~\ref{en:main}. The additional generator at $\beta$ comes from $u_{0,h}$: the two shortest vectors $\pm(e_1-e_2)$ have length one exactly at this parameter.
+
+At $t=0$, the complete selected profile has ranks
+\begin{equation}\label{en:zeroprofile}
+\begin{array}{c|cccc}
+\ell^2&1/4&1/2&3/4&1\\\hline
+\rank\mathcal T_2^\ell(A_0)&4&18&28&15.
+\end{array}
+\end{equation}
+For example, an $h$-class in one block has four minimizers; a mixed axis--$h$ endpoint has eight, giving rank seven. The total selected rank over all lengths is $65$ at $t=0$, and $33$ at every $t>0$. These changes arise from exact ties of shortest representatives, not a tolerance in numerical distance comparison.
+
+\section{Geometric meaning, verification, and limitations}
+The abstract groups of a flat torus retain its injectivity radius and diameter, but finite differences in the number of minimizing geodesics disappear after summing over all translates. Proposition~\ref{en:flat} proves this loss by computing the actual infinite rank. It is not enough merely to say that both groups are infinitely generated. The two-torsion profile restricts to finitely many geometrically specified endpoints, so those finite multiplicities remain visible. The arithmetic argument then shows that the information lost can separate isogeny classes of polarized complex surfaces.
+
+All $A_t$ have the topology of a real four-torus. The calculation does not assert superiority over all classical invariants: the rational complex-lattice data already prove nonisogeny, and the Voronoi radii are classical metric data. Its content is the exact relation between those data, the complete ordinary magnitude homology, and the selected finite profile. Reconstruction in Theorem~\ref{en:reconstruct} is restricted to this specified, normalized family. It does not recover arbitrary complex structures or polarizations from magnitude homology. In particular, no claim of a new general homology theory is made.
+
+The supplied standard-library Python program uses exact arithmetic in $\Q(\sqrt{37})$. It checks the parameters $0,1/4,\alpha,1/2$, the Voronoi vertex norms, all sixteen parity endpoints for each parameter, the profile ranks, and the two formulas for the coincident radii. The closest-vector enumeration has a rigorous bound: outside $[-2,2]^2$, one has $Q_t\geq9/2$, while each parity class has a representative of value at most two. Therefore this finite computation checks the lattice minimization problem exhaustively at the tested parameters. The uniform-in-$t$ claims are proved in the preceding lemmas. The program does not approximate the continuous torus by a finite sample and does not replace Gomi's theorem with an experimental boundary matrix.
+
+Rescaling the metric tensor by $c^2$ rescales all lengths by $c$, both interval endpoints in~\eqref{en:flatformula}, and the cutoff $1/2$ in~\eqref{en:recover} by $c^2$. The latter formula uses squared lengths and presupposes the polarization normalization. Flatness is also used essentially: the connected Voronoi-boundary argument is not a statement about arbitrary Riemannian cut loci.
+
+The unresolved questions are whether this particular application has already appeared in another terminology, what reconstruction is possible from two-torsion endpoint data outside this family, and whether stronger structures on magnitude homology distinguish the collision pair without retaining endpoint information explicitly. None of these is included in a proved assertion. We have not independently re-proved every lemma in the all-degree theorem of \cite{en:G}; that theorem is an explicit external input. The degree-two calculation and every lattice and nonisogeny argument used for the example have been provided in full.
+
+\begin{thebibliography}{BK20}
+\bibitem[Asa21]{en:Asao} Y. Asao, \emph{Magnitude homology of geodesic metric spaces with an upper curvature bound}, Algebr. Geom. Topol. \textbf{21} (2021), 647--664. Checked version: \href{https://arxiv.org/abs/1903.11794v3}{arXiv:1903.11794v3}, 20 May 2019; Corollaries 4.6, 6.5 and Theorem 5.3.
+\bibitem[BK20]{en:BK} R. Bottinelli and T. Kaiser, \emph{Magnitude Homology, Diagonality, Medianness, K\"unneth and Mayer--Vietoris}, checked version: \href{https://arxiv.org/abs/2003.09271v2}{arXiv:2003.09271v2}, 27 April 2020; \S1.3 and Proposition 3.1.
+\bibitem[Gom25]{en:G} K. Gomi, \emph{Magnitude homology of geodesic space}, \href{https://arxiv.org/abs/1902.07044v3}{arXiv:1902.07044v3}, 29 April 2025; \S2.3, Corollary 3.15, Assumption 4.8, Proposition 5.21, Theorem 5.22 and Corollary 5.24. Theorem 5.22 is on pp.~37--38 of this version.
+\bibitem[KY21]{en:KY} R. Kaneta and M. Yoshinaga, \emph{Magnitude homology of metric spaces and order complexes}, Bull. London Math. Soc. \textbf{53} (2021), no.~3, 893--905. Checked version: \href{https://arxiv.org/abs/1803.04247v3}{arXiv:1803.04247v3}, 2 September 2021; Theorem 4.4, interval-poset and frame construction.
+\bibitem[LS21]{en:LS} T. Leinster and M. Shulman, \emph{Magnitude homology of enriched categories and metric spaces}, Algebr. Geom. Topol. \textbf{21} (2021), 2175--2221. Checked version: \href{https://arxiv.org/abs/1711.00802v4}{arXiv:1711.00802v4}, 15 November 2020; Definitions 3.3--3.4 and \S4.
+\bibitem[Sch]{en:Schnell} C. Schnell, \emph{Abelian varieties}, MAT 615 lecture notes, Stony Brook University, Lecture 5 (February 11), p.~4, and Lecture 7 (February 18), pp.~1--3, \href{https://www.math.stonybrook.edu/~cschnell/mat615/lectures/lecture7.pdf}{Lecture 7}; \href{https://www.math.stonybrook.edu/~cschnell/mat615/lectures/lecture5.pdf}{Lecture 5}. Web references checked: 8 September 2026.
+\end{thebibliography}
+
+% English text and its references end above. Full Japanese version follows.
+\newpage
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\setcounter{table}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHequation}{ja.\arabic{section}.\arabic{equation}}
+\renewcommand{\theHthm}{ja.\arabic{section}.\arabic{thm}}
+\renewcommand{\theHtable}{ja.\arabic{table}}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\proofname}{証明}
+\renewcommand{\tablename}{表}
+\markboth{Magnitude homology とアーベル曲面}{Magnitude homology とアーベル曲面}
+\renewcommand{\TheoremName}{定理}
+\renewcommand{\CorollaryName}{系}
+\renewcommand{\PropositionName}{命題}
+\renewcommand{\LemmaName}{補題}
+\renewcommand{\DefinitionName}{定義}
+\renewcommand{\RemarkName}{注意}
+\begin{center}
+{\Large\bfseries アーベル曲面のmagnitude homology：\\[3pt]
+非isogenyな例の一致と2等分点による復元}\par\medskip
+chatGPT 6 Astra\par\smallskip
+2026年9月8日
+\end{center}
+\begin{quote}\small
+\textbf{要旨.}
+主偏極から定まる計量を備えたアーベル曲面の1パラメータ族について、整数係数の通常のmagnitude homologyを計算する。パラメータが$1/2$と$(\sqrt{37}-3)/7$である二つの曲面はisogenousでないが、すべてのホモロジー次数とすべての長さでmagnitude homologyが同型になる。証明には、非分岐な測地距離空間に対するGomiの定理と、Voronoi領域の厳密な計算を用いる。この計算により、端点ごとの直和因子を忘れたときに失われる情報を特定する。原点から2等分点へ向かう直和因子だけを残すと、有限階数の長さ付きデータが得られ、二つの曲面を区別できる。さらに、このデータは族全体のパラメータを復元する。2次の生成元を記述し、最近格子点に関する主張を証明し、厳密演算による検算も添付する。本稿の貢献として提案するのは既存のmagnitude homology理論の具体的な幾何学的応用であり、文献調査によって先行性が確定したという主張はしない。
+\end{quote}
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論と主結果}
+偏極アーベル多様体の偏極は、平行移動不変な平坦K\"ahler計量を定める。複素トーラスのKobayashi擬距離は恒等的に零であるが、この計量からは自然な距離が得られる。本稿では、この距離の通常の長さ付きmagnitude homologyが、偏極を備えた複素幾何の情報をどれほど保持するかを調べる。
+
+$0\leq t\leq1/2$に対して
+\begin{equation}\label{ja:family}
+Y_t=\begin{pmatrix}1&t\\t&1\end{pmatrix},\qquad
+\Lambda_t=\Z^2+iY_t\Z^2,\qquad A_t=\C^2/\Lambda_t
+\end{equation}
+とおく。第2変数について線形な正定値Hermitian形式と、その実部を
+\begin{equation}\label{ja:metric}
+H_t(v,w)=\overline v^{\,T}Y_t^{-1}w,\qquad
+g_t=\operatorname{Re}H_t
+\end{equation}
+で定める。$g_t$の商の長さ距離を$d_t$とする。これらは主偏極アーベル曲面であり、Riemann体積はすべて1である。したがって規格化は偏極によって固定されており、パラメータに依存する距離の再規格化は行わない。
+
+$\mathfrak c=|\R|$とし、濃度$\mathfrak c$の集合を基底とする自由アーベル群を$\Z^{(\mathfrak c)}$と書く。丸括弧は直積ではなく直和を表す。$n\geq1$に対する通常のmagnitude homologyの端点分解を$\MH_n^\ell(A;p,q)$と書き、次の直和因子を取り出す：
+\begin{equation}\label{ja:torsiondefinition}
+\mathcal T_2^\ell(A):=
+\bigoplus_{u\in A[2]}\MH_2^\ell(A;0,u),
+\qquad A[2]=\{u\in A:2u=0\}.
+\end{equation}
+各群は距離空間$A$全体で計算する。有限距離部分空間$A[2]$のmagnitude homologyではない。この定義では、抽象的な二重次数付き群に加えて、端点分解と2等分点集合を保持している。
+
+\begin{thm}\label{ja:main}
+$\alpha=(\sqrt{37}-3)/7$、$\beta=1/2$とおく。
+\begin{enumerate}
+\item アーベル曲面$A_\alpha$と$A_\beta$は、偏極を忘れても$\C$上isogenousではない。
+\item $s\in\{\alpha,\beta\}$に対して、整数係数の通常のmagnitude homologyは、抽象的な群の同型を除いてすべて次で与えられる：
+\begin{equation}\label{ja:mainformula}
+\MH_n^\ell(A_s,d_s)\cong
+\begin{cases}
+\Z^{(\mathfrak c)},&n=0,\ \ell=0,\\
+\Z^{(\mathfrak c)},&n=2q,\ q\geq1,\quad
+q/2\leq\ell\leq q\sqrt7/3,\\
+0,&\text{それ以外}.
+\end{cases}
+\end{equation}
+特に、両者は長さ次数を変更せずに、二重次数付きアーベル群として同型になる。
+\item 両者の2等分点に対応するデータは異なり、
+\begin{equation}\label{ja:distinguish}
+\mathcal T_2^{1/2}(A_\alpha)\cong\Z^2,
+\qquad \mathcal T_2^{1/2}(A_\beta)\cong\Z^3
+\end{equation}
+となる。より一般に、$\mathcal T_2^\ell(A_t)$の長さ方向の支持は、族$0\leq t\leq1/2$全体でパラメータ$t$を決定する。
+\end{enumerate}
+\end{thm}
+
+最後の主張の復元公式は定理\ref{ja:reconstruct}で与える。\eqref{ja:mainformula}の同型について、端点、群作用、コホモロジーの積、幾何学的な写像が誘導する写像を保つとは主張しない。実際、\eqref{ja:distinguish}により、原点から2等分点へ向かう直和因子を保つ同一視は不可能である。
+
+\subsection{既知結果との比較}
+Leinster--Shulmanは距離空間のmagnitude homologyを定義した\cite[Definitions 3.3--3.4]{ja:LS}。Kaneta--Yoshinagaは区間半順序集合とframeを用いる方法を展開した\cite{ja:KY}。本稿で用いる主要なホモロジー計算の入力は、Gomiによる測地線を用いた記述\cite[Corollary 3.15 and Theorem 5.22]{ja:G}である。したがって、非分岐空間のホモロジーを計算する新しい一般定理を得たとは主張しない。以下の平坦トーラスに対する群の公式は、この定理と初等的なVoronoi幾何の帰結である。
+
+本稿で追加する議論は、\eqref{ja:family}の偏極計量の半径を計算し、それらが一致するパラメータを厳密に求め、得られた曲面がisogenousでないことを示し、さらにパラメータを復元する2等分点の直和因子を計算する、という具体的な組合せである。Gomiの定理だけでは、このような周期行列の対は指定されず、算術的な違いも証明されない。最近格子点の計算が、その幾何学的な情報を補う。
+
+Asaoの曲率に関する結果は、短い長さでの消滅と閉測地線による非消滅を与える\cite[Corollaries 4.6, 6.5 and Theorem 5.3]{ja:Asao}。これらは本稿の支持の計算と整合するが、それだけで支持全体や2等分点のデータが得られるわけではない。Bottinelli--Kaiserの距離空間に対するK\"unneth定理は$\ell^1$積を用いる\cite[Proposition 3.1]{ja:BK}。本稿の直交分解は$\ell^2$距離を持つため、この定理は適用しない。
+
+2026年9月8日に確認した検索範囲では、この具体的な非isogenyな対と2等分点による復元を組み合わせた結果は見つからなかった。本稿は新しい具体計算・応用の候補であり、先行性を確定したという主張ではない。一般の距離空間に由来する仕組みと利用した既知結果は、\texttt{research\_audit.md}にも区別して記録する。
+
+\section{規約、距離幾何、関手性}
+\subsection{通常の鎖複体}
+係数はすべて整数とする。$\ell\geq0$に対して
+\begin{equation}\label{ja:chains}
+\MC_n^\ell(X)=
+\bigoplus_{\substack{x_0,\ldots,x_n\in X\\
+x_{i-1}\ne x_i,\ \sum_i d(x_{i-1},x_i)=\ell}}
+\Z[x_0,\ldots,x_n]
+\end{equation}
+とおき、境界を
+\begin{equation}\label{ja:boundary}
+\partial[x_0,\ldots,x_n]=
+\sum_{\substack{1\leq i\leq n-1\\
+d(x_{i-1},x_i)+d(x_i,x_{i+1})=d(x_{i-1},x_{i+1})}}
+(-1)^i[x_0,\ldots,\widehat{x_i},\ldots,x_n]
+\end{equation}
+で定める。$n=0$の鎖は長さ零を持ち、$n>0$では長さ零の鎖は存在しない。$\MH_n^\ell=H_n(\MC_*^\ell,\partial)$とする。これは正規化された通常の理論であり、blurred版やpersistent版ではない。\eqref{ja:boundary}では端点が削除されないため、正次数の複体は順序付き端点ごとに分解する。
+
+$f:X\to Y$が$1$-Lipschitzならば、像の長さが元の長さと一致する鎖をその像に送り、それ以外を零に送ることで鎖写像を得る\cite[\S1.3]{ja:BK}。短くなった像は、どの点を削除しても元の長さに戻らない。像の全長が変わらない場合には、隣り合う点の間のすべての辺長が保たれる。このとき削除が境界に寄与する条件は、削除後もその長さが保たれることに一致する。これらにより\eqref{ja:boundary}との可換性が確認できる。特に等長写像は長さを保つ同型を誘導する。
+
+偏極アーベル多様体間の任意の正則写像が、偏極計量について距離非増大であるとは限らない。例えば整数$m$倍写像は$|m|$-Lipschitzであり、$m\ne0$ならば局所的な長さの倍率は$|m|$である。このような拡大写像から通常のmagnitude homologyの誘導写像を作る議論は用いない。以下のisogenyは複素幾何を比較するためだけに使う。一方、偏極を保つ群同型は$H$、したがって$g$を保ち、$A[2]$を$A[2]$へ送るので、\eqref{ja:torsiondefinition}も保つ。
+
+\subsection{偏極がこの計量を定める理由}
+$z=x+iY_ty$、$x,y\in\R^2$と書くと、直接計算により
+\begin{equation}\label{ja:realmetric}
+g_t=dx^TY_t^{-1}dx+dy^TY_tdy,\qquad
+\omega_t=\sum_{j=1}^2dx_j\wedge dy_j
+\end{equation}
+を得る。$H_t$の虚部は、$m+iY_tn$、$m'+iY_tn'$に対して
+$m^Tn'-n^Tm'$であり、整数値のユニモジュラー交代形式である。正定値性は固有値$1\pm t>0$から従う。したがってRiemannの偏極判定により、$A_t$は$\omega_t$を主偏極とするアーベル多様体となる。周期行列による記述については\cite[Lecture 5, p.~4; Lecture 7, pp.~1--3]{ja:Schnell}も参照されたい。また、$\int_{A_t}\omega_t^2/2=1$である。平行移動したtheta因子の選択ではなく、偏極の類がこの不変計量を定める。
+
+距離は具体的に
+\begin{equation}\label{ja:distance}
+\begin{aligned}
+d_t([z],[w])^2&=\min_{m,n\in\Z^2}\bigl\{
+(x-x'-m)^TY_t^{-1}(x-x'-m)\\
+&\qquad +(y-y'-n)^TY_t(y-y'-n)\bigr\}
+\end{aligned}
+\end{equation}
+で与えられる。ただし$w=x'+iY_ty'$である。これは商の内在的なRiemann距離である。実際、各曲線は適切な持ち上げの間の曲線に持ち上がり、その間の最短曲線は線分である。射影埋め込みから誘導される距離ではない。格子が離散的なので最小値は達成され、商の異なる点の間では正となる。したがって、本稿の対象は真の距離空間である。
+
+なお、Kobayashi擬距離はここでは適さない。全射正則被覆$\C^2\to A_t$による引き戻しは、$\C^2$の恒等的に零である擬距離で上から抑えられる。$\C^2$の擬距離が零であることは、複素アフィン直線内で半径を任意に大きくした円板を用いれば分かる。これが偏極計量を用いる理由である。
+
+\section{平坦トーラスの抽象的な群が保持する情報}
+$T=V/\Lambda$を正次元のコンパクトEuclidトーラスとし、
+\[
+\lambda_1=\min_{0\ne\lambda\in\Lambda}\|\lambda\|,
+\qquad r=\lambda_1/2,
+\qquad R=\max_{v\in V}\min_{\lambda\in\Lambda}\|v-\lambda\|
+\]
+とおく。$\lambda_1$はsystole、すなわち非可縮閉測地線の最短長である。$r$は単射半径であり、$R$は被覆半径であるとともに直径でもある。最後の一致には平行移動不変性を用いる。
+
+\begin{lem}\label{ja:cut}
+$\dim_\R V\geq2$ならば、少なくとも二つの最短測地線で結ばれる端点間の距離の集合は、ちょうど$[r,R]$である。
+\end{lem}
+\begin{proof}
+原点のVoronoi領域は
+\[
+\mathcal V=\{v:2\langle v,\lambda\rangle\leq\|\lambda\|^2
+\text{ がすべての }\lambda\in\Lambda\text{ に対して成立}\}
+\]
+である。これは原点を内点に持つコンパクト凸多面体である。実際、格子基底とその反対符号のベクトルに対する不等式で有界性が分かり、その有界領域内で等号となりうる格子不等式は有限個である。内点に対する最近格子点は唯一であり、境界点に対しては少なくとも二つ存在する。$[v]$へ向かう最短測地線は最近格子持ち上げに対応するので、求める集合は$\{\|v\|:v\in\partial\mathcal V\}$である。
+
+$v$が境界上にあれば、ある非零$\lambda$に対して
+$2\langle v,\lambda\rangle=\|\lambda\|^2$であり、
+$\|v\|\geq\|\lambda\|/2\geq r$となる。
+最短ベクトル$\lambda$の中点は$\mathcal V$に属する。実際、非零の任意の$\mu\in\Lambda$に対して
+$\|\lambda/2-\mu\|\geq\|\mu\|-\|\lambda\|/2\geq r$である。
+この中点は境界上にあり、ノルムは$r$である。$\mathcal V$上のノルムの最大値は$R$であり、最大点は境界にある。最後に、動径方向の射影は$\partial\mathcal V$を$(\dim_\R V-1)$次元球面と同相にする。逆写像は各動径と多面体の境界との交点を取る連続写像である。この球面は連結なので、連続なノルム関数の像はちょうど$[r,R]$となる。
+\end{proof}
+
+平坦トーラスで端点を固定した異なる最短測地線は、内部で交わらない。実際、内部の交点で二つの測地線をつなぎ替えても、得られる曲線は最短である。Euclid座標近傍では、共線でない場合の三角不等式の狭義性により、最短曲線は角を持てない。したがって接続点の速度が一致し、持ち上げが直線であることから全体が一致する。これにより、以下で必要な非分岐条件が確認できる。
+
+\begin{prop}[Gomiの定理の帰結]\label{ja:flat}
+実次元2以上のコンパクトEuclidトーラスに対して
+\begin{equation}\label{ja:flatformula}
+\MH_n^\ell(T)\cong
+\begin{cases}
+\Z^{(\mathfrak c)},&n=0,\ \ell=0,\\
+\Z^{(\mathfrak c)},&n=2q,\ q\geq1,\ qr\leq\ell\leq qR,\\
+0,&\text{それ以外}
+\end{cases}
+\end{equation}
+が成り立つ。このクラス内で、抽象的な二重次数付き群はちょうど二つの数$r,R$を決定する。すなわち、二つのトーラスの二重次数付き群が同型であることと、この二つの数が一致することは同値である。
+\end{prop}
+\begin{proof}
+トーラスは完備な測地距離空間であり、直前で確認した非分岐条件を満たす。GomiのTheorem 5.22により奇数次は消滅する。$2q$次、長さ$\ell>0$では、その定理による自由基底は
+\begin{equation}\label{ja:gomiindex}
+(p_0,\ldots,p_q;\gamma_1,\ldots,\gamma_q),\qquad
+\sum_{j=1}^q d(p_{j-1},p_j)=\ell
+\end{equation}
+を添字に持つ。ただし隣り合う点は異なり、$\gamma_j$はその間の最短測地線であって、その順序付き端点対について選んだ基準の最短測地線と異なるものとする。基準の選択は基底に影響するが、群の同型型には影響しない。
+
+補題\ref{ja:cut}より、基底の添字が存在するには、各区間の長さが$[r,R]$に属さなければならない。逆に$qr\leq\ell\leq qR$ならば、$d(0,u)=\ell/q$を満たすcut displacement $u\in T$を選び、$0$と$u$を交互に並べる。各端点対には基準と異なる測地線が存在する。この配置を$T$のすべての点で平行移動すれば、$\mathfrak c$個の異なる添字が得られる。一方、有限点列は高々$\mathfrak c$個であり、各端点対の最短格子持ち上げは有限個なので、添字は高々$\mathfrak c$個である。したがって階数は正確に$\mathfrak c$となる。0次および長さ零の場合は定義から従う。最後に、2次の支持はちょうど$[r,R]$なので、その両端点が復元される。
+\end{proof}
+
+\subsection{2次の生成元と関係式}
+$p\ne q$に対して、$p$の固定した持ち上げから$q$の持ち上げへ向かう最短ベクトルの有限集合を$\mathcal N(p,q)$とする。$\ell=d(p,q)$では
+\begin{equation}\label{ja:augmentation}
+\MH_2^\ell(T;p,q)\cong
+\ker\bigl(\Z[\mathcal N(p,q)]\xrightarrow{\epsilon}\Z\bigr),
+\qquad \epsilon(v)=1
+\end{equation}
+となる。鎖のレベルで確認する。長さ$\ell$の各2鎖の中間点は、一つの最短測地線上にあり、その境界は$-[p,q]$である。長さ$\ell$の3鎖は一つの最短測地線上にあり、その境界は同じ測地線上の二つの中間点を同一視する。逆に、同じ測地線上の異なる二つの内点には順序があり、そのような3鎖を与える。異なる測地線の内部は交わらないので、この関係式は異なる測地線を結び付けない。したがって関係式は各測地線上の中間点を同一視するものだけであり、サイクル条件は係数の総和が零であることになる。これにより\eqref{ja:augmentation}の生成性と独立性がともに示される。
+
+$v_*\in\mathcal N(p,q)$を選び、$v$に対応する測地線の中点を$m_v$と書くと、自由基底は
+\begin{equation}\label{ja:cycles}
+[p,m_v,q]-[p,m_{v_*},q],\qquad v\ne v_*
+\end{equation}
+で与えられる。$\ell\ne d(p,q)$では、\cite[Corollary 3.15]{ja:G}により2次の端点群は消滅する。この端点距離以外での消滅は利用する既知結果であり、\eqref{ja:cycles}のサイクルを書いただけで従うわけではない。
+
+\section{Voronoi領域の厳密な計算}
+二次形式
+\begin{equation}\label{ja:quad}
+Q_t(a,b)=a^2+b^2+2tab,
+\qquad C_t=(1-t^2)^{-1}
+\end{equation}
+を考える。\eqref{ja:realmetric}により、$A_t$の実格子計量は$C_tQ_{-t}$と$Q_t$の直交和である。反射$(a,b)\mapsto(a,-b)$によって$Q_{-t}$と$Q_t$は同一視される。
+
+\begin{lem}\label{ja:rhombus}
+$0\leq t\leq1/2$に対して、格子$(\Z^2,Q_t)$の最短ベクトル長の二乗は1、被覆半径の二乗は$1/(2(1+t))$である。$t<1/2$での最短ベクトルは$\pm e_1,\pm e_2$であり、$t=1/2$ではさらに$\pm(e_1-e_2)$が加わる。
+\end{lem}
+\begin{proof}
+恒等式
+\[
+Q_t(a,b)=(1-t)(a^2+b^2)+t(a+b)^2
+\]
+により、$a^2+b^2\geq2$の非零ベクトルは、ノルムの二乗が$2(1-t)\geq1$以上である。$a^2+b^2=1$のベクトルのノルムの二乗は1である。残りの場合の等号条件を調べると、$t=1/2$でちょうど主張した二つのベクトルが加わる。
+
+点$x=(x_1,x_2)$に対して、双対座標を
+$h_1=x_1+tx_2$、$h_2=tx_1+x_2$とする。
+Voronoi領域は
+\begin{equation}\label{ja:hexagon}
+|h_1|\leq\tfrac12,\qquad |h_2|\leq\tfrac12,
+\qquad |h_1-h_2|\leq1-t
+\end{equation}
+で与えられる。十分性を示すため、六つのベクトル
+$e_1,e_2,e_2-e_1,-e_1,-e_2,e_1-e_2$をこの巡回順序で並べる。
+隣り合う各対$u,v$は格子基底であり、$\langle u,v\rangle_t\geq0$を満たす。
+任意の格子ベクトルは隣接する二つのベクトルが張る錐に属し、非負整数$a,b$を用いて$au+bv$と書ける。このとき
+\[
+Q_t(au+bv)\geq aQ_t(u)+bQ_t(v)
+\]
+である。六つのベクトルに対する不等式から
+$2\langle x,au+bv\rangle_t\leq aQ_t(u)+bQ_t(v)$が従うので、すべてのVoronoi不等式を得る。必要性は、この六つのベクトルの不等式を取り出せばよい。
+
+\eqref{ja:hexagon}の頂点は、次の三点およびそれらの負の点である：
+\[
+(\tfrac12,\tfrac12),\qquad
+(\tfrac12,t-\tfrac12),\qquad
+(\tfrac12-t,-\tfrac12).
+\]
+$t=0$では一部が重なって正方形となる。各頂点では
+\[
+Q_t(x)=\frac{h_1^2+h_2^2-2th_1h_2}{1-t^2}
+=\frac1{2(1+t)}
+\]
+である。多面体の各点は頂点の凸結合なので、凸な二次関数の最大値は頂点で達成される。これにより被覆半径の公式を得る。
+\end{proof}
+
+\begin{prop}\label{ja:radii}
+$(A_t,d_t)$のsystoleは1、単射半径は$1/2$であり、直径の二乗は
+\begin{equation}\label{ja:radius}
+F(t):=R_t^2=\frac{1+C_t}{2(1+t)}
+=\frac{2-t^2}{2(1-t)(1+t)^2}
+\end{equation}
+である。
+\end{prop}
+\begin{proof}
+二つの実直交成分の最短ベクトル長の二乗は、それぞれ$C_t$と1であり、$C_t\geq1$である。したがって直和の最短非零ベクトルの長さの二乗は1となる。最近点問題はこの二つの成分ごとに分離するので、Voronoi領域はそれぞれの領域の積であり、被覆半径の二乗は和になる。補題\ref{ja:rhombus}から\eqref{ja:radius}を得る。単射半径と直径の主張は、平坦トーラスについての記述から従う。
+\end{proof}
+
+$t=0$では実トーラスは単位立方格子の4次元トーラスであり、$R_0^2=1$である。$t=1/2$では二つの実2次元成分はそれぞれ三角格子の拡大縮小であり、$R_{1/2}^2=7/9$となる。これによりパラメータ区間の両端で規格化を検算できる。
+
+\section{異なるisogeny類におけるホモロジーの一致}
+\begin{prop}\label{ja:collision}
+定理\ref{ja:main}のパラメータは$0<\alpha<\beta$および$F(\alpha)=F(\beta)=7/9$を満たすが、$A_\alpha$は$A_\beta$とisogenousではない。
+\end{prop}
+\begin{proof}
+半径の一致は、厳密な因数分解
+\begin{equation}\label{ja:factor}
+F(t)-\frac79
+=\frac{(2t-1)(7t^2+6t-4)}{18(1-t)(1+t)^2}
+\end{equation}
+から従う。二次式の$[0,1/2]$に属する根は$\alpha$である。大小関係は$3<\sqrt{37}<13/2$から分かる。
+
+$E_i=\C/(\Z+i\Z)$とおく。$2\Lambda_\beta\subset\Z^2+i\Z^2$なので、普遍被覆上の2倍写像はisogeny
+\[
+A_\beta\longrightarrow E_i^2
+\]
+を誘導する。実際、微分は可逆であり、二つの充満格子の包含の指数は有限である。
+
+一方、$A_\alpha$は楕円曲線
+\[
+E_\tau=\C/(\Z+\tau\Z),\qquad \tau=i(1+\alpha),
+\qquad [z]\longmapsto[(z,z)]
+\]
+を含む。この写像の単射性を確認するには、対角直線と$\Lambda_\alpha$の交わりを求めればよい。それは成分が$\Z+i(1+\alpha)\Z$に属する対角ベクトル全体に一致する。実際、実部の一致は$m_1=m_2$を要求し、虚部の一致は
+$(1-\alpha)(n_1-n_2)=0$を要求するので$n_1=n_2$である。
+
+$A_\alpha$と$A_\beta$がisogenousならば、isogeny $A_\alpha\to E_i^2$が存在する。isogenyの向きは、逆の線形持ち上げに適切な整数を掛け、有限な格子商を消すことで反転できる。この写像の核は有限なので、$E_\tau$への制限は定値にならない。したがって少なくとも一つの射影は、非零の正則群準同型$E_\tau\to E_i$を与える。
+
+そのような写像は、$\C$上の$c\ne0$倍写像に持ち上がり、
+$c\in\Z+i\Z$かつ$c\tau\in\Z+i\Z$を満たす。線形性は次のように直接確認できる。持ち上げの導関数は格子について周期的であり、コンパクト楕円曲線上の正則関数に降りるので定数である。したがって$\tau=(c\tau)/c\in\Q(i)$となる。しかし、$1+\alpha=(4+\sqrt{37})/7$は無理数であり、$\Q(i)$の純虚数元の虚部は有理数なので矛盾する。これにより、複素乗法の分類を用いずに非isogeny性が示された。
+\end{proof}
+
+命題\ref{ja:flat}、\ref{ja:radii}、\ref{ja:collision}により、定理\ref{ja:main}の最初の二つの主張が従う。これは連続な距離空間全体について、すべてのホモロジー次数および長さ次数での比較である。
+
+この族には、複素幾何的に有用な別の記述もある。
+$E_\pm(t)=\C/(\Z+i(1\pm t)\Z)$とおくと、線形写像
+\begin{equation}\label{ja:gluing}
+E_+(t)\times E_-(t)\longrightarrow A_t,
+\qquad (z,w)\longmapsto(z+w,z-w)
+\end{equation}
+は次数4のisogenyである。実格子座標と虚格子座標のそれぞれで、像は二成分の偶奇が一致する条件を満たし、指数は$2\cdot2=4$となる。引き戻した偏極は各楕円曲線因子上で次数2を持ち、混合項を持たない。したがって、この記述は非自明な有限商とその偏極計量を伴い、二つの楕円曲線に主偏極の積計量を与えた空間との同一視ではない。単純性やJacobianとしての表示についての主張は必要としない。
+
+\section{2等分点のデータとパラメータの復元}
+16個の2等分点を
+\[
+u_{a,b}=\left[\frac{a+iY_tb}{2}\right],\qquad
+a,b\in\{0,e_1,e_2,h\},\quad h=e_1+e_2
+\]
+で表す。$k_t(0)=0$、$k_t(e_1)=k_t(e_2)=1$、$k_t(h)=2(1-t)$とおき、
+\[
+\mu_t(0)=1,\qquad \mu_t(e_1)=\mu_t(e_2)=2,
+\qquad
+\mu_t(h)=\begin{cases}2,&t>0,\\4,&t=0\end{cases}
+\]
+と定める。
+
+\begin{lem}\label{ja:parity}
+各偶奇類$a\in\Z^2/2\Z^2$に対して、$a+2\Z^2$上での$Q_t$の最小値は$k_t(a)$であり、最小点の個数は$\mu_t(a)$である。$Q_{-t}$についても最小値と個数は同じである。
+\end{lem}
+\begin{proof}
+零の類の最小点は零だけである。座標軸の類では$\pm e_j$が値1を取る。それ以外のベクトルはEuclidノルムの二乗が5以上なので、$Q_t\geq5(1-t)\geq5/2>1$である。$h$の類では、四つのベクトル$(\pm1,\pm1)$が値$2(1\pm t)$を取り、それ以外の代表元はEuclidノルムの二乗が10以上なので$Q_t\geq5>2(1-t)$である。$t>0$では異符号の二つだけが最小となり、$t=0$では四つすべてが最小となる。第2座標に関する反射は偶奇類を保ち、$Q_t$と$Q_{-t}$を交換する。
+\end{proof}
+
+\begin{prop}\label{ja:profile}
+$(a,b)\ne(0,0)$に対して
+\begin{equation}\label{ja:torsionlength}
+L_{a,b}^2=\frac{C_t k_t(a)+k_t(b)}4
+\end{equation}
+とおくと、
+\begin{equation}\label{ja:torsionrank}
+\MH_2^\ell(A_t;0,u_{a,b})\cong
+\begin{cases}
+\Z^{\mu_t(a)\mu_t(b)-1},&\ell=L_{a,b},\\
+0,&\ell\ne L_{a,b}
+\end{cases}
+\end{equation}
+が成り立つ。端点$(0,0)$に対応する2次の群は、すべての長さで零である。
+\end{prop}
+\begin{proof}
+$u_{a,b}$の持ち上げの座標は、それぞれの偶奇類のベクトルの半分である。\eqref{ja:distance}の最近点問題は二つの成分ごとに分離する。補題\ref{ja:parity}から\eqref{ja:torsionlength}が従い、異なる最短測地線は正確に$\mu_t(a)\mu_t(b)$本存在する。\eqref{ja:augmentation}により群は自由で、主張した階数を持ち、\eqref{ja:cycles}が基底となる。端点距離以外の長さでの消滅は、端点が等しく長さが正の場合も含め、GomiのCorollary 3.15から従う。長さ零では2鎖が存在しない。
+\end{proof}
+
+$0<t\leq1/2$に対する全データを表\ref{ja:table}に示す。記号を
+\[
+u=\frac1{4(1-t^2)},\quad v=\frac1{2(1+t)},\quad
+w=\frac14,\quad z=\frac{1-t}{2},\qquad E=\{e_1,e_2\}
+\]
+とする。各行は、表示した数の正の平方根の長さにおいて、各端点につき表示した階数だけ寄与する。長さが一致する場合には寄与を加える。
+
+\begin{table}[ht]
+\centering
+\caption{$0<t\leq1/2$での非零2等分点の全計算。}\label{ja:table}
+\begin{tabular}{ccccc}
+\hline
+$a$&$b$&端点数&$L_{a,b}^2$&各端点の階数\\\hline
+$0$&$E$&2&$w$&1\\
+$0$&$h$&1&$z$&1\\
+$E$&$0$&2&$u$&1\\
+$h$&$0$&1&$v$&1\\
+$E$&$E$&4&$u+w$&3\\
+$E$&$h$&2&$u+z$&3\\
+$h$&$E$&2&$v+w$&3\\
+$h$&$h$&1&$v+z$&3\\\hline
+\end{tabular}
+\end{table}
+
+\begin{thm}\label{ja:reconstruct}
+取り出したデータの長さ方向の支持だけを用いて
+\begin{equation}\label{ja:recover}
+D(A_t)=\max\{\ell^2:0<\ell^2\leq1/2,
+\ \mathcal T_2^\ell(A_t)\ne0\}
+\end{equation}
+と定めると、すべての$0\leq t\leq1/2$に対して
+\begin{equation}\label{ja:recoverformula}
+D(A_t)=\frac1{2(1+t)},\qquad
+t=\frac1{2D(A_t)}-1
+\end{equation}
+が成り立つ。個々の非零2等分点への標識は必要ない。
+\end{thm}
+\begin{proof}
+まず$t>0$とする。$a,b\ne0$の混合端点の長さの二乗は、$u+w>1/2$以上である。実際、$k_t(a),k_t(b)\geq1$かつ$C_t>1$である。残りの端点の長さの二乗は$w,z,u,v$であり、すべて$1/2$以下である。
+\[
+v-z=\frac{t^2}{2(1+t)}\geq0,\qquad
+v-u=\frac{1-2t}{4(1-t^2)}\geq0,\qquad v\geq w
+\]
+なので、その最大値は$v$となる。長さの二乗が$v$のところには非零の端点群が存在するので、最大値は達成される。$t=0$では、命題\ref{ja:profile}により長さの二乗$1/2$に非零の群が存在し、これは\eqref{ja:recover}の上限そのものである。以上から二つの公式を得る。
+\end{proof}
+
+\subsection{一致する二つの曲面と積になる境界}
+$t=\beta=1/2$では$w=z=1/4$、$u=v=1/3$なので、取り出した全データは
+\begin{equation}\label{ja:betaprofile}
+\mathcal T_2^\ell(A_\beta)\cong
+\begin{cases}
+\Z^3,&\ell=1/2,\\
+\Z^3,&\ell=1/\sqrt3,\\
+\Z^{27},&\ell=\sqrt{7/12},\\
+0,&\text{それ以外}
+\end{cases}
+\end{equation}
+である。$t=\alpha<1/2$では、長さの二乗が$1/4$の端点は$u_{0,e_1}$と$u_{0,e_2}$だけであり、それぞれが独立な中点差の類を一つずつ与える。これにより\eqref{ja:distinguish}が示され、定理\ref{ja:main}の証明が完了する。$\beta$で加わる生成元は$u_{0,h}$に由来する。二つの最短ベクトル$\pm(e_1-e_2)$が長さ1を持つのは、このパラメータに限られる。
+
+$t=0$での全データの階数は
+\begin{equation}\label{ja:zeroprofile}
+\begin{array}{c|cccc}
+\ell^2&1/4&1/2&3/4&1\\\hline
+\rank\mathcal T_2^\ell(A_0)&4&18&28&15
+\end{array}
+\end{equation}
+となる。例えば一つの成分の$h$の類には最小点が四つあり、座標軸の類と$h$の類を組み合わせた混合端点には八つあるので、階数は7である。全長さにわたる取り出した群の階数の総和は、$t=0$で65、すべての$t>0$で33である。これらの変化は、最短代表元が厳密に同じ長さを持つことから生じ、数値的な距離比較の許容誤差に由来するものではない。
+
+\section{幾何学的意味、検証、限界}
+平坦トーラスの抽象的な群は単射半径と直径を保持するが、最短測地線の本数の有限な違いは、すべての平行移動について直和を取ると失われる。命題\ref{ja:flat}では、実際の無限階数を計算して、この情報の喪失を証明した。単に両者が無限生成であるというだけでは不十分である。2等分点のデータは、幾何学的に指定された有限個の端点へ制限するため、これらの有限な重複度を保持する。さらに算術的な議論により、失われた情報が偏極複素曲面のisogeny類の違いに対応しうることが分かる。
+
+すべての$A_t$は実4次元トーラスと同じ位相を持つ。本稿では、すべての古典的不変量より強いとは主張しない。実際、有理な複素格子のデータですでに非isogeny性を証明でき、Voronoi半径も古典的な距離の情報である。本稿の内容は、それらの情報と、通常のmagnitude homology全体、および選択した有限データとの正確な関係にある。定理\ref{ja:reconstruct}の復元は、指定した規格化を持つこの族に限定される。任意の複素構造や偏極をmagnitude homologyから復元するものではなく、新しい一般ホモロジー理論を構成したという主張でもない。
+
+添付の標準ライブラリだけを用いるPythonプログラムは、$\Q(\sqrt{37})$内で厳密演算を行う。パラメータ$0,1/4,\alpha,1/2$について、Voronoi頂点のノルム、各パラメータの16個すべての偶奇端点、階数、および一致する半径の二つの表示を検算する。最近ベクトルの列挙には厳密な打切り根拠がある。$[-2,2]^2$の外では$Q_t\geq9/2$である一方、各偶奇類には値が2以下の代表元がある。したがって、この有限計算は検算したパラメータにおける格子最小化問題を網羅している。$t$について一様な主張は、先の補題で証明した。プログラムは連続なトーラスを有限標本で近似せず、Gomiの定理を実験的な境界行列で置き換えることもない。
+
+計量テンソルを$c^2$倍すると、すべての長さと\eqref{ja:flatformula}の区間の両端は$c$倍になり、\eqref{ja:recover}の閾値$1/2$は$c^2$倍になる。後者は長さの二乗を用いる公式であり、偏極による規格化を前提とする。また平坦性も本質的に用いる。Voronoi領域の境界の連結性を使う議論は、任意のRiemann多様体のcut locusに関する主張ではない。
+
+未解決の点は、この具体的応用が別の用語ですでに現れているか、この族以外で2等分点の端点データから何を復元できるか、端点情報を明示的に残さずにmagnitude homology上のより強い構造でこの対を区別できるか、である。いずれも証明済みの主張には含めない。また、\cite{ja:G}の全次数定理の各補題をすべて独立に再証明したわけではなく、その定理を明示的な外部入力として用いる。一方、本例に使う2次の計算、すべての格子計算、および非isogeny性の議論は完全に記述した。
+
+\begin{thebibliography}{BK20}
+\bibitem[Asa21]{ja:Asao} Y. Asao, \emph{Magnitude homology of geodesic metric spaces with an upper curvature bound}, Algebr. Geom. Topol. \textbf{21} (2021), 647--664. 確認版：\href{https://arxiv.org/abs/1903.11794v3}{arXiv:1903.11794v3}、2019年5月20日。Corollaries 4.6, 6.5、Theorem 5.3。
+\bibitem[BK20]{ja:BK} R. Bottinelli and T. Kaiser, \emph{Magnitude Homology, Diagonality, Medianness, K\"unneth and Mayer--Vietoris}, 確認版：\href{https://arxiv.org/abs/2003.09271v2}{arXiv:2003.09271v2}、2020年4月27日。\S1.3、Proposition 3.1。
+\bibitem[Gom25]{ja:G} K. Gomi, \emph{Magnitude homology of geodesic space}, \href{https://arxiv.org/abs/1902.07044v3}{arXiv:1902.07044v3}、2025年4月29日。\S2.3、Corollary 3.15、Assumption 4.8、Proposition 5.21、Theorem 5.22、Corollary 5.24。Theorem 5.22はこの版の37--38頁。
+\bibitem[KY21]{ja:KY} R. Kaneta and M. Yoshinaga, \emph{Magnitude homology of metric spaces and order complexes}, Bull. London Math. Soc. \textbf{53} (2021), no.~3, 893--905. 確認版：\href{https://arxiv.org/abs/1803.04247v3}{arXiv:1803.04247v3}、2021年9月2日。Theorem 4.4、区間半順序集合とframeの構成。
+\bibitem[LS21]{ja:LS} T. Leinster and M. Shulman, \emph{Magnitude homology of enriched categories and metric spaces}, Algebr. Geom. Topol. \textbf{21} (2021), 2175--2221. 確認版：\href{https://arxiv.org/abs/1711.00802v4}{arXiv:1711.00802v4}、2020年11月15日。Definitions 3.3--3.4、\S4。
+\bibitem[Sch]{ja:Schnell} C. Schnell, \emph{Abelian varieties}, MAT 615講義ノート、Stony Brook University、Lecture 5 (February 11)、4頁、およびLecture 7 (February 18)、1--3頁。\href{https://www.math.stonybrook.edu/~cschnell/mat615/lectures/lecture7.pdf}{Lecture 7}、\href{https://www.math.stonybrook.edu/~cschnell/mat615/lectures/lecture5.pdf}{Lecture 5}。web文献の確認日：2026年9月8日。
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,1631 @@
+% !TEX program = lualatex
+\documentclass[12pt]{amsart}
+
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji,deluxe]{luatexja-preset}
+
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{ulem.sty}{\usepackage[normalem]{ulem}}{}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical macros retained from the template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Notation added for this research note.
+\DeclareMathOperator{\Ent}{Ent}
+\DeclareMathOperator{\Ch}{Ch}
+\DeclareMathOperator{\Lip}{Lip}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\Tr}{Tr}
+\newcommand{\RCD}{\operatorname{RCD}^{*}}
+\newcommand{\Test}{\operatorname{Test}}
+\newcommand{\dm}{\,d\mathfrak m}
+\newcommand{\E}{\mathbb E}
+\newcommand{\gauss}{\gamma_k}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\eps}{\varepsilon}
+\theoremstyle{plain}
+\newtheorem{jathm}[thm]{定理}
+\newtheorem{jalem}[thm]{補題}
+\newtheorem{japrop}[thm]{命題}
+\newcommand{\ns}{en}
+\providecommand{\theHthm}{}
+\renewcommand{\theHsection}{\ns.\arabic{section}}
+\renewcommand{\theHthm}{\ns.\arabic{section}.\arabic{thm}}
+\renewcommand{\theHequation}{\ns.\arabic{section}.\arabic{equation}}
+\hypersetup{pdftitle={Spectral cluster multiplicities from almost Gaussian eigenfunctions},
+ pdfauthor={chatGPT 6 Astra},bookmarksnumbered=true}
+\emergencystretch=1em
+\makeatletter
+% Keep the user-specified capitalization in the displayed author name.
+\patchcmd{\@setauthors}{\MakeUppercase{\authors}}{\authors}{}{}
+\makeatother
+\title[Spectral cluster multiplicities]{Spectral cluster multiplicities from almost Gaussian eigenfunctions on RCD spaces}
+\author{chatGPT 6 Astra}
+\date{September 8, 2026}
+\keywords{Synthetic Ricci curvature, spectral multiplicity, Hermite polynomials, quantitative rigidity}
+\begin{document}
+\begin{abstract}
+Let $X$ be a compact $\RCD(1,N)$ probability space, $1<N<\infty$.
+We prove that $k$ orthonormal eigenfunctions with eigenvalues in $[1,1+\eps]$
+force at least $\binom{k+n-1}{n}$ eigenvalues, counted with multiplicity,
+in $[n-C\eps^{1/2-\eta},n+C\eps^{1/2-\eta}]$, for each prescribed
+finite range of degrees and $0<\eta<1/2$. The constants are independent
+of $N$. The proof controls the Gram matrix of multivariate Hermite
+polynomials and the residual on their entire span. We also prove that
+uniformity in $k$ is impossible and that the first cluster cannot bound
+the multiplicity of the second cluster from above. Singular spherical
+quotients provide examples. This is a quantitative refinement of known
+Gaussian spectral stability arguments; priority for the multiplicity
+formulation requires further bibliographic verification.
+\end{abstract}
+\maketitle
+\markboth{chatGPT 6 Astra}{Spectral cluster multiplicities}
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+
+\section{Introduction}
+Let $(M,g,e^{-V}\mathrm{vol}_g)$ be a complete connected smooth probability
+manifold without boundary. If $\Ric_g+\Hess V\geq g$, its weighted Laplacian is
+$L=\Delta_g-\langle\nabla V,\nabla\cdot\rangle$.
+An eigenfunction satisfying $-Lf=f$ saturates the integrated Bochner
+inequality: $\Hess f=0$ in $L^2$. Gaussian splitting is the associated
+rigidity phenomenon. Its nonsmooth form, including $k$ Gaussian directions,
+is already established by Gigli--Ketterer--Kuwada--Ohta
+\cite[Theorem 1.1]{en:GKKO}. On a Gaussian $k$-space, degree $n$ Hermite
+polynomials form an eigenspace of dimension $\binom{k+n-1}{n}$.
+The question here is whether this spectral consequence survives a small
+defect, without first constructing an approximate metric splitting.
+
+Bertrand--Fathi prove the existence of a spectral value near each integer
+from one almost extremal eigenfunction \cite[Theorem 1.2]{en:BF}.
+They also explicitly discuss multivariate Gaussian approximation.
+Their Hermite construction is the starting point of this note.
+Fathi--Gentil--Serres subsequently improve the one-variable Gaussian
+$W_1$ rate to $\eps\log(2/\eps)$ \cite[Theorem 4.3]{en:Serres}.
+We do not claim an improvement of that distributional rate.
+The additional conclusion sought here is a lower bound for the
+\emph{rank of each spectral projection}. Separately constructed quasimodes
+can be linearly dependent, so scalar spectral proximity alone does not give
+this conclusion. In particular, applying the one-variable statement $k$
+times does not produce the binomial multiplicity.
+
+We work in the compact finite-dimensional RCD class. This ensures
+that eigenfunctions are bounded test functions and the spectrum is discrete.
+All quantitative estimates, however, use only the curvature lower bound
+$1$, not the dimension parameter. Neither a lower volume bound nor smooth
+approximation is required. The class includes singular quotients and
+collapsing products. The restriction to finite $N$ is part of our theorem;
+we do not assert that the same proof automatically treats every
+$\operatorname{RCD}(1,\infty)$ space.
+
+The proof has three steps. The measure-valued Bochner inequality controls
+all entries of the gradient Gram matrix. Integration by parts then gives
+a quantitative recursion for joint moments, which prevents polynomial
+relations of bounded degree. Finally, a spectral projection argument
+preserves the dimension of the whole polynomial space. The underlying
+Bochner, Hermite and spectral-theorem tools are established methods.
+Our contribution is their explicit assembly into a multiplicity estimate,
+with a checked interpolation and a nondegeneracy argument.
+The two parameter obstructions below clarify what this assembly can and
+cannot prove. The precise formulation was not found in the sources
+examined; this does not establish publication priority.
+
+\section{Preliminaries and conventions}
+All spaces are complete, separable and geodesic, and $\mathfrak m$ is a
+Borel probability measure with full support. In the main results $X$ is
+compact. Its Cheeger energy is
+\[
+ \Ch(f)=\frac12\inf_{f_j\to f\text{ in }L^2}
+ \liminf_j\int (\operatorname{lip} f_j)^2\dm,
+ \qquad f_j\in\Lip(X).
+\]
+We write $W^{1,2}=D(\Ch)$ and $\Gamma(f)=|Df|^2$ for the squared minimal
+relaxed slope. Quadraticity of $\Ch$ defines the infinitesimally Hilbertian
+condition and the bilinear form
+$\Gamma(f,g)=(\Gamma(f+g)-\Gamma(f-g))/4$.
+Our generator has the nonpositive sign:
+\begin{equation}\label{en:generator}
+ f\in D(L),\quad Lf=h
+ \quad\Longleftrightarrow\quad
+ \int\Gamma(f,g)\dm=-\int hg\dm\quad(g\in W^{1,2}).
+\end{equation}
+Set $A=-L$ and $P_t=e^{tL}$.
+
+For clarity we use the entropic characterization of $\RCD(K,N)$.
+For $\mu=\rho\mathfrak m$ put
+$\Ent_{\mathfrak m}(\mu)=\int\rho\log\rho\dm$ and
+$U_N(\mu)=\exp(-\Ent_{\mathfrak m}(\mu)/N)$, with entropy $+\infty$
+outside its domain. The condition $\mathrm{CD}^{e}(K,N)$ says that
+for any two finite-entropy probability measures there exists a constant
+speed $W_2$ geodesic $\mu_t$ joining them such that
+\begin{equation}\label{en:cd}
+ U_N(\mu_t)\geq
+ \sigma_{K/N}^{(1-t)}(\ell)U_N(\mu_0)
+ +\sigma_{K/N}^{(t)}(\ell)U_N(\mu_1),
+ \qquad \ell=W_2(\mu_0,\mu_1).
+\end{equation}
+Here $W_2^2$ is the infimum of $\int d(x,y)^2\,d\pi$ over couplings,
+and $\sigma_\kappa^{(t)}(\ell)=\mathfrak s_\kappa(t\ell)/
+\mathfrak s_\kappa(\ell)$, where $\mathfrak s_\kappa(r)$ is
+$\sin(\sqrt\kappa r)/\sqrt\kappa$, $r$, or
+$\sinh(\sqrt{-\kappa}r)/\sqrt{-\kappa}$ according to the sign of $\kappa$.
+The continuous convention applies at $\ell=0$; for positive $\kappa$
+the usual infinite distortion convention applies beyond the first zero.
+Quadraticity together with \eqref{en:cd} is equivalent to the reduced
+$\operatorname{RCD}^{*}(K,N)$ condition
+\cite[Theorem 3.17]{en:EKS}. We retain the star throughout.
+No Hausdorff-measure normalization or noncollapsing condition is imposed.
+
+We record precisely the analytic inputs. For $\RCD(1,N)$, the
+$\operatorname{RCD}(1,\infty)$ calculus applies. The spectrum is discrete,
+$\ker A$ consists of constants, and every nonzero eigenvalue is at least
+$N/(N-1)$ \cite[Theorem 4.22]{en:EKS}. Eigenfunctions are bounded and
+Lipschitz \cite[Proposition 7.1]{en:AHPT}; its dimensional constants are
+used only for domain membership. Thus they belong to
+\[
+ \Test(X)=\{f\in D(L)\cap L^\infty:
+       |Df|\in L^\infty,\ Lf\in W^{1,2}\}.
+\]
+For test functions, $\Gamma(f,g)\in W^{1,2}$, and the multivariate chain
+rule holds. Define the finite measure
+\[
+ \boldsymbol\Gamma_2(f)=\tfrac12\boldsymbol L\Gamma(f)
+                         -\Gamma(f,Lf)\mathfrak m
+ =\gamma_2(f)\mathfrak m+\boldsymbol\Gamma_2^s(f).
+\]
+The measure $\boldsymbol Lh$ is defined by testing
+$\int\phi\,d\boldsymbol Lh=-\int\Gamma(\phi,h)\dm$.
+The singular part above is nonnegative, $\gamma_2(f)\geq\Gamma(f)$,
+and the following bound holds $\mathfrak m$-a.e.:
+\begin{equation}\label{en:selfimprove}
+ |D\Gamma(f,g)|\leq
+ \sqrt{\gamma_2(f)-\Gamma(f)}\,|Dg|
+ +\sqrt{\gamma_2(g)-\Gamma(g)}\,|Df|.
+\end{equation}
+These facts follow from the self-improvement of $\mathrm{BE}(1,\infty)$
+\cite[Lemma 3.2 and Theorem 3.4, (3.16)]{en:S}.
+Keeping the singular measure is essential when integrating this inequality.
+
+For a nonnegative function $h$ we also write
+$\Ent(h)=\int h\log(h/\int h\dm)\dm$, with $\Ent(0)=0$.
+
+We also use hypercontractivity
+$\|P_t v\|_{1+e^{2t}}\leq\|v\|_2$ and reverse Poincar\'e
+\begin{equation}\label{en:reverse}
+ \Gamma(P_tv)\leq\frac{P_t(v^2)-(P_tv)^2}{e^{2t}-1}
+                  \leq\frac{P_t(v^2)}{e^{2t}-1}.
+\end{equation}
+These follow from the Bochner and logarithmic Sobolev inequalities;
+compare \cite[Proposition 3.2]{en:BF}.
+Indeed, \cite[Corollary 3.28]{en:EKS} implies
+$\Ent(w^2)\leq2\int\Gamma(w)\dm$.
+For positive bounded $v$ bounded away from zero, put $u=P_tv$,
+$p(t)=1+e^{2t}$ and $Z=\int u^p\dm$. Differentiation and integration
+by parts give
+\[
+ \frac{d}{dt}\log\|u\|_p
+ =\frac{p'}{p^2Z}\Ent(u^p)
+   -\frac{p-1}{Z}\int u^{p-2}\Gamma(u)\dm\leq0,
+\]
+since $\Ent(u^p)\leq(p^2/2)\int u^{p-2}\Gamma(u)\dm$ and
+$p'=2(p-1)$. Approximation and the Markov property yield
+hypercontractivity for general $v\in L^2$.
+For example, \eqref{en:reverse} follows by integrating the gradient
+estimate \cite[Corollary 3.5]{en:S}
+$\Gamma(P_t v)\leq e^{-2s}P_s\Gamma(P_{t-s}v)$ in
+$P_t(v^2)-(P_tv)^2=2\int_0^tP_s\Gamma(P_{t-s}v)\,ds$.
+
+\section{Main results}
+Fix integers $k,r\geq1$ and $0<\eta<1/2$, and put
+$a=1/2-\eta$ and $M_{k,n}=\binom{k+n-1}{n}$.
+A spectral projection is denoted by $\one_I(A)$.
+
+\begin{thm}[Multiplicity propagation]\label{en:main}
+There exist computable $C=C(k,r,\eta)\geq1$ and
+$\eps_0=\eps_0(k,r,\eta)>0$, independent of $N$, with the following
+property. Let $(X,d,\mathfrak m)$ be a compact $\RCD(1,N)$ probability
+space, $1<N<\infty$. Suppose there are real orthonormal functions
+$f_1,\ldots,f_k$ with
+\begin{equation}\label{en:low}
+ Af_i=\lambda_i f_i,\qquad 1\leq\lambda_i\leq1+\eps,
+ \qquad 0<\eps\leq\eps_0.
+\end{equation}
+Then $\delta=C\eps^a\leq1/3$ and, for $1\leq n\leq r$,
+\begin{equation}\label{en:rank}
+ \rank\one_{[n-\delta,n+\delta]}(A)\geq M_{k,n}.
+\end{equation}
+Consequently
+\begin{equation}\label{en:count}
+ \rank\one_{[0,r+\delta]}(A)\geq\binom{k+r}{r},\qquad
+ \Tr(P_t)\geq1+\sum_{n=1}^rM_{k,n}e^{-t(n+\delta)}\quad(t>0).
+\end{equation}
+\end{thm}
+The eigenvalues in \eqref{en:low} may be different. The statement gives
+lower multiplicities; it gives neither an upper bound nor an exclusion
+of additional spectrum between the displayed intervals.
+The sharper finite-dimensional spectral gap implies
+$\eps\geq1/(N-1)$ whenever the hypotheses hold. Thus arbitrarily small
+defects in this class require unbounded dimension parameters; a
+fixed-$N$ compactness argument does not supply the claimed uniformity.
+
+\begin{thm}[Polynomial realization]\label{en:realization}
+Under the hypotheses of Theorem~\ref{en:main}, let $\mathcal H_n$
+be the degree $n$ Hermite eigenspace in $L^2(\R^k,\gauss)$, where
+$\gauss=(2\pi)^{-k/2}e^{-|x|^2/2}dx$.
+There is a linear isometry $U_n:\mathcal H_n\to L^2(X,\mathfrak m)$
+whose image lies in $D(A)$ and satisfies
+\begin{equation}\label{en:realizationeq}
+ \|(A-n)U_n\|\leq\delta/2,\qquad
+ \|P_tU_n-e^{-nt}U_n\|\leq\frac{\delta}{2n}(1-e^{-nt})
+ \quad(t\geq0).
+\end{equation}
+Here the norms are operator norms from $\mathcal H_n$ to $L^2(X)$.
+The image is the span of the degree $n$ Hermite polynomials in
+$F=(f_1,\ldots,f_k)$.
+\end{thm}
+
+\section{Mixed gradient and moment estimates}
+We prove all quantitative steps. Throughout this section $0<\eps\leq1$
+and \eqref{en:low} holds. All integrals are with respect to $\mathfrak m$
+unless specified otherwise.
+
+\begin{lem}[Moment and Poincar\'e bounds]\label{en:integrability}
+For $q\geq2$ and $1\leq p\leq2$,
+\begin{equation}\label{en:integrabilityeq}
+ \begin{gathered}
+ \|f_i\|_q\leq(q-1)^{\lambda_i/2}\leq q-1,
+ \qquad \||Df_i|\|_q\leq2(q-1),\\
+ \|g-\E g\|_p\leq\frac\pi2\||Dg|\|_p
+ \quad(g\in W^{1,2}).
+ \end{gathered}
+\end{equation}
+\end{lem}
+\begin{proof}
+Apply hypercontractivity at $t=\frac12\log(q-1)$ to
+$P_tf_i=e^{-\lambda_it}f_i$. Apply \eqref{en:reverse} at
+$t=\frac12\log2$ to obtain
+$\Gamma(f_i)\leq2^{\lambda_i}P_t(f_i^2)$. Jensen's inequality and
+invariance of $\mathfrak m$ give the second bound.
+For the last bound take a bounded test function $v$, and let $p'$ be
+the conjugate exponent (including $p'=\infty$). By self-adjointness and
+$P_Tv\to\E v$ in $L^2$,
+\[
+ \int(g-\E g)v\dm=\int_0^\infty\int\Gamma(g,P_tv)\dm\,dt.
+\]
+H\"older and \eqref{en:reverse}, followed by Jensen since $p'\geq2$,
+bound its absolute value by
+\[
+ \||Dg|\|_p\|v\|_{p'}
+ \int_0^\infty(e^{2t}-1)^{-1/2}\,dt
+ =\frac\pi2\||Dg|\|_p\|v\|_{p'}.
+\]
+The same estimate justifies the time integral. Duality and bounded
+approximation of the dual test functions finish the proof.
+\end{proof}
+
+Set $D_{ij}=\Gamma(f_i,f_j)-\lambda_i\delta_{ij}$, a symmetric matrix
+of mean-zero functions. For $1\leq p<2$ and $s\geq1$ define
+\begin{equation}\label{en:constantsB}
+ B_p=4\pi\left(\frac{2p}{2-p}-1\right),\qquad
+ H_s=4(2s-1)^2+2.
+\end{equation}
+\begin{lem}[Mixed defects]\label{en:mixed}
+One has
+\begin{equation}\label{en:mixedlow}
+ \|D_{ij}\|_p\leq B_p\sqrt\eps\quad(1\leq p<2),\qquad
+ \|D_{ij}\|_s\leq H_s\quad(s\geq1).
+\end{equation}
+For $p_\eta=2/(1+\eta)$, $q_\eta=2/(1-\eta)$,
+$s_\eta=2/\eta$ and
+$D_\eta=B_{p_\eta}^{1-2\eta}H_{s_\eta}^{2\eta}$, this yields
+\begin{equation}\label{en:mixedhigh}
+ \|D_{ij}\|_{q_\eta}\leq D_\eta\eps^{1/2-\eta}.
+\end{equation}
+\end{lem}
+\begin{proof}
+Testing $\boldsymbol L\Gamma(f_i)$ against $1$ and using
+$Lf_i=-\lambda_i f_i$ gives
+\[
+ \int d\boldsymbol\Gamma_2(f_i)=\lambda_i^2,\qquad
+ \int(\gamma_2(f_i)-\Gamma(f_i))\dm
+ \leq\lambda_i(\lambda_i-1)\leq2\eps.
+\]
+The inequality uses the nonnegative singular part. Let
+$q=2p/(2-p)$, so $1/p=1/2+1/q$. Equations
+\eqref{en:selfimprove} and \eqref{en:integrabilityeq} give
+\[
+ \||DD_{ij}|\|_p
+ \leq\sqrt{2\eps}\bigl(\||Df_i|\|_q+\||Df_j|\|_q\bigr)
+ \leq4\sqrt2(q-1)\sqrt\eps.
+\]
+Apply the last inequality in \eqref{en:integrabilityeq} to $D_{ij}$;
+$2\sqrt2\pi\leq4\pi$ gives the chosen $B_p$.
+Pointwise Cauchy--Schwarz for $\Gamma$ and H\"older with exponent $2s$
+give $\|\Gamma(f_i,f_j)\|_s\leq4(2s-1)^2$, proving the high moment bound.
+Finally the exact identities
+\[
+ \frac1{q_\eta}=\frac{1-2\eta}{p_\eta}+
+                  \frac{2\eta}{s_\eta},\qquad
+ \frac12=\frac1{q_\eta}+\frac1{s_\eta}
+\]
+justify interpolation and give \eqref{en:mixedhigh}.
+\end{proof}
+The exponents in the last display matter: a small $L^1$ norm and bounded
+high moments alone do not give an arbitrary $L^p$ norm with an exponent
+arbitrarily close to $1/2$. We use only the explicitly displayed
+$q_\eta>2$, together with the matching polynomial exponent $s_\eta$.
+
+For $d\geq1$, $t\geq1$, put $V_{d,t}=(\max\{2,td\}-1)^d$ and
+$V_{0,t}=1$. If $P(x)=\sum_\beta c_\beta x^\beta$, define
+\begin{equation}\label{en:polynorm}
+ \mathcal A_t(P)=\sum_\beta|c_\beta|V_{|\beta|,t}.
+\end{equation}
+H\"older and \eqref{en:integrabilityeq} give
+$\|F^\beta\|_t\leq V_{|\beta|,t}$, hence
+$\|P(F)\|_t\leq\mathcal A_t(P)$.
+
+\begin{lem}[Joint moment recursion]\label{en:moments}
+There are explicit numbers $c_d$, depending only on $d$, such that
+\begin{equation}\label{en:momentbound}
+ \left|\E F^\beta-\int x^\beta\,d\gauss\right|
+ \leq c_{|\beta|}\sqrt\eps.
+\end{equation}
+One choice is $c_0=c_1=c_2=0$ and, for $d\geq3$,
+\begin{equation}\label{en:momentconstant}
+ c_d=(d-1)c_{d-2}+12\pi(d-1)V_{d-2,4}.
+\end{equation}
+\end{lem}
+\begin{proof}
+Integration by parts and the chain rule give, for every polynomial $P$,
+\begin{equation}\label{en:ibp}
+ \E[f_iP(F)]=\E[\partial_iP(F)]
+       +\lambda_i^{-1}\sum_j\E[D_{ij}\partial_jP(F)].
+\end{equation}
+This is an identity on $X$: since $F(X)$ is bounded, one may replace $P$
+by a smooth compactly supported function agreeing with it near $F(X)$.
+The chain rule then proves domain membership and the identity without
+any boundary removal.
+Choose $i$ with $\beta_i>0$, let $d=|\beta|$, and use $P=x^{\beta-e_i}$.
+Then
+\[
+ \E F^\beta=(\beta_i-1)\E F^{\beta-2e_i}+R_\beta,
+ \qquad |R_\beta|\leq12\pi(d-1)V_{d-2,4}\sqrt\eps.
+\]
+Terms with zero coefficient are omitted. The remainder bound follows
+from \eqref{en:mixedlow} with $p=4/3$, since $B_{4/3}=12\pi$,
+H\"older with exponent $4$, and $\lambda_i^{-1}\leq1$.
+The standard Gaussian moments satisfy the same recursion with
+$R_\beta=0$, by one-variable integration by parts in $x_i$.
+The moments of degrees $0,1,2$ agree exactly, by normalization,
+$\lambda_i>0$, and orthonormality. Induction in $d$ proves the claim.
+\end{proof}
+
+\section{Proofs of the main results}
+Let $H_0=1$, $H_1(x)=x$, and
+$H_{j+1}(x)=xH_j(x)-jH_{j-1}(x)$. For a multi-index $\alpha$ set
+\[
+ h_\alpha(x)=\prod_{i=1}^k\frac{H_{\alpha_i}(x_i)}{\sqrt{\alpha_i!}}.
+\]
+Differentiating the recurrence proves
+$H_j''-xH_j'=-jH_j$. Gaussian integration by parts, or the Rodrigues
+formula obtained from the same recurrence, gives
+$\int H_jH_\ell\,d\gamma_1=j!\delta_{j\ell}$.
+Tensorization therefore makes the $h_\alpha$ orthonormal, and
+$\{h_\alpha:|\alpha|=n\}$ is a basis of $\mathcal H_n$.
+Its cardinality is $M_{k,n}$, by the stars-and-bars count.
+
+Let $\mathcal I_r=\{\alpha\in\N_0^k:|\alpha|\leq r\}$, and expand
+$h_\alpha h_\beta=\sum_\nu b_{\alpha\beta\nu}x^\nu$. Define
+\begin{equation}\label{en:Gconstant}
+ K_{k,r}=\max_{\alpha\in\mathcal I_r}
+       \sum_{\beta\in\mathcal I_r}\sum_\nu
+                       |b_{\alpha\beta\nu}|c_{|\nu|}.
+\end{equation}
+For $G_{\alpha\beta}=\E[h_\alpha(F)h_\beta(F)]$, Lemma~\ref{en:moments}
+and the row-sum bound for a real symmetric matrix imply
+\begin{equation}\label{en:Gram}
+ \|G-I\|_{\mathrm{op}}\leq K_{k,r}\sqrt\eps.
+\end{equation}
+Consequently, if $K_{k,r}\sqrt\eps\leq1/2$, the map
+$J_n c=\sum_{|\alpha|=n}c_\alpha h_\alpha(F)$ satisfies
+\begin{equation}\label{en:Jbound}
+ \|J_nc\|_2\geq2^{-1/2}|c|.
+\end{equation}
+This proves independence, including for unequal $\lambda_i$.
+
+The chain rule and the Hermite equation give the exact residual identity
+\begin{equation}\label{en:residual}
+ A h_\alpha(F)=\left(\sum_i\alpha_i\lambda_i\right)h_\alpha(F)
+                   -\sum_{i,j}D_{ij}\partial_{ij}h_\alpha(F).
+\end{equation}
+All mixed derivatives are included, so no factor $2$ is suppressed.
+For $|\alpha|=n$ set
+\[
+ R_\alpha=n\mathcal A_2(h_\alpha)
+       +D_\eta\sum_{i,j}\mathcal A_{s_\eta}(\partial_{ij}h_\alpha),
+ \qquad R_n=\left(\sum_{|\alpha|=n}R_\alpha^2\right)^{1/2}.
+\]
+Since $\eps\leq\eps^a$ for $\eps\leq1$, equations
+\eqref{en:mixedhigh}, \eqref{en:polynorm}, and H\"older with
+$1/2=1/q_\eta+1/s_\eta$ imply
+\begin{equation}\label{en:spanresidual}
+ \|(A-n)J_nc\|_2\leq R_n\eps^a|c|.
+\end{equation}
+Thus this is a residual estimate on every linear combination, not only
+on individual basis elements.
+
+Here are explicit admissible choices for Theorem~\ref{en:main}:
+\begin{equation}\label{en:finalconstants}
+ \begin{split}
+ C&=\max\{1,\,2\sqrt2\max_{1\leq n\leq r}R_n\},\\
+ \eps_0&=\min\left\{1,\frac1{4\max\{1,K_{k,r}\}^2},
+                         (3C)^{-1/a}\right\}.
+ \end{split}
+\end{equation}
+These are finite sums and recursions involving only $k,r,\eta$.
+Their size is not optimized.
+
+\begin{proof}[Proof of Theorem~\ref{en:main}]
+Let $V_n=\Image{J_n}$. Equations \eqref{en:Jbound} and
+\eqref{en:spanresidual} show $\dim V_n=M_{k,n}$ and
+$\|(A-n)u\|_2\leq(\delta/2)\|u\|_2$ for $u\in V_n$.
+Put $Q_n=\one_{[n-\delta,n+\delta]}(A)$. The spectral theorem gives
+\[
+ \|(I-Q_n)u\|_2\leq\delta^{-1}\|(A-n)u\|_2
+                         \leq\tfrac12\|u\|_2.
+\]
+Therefore $Q_n$ is injective on $V_n$, proving \eqref{en:rank}.
+The intervals are disjoint and avoid $0$ because $\delta\leq1/3$.
+Adding their dimensions and the constant eigenfunction gives the first
+inequality in \eqref{en:count}, using
+$1+\sum_{n=1}^rM_{k,n}=\binom{k+r}{r}$.
+Each eigenvalue in the $n$-th interval contributes at least
+$e^{-t(n+\delta)}$ to the heat trace, proving the second inequality.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en:realization}]
+Write $G_n=J_n^*J_n$ and define $U_n=J_nG_n^{-1/2}$ in the
+orthonormal Hermite basis. Then $U_n^*U_n=I$ and
+$\|G_n^{-1/2}\|\leq\sqrt2$ by \eqref{en:Gram}.
+Equation \eqref{en:spanresidual} proves the first estimate in
+\eqref{en:realizationeq}. Since $U_n$ takes values in $D(A)$,
+semigroup differentiation in $L^2$ yields
+\[
+ P_tU_n-e^{-nt}U_n
+ =-\int_0^t e^{-(t-s)A}(A-n)U_n e^{-ns}\,ds.
+\]
+Contractivity and $\int_0^te^{-ns}ds=(1-e^{-nt})/n$ prove the claim.
+\end{proof}
+
+For curvature $K>0$, replace $d$ by $\sqrt K d$. The new generator is
+$A/K$, so an input interval $[K,K(1+\eps)]$ produces intervals
+$[K(n-\delta),K(n+\delta)]$. Probability normalization is unchanged.
+This checks the scaling of both eigenvalues and curvature.
+
+\section{Examples, obstructions and limitations}
+\subsection{Singular spaces with arbitrarily small defect}
+Fix $k\geq1$. For $d\geq k+2$ write $q=d+1-k$ and let
+$S^d(\sqrt{d-1})\subset\R^k\oplus\R^q$. The involution
+$\iota(x,y)=(x,-y)$ acts by measure-preserving isometries. Endow
+\[
+ Q_{d,k}=S^d(\sqrt{d-1})/\langle\iota\rangle
+\]
+with the quotient distance and the pushforward of normalized volume.
+It is a compact $\RCD(1,d)$ probability space
+\cite[Theorem 1.1 and Corollary 1.2]{en:GKMS}.
+At a fixed point its tangent cone is
+$\R^{k-1}\times(\R^q/\{\pm1\})$, which is not Euclidean for $q\geq3$.
+Thus the theorem genuinely applies to singular spaces.
+
+The invariant functions
+$f_i=\sqrt{(d+1)/(d-1)}\,x_i$ descend and are orthonormal.
+The polar-coordinate formula for the Euclidean Laplacian, applied to
+homogeneous harmonic polynomials, gives sphere eigenvalues
+\begin{equation}\label{en:spherespectrum}
+ \Lambda_{d,n}=\frac{n(n+d-1)}{d-1}=n+\frac{n^2}{d-1}.
+\end{equation}
+In particular $Af_i=(1+1/(d-1))f_i$. Quotient eigenfunctions are precisely
+the invariant spherical eigenfunctions: lifting identifies $L^2(Q_{d,k})$
+with the invariant subspace and preserves the energy form.
+The degree-one invariant subspace is exactly the $k$-dimensional
+$x$-coordinate space. Hence the defect $\eps=1/(d-1)$ tends to zero
+with precisely $k$ eigenfunctions in the first cluster.
+
+This also tests normalization: $\E f_i^2=1$ and
+\[
+ \Gamma(f_i,f_j)=\frac{d+1}{d-1}\delta_{ij}
+                    -\frac{f_if_j}{d-1},\qquad
+ D_{ij}=\frac{\delta_{ij}-f_if_j}{d-1}.
+\]
+The defect is smaller than our general bound on these examples.
+No optimality of the exponent $1/2-\eta$ is asserted.
+
+\begin{prop}[No upper multiplicity from the first cluster]\label{en:noupper}
+Even for a fixed $k$ and $\eps\downarrow0$, the hypotheses of
+Theorem~\ref{en:main} cannot bound the second-cluster multiplicity
+above by a function of $k$ alone.
+\end{prop}
+\begin{proof}
+On $Q_{d,k}$ the invariant quadratic polynomials consist of an arbitrary
+quadratic form in $x$ and one in $y$. The harmonic condition imposes
+exactly one trace constraint. Therefore the multiplicity of
+$\Lambda_{d,2}=2+4/(d-1)$ is
+\[
+ \frac{k(k+1)}2+\frac{q(q+1)}2-1.
+\]
+For fixed $k$, this tends to infinity with $d$, although the first
+cluster has dimension exactly $k$. For any fixed positive constant $C$
+and $0<a<1$, $4\eps<C\eps^a$ eventually, so this eigenvalue lies
+in the asserted second window. Completeness of spherical harmonics,
+and restriction to the invariant subspace, also exclude other degrees
+from any sufficiently small window about $2$.
+\end{proof}
+
+\begin{prop}[The dependence on $k$ is necessary]\label{en:knecessary}
+For $r=2$ and fixed $0<\eta<1/2$, no positive threshold and finite
+constant in Theorem~\ref{en:main} can be uniform in both $k$ and $N$.
+\end{prop}
+\begin{proof}
+Use the whole sphere $S^d(\sqrt{d-1})$ and all $k=d+1$ normalized
+coordinate functions. Their common eigenvalue is $1+1/(d-1)$, but
+\[
+ \sum_{i=1}^k f_i^2=k,\qquad
+ \sum_{i=1}^k h_{2e_i}(F)=0.
+\]
+For constants $C,\eps_0$ independent of $k,d$, choose $d$ so large that
+$\eps=1/(d-1)<\eps_0$ and $C\eps^a<1/3$.
+By \eqref{en:spherespectrum}, the window about $2$ contains only
+quadratic harmonics (and eventually contains all of them).
+Their dimension is $k(k+1)/2-1=M_{k,2}-1$, contrary to
+\eqref{en:rank}. The displayed polynomial relation explains the
+Gram-matrix obstruction behind this failure.
+\end{proof}
+
+\subsection{Collapse and curvature}
+For a fixed sufficiently large $d$, the spaces
+$Q_{d,k}\times S^2(t)$, $0<t\leq1$, with product distance and probability
+measure are $\RCD(1,d+2)$ by tensorization
+\cite[Theorem 3.23]{en:EKS}. The same $f_i$ meet \eqref{en:low},
+and the estimates are independent of $t$.
+As $t\downarrow0$, projection has fibers of diameter $\pi t$ and
+pushes the measure exactly to that on $Q_{d,k}$, proving measured
+Gromov--Hausdorff collapse to $Q_{d,k}$. No noncollapsing assumption
+is hidden in the result.
+
+Positive curvature cannot be replaced by nonnegative curvature.
+Indeed, on the flat $d$-torus $(\R/2\pi\Z)^d$ the $2d$ normalized
+sine and cosine functions have eigenvalue $1$. Fourier series give
+spectrum $|z|^2$, $z\in\Z^d$. The multiplicity at $2$ is
+$4\binom d2=2d(d-1)$, whereas the predicted multiplicity for $k=2d$
+is $M_{2d,2}=d(2d+1)$, larger by $3d$.
+For windows of radius less than $1/2$ no other eigenvalues occur.
+This example is a boundary check, not a claim of a new torus calculation.
+
+\subsection{What has not been proved}
+The result concerns spectral subspaces and heat evolution. It does not
+construct a metric-measure product, classify topology, or give a measured
+Gromov--Hausdorff error. Almost-everywhere gradient estimates are never
+promoted to a global isometry. We do not delete singular sets or assume
+curvature-preserving smoothing. The constants are explicit but very
+large; the theorem is an asymptotic structural statement, not an efficient
+numerical test. The rate may be far from optimal.
+
+\section{Further questions and status}
+Can the loss $\eta$ be removed, or the dependence on
+$k,r$ significantly improved? Can one control the full spectrum by
+adding a natural hypothesis that excludes transverse modes? Can the
+same quantitative rank statement be proved for all
+$\operatorname{RCD}(1,\infty)$ spaces without compactness, formulated
+using spectral projections rather than a discrete spectrum?
+These questions are not resolved here.
+
+Theorems~\ref{en:main} and \ref{en:realization}, and
+Propositions~\ref{en:noupper} and \ref{en:knecessary}, have complete
+proofs conditional only on the explicitly cited established RCD calculus.
+The multiplicity theorem is a refinement of the existing Hermite method,
+not a new splitting theorem. Its formulation differs from the checked
+one-function spectral results and Gaussian transport estimates
+\cite{en:BF,en:CF}; related pushforward-distribution stability results
+\cite{en:Serres} concern a different conclusion. Additional expert and
+bibliographic checking is required to decide originality and significance.
+A separate audit records the checked versions, the interpolation issue,
+and the limits of this comparison.
+\begin{thebibliography}{AHPT18}
+\bibitem[AHPT18]{en:AHPT}
+L. Ambrosio, S. Honda, J. W. Portegies and D. Tewodrose,
+\emph{Embedding of $\operatorname{RCD}^{*}(K,N)$ spaces in $L^2$ via eigenfunctions},
+\href{https://arxiv.org/abs/1812.03712v1}{arXiv:1812.03712v1} (2018), Proposition 7.1.
+
+\bibitem[BF21]{en:BF}
+J. Bertrand and M. Fathi,
+\emph{Stability of eigenvalues and observable diameter in
+$\operatorname{RCD}(1,\infty)$ spaces},
+\href{https://arxiv.org/abs/2107.05324v1}{arXiv:2107.05324v1} (2021).
+Theorem numbering in this note refers to this version.
+
+\bibitem[CF20]{en:CF}
+T. A. Courtade and M. Fathi,
+\emph{Stability of the Bakry--\'Emery theorem on $\R^n$},
+J. Funct. Anal. \textbf{279} (2020), no.~2, 108523.
+Checked preprint: \href{https://arxiv.org/abs/1807.09845v2}{arXiv:1807.09845v2},
+Theorems 1.1--1.2 and \S2.1.
+
+\bibitem[EKS15]{en:EKS}
+M. Erbar, K. Kuwada and K.-T. Sturm,
+\emph{On the equivalence of the entropic curvature-dimension condition
+and Bochner's inequality on metric measure spaces},
+\href{https://arxiv.org/abs/1303.4382v2}{arXiv:1303.4382v2} (2013),
+Theorems 3.17, 3.23, 4.8 and 4.22; Corollary 3.28.
+
+\bibitem[FGS24]{en:Serres}
+M. Fathi, I. Gentil and J. Serres,
+\emph{Stability estimates for the sharp spectral gap bound under a
+curvature-dimension condition},
+Ann. Inst. Fourier \textbf{74} (2024), no.~6, 2425--2459,
+Theorems 1.1 and 4.3.
+\href{https://doi.org/10.5802/aif.3608}{doi:10.5802/aif.3608}.
+
+\bibitem[GKMS17]{en:GKMS}
+F. Galaz-Garc\'ia, M. Kell, A. Mondino and G. Sosa,
+\emph{On quotients of spaces with Ricci curvature bounded below},
+\href{https://arxiv.org/abs/1704.05428v1}{arXiv:1704.05428v1} (2017),
+Theorem 1.1 and Corollary 1.2.
+
+\bibitem[GKKO20]{en:GKKO}
+N. Gigli, C. Ketterer, K. Kuwada and S.-i. Ohta,
+\emph{Rigidity for the spectral gap on $\operatorname{RCD}(K,\infty)$-spaces},
+Amer. J. Math. \textbf{142} (2020), no.~5, 1559--1594,
+Theorem 1.1.
+\href{https://arxiv.org/abs/1709.04017}{arXiv:1709.04017}.
+
+\bibitem[S14]{en:S}
+G. Savar\'e,
+\emph{Self-improvement of the Bakry--\'Emery condition and Wasserstein
+contraction of the heat flow in $\operatorname{RCD}(K,\infty)$ metric measure spaces},
+\href{https://arxiv.org/abs/1304.0643v2}{arXiv:1304.0643v2} (2013),
+Lemma 3.2, Theorem 3.4, especially (3.16).
+\end{thebibliography}
+\newpage
+\renewcommand{\ns}{ja}
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\setcounter{footnote}{0}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\markboth{chatGPT 6 Astra}{RCD空間のスペクトル集積の重複度}
+\begin{center}
+{\Large\bfseries RCD空間における近似Gaussian固有関数からの\\
+スペクトル集積の重複度評価\par}
+\vspace{0.6em}
+{\normalsize chatGPT 6 Astra\par}
+\vspace{0.3em}
+{\small 2026年9月8日\par}
+\end{center}
+\begin{center}\bfseries 概要\end{center}
+$X$をコンパクトな$\RCD(1,N)$確率測度空間とし，$1<N<\infty$とする．
+固有値が$[1,1+\eps]$に属する$k$個の正規直交固有関数が存在すれば，
+あらかじめ指定した有限範囲の各次数$n$と$0<\eta<1/2$について，
+区間$[n-C\eps^{1/2-\eta},n+C\eps^{1/2-\eta}]$に重複度込みで
+少なくとも$\binom{k+n-1}{n}$個の固有値が存在することを証明する．
+定数は$N$に依存しない．証明では多変数Hermite多項式のGram行列と，
+それらの張る空間全体での残差を評価する．また，$k$について一様な評価は
+不可能であり，最初の集積から第2の集積の重複度を上から抑えることも
+できないと示す．特異な球面商が適用例を与える．本稿は既知のGaussian型
+スペクトル安定性の議論を定量的に精密化するものであり，重複度に関する
+定式化の文献上の先取性には追加確認が必要である．
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+\section{序論}
+境界を持たない完備連結な滑らかな確率測度多様体$(M,g,e^{-V}\mathrm{vol}_g)$で
+$\Ric_g+\Hess V\geq g$とする．重み付きLaplacianは
+$L=\Delta_g-\langle\nabla V,\nabla\cdot\rangle$である．
+$-Lf=f$を満たす固有関数は積分Bochner不等式の等号を実現し，
+$L^2$の意味で$\Hess f=0$となる．対応する剛性現象はGaussian因子の
+分裂である．$k$個のGaussian方向を含む非平滑版は，すでに
+Gigli--Ketterer--Kuwada--Ohta \cite[Theorem 1.1]{ja:GKKO}により
+確立されている．$k$次元Gaussian空間では，次数$n$のHermite多項式が
+次元$\binom{k+n-1}{n}$の固有空間をなす．本稿の問いは，近似的な距離の
+分裂を先に構成せず，小さい欠損のもとでこのスペクトル上の帰結を保てるか，
+というものである．
+
+Bertrand--Fathiは，一つの近似的な極値固有関数から各整数の近くに
+スペクトル値が存在することを示している\cite[Theorem 1.2]{ja:BF}．
+多変数Gaussian近似についても明示的に述べている．そのHermite多項式の
+構成が本稿の出発点である．その後Fathi--Gentil--Serresは，1変数の
+Gaussian近似の$W_1$評価を$\eps\log(2/\eps)$まで改良している
+\cite[Theorem 4.3]{ja:Serres}．本稿はこの分布の収束率の改良を主張しない．
+ここで追加して目指す結論は，各スペクトル射影の\emph{階数の下界}である．
+個別に構成した近似固有関数は線形従属となり得るため，スカラーとしての
+スペクトルの近接性だけではこの結論は得られない．特に，1変数の定理を
+$k$回適用しても，上の二項係数の重複度は得られない．
+
+対象をコンパクトな有限次元RCD空間とすることで，固有関数が有界な
+テスト関数であることとスペクトルの離散性を保証する．一方，定量評価は
+曲率下界$1$だけを用い，次元パラメータには依存しない．体積の下界も
+平滑近似も必要としない．対象には特異商とcollapseする積が含まれる．
+有限$N$という制限は定理の一部であり，この証明がすべての
+$\operatorname{RCD}(1,\infty)$空間に自動的に適用できるとは主張しない．
+
+証明は三段階からなる．測度値Bochner不等式により勾配のGram行列の
+全成分を評価する．部分積分から結合モーメントの定量的な漸化式を導き，
+有界次数の多項式関係の発生を防ぐ．最後にスペクトル射影の議論により，
+多項式空間全体の次元を保持する．Bochnerの議論，Hermite多項式，
+スペクトル定理はいずれも確立された手法である．本稿の寄与は，補間指数と
+非退化性を明示的に検証し，これらを重複度評価へまとめることにある．
+後述する二つのパラメータ上の障害は，この議論の到達範囲と限界を示す．
+調べた資料では同じ定式化を見いださなかったが，それだけで文献上の
+先取性が確定するわけではない．
+
+\section{準備と規約}
+すべての空間は完備，可分，測地的とし，$\mathfrak m$は台が$X$全体である
+Borel確率測度とする．主結果では$X$はコンパクトである．Cheegerエネルギーを
+\[
+ \Ch(f)=\frac12\inf_{f_j\to f\text{ in }L^2}
+ \liminf_j\int (\operatorname{lip} f_j)^2\dm,
+ \qquad f_j\in\Lip(X)
+\]
+とする．$W^{1,2}=D(\Ch)$と書き，$\Gamma(f)=|Df|^2$を最小緩和勾配の
+二乗とする．$\Ch$が二次形式であることをinfinitesimally Hilbertianという．
+このとき$\Gamma(f,g)=(\Gamma(f+g)-\Gamma(f-g))/4$は双線形である．
+生成作用素の符号は非正とする：
+\begin{equation}\label{ja:generator}
+ f\in D(L),\quad Lf=h
+ \quad\Longleftrightarrow\quad
+ \int\Gamma(f,g)\dm=-\int hg\dm\quad(g\in W^{1,2}).
+\end{equation}
+$A=-L$，$P_t=e^{tL}$と置く．
+
+明確さのため，$\RCD(K,N)$のエントロピーによる特徴付けを採用する．
+$\mu=\rho\mathfrak m$に対して
+$\Ent_{\mathfrak m}(\mu)=\int\rho\log\rho\dm$，
+$U_N(\mu)=\exp(-\Ent_{\mathfrak m}(\mu)/N)$と置き，
+エントロピーの定義域外では値を$+\infty$とする．
+$\mathrm{CD}^{e}(K,N)$条件とは，有限エントロピーを持つ任意の二つの
+確率測度の間に，次を満たす定速$W_2$測地線$\mu_t$が存在することである：
+\begin{equation}\label{ja:cd}
+ U_N(\mu_t)\geq
+ \sigma_{K/N}^{(1-t)}(\ell)U_N(\mu_0)
+ +\sigma_{K/N}^{(t)}(\ell)U_N(\mu_1),
+ \qquad \ell=W_2(\mu_0,\mu_1).
+\end{equation}
+ここで$W_2^2$は，すべての結合$\pi$にわたる
+$\int d(x,y)^2\,d\pi$の下限である．また
+$\sigma_\kappa^{(t)}(\ell)=\mathfrak s_\kappa(t\ell)/
+\mathfrak s_\kappa(\ell)$とし，$\mathfrak s_\kappa(r)$は$\kappa$の
+符号に応じて$\sin(\sqrt\kappa r)/\sqrt\kappa$，$r$，
+$\sinh(\sqrt{-\kappa}r)/\sqrt{-\kappa}$とする．
+$\ell=0$では連続延長を用い，$\kappa>0$で最初の零点以降では通常の
+無限大の歪み係数の規約を用いる．二次形式性と\eqref{ja:cd}の組合せは，
+reduced $\operatorname{RCD}^{*}(K,N)$条件と同値である
+\cite[Theorem 3.17]{ja:EKS}．本稿では一貫してstarを付ける．
+Hausdorff測度による正規化やnoncollapsed条件は仮定しない．
+
+用いる解析的事実を正確に記す．$\RCD(1,N)$空間では
+$\operatorname{RCD}(1,\infty)$の微分解析が適用できる．スペクトルは離散的で，
+$\ker A$は定数関数からなり，非零固有値はすべて$N/(N-1)$以上である
+\cite[Theorem 4.22]{ja:EKS}．固有関数は有界かつLipschitzである
+\cite[Proposition 7.1]{ja:AHPT}．この命題の次元に依存する定数は，
+定義域に属することの確認だけに用いる．したがって固有関数は
+\[
+ \Test(X)=\{f\in D(L)\cap L^\infty:
+       |Df|\in L^\infty,\ Lf\in W^{1,2}\}
+\]
+に属する．テスト関数について$\Gamma(f,g)\in W^{1,2}$であり，
+多変数の連鎖律が成立する．有限測度
+\[
+ \boldsymbol\Gamma_2(f)=\tfrac12\boldsymbol L\Gamma(f)
+                         -\Gamma(f,Lf)\mathfrak m
+ =\gamma_2(f)\mathfrak m+\boldsymbol\Gamma_2^s(f)
+\]
+を定義する．ここで測度$\boldsymbol Lh$は
+$\int\phi\,d\boldsymbol Lh=-\int\Gamma(\phi,h)\dm$を用いて定義する．
+上の特異部分は非負であり，$\gamma_2(f)\geq\Gamma(f)$である．
+さらに$\mathfrak m$-a.e.で
+\begin{equation}\label{ja:selfimprove}
+ |D\Gamma(f,g)|\leq
+ \sqrt{\gamma_2(f)-\Gamma(f)}\,|Dg|
+ +\sqrt{\gamma_2(g)-\Gamma(g)}\,|Df|
+\end{equation}
+が成立する．これらは$\mathrm{BE}(1,\infty)$の自己改良による
+\cite[Lemma 3.2 and Theorem 3.4, (3.16)]{ja:S}．
+積分する際には特異測度を保持することが重要である．
+
+非負関数$h$については
+$\Ent(h)=\int h\log(h/\int h\dm)\dm$とも書き，$\Ent(0)=0$とする．
+
+超縮小性$\|P_t v\|_{1+e^{2t}}\leq\|v\|_2$と逆Poincar\'e不等式
+\begin{equation}\label{ja:reverse}
+ \Gamma(P_tv)\leq\frac{P_t(v^2)-(P_tv)^2}{e^{2t}-1}
+                  \leq\frac{P_t(v^2)}{e^{2t}-1}
+\end{equation}
+も用いる．これらはBochner不等式と対数Sobolev不等式から従う
+（\cite[Proposition 3.2]{ja:BF}も参照）．実際，
+\cite[Corollary 3.28]{ja:EKS}から
+$\Ent(w^2)\leq2\int\Gamma(w)\dm$を得る．
+正で零から離れた有界な$v$について$u=P_tv$，$p(t)=1+e^{2t}$，
+$Z=\int u^p\dm$と置く．微分と部分積分により
+\[
+ \frac{d}{dt}\log\|u\|_p
+ =\frac{p'}{p^2Z}\Ent(u^p)
+   -\frac{p-1}{Z}\int u^{p-2}\Gamma(u)\dm\leq0
+\]
+となる．ここで$\Ent(u^p)\leq(p^2/2)\int u^{p-2}\Gamma(u)\dm$と
+$p'=2(p-1)$を用いた．近似とMarkov性により，一般の$v\in L^2$について
+超縮小性が従う．例えば\eqref{ja:reverse}は，勾配評価\cite[Corollary 3.5]{ja:S}
+$\Gamma(P_t v)\leq e^{-2s}P_s\Gamma(P_{t-s}v)$を
+$P_t(v^2)-(P_tv)^2=2\int_0^tP_s\Gamma(P_{t-s}v)\,ds$に代入して
+積分することで得られる．
+
+\section{主結果}
+整数$k,r\geq1$および$0<\eta<1/2$を固定し，
+$a=1/2-\eta$，$M_{k,n}=\binom{k+n-1}{n}$と置く．
+スペクトル射影を$\one_I(A)$と書く．
+
+\begin{jathm}[重複度の伝播]\label{ja:main}
+$N$に依存しない計算可能な定数$C=C(k,r,\eta)\geq1$と
+$\eps_0=\eps_0(k,r,\eta)>0$が存在して，次が成立する．
+$(X,d,\mathfrak m)$をコンパクトな$\RCD(1,N)$確率測度空間とし，
+$1<N<\infty$とする．実数値の正規直交関数$f_1,\ldots,f_k$が
+\begin{equation}\label{ja:low}
+ Af_i=\lambda_i f_i,\qquad 1\leq\lambda_i\leq1+\eps,
+ \qquad 0<\eps\leq\eps_0
+\end{equation}
+を満たすと仮定する．このとき$\delta=C\eps^a\leq1/3$であり，
+$1\leq n\leq r$に対して
+\begin{equation}\label{ja:rank}
+ \rank\one_{[n-\delta,n+\delta]}(A)\geq M_{k,n}
+\end{equation}
+が成立する．したがって
+\begin{equation}\label{ja:count}
+ \rank\one_{[0,r+\delta]}(A)\geq\binom{k+r}{r},\qquad
+ \Tr(P_t)\geq1+\sum_{n=1}^rM_{k,n}e^{-t(n+\delta)}\quad(t>0)
+\end{equation}
+を得る．
+\end{jathm}
+\eqref{ja:low}の固有値は相異なっていてもよい．結論は重複度の下界であり，
+上界を与えるものでも，表示した区間の間に別のスペクトルがないことを
+主張するものでもない．有限次元のより鋭いスペクトルギャップ評価により，
+仮定が成立するなら$\eps\geq1/(N-1)$である．したがって，このクラスで
+欠損を任意に小さくするには次元パラメータが非有界になる必要があり，
+$N$を固定したコンパクト性の議論から上記の一様性は得られない．
+
+\begin{jathm}[多項式による実現]\label{ja:realization}
+定理\ref{ja:main}の仮定のもと，$\mathcal H_n$を
+$L^2(\R^k,\gauss)$内の次数$n$のHermite固有空間とする．ただし
+$\gauss=(2\pi)^{-k/2}e^{-|x|^2/2}dx$である．
+像が$D(A)$に含まれる線形等長写像
+$U_n:\mathcal H_n\to L^2(X,\mathfrak m)$で
+\begin{equation}\label{ja:realizationeq}
+ \|(A-n)U_n\|\leq\delta/2,\qquad
+ \|P_tU_n-e^{-nt}U_n\|\leq\frac{\delta}{2n}(1-e^{-nt})
+ \quad(t\geq0)
+\end{equation}
+を満たすものが存在する．ノルムは$\mathcal H_n$から$L^2(X)$への
+作用素ノルムである．像は$F=(f_1,\ldots,f_k)$に次数$n$のHermite
+多項式を代入して得る関数の張る空間である．
+\end{jathm}
+
+\section{混合勾配とモーメントの評価}
+すべての定量的な段階を証明する．本節では$0<\eps\leq1$とし，
+\eqref{ja:low}を仮定する．特に断らなければ積分は$\mathfrak m$に関するものとする．
+
+\begin{jalem}[モーメントとPoincar\'e評価]\label{ja:integrability}
+$q\geq2$，$1\leq p\leq2$に対して
+\begin{equation}\label{ja:integrabilityeq}
+ \begin{gathered}
+ \|f_i\|_q\leq(q-1)^{\lambda_i/2}\leq q-1,
+ \qquad \||Df_i|\|_q\leq2(q-1),\\
+ \|g-\E g\|_p\leq\frac\pi2\||Dg|\|_p
+ \quad(g\in W^{1,2}).
+ \end{gathered}
+\end{equation}
+が成立する．
+\end{jalem}
+\begin{proof}
+$t=\frac12\log(q-1)$として$P_tf_i=e^{-\lambda_it}f_i$に超縮小性を
+適用する．次に$t=\frac12\log2$として\eqref{ja:reverse}を適用すると，
+$\Gamma(f_i)\leq2^{\lambda_i}P_t(f_i^2)$となる．Jensenの不等式と
+$\mathfrak m$の不変性から第2の評価を得る．
+最後の評価については有界なテスト関数$v$を取り，$p'$を共役指数とする
+（$p'=\infty$も含む）．自己共役性と$P_Tv\to\E v$の$L^2$収束から
+\[
+ \int(g-\E g)v\dm=\int_0^\infty\int\Gamma(g,P_tv)\dm\,dt
+\]
+となる．H\"older，\eqref{ja:reverse}，および$p'\geq2$によるJensenの
+不等式から，その絶対値は
+\[
+ \||Dg|\|_p\|v\|_{p'}
+ \int_0^\infty(e^{2t}-1)^{-1/2}\,dt
+ =\frac\pi2\||Dg|\|_p\|v\|_{p'}
+\]
+以下である．この評価は時間積分の収束も正当化する．双対性と，双対側の
+テスト関数の有界近似によって証明が終わる．
+\end{proof}
+
+$D_{ij}=\Gamma(f_i,f_j)-\lambda_i\delta_{ij}$と置く．これは各成分の平均が
+零である対称行列である．$1\leq p<2$，$s\geq1$に対して
+\begin{equation}\label{ja:constantsB}
+ B_p=4\pi\left(\frac{2p}{2-p}-1\right),\qquad
+ H_s=4(2s-1)^2+2
+\end{equation}
+と定める．
+\begin{jalem}[混合欠損]\label{ja:mixed}
+次が成立する：
+\begin{equation}\label{ja:mixedlow}
+ \|D_{ij}\|_p\leq B_p\sqrt\eps\quad(1\leq p<2),\qquad
+ \|D_{ij}\|_s\leq H_s\quad(s\geq1).
+\end{equation}
+$p_\eta=2/(1+\eta)$，$q_\eta=2/(1-\eta)$，$s_\eta=2/\eta$，
+$D_\eta=B_{p_\eta}^{1-2\eta}H_{s_\eta}^{2\eta}$と置くと，
+\begin{equation}\label{ja:mixedhigh}
+ \|D_{ij}\|_{q_\eta}\leq D_\eta\eps^{1/2-\eta}
+\end{equation}
+を得る．
+\end{jalem}
+\begin{proof}
+$\boldsymbol L\Gamma(f_i)$を$1$に対してテストし，
+$Lf_i=-\lambda_i f_i$を用いると
+\[
+ \int d\boldsymbol\Gamma_2(f_i)=\lambda_i^2,\qquad
+ \int(\gamma_2(f_i)-\Gamma(f_i))\dm
+ \leq\lambda_i(\lambda_i-1)\leq2\eps
+\]
+となる．ここで特異部分が非負であることを用いた．
+$q=2p/(2-p)$と置くと$1/p=1/2+1/q$である．
+\eqref{ja:selfimprove}と\eqref{ja:integrabilityeq}から
+\[
+ \||DD_{ij}|\|_p
+ \leq\sqrt{2\eps}\bigl(\||Df_i|\|_q+\||Df_j|\|_q\bigr)
+ \leq4\sqrt2(q-1)\sqrt\eps
+\]
+を得る．\eqref{ja:integrabilityeq}の最後の評価を$D_{ij}$に適用し，
+$2\sqrt2\pi\leq4\pi$を用いると，上で選んだ$B_p$による評価になる．
+$\Gamma$の点ごとのCauchy--Schwarz不等式と指数$2s$のH\"older不等式により
+$\|\Gamma(f_i,f_j)\|_s\leq4(2s-1)^2$となり，高次モーメントの評価を得る．
+最後に，厳密な指数関係
+\[
+ \frac1{q_\eta}=\frac{1-2\eta}{p_\eta}+
+                  \frac{2\eta}{s_\eta},\qquad
+ \frac12=\frac1{q_\eta}+\frac1{s_\eta}
+\]
+によって補間が正当化され，\eqref{ja:mixedhigh}を得る．
+\end{proof}
+最後の表示の指数関係は重要である．$L^1$ノルムが小さく，高次モーメントが
+有界であることだけから，任意の$L^p$ノルムについて$1/2$に任意に近い
+指数の評価が出るわけではない．本稿では明示した$q_\eta>2$と，
+それに対応する多項式の指数$s_\eta$のみを用いる．
+
+$d\geq1$，$t\geq1$に対して$V_{d,t}=(\max\{2,td\}-1)^d$と置き，
+$V_{0,t}=1$とする．$P(x)=\sum_\beta c_\beta x^\beta$について
+\begin{equation}\label{ja:polynorm}
+ \mathcal A_t(P)=\sum_\beta|c_\beta|V_{|\beta|,t}
+\end{equation}
+と定義する．H\"olderと\eqref{ja:integrabilityeq}から
+$\|F^\beta\|_t\leq V_{|\beta|,t}$，したがって
+$\|P(F)\|_t\leq\mathcal A_t(P)$となる．
+
+\begin{jalem}[結合モーメントの漸化式]\label{ja:moments}
+$d$だけに依存する明示的な数$c_d$が存在して
+\begin{equation}\label{ja:momentbound}
+ \left|\E F^\beta-\int x^\beta\,d\gauss\right|
+ \leq c_{|\beta|}\sqrt\eps
+\end{equation}
+となる．一つの選択は$c_0=c_1=c_2=0$とし，$d\geq3$について
+\begin{equation}\label{ja:momentconstant}
+ c_d=(d-1)c_{d-2}+12\pi(d-1)V_{d-2,4}
+\end{equation}
+とするものである．
+\end{jalem}
+\begin{proof}
+部分積分と連鎖律から，任意の多項式$P$について
+\begin{equation}\label{ja:ibp}
+ \E[f_iP(F)]=\E[\partial_iP(F)]
+       +\lambda_i^{-1}\sum_j\E[D_{ij}\partial_jP(F)]
+\end{equation}
+が成立する．これは$X$上での恒等式である．$F(X)$は有界なので，その近傍で
+$P$と一致する滑らかなコンパクト台関数に置き換えられる．したがって
+連鎖律から定義域への所属と恒等式が従い，境界を除去する操作は不要である．
+$\beta_i>0$となる$i$を選び，$d=|\beta|$，$P=x^{\beta-e_i}$とすると
+\[
+ \E F^\beta=(\beta_i-1)\E F^{\beta-2e_i}+R_\beta,
+ \qquad |R_\beta|\leq12\pi(d-1)V_{d-2,4}\sqrt\eps
+\]
+を得る．係数が零の項は省く．残差の評価には，
+$B_{4/3}=12\pi$を伴う\eqref{ja:mixedlow}，指数$4$のH\"older不等式，
+および$\lambda_i^{-1}\leq1$を用いた．標準Gaussianのモーメントは，
+$x_i$についての1変数の部分積分により，$R_\beta=0$とした同じ漸化式を
+満たす．次数$0,1,2$のモーメントは正規化，$\lambda_i>0$，正規直交性から
+厳密に一致する．$d$についての帰納法により結論を得る．
+\end{proof}
+
+\section{主結果の証明}
+$H_0=1$，$H_1(x)=x$，$H_{j+1}(x)=xH_j(x)-jH_{j-1}(x)$とし，
+多重指数$\alpha$について
+\[
+ h_\alpha(x)=\prod_{i=1}^k\frac{H_{\alpha_i}(x_i)}{\sqrt{\alpha_i!}}
+\]
+と置く．漸化式を微分すると$H_j''-xH_j'=-jH_j$が従う．
+Gaussian部分積分，あるいは同じ漸化式から得られるRodriguesの公式により
+$\int H_jH_\ell\,d\gamma_1=j!\delta_{j\ell}$となる．
+積を取ることで$h_\alpha$は正規直交し，
+$\{h_\alpha:|\alpha|=n\}$は$\mathcal H_n$の基底となる．
+非負整数の和による組合せの数を数えると，その個数は$M_{k,n}$である．
+
+$\mathcal I_r=\{\alpha\in\N_0^k:|\alpha|\leq r\}$とし，
+$h_\alpha h_\beta=\sum_\nu b_{\alpha\beta\nu}x^\nu$と展開する．
+\begin{equation}\label{ja:Gconstant}
+ K_{k,r}=\max_{\alpha\in\mathcal I_r}
+       \sum_{\beta\in\mathcal I_r}\sum_\nu
+                       |b_{\alpha\beta\nu}|c_{|\nu|}
+\end{equation}
+と定義する．$G_{\alpha\beta}=\E[h_\alpha(F)h_\beta(F)]$とすると，
+補題\ref{ja:moments}と実対称行列の行和による評価から
+\begin{equation}\label{ja:Gram}
+ \|G-I\|_{\mathrm{op}}\leq K_{k,r}\sqrt\eps
+\end{equation}
+となる．したがって$K_{k,r}\sqrt\eps\leq1/2$ならば，写像
+$J_n c=\sum_{|\alpha|=n}c_\alpha h_\alpha(F)$は
+\begin{equation}\label{ja:Jbound}
+ \|J_nc\|_2\geq2^{-1/2}|c|
+\end{equation}
+を満たす．これで，$\lambda_i$が等しくない場合も含めて線形独立性が示された．
+
+連鎖律とHermiteの方程式から，厳密な残差恒等式
+\begin{equation}\label{ja:residual}
+ A h_\alpha(F)=\left(\sum_i\alpha_i\lambda_i\right)h_\alpha(F)
+                   -\sum_{i,j}D_{ij}\partial_{ij}h_\alpha(F)
+\end{equation}
+を得る．混合微分はすべての$(i,j)$について和を取っており，係数$2$を
+省略していない．$|\alpha|=n$に対して
+\[
+ R_\alpha=n\mathcal A_2(h_\alpha)
+       +D_\eta\sum_{i,j}\mathcal A_{s_\eta}(\partial_{ij}h_\alpha),
+ \qquad R_n=\left(\sum_{|\alpha|=n}R_\alpha^2\right)^{1/2}
+\]
+と置く．$\eps\leq1$なら$\eps\leq\eps^a$であるため，
+\eqref{ja:mixedhigh}，\eqref{ja:polynorm}，および
+$1/2=1/q_\eta+1/s_\eta$によるH\"older不等式から
+\begin{equation}\label{ja:spanresidual}
+ \|(A-n)J_nc\|_2\leq R_n\eps^a|c|
+\end{equation}
+となる．これは個々の基底要素だけでなく，任意の線形結合に対する残差評価である．
+
+定理\ref{ja:main}で許される明示的な定数は次の通りである：
+\begin{equation}\label{ja:finalconstants}
+ \begin{split}
+ C&=\max\{1,\,2\sqrt2\max_{1\leq n\leq r}R_n\},\\
+ \eps_0&=\min\left\{1,\frac1{4\max\{1,K_{k,r}\}^2},
+                         (3C)^{-1/a}\right\}.
+ \end{split}
+\end{equation}
+これらは$k,r,\eta$のみを用いる有限和と漸化式であり，大きさは最適化していない．
+
+\begin{proof}[定理\ref{ja:main}の証明]
+$V_n=\Image{J_n}$と置く．\eqref{ja:Jbound}と\eqref{ja:spanresidual}から
+$\dim V_n=M_{k,n}$であり，$u\in V_n$について
+$\|(A-n)u\|_2\leq(\delta/2)\|u\|_2$である．
+$Q_n=\one_{[n-\delta,n+\delta]}(A)$とすると，スペクトル定理により
+\[
+ \|(I-Q_n)u\|_2\leq\delta^{-1}\|(A-n)u\|_2
+                         \leq\tfrac12\|u\|_2
+\]
+となる．したがって$Q_n$は$V_n$上単射であり，\eqref{ja:rank}を得る．
+$\delta\leq1/3$より，各区間は互いに交わらず$0$を含まない．
+これらの次元と定数固有関数を足し合わせ，
+$1+\sum_{n=1}^rM_{k,n}=\binom{k+r}{r}$を用いると，
+\eqref{ja:count}の第1の不等式が従う．第$n$の区間内の各固有値は熱トレースに
+少なくとも$e^{-t(n+\delta)}$寄与するので，第2の不等式も従う．
+\end{proof}
+
+\begin{proof}[定理\ref{ja:realization}の証明]
+$G_n=J_n^*J_n$と置き，正規直交Hermite基底を用いて
+$U_n=J_nG_n^{-1/2}$と定義する．このとき$U_n^*U_n=I$であり，
+\eqref{ja:Gram}から$\|G_n^{-1/2}\|\leq\sqrt2$である．
+\eqref{ja:spanresidual}により\eqref{ja:realizationeq}の第1の評価を得る．
+$U_n$の値域は$D(A)$に含まれるため，$L^2$での半群の微分により
+\[
+ P_tU_n-e^{-nt}U_n
+ =-\int_0^t e^{-(t-s)A}(A-n)U_n e^{-ns}\,ds
+\]
+が成立する．縮小性と$\int_0^te^{-ns}ds=(1-e^{-nt})/n$から結論が従う．
+\end{proof}
+
+曲率下界が$K>0$の場合，$d$を$\sqrt K d$に置き換える．新しい作用素は
+$A/K$であるため，入力区間$[K,K(1+\eps)]$から出力区間
+$[K(n-\delta),K(n+\delta)]$を得る．確率測度の正規化は変わらない．
+これにより固有値と曲率の両方のスケーリングが確認できる．
+
+\section{例，障害および限界}
+\subsection{任意に小さい欠損を持つ特異空間}
+$k\geq1$を固定する．$d\geq k+2$に対して$q=d+1-k$と書き，
+$S^d(\sqrt{d-1})\subset\R^k\oplus\R^q$を考える．対合
+$\iota(x,y)=(x,-y)$は測度を保つ等長変換として作用する．
+\[
+ Q_{d,k}=S^d(\sqrt{d-1})/\langle\iota\rangle
+\]
+に商距離と正規化体積の押し出し測度を入れると，コンパクトな
+$\RCD(1,d)$確率測度空間となる
+\cite[Theorem 1.1 and Corollary 1.2]{ja:GKMS}．
+固定点での接錐は$\R^{k-1}\times(\R^q/\{\pm1\})$であり，
+$q\geq3$ではEuclid空間ではない．したがって主定理は実際に特異空間に適用される．
+
+不変関数$f_i=\sqrt{(d+1)/(d-1)}\,x_i$は商に降下し，正規直交する．
+Euclid空間のLaplacianの極座標表示を斉次調和多項式に適用すると，
+球面の固有値は
+\begin{equation}\label{ja:spherespectrum}
+ \Lambda_{d,n}=\frac{n(n+d-1)}{d-1}=n+\frac{n^2}{d-1}
+\end{equation}
+となる．特に$Af_i=(1+1/(d-1))f_i$である．商上の固有関数はちょうど
+球面上の不変固有関数に対応する．実際，持ち上げは$L^2(Q_{d,k})$を
+不変部分空間と同一視し，エネルギー形式を保つ．次数1の不変部分空間は
+正確に$k$次元の$x$座標の空間である．したがって欠損$\eps=1/(d-1)$は
+零に近づき，最初の集積にはちょうど$k$個の独立な固有関数が存在する．
+
+正規化もこの例で検算できる．$\E f_i^2=1$であり，
+\[
+ \Gamma(f_i,f_j)=\frac{d+1}{d-1}\delta_{ij}
+                    -\frac{f_if_j}{d-1},\qquad
+ D_{ij}=\frac{\delta_{ij}-f_if_j}{d-1}
+\]
+となる．これらの例の欠損は一般評価より小さい．
+指数$1/2-\eta$の最適性は主張しない．
+
+\begin{japrop}[最初の集積から重複度の上界は出ない]\label{ja:noupper}
+$k$を固定して$\eps\downarrow0$としても，定理\ref{ja:main}の仮定から
+第2の集積の重複度を$k$だけの関数で上から抑えることはできない．
+\end{japrop}
+\begin{proof}
+$Q_{d,k}$上の不変二次多項式は，$x$の任意の二次形式と$y$の任意の
+二次形式の和である．調和条件はちょうど一つのトレース条件を課す．
+したがって$\Lambda_{d,2}=2+4/(d-1)$の重複度は
+\[
+ \frac{k(k+1)}2+\frac{q(q+1)}2-1
+\]
+である．$k$を固定するとこれは$d$とともに無限大となるが，最初の集積の
+次元はちょうど$k$である．任意の固定した正定数$C$と$0<a<1$について，
+最終的に$4\eps<C\eps^a$となるため，この固有値は主張した第2の区間に入る．
+球面調和関数の完全性と不変部分空間への制限により，$2$の十分小さい近傍に
+他の次数の固有値が入らないことも分かる．
+\end{proof}
+
+\begin{japrop}[$k$への依存は必要]\label{ja:knecessary}
+$r=2$，$0<\eta<1/2$を固定すると，定理\ref{ja:main}の正の閾値と
+有限定数を$k$と$N$の両方について一様に選ぶことはできない．
+\end{japrop}
+\begin{proof}
+球面全体$S^d(\sqrt{d-1})$と，すべての$k=d+1$個の正規化座標関数を用いる．
+共通の固有値は$1+1/(d-1)$であるが，
+\[
+ \sum_{i=1}^k f_i^2=k,\qquad
+ \sum_{i=1}^k h_{2e_i}(F)=0
+\]
+が成立する．$k,d$に依存しない定数$C,\eps_0$に対し，$d$を十分大きくして
+$\eps=1/(d-1)<\eps_0$および$C\eps^a<1/3$とする．
+\eqref{ja:spherespectrum}より，$2$の周りの区間には二次調和関数の固有値
+しか入らず，最終的にはそれが含まれる．その空間の次元は
+$k(k+1)/2-1=M_{k,2}-1$であり，\eqref{ja:rank}に矛盾する．
+表示した多項式関係は，この失敗の背後にあるGram行列の障害を説明する．
+\end{proof}
+
+\subsection{Collapseと曲率}
+$d$を十分大きく固定すると，積距離と確率測度を備えた
+$Q_{d,k}\times S^2(t)$，$0<t\leq1$は，テンソル化により
+$\RCD(1,d+2)$空間である\cite[Theorem 3.23]{ja:EKS}．
+同じ$f_i$が\eqref{ja:low}を満たし，評価は$t$に依存しない．
+$t\downarrow0$のとき，射影のファイバーの直径は$\pi t$であり，
+測度は正確に$Q_{d,k}$の測度に押し出される．したがって
+$Q_{d,k}$への測度付きGromov--Hausdorff collapseが従う．
+結論にnoncollapsedの仮定が隠れているわけではない．
+
+正の曲率を非負曲率で置き換えることはできない．実際，平坦な$d$次元
+トーラス$(\R/2\pi\Z)^d$では，$2d$個の正規化されたsinとcosの関数が
+固有値$1$を持つ．Fourier級数からスペクトルは$|z|^2$，$z\in\Z^d$である．
+$2$の重複度は$4\binom d2=2d(d-1)$である一方，$k=2d$として予想される
+重複度は$M_{2d,2}=d(2d+1)$で，$3d$だけ大きい．半径$1/2$未満の区間には
+他の固有値は入らない．これは仮定の境界での検算であり，トーラスの計算
+そのものの新規性を主張するものではない．
+
+\subsection{証明していないこと}
+結論はスペクトル部分空間と熱発展に関するものである．測度距離空間の
+積を構成したり，位相を分類したり，測度付きGromov--Hausdorff距離の
+誤差を与えたりするものではない．ほとんど至る所での勾配評価から大域的な
+等長性へ飛躍することはない．特異集合を除去せず，曲率を保つ平滑化も
+仮定しない．定数は明示的であるが非常に大きく，本定理は漸近的な構造を
+述べるものであって，効率的な数値判定ではない．収束率も最適とは限らない．
+
+\section{今後の問題と成果の状態}
+指数の損失$\eta$を除去できるか．$k,r$への依存を大幅に改善できるか．
+横方向の固有関数を除外する自然な仮定を追加し，全スペクトルを制御できるか．
+コンパクト性を仮定せず，離散スペクトルの代わりにスペクトル射影を用いて，
+すべての$\operatorname{RCD}(1,\infty)$空間で同じ定量的な階数評価を
+証明できるか．これらの問題は本稿では解決していない．
+
+定理\ref{ja:main}，\ref{ja:realization}および
+命題\ref{ja:noupper}，\ref{ja:knecessary}の証明は，明示的に引用した
+確立されたRCD解析の結果を用いて完結している．重複度の定理は既存の
+Hermite多項式の手法の精密化であり，新たな分裂定理ではない．
+その定式化は，確認した1関数のスペクトルに関する結果およびGaussian
+輸送評価\cite{ja:BF,ja:CF}とは異なる．関連する押し出し分布の安定性
+\cite{ja:Serres}も結論が異なる．独創性と意義の判断には，専門家による
+検証と追加の文献確認が必要である．確認した版，補間上の問題，および
+この比較の限界を別の監査記録にまとめた．
+\begin{thebibliography}{AHPT18}
+\bibitem[AHPT18]{ja:AHPT}
+L. Ambrosio, S. Honda, J. W. Portegies and D. Tewodrose,
+\emph{Embedding of $\operatorname{RCD}^{*}(K,N)$ spaces in $L^2$ via eigenfunctions},
+\href{https://arxiv.org/abs/1812.03712v1}{arXiv:1812.03712v1} (2018), Proposition 7.1.
+
+\bibitem[BF21]{ja:BF}
+J. Bertrand and M. Fathi,
+\emph{Stability of eigenvalues and observable diameter in
+$\operatorname{RCD}(1,\infty)$ spaces},
+\href{https://arxiv.org/abs/2107.05324v1}{arXiv:2107.05324v1} (2021).
+本稿で引用する定理番号はこの版に従う．
+
+\bibitem[CF20]{ja:CF}
+T. A. Courtade and M. Fathi,
+\emph{Stability of the Bakry--\'Emery theorem on $\R^n$},
+J. Funct. Anal. \textbf{279} (2020), no.~2, 108523.
+確認したプレプリント： \href{https://arxiv.org/abs/1807.09845v2}{arXiv:1807.09845v2},
+Theorems 1.1--1.2 and \S2.1.
+
+\bibitem[EKS15]{ja:EKS}
+M. Erbar, K. Kuwada and K.-T. Sturm,
+\emph{On the equivalence of the entropic curvature-dimension condition
+and Bochner's inequality on metric measure spaces},
+\href{https://arxiv.org/abs/1303.4382v2}{arXiv:1303.4382v2} (2013),
+Theorems 3.17, 3.23, 4.8 and 4.22; Corollary 3.28.
+
+\bibitem[FGS24]{ja:Serres}
+M. Fathi, I. Gentil and J. Serres,
+\emph{Stability estimates for the sharp spectral gap bound under a
+curvature-dimension condition},
+Ann. Inst. Fourier \textbf{74} (2024), no.~6, 2425--2459,
+Theorems 1.1 and 4.3.
+\href{https://doi.org/10.5802/aif.3608}{doi:10.5802/aif.3608}.
+
+\bibitem[GKMS17]{ja:GKMS}
+F. Galaz-Garc\'ia, M. Kell, A. Mondino and G. Sosa,
+\emph{On quotients of spaces with Ricci curvature bounded below},
+\href{https://arxiv.org/abs/1704.05428v1}{arXiv:1704.05428v1} (2017),
+Theorem 1.1 and Corollary 1.2.
+
+\bibitem[GKKO20]{ja:GKKO}
+N. Gigli, C. Ketterer, K. Kuwada and S.-i. Ohta,
+\emph{Rigidity for the spectral gap on $\operatorname{RCD}(K,\infty)$-spaces},
+Amer. J. Math. \textbf{142} (2020), no.~5, 1559--1594,
+Theorem 1.1.
+\href{https://arxiv.org/abs/1709.04017}{arXiv:1709.04017}.
+
+\bibitem[S14]{ja:S}
+G. Savar\'e,
+\emph{Self-improvement of the Bakry--\'Emery condition and Wasserstein
+contraction of the heat flow in $\operatorname{RCD}(K,\infty)$ metric measure spaces},
+\href{https://arxiv.org/abs/1304.0643v2}{arXiv:1304.0643v2} (2013),
+Lemma 3.2, Theorem 3.4, especially (3.16).
+\end{thebibliography}
+
+\end{document}
