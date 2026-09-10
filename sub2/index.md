@@ -85,26 +85,32 @@
 # **chatGPTが書いたノート**
 chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あってるか知らないので注意すること. 
 
-近年流行っている分野の単語をいれてプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. 
+近年流行ってそうな分野の単語をいれてプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. 
 ここにおいたのは「論文っぽいものが容易に1時間で作れる」と言うのを見てほしいためです. (これをそのまま論文にするつもりはないです.)
 
+代数幾何学
 - [A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/toric_MY_20260908.pdf) 
 - [Maximal relative anticanonical growth and finite etale splitting](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/anticanonical_20260908.pdf) 
+- [Torsion obstructions to generalized abundance](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/mmp_torsion_note.pdf) 
+- [Magnitude homology of Abelian surfaces: a nonisogenous collision and two-torsion recovery](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/magnitude_geometry_bilingual.pdf) 
+
+複素幾何学
 - [RC-positivity of induced symmetric powers and positive mean curvature](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_positive_2.pdf) 
 - [Positive curvature averages without a common RC direction](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_positive_1.pdf) 
 - [Mean RC curvature and pinched volume rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_DS_continues.pdf) 
-- [Magnitude homology of annuli and holomorphic maps](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/maginutude_20260908.pdf) 
-- [Magnitude homology of Abelian surfaces: a nonisogenous collision and two-torsion recovery](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/magnitude_geometry_bilingual.pdf) 
+- [Asymptotic relative Chow polystability for products of polarized Hirzebruch surfaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/relative_chow_tori.pdf) 
 - [Basic Chern vanishing and Beauville--Bogomolov structure in Vaisman geometry](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/vaisman_BB_20260908.pdf) 
 - [Fixed-Lee positive cones on point blow-ups of exact LCK surfaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/LCK_20260908.pdf) 
 - [A conic criterion for higher Kahler structureson diagonal complex nilmanifolds](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/nil_solv_research_2.pdf) 
 - [p-Kahler thresholds for two-step nilmanifolds from rational normal curves](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/nil_solv_research_bilingual.pdf) 
+
+微分幾何学・幾何解析
 - [Heat-semigroup defects, gaussian approximation, and spectral multiplicities on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_bilingual.pdf) 
 - [Spectral cluster multiplicities from almost gaussian eigenfunctions on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_2.pdf) 
 
+多変数複素解析
+- [Magnitude homology of annuli and holomorphic maps](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/maginutude_20260908.pdf) 
 - [Minimal local sprays and a rank obstruction on projective-space bundles](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/oka_geometry.pdf) 
-- [Asymptotic relative Chow polystability for products of polarized Hirzebruch surfaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/relative_chow_tori.pdf) 
-- [Torsion obstructions to generalized abundance](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/mmp_torsion_note.pdf) 
 - [Joint collision and pole regularization in weighted Bergman interpolation](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/l2_collision.pdf) 
 - [Algebraic rigidity and prescribed convergence sets for triangular non-autonomous automorphisms](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/complex_dynamics_scv.pdf) 
 
