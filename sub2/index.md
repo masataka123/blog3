@@ -92,7 +92,7 @@ chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あっ�
 - [A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/toric_MY_20260908.pdf) 
 - [Maximal relative anticanonical growth and finite etale splitting](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/anticanonical_20260908.pdf) 
 - [Torsion obstructions to generalized abundance](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/mmp_torsion_note.pdf) 
-- [Magnitude homology of Abelian surfaces: a nonisogenous collision and two-torsion recovery](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/magnitude_geometry_bilingual.pdf) 
+- [Magnitude homology of Abelian surfaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/magnitude_geometry_bilingual.pdf) 
 
 複素幾何学
 - [RC-positivity of induced symmetric powers and positive mean curvature](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_positive_2.pdf) 
