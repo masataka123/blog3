@@ -1,0 +1,1116 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+% Unused dsfont package omitted: unavailable in this runtime.
+% Unused bbm package omitted: unavailable in this runtime.
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+% Unused ulem package omitted: unavailable in this runtime.
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical macros retained from the supplied template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\providecommand{\mathds}[1]{\mathbb{#1}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% ============================================================
+% ============================================================
+% Bilingual compilation: LuaLaTeX
+% ============================================================
+\usepackage{fontspec}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+
+% Latin font
+\setmainfont{Latin Modern Roman}
+
+% Japanese font
+\setmainjfont{HaranoAjiMincho-Regular}
+
+% Explicit Japanese font command used later in the document
+\newjfontfamily\japanesefont{HaranoAjiMincho-Regular}
+
+% Load hyperref once, after font/Japanese setup
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=MidnightBlue,
+  anchorcolor=MidnightBlue,
+  citecolor=MidnightBlue,
+  urlcolor=MidnightBlue,
+  pdfauthor={chatGPT 6 Astra},
+  pdftitle={Algebraic rigidity and prescribed convergence sets for triangular non-autonomous automorphisms}
+}
+
+\emergencystretch=1.5em
+\allowdisplaybreaks[1]
+
+\title[Triangular convergence sets]{Algebraic rigidity and prescribed convergence sets for triangular non-autonomous automorphisms}
+\author{chatGPT 6 Astra}
+\date{9 September 2026}
+\subjclass[2020]{Primary 32H50; Secondary 32M17, 14R10}
+\keywords{Non-autonomous holomorphic dynamics, triangular automorphisms,
+pointwise convergence sets, polynomial polyhedra, Runge domains}
+\bibliographystyle{alpha}
+\begin{document}
+\renewcommand{\thesection}{E.\arabic{section}}
+\renewcommand{\theHsection}{E.\arabic{section}}
+\begin{abstract}
+We study pointwise convergence to the origin for sequences of triangular polynomial automorphisms of complex affine space, without a common contracting neighbourhood. We prove that a uniform bound on the degrees of the orbit maps makes the convergence set algebraic; the convergence is then uniform on its compact subsets. For triangular maps, a known degree bound makes this observation applicable without any coefficient bounds. Conversely, we give explicit triangular sequences realizing every algebraic cylinder through the origin and every cylinder defined by finitely many strict or non-strict polynomial modulus inequalities. In the latter construction, arbitrary prescribed finite jets agree with one fixed scalar contraction. We also compute a uniform first-order boundary asymptotic for a closed-disc example. Complete proofs are provided. The degree estimate and the underlying finite-dimensional mechanisms are classical; the novelty of the combined realization statements is not certified.
+\end{abstract}
+
+
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+\section{Introduction}
+All spaces and polynomials are over $\C$. For automorphisms $F_j$ fixing $0$, put
+\begin{equation}\label{eq:orbit-en}
+\Phi_0=\id,\qquad \Phi_n=F_n\circ\cdots\circ F_1,
+\qquad S(F)=\{x:\Phi_n(x)\longrightarrow0\}.
+\end{equation}
+We deliberately call $S(F)$ the \emph{pointwise convergence set}. Without a common attracting neighbourhood, this set need not be open or connected. It must not automatically be treated as a Fatou--Bieberbach domain or as an abstract basin.
+
+Rosay--Rudin established the Euclidean biholomorphism type of autonomous attracting basins \cite{RR-en}. Forn\ae ss--Stens\o nes developed the abstract-basin approach \cite{FS-en}. The uniform non-autonomous case is now settled by Bera--Verma \cite[Theorem 1.1]{BV-en}. These results make it essential to distinguish uniform attraction from control of the derivative alone.
+
+The closest triangular result for our purposes is Abate--Abbondandolo--Majer \cite[Lemma 6.4]{AAM-en}: bounded triangular nonlinear terms, together with an exponentially contracting linear cocycle, give global attraction and a polynomially weighted exponential estimate. Here we permit completely unbounded coefficients. The following statements describe both a restriction imposed by bounded degree and explicit phenomena when that restriction is removed.
+
+\begin{thm}[Algebraic restriction and explicit realization]\label{thm:main-en}
+The following assertions hold.
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item Suppose that $F_j\in\Aut{\C^N}$ are triangular in one fixed coordinate order, fix $0$, and have degree at most $D\geq1$. Then $S(F)$ is an algebraic subset of $\C^N$, defined by polynomials of degree at most $D^{N-1}$. Moreover, $\Phi_n\to0$ uniformly on each compact subset of $S(F)$. If $S(F)$ has nonempty interior, then $S(F)=\C^N$.
+\item Let $V\subset\C^d$ be an algebraic set containing $0$, let $0<\lambda<1$, and let $m\geq1$. There is a sequence of triangular polynomial automorphisms of $\C^{d+1}$, with uniformly bounded degree, for which
+\[
+S(F)=V\times\C,\qquad J_0^m F_j=J_0^m(\lambda\id).
+\]
+Each individual $F_j$, iterated autonomously, attracts every point to $0$.
+\item Let $P_1,\ldots,P_s\in\C[z_1,\ldots,z_d]$ satisfy $P_i(0)=0$, and choose $\epsilon_i\in\{0,1\}$. Define
+\begin{equation}\label{eq:target-en}
+E=\{z: |P_i(z)|<1\text{ if }\epsilon_i=0,
+\quad |P_i(z)|\leq1\text{ if }\epsilon_i=1\}.
+\end{equation}
+For any integers $m_j\geq1$ and any $0<\lambda<1$, there is a triangular polynomial sequence such that
+\[
+S(F)=E\times\C,\qquad J_0^{m_j}F_j=J_0^{m_j}(\lambda\id).
+\]
+Every individual $F_j$ is globally attracting. Convergence is uniform on compact subsets of $E\times\C$, including compact subsets meeting the non-strict boundary.
+\end{enumerate}
+\end{thm}
+
+Part (i) is an elementary consequence of a known composition-degree estimate and a finite-dimensional observation; we do not present it as a new degree theorem. Parts (ii)--(iii) are explicit realization statements whose priority remains uncertain. In particular, part (iii) concerns maps without the common-neighbourhood estimates required in uniform basin theorems. It is not a counterexample to those theorems.
+
+The construction recovers the original base coordinate from its contracting orbit and inserts a prescribed polynomial sequence in one additional coordinate. A stable scalar recurrence then tests whether those polynomial values tend to zero. Powers distinguish $|P|<1$ from $|P|>1$, while a factor $1/k$ controls the equality case. This also permits arbitrarily high finite contact with the same linear contraction.
+
+\begin{rem}[Certification]\label{rem:status-en}
+Proof status: \textbf{VERIFIED} by the arguments below and a second direct audit, not by a proof assistant. Final novelty status: \textbf{NOVELTY UNCERTAIN}; \emph{novelty not fully certified}. Under the requested outcome classification we conservatively record \textbf{Outcome D}: a completely proved, reliably new result has not been established as such. This does not indicate a gap in the stated theorems. The unresolved issue is prior art and mathematical originality, rather than a missing step in their proofs.
+\end{rem}
+
+\section{Preliminaries}
+A triangular polynomial automorphism in the fixed order $x_1,\ldots,x_N$ has the form
+\begin{equation}\label{eq:triangular-en}
+F_j^i(x)=a_{j,i}x_i+p_{j,i}(x_1,\ldots,x_{i-1}),
+\qquad a_{j,i}\ne0.
+\end{equation}
+We assume $p_{j,i}(0)=0$, so $p_{j,1}=0$. Successively solving for $x_1,x_2,\ldots,x_N$ gives a polynomial inverse. No uniform lower bound on $|a_{j,i}|$ is needed for part (i). The symbol $J_0^m$ denotes the Taylor polynomial through total degree $m$ at $0$.
+
+For a compact set $K\subset\C^N$, its polynomial hull is
+\[
+\widehat K=\{x: |p(x)|\leq\sup_K|p|\text{ for every polynomial }p\}.
+\]
+An open subset $U\subset\C^N$ is Runge here if polynomials are dense in $\mathcal O(U)$ for uniform convergence on compact subsets. We use the Oka--Weil theorem in precisely this form: a function holomorphic on a neighbourhood of a polynomially convex compact set can be uniformly approximated there by polynomials. We also use the standard characterization of a Stein manifold by holomorphic convexity and holomorphic separation; coordinates provide the latter for an open subset of $\C^N$. These are classical SCV facts; see \cite{Forst-en}, Chapters 2--3. No numbered location in that book is asserted.
+
+For comparison only, uniform attraction means that on one ball $B_r$ there are constants $0<a\leq b<1$ such that
+\begin{equation}\label{eq:uniform-en}
+a\|x\|\leq\|F_j(x)\|\leq b\|x\|\qquad(x\in B_r,\ j\geq1).
+\end{equation}
+The equality $DF_j(0)=\lambda I$ alone gives none of the uniform nonlinear control in \eqref{eq:uniform-en}.
+
+\section{Previous results and the novelty gap}
+A bounded family of polynomials has bounded degrees \emph{and} bounded coefficients. Dropping the second condition is a substantial change of hypotheses, although it does not by itself make any resulting observation new.
+
+\begin{center}
+\small
+\begin{tabular}{p{2.55cm}|p{5.05cm}|p{5.4cm}}
+Result & Hypotheses relevant here & Conclusion relevant here\\\hline
+Bera--Verma & Common two-sided contraction bounds & Basin biholomorphic to $\C^N$\\
+\cite{AAM-en} & Bounded triangular nonlinear terms; exponentially contracting linear cocycle & Entire convergence set and a global exponential estimate\\
+Arzhantsev--Shakhmatov & Common triangular order and bounded step degree & Bounded degree of every composition\\
+This note, (i) & Same order and bounded degree; no coefficient bound & Algebraic convergence set; compact-uniform convergence on it\\
+This note, (ii)--(iii) & Explicit unbounded coefficients; prescribed jets & Exact algebraic or mixed polynomial-inequality cylinders
+\end{tabular}
+\end{center}
+
+The degree estimate used in (i) is explicitly available in \cite[Lemma 1]{AS-en}; a weighted version appears in \cite[Lemma 6.2]{AAM-en}. Its use here is fully acknowledged. Theorem~\ref{thm:main-en}(i) is a short application of this estimate, not evidence of priority on its own. The bounded-neighbourhood assumptions of \cite[Theorem A.1]{AAM-en} are also essential when comparing jets with analytic conjugacies.
+
+Failure of openness is already known: Peters--Wold, Section 4, Theorem 6 of the author version arXiv:math/0410210 \cite{PW-en}, give a non-open pointwise convergence set for H\'enon-type maps with multipliers tending to $1$. Thus non-openness by itself is not a contribution of this note. Our explicit examples keep the derivative equal to a fixed scalar contraction and prescribe the whole set and the jets simultaneously.
+
+The realization statements specify the \emph{whole} pointwise convergence set, including equality loci, and a freely prescribed jet order at every time. Neither the hypotheses of the uniform theorem nor the coefficient bounds of the closest triangular theorem are imposed. The absence of these statements from the checked sources does not prove that they are absent from the literature. Older work on convergence sets of holomorphic functions and triangular recurrences remains a possible source of stronger prior art.
+
+Nine candidate statements were examined before selecting the results above. Uniform basin uniformization, tails approaching a fixed attracting automorphism, and the usual Runge exhaustion were rejected as known directions. Unconditional global attraction for bounded-degree triangular sequences, jet-only uniformization, and a naive variable-contraction recurrence were rejected by explicit counterexamples. The remaining three candidates are parts (i)--(iii). The complete candidate matrix, search limitations, and citation checks are recorded separately in \texttt{research\_audit.txt}.
+
+\section{Main results}
+We first state the mechanism behind all realizations.
+
+\begin{prop}[A polynomial sequence in a contracting extension]\label{prop:transfer-en}
+Let $q_j\in\C[z_1,\ldots,z_d]$ satisfy $q_j(0)=0$, and let $0<\lambda<1$. Set
+\begin{equation}\label{eq:extension-en}
+F_j(z,w)=\bigl(\lambda z,\lambda w+q_j(\lambda^{-(j-1)}z)\bigr).
+\end{equation}
+These are polynomial automorphisms fixing $0$, and
+\begin{equation}\label{eq:transfer-en}
+S(F)=\{z:q_j(z)\longrightarrow0\}\times\C.
+\end{equation}
+If $q_j\to0$ uniformly on a compact set $K$, then $\Phi_n\to0$ uniformly on $K\times\{|w|\leq R\}$ for every $R<\infty$. If $q_j$ vanishes to order at least $m_j+1$, the corresponding $m_j$-jet of $F_j$ equals that of $\lambda\id$. Each individual $F_j$ is globally attracting under autonomous iteration.
+\end{prop}
+
+For part (iii), the construction is entirely explicit. Write $j=s(k-1)+i$, where $k\geq1$ and $1\leq i\leq s$, choose integers
+\begin{equation}\label{eq:exponents-en}
+e_j\geq\max\{k,m_j+1\},\qquad
+q_j(z)=k^{-\epsilon_i}P_i(z)^{e_j},
+\end{equation}
+and use \eqref{eq:extension-en}. No approximation theorem is involved.
+
+\begin{prop}[Geometry of strict cylinders]\label{prop:geometry-en}
+If all $\epsilon_i=0$, write $D=E$. Then $D\times\C$ is a possibly disconnected Stein open set and is Runge in $\C^{d+1}$. If some $P_i$ is nonconstant, no connected component of $D\times\C$ is biholomorphic to $\C^{d+1}$. On a connected component $D_0$ of $D$, the Kobayashi pseudodistance satisfies
+\begin{equation}\label{eq:kobayashi-en}
+k_{D_0\times\C}((z,w),(z',w'))=k_{D_0}(z,z').
+\end{equation}
+If $D_0$ is bounded, it is Kobayashi hyperbolic, whereas $D_0\times\C$ is not.
+\end{prop}
+The geometry in this proposition is a standard consequence of the explicit product description. We make no separate novelty claim for it.
+
+\section{Proof of the main theorem}
+\subsection{Finite-dimensional convergence}
+\begin{lem}\label{lem:finite-en}
+Let $Q_n:\C^a\to\C^b$ be polynomial maps of total degree at most $L$, with no bound on their coefficients. Then
+\[
+Z=\{z:Q_n(z)\to0\}
+\]
+is an algebraic set defined by polynomials of degree at most $L$. The convergence is uniform on compact subsets of $Z$. If $Z$ has nonempty interior, $Q_n\to0$ uniformly on compact subsets of $\C^a$.
+\end{lem}
+\begin{proof}
+Let $v(z)$ be the column of all monomials of degree at most $L$, including $1$, and let its length be $M$. Write $Q_n(z)=C_n v(z)$ with $C_n$ a $b\times M$ matrix. Define
+\[
+W=\{u\in\C^M:C_nu\to0\}.
+\]
+Linearity of the limit condition makes $W$ a linear subspace. Choose linear forms $\ell_1,\ldots,\ell_t$ whose common kernel is $W$. Finite-dimensional linear algebra then gives
+\[
+Z=v^{-1}(W)=\{z:\ell_1(v(z))=\cdots=\ell_t(v(z))=0\}.
+\]
+These defining polynomials have degree at most $L$.
+
+To justify uniform convergence, choose a basis $u_1,\ldots,u_r$ of $W$. Each $C_nu_i$ tends to zero. In finite dimension, the coefficients of a unit vector in this fixed basis are uniformly bounded, so $\|C_n|_W\|\to0$. For compact $K\subset Z$, the quantity $\sup_K\|v(z)\|$ is finite; hence
+\[
+\sup_K\|Q_n(z)\|\leq\|C_n|_W\|\sup_K\|v(z)\|\longrightarrow0.
+\]
+If $Z$ contains an open set, each defining polynomial vanishes identically by the identity theorem. Thus $Z=\C^a$ and the preceding estimate applies to all compact sets. The identity theorem here can also be verified by successively fixing all but one variable on a polydisc.
+\end{proof}
+
+\subsection{The known triangular degree estimate}
+For \eqref{eq:triangular-en}, induction on the coordinate gives
+\begin{equation}\label{eq:degree-en}
+\deg\Phi_n^i\leq D^{i-1}\quad(n\geq0,\ 1\leq i\leq N).
+\end{equation}
+Indeed the first coordinate is linear. Assuming the bound for the preceding coordinates, each monomial of $p_{n+1,i}(\Phi_n^1,\ldots,\Phi_n^{i-1})$ has degree at most $D\cdot D^{i-2}=D^{i-1}$. The other summand is $a_{n+1,i}\Phi_n^i$, and induction on time preserves the same bound. This is the estimate of \cite[Lemma 1]{AS-en}. Applying Lemma~\ref{lem:finite-en} to $Q_n=\Phi_n$ proves part (i), including its convergence assertion. No assertion that a pointwise limit of general holomorphic maps is locally uniform has been used.
+
+\subsection{The scalar recurrence and the extension}
+For complex numbers $u_j$, define $w_j=\lambda w_{j-1}+u_j$. Then
+\begin{equation}\label{eq:convolution-en}
+w_n=\lambda^nw_0+\sum_{j=1}^n\lambda^{n-j}u_j,
+\qquad
+w_n\to0\ \Longleftrightarrow\ u_n\to0.
+\end{equation}
+Necessity follows from $u_n=w_n-\lambda w_{n-1}$. For sufficiency, given $\eta>0$, choose $J$ such that $|u_j|<\eta(1-\lambda)$ for $j>J$. The finite initial sum tends to zero after multiplication by the relevant powers of $\lambda$, and the remaining sum has absolute value at most $\eta$. The same proof with suprema proves the assertion for uniformly vanishing functions on a fixed compact set. This direct split also rules out any reliance on cancellation of phases.
+
+The inverse of \eqref{eq:extension-en} is
+\begin{equation}\label{eq:inverse-en}
+F_j^{-1}(Z,W)=\bigl(\lambda^{-1}Z,
+\lambda^{-1}[W-q_j(\lambda^{-j}Z)]\bigr).
+\end{equation}
+It is a globally defined polynomial. Substitution verifies both compositions with $F_j$ are the identity, so injectivity, surjectivity, and holomorphicity of the inverse are explicit. Also $\det DF_j=\lambda^{d+1}\ne0$.
+
+Along a non-autonomous orbit the base coordinate is $z_{j-1}=\lambda^{j-1}z$, so the inserted term is exactly $q_j(z)$. Consequently
+\begin{equation}\label{eq:explicit-orbit-en}
+\Phi_n(z,w)=\left(\lambda^nz,
+\lambda^nw+\sum_{j=1}^n\lambda^{n-j}q_j(z)\right).
+\end{equation}
+Equation~\eqref{eq:convolution-en} proves \eqref{eq:transfer-en} and compact-uniform convergence. A nonzero scalar substitution preserves vanishing order and proves the jet assertion.
+
+Finally fix one index $j$ and iterate only $F_j$. Its nonlinear term is a fixed polynomial $p$ with $p(0)=0$. The base coordinate at time $t$ is $\lambda^t z$, and the forcing term $p(\lambda^{t-1}z)$ tends to zero, uniformly for $z$ in compact sets. Equation~\eqref{eq:convolution-en} gives global autonomous attraction. This proves Proposition~\ref{prop:transfer-en} in full.
+
+\subsection{Realizing algebraic cylinders}
+Choose a finite defining family $P_1,\ldots,P_s$ for $V$. Since $0\in V$, each $P_i(0)=0$. In the case $V=\C^d$ take $P_1=0$. Fix $m\geq1$ and set
+\[
+q_{s(k-1)+i}(z)=P_i(z)^{m+1}.
+\]
+This periodic sequence tends to zero at $z$ if and only if every $P_i(z)$ vanishes. Thus Proposition~\ref{prop:transfer-en} gives $S(F)=V\times\C$. The degree is at most $\max\{1,(m+1)\max_i\deg P_i\}$, independently of $j$. The vanishing order and the autonomous attraction have already been checked. This proves part (ii). An algebraic set is understood set-theoretically; no claim is made about prescribing a non-reduced scheme structure.
+
+\subsection{Realizing all specified inequality and equality loci}
+Use \eqref{eq:exponents-en}. Fix $z$. For each $i$, put $r_i=|P_i(z)|$ and restrict to indices $j=s(k-1)+i$.
+If $r_i<1$, then $k^{-\epsilon_i}r_i^{e_j}\leq r_i^k\to0$.
+If $r_i>1$, then
+\[
+k^{-\epsilon_i}r_i^{e_j}\geq k^{-1}r_i^k\longrightarrow\infty.
+\]
+At $r_i=1$ the modulus is exactly $k^{-\epsilon_i}$, which tends to zero exactly when $\epsilon_i=1$. There are only finitely many residue classes. Hence the full sequence $q_j(z)$ tends to zero exactly on $E$. Proposition~\ref{prop:transfer-en} now gives part (iii) set-theoretically.
+
+For compact $K\subset E$, each strict inequality has a maximum strictly below $1$ on $K$. Their finite maximum is some $r<1$; if there are no strict inequalities, take $r=0$. On the non-strict indices the supremum is at most $1/k$. Thus, with zero terms omitted when appropriate,
+\[
+\sup_K|q_{s(k-1)+i}|\leq r^k+\frac1k\longrightarrow0.
+\]
+This proves the claimed compact-uniform convergence, even when $K$ meets the equality loci. Notice that the all-non-strict set is not asserted to equal the closure of the all-strict set for arbitrary defining polynomials.
+
+\subsection{SCV properties of the strict case}
+Let $U=D\times\C$ and $K\subset U$ be compact. Coordinate polynomials show that $\widehat K$ is bounded, and its definition makes it closed. For every $i$,
+\[
+|P_i(z)|\leq\sup_{(\zeta,v)\in K}|P_i(\zeta)|<1
+\quad\text{on }\widehat K.
+\]
+Therefore $\widehat K$ is a compact subset of $U$. For $f\in\mathcal O(U)$, Oka--Weil applies to $\widehat K$ and approximates $f$ uniformly on $K$ by polynomials. This proves Runge approximation. The $\mathcal O(U)$-hull of $K$ is a relatively closed subset of $U$ contained in $\widehat K$, hence compact. Coordinates separate points and give local coordinates, proving the Stein assertion by the characterization stated earlier.
+
+For completeness an explicit strictly plurisubharmonic exhaustion is
+\[
+\rho(z,w)=\|z\|^2+|w|^2+
+\sum_{i=1}^s\frac1{1-|P_i(z)|^2}.
+\]
+The function $t\mapsto(1-t)^{-1}$ has positive first and second derivatives for $t<1$, so its composition with $|P_i|^2$ is plurisubharmonic. The Euclidean term is strictly plurisubharmonic. A bounded sublevel keeps all coordinates bounded and all $|P_i|$ a fixed distance below $1$, and hence is relatively compact in $U$.
+
+If $P_i$ is nonconstant, its restriction to any open component is nonconstant and bounded. A biholomorphism from $\C^{d+1}$ to such a component would pull it back to a nonconstant bounded entire function, contradicting Liouville's theorem, applied on complex lines.
+
+For \eqref{eq:kobayashi-en}, the projection to $D_0$ gives the lower bound by distance decrease under holomorphic maps. A constant-$w$ section gives the reverse bound when the two fibre coordinates agree. Each fibre is $\C$, whose Kobayashi pseudodistance is zero: discs of arbitrarily large radius make the distance between any two fixed points arbitrarily small. The triangle inequality then allows an arbitrary change of fibre coordinate at zero cost. If $D_0$ is bounded, suitable scalar multiples of its coordinate functions map it into the unit disc and separate any two distinct points; distance decrease shows that its pseudodistance separates points. This finishes Proposition~\ref{prop:geometry-en}.
+
+\section{Examples and boundary cases}
+\subsection{Uniform rates on compact subsets of a strict cylinder}
+Let all inequalities be strict and $K\subset D$ compact. Set
+\[
+r=\max_i\sup_K|P_i|<1,\qquad \theta=r^{1/s},
+\qquad \sigma=\max\{\lambda,\theta\}.
+\]
+Since $k=\lceil j/s\rceil\geq j/s$, the construction gives $\sup_K|q_j|\leq\theta^j$. For $|w|\leq R$,
+\begin{equation}\label{eq:rate-en}
+|w_n|\leq \lambda^nR+\sum_{j=1}^n\lambda^{n-j}\theta^j
+\leq(R+n)\sigma^n.
+\end{equation}
+The finite sum is $\theta(\lambda^n-\theta^n)/(\lambda-\theta)$ when $\theta\ne\lambda$, and $n\lambda^n$ at resonance. Thus resonance introduces a polynomial factor and does not prevent convergence. The base coordinate decays at rate $\lambda^n$.
+
+\subsection{Open and closed discs with the same jets}
+In $\C^2$ fix $m\geq1$ and take respectively
+\[
+q_j(z)=z^{j+m},\qquad \widetilde q_j(z)=\frac{z^{j+m}}j.
+\]
+The resulting convergence sets are exactly $\D\times\C$ and $\overline\D\times\C$. All maps have the same $m$-jet as $\lambda\id$; their first orders of nonlinear terms even tend to infinity. The second set is not open. The first is a Stein Runge domain but not biholomorphic to $\C^2$.
+
+\begin{prop}[Uniform boundary asymptotic]\label{prop:boundary-en}
+For $\widetilde q_j(z)=z^{j+m}/j$ and $|z|=1$, the second orbit coordinate satisfies
+\begin{equation}\label{eq:boundary-en}
+w_n=\lambda^nw+
+\frac{z^{n+m}}{n(1-\lambda/z)}+O_\lambda(n^{-2}),
+\end{equation}
+uniformly on the whole circle. The error bound is independent of $w$ after the displayed term $\lambda^nw$ has been subtracted. In particular, at $z=1$, $n w_n\to(1-\lambda)^{-1}$ for fixed $w$.
+\end{prop}
+\begin{proof}
+Reindexing \eqref{eq:explicit-orbit-en} by $h=n-j$ gives
+\[
+w_n-\lambda^nw=z^{n+m}
+\sum_{h=0}^{n-1}\frac{(\lambda/z)^h}{n-h}.
+\]
+Compare this with $z^{n+m}n^{-1}\sum_{h\geq0}(\lambda/z)^h$.
+For $0\leq h\leq n/2$,
+\[
+\left|\frac1{n-h}-\frac1n\right|
+=\frac{h}{n(n-h)}\leq\frac{2h}{n^2}.
+\]
+The corresponding error is at most $2n^{-2}\sum_{h\geq0}h\lambda^h$.
+For $n/2<h<n$, the original tail is bounded by
+$\lambda^{n/2}\sum_{j=1}^n j^{-1}$, while the geometric comparison tail is at most $\lambda^{n/2}/[n(1-\lambda)]$. These are $O_\lambda(n^{-2})$: an exponentially decreasing sequence times any fixed power of $n$ and $1+\log n$ is bounded. All bounds use only $|z|=1$. The geometric series equals $(1-\lambda/z)^{-1}$, proving the formula and the limit.
+\end{proof}
+
+\subsection{Disconnected and singular convergence sets}
+With $P(z)=z(z-2)$, part (ii) realizes $\{0,2\}\times\C$. Thus connectedness need not follow from a common attracting derivative. For an open disconnected example, take the strict inequality $|2z(z-2)|<1$. It contains both $0$ and $2$ but no point of the line $\operatorname{Re}z=1$: on that line $|z(z-2)|=1+(\operatorname{Im}z)^2\geq1$. A path joining the two points would cross that line. Its cylinder is therefore disconnected.
+
+In $\C^3$, part (ii) realizes the singular cylinder
+\[
+\{(z_1,z_2,w):z_1z_2=0\}.
+\]
+This is an algebraic set, not a complex manifold at its crossing. Stein-domain language is not applied to this non-open example. Taking $P_i(z)=z_i$ in part (iii) gives polydisc cylinders, with each chosen boundary face included or excluded independently.
+
+\subsection{Why a common triangular order matters}
+Step degrees being bounded is insufficient without a fixed triangular order. The autonomous polynomial automorphism
+\[
+H(z,w)=\left(\frac w4,\frac z4+w^2\right),\qquad
+H^{-1}(u,v)=(4v-64u^2,4u),
+\]
+has degree $2$ and derivative norm $1/4$ in the maximum norm at $0$. If $\|(z,w)\|_\infty<1/4$, then $\|H(z,w)\|_\infty\leq\tfrac12\|(z,w)\|_\infty$. Its basin therefore contains a neighbourhood of $0$. Starting at $(2,2)$, both coordinates stay positive and the second satisfies $w_{n+1}\geq w_n^2$, so that orbit escapes. The basin equals $\bigcup_{n\geq0}H^{-n}(B_{1/4})$, hence is open. It is a proper open set and cannot be algebraic. The degrees of its orbit maps are unbounded, exactly where Lemma~\ref{lem:finite-en} ceases to apply.
+
+\subsection{Why vanishing input needs uniform scalar stability}
+The implication $u_n\to0\Rightarrow w_n\to0$ can fail if $\lambda$ is replaced by $b_n\to1$, even when $\prod_{j=1}^n b_j\to0$. Indeed,
+\[
+b_j=\frac j{j+1},\qquad u_j(z)=\frac{z^2}{j+1},\qquad
+w_n=\frac{w_0+nz^2}{n+1}\longrightarrow z^2.
+\]
+The input tends to zero at every $z$, but the state does so only at $z=0$. Thus the fixed $\lambda<1$ in Proposition~\ref{prop:transfer-en} cannot be replaced merely by decay of the homogeneous product.
+
+\subsection{Dimension one, invariance, and the missing common ball}
+In one complex dimension, polynomial automorphisms fixing $0$ are $z\mapsto a_jz$. Their convergence set is $\C$ if $\prod_{j=1}^n a_j\to0$, and is $\{0\}$ otherwise. The cylinder construction uses an additional coordinate and does not produce a one-variable counterexample.
+
+A non-autonomous set at initial time is not automatically invariant under any fixed $F_j$. If
+\[
+S_t=\{x:F_{t+n}\circ\cdots\circ F_{t+1}(x)\to0\},
+\]
+then the valid statement is $F_{t+1}(S_t)=S_{t+1}$, by deleting the first term of an orbit and using the inverse map. No equality $F_j(S_0)=S_0$ is needed here.
+
+In the disc examples, the nonlinear coefficient has magnitude
+$\lambda^{-(j-1)(j+m)}$, or this divided by $j$. On every fixed positive-radius ball the nonlinear terms become unbounded. This directly verifies the failure of a common bounded neighbourhood. The examples consequently do not satisfy the uniform basin hypotheses, even though all their prescribed jets agree with a scalar contraction.
+
+\section{Comparison with previous work}
+The autonomous classification, the uniform non-autonomous theorem, and the usual triangular bounded-coefficient estimates answer uniformization questions under dynamical control. The present computations concern exact convergence sets after that control is removed. Such sets may contain bounded holomorphic functions, have multiple components, or fail to be open.
+
+Two parts of the argument have especially high prior-art risk. First, Lemma~\ref{lem:finite-en} is a finite-dimensional linear-algebra observation, and its triangular application uses an explicitly known degree bound. Second, Proposition~\ref{prop:transfer-en} is a stable affine recurrence written in holomorphic coordinates. Accordingly, a paper already encoding holomorphic convergence sets by triangular extensions could subsume our constructions. The arbitrary sequence of jet orders and the exact strict/non-strict boundary prescription are the precise features for which further priority confirmation is needed. We do not turn a missing search result into a claim of novelty.
+
+Peters--Wold \cite{PW-en}, Peters \cite{Peters-en}, the survey \cite{Survey-en}, and the examples of Bera--Pal--Verma \cite{BPV-en} were used to check the surrounding non-autonomous literature. In particular, a cylinder with a hyperbolic base is not being called a Short $\C^{d+1}$: its Kobayashi pseudodistance is already nonzero in horizontal directions. The definitions of an abstract basin, a uniform attracting basin, and a pointwise convergence set are not interchangeable in our setting.
+
+\section{Further remarks}
+The proof dependencies are short:
+\[
+\begin{array}{c}
+\text{known degree bound}+\text{finite-dimensional convergence}\\
+\Downarrow\\
+\text{algebraic restriction}\\[3pt]
+\text{stable scalar recurrence}+\text{explicit triangular extension}\\
+\Downarrow\\
+\text{algebraic and inequality-cylinder realizations}\\
+\Downarrow\\
+\text{compact estimates, boundary asymptotic, SCV consequences}.
+\end{array}
+\]
+All arrows are established in the preceding proofs. No positivity-of-currents theorem, Bedford--Taylor wedge product, normal-family compactness argument, or Anders\'en--Lempert approximation is invoked. The only approximation theorem used is Oka--Weil for the separately stated Runge consequence.
+
+The result is limited to explicitly triangular systems, with one extra coordinate in the realization. It does not classify arbitrary convergence sets, produce a new Fatou--Bieberbach domain, or weaken the hypotheses of the uniform basin theorem. The complete mathematical assertions remain available for independent checking even if the realization method ultimately proves to have prior art. Novelty certification is the outstanding obstruction to presenting this as a new research result.
+
+\begin{thebibliography}{AA+14}
+\bibitem[AAM14]{AAM-en}
+M. Abate, A. Abbondandolo, and P. Majer, \emph{Stable manifolds for holomorphic automorphisms}, J. Reine Angew. Math. \textbf{690} (2014), 217--247. \href{https://doi.org/10.1515/crelle-2012-0069}{doi:10.1515/crelle-2012-0069}. Lemmas 6.2, 6.4 and Theorem A.1.
+
+\bibitem[AA+14]{Survey-en}
+A. Abbondandolo, L. Arosio, J. E. Forn\ae ss, P. Majer, H. Peters, J. Raissy, and L. Vivas, \emph{A survey on non-autonomous basins in several complex variables}, arXiv:1311.3835v2 (2014). \url{https://arxiv.org/abs/1311.3835v2}. Sections 2--4.
+
+\bibitem[AS22]{AS-en}
+I. Arzhantsev and K. Shakhmatov, \emph{Some finiteness results on triangular automorphisms}, Results Math. \textbf{77} (2022), no. 2, article 75. \href{https://doi.org/10.1007/s00025-022-01612-9}{doi:10.1007/s00025-022-01612-9}. Lemma 1 in arXiv:2011.01202v2.
+
+\bibitem[BPV17]{BPV-en}
+S. Bera, R. Pal, and K. Verma, \emph{Examples of non-autonomous basins of attraction}, Illinois J. Math. \textbf{61} (2017), nos. 3--4. \href{https://doi.org/10.1215/ijm/1534924839}{doi:10.1215/ijm/1534924839}. Text consulted: arXiv:1706.05567, Introduction.
+
+\bibitem[BV24]{BV-en}
+S. Bera and K. Verma, \emph{Uniform non-autonomous basins of attraction}, Invent. Math. \textbf{238} (2024), 995--1040. \href{https://doi.org/10.1007/s00222-024-01295-9}{doi:10.1007/s00222-024-01295-9}. Theorem 1.1; author version arXiv:2211.15169v4.
+
+\bibitem[For17]{Forst-en}
+F. Forstneri\v c, \emph{Stein Manifolds and Holomorphic Mappings: The Homotopy Principle in Complex Analysis}, 2nd ed., Ergebnisse der Mathematik und ihrer Grenzgebiete, 3. Folge, vol. 56, Springer, Cham, 2017. \href{https://doi.org/10.1007/978-3-319-61058-0}{doi:10.1007/978-3-319-61058-0}. Chapters 2--3.
+
+\bibitem[FS04]{FS-en}
+J. E. Forn\ae ss and B. Stens\o nes, \emph{Stable manifolds of holomorphic hyperbolic maps}, Int. J. Math. \textbf{15} (2004), no. 8, 749--758. \href{https://doi.org/10.1142/S0129167X04002557}{doi:10.1142/S0129167X04002557}.
+
+\bibitem[Pet07]{Peters-en}
+H. Peters, \emph{Perturbed basins of attraction}, Math. Ann. \textbf{337} (2007), 1--13. \href{https://doi.org/10.1007/s00208-005-0739-y}{doi:10.1007/s00208-005-0739-y}.
+
+\bibitem[PW05]{PW-en}
+H. Peters and E. F. Wold, \emph{Non-autonomous basins of attraction and their boundaries}, J. Geom. Anal. \textbf{15} (2005), 123--136. \href{https://doi.org/10.1007/BF02921861}{doi:10.1007/BF02921861}. Author version: arXiv:math/0410210, Sections 2 and 4.
+
+\bibitem[RR88]{RR-en}
+J.-P. Rosay and W. Rudin, \emph{Holomorphic maps from $\C^n$ to $\C^n$}, Trans. Amer. Math. Soc. \textbf{310} (1988), no. 1, 47--86. \href{https://doi.org/10.1090/S0002-9947-1988-0929658-4}{doi:10.1090/S0002-9947-1988-0929658-4}.
+
+\end{thebibliography}
+
+\newpage
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\thesection}{J.\arabic{section}}
+\renewcommand{\theHsection}{J.\arabic{section}}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\begin{center}
+{\Large\baselineskip=22pt 三角型非自律的自己同型の収束集合：\\代数的制約と指定集合の実現\par}\medskip
+{chatGPT 6 Astra}\par\smallskip
+{日本語版}
+\end{center}
+\begin{quote}\small
+\textbf{概要.}
+共通の収縮近傍を仮定せず、複素アフィン空間の三角型多項式自己同型列について、原点への各点収束を調べる。軌道写像の次数に共通の上限があれば、収束集合は代数的集合であり、そのコンパクト部分集合上で収束は一様になることを証明する。三角型写像では既知の次数評価により、係数の有界性を仮定せずにこの観察を適用できる。逆に、原点を含む任意の代数的柱状集合、および有限個の狭義・非狭義の多項式絶対値不等式で定義される任意の柱状集合を実現する、明示的な三角型写像列を構成する。後者では、任意に指定した各時刻の有限ジェットを、一つの固定したスカラー収縮写像のジェットに一致させられる。また、閉円板の例では境界上で一様な第一項の漸近式を求める。証明はすべて与える。次数評価と基礎となる有限次元の仕組みは古典的であり、組み合わされた実現命題の新規性は認証されていない。
+\end{quote}
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+空間と多項式はすべて \allowbreak$\C$\allowbreak 上で考える。原点を固定する自己同型 \allowbreak$F_j$\allowbreak に対し、
+\begin{equation}\label{eq:orbit-ja}
+\Phi_0=\id,\qquad \Phi_n=F_n\circ\cdots\circ F_1,
+\qquad S(F)=\{x:\Phi_n(x)\longrightarrow0\}
+\end{equation}
+とおく。\allowbreak$S(F)$\allowbreak を意図的に\emph{各点収束集合}と呼ぶ。共通の吸引近傍がなければ、この集合は開集合とも連結集合とも限らない。したがって、自動的に Fatou--Bieberbach 領域や抽象的吸引域とみなしてはいけない。
+
+Rosay--Rudin は自律的吸引域のユークリッド空間との双正則同値を示した \cite{RR-ja}。Forn\ae ss--Stens\o nes は抽象的吸引域の方法を発展させた \cite{FS-ja}。一様な非自律系の場合は、現在では Bera--Verma \cite[Theorem 1.1]{BV-ja} によって解決されている。これらの結果を踏まえると、一様吸引性と微分だけの制御を区別することが不可欠である。
+
+本稿に最も近い三角型写像の結果は Abate--Abbondandolo--Majer \cite[Lemma 6.4]{AAM-ja} である。有界な三角型非線形項と指数的に収縮する線形コサイクルのもとで、全空間での吸引性と、多項式の重みを伴う指数評価が得られる。本稿では係数が全く有界でない場合も許す。以下の命題は、有界次数が課す制約と、その制約を外したときの明示的な現象を記述する。
+
+\begin{thm}[代数的制約と明示的実現]\label{thm:main-ja}
+以下が成立する。
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*]
+\item \allowbreak$F_j\in\Aut{\C^N}$\allowbreak は一つの固定した座標順序について三角型で、原点を固定し、次数が \allowbreak$D\geq1$\allowbreak 以下であるとする。このとき \allowbreak$S(F)$\allowbreak は \allowbreak$\C^N$\allowbreak の代数的部分集合であり、次数 \allowbreak$D^{N-1}$\allowbreak 以下の多項式で定義される。また、\allowbreak$\Phi_n\to0$\allowbreak は \allowbreak$S(F)$\allowbreak の各コンパクト部分集合上で一様である。\allowbreak$S(F)$\allowbreak の内部が空でなければ、\allowbreak$S(F)=\C^N$\allowbreak である。
+\item \allowbreak$V\subset\C^d$\allowbreak を原点を含む代数的集合とし、\allowbreak$0<\lambda<1$\allowbreak、\allowbreak$m\geq1$\allowbreak とする。次数に共通の上限を持つ \allowbreak$\C^{d+1}$\allowbreak の三角型多項式自己同型列であって、
+\[
+S(F)=V\times\C,\qquad J_0^m F_j=J_0^m(\lambda\id)
+\]
+を満たすものが存在する。各 \allowbreak$F_j$\allowbreak を個別に自律的に反復すると、すべての点は原点に収束する。
+\item \allowbreak$P_1,\ldots,P_s\in\C[z_1,\ldots,z_d]$\allowbreak は \allowbreak$P_i(0)=0$\allowbreak を満たすとし、\allowbreak$\epsilon_i\in\{0,1\}$\allowbreak を選ぶ。
+\begin{equation}\label{eq:target-ja}
+E=\{z: \epsilon_i=0\text{ なら }|P_i(z)|<1,
+\quad \epsilon_i=1\text{ なら }|P_i(z)|\leq1\}
+\end{equation}
+と定める。任意の整数列 \allowbreak$m_j\geq1$\allowbreak と任意の \allowbreak$0<\lambda<1$\allowbreak に対し、
+\[
+S(F)=E\times\C,\qquad J_0^{m_j}F_j=J_0^{m_j}(\lambda\id)
+\]
+を満たす三角型多項式自己同型列が存在する。各 \allowbreak$F_j$\allowbreak は個別には全空間を原点に吸引する。\allowbreak$E\times\C$\allowbreak のコンパクト部分集合上では、非狭義不等式の境界と交わる場合も含めて、一様収束が成立する。
+\end{enumerate}
+\end{thm}
+
+(i) は既知の合成次数評価と有限次元の観察から得られる初等的な帰結であり、新しい次数定理として提示するものではない。(ii)--(iii) は明示的な実現命題であるが、その優先権は不確かである。特に (iii) の写像には、一様吸引域の定理で必要となる共通近傍での評価を仮定していない。したがって、それらの定理への反例ではない。
+
+構成では、収縮する底空間の軌道から初期座標を復元し、指定した多項式列を一つの追加座標に挿入する。安定なスカラー漸化式が、その多項式の値が零に収束するかを判定する。冪を用いて \allowbreak$|P|<1$\allowbreak と \allowbreak$|P|>1$\allowbreak を区別し、係数 \allowbreak$1/k$\allowbreak によって等号の場合を制御する。この方法では、同じ線形収縮写像との接触次数を任意に高く指定することもできる。
+
+\begin{rem}[認証状況]\label{rem:status-ja}
+証明の状態は \textbf{VERIFIED} である。これは以下の証明と二度目の直接的な監査によるもので、証明支援系による形式検証ではない。最終新規性判定は \textbf{NOVELTY UNCERTAIN}、すなわち \emph{novelty not fully certified} である。依頼された分類では、保守的に \textbf{Outcome D} と記録する。完全に証明され、かつ確実に新しいと認定できる結果を得たとはいえないためである。これは記載した定理の証明に gap があるという意味ではない。未解決なのは先行研究と独創性の確認であり、証明の欠落箇所ではない。
+\end{rem}
+
+\section{準備}
+固定した座標順序 \allowbreak$x_1,\ldots,x_N$\allowbreak に関する三角型多項式自己同型とは、
+\begin{equation}\label{eq:triangular-ja}
+F_j^i(x)=a_{j,i}x_i+p_{j,i}(x_1,\ldots,x_{i-1}),
+\qquad a_{j,i}\ne0
+\end{equation}
+という形の写像である。\allowbreak$p_{j,i}(0)=0$\allowbreak を仮定するので、\allowbreak$p_{j,1}=0$\allowbreak である。
+
+\allowbreak$x_1,x_2,\ldots,x_N$\allowbreak の順に解くことで多項式の逆写像が得られる。
+
+(i) では \allowbreak$|a_{j,i}|$\allowbreak の正の一様下界も必要ない。\allowbreak$J_0^m$\allowbreak は原点における全次数 \allowbreak$m$\allowbreak までの Taylor 多項式を表す。
+
+コンパクト集合 \allowbreak$K\subset\C^N$\allowbreak の多項式凸包は
+\[
+\widehat K=\{x: \text{すべての多項式 }p\text{ に対し }
+|p(x)|\leq\sup_K|p|\}
+\]
+である。本稿では、開集合 \allowbreak$U\subset\C^N$\allowbreak が Runge であるとは、\allowbreak$\mathcal O(U)$\allowbreak の任意の元をコンパクト集合上一様に多項式で近似できることをいう。用いる Oka--Weil の定理は、多項式凸なコンパクト集合の近傍で正則な関数は、その集合上で多項式により一様近似できる、という形である。また、正則凸性と正則関数による点の分離による Stein 多様体の標準的な特徴付けを用いる。\allowbreak$\C^N$\allowbreak の開集合では座標関数が後者を満たす。これらは多変数複素解析の古典的事実であり、\cite{Forst-ja} の Chapters 2--3 を参照されたい。同書の定理番号は指定しない。
+
+比較のため、一様吸引性とは、一つの球 \allowbreak$B_r$\allowbreak 上で定数 \allowbreak$0<a\leq b<1$\allowbreak が存在し、
+\begin{equation}\label{eq:uniform-ja}
+a\|x\|\leq\|F_j(x)\|\leq b\|x\|
+\qquad(x\in B_r,\ j\geq1)
+\end{equation}
+を満たすことである。等式 \allowbreak$DF_j(0)=\lambda I$\allowbreak だけからは、\eqref{eq:uniform-ja} に現れる非線形項の一様な制御は得られない。
+
+\section{先行研究と新規性の未確定部分}
+多項式族が有界であるとは、次数と係数の\emph{両方}に共通の上限があることである。係数の有界性を外すと仮定は大きく変わる。ただし、それだけで得られた観察が新しくなるわけではない。
+
+\begin{center}
+\small
+\begin{tabular}{p{2.55cm}|p{5.05cm}|p{5.4cm}}
+結果 & 本稿に関係する仮定 & 本稿に関係する結論\\\hline
+Bera--Verma & 共通近傍での両側収縮評価 & 吸引域は \allowbreak$\C^N$\allowbreak と双正則\\
+\cite{AAM-ja} & 有界な三角型非線形項と指数収縮する線形コサイクル & 全空間での収束と大域的な指数評価\\
+Arzhantsev--Shakhmatov & 共通の三角型順序と各写像の有界次数 & すべての合成の次数が有界\\
+本稿 (i) & 同じ順序と有界次数、係数制限なし & 収束集合の代数性とその上のコンパクト一様収束\\
+本稿 (ii)--(iii) & 明示的な非有界係数と指定ジェット & 代数的集合または多項式不等式の柱状集合を正確に実現
+\end{tabular}
+\end{center}
+
+(i) で用いる次数評価は \cite[Lemma 1]{AS-ja} に明記されており、重み付きの形は \cite[Lemma 6.2]{AAM-ja} にある。これらへの依存を明記する。定理~\ref{thm:main-ja}(i) はこの評価の短い応用であり、それ自体が優先権の根拠になるわけではない。また、ジェットから解析的共役を考える際には、\cite[Theorem A.1]{AAM-ja} の有界な共通近傍に関する仮定が不可欠である。
+
+開性の破綻はすでに知られている。Peters--Wold の著者版 arXiv:math/0410210 の Section 4, Theorem 6 \cite{PW-ja} には、乗数が \allowbreak$1$\allowbreak に近付く H\'enon 型写像による、開でない各点収束集合の例がある。したがって、非開性自体は本稿の貢献ではない。本稿の明示例では微分を一つの固定したスカラー収縮に保ち、集合全体とジェットを同時に指定する。
+
+実現命題では、等号の成立する部分を含む各点収束集合の\emph{全体}と、各時刻に自由に指定したジェット次数を同時に扱う。一様吸引域の定理の仮定も、最も近い三角型定理の係数評価も課さない。ただし、確認した文献にこれらの命題が見当たらないことは、文献全体に存在しないことの証明ではない。正則関数列の収束集合や三角型漸化式に関する古い研究に、より強い先行結果がある可能性は残る。
+
+最終結果を選ぶ前に九つの候補命題を検討した。一様吸引域の一意化、固定された吸引的自己同型に近付く末尾列、通常の Runge exhaustion は既知の方向として除外した。有界次数の三角型列の無条件の大域吸引性、ジェットだけによる一意化、素朴な可変収縮係数の漸化式は、明示的な反例により棄却した。残る三候補が (i)--(iii) である。候補の評価表、検索上の限界、引用確認の詳細は、別ファイル \texttt{research\_audit.txt} に記録した。
+
+\section{主結果}
+まず、すべての実現の基礎となる仕組みを述べる。
+
+\begin{prop}[収縮する拡大空間に多項式列を挿入する]\label{prop:transfer-ja}
+\allowbreak$q_j\in\C[z_1,\ldots,z_d]$\allowbreak は \allowbreak$q_j(0)=0$\allowbreak を満たすとし、\allowbreak$0<\lambda<1$\allowbreak とする。
+\begin{equation}\label{eq:extension-ja}
+F_j(z,w)=\bigl(\lambda z,\lambda w+q_j(\lambda^{-(j-1)}z)\bigr)
+\end{equation}
+と定める。これらは原点を固定する多項式自己同型であり、
+\begin{equation}\label{eq:transfer-ja}
+S(F)=\{z:q_j(z)\longrightarrow0\}\times\C
+\end{equation}
+が成立する。\allowbreak$q_j\to0$\allowbreak がコンパクト集合 \allowbreak$K$\allowbreak 上で一様なら、任意の \allowbreak$R<\infty$\allowbreak に対して \allowbreak$\Phi_n\to0$\allowbreak は \allowbreak$K\times\{|w|\leq R\}$\allowbreak 上で一様である。\allowbreak$q_j$\allowbreak の消滅次数が \allowbreak$m_j+1$\allowbreak 以上なら、\allowbreak$F_j$\allowbreak の \allowbreak$m_j$\allowbreak-ジェットは \allowbreak$\lambda\id$\allowbreak のものと一致する。各 \allowbreak$F_j$\allowbreak は、自律的に反復すれば全空間を原点に吸引する。
+\end{prop}
+
+(iii) の構成は完全に明示的である。\allowbreak$j=s(k-1)+i$\allowbreak、ただし \allowbreak$k\geq1$\allowbreak、\allowbreak$1\leq i\leq s$\allowbreak と書き、整数
+\begin{equation}\label{eq:exponents-ja}
+e_j\geq\max\{k,m_j+1\},\qquad
+q_j(z)=k^{-\epsilon_i}P_i(z)^{e_j}
+\end{equation}
+を選んで \eqref{eq:extension-ja} を用いればよい。近似定理は使わない。
+
+\begin{prop}[狭義不等式の場合の複素幾何]\label{prop:geometry-ja}
+すべての \allowbreak$\epsilon_i=0$\allowbreak のとき、\allowbreak$D=E$\allowbreak とおく。\allowbreak$D\times\C$\allowbreak は非連結の可能性もある Stein 開集合であり、\allowbreak$\C^{d+1}$\allowbreak 内で Runge である。ある \allowbreak$P_i$\allowbreak が非定数なら、\allowbreak$D\times\C$\allowbreak のどの連結成分も \allowbreak$\C^{d+1}$\allowbreak と双正則ではない。\allowbreak$D$\allowbreak の連結成分 \allowbreak$D_0$\allowbreak 上では Kobayashi 擬距離について
+\begin{equation}\label{eq:kobayashi-ja}
+k_{D_0\times\C}((z,w),(z',w'))=k_{D_0}(z,z')
+\end{equation}
+が成立する。\allowbreak$D_0$\allowbreak が有界なら、\allowbreak$D_0$\allowbreak は Kobayashi 双曲的であるが、\allowbreak$D_0\times\C$\allowbreak は双曲的ではない。
+\end{prop}
+この命題の幾何学的性質は、明示的な直積表示から得られる標準的な帰結である。これに独立の新規性を主張しない。
+
+\section{主定理の証明}
+\subsection{有限次元での収束}
+\begin{lem}\label{lem:finite-ja}
+\allowbreak$Q_n:\C^a\to\C^b$\allowbreak を全次数 \allowbreak$L$\allowbreak 以下の多項式写像とし、係数の有界性は仮定しない。このとき
+\[
+Z=\{z:Q_n(z)\to0\}
+\]
+は次数 \allowbreak$L$\allowbreak 以下の多項式で定義される代数的集合である。\allowbreak$Z$\allowbreak のコンパクト部分集合上で収束は一様である。\allowbreak$Z$\allowbreak の内部が空でなければ、\allowbreak$Q_n\to0$\allowbreak は \allowbreak$\C^a$\allowbreak のコンパクト部分集合上で一様である。
+\end{lem}
+\begin{proof}
+定数 \allowbreak$1$\allowbreak を含め、次数 \allowbreak$L$\allowbreak 以下の全単項式を並べた列ベクトルを \allowbreak$v(z)$\allowbreak とし、その長さを \allowbreak$M$\allowbreak とする。\allowbreak$b\times M$\allowbreak 行列 \allowbreak$C_n$\allowbreak を用いて \allowbreak$Q_n(z)=C_nv(z)$\allowbreak と書く。
+\[
+W=\{u\in\C^M:C_nu\to0\}
+\]
+とおく。極限条件の線形性から \allowbreak$W$\allowbreak は線形部分空間である。共通の核が \allowbreak$W$\allowbreak となる線形形式 \allowbreak$\ell_1,\ldots,\ell_t$\allowbreak を選ぶ。有限次元線形代数により、
+\[
+Z=v^{-1}(W)=\{z:\ell_1(v(z))=\cdots=\ell_t(v(z))=0\}
+\]
+となる。これらの定義多項式の次数は \allowbreak$L$\allowbreak 以下である。
+
+一様収束のために \allowbreak$W$\allowbreak の基底 \allowbreak$u_1,\ldots,u_r$\allowbreak を選ぶ。各 \allowbreak$C_nu_i$\allowbreak は零に収束する。有限次元では、この固定した基底に関する単位ベクトルの係数は一様有界なので、\allowbreak$\|C_n|_W\|\to0$\allowbreak である。コンパクト集合 \allowbreak$K\subset Z$\allowbreak に対して \allowbreak$\sup_K\|v(z)\|$\allowbreak は有限であり、したがって
+\[
+\sup_K\|Q_n(z)\|\leq\|C_n|_W\|\sup_K\|v(z)\|\longrightarrow0
+\]
+を得る。
+\allowbreak$Z$\allowbreak が開集合を含めば、各定義多項式は一致の定理により恒等的に零となる。よって \allowbreak$Z=\C^a$\allowbreak であり、先ほどの評価がすべてのコンパクト集合に適用できる。ここでの一致の定理は、多重円板上で一変数を残して他の変数を順に固定することによっても確認できる。
+\end{proof}
+
+\subsection{既知の三角型次数評価}
+\eqref{eq:triangular-ja} に対し、座標に関する帰納法から
+\begin{equation}\label{eq:degree-ja}
+\deg\Phi_n^i\leq D^{i-1}\quad(n\geq0,\ 1\leq i\leq N)
+\end{equation}
+を得る。第一座標は線形である。先行する座標について評価を仮定すると、\allowbreak$p_{n+1,i}(\Phi_n^1,\ldots,\Phi_n^{i-1})$\allowbreak の各単項式の次数は \allowbreak$D\cdot D^{i-2}=D^{i-1}$\allowbreak 以下である。もう一つの項は \allowbreak$a_{n+1,i}\Phi_n^i$\allowbreak なので、時刻についての帰納法により同じ上界が保たれる。これは \cite[Lemma 1]{AS-ja} の評価である。補題~\ref{lem:finite-ja} を \allowbreak$Q_n=\Phi_n$\allowbreak に適用すると、収束に関する主張も含めて (i) が従う。一般の正則写像列の各点極限が局所一様であるという主張は使っていない。
+
+\subsection{スカラー漸化式と拡大写像}
+複素数 \allowbreak$u_j$\allowbreak に対して \allowbreak$w_j=\lambda w_{j-1}+u_j$\allowbreak と定める。このとき
+\begin{equation}\label{eq:convolution-ja}
+w_n=\lambda^nw_0+\sum_{j=1}^n\lambda^{n-j}u_j,
+\qquad
+w_n\to0\ \Longleftrightarrow\ u_n\to0
+\end{equation}
+である。必要性は \allowbreak$u_n=w_n-\lambda w_{n-1}$\allowbreak から従う。十分性について、\allowbreak$\eta>0$\allowbreak に対し、\allowbreak$j>J$\allowbreak なら \allowbreak$|u_j|<\eta(1-\lambda)$\allowbreak となる \allowbreak$J$\allowbreak を選ぶ。最初の有限和は対応する \allowbreak$\lambda$\allowbreak の冪により零に収束し、残りの和の絶対値は \allowbreak$\eta$\allowbreak 以下である。同じ証明で上限を取れば、固定したコンパクト集合上一様に零に収束する関数列の場合も従う。この直接的な分割により、複素位相の相殺に依存していないことも分かる。
+
+\eqref{eq:extension-ja} の逆写像は
+\begin{equation}\label{eq:inverse-ja}
+F_j^{-1}(Z,W)=\bigl(\lambda^{-1}Z,
+\lambda^{-1}[W-q_j(\lambda^{-j}Z)]\bigr)
+\end{equation}
+である。これは大域的な多項式写像である。代入により \allowbreak$F_j$\allowbreak との両方の合成が恒等写像と確認できるので、単射性、全射性、逆写像の正則性は明示的である。また、\allowbreak$\det DF_j=\lambda^{d+1}\ne0$\allowbreak である。
+
+非自律的軌道では底空間の座標は \allowbreak$z_{j-1}=\lambda^{j-1}z$\allowbreak なので、挿入される項は正確に \allowbreak$q_j(z)$\allowbreak となる。よって
+\begin{equation}\label{eq:explicit-orbit-ja}
+\Phi_n(z,w)=\left(\lambda^nz,
+\lambda^nw+\sum_{j=1}^n\lambda^{n-j}q_j(z)\right)
+\end{equation}
+である。\eqref{eq:convolution-ja} から \eqref{eq:transfer-ja} とコンパクト一様収束が従う。零でないスカラーによる変数変換は消滅次数を保つので、ジェットに関する主張も従う。
+
+最後に、一つの添字 \allowbreak$j$\allowbreak を固定して \allowbreak$F_j$\allowbreak だけを反復する。その非線形項は \allowbreak$p(0)=0$\allowbreak を満たす固定した多項式 \allowbreak$p$\allowbreak である。時刻 \allowbreak$t$\allowbreak の底空間座標は \allowbreak$\lambda^t z$\allowbreak であり、強制項 \allowbreak$p(\lambda^{t-1}z)$\allowbreak は零に収束する。これは \allowbreak$z$\allowbreak がコンパクト集合を動くとき一様である。\eqref{eq:convolution-ja} により自律的な大域吸引性を得る。これで命題~\ref{prop:transfer-ja} のすべてが示された。
+
+\subsection{代数的柱状集合の実現}
+\allowbreak$V$\allowbreak の有限個の定義多項式 \allowbreak$P_1,\ldots,P_s$\allowbreak を取る。\allowbreak$0\in V$\allowbreak より各 \allowbreak$P_i(0)=0$\allowbreak である。\allowbreak$V=\C^d$\allowbreak の場合は \allowbreak$P_1=0$\allowbreak とする。\allowbreak$m\geq1$\allowbreak を固定し、
+\[
+q_{s(k-1)+i}(z)=P_i(z)^{m+1}
+\]
+と定める。この周期的な列が \allowbreak$z$\allowbreak で零に収束することは、すべての \allowbreak$P_i(z)$\allowbreak が零となることと同値である。したがって命題~\ref{prop:transfer-ja} により \allowbreak$S(F)=V\times\C$\allowbreak を得る。次数は \allowbreak$j$\allowbreak によらず \allowbreak$\max\{1,(m+1)\max_i\deg P_i\}$\allowbreak 以下である。消滅次数と自律的吸引性は既に確認した。これで (ii) が示された。代数的集合は集合論的に扱っており、非被約なスキーム構造を指定するという主張ではない。
+
+\subsection{指定した不等式と等号部分の実現}
+\eqref{eq:exponents-ja} を用いる。\allowbreak$z$\allowbreak を固定し、各 \allowbreak$i$\allowbreak について \allowbreak$r_i=|P_i(z)|$\allowbreak とおいて、\allowbreak$j=s(k-1)+i$\allowbreak の添字に制限する。
+\allowbreak$r_i<1$\allowbreak なら \allowbreak$k^{-\epsilon_i}r_i^{e_j}\leq r_i^k\to0$\allowbreak である。
+\allowbreak$r_i>1$\allowbreak なら
+\[
+k^{-\epsilon_i}r_i^{e_j}\geq k^{-1}r_i^k\longrightarrow\infty
+\]
+となる。
+\allowbreak$r_i=1$\allowbreak では絶対値は正確に \allowbreak$k^{-\epsilon_i}$\allowbreak であり、零に収束するのは \allowbreak$\epsilon_i=1$\allowbreak の場合に限る。剰余類は有限個しかないので、列全体 \allowbreak$q_j(z)$\allowbreak が零に収束する集合は正確に \allowbreak$E$\allowbreak となる。命題~\ref{prop:transfer-ja} により (iii) の集合としての主張が従う。
+
+コンパクト集合 \allowbreak$K\subset E$\allowbreak に対し、各狭義不等式の左辺は \allowbreak$K$\allowbreak 上で \allowbreak$1$\allowbreak より小さい最大値を持つ。それらの有限個の最大値を \allowbreak$r<1$\allowbreak とする。狭義不等式がなければ \allowbreak$r=0$\allowbreak と取る。非狭義の添字では上限は \allowbreak$1/k$\allowbreak 以下である。したがって、存在しない種類の項を省略すれば、
+\[
+\sup_K|q_{s(k-1)+i}|\leq r^k+\frac1k\longrightarrow0
+\]
+となる。これで \allowbreak$K$\allowbreak が等号部分と交わる場合もコンパクト一様収束が示された。一般の定義多項式について、すべてを非狭義にした集合が、すべてを狭義にした集合の閉包と一致するとは主張していない。
+
+\subsection{狭義不等式の場合の多変数複素解析的性質}
+\allowbreak$U=D\times\C$\allowbreak とし、\allowbreak$K\subset U$\allowbreak をコンパクト集合とする。座標多項式から \allowbreak$\widehat K$\allowbreak は有界であり、定義から閉集合である。各 \allowbreak$i$\allowbreak について \allowbreak$\widehat K$\allowbreak 上で
+\[
+|P_i(z)|\leq\sup_{(\zeta,v)\in K}|P_i(\zeta)|<1
+\]
+が成立する。したがって \allowbreak$\widehat K$\allowbreak は \allowbreak$U$\allowbreak のコンパクト部分集合である。\allowbreak$f\in\mathcal O(U)$\allowbreak に対して、Oka--Weil を \allowbreak$\widehat K$\allowbreak に適用すると、\allowbreak$f$\allowbreak を \allowbreak$K$\allowbreak 上で多項式により一様近似できる。これで Runge 性が示された。\allowbreak$K$\allowbreak の \allowbreak$\mathcal O(U)$\allowbreak-凸包は \allowbreak$U$\allowbreak 内で相対閉であり、\allowbreak$\widehat K$\allowbreak に含まれるのでコンパクトである。座標関数は点を分離し局所座標を与えるため、先に述べた特徴付けにより Stein 性が従う。
+
+さらに、明示的な狭義多重劣調和 exhaustion として
+\[
+\rho(z,w)=\|z\|^2+|w|^2+
+\sum_{i=1}^s\frac1{1-|P_i(z)|^2}
+\]
+を取れる。\allowbreak$t\mapsto(1-t)^{-1}$\allowbreak の一階・二階微分は \allowbreak$t<1$\allowbreak で正なので、\allowbreak$|P_i|^2$\allowbreak との合成は多重劣調和である。ユークリッド項は狭義多重劣調和である。有界な劣位集合ではすべての座標が有界であり、各 \allowbreak$|P_i|$\allowbreak は \allowbreak$1$\allowbreak から一様に離れるので、その劣位集合は \allowbreak$U$\allowbreak 内で相対コンパクトとなる。
+
+\allowbreak$P_i$\allowbreak が非定数なら、任意の開な連結成分への制限も非定数かつ有界である。\allowbreak$\C^{d+1}$\allowbreak からその成分への双正則写像があれば、引き戻しによって非定数の有界整関数が得られる。これは複素直線上で適用した Liouville の定理に反する。
+
+\eqref{eq:kobayashi-ja} について、\allowbreak$D_0$\allowbreak への射影と正則写像による距離減少性から下からの評価を得る。二点のファイバー座標が等しい場合は、\allowbreak$w$\allowbreak を固定した切断から逆の評価を得る。各ファイバーは \allowbreak$\C$\allowbreak で、その Kobayashi 擬距離は零である。実際、半径を任意に大きくした円板により、固定した二点間の距離を任意に小さくできる。三角不等式を使えば、ファイバー座標を変える費用は零である。\allowbreak$D_0$\allowbreak が有界なら、適切な定数倍をした座標関数は単位円板への写像となり、異なる二点を分離する。距離減少性から \allowbreak$D_0$\allowbreak の擬距離が点を分離することが従う。命題~\ref{prop:geometry-ja} が示された。
+
+\section{例と境界の場合}
+\subsection{狭義の柱状集合のコンパクト部分集合上の一様評価}
+すべての不等式を狭義とし、\allowbreak$K\subset D$\allowbreak をコンパクト集合とする。
+\[
+r=\max_i\sup_K|P_i|<1,\qquad \theta=r^{1/s},
+\qquad \sigma=\max\{\lambda,\theta\}
+\]
+とおく。\allowbreak$k=\lceil j/s\rceil\geq j/s$\allowbreak なので、構成から \allowbreak$\sup_K|q_j|\leq\theta^j$\allowbreak である。\allowbreak$|w|\leq R$\allowbreak に対して
+\begin{equation}\label{eq:rate-ja}
+|w_n|\leq \lambda^nR+\sum_{j=1}^n\lambda^{n-j}\theta^j
+\leq(R+n)\sigma^n
+\end{equation}
+を得る。有限和は \allowbreak$\theta\ne\lambda$\allowbreak なら \allowbreak$\theta(\lambda^n-\theta^n)/(\lambda-\theta)$\allowbreak、共鳴する場合は \allowbreak$n\lambda^n$\allowbreak である。共鳴は多項式因子を生じさせるが、収束を妨げない。底空間座標は \allowbreak$\lambda^n$\allowbreak の率で減衰する。
+
+\subsection{同じジェットを持つ開円板と閉円板の例}
+\allowbreak$\C^2$\allowbreak において \allowbreak$m\geq1$\allowbreak を固定し、それぞれ
+\[
+q_j(z)=z^{j+m},\qquad \widetilde q_j(z)=\frac{z^{j+m}}j
+\]
+とする。得られる収束集合は正確に \allowbreak$\D\times\C$\allowbreak と \allowbreak$\overline\D\times\C$\allowbreak である。すべての写像の \allowbreak$m$\allowbreak-ジェットは \allowbreak$\lambda\id$\allowbreak のものと一致する。さらに、非線形項の最初の次数は無限大に向かう。第二の集合は開集合ではない。第一の集合は Stein かつ Runge な領域であるが、\allowbreak$\C^2$\allowbreak と双正則ではない。
+
+\begin{prop}[境界上一様な漸近式]\label{prop:boundary-ja}
+\allowbreak$\widetilde q_j(z)=z^{j+m}/j$\allowbreak とする。\allowbreak$|z|=1$\allowbreak において、軌道の第二座標は
+\begin{equation}\label{eq:boundary-ja}
+w_n=\lambda^nw+
+\frac{z^{n+m}}{n(1-\lambda/z)}+O_\lambda(n^{-2})
+\end{equation}
+を満たし、誤差は円周全体で一様である。表示した項 \allowbreak$\lambda^nw$\allowbreak を引いた後の誤差評価は \allowbreak$w$\allowbreak に依存しない。特に \allowbreak$z=1$\allowbreak で \allowbreak$w$\allowbreak を固定すると、\allowbreak$n w_n\to(1-\lambda)^{-1}$\allowbreak である。
+\end{prop}
+\begin{proof}
+\eqref{eq:explicit-orbit-ja} において \allowbreak$h=n-j$\allowbreak と添字を変えると、
+\[
+w_n-\lambda^nw=z^{n+m}
+\sum_{h=0}^{n-1}\frac{(\lambda/z)^h}{n-h}
+\]
+となる。これを \allowbreak$z^{n+m}n^{-1}\sum_{h\geq0}(\lambda/z)^h$\allowbreak と比較する。
+\allowbreak$0\leq h\leq n/2$\allowbreak なら
+\[
+\left|\frac1{n-h}-\frac1n\right|
+=\frac{h}{n(n-h)}\leq\frac{2h}{n^2}
+\]
+である。したがって、この部分の誤差は \allowbreak$2n^{-2}\sum_{h\geq0}h\lambda^h$\allowbreak 以下となる。
+\allowbreak$n/2<h<n$\allowbreak における元の和の末尾は \allowbreak$\lambda^{n/2}\sum_{j=1}^n j^{-1}$\allowbreak 以下であり、比較する幾何級数の末尾は \allowbreak$\lambda^{n/2}/[n(1-\lambda)]$\allowbreak 以下である。これらは \allowbreak$O_\lambda(n^{-2})$\allowbreak である。指数的に減衰する列に、固定した任意の \allowbreak$n$\allowbreak の冪と \allowbreak$1+\log n$\allowbreak を掛けても有界だからである。すべての評価は \allowbreak$|z|=1$\allowbreak だけを使う。幾何級数の和は \allowbreak$(1-\lambda/z)^{-1}$\allowbreak なので、漸近式と極限が従う。
+\end{proof}
+
+\subsection{非連結な収束集合と特異な収束集合}
+\allowbreak$P(z)=z(z-2)$\allowbreak とすると、(ii) により \allowbreak$\{0,2\}\times\C$\allowbreak を実現できる。したがって、共通の吸引的な微分から連結性が従うわけではない。非連結な開集合の例には \allowbreak$|2z(z-2)|<1$\allowbreak を取る。この集合は \allowbreak$0$\allowbreak と \allowbreak$2$\allowbreak を含むが、直線 \allowbreak$\operatorname{Re}z=1$\allowbreak 上の点を含まない。その直線上では \allowbreak$|z(z-2)|=1+(\operatorname{Im}z)^2\geq1$\allowbreak だからである。二点を結ぶ道はその直線を横切る必要がある。したがって対応する柱状集合は非連結である。
+
+\allowbreak$\C^3$\allowbreak では (ii) により特異な柱状集合
+\[
+\{(z_1,z_2,w):z_1z_2=0\}
+\]
+を実現できる。これは代数的集合であり、交差点では複素多様体ではない。この開でない例に Stein 領域という用語を適用しない。(iii) で \allowbreak$P_i(z)=z_i$\allowbreak とすれば多重円板の柱状集合が得られ、それぞれの境界面を含めるか除くかを独立に指定できる。
+
+\subsection{共通の三角型順序が必要な理由}
+各写像の次数の有界性だけでは、共通の三角型順序がない場合には不十分である。自律的な多項式自己同型
+\[
+H(z,w)=\left(\frac w4,\frac z4+w^2\right),\qquad
+H^{-1}(u,v)=(4v-64u^2,4u)
+\]
+は次数 \allowbreak$2$\allowbreak で、原点における微分の最大値ノルムは \allowbreak$1/4$\allowbreak である。\allowbreak$\|(z,w)\|_\infty<1/4$\allowbreak なら、\allowbreak$\|H(z,w)\|_\infty\leq\tfrac12\|(z,w)\|_\infty$\allowbreak となるので、吸引域は原点の近傍を含む。一方、\allowbreak$(2,2)$\allowbreak から始めると二つの座標は正を保ち、第二座標は \allowbreak$w_{n+1}\geq w_n^2$\allowbreak を満たすため、その軌道は無限遠に逃げる。吸引域は \allowbreak$\bigcup_{n\geq0}H^{-n}(B_{1/4})$\allowbreak と書けるので開集合である。これは真の開集合であり、代数的集合ではない。軌道写像の次数は非有界であり、まさに補題~\ref{lem:finite-ja} の適用条件が失われている。
+
+\subsection{零に収束する入力に一様なスカラー安定性が必要な理由}
+\allowbreak$\lambda$\allowbreak を \allowbreak$b_n\to1$\allowbreak に置き換えると、\allowbreak$\prod_{j=1}^n b_j\to0$\allowbreak であっても \allowbreak$u_n\to0\Rightarrow w_n\to0$\allowbreak は成立しないことがある。実際、
+\[
+b_j=\frac j{j+1},\qquad u_j(z)=\frac{z^2}{j+1},\qquad
+w_n=\frac{w_0+nz^2}{n+1}\longrightarrow z^2
+\]
+である。入力はすべての \allowbreak$z$\allowbreak で零に収束するが、状態が零に収束するのは \allowbreak$z=0$\allowbreak のときだけである。したがって命題~\ref{prop:transfer-ja} の固定した \allowbreak$\lambda<1$\allowbreak を、斉次積の減衰だけで置き換えることはできない。
+
+\subsection{一次元、不変性、共通の球の欠如}
+複素一次元で原点を固定する多項式自己同型は \allowbreak$z\mapsto a_jz$\allowbreak である。その収束集合は、\allowbreak$\prod_{j=1}^n a_j\to0$\allowbreak なら \allowbreak$\C$\allowbreak、そうでなければ \allowbreak$\{0\}$\allowbreak となる。柱状集合の構成では追加座標を用いており、一変数の反例を作っているわけではない。
+
+非自律系の初期時刻における集合は、固定した \allowbreak$F_j$\allowbreak のもとで自動的に不変になるわけではない。
+\[
+S_t=\{x:F_{t+n}\circ\cdots\circ F_{t+1}(x)\to0\}
+\]
+とおくと、正しい等式は \allowbreak$F_{t+1}(S_t)=S_{t+1}$\allowbreak である。これは軌道の最初の一項を除くことと、逆写像の存在から従う。本稿では \allowbreak$F_j(S_0)=S_0$\allowbreak という等式を必要としない。
+
+円板の例で非線形係数の絶対値は \allowbreak$\lambda^{-(j-1)(j+m)}$\allowbreak、またはこれを \allowbreak$j$\allowbreak で割った値である。任意の固定した正半径の球上で、非線形項は非有界になる。これにより共通の有界な近傍が存在しないことを直接確認できる。指定したすべてのジェットがスカラー収縮写像と一致していても、これらの例は一様吸引域の仮定を満たさない。
+
+\section{先行研究との比較}
+自律的な分類、一様な非自律系の定理、通常の三角型有界係数評価は、力学的な制御のもとでの一意化を扱う。本稿の計算は、その制御を外した後の収束集合を正確に記述する。そのような集合には、有界正則関数が存在したり、連結成分が複数あったり、開集合でなかったりする可能性がある。
+
+特に二つの箇所で先行研究の重複リスクが高い。第一に、補題~\ref{lem:finite-ja} は有限次元線形代数の観察であり、その三角型写像への適用は明示的に既知の次数評価を使う。第二に、命題~\ref{prop:transfer-ja} は正則座標で表した安定なアフィン漸化式である。したがって、正則関数列の収束集合を三角型拡大によって符号化する先行論文があれば、本稿の構成はそこに含まれる可能性がある。各時刻の任意のジェット次数と、狭義・非狭義境界の正確な指定を同時に扱う点こそ、さらに優先権の確認が必要な部分である。検索で見つからなかったことを新規性の主張に変換しない。
+
+Peters--Wold \cite{PW-ja}、Peters \cite{Peters-ja}、survey \cite{Survey-ja}、および Bera--Pal--Verma の例 \cite{BPV-ja} を、周辺の非自律系の文献確認に用いた。特に、底空間が双曲的な柱状集合を Short \allowbreak$\C^{d+1}$\allowbreak と呼んでいるわけではない。その Kobayashi 擬距離は水平方向ですでに非零である。本稿の設定では、抽象的吸引域、一様吸引域、各点収束集合の定義を相互に置き換えることはできない。
+
+\section{補足}
+証明の依存関係は短い。
+\[
+\begin{array}{c}
+\text{既知の次数評価}+\text{有限次元での収束}\\
+\Downarrow\\
+\text{代数的制約}\\[3pt]
+\text{安定なスカラー漸化式}+\text{明示的な三角型拡大}\\
+\Downarrow\\
+\text{代数的集合と不等式集合の柱状集合の実現}\\
+\Downarrow\\
+\text{コンパクト評価、境界漸近式、複素解析的帰結}.
+\end{array}
+\]
+すべての矢印は上記の証明で示されている。正カレントの定理、Bedford--Taylor の外積、正規族のコンパクト性、Anders\'en--Lempert 近似は用いない。使用する唯一の近似定理は、別に述べた Runge 性の帰結における Oka--Weil である。
+
+結果は明示的な三角型系に限られ、実現には一つの追加座標を使う。任意の収束集合の分類でも、新しい Fatou--Bieberbach 領域の構成でも、一様吸引域の定理の仮定の弱化でもない。実現方法に先行研究が見つかった場合でも、記載した数学的命題はすべて独立に検証できる形で残る。これを新しい研究成果として提示するうえで残る障害は、新規性の認証である。
+\renewcommand{\refname}{参考文献}
+
+\begin{thebibliography}{AA+14}
+\bibitem[AAM14]{AAM-ja}
+M. Abate, A. Abbondandolo, and P. Majer, \emph{Stable manifolds for holomorphic automorphisms}, J. Reine Angew. Math. \textbf{690} (2014), 217--247. \href{https://doi.org/10.1515/crelle-2012-0069}{doi:10.1515/crelle-2012-0069}. Lemmas 6.2, 6.4 and Theorem A.1.
+
+\bibitem[AA+14]{Survey-ja}
+A. Abbondandolo, L. Arosio, J. E. Forn\ae ss, P. Majer, H. Peters, J. Raissy, and L. Vivas, \emph{A survey on non-autonomous basins in several complex variables}, arXiv:1311.3835v2 (2014). \url{https://arxiv.org/abs/1311.3835v2}. Sections 2--4.
+
+\bibitem[AS22]{AS-ja}
+I. Arzhantsev and K. Shakhmatov, \emph{Some finiteness results on triangular automorphisms}, Results Math. \textbf{77} (2022), no. 2, article 75. \href{https://doi.org/10.1007/s00025-022-01612-9}{doi:10.1007/s00025-022-01612-9}. Lemma 1 in arXiv:2011.01202v2.
+
+\bibitem[BPV17]{BPV-ja}
+S. Bera, R. Pal, and K. Verma, \emph{Examples of non-autonomous basins of attraction}, Illinois J. Math. \textbf{61} (2017), nos. 3--4. \href{https://doi.org/10.1215/ijm/1534924839}{doi:10.1215/ijm/1534924839}. Text consulted: arXiv:1706.05567, Introduction.
+
+\bibitem[BV24]{BV-ja}
+S. Bera and K. Verma, \emph{Uniform non-autonomous basins of attraction}, Invent. Math. \textbf{238} (2024), 995--1040. \href{https://doi.org/10.1007/s00222-024-01295-9}{doi:10.1007/s00222-024-01295-9}. Theorem 1.1; author version arXiv:2211.15169v4.
+
+\bibitem[For17]{Forst-ja}
+F. Forstneri\v c, \emph{Stein Manifolds and Holomorphic Mappings: The Homotopy Principle in Complex Analysis}, 2nd ed., Ergebnisse der Mathematik und ihrer Grenzgebiete, 3. Folge, vol. 56, Springer, Cham, 2017. \href{https://doi.org/10.1007/978-3-319-61058-0}{doi:10.1007/978-3-319-61058-0}. Chapters 2--3.
+
+\bibitem[FS04]{FS-ja}
+J. E. Forn\ae ss and B. Stens\o nes, \emph{Stable manifolds of holomorphic hyperbolic maps}, Int. J. Math. \textbf{15} (2004), no. 8, 749--758. \href{https://doi.org/10.1142/S0129167X04002557}{doi:10.1142/S0129167X04002557}.
+
+\bibitem[Pet07]{Peters-ja}
+H. Peters, \emph{Perturbed basins of attraction}, Math. Ann. \textbf{337} (2007), 1--13. \href{https://doi.org/10.1007/s00208-005-0739-y}{doi:10.1007/s00208-005-0739-y}.
+
+\bibitem[PW05]{PW-ja}
+H. Peters and E. F. Wold, \emph{Non-autonomous basins of attraction and their boundaries}, J. Geom. Anal. \textbf{15} (2005), 123--136. \href{https://doi.org/10.1007/BF02921861}{doi:10.1007/BF02921861}. Author version: arXiv:math/0410210, Sections 2 and 4.
+
+\bibitem[RR88]{RR-ja}
+J.-P. Rosay and W. Rudin, \emph{Holomorphic maps from $\C^n$ to $\C^n$}, Trans. Amer. Math. Soc. \textbf{310} (1988), no. 1, 47--86. \href{https://doi.org/10.1090/S0002-9947-1988-0929658-4}{doi:10.1090/S0002-9947-1988-0929658-4}.
+
+\end{thebibliography}
+
+\end{document}

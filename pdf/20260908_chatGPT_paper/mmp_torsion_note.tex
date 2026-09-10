@@ -1,0 +1,1142 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\providecommand{\mathds}{\mathbb}}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{\providecommand{\mathbbm}{\mathbb}}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{ulem.sty}{\usepackage[normalem]{ulem}}{}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage{fontspec}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\setmainfont{Latin Modern Roman}
+\setmainjfont{HaranoAjiMincho-Regular}[
+  BoldFont={HaranoAjiMincho-Bold}
+]
+\newcommand{\StartJapanese}{\normalfont}
+\usepackage{booktabs,longtable,array}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical macros retained from the template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions used only in the present note.
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\bpf}{bpf}
+\DeclareMathOperator{\gp}{gp}
+\newcommand{\bM}{\mathbf M}
+\newcommand{\bN}{\mathbf N}
+\newcommand{\NN}{\mathbb Z_{\geq0}}
+\newcommand{\qs}{\sim_{\mathbb Q}}
+\newcommand{\proofstatus}{\textbf{Status: proved; no independent novelty claim.}}
+\emergencystretch=1.5em
+\title[Torsion obstructions to generalized abundance]{Torsion obstructions to generalized abundance:\\
+section rings, finite detection, and a conditional descent theorem}
+\author{chatGPT 6 Astra}
+\date{September 9, 2026}
+\subjclass[2020]{Primary 14E30; Secondary 14H52, 14C20, 14M25}
+\keywords{generalized pairs, abundance, elliptic curves, projective bundles, section rings, canonical bundle formula}
+\hypersetup{pdftitle={Torsion obstructions to generalized abundance},pdfauthor={chatGPT 6 Astra}}
+\begin{document}
+\raggedbottom
+\begin{abstract}
+We compute section rings of nef generalized adjoints on split projective bundles over an elliptic curve. A relation lattice in the degree-zero Picard group determines the Iitaka dimension, while the exponent of its finite image determines the exact base-point-free index. The computation yields a single smooth family of generalized klt surfaces in which finite generation holds on every fibre, the semiample locus is not constructible, and no finite initial collection of mixed plurigenera detects abundance. A threefold calculation gives explicit graded hypersurface rings and two possible Iitaka bases. We also give a conditional descent argument using a b-semiample nef part, Ambro's canonical bundle formula, and ordinary abundance in the dimension of the base. All proofs of the explicit calculations are included. The underlying torsion mechanism and the descent method are known; this investigation did not establish a sufficiently independent new MMP theorem. The note therefore records verified mathematics and the limits of its novelty claim.
+\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}\label{en:intro}
+Minimal models and good minimal models impose different conditions. A nef generalized adjoint already defines a minimal model, but a good minimal model requires semiampleness. Numerical information alone cannot detect a non-torsion degree-zero line bundle. Our investigation began with transfers between ordinary and generalized pairs and with low-dimensional abundance. Several proposed general statements were either known or false. We consequently focus on an explicit class where the obstruction can be calculated without an unproved MMP step.
+
+Here and throughout, varieties are over $\C$. Projective bundles parametrize one-dimensional quotients, so that
+\[
+ \pi_*\cO_{\mP_C(V)}(m)=\Sym^mV\qquad(m\geq0).
+\]
+Let $C$ be a smooth elliptic curve and let $L_1,\ldots,L_r\in\Pic^0(C)$, where $r\geq2$ and $\bigotimes_iL_i\simeq\cO_C$. Put
+\begin{equation}\label{en:setup}
+ V=\bigoplus_{i=1}^rL_i,\quad X=\mP_C(V),\quad
+ H=\cO_X(1),\quad M=(r+1)H,\quad D=K_X+M\sim H.
+\end{equation}
+We use additive notation for line bundles when they occur in divisor expressions. The nef b-divisor is the Cartier closure $\bM=\overline M$; no exceptional moduli data are suppressed.
+
+\begin{thm}[Relation-lattice calculation]\label{en:main}
+In \eqref{en:setup}, $(X,0+\bM)$ is a smooth generalized klt pair, $M$ and $D$ are nef Cartier divisors, and $\nu(D)=r-1$. Define
+\[
+ \begin{gathered}
+ \Gamma=\langle L_1,\ldots,L_r\rangle\subset\Pic^0(C),\qquad S=\Lambda\cap\NN^r,\\
+ \Lambda=\ker\bigl(\Z^r\longrightarrow\Gamma,\ a\longmapsto\textstyle\bigotimes_i L_i^{a_i}\bigr).
+ \end{gathered}
+\]
+Then, with grading $\deg(a)=\sum_i a_i$, there is a noncanonical graded isomorphism
+\begin{equation}\label{en:ring}
+ R(X,D)\simeq\C[S],\qquad
+ h^0(X,mD)=\#\{a\in S:\textstyle\sum_i a_i=m\}.
+\end{equation}
+This ring is a finitely generated normal domain, and
+\begin{equation}\label{en:kappa}
+ \kappa(D)=r-1-\rank_{\Z}(\Gamma/\Gamma_{\rm tors}).
+\end{equation}
+Furthermore, the following are equivalent: $D$ is abundant; $D$ is semiample; and $\Gamma$ is finite. If these conditions hold and $e=\exp(\Gamma)$, then
+\begin{equation}\label{en:bpf}
+ |mD|\text{ is base point free}\ \Longleftrightarrow\ e\mid m.
+\end{equation}
+\end{thm}
+
+For $r=2$ this provides a particularly explicit obstruction to finite tests for abundance. The stronger rank-three computation in Section~\ref{en:three} also determines the graded ring and the Iitaka base, not just dimensions of spaces of sections.
+
+\begin{thm}[A family with no finite plurigenus test]\label{en:familyintro}
+There is a smooth projective family over $T=\Pic^0(C)$, with fibre
+\[
+ X_t=\mP_C(L_t\oplus L_t^{-1}),\qquad D_t=H_t,\qquad M_t=3H_t,
+\]
+of generalized klt surfaces with nef Cartier nef part and $K_{X_t}+M_t\sim D_t$. Every $R(X_t,D_t)$ is finitely generated and $\nu(D_t)=1$. The semiample, equivalently abundant, locus is exactly $T_{\rm tors}$, and is not constructible. For every integer $N\geq1$, there are a semiample fibre $t$ and a non-abundant fibre $u$ satisfying
+\[
+ h^0(X_t,aD_t+bM_t)=h^0(X_u,aD_u+bM_u)
+ \quad(0\leq a,b\leq N),
+\]
+although $\kappa(D_t)=1$ and $\kappa(D_u)=0$. A relative polarization can be chosen with identical Hilbert polynomials on all fibres. The base-point-free indices of $D_t$ on the semiample fibres are unbounded.
+\end{thm}
+
+\paragraph{Scope and provenance.}
+Theorem~\ref{en:main} is proved here from the projective-bundle formula and a lattice calculation. It is a concrete consequence of familiar geometry, not an assertion of a new general abundance theorem. Birkar--Hacon \cite[Example 1.1, Example 3.1 and \S4]{en-BH} already exhibit torsion-dependent good models and failures of uniform behavior in bounded families of generalized pairs. Han--Liu's work \cite{en-HL} distinguishes numerical nonvanishing from linear nonvanishing and discusses elliptic ruled surfaces. Esposito--Mistretta \cite{en-EM} give a broader finite-cover characterization relevant to the semiampleness criterion. We do not infer novelty from the absence of our exact notation in those papers. The research-goal status is \emph{PARTIAL}: the proofs are complete, but independent novelty has not been established.
+
+\section{Preliminaries}\label{en:prelim}
+\subsection{Generalized pairs and models}
+A rational generalized pair $(Y,B+\bN)$ consists of a normal projective variety $Y$, an effective $\Q$-divisor $B$, and a b-$\Q$-Cartier b-divisor $\bN$ which descends to a nef $\Q$-Cartier divisor $N_W$ on a projective birational model $W\to Y$. Traces on higher models are pullbacks, and traces on other models are obtained by pushforward from a common model. We require $K_Y+B+N_Y$ to be $\Q$-Cartier. The word ``nef'' here means absolutely nef, not only nef over $Y$.
+
+A b-divisor is b-Cartier if its determining divisor is Cartier, and b-$\Q$-Cartier if a positive integer multiple is b-Cartier. It is NQC if it is a finite nonnegative real linear combination of nef b-$\Q$-Cartier divisors. Our rational nef data are automatically NQC. It is b-semiample if a determining divisor is semiample on a projective model. This is stronger than numerical equivalence to a semiample divisor.
+
+With compatible canonical divisors, write the equality of divisors
+\[
+ K_W+B_W+N_W=p^*(K_Y+B+N_Y).
+\]
+Our generalized \emph{log discrepancy} is $a_E=1-\operatorname{coeff}_E(B_W)$. Generalized klt means $a_E>0$ for all prime divisors over $Y$, and generalized lc means $a_E\geq0$. Some sources use the discrepancy $a_E-1$ instead. We do not use a mere linear equivalence to define discrepancies. When the nef part descends to $Y$, its pullback cancels and these are exactly the ordinary discrepancies of $(Y,B)$. In particular, this observation applies to all projective-bundle examples in this note.
+
+For completeness, the generalized dlt convention is the lc condition together with log smoothness and descent of the nef part near the generic points of generalized lc centres; we never need a dlt modification in an original proof below. A generalized minimal model is a generalized lc birational contraction with nef adjoint, nondecreasing log discrepancies and strict improvement for contracted divisors. One often additionally requires a $\Q$-factorial dlt target; all our explicit models are smooth. It is good when the adjoint is semiample. A generalized Mori fibre space has a contraction of smaller-dimensional base, relative Picard number one, and relatively antiample adjoint, together with the appropriate discrepancy comparison. We do not claim termination of arbitrary generalized flips. These conventions agree with the rational specializations of \cite[\S2]{en-HL} and \cite[\S2]{en-TX}.
+
+\subsection{Dimensions and section rings}
+For a nef Cartier divisor $A$ on a projective $n$-fold, put
+\[
+ \nu(A)=\max\{k:A^k\cdot P^{n-k}>0\},
+\]
+where $P$ is an ample divisor. We use $\kappa(A)=-\infty$ if every positive multiple has no sections, and otherwise the dimension of the Iitaka image. Abundance means $\kappa(A)=\nu(A)$. Semiampleness means that $|mA|$ is base point free for some $m>0$; its least such $m$ is the base-point-free index. This is not the Cartier index. Write
+\[
+ R(Y,A)=\bigoplus_{m\geq0}H^0(Y,\cO_Y(mA)).
+\]
+We use the corresponding divisible Veronese ring for $\Q$-Cartier divisors. Iitaka dimension and semiampleness are invariant under $\Q$-linear equivalence, but need not be invariant under numerical equivalence. Numerical dimension is numerical by definition.
+
+\section{Known results used}\label{en:known}
+Only the conditional descent in Section~\ref{en:descent} needs a substantial external theorem. We state its precise input.
+
+\begin{thm}[Ambro, \cite{en-Amb}, Theorem 0.2 = Theorem 4.1]\label{en:ambro}
+Let $(Y,\Delta)$ be a projective klt pair with rational effective boundary, and let $f:Y\to Z$ be a contraction to a normal projective variety. If $K_Y+\Delta\qs f^*L$ for a $\Q$-Cartier divisor $L$ on $Z$, there is an effective $\Q$-divisor $\Delta_Z$ such that $(Z,\Delta_Z)$ is klt and $L\qs K_Z+\Delta_Z$.
+\end{thm}
+This statement is the ordinary klt consequence of the canonical bundle formula, not b-semiampleness of every moduli b-divisor. On a suitable model the discriminant coefficient over a prime divisor is one minus the relevant log canonical threshold; the remaining term is the moduli part. Ambro obtains the needed positivity for this particular fibration. An arbitrary nef b-divisor is not thereby a canonical-bundle-formula moduli part.
+
+The other external inputs are ordinary abundance for projective klt $\Q$-pairs in dimension at most three \cite{en-Fuj,en-KMM}; the first-dimensional case follows directly from the degree of a divisor on a curve. For surfaces we use the rational-divisor case of \cite[Theorem 6.1]{en-Fuj}; a klt surface is $\Q$-factorial, as required there. In addition, we use Bertini's theorem on a smooth projective log resolution: a general member of a base-point-free linear system is smooth, meets a prescribed simple normal crossing divisor transversely, and contains none of its strata. Resolution of singularities and this standard Bertini statement are applied only in characteristic zero. The local discrepancy calculation for a simple normal crossing sub-boundary shows that coefficients below one give a sub-klt pair, including when some coefficients are negative.
+
+The projective-bundle formulas used below are
+\begin{equation}\label{en:bundleformulas}
+ K_{\mP_C(V)}=-rH+\pi^*(K_C+\det V),\qquad
+ \pi_*\cO(mH)=\Sym^m V\quad(m\geq0).
+\end{equation}
+The canonical formula follows by taking the determinant of the relative Euler sequence in the quotient convention. The pushforward formula follows on trivializing open subsets from homogeneous polynomials of degree $m$ and glues by the transition functions of $V$. Thus the sign and the dual convention in these formulas are fixed explicitly.
+
+\section{Proof of the relation-lattice theorem}\label{en:proof}
+\subsection{Nefness and numerical dimension}
+First, a degree-zero line bundle $L$ on $C$ has a nonzero section if and only if it is trivial. Indeed, the zero divisor of a nonzero section is effective of degree zero, hence empty, and the section trivializes $L$. In that case $h^0(C,L)=1$.
+
+We verify that $H$ is nef without a stability theorem. For an integral curve in $X$, normalize it and call the resulting map $g:E\to X$. If $\pi g$ is constant, the degree of $g^*H$ is nonnegative because $\cO_{\mP^{r-1}}(1)$ is ample. Otherwise $\pi g:E\to C$ is finite, and $g$ specifies a quotient
+\[
+ \bigoplus_i(\pi g)^*L_i\longrightarrow g^*H.
+\]
+At least one component is a nonzero map of line bundles. Its zero divisor is effective, so $\deg(g^*H)\geq\deg((\pi g)^*L_i)=0$. This proves nefness. Formula~\eqref{en:bundleformulas} and $K_C\sim0$, $\det V\simeq\cO_C$ give $K_X\sim-rH$ and $D\sim H$. The smooth ordinary pair $(X,0)$ is klt, and the nef part descends; hence the generalized pair is klt.
+
+Since $\dim X=r$, the projective-bundle relation gives $H^r=\deg V=0$. If $A_C$ has positive degree, then
+\[
+ H^{r-1}\cdot\pi^*A_C=\deg A_C>0.
+\]
+For sufficiently large positive degree, $P=H+\pi^*A_C$ is ample (one can apply the relative projective embedding and tensor by a sufficiently positive bundle on the base). Therefore $H^{r-1}P>0$ whereas $H^r=0$, and $\nu(D)=r-1$. The same argument proves nefness of $M=(r+1)H$.
+
+\subsection{The algebra structure, not only the Hilbert function}
+Splitting the symmetric power gives
+\begin{equation}\label{en:symmetric}
+ H^0(X,mH)=
+ \bigoplus_{\substack{a\in\NN^r\\ |a|=m}}
+ H^0\bigl(C,\textstyle\bigotimes_i L_i^{a_i}\bigr).
+\end{equation}
+Each summand is zero or one-dimensional by the preceding degree argument. The nonzero summands are indexed exactly by $S$.
+
+There could initially be nonzero scalar factors in products of chosen generators of these one-dimensional spaces. To remove them coherently, choose a $\Z$-basis of the free abelian group $\Lambda$ and a trivialization of the line bundle associated with each basis element. Negative exponents use dual trivializations. Tensoring these choices defines compatible trivializations for every element of $\Lambda$. Under these choices, the product associated with $a$ and $b$ is the section associated with $a+b$, with scalar one. This proves the graded algebra isomorphism~\eqref{en:ring}. It also explains why that isomorphism is not canonical.
+
+\subsection{Finite generation and normality}
+Let $U=\Lambda\otimes_\Z\R$ and $\sigma=U\cap\R_{\geq0}^r$. It is a rational polyhedral cone with respect to the lattice $\Lambda$. Choose integral vectors $v_1,\ldots,v_k\in\Lambda$ generating its rational extremal rays. Any $s\in S$ can be written $s=\sum_j t_jv_j$ with $t_j\geq0$. Subtracting $\sum_j\lfloor t_j\rfloor v_j$ leaves a lattice point in the bounded set
+\[
+ \bigl\{\textstyle\sum_j u_jv_j:0\leq u_j\leq1\bigr\}\cap\Lambda\cap\sigma.
+\]
+There are only finitely many such residual points. Along with the $v_j$, they generate $S$. This is the elementary argument underlying Gordan's lemma.
+
+The vector ${\bf1}=(1,\ldots,1)$ belongs to $\Lambda$, because $\det V\simeq\cO_C$. Given $a\in\Lambda$, sufficiently large $k$ makes $a+k{\bf1}\in S$. Since $k{\bf1}\in S$, we have $\gp(S)=\Lambda$. Consequently the fraction field of $\C[S]$ is the fraction field of the Laurent polynomial ring $\C[\Lambda]$. Inside this field,
+\[
+ \C[S]=\C[\Lambda]\cap\C[x_1,\ldots,x_r],
+\]
+where the intersection is computed in $\C(x_1,\ldots,x_r)$. A polynomial lying in the lattice group algebra has only monomials with exponents in $\Lambda$, which proves the equality. Both rings on the right are integrally closed in their fraction fields. If an element of $\operatorname{Frac}(\C[S])$ is integral over $\C[S]$, the same monic equation makes it integral over each ring on the right; it therefore belongs to both. This proves normality.
+
+\subsection{Iitaka dimension and base point freeness}
+Let $s=\rank_\Z(\Gamma/\Gamma_{\rm tors})$. The exact sequence defining $\Lambda$ gives $\rank\Lambda=r-s$. The semigroup algebra has this Krull dimension, because its fraction field is the rank-$(r-s)$ Laurent field. It has nonconstant positive-degree elements, including the monomial corresponding to ${\bf1}$. Its projective spectrum, equivalently the Iitaka image, therefore has dimension $r-s-1$. This proves~\eqref{en:kappa}. Alternatively, the degree-zero sublattice of $\Lambda$ has rank $r-s-1$; its Laurent monomials are quotients of sections of equal degree after adding sufficiently large multiples of ${\bf1}$. They give precisely the same transcendence-degree computation.
+
+For each quotient $V\twoheadrightarrow L_i$, there is a section $s_i:C\to X$ and $s_i^*H=L_i$. If $mH$ is globally generated, then $L_i^m$ is globally generated and of degree zero, hence trivial. This necessity holds for every $i$. Conversely, if all $L_i^m$ are trivial, the pure monomials $x_i^m$ are global sections of $mH$. At every point of a projective fibre some coordinate is nonzero, so these sections have no common zero. Thus
+\[
+ |mH|\text{ is base point free}\quad\Longleftrightarrow\quad
+ L_i^m\simeq\cO_C\text{ for every }i.
+\]
+This proves~\eqref{en:bpf}, and semiampleness is equivalent to finiteness of $\Gamma$. Equation~\eqref{en:kappa}, together with $\nu(D)=r-1$, makes abundance equivalent to $s=0$. A finitely generated abelian group of rank zero is finite, completing the proof.
+
+\begin{cor}\label{en:allkappa}
+For every $r\geq2$ and $k\in\{0,\ldots,r-1\}$ there is an example in Theorem~\ref{en:main} with $\kappa(D)=k$. All have nef adjoint, a finitely generated section ring, and Cartier nef part.
+\end{cor}
+\begin{proof}
+Choose $s=r-1-k$ degree-zero line bundles independent modulo torsion, put them among the first $r-1$ summands, fill the other summands there with trivial bundles, and choose the last summand to make the determinant trivial. Such independent choices exist because at each finite stage the torsion saturation of the generated subgroup is countable, whereas $\Pic^0(C)(\C)$ is uncountable. Now apply~\eqref{en:kappa}.
+\end{proof}
+
+\section{Surfaces, families, and finite detection}\label{en:surface}
+For $V=L\oplus L^{-1}$, a degree-$m$ monomial $x^ay^{m-a}$ is a section precisely when $L^{2a-m}$ is trivial. If $L$ is non-torsion, this happens only for $2a=m$, and hence
+\begin{equation}\label{en:non-torsion}
+ R(X,H)=\C[xy],\quad\deg(xy)=2,\qquad
+ h^0(X,mH)=\begin{cases}1&m\text{ even},\\0&m\text{ odd}.\end{cases}
+\end{equation}
+In particular, finite generation and nonvanishing hold, but $\kappa(H)=0<1=\nu(H)$. This is a minimal generalized pair, yet its nef adjoint is not semiample.
+
+If $L$ has exact order $q$, the condition is $2a\equiv m\pmod q$. When $q>m$, the interval $[-m,m]$ contains no nonzero multiple of $q$ and~\eqref{en:non-torsion} remains valid in degree $m$. The base-point-free index is nevertheless exactly $q$, and $\kappa(H)=1$. The full graded ring, in either parity of $q$, has the presentation
+\begin{equation}\label{en:surface-ring}
+ R(X,H)\simeq\C[u,v,w]/(uv-w^q),\qquad
+ \deg u=\deg v=q,\quad\deg w=2.
+\end{equation}
+Indeed every pair of exponents with difference divisible by $q$ is obtained by subtracting their common minimum and then using $x^q$ or $y^q$. The relation and this unique residual form prove the presentation. Thus parity affects the relevant Veronese presentation, not the displayed full ring.
+
+We now construct the family, including its line bundles. Let $\cP$ be the normalized Poincar\'e line bundle on $C\times T$, $T=\Pic^0(C)$, and set
+\[
+ \mathscr X=\mP_{C\times T}(\cP\oplus\cP^{-1}),\quad
+ \mathscr H=\cO_{\mathscr X}(1),\quad \mathscr M=3\mathscr H.
+\]
+Projection to $T$ is smooth and projective, and the relative determinant is trivial. The relative canonical bundle satisfies $K_{\mathscr X/T}\sim-2\mathscr H$. Thus the restrictions give exactly Theorem~\ref{en:familyintro}. No assertion that $\mathscr M$ is absolutely nef on the entire parameterized total space is needed: it is nef on every fibre over $T$.
+
+Choose $A_C$ of degree $d>0$, sufficiently large, and use $P_t=H_t+\pi_t^*A_C$ as a relative polarization. Ampleness can also be checked on each surface by Nakai--Moishezon: $P_t^2=2d>0$; vertical curves have positive intersection with $H_t$; horizontal curves have positive intersection with $\pi_t^*A_C$ and nonnegative intersection with $H_t$. The same relative line bundle gives these polarizations in the family. For $\ell>0$, projection to $C$ and Riemann--Roch on the elliptic curve give
+\begin{equation}\label{en:hilbert}
+ h^0(X_t,\ell P_t)=d\ell(\ell+1),\qquad
+ \chi(X_t,\ell P_t)=d\ell(\ell+1).
+\end{equation}
+Indeed the pushforward is a direct sum of $\ell+1$ line bundles of degree $d\ell>0$, each of which has that many sections and no first cohomology. The polynomial for $\chi$ follows since equality for all positive $\ell$ determines the Hilbert polynomial. The numerical data are
+\[
+ H_t^2=M_t^2=K_{X_t}^2=0,\quad
+ H_tP_t=d,\quad M_tP_t=3d,\quad P_t^2=2d,\quad\rho(X_t)=2.
+\]
+
+For a given $N$, choose a torsion point $t$ of exact order $q>4N$ and a non-torsion point $u$. Since $aD+bM=(a+3b)H$ and $a+3b\leq4N<q$, the degree calculation proves equality of all the mixed plurigenera in Theorem~\ref{en:familyintro}, including degree zero. But the two Iitaka dimensions differ. Finally $T_{\rm tors}=\bigcup_{q\geq1}T[q]$ is countably infinite. On an irreducible algebraic curve over $\C$, an infinite constructible subset contains a nonempty open subset and is cofinite. The torsion subset is not cofinite, hence not constructible. This completes the proof of Theorem~\ref{en:familyintro}.
+
+\begin{rem}\label{en:bounded}
+These examples disprove a uniform bound for the base-point-free index based only on this fixed smooth family, fixed boundary coefficients, generalized $\epsilon$-lc singularities (one may take $\epsilon=1$), Cartier index one of the nef part, the displayed numerical invariants, and semiampleness of the individual fibres. They do not contradict bounded complements for Fano-type varieties: these irregular ruled surfaces are not being asserted to be of Fano type, and a base-point-free index is not a complement index. They also do not contradict results for big generalized adjoints: $D_t^2=0$ throughout.
+\end{rem}
+
+\section{An explicit threefold calculation}\label{en:three}
+\begin{prop}\label{en:cubic}
+Let $q\geq2$, and choose a basis $L_1,L_2$ of the finite group $\Pic^0(C)[q]\simeq(\Z/q\Z)^2$. Set $L_3=(L_1L_2)^{-1}$ and use $r=3$ in~\eqref{en:setup}. Then
+\begin{equation}\label{en:cubicring}
+ R(X,D)\simeq\C[u,v,w,t]/(uvw-t^q),\qquad
+ (\deg u,\deg v,\deg w,\deg t)=(q,q,q,3).
+\end{equation}
+The divisor $D$ is semiample with base-point-free index $q$ and $\nu(D)=\kappa(D)=2$. Its Iitaka base is
+\begin{equation}\label{en:bases}
+ \Proj R(X,D)\simeq
+ \begin{cases}
+ \mP^2,&3\nmid q,\\
+ \{UVW=S^3\}\subset\mP^3,&3\mid q.
+ \end{cases}
+\end{equation}
+The second surface has three singularities of type $A_2$. A general fibre of the Iitaka contraction is an elliptic curve mapping \emph{\'etale} to $C$ with degree $q^2/\gcd(q,3)$.
+\end{prop}
+\begin{proof}
+A monomial with exponents $(a,b,c)$ is a section if and only if
+\[
+ (a-c)L_1+(b-c)L_2=0,
+ \quad\text{that is,}\quad a\equiv b\equiv c\pmod q.
+\]
+Take the common residue $j\in\{0,\ldots,q-1\}$. The exponent vector is uniquely
+\[
+ j(1,1,1)+\alpha(q,0,0)+\beta(0,q,0)+\gamma(0,0,q),
+ \qquad\alpha,\beta,\gamma\geq0.
+\]
+Thus $u=x^q$, $v=y^q$, $w=z^q$, $t=xyz$ generate, $t^q=uvw$, and the residual normal form shows that there are no further relations. Theorem~\ref{en:main} gives the numerical and base-point-free assertions.
+
+Projective spectrum is unchanged by taking the $q$-th Veronese. In the normal form $u^\alpha v^\beta w^\gamma t^j$ with $0\leq j<q$, membership in that Veronese is equivalent to $q\mid3j$. If $3\nmid q$, this forces $j=0$, so the Veronese is the polynomial ring in $u,v,w$ with degree one. If $q=3k$, then $j=0,k,2k$. With $s=t^k$, the Veronese is $\C[u,v,w,s]/(uvw-s^3)$ with all four generators of degree one. This proves~\eqref{en:bases}. The partial derivatives show that the cubic is singular exactly at $[1:0:0:0]$, $[0:1:0:0]$, and $[0:0:1:0]$. On, for example, $u=1$, the equation is $vw=s^3$, the $A_2$ surface singularity. It is normal, also as a consequence of the normality of the semigroup ring.
+
+For the last assertion, let $C'\to C$ be the multiplication-by-$q$ isogeny, of degree $q^2$. It trivializes every $L_i$. Its deck group $G\simeq(\Z/q\Z)^2$ acts by translations on $C'$ and, after choices of trivializations, by the three characters $L_1,L_2,(L_1L_2)^{-1}$ on $\mP^2$. Descent gives
+\[
+ X\simeq(C'\times\mP^2)/G.
+\]
+The character correspondence here is the standard one for a finite \'etale abelian cover: the eigensheaves of the pushforward of its structure sheaf are precisely the line bundles trivialized by the cover. It can also be obtained directly by descending trivial line bundles with a character linearization.
+
+On the open subset with all three projective coordinates nonzero, an element acts trivially exactly when its three eigenvalues are the same. Writing them as $\lambda,\mu,(\lambda\mu)^{-1}$ gives $\lambda=\mu$ and $\lambda^3=1$, with $\lambda^q=1$. The scalar subgroup $G_0$ consequently has order $g=\gcd(q,3)$. The quotient map to $\mP^2/G=\Proj R(X,D)$ has general fibre $C'/G_0$. It is connected and elliptic; the induced cover $C'/G_0\to C$ has degree $q^2/g$ and is \'etale since the action is by translations. The degree-one generators of the Veronese show that this quotient map is the contraction given by $|qD|$. This proves the remaining assertion without identifying a possibly disconnected fibre of a rational map with an Iitaka fibre.
+\end{proof}
+
+\begin{cor}[Fixed Iitaka base and fixed general fibre]\label{en:fixeddata}
+There is no uniform bound on the base-point-free index of the adjoint among smooth generalized klt threefolds with Cartier nef part, even when the Iitaka base is fixed as $\mP^2$, the general Iitaka fibre is isomorphic to one fixed elliptic curve $C$, and the polarized Hilbert polynomial is fixed.
+\end{cor}
+\begin{proof}
+Use Proposition~\ref{en:cubic} for arbitrarily large $q$ coprime to three. Its proof identifies the general fibre with $C'$ itself, and the domain of the multiplication-by-$q$ map is the original elliptic curve $C$. The base is $\mP^2$ and the index is $q$. For $P=H+\pi^*A_C$, with fixed sufficiently positive degree $d=\deg A_C$, the same pushforward calculation as in~\eqref{en:hilbert} gives $\chi(X,\ell P)=d\ell\binom{\ell+2}{2}$. These polarizations occur in the projective-bundle family over $\Pic^0(C)^2$ given by $L_1,L_2,(L_1L_2)^{-1}$, so the data are contained in one smooth projective family. The identification of the general fibre is as an abstract elliptic curve; its map to the original ruling base $C$ still has degree $q^2$.
+\end{proof}
+
+\begin{rem}[Polarization on the Iitaka fibre]\label{en:fibredegree}
+The fixed data in Corollary~\ref{en:fixeddata} do not bound the degree of a polarization on the general Iitaka fibre $F$. In fact
+\[
+ \deg(P|_F)=dq^2,\qquad
+ \deg(A|_F)\in q^2\Z\quad\text{for every integral divisor }A\text{ on }X.
+\]
+To see the second assertion, use the projective-bundle formula
+$\Pic(X)=\Z[H]\oplus\pi^*\Pic(C)$: the relative degree gives the first summand, and a bundle of relative degree zero descends from $C$ by local trivialization. Write $A\sim aH+\pi^*B_C$. The quotient construction above makes $H|_F$ trivial when $3\nmid q$, and $F\to C$ has degree $q^2$. Thus $\deg(A|_F)=q^2\deg B_C$. Every positive such degree is at least $q^2$. This is precisely a distinction needed when comparing fixed abstract fibres with bounded polarized fibres.
+\end{rem}
+
+\section{Conditional abundance by descent}\label{en:descent}
+The following transfer is included as the strongest clean conditional conclusion obtained in this investigation. Its proof uses known methods, and no independent novelty is claimed.
+
+\begin{assup}[$\mathrm{Ab}_{\mathrm{klt}}(d)$]\label{en:Ab}
+For every normal projective complex variety $Z$ of dimension $d$ and every effective rational boundary $\Delta_Z$ such that $(Z,\Delta_Z)$ is klt and $K_Z+\Delta_Z$ is $\Q$-Cartier and nef, the divisor $K_Z+\Delta_Z$ is semiample.
+\end{assup}
+There is no generalized, relative, K\"ahler, or real-coefficient interpretation hidden in this assumption. It is known for $d\leq3$.
+
+\begin{lem}[Semiample replacement]\label{en:replacement}
+Let $(Y,B+\bN)$ be a projective generalized klt rational pair with b-semiample nef part. There is an effective rational boundary $\Delta\geq B$ on $Y$ such that $(Y,\Delta)$ is ordinary klt and
+\[
+ K_Y+\Delta\qs K_Y+B+N_Y.
+\]
+\end{lem}
+\begin{proof}
+Choose a smooth log resolution $p:W\to Y$ on which $\bN$ descends and write
+\[
+ K_W+B_W+N_W=p^*(K_Y+B+N_Y).
+\]
+The coefficients of $B_W$ are all below one; they need not be nonnegative. Choose $m\geq2$ sufficiently divisible that $mN_W$ is Cartier and base point free. A general $G\in|mN_W|$ has no component in common with $B_W$ or the exceptional locus and meets their simple normal crossing support transversely. If the linear system is trivial, take $G=0$. Then $(W,B_W+G/m)$ is sub-klt by the simple normal crossing discrepancy calculation. Write
+\[
+ G/m=N_W+\tfrac1m\Div(\phi),\qquad
+ \Delta=B+p_*(G/m).
+\]
+The boundary $\Delta$ is effective. Because the function field is the same upstairs and downstairs,
+\begin{align*}
+ K_Y+\Delta
+ &=K_Y+B+N_Y+\tfrac1m\Div_Y(\phi),\\
+ p^*(K_Y+\Delta)
+ &=K_W+B_W+G/m.
+\end{align*}
+The first equality proves the required $\Q$-Cartier property, and the second identifies all discrepancies. Hence $(Y,\Delta)$ is klt. This avoids assuming that $N_Y$ is separately Cartier or that $B_W$ is effective.
+\end{proof}
+
+\begin{thm}[Conditional descent]\label{en:transfer}
+Assume $\mathrm{Ab}_{\mathrm{klt}}(d)$. Let $(Y,B+\bN)$ be a projective generalized klt rational pair with b-semiample nef part. Let $f:Y\to Z$ be a contraction to a normal projective $d$-fold, and assume that for a nef $\Q$-Cartier divisor $L$ on $Z$,
+\begin{equation}\label{en:pullback}
+ K_Y+B+N_Y\qs f^*L.
+\end{equation}
+Then $K_Y+B+N_Y$ is semiample. In particular the statement is unconditional when $d\leq3$, without any bound on $\dim Y$.
+\end{thm}
+\begin{proof}
+By Lemma~\ref{en:replacement} there is an ordinary effective klt rational pair $(Y,\Delta)$ with $K_Y+\Delta\qs f^*L$. The hypotheses of Theorem~\ref{en:ambro} now hold: projectivity, a contraction with connected fibres, klt singularities, rational coefficients and an actual $\Q$-linear pullback are all available. Thus $L\qs K_Z+\Delta_Z$ for an effective klt rational boundary $\Delta_Z$. Since $L$ is nef, so is $K_Z+\Delta_Z$. Assumption~\ref{en:Ab} makes this divisor semiample. Pulling back a base-point-free sufficiently divisible multiple and using~\eqref{en:pullback} proves the conclusion.
+\end{proof}
+
+This is a reduction to the dimension of the base, not an assumption of generalized abundance in the dimension of $Y$. For the same reason, the statement with $f=\id$ reduces to ordinary abundance in $\dim Y$; it does not create a new low-dimensional theorem. The hypothesis~\eqref{en:pullback} is stronger than numerical triviality on the general fibre, and is not derived here from a nef reduction map. Constructing it in a useful new situation was a precise unresolved step in the rejected broader candidate.
+
+\begin{rem}[Why the nef part cannot simply be arbitrary]\label{en:badreplace}
+Take a non-torsion $P\in\Pic^0(C)$ and the generalized klt curve $(C,0+\overline P)$. It has Cartier nef part and $K_C+P\equiv0$, but $h^0(C,m(K_C+P))=0$ for every $m>0$. With $f=\id_C$ and $L=P$, all other hypotheses of Theorem~\ref{en:transfer} hold. Thus replacing b-semiampleness by nefness makes the transfer false even for a curve. By contrast, for the moduli b-divisor arising in Ambro's lc-trivial setting, b-numerical triviality implies $\Q$-linear triviality \cite[Theorem 3.5]{en-Amb}; one must retain its geometric origin.
+\end{rem}
+
+\section{Boundary checks and relation to previous work}\label{en:checks}
+When all $L_i$ are trivial, $X=C\times\mP^{r-1}$, $R(X,D)$ is the ordinary polynomial ring, and the Iitaka contraction is the projection to $\mP^{r-1}$. Formula~\eqref{en:kappa} gives $r-1$, and the index is one. For a rank-one free image $\Gamma$ in the surface case, the ring~\eqref{en:non-torsion} has dimension one, so its Proj is a point, while $H$ still has positive degree on a ruling fibre. This checks explicitly why finite generation alone does not imply semiampleness of an arbitrary nef generalized adjoint.
+
+The specialization $\bN=0$ in Theorem~\ref{en:transfer} gives the standard ordinary klt consequence of the canonical bundle formula. The examples~\eqref{en:setup} do not specialize to ordinary nef adjoints by setting $M=0$: their ordinary canonical divisor restricts as $\cO_{\mP^{r-1}}(-r)$ and is not pseudo-effective. There is therefore no counterexample here to ordinary abundance. Rational coefficients, integral torsion relations, and the actual line bundles are essential; real numerical classes lose the information used in~\eqref{en:ring}.
+
+The closest prior counterexamples are in Birkar--Hacon \cite{en-BH}. Example 1.1 uses the Poincar\'e bundle to make good models depend on torsion. Example 3.1 and Section 4 give bounded surface families with unbounded multiples and related failures of uniformity. Our split-bundle presentations calculate the ring and, in rank three, the quotient base explicitly; they do not establish a new general failure of boundedness. Bie's May 18, 2026 revision \cite[Theorem 1.7]{en-Bie} proves DCC for generalized klt Iitaka volumes with bounded b-Cartier index and a bounded positive volume of an integral divisor on the general fibre. Remark~\ref{en:fibredegree} shows exactly why our threefold sequence does not satisfy that last assumption. Bie's Example 7.4 also records a torsion obstruction to a uniform linear descent multiple.
+
+Other relevant known results have the following precise roles. Han--Liu \cite[Theorem 1.5 and \S3.3]{en-HL} concern numerical nonvanishing and the limitations of numerical abundance, rather than a uniform degree of a nonzero section of our specific line bundle. Tsakanikas--Xie \cite[Corollary E]{en-TX} already give existence of minimal models for pseudo-effective NQC lc generalized pairs in dimensions at most four. Chaudhuri \cite[Theorem 2]{en-Cha} implies semiampleness when a generalized klt rational adjoint is nef and abundant; our non-torsion examples fail precisely the abundance hypothesis. Esposito--Mistretta \cite[Theorem 3.10]{en-EM} relate a semiample vector bundle with Kodaira-dimension-zero determinant to finite \'etale trivialization. Thus the qualitative semiampleness part of Theorem~\ref{en:main} has a broader known explanation.
+
+Recent work in other settings was checked to prevent a spurious novelty claim. Das--Hacon--Y\'a\~nez \cite[Theorems 1.1--1.6]{en-DHY}, in the June 2026 version, use nef b-$(1,1)$-current data for K\"ahler threefolds; their numerical contractions cannot be interpreted as linear systems of our divisors without additional rationality. Liu--Meng--Xie \cite[Theorems 1.2--1.4]{en-LMX} establish contractions, flips and suitable MMPs for algebraically integrable lc foliations on klt varieties. None of their foliated discrepancies is used as an ordinary discrepancy here. Chen--Han--He--Xie \cite[Theorem 1.1]{en-CHHX} prove bounded complements with fixed dimension and b-Cartier index under Fano-type and klt-complement hypotheses. Those hypotheses are not furnished by our bounded family. The accompanying research log records the wider comparison; it is not substituted for a proof in this note.
+
+\section{Novelty audit}\label{en:audit}
+Searches were performed on September 9, 2026, both before and after the exact statements were formulated. The second pass included combinations of ``generalized pairs'', ``elliptic projective bundle'', ``torsion'', ``section ring'', ``plurigenera'', ``constructible'', ``semiampleness index'', and the rank-three quotient equation. Relevant full texts, not merely snippets, were inspected. The final pass located the particularly close examples of Birkar--Hacon and checked Bie's revised Theorem 1.7; this strengthened the decision against claiming novelty. Search engines can miss statements inside proofs and remarks; absence of a hit is not evidence of independence from known arguments.
+
+\begin{center}\small
+\begin{tabular}{p{.43\textwidth}p{.48\textwidth}}
+\toprule
+Statement & Audit outcome\\
+\midrule
+Low-dimensional generalized minimal-model existence & KNOWN; excluded as a proposed main advance.\\
+Semiample nef-part replacement and conditional descent & KNOWN METHOD / CONDITIONAL application; complete proof, no novelty claim.\\
+Qualitative torsion--semiampleness and failure of uniform indices & KNOWN mechanisms; Birkar--Hacon give prior family counterexamples, and finite-cover results give a broader criterion.\\
+Relation ring, finite-test family, and rank-three presentation & PROVED in this note; independent research novelty unestablished. Treated as consequences of standard mechanisms, not promoted to ``apparently new''.\\
+New general MMP theorem requested at the outset & PARTIAL research outcome; not obtained.\\
+Arbitrary b-nef replacement & FALSE, with the explicit curve counterexample above.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The exact joint packaging of the calculations was not located in the searches, but that alone would not meet the requirement that an immediate reformulation should not be called a new result. In particular, no statement in this note is labelled ``PROVED---APPARENTLY NEW''. The finite-test theorem is useful as a fully checkable obstruction, without any claim that its elementary ingredients are new. This distinction is part of the conclusion of the investigation, not a gap in the proofs.
+
+\section{Further consequences and unresolved steps}\label{en:further}
+Theorem~\ref{en:familyintro} shows that a uniform finite computation of mixed plurigenera, even supplemented by the fixed polarization and the displayed numerical invariants, cannot decide abundance on this family. Each individual torsion fibre does have a good model, but its required multiple has no uniform bound. Any uniform theorem in this direction needs additional information that controls torsion, or positivity assumptions that exclude this example.
+
+For the conditional descent theorem, the unproved part of the broader research candidate was to manufacture the $\Q$-linear pullback~\eqref{en:pullback} from weaker numerical data while retaining control of the nef part. The non-torsion curve shows that no such unconditional replacement principle exists for arbitrary nef data. No K\"ahler extension, new foliated consequence, or new bounded-complement theorem was proved in this run. The completed outputs are the explicit proofs, the standard conditional transfer with all hypotheses stated, and the record of why stronger candidates were discarded.
+
+% The bibliography below is repeated in full in the Japanese version.
+\begin{thebibliography}{CHHX25}
+\bibitem[Amb05]{en-Amb}
+F. Ambro, \emph{The moduli b-divisor of an lc-trivial fibration}, Compositio Math. \textbf{141} (2005), 385--403. Theorems 0.2, 3.5 and 4.1. \href{https://doi.org/10.1112/S0010437X04001071}{doi:10.1112/S0010437X04001071}.
+
+\bibitem[BH22]{en-BH}
+C. Birkar and C. D. Hacon, \emph{Variations of generalised pairs}, arXiv:2204.10456v1 (2022), Examples 1.1 and 3.1, and \S4. \url{https://arxiv.org/abs/2204.10456v1}.
+
+\bibitem[Bie26]{en-Bie}
+P. Bie, \emph{On the DCC Property of Iitaka Volume with Real Coefficients and Generalised Pairs}, arXiv:2605.13881v2 (May 18, 2026), Theorem 1.7 and Example 7.4. \url{https://arxiv.org/abs/2605.13881v2}.
+
+\bibitem[Cha22]{en-Cha}
+P. Chaudhuri, \emph{Semiampleness for generalized pairs}, arXiv:2209.01452v2 (2022), Theorem 2. \url{https://arxiv.org/abs/2209.01452v2}.
+
+\bibitem[CHHX25]{en-CHHX}
+G. Chen, J. Han, Y. He and L. Xie, \emph{Boundedness of complements for generalized pairs}, arXiv:2501.03739v2 (2025), Theorem 1.1. \url{https://arxiv.org/abs/2501.03739v2}.
+
+\bibitem[DHY26]{en-DHY}
+O. Das, C. Hacon and J. I. Y\'a\~nez, \emph{MMP for Generalized Pairs on K\"ahler 3-folds}, arXiv:2305.00524v3 (June 29, 2026), Theorems 1.1--1.6. \url{https://arxiv.org/abs/2305.00524v3}.
+
+\bibitem[EM24]{en-EM}
+F. Esposito and E. C. Mistretta, \emph{On semiample vector bundles and parallelizable compact complex manifolds}, arXiv:2406.04139v2 (2024), Theorem 3.10. \url{https://arxiv.org/abs/2406.04139v2}.
+
+\bibitem[Fuj11]{en-Fuj}
+O. Fujino, \emph{Minimal model theory for log surfaces}, arXiv:1001.3902v3 (2011), Theorem 6.1; published in Publ. Res. Inst. Math. Sci. \textbf{48} (2012), 339--371. \url{https://arxiv.org/abs/1001.3902v3}.
+
+\bibitem[HL20]{en-HL}
+J. Han and W. Liu, \emph{On numerical nonvanishing for generalized log canonical pairs}, Doc. Math. \textbf{25} (2020), 93--123; arXiv:1808.06361v4, Theorem 1.5, Lemma 3.4 and \S3.3. \href{https://doi.org/10.4171/DM/739}{doi:10.4171/DM/739}.
+
+\bibitem[KMM94]{en-KMM}
+S. Keel, K. Matsuki and J. McKernan, \emph{Log abundance theorem for threefolds}, Duke Math. J. \textbf{75} (1994). \href{https://doi.org/10.1215/S0012-7094-94-07504-2}{doi:10.1215/S0012-7094-94-07504-2}.
+
+\bibitem[LMX25]{en-LMX}
+J. Liu, F. Meng and L. Xie, \emph{Minimal model program for algebraically integrable foliations on klt varieties}, arXiv:2404.01559v3 (2025), Theorems 1.2--1.4. \url{https://arxiv.org/abs/2404.01559v3}.
+
+\bibitem[TX23]{en-TX}
+N. Tsakanikas and L. Xie, \emph{Remarks on the Existence of Minimal Models of Log Canonical Generalized Pairs}, arXiv:2301.09186v2 (2023), Theorems A--B and Corollary E. \url{https://arxiv.org/abs/2301.09186v2}.
+
+\end{thebibliography}
+\newpage
+\StartJapanese
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHequation}{ja.\thesection.\arabic{equation}}
+\renewcommand{\theHthm}{ja.\thesection.\arabic{thm}}
+\begin{center}
+{\Large\bfseries Generalized abundance に対する torsion の障害：\\
+切断環，有限判定，および条件付き下降定理}\par\medskip
+chatGPT 6 Astra\par\smallskip
+2026年9月9日
+\end{center}
+\noindent\textbf{要旨.}
+楕円曲線上の分裂射影束における nef な generalized adjoint の切断環を計算する。次数ゼロ Picard 群の関係格子が Iitaka 次元を決定し，その像が有限であるときは群の指数が基点自由になる正確な最小倍数を決定する。この計算から，すべてのファイバーで有限生成性が成立する一つの滑らかな generalized klt 曲面の族であって，semiample locus が構成可能でなく，有限個の初期 mixed plurigenera では abundance を判定できないものを得る。三次元の計算では，明示的な次数付き超曲面環と二種類の Iitaka 底空間を求める。また，b-semiample な nef part，Ambro の canonical bundle formula，および底空間の次元での ordinary abundance を用いた条件付き下降の議論を与える。具体計算の証明はすべて記す。基礎となる torsion の機構と下降の方法は既知であり，今回の調査では十分に独立した新しい MMP 定理は確立できなかった。したがって本稿は，検証済みの数学と新規性の主張の限界を記録するものである。
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}\label{ja:intro}
+極小モデルと良い極小モデルでは要求される条件が異なる。generalized adjoint が nef なら既に極小モデルとなるが，良い極小モデルには半豊富性が必要である。数値的な情報だけでは，非 torsion の次数ゼロ線束を検出できない。今回の調査は ordinary pair と generalized pair の間の移行，および低次元の abundance から始めた。提案した一般的主張のいくつかは既知か，または偽であった。そこで，未証明の MMP のステップを使わずに障害を計算できる具体的なクラスに集中する。
+
+以下，基礎体は常に $\C$ とする。射影束は一次元商をパラメータ付ける convention を用い，したがって
+\[
+ \pi_*\cO_{\mP_C(V)}(m)=\Sym^mV\qquad(m\geq0)
+\]
+である。$C$ を滑らかな楕円曲線，$L_1,\ldots,L_r\in\Pic^0(C)$ を $r\geq2$ および $\bigotimes_iL_i\simeq\cO_C$ を満たす線束とする。
+\begin{equation}\label{ja:setup}
+ V=\bigoplus_{i=1}^rL_i,\quad X=\mP_C(V),\quad
+ H=\cO_X(1),\quad M=(r+1)H,\quad D=K_X+M\sim H
+\end{equation}
+とおく。線束を因子の式で扱う際は加法記法を用いる。nef b-divisor は Cartier closure $\bM=\overline M$ である。例外因子上の moduli data を省略しているわけではない。
+
+\begin{thm}[関係格子による計算]\label{ja:main}
+\eqref{ja:setup} のもとで，$(X,0+\bM)$ は滑らかな generalized klt pair であり，$M,D$ は nef Cartier 因子，$\nu(D)=r-1$ である。
+\[
+ \begin{gathered}
+ \Gamma=\langle L_1,\ldots,L_r\rangle\subset\Pic^0(C),\qquad S=\Lambda\cap\NN^r,\\
+ \Lambda=\ker\bigl(\Z^r\longrightarrow\Gamma,\ a\longmapsto\textstyle\bigotimes_i L_i^{a_i}\bigr)
+ \end{gathered}
+\]
+と定める。このとき次数を $\deg(a)=\sum_i a_i$ として，非標準的な次数付き同型
+\begin{equation}\label{ja:ring}
+ R(X,D)\simeq\C[S],\qquad
+ h^0(X,mD)=\#\{a\in S:\textstyle\sum_i a_i=m\}
+\end{equation}
+が存在する。この環は有限生成な正規整域であり，
+\begin{equation}\label{ja:kappa}
+ \kappa(D)=r-1-\rank_{\Z}(\Gamma/\Gamma_{\rm tors})
+\end{equation}
+が成り立つ。さらに，$D$ が abundant であること，$D$ が semiample であること，および $\Gamma$ が有限であることは同値である。これらが成立し，$e=\exp(\Gamma)$ とおくと，
+\begin{equation}\label{ja:bpf}
+ |mD|\text{ が基点自由}\ \Longleftrightarrow\ e\mid m
+\end{equation}
+となる。
+\end{thm}
+
+$r=2$ の場合には abundance の有限判定に対する特に明示的な障害が得られる。第\ref{ja:three}節の rank three の計算では，切断空間の次元だけでなく，次数付き環と Iitaka 底空間も決定する。
+
+\begin{thm}[有限個の plurigenus では判定できない族]\label{ja:familyintro}
+$T=\Pic^0(C)$ 上に，ファイバーが
+\[
+ X_t=\mP_C(L_t\oplus L_t^{-1}),\qquad D_t=H_t,\qquad M_t=3H_t
+\]
+である滑らかな射影族が存在する。各ファイバーは nef Cartier な nef part を持つ generalized klt 曲面であり，$K_{X_t}+M_t\sim D_t$ である。すべての $R(X_t,D_t)$ は有限生成であり，$\nu(D_t)=1$ である。semiample locus，すなわち abundant locus はちょうど $T_{\rm tors}$ であり，構成可能でない。任意の整数 $N\geq1$ に対して，semiample なファイバー $t$ と non-abundant なファイバー $u$ であって，
+\[
+ h^0(X_t,aD_t+bM_t)=h^0(X_u,aD_u+bM_u)
+ \quad(0\leq a,b\leq N)
+\]
+を満たすが，$\kappa(D_t)=1$，$\kappa(D_u)=0$ となるものが存在する。すべてのファイバーで Hilbert 多項式が一致する相対偏極を選べる。semiample なファイバーにおける $D_t$ の基点自由指数には一様な上界がない。
+\end{thm}
+
+\paragraph{対象範囲と位置付け.}
+定理\ref{ja:main}は射影束公式と格子計算から本稿で証明する。既知の幾何の具体的な帰結であり，一般的な新しい abundance 定理を主張するものではない。Birkar--Hacon \cite[Example 1.1，Example 3.1 および \S4]{ja-BH} は，torsion に依存する good model と，generalized pair の有界な族における一様性の破綻を既に示している。Han--Liu \cite{ja-HL} は numerical nonvanishing と linear nonvanishing を区別し，楕円曲線上の線織曲面を論じている。Esposito--Mistretta \cite{ja-EM} は半豊富性判定と関係する，より広い有限被覆による特徴付けを与えている。本稿と同じ記法がそれらの文献に見当たらないことから，新規性を推論しない。研究目標に対する status は \emph{PARTIAL} である。証明は完成しているが，独立した新規性は確立できていない。
+
+\section{準備}\label{ja:prelim}
+\subsection{Generalized pairs とモデル}
+有理係数の generalized pair $(Y,B+\bN)$ は，正規射影多様体 $Y$，有効 $\Q$-因子 $B$，および射影双有理モデル $W\to Y$ 上の nef $\Q$-Cartier 因子 $N_W$ に descend する b-$\Q$-Cartier b-divisor $\bN$ からなる。さらに高いモデル上の trace は引き戻しであり，その他のモデル上の trace は共通モデルからの押し出しで定義する。$K_Y+B+N_Y$ が $\Q$-Cartier であることを要求する。ここで ``nef'' は絶対的な nef 性を意味し，$Y$ 上でのみ nef という意味ではない。
+
+決定する因子が Cartier であるとき b-Cartier といい，正整数倍が b-Cartier となるとき b-$\Q$-Cartier という。nef b-$\Q$-Cartier 因子の有限個の非負実数係数線形結合であるとき NQC という。本稿の有理 nef data は自動的に NQC である。射影モデル上の決定因子が semiample であるとき b-semiample という。この条件は semiample 因子との数値的同値より強い。
+
+整合する標準因子を選び，因子の等式
+\[
+ K_W+B_W+N_W=p^*(K_Y+B+N_Y)
+\]
+を書く。本稿の generalized \emph{log discrepancy} は $a_E=1-\operatorname{coeff}_E(B_W)$ である。すべての $Y$ 上の素因子について $a_E>0$ であることを generalized klt，$a_E\geq0$ であることを generalized lc という。文献によっては $a_E-1$ を discrepancy と呼ぶ。discrepancy を定義する際に，単なる線形同値を用いることはしない。nef part が $Y$ に descend すると，その引き戻しは相殺され，これらは $(Y,B)$ の ordinary discrepancy と一致する。特に本稿の射影束の例では常にこのことを使える。
+
+記法を補足すると，generalized dlt の convention は lc 条件に加えて，generalized lc centre の生成点近傍での log smoothness と nef part の descent を要求するものである。以下の独自の証明では dlt modification を使わない。generalized minimal model は，adjoint が nef であり，log discrepancy が非減少，縮約される因子では真に増加する generalized lc な双有理縮約である。さらに $\Q$-factorial dlt な終域を要求する convention もあるが，本稿の具体的モデルはすべて滑らかである。adjoint が semiample のとき good という。generalized Mori fibre space は，適切な discrepancy の比較に加えて，より低次元の底への縮約，相対 Picard 数一，および adjoint の相対的反豊富性を持つ。本稿は任意の generalized flip 列の停止を主張しない。これらは \cite[\S2]{ja-HL}，\cite[\S2]{ja-TX} の有理係数の場合の convention と整合する。
+
+\subsection{次元と切断環}
+射影 $n$ 次元多様体上の nef Cartier 因子 $A$ について，豊富因子 $P$ を用いて
+\[
+ \nu(A)=\max\{k:A^k\cdot P^{n-k}>0\}
+\]
+とおく。すべての正の倍数が切断を持たないとき $\kappa(A)=-\infty$ とし，それ以外は Iitaka 像の次元とする。abundant とは $\kappa(A)=\nu(A)$ のことである。semiample とは，ある $m>0$ に対して $|mA|$ が基点自由であることをいう。その最小の $m$ を基点自由指数という。これは Cartier 指数ではない。
+\[
+ R(Y,A)=\bigoplus_{m\geq0}H^0(Y,\cO_Y(mA))
+\]
+と書く。$\Q$-Cartier 因子については，十分割り切れる次数を取った対応する Veronese 環を用いる。Iitaka 次元と半豊富性は $\Q$-線形同値で不変であるが，数値的同値で不変とは限らない。数値次元は定義により数値的不変量である。
+
+\section{使用する既知結果}\label{ja:known}
+第\ref{ja:descent}節の条件付き下降だけが，本質的な外部の定理を必要とする。その正確な入力を述べる。
+
+\begin{thm}[Ambro，\cite{ja-Amb}，Theorem 0.2 = Theorem 4.1]\label{ja:ambro}
+$(Y,\Delta)$ を有効有理境界を持つ射影 klt pair，$f:Y\to Z$ を正規射影多様体への縮約とする。$Z$ 上の $\Q$-Cartier 因子 $L$ について $K_Y+\Delta\qs f^*L$ なら，$(Z,\Delta_Z)$ が klt で $L\qs K_Z+\Delta_Z$ となる有効 $\Q$-因子 $\Delta_Z$ が存在する。
+\end{thm}
+これは canonical bundle formula の ordinary klt な場合の帰結であり，すべての moduli b-divisor が b-semiample であるという主張ではない。適切なモデル上で，素因子に沿う discriminant の係数は対応する log canonical threshold を一から引いたものであり，残りの項が moduli part である。Ambro はこの特定の fibration に対して必要な正値性を得ている。任意の nef b-divisor が，それによって canonical bundle formula の moduli part になるわけではない。
+
+その他の外部入力は，三次元以下の射影 klt $\Q$-pair に対する ordinary abundance \cite{ja-Fuj,ja-KMM} である。一次元の場合は曲線上の因子の次数から直接従う。曲面については \cite[Theorem 6.1]{ja-Fuj} の有理係数の場合を用いる。klt 曲面は $\Q$-factorial なので，そこで必要な仮定を満たす。また，滑らかな射影 log resolution 上で Bertini の定理を用いる。すなわち，基点自由な線形系の一般の元は滑らかであり，指定した単純正規交差因子と横断的に交わり，その stratum を含まない。特異点解消とこの標準的な Bertini の主張は標数ゼロでのみ適用する。単純正規交差な sub-boundary の局所 discrepancy 計算によれば，すべての係数が一未満なら sub-klt である。一部の係数が負でもこの主張は成り立つ。
+
+以下で使う射影束公式は
+\begin{equation}\label{ja:bundleformulas}
+ K_{\mP_C(V)}=-rH+\pi^*(K_C+\det V),\qquad
+ \pi_*\cO(mH)=\Sym^m V\quad(m\geq0)
+\end{equation}
+である。標準束公式は，商を用いる convention での相対 Euler 完全列の行列式を取って得られる。押し出し公式は，自明化する開集合上で次数 $m$ の斉次多項式を考え，$V$ の変換関数によって貼り合わせることで従う。したがって符号と dual の convention は明示的に固定されている。
+
+\section{関係格子による定理の証明}\label{ja:proof}
+\subsection{Nef 性と数値次元}
+まず，$C$ 上の次数ゼロ線束 $L$ が非零切断を持つことと自明であることは同値である。実際，非零切断の零因子は次数ゼロの有効因子なので空であり，切断が $L$ を自明化する。この場合 $h^0(C,L)=1$ である。
+
+安定性の定理を用いずに $H$ の nef 性を確かめる。$X$ 内の整曲線を正規化して得られる写像を $g:E\to X$ とする。$\pi g$ が定数なら，$\cO_{\mP^{r-1}}(1)$ が豊富であることから $g^*H$ の次数は非負である。それ以外なら $\pi g:E\to C$ は有限であり，$g$ は商
+\[
+ \bigoplus_i(\pi g)^*L_i\longrightarrow g^*H
+\]
+を定める。少なくとも一つの成分は非零の線束の写像である。その零因子は有効なので，$\deg(g^*H)\geq\deg((\pi g)^*L_i)=0$ となる。これで nef 性が示された。公式\eqref{ja:bundleformulas}と $K_C\sim0$，$\det V\simeq\cO_C$ から $K_X\sim-rH$ および $D\sim H$ を得る。滑らかな ordinary pair $(X,0)$ は klt であり，nef part は descend しているから，generalized pair も klt である。
+
+$\dim X=r$ なので射影束の関係式から $H^r=\deg V=0$ を得る。$A_C$ の次数が正なら，
+\[
+ H^{r-1}\cdot\pi^*A_C=\deg A_C>0
+\]
+である。正の次数を十分大きく取れば $P=H+\pi^*A_C$ は豊富になる。これは相対射影埋め込みを取り，底空間上の十分正の線束をテンソルすることで分かる。したがって $H^{r-1}P>0$ である一方 $H^r=0$ であり，$\nu(D)=r-1$ となる。同じ議論から $M=(r+1)H$ も nef である。
+
+\subsection{Hilbert 関数だけでなく環構造を求める}
+対称冪の分解により
+\begin{equation}\label{ja:symmetric}
+ H^0(X,mH)=
+ \bigoplus_{\substack{a\in\NN^r\\ |a|=m}}
+ H^0\bigl(C,\textstyle\bigotimes_i L_i^{a_i}\bigr)
+\end{equation}
+となる。先ほどの次数の議論により，各直和成分はゼロまたは一次元である。非零成分は正確に $S$ で添字付けられる。
+
+これらの一次元空間で生成元を選ぶと，最初は積に非零の定数因子が現れる可能性がある。それを整合的に除くため，自由アーベル群 $\Lambda$ の $\Z$-基底を選び，各基底元に対応する線束の自明化を選ぶ。負の指数には双対の自明化を用いる。これらをテンソルすることで，$\Lambda$ のすべての元について整合する自明化が定まる。この選択のもとで，$a,b$ に対応する切断の積は係数一で $a+b$ に対応する切断になる。これで次数付き環同型\eqref{ja:ring}が示された。同時に，この同型が標準的でない理由も説明される。
+
+\subsection{有限生成性と正規性}
+$U=\Lambda\otimes_\Z\R$，$\sigma=U\cap\R_{\geq0}^r$ とおく。これは格子 $\Lambda$ に関する有理多面錐である。有理な端射線を生成する整ベクトル $v_1,\ldots,v_k\in\Lambda$ を選ぶ。任意の $s\in S$ は $t_j\geq0$ を用いて $s=\sum_j t_jv_j$ と書ける。$\sum_j\lfloor t_j\rfloor v_j$ を引くと，有界集合
+\[
+ \bigl\{\textstyle\sum_j u_jv_j:0\leq u_j\leq1\bigr\}\cap\Lambda\cap\sigma
+\]
+に属する格子点が残る。このような残余の点は有限個しかない。それらと $v_j$ が $S$ を生成する。これは Gordan の補題の基礎にある初等的な議論である。
+
+$\det V\simeq\cO_C$ より，ベクトル ${\bf1}=(1,\ldots,1)$ は $\Lambda$ に属する。$a\in\Lambda$ に対して $k$ を十分大きく取れば $a+k{\bf1}\in S$ となる。$k{\bf1}\in S$ でもあるから $\gp(S)=\Lambda$ を得る。したがって $\C[S]$ の商体は Laurent 多項式環 $\C[\Lambda]$ の商体と一致する。この商体の中で
+\[
+ \C[S]=\C[\Lambda]\cap\C[x_1,\ldots,x_r]
+\]
+となる。交わりは $\C(x_1,\ldots,x_r)$ の中で考える。格子の群環に属する多項式の単項式の指数はすべて $\Lambda$ に属するので，この等式が従う。右辺の二つの環はそれぞれの商体の中で整閉である。$\operatorname{Frac}(\C[S])$ の元が $\C[S]$ 上整なら，同じモニック方程式によって右辺の各環の上でも整であり，したがって両方に属する。これで正規性が示された。
+
+\subsection{Iitaka 次元と基点自由性}
+$s=\rank_\Z(\Gamma/\Gamma_{\rm tors})$ とする。$\Lambda$ を定義する完全列から $\rank\Lambda=r-s$ となる。半群環の商体が rank $r-s$ の Laurent 関数体であることから，その Krull 次元も $r-s$ である。${\bf1}$ に対応する単項式を含めて，非定数の正次数元が存在する。したがってその projective spectrum，すなわち Iitaka 像の次元は $r-s-1$ である。これで\eqref{ja:kappa}を得る。別の説明として，$\Lambda$ の次数ゼロ部分格子の rank は $r-s-1$ である。その Laurent 単項式は，${\bf1}$ の十分大きい倍数を加えることにより，同次数の切断の比として書ける。これによっても同じ超越次数の計算が得られる。
+
+各商 $V\twoheadrightarrow L_i$ は切断 $s_i:C\to X$ を定め，$s_i^*H=L_i$ である。$mH$ が大域生成なら，$L_i^m$ は次数ゼロで大域生成であるから自明である。この必要条件はすべての $i$ に対して成立する。逆に，すべての $L_i^m$ が自明なら，純単項式 $x_i^m$ は $mH$ の大域切断となる。各射影ファイバーのどの点でも少なくとも一つの座標は非零なので，これらの切断は共通零点を持たない。よって
+\[
+ |mH|\text{ が基点自由}\quad\Longleftrightarrow\quad
+ L_i^m\simeq\cO_C\text{ がすべての }i\text{ について成立}
+\]
+する。これで\eqref{ja:bpf}が示され，半豊富性は $\Gamma$ の有限性と同値になる。\eqref{ja:kappa}と $\nu(D)=r-1$ から，abundance は $s=0$ と同値である。有限生成アーベル群で rank がゼロであることと有限であることは同値なので，証明が完了する。
+
+\begin{cor}\label{ja:allkappa}
+任意の $r\geq2$ および $k\in\{0,\ldots,r-1\}$ に対して，定理\ref{ja:main}の例で $\kappa(D)=k$ となるものが存在する。それらはすべて nef な adjoint，有限生成な切断環，Cartier な nef part を持つ。
+\end{cor}
+\begin{proof}
+$s=r-1-k$ 個の torsion を法として独立な次数ゼロ線束を選び，最初の $r-1$ 個の直和成分の一部とする。その中の残りの成分には自明線束を置き，最後の成分を行列式が自明になるように選ぶ。このような独立な選択は可能である。各有限段階で，生成した部分群の torsion による飽和は可算だが，$\Pic^0(C)(\C)$ は非可算だからである。あとは\eqref{ja:kappa}を適用する。
+\end{proof}
+
+\section{曲面，族，および有限判定}\label{ja:surface}
+$V=L\oplus L^{-1}$ とする。次数 $m$ の単項式 $x^ay^{m-a}$ が切断となることと，$L^{2a-m}$ が自明であることは同値である。$L$ が非 torsion なら，これは $2a=m$ のときに限る。したがって
+\begin{equation}\label{ja:non-torsion}
+ R(X,H)=\C[xy],\quad\deg(xy)=2,\qquad
+ h^0(X,mH)=\begin{cases}1&m\text{ が偶数},\\0&m\text{ が奇数}\end{cases}
+\end{equation}
+である。特に有限生成性と nonvanishing は成立するが，$\kappa(H)=0<1=\nu(H)$ である。これは generalized pair の極小モデルだが，その nef な adjoint は semiample ではない。
+
+$L$ の位数が正確に $q$ なら，条件は $2a\equiv m\pmod q$ である。$q>m$ のとき，区間 $[-m,m]$ は $q$ の非零倍数を含まないので，次数 $m$ では依然として\eqref{ja:non-torsion}が成り立つ。それにもかかわらず基点自由指数は正確に $q$ であり，$\kappa(H)=1$ である。$q$ の偶奇によらず，次数付き環全体は
+\begin{equation}\label{ja:surface-ring}
+ R(X,H)\simeq\C[u,v,w]/(uv-w^q),\qquad
+ \deg u=\deg v=q,\quad\deg w=2
+\end{equation}
+と表示される。実際，指数の差が $q$ で割り切れる指数対は，共通の最小値を引いた後で $x^q$ または $y^q$ を用いて生成できる。この関係式と残余表示の一意性によって環表示が従う。したがって偶奇が影響するのは対応する Veronese 表示であり，上記の環全体の表示ではない。
+
+線束も含めて族を構成する。$T=\Pic^0(C)$ とし，$C\times T$ 上の正規化された Poincar\'e 線束を $\cP$ とする。
+\[
+ \mathscr X=\mP_{C\times T}(\cP\oplus\cP^{-1}),\quad
+ \mathscr H=\cO_{\mathscr X}(1),\quad \mathscr M=3\mathscr H
+\]
+とおく。$T$ への射影は滑らかで射影的であり，相対的な行列式は自明である。相対標準束は $K_{\mathscr X/T}\sim-2\mathscr H$ を満たす。したがって制限すると正確に定理\ref{ja:familyintro}のデータを得る。パラメータ付き全空間上で $\mathscr M$ が絶対的に nef であることは要求しない。必要なのは $T$ 上の各ファイバーでの nef 性である。
+
+$A_C$ を十分大きい次数 $d>0$ の線束とし，相対偏極として $P_t=H_t+\pi_t^*A_C$ を用いる。各曲面上では Nakai--Moishezon 判定法でも豊富性を確かめられる。すなわち $P_t^2=2d>0$ であり，垂直な曲線は $H_t$ と正に交わる。水平な曲線は $\pi_t^*A_C$ と正に交わり，$H_t$ との交点数は非負である。同じ相対線束から族の中のこれらの偏極が得られる。$\ell>0$ に対し，$C$ への射影と楕円曲線上の Riemann--Roch から
+\begin{equation}\label{ja:hilbert}
+ h^0(X_t,\ell P_t)=d\ell(\ell+1),\qquad
+ \chi(X_t,\ell P_t)=d\ell(\ell+1)
+\end{equation}
+を得る。実際，押し出しは次数 $d\ell>0$ の線束 $\ell+1$ 個の直和であり，各成分は $d\ell$ 個の独立な切断を持ち，第一コホモロジーは消える。すべての正の $\ell$ での一致によって Hilbert 多項式が決定されるので，$\chi$ の多項式も従う。数値的データは
+\[
+ H_t^2=M_t^2=K_{X_t}^2=0,\quad
+ H_tP_t=d,\quad M_tP_t=3d,\quad P_t^2=2d,\quad\rho(X_t)=2
+\]
+である。
+
+$N$ を固定し，正確な位数 $q>4N$ の torsion 点 $t$ と非 torsion 点 $u$ を選ぶ。$aD+bM=(a+3b)H$ かつ $a+3b\leq4N<q$ なので，先ほどの次数の計算により，次数ゼロも含めて定理\ref{ja:familyintro}の mixed plurigenera はすべて一致する。しかし二つの Iitaka 次元は異なる。最後に，$T_{\rm tors}=\bigcup_{q\geq1}T[q]$ は可算無限集合である。$\C$ 上の既約代数曲線の無限な構成可能部分集合は非空な開集合を含み，したがって余有限である。torsion 部分集合は余有限でないので構成可能でない。これで定理\ref{ja:familyintro}の証明が完了する。
+
+\begin{rem}\label{ja:bounded}
+これらの例から，この固定された滑らかな族，固定された境界係数，generalized $\epsilon$-lc 特異点（$\epsilon=1$ と取れる），nef part の Cartier 指数一，上記の数値不変量，および各ファイバーの半豊富性だけに基づく基点自由指数の一様上界は存在しない。このことは Fano type 多様体の bounded complements と矛盾しない。これらの不正則な線織曲面が Fano type であるとは主張しておらず，基点自由指数は complement 指数でもない。また常に $D_t^2=0$ なので，big な generalized adjoint に対する結果とも矛盾しない。
+\end{rem}
+\section{三次元の明示的計算}\label{ja:three}
+\begin{prop}\label{ja:cubic}
+$q\geq2$ とし，有限群 $\Pic^0(C)[q]\simeq(\Z/q\Z)^2$ の基底 $L_1,L_2$ を選ぶ。$L_3=(L_1L_2)^{-1}$ とおき，\eqref{ja:setup}で $r=3$ とする。このとき
+\begin{equation}\label{ja:cubicring}
+ R(X,D)\simeq\C[u,v,w,t]/(uvw-t^q),\qquad
+ (\deg u,\deg v,\deg w,\deg t)=(q,q,q,3)
+\end{equation}
+である。$D$ は semiample で，基点自由指数は $q$，$\nu(D)=\kappa(D)=2$ となる。その Iitaka 底空間は
+\begin{equation}\label{ja:bases}
+ \Proj R(X,D)\simeq
+ \begin{cases}
+ \mP^2,&3\nmid q,\\
+ \{UVW=S^3\}\subset\mP^3,&3\mid q
+ \end{cases}
+\end{equation}
+である。後者の曲面は三つの $A_2$ 特異点を持つ。Iitaka 縮約の一般ファイバーは楕円曲線であり，$C$ に対して次数 $q^2/\gcd(q,3)$ の \emph{\'etale} 被覆となる。
+\end{prop}
+\begin{proof}
+指数 $(a,b,c)$ の単項式が切断となるための必要十分条件は
+\[
+ (a-c)L_1+(b-c)L_2=0,
+ \quad\text{すなわち}\quad a\equiv b\equiv c\pmod q
+\]
+である。共通の剰余 $j\in\{0,\ldots,q-1\}$ を取ると，指数ベクトルは一意的に
+\[
+ j(1,1,1)+\alpha(q,0,0)+\beta(0,q,0)+\gamma(0,0,q),
+ \qquad\alpha,\beta,\gamma\geq0
+\]
+と書ける。したがって $u=x^q$，$v=y^q$，$w=z^q$，$t=xyz$ が生成元であり，$t^q=uvw$ となる。残余の標準形から，それ以外の関係式がないことが分かる。数値次元と基点自由性については定理\ref{ja:main}を用いる。
+
+Projective spectrum は $q$ 次 Veronese を取っても変わらない。$0\leq j<q$ を満たす標準形 $u^\alpha v^\beta w^\gamma t^j$ がこの Veronese に属することと，$q\mid3j$ は同値である。$3\nmid q$ なら $j=0$ が強制されるので，Veronese は $u,v,w$ を次数一の変数とする多項式環である。$q=3k$ なら $j=0,k,2k$ となる。$s=t^k$ とおくと，Veronese は四つの生成元がすべて次数一である $\C[u,v,w,s]/(uvw-s^3)$ となる。これで\eqref{ja:bases}が示された。偏微分を計算すると，三次曲面の特異点は正確に $[1:0:0:0]$，$[0:1:0:0]$，$[0:0:1:0]$ である。例えば $u=1$ 上では方程式が $vw=s^3$ となり，これは $A_2$ 曲面特異点である。正規性は半群環の正規性からも従う。
+
+最後の主張のために，$q$ 倍写像である次数 $q^2$ の isogeny $C'\to C$ を取る。これはすべての $L_i$ を自明化する。その被覆変換群 $G\simeq(\Z/q\Z)^2$ は $C'$ 上では平行移動で作用し，自明化を選ぶと $\mP^2$ 上では三つの指標 $L_1,L_2,(L_1L_2)^{-1}$ で作用する。下降によって
+\[
+ X\simeq(C'\times\mP^2)/G
+\]
+を得る。ここでの指標の対応は有限 \'etale アーベル被覆における標準的な対応である。すなわち，被覆の構造層の押し出しの固有層は，正確にその被覆で自明化される線束である。指標による線形化を備えた自明線束を下降することによっても直接得られる。
+
+三つの射影座標がすべて非零である開集合上では，群の元が自明に作用することと三つの固有値がすべて一致することは同値である。それらを $\lambda,\mu,(\lambda\mu)^{-1}$ と書くと，$\lambda=\mu$，$\lambda^3=1$，$\lambda^q=1$ となる。したがって scalar subgroup $G_0$ の位数は $g=\gcd(q,3)$ である。$\mP^2/G=\Proj R(X,D)$ への商写像の一般ファイバーは $C'/G_0$ となる。これは連結な楕円曲線であり，誘導される被覆 $C'/G_0\to C$ の次数は $q^2/g$，作用は平行移動によるので \'etale である。Veronese の次数一の生成元から，この商写像は $|qD|$ で定まる縮約であることが分かる。これで，有理写像の非連結かもしれないファイバーを Iitaka ファイバーと同一視することなく，残りの主張が証明された。
+\end{proof}
+
+\begin{cor}[Iitaka 底空間と一般ファイバーを固定した場合]\label{ja:fixeddata}
+Cartier な nef part を持つ滑らかな generalized klt threefold の adjoint の基点自由指数には，Iitaka 底空間を $\mP^2$ に固定し，一般 Iitaka ファイバーを一つの固定した楕円曲線 $C$ と同型にし，さらに偏極の Hilbert 多項式を固定しても，一様な上界は存在しない。
+\end{cor}
+\begin{proof}
+三と互いに素な任意に大きい $q$ に対して命題\ref{ja:cubic}を用いる。その証明では一般ファイバーは $C'$ 自身と同定され，$q$ 倍写像の定義域は元の楕円曲線 $C$ である。底空間は $\mP^2$，指数は $q$ である。$d=\deg A_C$ を十分大きい固定次数とし，$P=H+\pi^*A_C$ とおく。\eqref{ja:hilbert}と同じ押し出し計算から $\chi(X,\ell P)=d\ell\binom{\ell+2}{2}$ を得る。これらの偏極は $L_1,L_2,(L_1L_2)^{-1}$ で定まる $\Pic^0(C)^2$ 上の射影束の族の中に現れるので，データは一つの滑らかな射影族に含まれる。一般ファイバーの同定は抽象的な楕円曲線としての同定であり，元の線織構造の底 $C$ への写像の次数は依然として $q^2$ である。
+\end{proof}
+
+\begin{rem}[Iitaka ファイバー上の偏極]\label{ja:fibredegree}
+系\ref{ja:fixeddata}で固定したデータから，一般 Iitaka ファイバー $F$ 上の偏極の次数の有界性は従わない。実際，
+\[
+ \deg(P|_F)=dq^2,\qquad
+ \deg(A|_F)\in q^2\Z\quad\text{（任意の }X\text{ 上の整因子 }A\text{）}
+\]
+である。二つ目の主張には射影束公式
+$\Pic(X)=\Z[H]\oplus\pi^*\Pic(C)$ を用いる。相対次数が最初の直和因子を与え，相対次数ゼロの線束は局所自明化によって $C$ から下降する。$A\sim aH+\pi^*B_C$ と書く。上の商構成により，$3\nmid q$ のとき $H|_F$ は自明であり，$F\to C$ の次数は $q^2$ である。したがって $\deg(A|_F)=q^2\deg B_C$ を得る。正の次数はすべて少なくとも $q^2$ である。抽象的なファイバーの固定と，偏極したファイバーの有界性を比較する際には，この区別が必要になる。
+\end{rem}
+
+\section{下降による条件付き abundance}\label{ja:descent}
+以下の移行定理は，今回の調査で得られた最も明快な条件付き結論として収録する。証明は既知の方法を用いており，独立した新規性は主張しない。
+
+\begin{assup}[$\mathrm{Ab}_{\mathrm{klt}}(d)$]\label{ja:Ab}
+任意の $d$ 次元正規射影複素多様体 $Z$ と有効有理境界 $\Delta_Z$ で，$(Z,\Delta_Z)$ が klt であり，$K_Z+\Delta_Z$ が $\Q$-Cartier かつ nef であるものに対して，$K_Z+\Delta_Z$ は semiample である。
+\end{assup}
+この仮定には generalized，相対的，K\"ahler，または実係数という解釈を含めない。$d\leq3$ では既知である。
+
+\begin{lem}[Semiample な nef part の置換]\label{ja:replacement}
+$(Y,B+\bN)$ を，b-semiample な nef part を持つ射影 generalized klt rational pair とする。このとき，$(Y,\Delta)$ が ordinary klt であり，
+\[
+ K_Y+\Delta\qs K_Y+B+N_Y
+\]
+を満たす有効有理境界 $\Delta\geq B$ が $Y$ 上に存在する。
+\end{lem}
+\begin{proof}
+$\bN$ が descend する滑らかな log resolution $p:W\to Y$ を選び，
+\[
+ K_W+B_W+N_W=p^*(K_Y+B+N_Y)
+\]
+と書く。$B_W$ の係数はすべて一未満であるが，非負とは限らない。$m\geq2$ を十分割り切れるように取り，$mN_W$ を Cartier かつ基点自由にする。一般の $G\in|mN_W|$ は $B_W$ や例外集合と成分を共有せず，それらの単純正規交差な台と横断的に交わる。線形系が自明なら $G=0$ と取る。単純正規交差の discrepancy 計算から $(W,B_W+G/m)$ は sub-klt である。
+\[
+ G/m=N_W+\tfrac1m\Div(\phi),\qquad
+ \Delta=B+p_*(G/m)
+\]
+と書く。$\Delta$ は有効である。上下の関数体が一致するので，
+\begin{align*}
+ K_Y+\Delta
+ &=K_Y+B+N_Y+\tfrac1m\Div_Y(\phi),\\
+ p^*(K_Y+\Delta)
+ &=K_W+B_W+G/m
+\end{align*}
+となる。最初の等式は必要な $\Q$-Cartier 性を示し，次の等式はすべての discrepancy を同定する。したがって $(Y,\Delta)$ は klt である。この証明では，$N_Y$ がそれ自体で Cartier であることや，$B_W$ が有効であることを仮定していない。
+\end{proof}
+
+\begin{thm}[条件付き下降]\label{ja:transfer}
+$\mathrm{Ab}_{\mathrm{klt}}(d)$ を仮定する。$(Y,B+\bN)$ を b-semiample な nef part を持つ射影 generalized klt rational pair とする。$f:Y\to Z$ を正規射影 $d$ 次元多様体への縮約とし，$Z$ 上の nef $\Q$-Cartier 因子 $L$ について
+\begin{equation}\label{ja:pullback}
+ K_Y+B+N_Y\qs f^*L
+\end{equation}
+を仮定する。このとき $K_Y+B+N_Y$ は semiample である。特に $d\leq3$ なら，$\dim Y$ に上界を課すことなく無条件で成立する。
+\end{thm}
+\begin{proof}
+補題\ref{ja:replacement}により，$K_Y+\Delta\qs f^*L$ を満たす ordinary effective klt rational pair $(Y,\Delta)$ が存在する。ここで定理\ref{ja:ambro}の仮定はすべて満たされる。射影性，連結ファイバーを持つ縮約，klt 特異点，有理係数，および実際の $\Q$-線形引き戻しがある。したがって有効 klt rational boundary $\Delta_Z$ に対して $L\qs K_Z+\Delta_Z$ を得る。$L$ は nef なので $K_Z+\Delta_Z$ も nef である。仮定\ref{ja:Ab}によりこれは semiample である。十分割り切れる基点自由な倍数を引き戻し，\eqref{ja:pullback}を用いれば結論を得る。
+\end{proof}
+
+これは底空間の次元への還元であり，$Y$ の次元の generalized abundance を仮定しているのではない。同じ理由で，$f=\id$ の場合は $\dim Y$ の ordinary abundance に帰着し，新しい低次元定理を生むわけではない。仮定\eqref{ja:pullback}は一般ファイバー上の数値的自明性より強く，本稿では nef reduction map から導いていない。有用な新しい状況でこの引き戻し表示を構成することが，より広い候補について解決できなかった正確なステップである。
+
+\begin{rem}[Nef part を任意にできない理由]\label{ja:badreplace}
+非 torsion の $P\in\Pic^0(C)$ を取り，generalized klt curve $(C,0+\overline P)$ を考える。nef part は Cartier で $K_C+P\equiv0$ だが，すべての $m>0$ に対して $h^0(C,m(K_C+P))=0$ である。$f=\id_C$，$L=P$ とすると，定理\ref{ja:transfer}の他の仮定はすべて満たされる。したがって b-semiampleness を nef 性に置き換えると，曲線の場合でも移行定理は偽となる。一方，Ambro の lc-trivial な状況から生じる moduli b-divisor では，b-numerical triviality から $\Q$-linear triviality が従う \cite[Theorem 3.5]{ja-Amb}。その幾何学的な由来を保持しなければならない。
+\end{rem}
+
+\section{境界例の検算と先行研究との関係}\label{ja:checks}
+すべての $L_i$ が自明なら，$X=C\times\mP^{r-1}$ であり，$R(X,D)$ は通常の多項式環となる。Iitaka 縮約は $\mP^{r-1}$ への射影である。\eqref{ja:kappa}は $r-1$ を与え，指数は一である。曲面の場合に $\Gamma$ が rank one の自由群なら，環\eqref{ja:non-torsion}の次元は一なので Proj は一点である。一方，$H$ は線織構造のファイバー上で依然として正の次数を持つ。これは，有限生成性だけでは任意の nef generalized adjoint の半豊富性が従わない理由を具体的に検算している。
+
+定理\ref{ja:transfer}で $\bN=0$ とおくと，canonical bundle formula の標準的な ordinary klt の帰結を得る。\eqref{ja:setup}の例は，$M=0$ と置くことによって ordinary な nef adjoint の例になるわけではない。ordinary canonical divisor の射影ファイバーへの制限は $\cO_{\mP^{r-1}}(-r)$ であり，pseudo-effective ではない。したがって ordinary abundance の反例は生じていない。有理係数，整数係数の torsion 関係，および実際の線束は本質的である。実数係数の数値類では\eqref{ja:ring}に用いた情報が失われる。
+
+最も近い既知の反例は Birkar--Hacon \cite{ja-BH} にある。Example 1.1 は Poincar\'e 束を用い，good model の有無を torsion に依存させる。Example 3.1 と第4節は，倍数が非有界になる有界な曲面族と，関連する一様性の破綻を与える。本稿の分裂射影束の表示は切断環を計算し，rank three では商の底も明示するが，新しい一般的な boundedness の破綻を確立するものではない。Bie の2026年5月18日改訂版 \cite[Theorem 1.7]{ja-Bie} は，b-Cartier 指数と一般ファイバー上の整因子の正の体積を有界にした generalized klt Iitaka volume の DCC を証明する。注意\ref{ja:fibredegree}は，本稿の三次元の列が最後の仮定を満たさない理由を正確に示している。また Bie の Example 7.4 は，線形な下降に使う倍数の一様性に対する torsion の障害を記録している。
+
+他の関連する既知結果の正確な役割を記す。Han--Liu \cite[Theorem 1.5 および \S3.3]{ja-HL} は numerical nonvanishing と numerical abundance の限界を扱い，本稿の特定の線束の非零切断が現れる次数の一様性を扱っているわけではない。Tsakanikas--Xie \cite[Corollary E]{ja-TX} は，四次元以下の pseudo-effective NQC lc generalized pair の極小モデルの存在を既に示している。Chaudhuri \cite[Theorem 2]{ja-Cha} から，generalized klt rational adjoint が nef かつ abundant なら semiample であることが従う。本稿の非 torsion の例は正確に abundance の仮定を満たさない。Esposito--Mistretta \cite[Theorem 3.10]{ja-EM} は，行列式の Kodaira 次元がゼロである semiample ベクトル束と有限 \'etale 被覆による自明化を関係付ける。したがって定理\ref{ja:main}の定性的な半豊富性の部分には，より広い既知の説明が存在する。
+
+誤った新規性の主張を避けるため，別の setting の近年の研究も確認した。Das--Hacon--Y\'a\~nez \cite[Theorems 1.1--1.6]{ja-DHY} の2026年6月版は，K\"ahler threefold に対して nef b-$(1,1)$-current のデータを用いる。その数値的縮約を，追加の有理性なしに本稿の因子の線形系と解釈することはできない。Liu--Meng--Xie \cite[Theorems 1.2--1.4]{ja-LMX} は，klt 多様体上の algebraically integrable lc foliation に対して縮約，flip，および適切な MMP を確立している。その foliated discrepancy を本稿の ordinary discrepancy として用いることはしない。Chen--Han--He--Xie \cite[Theorem 1.1]{ja-CHHX} は，Fano type と klt complement の仮定のもと，次元と b-Cartier 指数を固定した bounded complements を証明している。本稿の有界な族はそれらの仮定を与えない。付属の研究ログにはより広い比較を記録したが，本稿の証明の代用にはしない。
+
+\section{新規性監査}\label{ja:audit}
+検索は2026年9月9日に，正確な statement を定式化する前と後の両方で実施した。二回目には ``generalized pairs'', ``elliptic projective bundle'', ``torsion'', ``section ring'', ``plurigenera'', ``constructible'', ``semiampleness index''，および rank-three の商の方程式を組み合わせた。関連する文献は snippet だけでなく本文を確認した。検索エンジンは証明や注意の中の主張を見落とし得るので，検索で見つからないことは既知の議論から独立であることの根拠にはならない。
+
+最終の再検索では特に近い Birkar--Hacon の例を見つけ，Bie の改訂版 Theorem 1.7 を確認した。この確認は，新規性を主張しない判断をさらに強めた。
+
+\begin{center}\small
+\begin{tabular}{p{.43\textwidth}p{.48\textwidth}}
+\toprule
+主張 & 監査結果\\
+\midrule
+低次元 generalized minimal model の存在 & KNOWN。主要な新規成果の候補から除外。\\
+Semiample な nef part の置換と条件付き下降 & KNOWN METHOD / CONDITIONAL な適用。証明は完成，新規性の主張なし。\\
+Torsion と半豊富性，一様な指数の破綻 & KNOWN な機構。Birkar--Hacon の先行する族の反例と，より広い有限被覆の判定がある。\\
+関係環，有限判定の族，rank-three の環表示 & 本稿で PROVED。独立した研究上の新規性は未確立。標準的機構の帰結として扱い，``apparently new'' に昇格させない。\\
+最初に求められた新しい一般 MMP 定理 & 研究結果は PARTIAL。達成できなかった。\\
+任意の b-nef な nef part の置換 & FALSE。上記の明示的な曲線の反例がある。\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+計算を正確にこの形でまとめたものは検索では見つからなかった。しかし，それだけでは「直接的な言い換えを新結果と扱わない」という要件を満たさない。特に本稿では，どの主張にも ``PROVED---APPARENTLY NEW'' というラベルを付けない。有限判定の定理は，初等的な構成要素の新規性を主張しなくても，完全に検算できる障害として有用である。この区別は今回の調査の結論の一部であり，証明の gap ではない。
+
+\section{帰結と残されたステップ}\label{ja:further}
+定理\ref{ja:familyintro}は，有限個の mixed plurigenera を一様に計算しても，固定偏極や上記の数値不変量を追加しても，この族の abundance は判定できないことを示す。個々の torsion ファイバーには良いモデルがあるが，必要な倍数には一様な上界がない。この方向の一様性定理には，torsion を制御する追加情報，またはこの例を除外する正値性の仮定が必要である。
+
+条件付き下降定理について，より広い研究候補の未証明の部分は，nef part を制御しながら，弱い数値的データから $\Q$-線形引き戻し\eqref{ja:pullback}を構成することにあった。非 torsion の曲線の例から，任意の nef data に対する無条件の置換原理は存在しない。今回の実行では，新しい K\"ahler への拡張，foliation に対する新しい帰結，あるいは新しい bounded-complement 定理は証明していない。完成した成果は，具体的な証明，すべての仮定を記述した標準的な条件付き移行，およびより強い候補を除外した理由の記録である。
+\begin{thebibliography}{CHHX25}
+\bibitem[Amb05]{ja-Amb}
+F. Ambro, \emph{The moduli b-divisor of an lc-trivial fibration}, Compositio Math. \textbf{141} (2005), 385--403. Theorems 0.2, 3.5 and 4.1. \href{https://doi.org/10.1112/S0010437X04001071}{doi:10.1112/S0010437X04001071}.
+
+\bibitem[BH22]{ja-BH}
+C. Birkar and C. D. Hacon, \emph{Variations of generalised pairs}, arXiv:2204.10456v1 (2022), Examples 1.1 and 3.1, and \S4. \url{https://arxiv.org/abs/2204.10456v1}.
+
+\bibitem[Bie26]{ja-Bie}
+P. Bie, \emph{On the DCC Property of Iitaka Volume with Real Coefficients and Generalised Pairs}, arXiv:2605.13881v2 (May 18, 2026), Theorem 1.7 and Example 7.4. \url{https://arxiv.org/abs/2605.13881v2}.
+
+\bibitem[Cha22]{ja-Cha}
+P. Chaudhuri, \emph{Semiampleness for generalized pairs}, arXiv:2209.01452v2 (2022), Theorem 2. \url{https://arxiv.org/abs/2209.01452v2}.
+
+\bibitem[CHHX25]{ja-CHHX}
+G. Chen, J. Han, Y. He and L. Xie, \emph{Boundedness of complements for generalized pairs}, arXiv:2501.03739v2 (2025), Theorem 1.1. \url{https://arxiv.org/abs/2501.03739v2}.
+
+\bibitem[DHY26]{ja-DHY}
+O. Das, C. Hacon and J. I. Y\'a\~nez, \emph{MMP for Generalized Pairs on K\"ahler 3-folds}, arXiv:2305.00524v3 (June 29, 2026), Theorems 1.1--1.6. \url{https://arxiv.org/abs/2305.00524v3}.
+
+\bibitem[EM24]{ja-EM}
+F. Esposito and E. C. Mistretta, \emph{On semiample vector bundles and parallelizable compact complex manifolds}, arXiv:2406.04139v2 (2024), Theorem 3.10. \url{https://arxiv.org/abs/2406.04139v2}.
+
+\bibitem[Fuj11]{ja-Fuj}
+O. Fujino, \emph{Minimal model theory for log surfaces}, arXiv:1001.3902v3 (2011), Theorem 6.1; published in Publ. Res. Inst. Math. Sci. \textbf{48} (2012), 339--371. \url{https://arxiv.org/abs/1001.3902v3}.
+
+\bibitem[HL20]{ja-HL}
+J. Han and W. Liu, \emph{On numerical nonvanishing for generalized log canonical pairs}, Doc. Math. \textbf{25} (2020), 93--123; arXiv:1808.06361v4, Theorem 1.5, Lemma 3.4 and \S3.3. \href{https://doi.org/10.4171/DM/739}{doi:10.4171/DM/739}.
+
+\bibitem[KMM94]{ja-KMM}
+S. Keel, K. Matsuki and J. McKernan, \emph{Log abundance theorem for threefolds}, Duke Math. J. \textbf{75} (1994). \href{https://doi.org/10.1215/S0012-7094-94-07504-2}{doi:10.1215/S0012-7094-94-07504-2}. 主 abundance 定理。未確認の定理番号は記載しない。
+
+\bibitem[LMX25]{ja-LMX}
+J. Liu, F. Meng and L. Xie, \emph{Minimal model program for algebraically integrable foliations on klt varieties}, arXiv:2404.01559v3 (2025), Theorems 1.2--1.4. \url{https://arxiv.org/abs/2404.01559v3}.
+
+\bibitem[TX23]{ja-TX}
+N. Tsakanikas and L. Xie, \emph{Remarks on the Existence of Minimal Models of Log Canonical Generalized Pairs}, arXiv:2301.09186v2 (2023), Theorems A--B and Corollary E. \url{https://arxiv.org/abs/2301.09186v2}.
+
+\end{thebibliography}
+\bibliographystyle{alpha}
+\end{document}

@@ -1,0 +1,1585 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{bbm}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions for the complete English/Japanese edition.
+% Compile with LuaLaTeX. Original class, packages, macros and theorem environments are retained.
+\usepackage{fontspec}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+
+\setmainfont{Latin Modern Roman}
+
+\setmainjfont{HaranoAjiMincho-Regular}[
+  BoldFont={HaranoAjiMincho-Bold}
+]
+\setsansjfont{HaranoAjiGothic-Medium}[
+  BoldFont={HaranoAjiGothic-Bold}
+]
+\setmonojfont{HaranoAjiGothic-Medium}
+\usepackage{longtable}
+\usepackage{booktabs}
+\DeclareMathOperator{\DF}{DF}
+\setlength{\emergencystretch}{1.5em}
+\hypersetup{pdftitle={Minimal relative Chow tori for products of polarized Hirzebruch surfaces},
+pdfauthor={chatGPT 6 Astra},unicode=true}
+\title[Asymptotic relative Chow polystability]{Asymptotic relative Chow polystability for products of polarized Hirzebruch surfaces}
+\author{chatGPT 6 Astra}
+\date{9 September 2026}
+\renewcommand{\subjclassname}{\textup{2020} Mathematics Subject Classification}
+\subjclass[2020]{Primary 32Q26; Secondary 32Q15, 14M25, 53D35}
+\keywords{Relative Chow polystability, extremal Kähler metrics, Hirzebruch surfaces,
+adiabatic polarization, regular Sasaki structures}
+\bibliographystyle{alpha}
+\begin{document}
+\renewcommand{\theHsection}{en.\arabic{section}}
+\renewcommand{\theHequation}{en.\arabic{section}.\arabic{equation}}
+\renewcommand{\theHthm}{en.\arabic{section}.\arabic{thm}}
+\begin{abstract}
+We compute the smallest fixed torus giving asymptotic relative Chow polystability for products of polarized first Hirzebruch surfaces. Its dimension is the number of distinct polarization parameters in the product, whereas the extremal vector field generates a circle. If two parameters differ, Chow semistability relative to this circle fails at every positive embedding level, although an extremal metric exists. The proof uses exact lattice moments, the finite-level trace pairing, and coprime quadratic denominators. We also compute a fourth-order adiabatic obstruction and a regular Sasaki consequence. The mathematical arguments are complete. Novelty remains provisional: the precise classification was not located in the inspected literature, but priority is not certified.
+\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+Existence of an extremal metric already implies asymptotic Chow polystability relative to a suitable torus. This is an established quantization theorem, not a new implication proposed here. A maximal torus, the connected centre of a maximal compact group, and the extremal circle are different objects. We ask which fixed subtori suffice for a given polarized product. Here fixed means independent of the embedding level.
+
+Let $F=\mP_{\mP^1}(\cO\oplus\cO(1))$, with the quotient convention for projectivization, and put
+\begin{equation}\label{en-family}
+ L_b=\cO_F(1)\otimes\pi^*\cO_{\mP^1}(b),\quad
+ X=F^r,\quad L_{\boldsymbol b}=\boxtimes_iL_{b_i},\quad b_i\in\Z_{>0}.
+\end{equation}
+Let $D_{\boldsymbol b}$ act diagonally on the fibre-scaling circles of factors with equal $b_i$, independently for different values. We prove, for every subtorus $T$ of the toric maximal torus,
+\begin{equation}\label{en-intro}
+\begin{gathered}
+\text{relative Chow semistability at infinitely many levels}\\
+\Longleftrightarrow D_{\boldsymbol b}\subseteq T\\
+\Longleftrightarrow\text{asymptotic Chow polystability relative to }T.
+\end{gathered}
+\end{equation}
+The minimum dimension is $\#\{b_1,\ldots,b_r\}$. If two parameters differ, the extremal circle fails at every level. The resulting dimension gap is unbounded.
+
+The relative K/Chow separation is already known in the toric sense, notably from Yotsutani--Zhou \cite{en-YZ}. The proposed contribution is the precise classification, its arbitrary-rank realization, a bound on exceptional levels, and an exact adiabatic calculation. Sufficiency uses the established quantization theorem.
+
+\paragraph{Status.}
+The statements below are proved. Their novelty category is
+\texttt{LIKELY NEW BUT LITERATURE CHECK INCOMPLETE}.
+We have not found these precise statements in the primary literature inspected on 9 September 2026. This does not certify priority. No result is certified here as \texttt{NEW AND PROVED}: this is a complete mathematical candidate with an explicit novelty limitation, not a claim that the entire phenomenon is new. Section~\ref{en-audit} records the comparison.
+
+\section{Stability conventions and the literature}
+
+\subsection{K-stability}
+Our varieties are smooth projective over $\C$. A normal ample test configuration is a flat equivariant family over $\mathbb A^1$ with normal total space and a relatively ample rational line bundle, isomorphic to the given polarization away from zero. After clearing denominators, write
+\begin{align}\label{en-DF}
+h(\ell)&=a_0\ell^n+a_1\ell^{n-1}+\cdots,&
+w(\ell)&=b_0\ell^{n+1}+b_1\ell^n+\cdots,\notag\\
+\DF&=(b_0a_1-b_1a_0)/a_0.
+\end{align}
+This convention agrees with \cite[\S2]{en-SS}. Semistability requires $\DF\geq0$; polystability additionally requires equality only for product configurations, which may carry nontrivial actions. Relative DF projects away the chosen torus using the \emph{leading} trace pairing. Uniform stability requires a specified norm, reduced appropriately in the presence of automorphisms.
+
+The non-Archimedean formalism separates $\DF$ from the Mabuchi functional by a correction for non-reduced central fibres \cite{en-BHJ}. For $\Q$-Fano varieties with anticanonical polarization, K-semistability and Ding semistability coincide, and the uniform versions coincide \cite{en-Fuj}. The valuative criterion, building on Fujita and Li, gives K-semistability iff $\delta(-K_X)\geq1$ and uniform K-stability iff $\delta(-K_X)>1$ \cite[Theorem B]{en-BluJ}. This statement does not identify $\delta(L)$ with K-stability for a general ample $L$.
+
+The smooth Fano KE/K-polystability correspondence is classical \cite{en-CDS}. The cscK/coercivity theory and its consequences involve Chen--Cheng and Berman--Darvas--Lu \cite{en-CC,en-BDL}. Boucksom--Jonsson's 2025 formulation uses the finite-energy non-Archimedean completion and treats weighted metrics \cite{en-BJ25}. Trusiani's August 2026 version states the cscK/$\Autop^\circ$-uniform K-stability correspondence for smooth polarized projective varieties \cite{en-Tru26}. These formulations must not be silently replaced by ordinary K-polystability. The proofs in this note do not depend on these recent preprints.
+
+\subsection{The relative Chow group}
+Set $V_m=H^0(X,L^m)$ and choose a nonzero affine lift $\widehat X_m$ of the Chow point of $X\subset\mP(V_m^*)$. A torus $T$ has a trace-free lift to $\mathrm{SL}(V_m)$ after a finite isogeny. Define $G_{m,T}^{\perp}$ as the connected reductive subgroup with Lie algebra
+\begin{equation}\label{en-group}
+\{A\in\mathfrak{sl}(V_m):[A,B]=0,\ \tr(AB)=0\text{ for all }B\in\mathfrak t_m\}.
+\end{equation}
+The central equations have rational coefficients in the weights; clearing denominators defines an algebraic group. Relative Chow semistability means
+$0\notin\overline{G_{m,T}^{\perp}\widehat X_m}$, and polystability means that the nonzero affine orbit is closed. This is the strong relative convention, not the smaller product of special linear groups of weight spaces \cite[Definitions 3.4--3.5]{en-Has17}.
+
+The Chow moment-map criterion identifies polystability with a compatible embedding whose trace-free centre-of-mass matrix lies in $\mathfrak t_m$ \cite[Theorem 3.4]{en-Tip}. Projecting the moment map to \eqref{en-group} gives the same criterion for a subtorus. Extremal metrics imply asymptotic relative Chow polystability for a maximal torus \cite{en-Mab16,en-Sey,en-ST}; one cannot automatically replace it by the extremal circle.
+
+A cscK metric implies asymptotic Chow stability with discrete automorphisms \cite{en-Don01}. Without discreteness, higher Futaki characters can obstruct even semistability; a smooth toric KE example is given in \cite{en-OSY}. Vanishing of the higher characters together with cscK existence yields polystability \cite{en-Mab05,en-Fut04}. Lee--Yotsutani's 2026 toric criterion also retains a vanishing obstruction hypothesis \cite{en-LY26}.
+
+\subsection{Other directions inspected}
+Dervan--Sektnan's adiabatic metric construction uses an optimal symplectic connection, a twisted extremal base, and lifting hypotheses \cite{en-DS19}. Their fibration stability theorem is a necessity result \cite{en-DS20}; Hallam proves polystability for specified product-type degenerations \cite[Theorem 1.4]{en-Hal20}. Hattori gives a log-twisted base criterion for uniformly adiabatic K-stability of klt-trivial fibrations over curves \cite[Theorem 1.1]{en-Hat}. None is an unrestricted stable-base-plus-stable-fibre theorem. Positivity for each fixed degeneration at large $k$ does not imply a common threshold for all degenerations.
+
+Weighted scalar curvature contains extremal and soliton-type equations \cite{en-Lah}. Weighted polystability allowing singular degenerations appears in \cite{en-Hal23}; coercivity and Sasaki applications in \cite{en-AJL}. Hashimoto's existence criterion uses relative uniform stability \emph{over models} \cite[Theorem 1.1]{en-Has25}. Recent projective-bundle work \cite{en-Jub26} concerns metric existence, not the relative torus classified here.
+
+Collins--Sz\'ekelyhidi prove a Ricci-flat cone/K-stability correspondence with their cone hypotheses and normalization \cite{en-CS}. Boyer--van Coevering treat relative Sasaki K-stability \cite{en-BvC}. Quasi-regular quotients require orbifold sections and grading, with possible periodic Hilbert terms. We restrict our application to regular bundles.
+
+\section{Exact characters and moments}
+For an integral toric polytope $P$, put $\Lambda_m=P\cap m^{-1}\Z^n$, $N_m=\#\Lambda_m$, $V=\Vol(P)$, and
+\begin{align}\label{en-means}
+\overline p_m&=N_m^{-1}\sum_{\Lambda_m}p,&
+\overline p&=V^{-1}\int_Pp\,dp,\\
+B_m(u,v)&=N_m^{-1}\sum_{\Lambda_m}
+\langle u,p-\overline p_m\rangle\langle v,p-\overline p_m\rangle,&
+C_m(u)&=\langle u,\overline p_m-\overline p\rangle.\label{en-char}
+\end{align}
+$B_m$ is positive definite and equals the trace pairing divided by $m^2N_m$, not its limit. Define
+\begin{equation}\label{en-dual}
+B_m(q_m,u)=C_m(u)\quad(u\in\mathfrak t_{0,\R}).
+\end{equation}
+To check the Chow normalization, the trace-free generator on $V_m$ induces weight polynomial
+\[
+w(mp)-p\frac{w(m)}{h(m)}h(mp)
+\]
+at embedding power $p$. Its leading coefficient is $-Vm^{n+1}C_m$. The leading Hilbert determinant, or Chow line in this convention, has weight $-(n+1)!Vm^{n+1}C_m$. We call its opposite the \emph{dual Chow-line weight}. Vanishing is independent of dualization. The lattice-barycentre obstruction is classical \cite{en-YZ,en-LY26}.
+
+\begin{lem}[Character test]\label{en-test}
+For $T\subset T_0$ with real Lie algebra $\mathfrak t$, relative Chow semistability at level $m$ implies $q_m\in\mathfrak t$. If the embedding is Chow polystable relative to $T_0$ and $q_m\in\mathfrak t$, it is Chow polystable relative to $T$.
+\end{lem}
+\begin{proof}
+If $q_m\notin\mathfrak t$, let $u\neq0$ be its $B_m$-orthogonal projection onto $\mathfrak t^\perp$. Then $C_m(u)=B_m(u,u)>0$. Rationality allows an integral multiple of $u$ and a trace-free lift in $G_{m,T}^{\perp}$. This subgroup fixes the Chow point but acts nontrivially on its lift. One orientation sends the lift to zero.
+
+Conversely, take a $T_0$-compatible relatively balanced embedding. Its moment matrix $\mu_0$ lies in $\mathfrak t_{0,m}$. Pairing with the stabilizer torus gives, up to one common nonzero factor, the Chow character. The trace pairing is unchanged under the centralizer. Hence $\mu_0$ is a scalar multiple of the lift of $q_m$. If $q_m\in\mathfrak t$, the same embedding has zero moment map for $G_{m,T}^{\perp}$. To relate it to the original orbit, decompose its change of basis in the centralizer of $T_0$ into a $T_0$ factor and a $G_{m,T_0}^{\perp}$ factor, up to a finite cover and scalar. The former acts by a scalar on the Chow lift, and $G_{m,T_0}^{\perp}\subseteq G_{m,T}^{\perp}$. Multiplication of a nonzero lift by a scalar does not change closedness. The moment-map criterion therefore proves closedness of the original orbit.
+\end{proof}
+
+The quotient convention gives
+\[
+H^0(F,L_b^m)=\bigoplus_{j=0}^mH^0(\mP^1,\cO(bm+j)).
+\]
+Thus $L_b$ is the very ample scroll polarization of type $(b,b+1)$ with Delzant polygon
+\begin{equation}\label{en-poly}
+P_b=\{(x,y):0\leq y\leq1,\ 0\leq x\leq b+y\}.
+\end{equation}
+Its primitive edge directions form lattice bases at the vertices. Write $v=b+1/2$. Let $E$ have weight $y$, and $W$ weight $x-y/2$; $2W$ is integral.
+
+\begin{prop}[One-factor formulas]\label{en-mom}
+For $b,m\geq1$,
+\begin{align}\label{en-hw}
+h_b(m)&=(m+1)(vm+1),&
+w_b(m)&=\frac{m(m+1)((6v+1)m+8)}{12},\\
+Q_v(m)&=(12v^2-1)m^2+(24v-2)m+12,\label{en-Q}\\
+\tau_v(m)&=\frac{(m+2)Q_v(m)}{144m(vm+1)^2},&
+d_v(m)&=\frac{2v-1}{12v(vm+1)},\label{en-td}\\
+\beta_v(m)&=\frac{12m(2v-1)(vm+1)}{v(m+2)Q_v(m)}.\label{en-beta}
+\end{align}
+Then $C_m(E)=d_v(m)$, $C_m(W)=0$, $B_m(E,E)=\tau_v(m)$, $B_m(E,W)=0$, and $q_m=\beta_v(m)E$. The continuous variance and extremal coefficient are
+\begin{equation}\label{en-alpha}
+\tau_v^\infty=\frac{12v^2-1}{144v^2},\qquad
+\alpha_v=\frac{24(2v-1)}{12v^2-1}.
+\end{equation}
+Here scalar curvature is normalized by $\int_Psf=\int_{\partial P}f\,d\sigma$ for affine $f$; the extremal vector is $\alpha_vE$ up to a common scalar. Finally $\DF_b(E)=-(2v-1)/(12v)$.
+\end{prop}
+\begin{proof}
+There are $bm+j+1$ points at height $j/m$. Summing their numbers and their integer weights $j$ proves \eqref{en-hw}. The second sum is
+\begin{equation}\label{en-second}
+\sum_{j=0}^mj^2(bm+j+1)
+=(bm+1)\frac{m(m+1)(2m+1)}6+\frac{m^2(m+1)^2}4.
+\end{equation}
+Integration with density $b+y$ and the first sum give
+\[
+\overline y=\frac12+\frac1{12v},\quad
+\overline{y^2}=\frac13+\frac1{12v},\quad
+\overline y_m=\frac12+\frac{m+2}{12(vm+1)}.
+\]
+Subtracting the means gives $d_v(m)$. Divide \eqref{en-second} by $m^2h_b(m)$ and subtract $\overline y_m^2$ to obtain $\tau_v(m)$. Reflection $x\mapsto b+y-x$ preserves both interval measure and lattice points at each height. The centred $W$-potential $x-(b+y)/2$ has conditional mean zero. This proves both vanishings. Division gives $\beta_v=d_v/\tau_v$.
+
+The facet lengths are $b,b+1,1,1$, so
+\[
+\int_{\partial P_b}1\,d\sigma=2v+2,\qquad
+\int_{\partial P_b}y\,d\sigma=v+\tfrac32.
+\]
+Reflection excludes a $W$ component from the extremal affine function. Writing it as $s_0+\alpha_v(y-\overline y)$ yields
+\[
+v\alpha_v\tau_v^\infty
+=v+\tfrac32-(2v+2)\left(\tfrac12+\tfrac1{12v}\right)
+=\frac{2v-1}{6v}.
+\]
+This gives \eqref{en-alpha}. The coefficients
+$a_0=v$, $a_1=v+1$, $b_0=v/2+1/12$, $b_1=v/2+3/4$
+in \eqref{en-DF} give the DF formula.
+\end{proof}
+
+
+\section{Classification of the relative torus}
+
+Put $v_i=b_i+1/2$ and let $E_i,W_i$ denote the generators on the $i$th factor. Let $\mathcal B=\{b_1,\ldots,b_r\}$, $s=\#\mathcal B$, and
+\begin{equation}\label{en-D}
+ U_B=\sum_{\{i:b_i=B\}}E_i,\qquad
+ D_{\boldsymbol b}=\prod_{B\in\mathcal B}\C^*_{U_B}\subset T_0.
+\end{equation}
+These are integral cocharacters with disjoint supports, so the product is an embedded $s$-dimensional torus.
+
+\begin{thm}[Fixed-torus classification]\label{en-classification}
+For the smooth integrally polarized variety \eqref{en-family} and a fixed algebraic subtorus $T\subset T_0$, the following are equivalent:
+\begin{enumerate}
+\item $(X,L_{\boldsymbol b}^m)$ is Chow semistable relative to $T$ for infinitely many positive integers $m$;
+\item $D_{\boldsymbol b}\subseteq T$;
+\item $(X,L_{\boldsymbol b}^m)$ is Chow polystable relative to $T$ for every sufficiently large integer $m$.
+\end{enumerate}
+If $D_{\boldsymbol b}\nsubseteq T$, relative Chow semistability can hold at at most $2s-1$ positive integer levels. The same necessity holds on any infinite Veronese subsequence.
+\end{thm}
+
+The group in this statement is always \eqref{en-group}. The conclusion is polystability, not stability: residual stabilizers are allowed. The assertion does not identify the optimum torus at an individual small level.
+
+\begin{thm}[The extremal circle at every level]\label{en-circle}
+The product admits an extremal metric with extremal circle generated by
+\begin{equation}\label{en-chi}
+ \chi=\sum_i\alpha_{v_i}E_i.
+\end{equation}
+If at least two $b_i$ differ, $(X,L_{\boldsymbol b}^m)$ is Chow unstable relative to this circle for every integer $m\geq1$. If all $b_i$ coincide, it is Chow polystable relative to this circle for all sufficiently large $m$. Thus the difference between the dimension of the smallest fixed asymptotic relative Chow torus and the extremal circle can be arbitrarily large.
+\end{thm}
+
+\section{Proofs}
+
+\subsection{Rational independence}
+Lattice counting and integration on a product give product probability measures. All covariance blocks between different factors vanish. Therefore
+\begin{equation}\label{en-productq}
+ q_m=\sum_i\beta_{v_i}(m)E_i
+     =\sum_{B\in\mathcal B}\beta_{B+1/2}(m)U_B.
+\end{equation}
+No $W_i$ component occurs, and every remaining covariance block is positive definite.
+
+\begin{lem}\label{en-independence}
+For distinct positive integers $B$, the rational functions $\beta_{B+1/2}(z)$ are linearly independent over $\R$. Their value vectors over any infinite subset of positive integers span the full coefficient space.
+\end{lem}
+\begin{proof}
+Set
+\begin{equation}\label{en-quadratics}
+ A_B=6B^2+6B+1,\qquad
+ p_B(z)=A_Bz^2+(12B+5)z+6.
+\end{equation}
+Direct substitution into \eqref{en-beta} gives
+\[
+ Q_{B+1/2}(z)=2p_B(z),\qquad
+ \beta_{B+1/2}(z)=\frac{12B}{B+1/2}\,
+ \frac{z}{z+2}\,\frac{(B+1/2)z+1}{p_B(z)}.
+\]
+The discriminant of $p_B$ is $1-24B<0$. Thus it is irreducible over $\R$, and its roots are simple. Distinct $p_B$ are not proportional, because their constant terms equal $6$ and their linear coefficients differ. Consequently they have no common complex root. The linear numerator cannot cancel either nonreal root.
+
+Multiply a putative linear relation, after removing the common factor $z/(z+2)$, by $\prod_Bp_B(z)$. Evaluate at one root of each $p_B$. Only the corresponding summand survives, so every coefficient is zero. If a linear functional vanishes on the value vectors at infinitely many positive integers, its rational function has infinitely many zeros, hence vanishes identically. Independence then makes that functional zero.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en-classification}]
+By Lemma~\ref{en-test}, semistability forces $q_m\in\mathfrak t$. Lemma~\ref{en-independence} and \eqref{en-productq} show that the span of these vectors at any infinite set of levels is exactly $\Lie(D_{\boldsymbol b})_\R$. Connected algebraic subtori are determined by their Lie algebras, proving (1)$\Rightarrow$(2).
+
+Calabi's construction gives an extremal metric in every class $c_1(L_b)$ on $F$; this case is also contained in the admissible projective-bundle theory \cite{en-Cal82,en-ACGTF} and recalled in \cite[\S5.1]{en-Jub26}. The sum of the pulled-back metrics is Kähler in $c_1(L_{\boldsymbol b})$. Its scalar curvature is the sum of the factor scalar curvatures, and the sum of their holomorphic gradients is holomorphic. Hence the product metric is extremal. The polarization is integral and ample, the manifold is smooth, and $T_0$ is a maximal algebraic torus whose compact form preserves the product metric. The extremal quantization theorem \cite{en-Mab16,en-Sey,en-ST} therefore gives relative Chow polystability for $T_0$ at all sufficiently large levels. If (2) holds, \eqref{en-productq} lies in $\mathfrak t$ at every level. Lemma~\ref{en-test} proves (3). Clearly (3) implies (1).
+
+For the bound, if $\Lie(D_{\boldsymbol b})_\R$ is not contained in $\mathfrak t$, choose a real linear functional $\lambda$ vanishing on $\mathfrak t$ but not on that span. After removing $m/(m+2)$ and using the common denominator $\prod_Bp_B(m)$, the nonzero function $\lambda(q_m)$ has a numerator of degree at most $1+2(s-1)=2s-1$. It has at most that many positive zeros. Every semistable level must be among them.
+\end{proof}
+
+\subsection{Strict monotonicity}
+Define
+\begin{equation}\label{en-ratio}
+ R_m(b)=\frac{\beta_{b+1/2}(m)}{\alpha_{b+1/2}}
+ =\frac{mA_b((2b+1)m+2)}
+ {2(2b+1)(m+2)p_b(m)}.
+\end{equation}
+Here the expression extends to all real $b>0$.
+
+\begin{lem}\label{en-monotone}
+For each integer $m\geq1$, $R_m$ is strictly increasing on $b>0$.
+\end{lem}
+\begin{proof}
+Differentiation with a common denominator gives
+\begin{equation}\label{en-derivative}
+ R_m'(b)=
+ \frac{mP_m(b)}{(2b+1)^2(m+2)p_b(m)^2},
+\end{equation}
+where
+\begin{align*}
+P_m(b)={}&72m^2b^4+(120m^2+144m)b^3\\
+ &+(96m^2+204m+72)b^2\\
+ &+(42m^2+120m+72)b+7m^2+26m+24.
+\end{align*}
+Each coefficient and the denominator are positive.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en-circle}]
+The metric argument above and \eqref{en-alpha} give \eqref{en-chi}. All coefficients are positive rational numbers, so $\chi$ generates an algebraic circle after clearing denominators. By \eqref{en-productq}, $q_m$ lies on its line precisely when all ratios $R_m(b_i)$ agree. Lemma~\ref{en-monotone} excludes this at every $m$ if two parameters differ; Lemma~\ref{en-test} proves instability. When all parameters coincide, this circle is $D_{\boldsymbol b}$ and Theorem~\ref{en-classification} applies. Taking $r=s$ distinct positive integers gives gap $s-1$.
+\end{proof}
+
+For completeness, an explicit rational stabilizer direction detecting the failure for $b_i\ne b_j$ is
+\begin{equation}\label{en-Z}
+ Z_m=\alpha_{v_j}\tau_{v_j}(m)E_i-
+       \alpha_{v_i}\tau_{v_i}(m)E_j .
+\end{equation}
+It satisfies
+\begin{align}\label{en-obstruction}
+ B_m(Z_m,\chi)&=0,\\
+ C_m(Z_m)&=\alpha_{v_i}\alpha_{v_j}
+ \tau_{v_i}(m)\tau_{v_j}(m)
+ \bigl(R_m(b_i)-R_m(b_j)\bigr)\ne0.\notag
+\end{align}
+Clearing these denominators and then the trace denominator gives an integral one-parameter subgroup of \eqref{en-group}. Its product test configuration is smooth and normal. One orientation destabilizes the Chow lift. This also verifies the action and normality requirements without an appeal to a hypothetical singular degeneration.
+
+\section{Adiabatic and regular Sasaki applications}
+
+\subsection{A fourth-order adiabatic character}
+Fix distinct positive integers $b,c$. On $F\times F\to\mP^1\times\mP^1$ set
+\begin{equation}\label{en-adiabatic}
+ \mathcal L_k=L_{k+b}\boxtimes L_{k+c}
+ =(L_b\boxtimes L_c)\otimes\pi^*\cO(k,k),\quad k\in\Z_{\geq0}.
+\end{equation}
+These are genuinely adiabatic polarizations with a fixed relatively ample fibre class.
+
+\begin{cor}\label{en-adiaresult}
+Every $\mathcal L_k$ admits an extremal metric, but every positive embedding level is Chow unstable relative to its extremal circle. For fixed $m$, let $Z_{k,m}$ be \eqref{en-Z} with $v_1=k+b+1/2$, $v_2=k+c+1/2$. Then
+\begin{equation}\label{en-adiaexp}
+ C_{k,m}(Z_{k,m})
+ =\frac{(b-c)(m+2)}{18m^3}\,k^{-4}
+   +O_{b,c,m}(k^{-5}).
+\end{equation}
+\end{cor}
+\begin{proof}
+Existence and instability follow from Theorem~\ref{en-circle} for each $k$. To verify the expansion, division in \eqref{en-ratio} gives
+\[
+ R_m(v-\tfrac12)=\frac1{2(m+2)}
+ -\frac1{2m(m+2)v}+O_m(v^{-2}).
+\]
+Since this is a rational function, it has a convergent expansion in $1/v$ near zero. Subtracting its values at $v=k+b+1/2$ and $k+c+1/2$ therefore gives
+\[
+ R_m(k+b)-R_m(k+c)
+ =\frac{b-c}{2m(m+2)}k^{-2}+O_{b,c,m}(k^{-3}).
+\]
+Also $\alpha_v=4/v+O(v^{-2})$ and
+$\tau_v(m)=(m+2)/(12m)+O_m(v^{-1})$.
+Substitution in \eqref{en-obstruction} proves \eqref{en-adiaexp}.
+\end{proof}
+
+Equation \eqref{en-adiaexp} uses the specified rational generator, not its primitive integral multiple. The latter rescales the character. The estimate is for fixed $m$; no uniform estimate in $m$ is claimed. The exact monotonicity proof establishes nonvanishing for every $k$, independently of the expansion. In particular no conclusion about all test configurations is inferred from a highest-order DF coefficient.
+
+\subsection{A carefully defined transverse statement}
+Scale the product extremal Kähler form $\omega$ so that $[\omega/\pi]=c_1(L_{\boldsymbol b})$. The unit circle bundle in $L_{\boldsymbol b}^*$ has a connection $\eta$ with $d\eta=2\pi_X^*\omega$ and Reeb period $2\pi$. The resulting regular Sasaki structure has transverse metric $\omega$. Since its transverse scalar curvature is extremal, so is the Sasaki metric.
+
+Define relative transverse Chow (poly/semi)stability at level $m$ using the representation
+\begin{equation}\label{en-CR}
+ \{\text{CR holomorphic functions of Reeb weight }m\}
+ \simeq H^0(X,L_{\boldsymbol b}^m)
+\end{equation}
+and precisely the quotient torus group \eqref{en-group}. This is a definition tied to a regular quotient, not an assertion about every use of transverse Chow stability. For a general Reeb period $\ell$, level $m$ means Reeb eigenweight $2\pi m/\ell$, namely the integral circle grading. This convention retains the same quotient polarization under constant Sasaki homotheties.
+
+\begin{cor}\label{en-sasaki}
+For this definition, an algebraic torus of lifted transverse automorphisms gives semistability at infinitely many levels if and only if its image in $T_0$ contains $D_{\boldsymbol b}$; then it gives polystability at every sufficiently large level. The torus generated by the Reeb circle and the extremal lift fails at every level when two $b_i$ differ.
+\end{cor}
+\begin{proof}
+The identifications \eqref{en-CR} preserve the weights and the multiplication defining the projective embedding. The Reeb action is scalar of weight $m$, hence disappears upon taking the trace-free lift. Thus the groups, Chow characters and orbit-closure conditions are exactly those of the quotient. Apply Theorems~\ref{en-classification} and \ref{en-circle}.
+\end{proof}
+We assume here that the image torus is contained in $T_0$; adjoining the Reeb circle does not change it. No statement about irregular Reeb fields, arbitrary orbifold polarizations, or Sasaki--Einstein existence follows.
+
+\section{Explicit integer computation and K-theoretic comparison}
+
+Take $(b_1,b_2)=(1,2)$ and $m=1$. The data are
+\[
+\begin{array}{c|cccc}
+ b&h_b(1)&\alpha_{b+1/2}&d_{b+1/2}(1)&\tau_{b+1/2}(1)\\ \hline
+ 1&5&24/13&2/45&6/25\\
+ 2&7&48/37&4/105&12/49
+\end{array}
+\]
+A primitive generator of the extremal circle is $37E_1+26E_2$. Choose $Z=1300E_1-1813E_2$. Its mean integer weight is $-256$; the trace-free weights on the $35$-dimensional tensor-product space are
+\[
+\begin{array}{c|rrrr}
+\text{weight}&256&1556&-1557&-257\\
+\text{multiplicity}&6&9&8&12 .
+\end{array}
+\]
+They sum to zero with these multiplicities, and
+\[
+1300\cdot37\cdot\frac6{25}
+-1813\cdot26\cdot\frac{12}{49}=0,\qquad
+C_1(Z)=1300\frac2{45}-1813\frac4{105}=-\frac{508}{45}.
+\]
+Here $n=4$ and $V=(3/2)(5/2)=15/4$, so the dual Chow-line weight in our convention is
+\begin{equation}\label{en-integerweight}
+ 5!\,\frac{15}{4}\left(-\frac{508}{45}\right)=-5080.
+\end{equation}
+This calculation involves an actual integral $\mathrm{SL}(35)$ action, not only a formal real Hamiltonian.
+
+For the ordinary DF of product actions on the general product, multiplication of the Hilbert polynomials and addition of the average weights give
+\begin{equation}\label{en-productDF}
+ a_0=\prod_i v_i,\qquad
+ \DF\left(\sum_it_iE_i\right)
+ =-a_0\sum_i\frac{t_i(2v_i-1)}{12v_i^2}.
+\end{equation}
+Indeed the contribution from factor $i$ is its DF times $\prod_{j\ne i}v_j$. The leading centred trace pairing is
+$\langle E_i,E_i\rangle_\infty=a_0\tau_{v_i}^\infty$, with distinct factors orthogonal. By \eqref{en-alpha}, the Futaki-dual vector is $-\chi/2$. Consequently all these automorphism product configurations have relative DF zero after projection onto any torus containing $\chi$. In the integer example the ordinary DF equals $67/45$, whereas the relative DF is zero.
+
+There is no contradiction: the Chow projection uses $B_m$, while the K-projection uses its leading limit. Stoppa--Székelyhidi's extremal necessity theorem gives K-polystability relative to a maximal torus \cite[Theorem 4]{en-SS}; K-semistability relative to the extremal torus is also known \cite[Theorem 1.3]{en-Has17}. These facts do not assert the finite-level Chow vanishing tested above.
+
+\section{Counterexamples, equality, and scope}
+
+Projective space has exact lattice barycentre symmetry; there is no analogous nonzero character. Equal products in our family have proportional finite-level characters, and the extremal circle suffices asymptotically. Unequal products show why equality of the parameters matters. Each $F$ is the blow-up of $\mP^2$ at one point, providing a ruled, toric, non-cscK extremal test case with continuous automorphisms. Its $\alpha_v$ is nonzero. The ordinary Chow character is already nonzero on each factor, so no ordinary asymptotic Chow stability is claimed.
+
+The KE examples of \cite{en-OSY} rule out a general metric-to-ordinary-Chow implication even in the cscK case. Relative K/Chow failure in \cite{en-YZ} prevents us from presenting that separation itself as new. Higher Futaki obstructions are retained by the exact character, rather than discarded with lower asymptotic coefficients.
+
+Our semistability obstruction only uses stabilizer one-parameter subgroups. In the sufficient direction, absence of that obstruction alone is not treated as a GIT theorem; the extremal quantization theorem supplies polystability for $T_0$. Equality $C_m|_{\mathfrak t^\perp}=0$ then permits the smaller group via Lemma~\ref{en-test}. No claim of trivial stabilizers is made.
+
+All main statements concern the integral family $b_i\in\Z_{>0}$ and the specified integral lattice. Rational generators are converted to honest actions by finite isogenies. For a rational polarization, one must choose an integral power and restrict to divisible levels; necessity from any infinite subsequence is valid once the same lattice computation is justified. We have not classified arbitrary rational scroll parameters here. Arbitrary singular varieties, orbifold periodic terms, and arbitrary test configurations are outside the classification.
+
+\section{Comparison diagram and novelty audit}\label{en-audit}
+
+The following table is an implication diagram in which the hypotheses are part of each arrow. All stability groups must be fixed as in the source.
+\begingroup\small
+\begin{longtable}{p{.43\textwidth}p{.48\textwidth}}
+\hline
+Arrow & Status and qualification\\ \hline
+Uniform K-stability $\Rightarrow$ K-polystability &
+Known for the corresponding norm and normal test configurations; reduced uniform notions require automorphism quotients.\\
+Smooth Fano KE $\Leftrightarrow$ K-polystability &
+Known \cite{en-CDS}; does not imply ordinary Chow semistability.\\
+cscK $\Rightarrow$ asymptotic Chow stability &
+Known with discrete automorphisms \cite{en-Don01}; false without a qualification \cite{en-OSY}.\\
+Extremal $\Rightarrow$ asymptotic relative Chow polystability &
+Known for a maximal torus \cite{en-Mab16,en-Sey,en-ST}.\\
+Extremal $\Rightarrow$ relative Chow semistability for the extremal circle &
+False at every level in our unequal products by Theorem~\ref{en-circle}.\\
+Relative K-stability $\Rightarrow$ asymptotic relative Chow stability &
+False in the toric extremal-torus formulations of \cite{en-YZ}; no unrestricted-test-configuration assertion is inferred.\\
+Stable base + stable fibres $\Rightarrow$ adiabatic stability &
+Not a general theorem in this form; connection, twist and quantifiers must be specified \cite{en-DS19,en-DS20,en-Hat}.\\
+Sasaki--Einstein $\Rightarrow$ asymptotic transverse ordinary Chow semistability &
+False for the regular quotient definition by lifting the integral toric KE obstruction \cite{en-OSY}; a suitable constant scaling makes the regular lift Sasaki--Einstein.\\
+Weighted K-stability $\Rightarrow$ weighted Chow stability &
+No unqualified arrow: weights, finite-level groups and vanishing obstructions must be specified.\\
+Fixed-torus Chow semistability infinitely often $\Rightarrow D_{\boldsymbol b}\subset T$ &
+Proved here for \eqref{en-family}; novelty provisional.\\ \hline
+\end{longtable}
+\endgroup
+
+\paragraph{What was compared.}
+Primary PDFs, abstracts, introductions and relevant proofs were inspected for Mabuchi's torus construction \cite{en-Mab04}, the modern relative quantization papers \cite{en-Mab16,en-Sey,en-ST,en-Has17}, Tipler's optimal-weight formulation \cite{en-Tip}, product splitting \cite{en-AH}, and the corrected May 2023 version of \cite{en-YZ}. In particular, the older toric tables in the latter must not be used without its corrigenda. Mabuchi already constructs tori from quantization correction directions; neither the idea of a sufficient torus nor the general K/Chow separation originates here.
+
+The adiabatic sources \cite{en-DS19,en-DS20,en-Hal20,en-Hat}, the Sasaki sources \cite{en-CS,en-BvC}, and the weighted sources \cite{en-Lah,en-Hal23,en-AJL,en-Has25} were checked against the proposed scope. Searches included relative Chow/extremal torus, product Hirzebruch surfaces, adiabatic Chow stability, weighted Chow stability, transverse/Sasaki Chow stability, minimal torus and polarization deformation. The 2025--2026 sources \cite{en-BJ25,en-Tru26,en-LY26,en-Jub26} were also inspected. No access to a complete MathSciNet or Google Scholar citation graph is claimed.
+
+\paragraph{Precise proposed difference.}
+The inspected results do not state the equality-parameter partition \eqref{en-D}, the equivalence of Theorem~\ref{en-classification}, its $2s-1$ exceptional-level bound, or the positive-polynomial argument giving all-level failure. Their proofs do not provide the explicit character \eqref{en-adiaexp} in this normalization. This comparison is positive evidence for a candidate contribution, not proof of priority.
+
+\begingroup\small
+\begin{longtable}{p{.49\textwidth}p{.42\textwidth}}
+\hline
+Claim & Research status\\ \hline
+Extremal existence and maximal-torus asymptotic Chow polystability & \texttt{KNOWN}\\
+Relative K/Chow separation in the toric sense & \texttt{KNOWN}\\
+Theorems~\ref{en-classification}, \ref{en-circle}; Corollary~\ref{en-adiaresult} & \texttt{LIKELY NEW BUT LITERATURE CHECK INCOMPLETE}; proofs complete\\
+Corollary~\ref{en-sasaki} & Direct consequence under the stated definition; no independent priority claim\\
+Unqualified metric-to-ordinary-Chow implication & \texttt{FALSE}\\
+Irregular/orbifold extension of this classification & \texttt{OPEN} in the present work\\
+A result certified here as \texttt{NEW AND PROVED} & None\\ \hline
+\end{longtable}
+\endgroup
+
+\section{Further questions and reproducibility}
+The first question is whether the same rational-function method classifies minimal fixed tori for higher Hirzebruch surfaces and other admissible bundles. Repeated or reducible denominator factors could change the rank calculation. A second question concerns rational polarization chambers: an infinite-level statement does not determine the location of individual finite-level walls. A third is whether an orbifold version can separate polynomial and periodic character components while preserving the Reeb grading.
+
+The supplied verification script checks the displayed identities by exact symbolic arithmetic and independently enumerates lattice points for $1\leq b\leq7$, $1\leq m\leq8$. It also verifies the $35$-dimensional action. These checks are corroboration; the summation, coprimality, derivative and moment-map arguments above are the proofs. A complete priority review remains necessary before presenting this note as a new research publication.
+
+
+\begin{thebibliography}{Has26}
+\bibitem[ACGT08]{en-ACGTF}
+V.~Apostolov, D.~M.~J.~Calderbank, P.~Gauduchon and C.~W.~T{\o}nnesen-Friedman,
+\emph{Hamiltonian 2-forms in Kähler geometry, III. Extremal metrics and stability},
+Invent. Math. \textbf{173} (2008), 547--601.
+\href{https://arxiv.org/abs/math/0511118}{arXiv:math/0511118}.
+\bibitem[AH15]{en-AH}
+V.~Apostolov and H.~Huang,
+\emph{A splitting theorem for extremal Kähler metrics},
+J. Geom. Anal. \textbf{25} (2015), 149--170.
+\href{https://doi.org/10.1007/s12220-013-9417-6}{doi:10.1007/s12220-013-9417-6}.
+\bibitem[AJL23]{en-AJL}
+V.~Apostolov, S.~Jubert and A.~Lahdili,
+\emph{Weighted K-stability and coercivity with applications to extremal Kähler and Sasaki metrics},
+Geom. Topol. \textbf{27} (2023), 3229--3302.
+\href{https://arxiv.org/abs/2104.09709}{arXiv:2104.09709}.
+\bibitem[BDL20]{en-BDL}
+R.~J.~Berman, T.~Darvas and C.~H.~Lu,
+\emph{Regularity of weak minimizers of the K-energy and applications to properness and K-stability},
+Ann. Sci. Éc. Norm. Supér. \textbf{53} (2020), 267--289.
+\href{https://arxiv.org/abs/1602.03114}{arXiv:1602.03114}.
+\bibitem[BHJ17]{en-BHJ}
+S.~Boucksom, T.~Hisamoto and M.~Jonsson,
+\emph{Uniform K-stability, Duistermaat--Heckman measures and singularities of pairs},
+Ann. Inst. Fourier \textbf{67} (2017), 743--841.
+\href{https://arxiv.org/abs/1504.06568}{arXiv:1504.06568}.
+\bibitem[BJ20]{en-BluJ}
+H.~Blum and M.~Jonsson,
+\emph{Thresholds, valuations, and K-stability},
+Adv. Math. \textbf{365} (2020), article 107062.
+\href{https://arxiv.org/abs/1706.04548}{arXiv:1706.04548}.
+\bibitem[BJ25]{en-BJ25}
+S.~Boucksom and M.~Jonsson,
+\emph{On the Yau--Tian--Donaldson conjecture for weighted cscK metrics},
+preprint (2025).
+\href{https://arxiv.org/abs/2509.15016v1}{arXiv:2509.15016v1}.
+\bibitem[BvC16]{en-BvC}
+C.~P.~Boyer and C.~van Coevering,
+\emph{Relative K-stability and extremal Sasaki metrics},
+preprint (2016).
+\href{https://arxiv.org/abs/1608.06184v2}{arXiv:1608.06184v2}.
+\bibitem[Cal82]{en-Cal82}
+E.~Calabi,
+\emph{Extremal Kähler metrics},
+in Seminar on Differential Geometry, Ann. of Math. Stud. \textbf{102},
+Princeton University Press (1982), 259--290.
+\bibitem[CC21]{en-CC}
+X.~Chen and J.~Cheng,
+\emph{On the constant scalar curvature Kähler metrics (II)---Existence results},
+J. Amer. Math. Soc. \textbf{34} (2021), 937--1009.
+\href{https://arxiv.org/abs/1801.00656}{arXiv:1801.00656}.
+\bibitem[CDS15]{en-CDS}
+X.~Chen, S.~Donaldson and S.~Sun,
+\emph{Kähler--Einstein metrics on Fano manifolds, III: limits as cone angle approaches $2\pi$ and completion of the main proof},
+J. Amer. Math. Soc. \textbf{28} (2015), 235--278.
+\href{https://arxiv.org/abs/1302.0282}{arXiv:1302.0282}.
+\bibitem[CS19]{en-CS}
+T.~C.~Collins and G.~Székelyhidi,
+\emph{Sasaki--Einstein metrics and K-stability},
+Geom. Topol. \textbf{23} (2019), 1339--1413.
+\href{https://doi.org/10.2140/gt.2019.23.1339}{doi:10.2140/gt.2019.23.1339}.
+\bibitem[Don01]{en-Don01}
+S.~K.~Donaldson,
+\emph{Scalar curvature and projective embeddings, I},
+J. Differential Geom. \textbf{59} (2001), 479--522.
+\href{https://doi.org/10.4310/jdg/1090349449}{doi:10.4310/jdg/1090349449}.
+\bibitem[DS19]{en-DS19}
+R.~Dervan and L.~M.~Sektnan,
+\emph{Optimal symplectic connections on holomorphic submersions},
+preprint (2019).
+\href{https://arxiv.org/abs/1907.11014}{arXiv:1907.11014}.
+\bibitem[DS20]{en-DS20}
+R.~Dervan and L.~M.~Sektnan,
+\emph{Moduli theory, stability of fibrations and optimal symplectic connections},
+preprint (2019).
+\href{https://arxiv.org/abs/1911.12701v2}{arXiv:1911.12701v2}.
+\bibitem[Fuj19]{en-Fuj}
+K.~Fujita,
+\emph{A valuative criterion for uniform K-stability of $\Q$-Fano varieties},
+J. Reine Angew. Math. \textbf{751} (2019), 309--338.
+\href{https://arxiv.org/abs/1602.00901}{arXiv:1602.00901}.
+\bibitem[Fut04]{en-Fut04}
+A.~Futaki,
+\emph{Asymptotic Chow semi-stability and integral invariants},
+Internat. J. Math. \textbf{15} (2004), 967--979.
+\bibitem[Hal20]{en-Hal20}
+M.~Hallam,
+\emph{Geodesics in the space of relatively Kähler metrics},
+preprint (2020), version 3 (2024).
+\href{https://arxiv.org/abs/2012.04416v3}{arXiv:2012.04416v3}.
+\bibitem[Hal23]{en-Hal23}
+M.~Hallam,
+\emph{Stability of weighted extremal manifolds through blowups},
+preprint (2023).
+\href{https://arxiv.org/abs/2309.02279}{arXiv:2309.02279}.
+\bibitem[Has17]{en-Has17}
+Y.~Hashimoto,
+\emph{Relative stability associated to quantised extremal Kähler metrics},
+preprint (2017).
+\href{https://arxiv.org/abs/1705.11018v1}{arXiv:1705.11018v1}.
+\bibitem[Has26]{en-Has25}
+Y.~Hashimoto,
+\emph{Relative uniform K-stability over models implies existence of extremal metrics},
+Math. Z. \textbf{312} (2026), article 109.
+\href{https://doi.org/10.1007/s00209-026-04014-7}{doi:10.1007/s00209-026-04014-7};
+\href{https://arxiv.org/abs/2506.02360}{arXiv:2506.02360}.
+\bibitem[Hat23]{en-Hat}
+M.~Hattori,
+\emph{On K-stability of Calabi--Yau fibrations},
+preprint (2022), version 2 (2023).
+\href{https://arxiv.org/abs/2203.11460v2}{arXiv:2203.11460v2}.
+\bibitem[Jub26]{en-Jub26}
+S.~Jubert,
+\emph{New extremal Kähler metrics on projective bundles},
+preprint (2026).
+\href{https://arxiv.org/abs/2609.01094v1}{arXiv:2609.01094v1}.
+\bibitem[Lah19]{en-Lah}
+A.~Lahdili,
+\emph{Kähler metrics with constant weighted scalar curvature and weighted K-stability},
+Proc. Lond. Math. Soc. \textbf{119} (2019), 1065--1114.
+\href{https://arxiv.org/abs/1808.07811}{arXiv:1808.07811}.
+\bibitem[LY26]{en-LY26}
+K.~L.~Lee and N.~Yotsutani,
+\emph{Asymptotic Chow stability of uniformly K-stable toric varieties},
+preprint (2024), version 2 (2026).
+\href{https://arxiv.org/abs/2405.06883v2}{arXiv:2405.06883v2}.
+\bibitem[Mab04]{en-Mab04}
+T.~Mabuchi,
+\emph{Stability of extremal Kähler manifolds},
+Osaka J. Math. \textbf{41} (2004), 563--582.
+\href{https://arxiv.org/abs/math/0404211}{arXiv:math/0404211}.
+\bibitem[Mab05]{en-Mab05}
+T.~Mabuchi,
+\emph{An energy-theoretic approach to the Hitchin--Kobayashi correspondence for manifolds, I},
+Invent. Math. \textbf{159} (2005), 225--243.
+\bibitem[Mab16]{en-Mab16}
+T.~Mabuchi,
+\emph{Asymptotic polybalanced kernels on extremal Kähler manifolds},
+preprint (2016).
+\href{https://arxiv.org/abs/1610.09632}{arXiv:1610.09632}.
+\bibitem[OSY12]{en-OSY}
+H.~Ono, Y.~Sano and N.~Yotsutani,
+\emph{An example of an asymptotically Chow unstable manifold with constant scalar curvature},
+Ann. Inst. Fourier \textbf{62} (2012), 1265--1287.
+\href{https://arxiv.org/abs/0906.3836}{arXiv:0906.3836}.
+\bibitem[Sey17]{en-Sey}
+R.~Seyyedali,
+\emph{Relative Chow stability and extremal metrics},
+preprint (2016), version 2 (2017).
+\href{https://arxiv.org/abs/1610.07555v2}{arXiv:1610.07555v2}.
+\bibitem[SS11]{en-SS}
+J.~Stoppa and G.~Székelyhidi,
+\emph{Relative K-stability of extremal metrics},
+J. Eur. Math. Soc. \textbf{13} (2011), 899--909.
+\href{https://doi.org/10.4171/JEMS/270}{doi:10.4171/JEMS/270}.
+\bibitem[ST21]{en-ST}
+Y.~Sano and C.~Tipler,
+\emph{A moment map picture of relative balanced metrics on extremal Kähler manifolds},
+J. Geom. Anal. \textbf{31} (2021), 5941--5973.
+\href{https://doi.org/10.1007/s12220-020-00510-2}{doi:10.1007/s12220-020-00510-2}.
+\bibitem[Tip17]{en-Tip}
+C.~Tipler,
+\emph{Relative Chow stability and optimal weights},
+preprint (2017).
+\href{https://arxiv.org/abs/1710.02536v2}{arXiv:1710.02536v2}.
+\bibitem[Tru26]{en-Tru26}
+A.~Trusiani, with an appendix by S.~Boucksom,
+\emph{A solution to the Yau--Tian--Donaldson conjecture through Special Fujita Approximations},
+preprint (2026), version 2, 17 August 2026.
+\href{https://arxiv.org/abs/2605.30063v2}{arXiv:2605.30063v2}.
+\bibitem[YZ23]{en-YZ}
+N.~Yotsutani and B.~Zhou,
+\emph{Relative algebro-geometric stabilities of toric manifolds},
+preprint (2016), corrected version 3 (2023).
+\href{https://arxiv.org/abs/1602.08201v3}{arXiv:1602.08201v3}.
+\end{thebibliography}
+
+\newpage
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHequation}{ja.\arabic{section}.\arabic{equation}}
+\renewcommand{\theHthm}{ja.\arabic{section}.\arabic{thm}}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\markboth{chatGPT 6 Astra}{漸近的相対Chow polystability}
+
+\begin{center}
+{\Large\bfseries 偏極Hirzebruch曲面の積における\\漸近的相対Chow polystability\par}
+\vspace{8pt}
+{chatGPT 6 Astra\par}
+\vspace{6pt}
+{2026年9月9日\par}
+\end{center}
+\begin{center}\bfseries 概要\end{center}
+偏極された第一Hirzebruch曲面の積について、漸近的相対Chow polystabilityを与える最小の固定トーラスを計算する。その次元は積に現れる相異なる偏極パラメータの個数であり、一方extremal vector fieldが生成するのは一次元トーラスである。二つのパラメータが異なる場合、extremal計量が存在しても、この一次元トーラスに関するChow semistabilityはすべての正の埋め込み次数で成立しない。証明は厳密な格子点モーメント、有限次数のtrace pairing、および互いに素な二次式を分母とする有理関数に基づく。さらに、adiabatic極限における四次の障害とregular Sasaki構造への帰結を計算する。数学的議論は完結している。ただし新規性は暫定的である。調査した文献ではこの正確な分類を見いだしていないが、先行性は保証しない。
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+Extremal計量の存在から、適切なトーラスに関する漸近的相対Chow polystabilityが従うことは既知の量子化定理であり、本稿で新たに提案する含意ではない。最大トーラス、最大コンパクト群の連結中心、extremal vector fieldの生成する一次元トーラスは異なる対象である。本稿は、与えられた偏極積に対し、どの固定部分トーラスで十分かを問う。固定とは埋め込み次数によらないことを意味する。
+
+$F=\mP_{\mP^1}(\cO\oplus\cO(1))$とし、射影化には商の規約を用いる。
+\begin{equation}\label{ja-family}
+ L_b=\cO_F(1)\otimes\pi^*\cO_{\mP^1}(b),\quad
+ X=F^r,\quad L_{\boldsymbol b}=\boxtimes_iL_{b_i},\quad b_i\in\Z_{>0}.
+\end{equation}
+同じ$b_i$を持つ因子のファイバー拡大作用に対角的に作用し、異なる値の集まりごとには独立に作用するトーラスを$D_{\boldsymbol b}$とする。トーリック最大トーラスの任意の部分トーラス$T$について、
+\begin{equation}\label{ja-intro}
+\begin{gathered}
+\text{無限個の次数における相対Chow semistability}\\
+\Longleftrightarrow D_{\boldsymbol b}\subseteq T\\
+\Longleftrightarrow\text{$T$に関する漸近的Chow polystability}
+\end{gathered}
+\end{equation}
+を証明する。最小次元は$\#\{b_1,\ldots,b_r\}$である。二つのパラメータが異なるとextremal一次元トーラスでは全次数で不安定となり、必要なトーラスとの次元差は非有界となる。
+
+Relative K安定性とrelative Chow安定性のtoricな意味での分離は、特にYotsutani--Zhou \cite{ja-YZ}により既知である。本稿の候補となる貢献は、正確な分類、任意階数の実現、例外次数の上界、および厳密なadiabatic計算である。十分性には既知の量子化定理を用いる。
+
+\paragraph{研究上の位置づけ。}
+以下の主張には証明を与える。新規性の分類は
+\texttt{LIKELY NEW BUT LITERATURE CHECK INCOMPLETE}
+である。2026年9月9日に確認した一次文献では、これらの正確な主張を見いだしていない。しかし、これは先行性の保証ではない。本稿で
+\texttt{NEW AND PROVED}
+と確定する結果はない。新規性の限界を明示した、数学的に完結した候補結果であり、現象全体を新しいと主張するものではない。第\ref{ja-audit}節で比較を記録する。
+
+\section{安定性の規約と関連文献}
+
+\subsection{K安定性}
+本稿の多様体は$\C$上の滑らかな射影多様体である。Normal ample test configurationとは、全空間が正規で、相対的に豊富な有理直線束を備え、原点以外では与えられた偏極と同型である、$\mathbb A^1$上の平坦な同変族をいう。分母を払った後、
+\begin{align}\label{ja-DF}
+h(\ell)&=a_0\ell^n+a_1\ell^{n-1}+\cdots,&
+w(\ell)&=b_0\ell^{n+1}+b_1\ell^n+\cdots,\notag\\
+\DF&=(b_0a_1-b_1a_0)/a_0
+\end{align}
+とする。この規約は\cite[\S2]{ja-SS}と一致する。Semistabilityは$\DF\geq0$を要求し、polystabilityはさらに等号が積配置に限ることを要求する。積配置は非自明な作用を伴ってよい。Relative DFでは、選んだトーラスの成分を\emph{最高次の}trace pairingで射影して除く。Uniform stabilityにはノルムの指定が必要であり、自己同型が存在する場合には適切な縮約が必要となる。
+
+非アルキメデス的定式化では、非被約中心ファイバーに対する補正項によって$\DF$とMabuchi汎関数を区別する\cite{ja-BHJ}。反標準偏極を持つ$\Q$-Fano多様体では、K-semistabilityとDing semistabilityが同値であり、uniform版も同値となる\cite{ja-Fuj}。FujitaとLiの仕事に基づく付値的判定から、K-semistabilityは$\delta(-K_X)\geq1$と、uniform K-stabilityは$\delta(-K_X)>1$と同値となる\cite[Theorem B]{ja-BluJ}。これは一般の豊富な$L$に対して$\delta(L)$をK-stabilityと同一視する主張ではない。
+
+滑らかなFano多様体のKE/K-polystability対応は確立している\cite{ja-CDS}。cscKとcoercivityの理論およびその帰結にはChen--ChengとBerman--Darvas--Luの仕事がある\cite{ja-CC,ja-BDL}。Boucksom--Jonssonの2025年の定式化は有限エネルギー非アルキメデス完備化を用い、weighted計量も扱う\cite{ja-BJ25}。Trusianiの2026年8月版は、滑らかな偏極射影多様体についてcscK/$\Autop^\circ$-uniform K-stability対応を述べる\cite{ja-Tru26}。これらの定式化をordinary K-polystabilityと黙って置き換えてはならない。本稿の証明はこれら最近のプレプリントに依存しない。
+
+\subsection{相対Chow群}
+$V_m=H^0(X,L^m)$とし、$X\subset\mP(V_m^*)$のChow点の非零アフィン持ち上げを$\widehat X_m$とする。トーラス$T$は有限isogenyの後に$\mathrm{SL}(V_m)$へのtrace-freeな持ち上げを持つ。$G_{m,T}^{\perp}$を、Lie代数が
+\begin{equation}\label{ja-group}
+\{A\in\mathfrak{sl}(V_m):[A,B]=0,\ \tr(AB)=0
+\text{ for all }B\in\mathfrak t_m\}
+\end{equation}
+である連結簡約部分群とする。中心に課される方程式は重みに関して有理係数であり、分母を払えば代数群を定義する。相対Chow semistabilityとは
+$0\notin\overline{G_{m,T}^{\perp}\widehat X_m}$
+であることをいい、polystabilityとは非零アフィン軌道が閉じていることをいう。これはstrong relativeの規約であり、重み空間の特殊線形群の積だけを用いる、より小さい群の規約ではない\cite[Definitions 3.4--3.5]{ja-Has17}。
+
+Chow moment mapによる判定では、polystabilityはtrace-freeな重心行列が$\mathfrak t_m$に属するような、両立する埋め込みの存在と同値である\cite[Theorem 3.4]{ja-Tip}。Moment mapを\eqref{ja-group}へ射影すれば、部分トーラスについても同じ判定を得る。Extremal計量は最大トーラスに関する漸近的相対Chow polystabilityを導く\cite{ja-Mab16,ja-Sey,ja-ST}が、最大トーラスをextremal一次元トーラスに自動的に置き換えることはできない。
+
+自己同型群が離散ならば、cscK計量から漸近的Chow stabilityが従う\cite{ja-Don01}。離散性がなければ、高次Futaki指標がsemistabilityさえ妨げる場合があり、滑らかなトーリックKEの例が\cite{ja-OSY}にある。高次指標の消滅とcscK計量の存在を併せるとpolystabilityが得られる\cite{ja-Mab05,ja-Fut04}。Lee--Yotsutaniの2026年のトーリック判定にも、障害の消滅という仮定が残っている\cite{ja-LY26}。
+
+\subsection{検討した他の方向}
+Dervan--Sektnanのadiabatic計量構成は、optimal symplectic connection、twisted extremalな底、および持ち上げの仮定を用いる\cite{ja-DS19}。彼らのfibration安定性定理は必要条件を与え\cite{ja-DS20}、Hallamは指定された積型退化についてpolystabilityを証明する\cite[Theorem 1.4]{ja-Hal20}。Hattoriは曲線上のklt-trivial fibrationについて、uniform adiabatic K-stabilityのlog-twistedな底による判定を与える\cite[Theorem 1.1]{ja-Hat}。これらはいずれも、安定な底と安定なファイバーだけから結論する無条件の定理ではない。各退化を固定したときの十分大きな$k$での正値性は、全退化に共通する閾値を意味しない。
+
+Weighted scalar curvatureはextremal方程式やsoliton型方程式を含む\cite{ja-Lah}。特異退化を許すweighted polystabilityは\cite{ja-Hal23}、coercivityとSasakiへの応用は\cite{ja-AJL}で扱われる。Hashimotoの存在判定は\emph{モデル上の}relative uniform stabilityを用いる\cite[Theorem 1.1]{ja-Has25}。最近の射影束の研究\cite{ja-Jub26}は計量の存在を扱っており、本稿の相対トーラス分類とは異なる。
+
+Collins--Székelyhidiは、彼らの錐の仮定と正規化の下でRicci-flat cone/K-stability対応を証明する\cite{ja-CS}。Boyer--van Coeveringはrelative Sasaki K-stabilityを扱う\cite{ja-BvC}。Quasi-regular商ではorbifold切断と次数づけが必要であり、Hilbert関数に周期項が現れ得る。本稿の応用はregular束に限定する。
+
+\section{指標とモーメントの厳密計算}
+整トーリック多面体$P$について、$\Lambda_m=P\cap m^{-1}\Z^n$、$N_m=\#\Lambda_m$、$V=\Vol(P)$とおき、
+\begin{align}\label{ja-means}
+\overline p_m&=N_m^{-1}\sum_{\Lambda_m}p,&
+\overline p&=V^{-1}\int_Pp\,dp,\\
+B_m(u,v)&=N_m^{-1}\sum_{\Lambda_m}
+\langle u,p-\overline p_m\rangle\langle v,p-\overline p_m\rangle,&
+C_m(u)&=\langle u,\overline p_m-\overline p\rangle\label{ja-char}
+\end{align}
+と定める。$B_m$は正定値であり、trace pairingを$m^2N_m$で割ったものであって、その極限ではない。
+\begin{equation}\label{ja-dual}
+B_m(q_m,u)=C_m(u)\quad(u\in\mathfrak t_{0,\R})
+\end{equation}
+により$q_m$を定義する。Chowの正規化を確認するため、$V_m$上のtrace-freeな生成元が、埋め込みの$p$乗に誘導する重み多項式を書くと
+\[
+w(mp)-p\frac{w(m)}{h(m)}h(mp)
+\]
+である。その最高次係数は$-Vm^{n+1}C_m$である。最高次Hilbert determinant、すなわちこの規約でのChow lineの重みは$-(n+1)!Vm^{n+1}C_m$となる。その反対符号を\emph{dual Chow-line weight}と呼ぶ。消滅条件は双対化に依存しない。格子点重心による障害そのものは古典的である\cite{ja-YZ,ja-LY26}。
+
+\begin{lem}[指標による判定]\label{ja-test}
+$T\subset T_0$の実Lie代数を$\mathfrak t$とする。次数$m$で相対Chow semistableならば$q_m\in\mathfrak t$である。埋め込みが$T_0$に関してChow polystableであり、$q_m\in\mathfrak t$ならば、$T$に関してもChow polystableである。
+\end{lem}
+\begin{proof}
+$q_m\notin\mathfrak t$ならば、その$\mathfrak t^\perp$への$B_m$直交射影を$u\ne0$とする。このとき$C_m(u)=B_m(u,u)>0$である。有理性により$u$の整数倍を取り、$G_{m,T}^{\perp}$内にtrace-freeな持ち上げを得る。この部分群はChow点を固定するが、その持ち上げには非自明に作用する。いずれかの向きで持ち上げを零へ送る。
+
+逆に、$T_0$と両立するrelatively balancedな埋め込みを取る。そのmoment行列$\mu_0$は$\mathfrak t_{0,m}$に属する。固定部分群のトーラスとのpairingは、一つの共通非零定数倍を除いてChow指標に等しい。Trace pairingは中心化群の作用で変わらない。従って$\mu_0$は$q_m$の持ち上げの定数倍である。$q_m\in\mathfrak t$ならば、同じ埋め込みは$G_{m,T}^{\perp}$に関するmoment mapを零にする。元の軌道と比較するため、$T_0$の中心化群内での基底変換を、有限被覆とスカラーを除いて$T_0$因子と$G_{m,T_0}^{\perp}$因子に分解する。前者はChowの持ち上げにスカラーで作用し、$G_{m,T_0}^{\perp}\subseteq G_{m,T}^{\perp}$である。非零の持ち上げへのスカラー倍は閉性を変えない。従ってmoment map判定から元の軌道の閉性を得る。
+\end{proof}
+
+商の規約から
+\[
+H^0(F,L_b^m)=\bigoplus_{j=0}^mH^0(\mP^1,\cO(bm+j))
+\]
+を得る。従って$L_b$は型$(b,b+1)$の非常に豊富なscroll偏極であり、そのDelzant多角形は
+\begin{equation}\label{ja-poly}
+P_b=\{(x,y):0\leq y\leq1,\ 0\leq x\leq b+y\}
+\end{equation}
+である。各頂点で原始的な辺方向は格子の基底をなす。$v=b+1/2$と書く。$E$の重みを$y$、$W$の重みを$x-y/2$とする。$2W$は整生成元である。
+
+\begin{prop}[一因子の公式]\label{ja-mom}
+$b,m\geq1$について、
+\begin{align}\label{ja-hw}
+h_b(m)&=(m+1)(vm+1),&
+w_b(m)&=\frac{m(m+1)((6v+1)m+8)}{12},\\
+Q_v(m)&=(12v^2-1)m^2+(24v-2)m+12,\label{ja-Q}\\
+\tau_v(m)&=\frac{(m+2)Q_v(m)}{144m(vm+1)^2},&
+d_v(m)&=\frac{2v-1}{12v(vm+1)},\label{ja-td}\\
+\beta_v(m)&=\frac{12m(2v-1)(vm+1)}{v(m+2)Q_v(m)}\label{ja-beta}
+\end{align}
+とおく。このとき$C_m(E)=d_v(m)$、$C_m(W)=0$、$B_m(E,E)=\tau_v(m)$、$B_m(E,W)=0$であり、$q_m=\beta_v(m)E$となる。連続測度での分散とextremal係数は
+\begin{equation}\label{ja-alpha}
+\tau_v^\infty=\frac{12v^2-1}{144v^2},\qquad
+\alpha_v=\frac{24(2v-1)}{12v^2-1}
+\end{equation}
+である。スカラー曲率の正規化は、アフィン関数$f$に対して$\int_Psf=\int_{\partial P}f\,d\sigma$となるものを用いる。Extremal vectorは共通の定数倍を除き$\alpha_vE$である。最後に$\DF_b(E)=-(2v-1)/(12v)$である。
+\end{prop}
+\begin{proof}
+高さ$j/m$には$bm+j+1$個の格子点がある。この個数および整数重み$j$を合計すると\eqref{ja-hw}を得る。二次モーメントの和は
+\begin{equation}\label{ja-second}
+\sum_{j=0}^mj^2(bm+j+1)
+=(bm+1)\frac{m(m+1)(2m+1)}6+\frac{m^2(m+1)^2}4
+\end{equation}
+である。密度$b+y$による積分と一次の和から
+\[
+\overline y=\frac12+\frac1{12v},\quad
+\overline{y^2}=\frac13+\frac1{12v},\quad
+\overline y_m=\frac12+\frac{m+2}{12(vm+1)}
+\]
+を得る。平均の差が$d_v(m)$を与える。\eqref{ja-second}を$m^2h_b(m)$で割り、$\overline y_m^2$を引けば$\tau_v(m)$となる。反射$x\mapsto b+y-x$は、各高さの区間測度も格子点も保存する。中心化した$W$のポテンシャル$x-(b+y)/2$の条件付き平均は零である。これで二つの消滅を得る。割り算により$\beta_v=d_v/\tau_v$となる。
+
+Facetの格子長は$b,b+1,1,1$なので、
+\[
+\int_{\partial P_b}1\,d\sigma=2v+2,\qquad
+\int_{\partial P_b}y\,d\sigma=v+\tfrac32
+\]
+である。反射によりextremal affine functionに$W$成分はない。それを$s_0+\alpha_v(y-\overline y)$と書くと、
+\[
+v\alpha_v\tau_v^\infty
+=v+\tfrac32-(2v+2)\left(\tfrac12+\tfrac1{12v}\right)
+=\frac{2v-1}{6v}
+\]
+を得る。これが\eqref{ja-alpha}を与える。\eqref{ja-DF}において
+$a_0=v$、$a_1=v+1$、$b_0=v/2+1/12$、$b_1=v/2+3/4$
+を用いればDFの公式となる。
+\end{proof}
+
+
+\section{相対トーラスの分類}
+
+$v_i=b_i+1/2$とし、第$i$因子の生成元を$E_i,W_i$とする。$\mathcal B=\{b_1,\ldots,b_r\}$、$s=\#\mathcal B$とおき、
+\begin{equation}\label{ja-D}
+ U_B=\sum_{\{i:b_i=B\}}E_i,\qquad
+ D_{\boldsymbol b}=\prod_{B\in\mathcal B}\C^*_{U_B}\subset T_0
+\end{equation}
+と定める。これらの整cocharacterは互いに素な台を持つので、積は埋め込まれた$s$次元トーラスである。
+
+\begin{thm}[固定トーラスの分類]\label{ja-classification}
+\eqref{ja-family}の滑らかな整偏極多様体と、固定された代数的部分トーラス$T\subset T_0$について、以下は同値である。
+\begin{enumerate}
+\item 無限個の正整数$m$に対し、$(X,L_{\boldsymbol b}^m)$が$T$に関してChow semistableである。
+\item $D_{\boldsymbol b}\subseteq T$である。
+\item すべての十分大きな整数$m$に対し、$(X,L_{\boldsymbol b}^m)$が$T$に関してChow polystableである。
+\end{enumerate}
+$D_{\boldsymbol b}\nsubseteq T$ならば、相対Chow semistabilityが成立し得る正整数次数は高々$2s-1$個である。任意の無限Veronese部分列上でも同じ必要条件が成立する。
+\end{thm}
+
+ここで用いる群は常に\eqref{ja-group}である。結論はstabilityではなくpolystabilityであり、残る固定部分群を許容する。この主張は、個々の小さい次数における最適トーラスを同定するものではない。
+
+\begin{thm}[全次数におけるextremal一次元トーラス]\label{ja-circle}
+この積は、extremal一次元トーラスが
+\begin{equation}\label{ja-chi}
+ \chi=\sum_i\alpha_{v_i}E_i
+\end{equation}
+で生成されるextremal計量を持つ。少なくとも二つの$b_i$が異なるならば、$(X,L_{\boldsymbol b}^m)$は、この一次元トーラスに関してすべての整数$m\geq1$でChow unstableである。すべての$b_i$が一致するならば、十分大きなすべての$m$で、この一次元トーラスに関してChow polystableである。従って、最小の固定漸近的相対Chowトーラスとextremal一次元トーラスの次元差は任意に大きくなる。
+\end{thm}
+
+\section{証明}
+
+\subsection{有理関数の独立性}
+積上の格子点計数と積分は、積確率測度を与える。異なる因子間の共分散ブロックはすべて消える。従って
+\begin{equation}\label{ja-productq}
+ q_m=\sum_i\beta_{v_i}(m)E_i
+     =\sum_{B\in\mathcal B}\beta_{B+1/2}(m)U_B
+\end{equation}
+である。$W_i$成分はなく、残る各共分散ブロックは正定値である。
+
+\begin{lem}\label{ja-independence}
+相異なる正整数$B$について、有理関数$\beta_{B+1/2}(z)$は$\R$上線形独立である。任意の無限個の正整数における値ベクトルは、係数空間全体を張る。
+\end{lem}
+\begin{proof}
+\begin{equation}\label{ja-quadratics}
+ A_B=6B^2+6B+1,\qquad
+ p_B(z)=A_Bz^2+(12B+5)z+6
+\end{equation}
+とおく。\eqref{ja-beta}への直接代入により、
+\[
+ Q_{B+1/2}(z)=2p_B(z),\qquad
+ \beta_{B+1/2}(z)=\frac{12B}{B+1/2}\,
+ \frac{z}{z+2}\,\frac{(B+1/2)z+1}{p_B(z)}
+\]
+を得る。$p_B$の判別式は$1-24B<0$なので、$\R$上既約であり根は単純である。異なる$p_B$の定数項はすべて$6$だが一次係数は異なるので、互いに比例しない。従って共通の複素根を持たない。一次の分子は、いずれの非実根とも約分できない。
+
+線形関係があると仮定し、共通因子$z/(z+2)$を除いた後、$\prod_Bp_B(z)$を掛ける。各$p_B$の一つの根で評価すると、対応する項だけが残るから、すべての係数が零となる。無限個の正整数で値ベクトル上消える線形汎関数があれば、その有理関数は無限個の零点を持つので恒等的に零となる。独立性によりその汎関数も零である。
+\end{proof}
+
+\begin{proof}[Theorem~\ref{ja-classification}の証明]
+Lemma~\ref{ja-test}により、semistabilityは$q_m\in\mathfrak t$を要求する。Lemma~\ref{ja-independence}と\eqref{ja-productq}によれば、無限個の次数でのこれらのベクトルが張る空間は、ちょうど$\Lie(D_{\boldsymbol b})_\R$である。連結代数的部分トーラスはそのLie代数で決まるので、(1)$\Rightarrow$(2)を得る。
+
+Calabiの構成は$F$のすべての$c_1(L_b)$にextremal計量を与える。この場合はadmissible射影束の理論\cite{ja-Cal82,ja-ACGTF}にも含まれ、\cite[\S5.1]{ja-Jub26}にも記されている。各計量の引き戻しの和は$c_1(L_{\boldsymbol b})$に属するKähler計量である。そのスカラー曲率は各因子のスカラー曲率の和であり、その正則勾配の和も正則である。従って積計量はextremalである。偏極は整かつ豊富、多様体は滑らかであり、$T_0$は最大代数的トーラスであり、そのコンパクト形が積計量を保つ。従ってextremal量子化定理\cite{ja-Mab16,ja-Sey,ja-ST}が適用でき、十分大きな全次数で$T_0$に関する相対Chow polystabilityを得る。(2)が成立すると、\eqref{ja-productq}は全次数で$\mathfrak t$に属する。Lemma~\ref{ja-test}により(3)を得る。(3)から(1)は明らかである。
+
+個数の上界を示す。$\Lie(D_{\boldsymbol b})_\R$が$\mathfrak t$に含まれなければ、$\mathfrak t$上零で、この空間上は零でない実線形汎関数$\lambda$を取る。$m/(m+2)$を除き、共通分母$\prod_Bp_B(m)$を用いると、非零関数$\lambda(q_m)$の分子の次数は高々$1+2(s-1)=2s-1$となる。正の零点は高々その個数である。Semistableな次数はすべてその零点でなければならない。
+\end{proof}
+
+\subsection{厳密な単調性}
+\begin{equation}\label{ja-ratio}
+ R_m(b)=\frac{\beta_{b+1/2}(m)}{\alpha_{b+1/2}}
+ =\frac{mA_b((2b+1)m+2)}
+ {2(2b+1)(m+2)p_b(m)}
+\end{equation}
+と定める。この式はすべての実数$b>0$へ延長される。
+
+\begin{lem}\label{ja-monotone}
+各整数$m\geq1$について、$R_m$は$b>0$で狭義単調増加する。
+\end{lem}
+\begin{proof}
+微分して通分すると、
+\begin{equation}\label{ja-derivative}
+ R_m'(b)=
+ \frac{mP_m(b)}{(2b+1)^2(m+2)p_b(m)^2}
+\end{equation}
+であり、ここで
+\begin{align*}
+P_m(b)={}&72m^2b^4+(120m^2+144m)b^3\\
+ &+(96m^2+204m+72)b^2\\
+ &+(42m^2+120m+72)b+7m^2+26m+24
+\end{align*}
+である。すべての係数と分母が正である。
+\end{proof}
+
+\begin{proof}[Theorem~\ref{ja-circle}の証明]
+先の計量の議論と\eqref{ja-alpha}から\eqref{ja-chi}を得る。係数はすべて正の有理数なので、分母を払えば$\chi$は代数的一次元トーラスを生成する。\eqref{ja-productq}により、$q_m$がその直線に属することは、すべての比$R_m(b_i)$が一致することと同値である。二つのパラメータが異なればLemma~\ref{ja-monotone}が全次数でこれを排除し、Lemma~\ref{ja-test}が不安定性を与える。すべて一致すると、この一次元トーラスは$D_{\boldsymbol b}$であるからTheorem~\ref{ja-classification}を適用する。$r=s$個の相異なる正整数を取れば、次元差は$s-1$となる。
+\end{proof}
+
+完全を期すため、$b_i\ne b_j$の場合の障害を検出する有理な固定部分群方向を明示すると、
+\begin{equation}\label{ja-Z}
+ Z_m=\alpha_{v_j}\tau_{v_j}(m)E_i-
+       \alpha_{v_i}\tau_{v_i}(m)E_j
+\end{equation}
+である。このとき、
+\begin{align}\label{ja-obstruction}
+ B_m(Z_m,\chi)&=0,\\
+ C_m(Z_m)&=\alpha_{v_i}\alpha_{v_j}
+ \tau_{v_i}(m)\tau_{v_j}(m)
+ \bigl(R_m(b_i)-R_m(b_j)\bigr)\ne0\notag
+\end{align}
+となる。これらの分母と、さらにtraceの分母を払えば、\eqref{ja-group}の整な一径数部分群となる。その積test configurationは滑らかで正規である。いずれかの向きがChowの持ち上げを不安定化する。従って仮想的な特異退化に依存せず、作用と正規性の要件も確認できる。
+
+\section{Adiabaticおよびregular Sasakiへの応用}
+
+\subsection{四次のadiabatic指標}
+相異なる正整数$b,c$を固定する。$F\times F\to\mP^1\times\mP^1$上で、
+\begin{equation}\label{ja-adiabatic}
+ \mathcal L_k=L_{k+b}\boxtimes L_{k+c}
+ =(L_b\boxtimes L_c)\otimes\pi^*\cO(k,k),\quad k\in\Z_{\geq0}
+\end{equation}
+とおく。これは相対的に豊富なファイバー類を固定したadiabatic偏極である。
+
+\begin{cor}\label{ja-adiaresult}
+各$\mathcal L_k$はextremal計量を持つが、すべての正の埋め込み次数で、そのextremal一次元トーラスに関してChow unstableである。$m$を固定し、\eqref{ja-Z}において$v_1=k+b+1/2$、$v_2=k+c+1/2$としたものを$Z_{k,m}$とする。このとき
+\begin{equation}\label{ja-adiaexp}
+ C_{k,m}(Z_{k,m})
+ =\frac{(b-c)(m+2)}{18m^3}\,k^{-4}
+   +O_{b,c,m}(k^{-5})
+\end{equation}
+である。
+\end{cor}
+\begin{proof}
+存在と不安定性は、各$k$についてTheorem~\ref{ja-circle}から従う。展開を確かめるため、\eqref{ja-ratio}を割り算すると、
+\[
+ R_m(v-\tfrac12)=\frac1{2(m+2)}
+ -\frac1{2m(m+2)v}+O_m(v^{-2})
+\]
+である。有理関数なので、$1/v=0$の近傍で収束する展開を持つ。従って$v=k+b+1/2$と$k+c+1/2$での値を引くと、
+\[
+ R_m(k+b)-R_m(k+c)
+ =\frac{b-c}{2m(m+2)}k^{-2}+O_{b,c,m}(k^{-3})
+\]
+となる。また$\alpha_v=4/v+O(v^{-2})$および
+$\tau_v(m)=(m+2)/(12m)+O_m(v^{-1})$
+である。\eqref{ja-obstruction}への代入により\eqref{ja-adiaexp}を得る。
+\end{proof}
+
+\eqref{ja-adiaexp}は指定した有理生成元を用いており、その原始的整倍を用いてはいない。後者に変えると指標は再スケーリングされる。この評価は$m$固定のものであり、$m$に関する一様評価は主張しない。厳密な単調性の証明により、展開とは独立にすべての$k$で非消滅が成立する。特に、DFの最高次係数だけから全test configurationについての結論を出してはいない。
+
+\subsection{定義を指定した横断的主張}
+積extremal Kähler形式$\omega$を$[\omega/\pi]=c_1(L_{\boldsymbol b})$となるようにスケールする。$L_{\boldsymbol b}^*$内の単位円周束は$d\eta=2\pi_X^*\omega$、Reeb周期$2\pi$となる接続$\eta$を持つ。得られるregular Sasaki構造の横断計量は$\omega$である。横断スカラー曲率がextremalなので、Sasaki計量もextremalである。
+
+次数$m$のrelative transverse Chow (poly/semi)stabilityを、表現
+\begin{equation}\label{ja-CR}
+ \{\text{Reeb重み$m$のCR正則関数}\}
+ \simeq H^0(X,L_{\boldsymbol b}^m)
+\end{equation}
+と、厳密に\eqref{ja-group}の商トーラス群を用いて定義する。これはregular商に結び付けた定義であり、transverse Chow stabilityという語のすべての用法についての主張ではない。一般のReeb周期$\ell$では、次数$m$はReeb固有重み$2\pi m/\ell$、すなわち整な円周作用の次数を意味する。この規約では、定数Sasaki homothetyの下でも同じ商偏極が保たれる。
+
+\begin{cor}\label{ja-sasaki}
+この定義の下で、持ち上げられた横断自己同型の代数的トーラスが無限個の次数でsemistabilityを与えることと、その$T_0$内の像が$D_{\boldsymbol b}$を含むことは同値である。この場合、すべての十分大きな次数でpolystabilityを与える。二つの$b_i$が異なると、Reeb一次元トーラスとextremalの持ち上げで生成されるトーラスでは、全次数で不安定となる。
+\end{cor}
+\begin{proof}
+同型\eqref{ja-CR}は重みも、射影埋め込みを定める乗法も保存する。Reeb作用は重み$m$のスカラーなので、trace-freeな持ち上げを取ると消える。従って群、Chow指標、軌道閉包条件は商のものと完全に一致する。Theorems~\ref{ja-classification}と\ref{ja-circle}を適用する。
+\end{proof}
+ここでは像トーラスが$T_0$に含まれると仮定する。Reeb一次元トーラスを付加しても、その像は変わらない。Irregular Reeb場、任意のorbifold偏極、Sasaki--Einstein計量の存在についての主張は従わない。
+
+\section{整数による具体計算とK理論的比較}
+
+$(b_1,b_2)=(1,2)$、$m=1$とする。各データは
+\[
+\begin{array}{c|cccc}
+ b&h_b(1)&\alpha_{b+1/2}&d_{b+1/2}(1)&\tau_{b+1/2}(1)\\ \hline
+ 1&5&24/13&2/45&6/25\\
+ 2&7&48/37&4/105&12/49
+\end{array}
+\]
+である。Extremal一次元トーラスの原始的生成元は$37E_1+26E_2$である。$Z=1300E_1-1813E_2$と取る。その整数重みの平均は$-256$であり、$35$次元テンソル積空間におけるtrace-freeな重みは
+\[
+\begin{array}{c|rrrr}
+\text{重み}&256&1556&-1557&-257\\
+\text{重複度}&6&9&8&12
+\end{array}
+\]
+となる。重複度を掛けた総和は零であり、
+\[
+1300\cdot37\cdot\frac6{25}
+-1813\cdot26\cdot\frac{12}{49}=0,\qquad
+C_1(Z)=1300\frac2{45}-1813\frac4{105}=-\frac{508}{45}
+\]
+である。$n=4$、$V=(3/2)(5/2)=15/4$なので、本稿の規約によるdual Chow-line weightは
+\begin{equation}\label{ja-integerweight}
+ 5!\,\frac{15}{4}\left(-\frac{508}{45}\right)=-5080
+\end{equation}
+である。これは形式的な実Hamiltonianだけでなく、実際の整な$\mathrm{SL}(35)$作用による計算である。
+
+一般の積上の積作用に対するordinary DFは、Hilbert多項式の積と平均重みの和から
+\begin{equation}\label{ja-productDF}
+ a_0=\prod_i v_i,\qquad
+ \DF\left(\sum_it_iE_i\right)
+ =-a_0\sum_i\frac{t_i(2v_i-1)}{12v_i^2}
+\end{equation}
+となる。実際、第$i$因子の寄与は、そのDFに$\prod_{j\ne i}v_j$を掛けたものである。最高次の中心化trace pairingは
+$\langle E_i,E_i\rangle_\infty=a_0\tau_{v_i}^\infty$
+であり、異なる因子は直交する。\eqref{ja-alpha}からFutaki-dual vectorは$-\chi/2$となる。従って、$\chi$を含む任意のトーラスへ射影すれば、これらすべての自己同型積配置のrelative DFは零となる。上記の整数例ではordinary DFは$67/45$であり、relative DFは零である。
+
+矛盾はない。Chow射影は$B_m$を使う一方、K射影はその最高次極限を使う。Stoppa--Székelyhidiのextremal必要条件は最大トーラスに関するK-polystabilityを与え\cite[Theorem 4]{ja-SS}、extremalトーラスに関するK-semistabilityも既知である\cite[Theorem 1.3]{ja-Has17}。これらの事実は、ここで検査した有限次数のChow指標の消滅を主張しない。
+
+\section{反例、等号、および適用範囲}
+
+射影空間では格子点重心が厳密に対称であり、同様の非零指標は存在しない。本稿の族で等しい偏極の積を取ると、有限次数の指標は比例し、extremal一次元トーラスで漸近的に十分となる。異なる偏極の積は、パラメータの等号が重要である理由を示す。各$F$は$\mP^2$の一点blow-upであり、連続自己同型群を持つ、ruledかつtoricな非cscKのextremal検証例となっている。その$\alpha_v$は非零である。Ordinary Chow指標は各因子ですでに非零なので、ordinary asymptotic Chow stabilityは主張しない。
+
+\cite{ja-OSY}のKE例は、cscKの場合でも一般的な計量からordinary Chowへの含意を否定する。\cite{ja-YZ}のrelative K/Chowの不一致により、その分離自体を新しいと呼ぶこともできない。本稿の厳密な指標は、高次Futaki障害を低次漸近係数とともに捨てるのではなく、保持している。
+
+Semistabilityの障害には固定部分群の一径数部分群のみを用いる。十分性の方向では、その障害の不在だけをGIT定理として扱わない。Extremal量子化定理が$T_0$に関するpolystabilityを供給する。等号$C_m|_{\mathfrak t^\perp}=0$が成り立つと、Lemma~\ref{ja-test}によって小さい群が使える。固定部分群が自明とは主張しない。
+
+主結果はすべて、整な族$b_i\in\Z_{>0}$と指定した整格子を対象とする。有理生成元は有限isogenyにより実際の作用に変換される。有理偏極では整な冪を選び、割り切れる次数に制限する必要がある。同じ格子計算が正当化された後なら、任意の無限部分列からの必要性は有効である。本稿は任意の有理scrollパラメータを分類してはいない。任意の特異多様体、orbifoldの周期項、および任意のtest configurationは、この分類の対象外である。
+
+\section{含意の比較と新規性監査}\label{ja-audit}
+
+次の表は、各矢印に仮定を含めた含意図である。安定性で用いる群は、それぞれの文献の規約に固定する必要がある。
+\begingroup\small
+\begin{longtable}{p{.43\textwidth}p{.48\textwidth}}
+\hline
+含意 & 判定と条件\\ \hline
+Uniform K-stability $\Rightarrow$ K-polystability &
+対応するノルムと正規test configurationに対して既知。縮約されたuniform条件では自己同型による商が必要。\\
+滑らかなFano KE $\Leftrightarrow$ K-polystability &
+既知\cite{ja-CDS}。Ordinary Chow semistabilityは導かない。\\
+cscK $\Rightarrow$ asymptotic Chow stability &
+自己同型群が離散なら既知\cite{ja-Don01}。無条件では偽\cite{ja-OSY}。\\
+Extremal $\Rightarrow$ asymptotic relative Chow polystability &
+最大トーラスについて既知\cite{ja-Mab16,ja-Sey,ja-ST}。\\
+Extremal $\Rightarrow$ extremal一次元トーラスに関するrelative Chow semistability &
+Theorem~\ref{ja-circle}により、本稿の異なる偏極の積では全次数で偽。\\
+Relative K-stability $\Rightarrow$ asymptotic relative Chow stability &
+\cite{ja-YZ}のtoricなextremalトーラス定式化では偽。全test configurationについての主張とはしない。\\
+安定な底とファイバー $\Rightarrow$ adiabatic stability &
+この形での一般定理ではない。接続、twist、量化条件の指定が必要\cite{ja-DS19,ja-DS20,ja-Hat}。\\
+Sasaki--Einstein $\Rightarrow$ 漸近的transverse ordinary Chow semistability &
+整トーリックKE障害\cite{ja-OSY}の持ち上げにより、regular商による定義では偽。適切な定数スケールでregular持ち上げはSasaki--Einsteinとなる。\\
+Weighted K-stability $\Rightarrow$ weighted Chow stability &
+無条件の矢印はない。重み、有限次数の群、指標消滅の指定が必要。\\
+固定トーラスに関するChow semistabilityが無限回 $\Rightarrow D_{\boldsymbol b}\subset T$ &
+\eqref{ja-family}について本稿で証明。新規性は暫定。\\ \hline
+\end{longtable}
+\endgroup
+
+\paragraph{比較した内容。}
+Mabuchiのトーラス構成\cite{ja-Mab04}、現代的な相対量子化論文\cite{ja-Mab16,ja-Sey,ja-ST,ja-Has17}、Tiplerのoptimal-weight定式化\cite{ja-Tip}、積の分解\cite{ja-AH}、および\cite{ja-YZ}の2023年5月修正版について、一次PDF、概要、序論、関係する証明を確認した。特に最後の文献の古いトーリック表を、訂正を確認せず用いてはならない。Mabuchiはすでに量子化補正方向からトーラスを構成している。十分なトーラスという着想も、一般的なK/Chow分離も、本稿に始まるものではない。
+
+Adiabatic文献\cite{ja-DS19,ja-DS20,ja-Hal20,ja-Hat}、Sasaki文献\cite{ja-CS,ja-BvC}、weighted文献\cite{ja-Lah,ja-Hal23,ja-AJL,ja-Has25}を、本稿の適用範囲と照合した。検索語にはrelative Chow/extremal torus、product Hirzebruch surfaces、adiabatic Chow stability、weighted Chow stability、transverse/Sasaki Chow stability、minimal torus、polarization deformationを含めた。2025--2026年の文献\cite{ja-BJ25,ja-Tru26,ja-LY26,ja-Jub26}も確認した。MathSciNetやGoogle Scholarの完全な引用グラフにアクセスしたとは主張しない。
+
+\paragraph{候補となる正確な差分。}
+確認した結果には、等しいパラメータによる分割\eqref{ja-D}、Theorem~\ref{ja-classification}の同値性、$2s-1$という例外次数上界、全次数の不安定性を与える正係数多項式の議論は述べられていない。また、それらの証明から本稿の正規化での明示的指標\eqref{ja-adiaexp}は提示されていない。この比較は候補となる貢献を支える証拠であり、先行性の証明ではない。
+
+\begingroup\small
+\begin{longtable}{p{.49\textwidth}p{.42\textwidth}}
+\hline
+主張 & 研究上の分類\\ \hline
+Extremal計量の存在と最大トーラスに関する漸近的Chow polystability & \texttt{KNOWN}\\
+Toricな意味でのrelative K/Chow分離 & \texttt{KNOWN}\\
+Theorems~\ref{ja-classification}, \ref{ja-circle}とCorollary~\ref{ja-adiaresult} & \texttt{LIKELY NEW BUT LITERATURE CHECK INCOMPLETE}。証明は完結\\
+Corollary~\ref{ja-sasaki} & 指定した定義の直接の帰結。独立の先行性は主張しない\\
+無条件の計量からordinary Chowへの含意 & \texttt{FALSE}\\
+本分類のirregular/orbifoldへの拡張 & 本稿では\texttt{OPEN}\\
+本稿で\texttt{NEW AND PROVED}と確定した結果 & なし\\ \hline
+\end{longtable}
+\endgroup
+
+\section{今後の問題と再現可能性}
+第一の問題は、同じ有理関数の方法が、高次Hirzebruch曲面や他のadmissible束の最小固定トーラスを分類できるかである。重複する分母因子や可約な分母により、階数計算が変わる可能性がある。第二は有理偏極のchamberの問題である。無限次数の主張は、個々の有限次数の壁の位置を決定しない。第三は、orbifold版においてReeb次数づけを保ちつつ、指標の多項式成分と周期成分を分離できるかである。
+
+添付の検算スクリプトは、表示した恒等式を厳密な記号演算で確認し、$1\leq b\leq7$、$1\leq m\leq8$で格子点を独立に列挙する。また$35$次元作用も確認する。これらは補強的な検算であり、証明は上記の総和、互いに素な分母、微分、moment mapの議論である。本稿を新しい研究論文として公表する前には、さらに完全な先行性の審査が必要である。
+
+
+\begin{thebibliography}{Has26}
+\bibitem[ACGT08]{ja-ACGTF}
+V.~Apostolov, D.~M.~J.~Calderbank, P.~Gauduchon and C.~W.~T{\o}nnesen-Friedman,
+\emph{Hamiltonian 2-forms in Kähler geometry, III. Extremal metrics and stability},
+Invent. Math. \textbf{173} (2008), 547--601.
+\href{https://arxiv.org/abs/math/0511118}{arXiv:math/0511118}.
+\bibitem[AH15]{ja-AH}
+V.~Apostolov and H.~Huang,
+\emph{A splitting theorem for extremal Kähler metrics},
+J. Geom. Anal. \textbf{25} (2015), 149--170.
+\href{https://doi.org/10.1007/s12220-013-9417-6}{doi:10.1007/s12220-013-9417-6}.
+\bibitem[AJL23]{ja-AJL}
+V.~Apostolov, S.~Jubert and A.~Lahdili,
+\emph{Weighted K-stability and coercivity with applications to extremal Kähler and Sasaki metrics},
+Geom. Topol. \textbf{27} (2023), 3229--3302.
+\href{https://arxiv.org/abs/2104.09709}{arXiv:2104.09709}.
+\bibitem[BDL20]{ja-BDL}
+R.~J.~Berman, T.~Darvas and C.~H.~Lu,
+\emph{Regularity of weak minimizers of the K-energy and applications to properness and K-stability},
+Ann. Sci. Éc. Norm. Supér. \textbf{53} (2020), 267--289.
+\href{https://arxiv.org/abs/1602.03114}{arXiv:1602.03114}.
+\bibitem[BHJ17]{ja-BHJ}
+S.~Boucksom, T.~Hisamoto and M.~Jonsson,
+\emph{Uniform K-stability, Duistermaat--Heckman measures and singularities of pairs},
+Ann. Inst. Fourier \textbf{67} (2017), 743--841.
+\href{https://arxiv.org/abs/1504.06568}{arXiv:1504.06568}.
+\bibitem[BJ20]{ja-BluJ}
+H.~Blum and M.~Jonsson,
+\emph{Thresholds, valuations, and K-stability},
+Adv. Math. \textbf{365} (2020), article 107062.
+\href{https://arxiv.org/abs/1706.04548}{arXiv:1706.04548}.
+\bibitem[BJ25]{ja-BJ25}
+S.~Boucksom and M.~Jonsson,
+\emph{On the Yau--Tian--Donaldson conjecture for weighted cscK metrics},
+preprint (2025).
+\href{https://arxiv.org/abs/2509.15016v1}{arXiv:2509.15016v1}.
+\bibitem[BvC16]{ja-BvC}
+C.~P.~Boyer and C.~van Coevering,
+\emph{Relative K-stability and extremal Sasaki metrics},
+preprint (2016).
+\href{https://arxiv.org/abs/1608.06184v2}{arXiv:1608.06184v2}.
+\bibitem[Cal82]{ja-Cal82}
+E.~Calabi,
+\emph{Extremal Kähler metrics},
+in Seminar on Differential Geometry, Ann. of Math. Stud. \textbf{102},
+Princeton University Press (1982), 259--290.
+\bibitem[CC21]{ja-CC}
+X.~Chen and J.~Cheng,
+\emph{On the constant scalar curvature Kähler metrics (II)---Existence results},
+J. Amer. Math. Soc. \textbf{34} (2021), 937--1009.
+\href{https://arxiv.org/abs/1801.00656}{arXiv:1801.00656}.
+\bibitem[CDS15]{ja-CDS}
+X.~Chen, S.~Donaldson and S.~Sun,
+\emph{Kähler--Einstein metrics on Fano manifolds, III: limits as cone angle approaches $2\pi$ and completion of the main proof},
+J. Amer. Math. Soc. \textbf{28} (2015), 235--278.
+\href{https://arxiv.org/abs/1302.0282}{arXiv:1302.0282}.
+\bibitem[CS19]{ja-CS}
+T.~C.~Collins and G.~Székelyhidi,
+\emph{Sasaki--Einstein metrics and K-stability},
+Geom. Topol. \textbf{23} (2019), 1339--1413.
+\href{https://doi.org/10.2140/gt.2019.23.1339}{doi:10.2140/gt.2019.23.1339}.
+\bibitem[Don01]{ja-Don01}
+S.~K.~Donaldson,
+\emph{Scalar curvature and projective embeddings, I},
+J. Differential Geom. \textbf{59} (2001), 479--522.
+\href{https://doi.org/10.4310/jdg/1090349449}{doi:10.4310/jdg/1090349449}.
+\bibitem[DS19]{ja-DS19}
+R.~Dervan and L.~M.~Sektnan,
+\emph{Optimal symplectic connections on holomorphic submersions},
+preprint (2019).
+\href{https://arxiv.org/abs/1907.11014}{arXiv:1907.11014}.
+\bibitem[DS20]{ja-DS20}
+R.~Dervan and L.~M.~Sektnan,
+\emph{Moduli theory, stability of fibrations and optimal symplectic connections},
+preprint (2019).
+\href{https://arxiv.org/abs/1911.12701v2}{arXiv:1911.12701v2}.
+\bibitem[Fuj19]{ja-Fuj}
+K.~Fujita,
+\emph{A valuative criterion for uniform K-stability of $\Q$-Fano varieties},
+J. Reine Angew. Math. \textbf{751} (2019), 309--338.
+\href{https://arxiv.org/abs/1602.00901}{arXiv:1602.00901}.
+\bibitem[Fut04]{ja-Fut04}
+A.~Futaki,
+\emph{Asymptotic Chow semi-stability and integral invariants},
+Internat. J. Math. \textbf{15} (2004), 967--979.
+\bibitem[Hal20]{ja-Hal20}
+M.~Hallam,
+\emph{Geodesics in the space of relatively Kähler metrics},
+preprint (2020), version 3 (2024).
+\href{https://arxiv.org/abs/2012.04416v3}{arXiv:2012.04416v3}.
+\bibitem[Hal23]{ja-Hal23}
+M.~Hallam,
+\emph{Stability of weighted extremal manifolds through blowups},
+preprint (2023).
+\href{https://arxiv.org/abs/2309.02279}{arXiv:2309.02279}.
+\bibitem[Has17]{ja-Has17}
+Y.~Hashimoto,
+\emph{Relative stability associated to quantised extremal Kähler metrics},
+preprint (2017).
+\href{https://arxiv.org/abs/1705.11018v1}{arXiv:1705.11018v1}.
+\bibitem[Has26]{ja-Has25}
+Y.~Hashimoto,
+\emph{Relative uniform K-stability over models implies existence of extremal metrics},
+Math. Z. \textbf{312} (2026), article 109.
+\href{https://doi.org/10.1007/s00209-026-04014-7}{doi:10.1007/s00209-026-04014-7};
+\href{https://arxiv.org/abs/2506.02360}{arXiv:2506.02360}.
+\bibitem[Hat23]{ja-Hat}
+M.~Hattori,
+\emph{On K-stability of Calabi--Yau fibrations},
+preprint (2022), version 2 (2023).
+\href{https://arxiv.org/abs/2203.11460v2}{arXiv:2203.11460v2}.
+\bibitem[Jub26]{ja-Jub26}
+S.~Jubert,
+\emph{New extremal Kähler metrics on projective bundles},
+preprint (2026).
+\href{https://arxiv.org/abs/2609.01094v1}{arXiv:2609.01094v1}.
+\bibitem[Lah19]{ja-Lah}
+A.~Lahdili,
+\emph{Kähler metrics with constant weighted scalar curvature and weighted K-stability},
+Proc. Lond. Math. Soc. \textbf{119} (2019), 1065--1114.
+\href{https://arxiv.org/abs/1808.07811}{arXiv:1808.07811}.
+\bibitem[LY26]{ja-LY26}
+K.~L.~Lee and N.~Yotsutani,
+\emph{Asymptotic Chow stability of uniformly K-stable toric varieties},
+preprint (2024), version 2 (2026).
+\href{https://arxiv.org/abs/2405.06883v2}{arXiv:2405.06883v2}.
+\bibitem[Mab04]{ja-Mab04}
+T.~Mabuchi,
+\emph{Stability of extremal Kähler manifolds},
+Osaka J. Math. \textbf{41} (2004), 563--582.
+\href{https://arxiv.org/abs/math/0404211}{arXiv:math/0404211}.
+\bibitem[Mab05]{ja-Mab05}
+T.~Mabuchi,
+\emph{An energy-theoretic approach to the Hitchin--Kobayashi correspondence for manifolds, I},
+Invent. Math. \textbf{159} (2005), 225--243.
+\bibitem[Mab16]{ja-Mab16}
+T.~Mabuchi,
+\emph{Asymptotic polybalanced kernels on extremal Kähler manifolds},
+preprint (2016).
+\href{https://arxiv.org/abs/1610.09632}{arXiv:1610.09632}.
+\bibitem[OSY12]{ja-OSY}
+H.~Ono, Y.~Sano and N.~Yotsutani,
+\emph{An example of an asymptotically Chow unstable manifold with constant scalar curvature},
+Ann. Inst. Fourier \textbf{62} (2012), 1265--1287.
+\href{https://arxiv.org/abs/0906.3836}{arXiv:0906.3836}.
+\bibitem[Sey17]{ja-Sey}
+R.~Seyyedali,
+\emph{Relative Chow stability and extremal metrics},
+preprint (2016), version 2 (2017).
+\href{https://arxiv.org/abs/1610.07555v2}{arXiv:1610.07555v2}.
+\bibitem[SS11]{ja-SS}
+J.~Stoppa and G.~Székelyhidi,
+\emph{Relative K-stability of extremal metrics},
+J. Eur. Math. Soc. \textbf{13} (2011), 899--909.
+\href{https://doi.org/10.4171/JEMS/270}{doi:10.4171/JEMS/270}.
+\bibitem[ST21]{ja-ST}
+Y.~Sano and C.~Tipler,
+\emph{A moment map picture of relative balanced metrics on extremal Kähler manifolds},
+J. Geom. Anal. \textbf{31} (2021), 5941--5973.
+\href{https://doi.org/10.1007/s12220-020-00510-2}{doi:10.1007/s12220-020-00510-2}.
+\bibitem[Tip17]{ja-Tip}
+C.~Tipler,
+\emph{Relative Chow stability and optimal weights},
+preprint (2017).
+\href{https://arxiv.org/abs/1710.02536v2}{arXiv:1710.02536v2}.
+\bibitem[Tru26]{ja-Tru26}
+A.~Trusiani, with an appendix by S.~Boucksom,
+\emph{A solution to the Yau--Tian--Donaldson conjecture through Special Fujita Approximations},
+preprint (2026), version 2, 17 August 2026.
+\href{https://arxiv.org/abs/2605.30063v2}{arXiv:2605.30063v2}.
+\bibitem[YZ23]{ja-YZ}
+N.~Yotsutani and B.~Zhou,
+\emph{Relative algebro-geometric stabilities of toric manifolds},
+preprint (2016), corrected version 3 (2023).
+\href{https://arxiv.org/abs/1602.08201v3}{arXiv:1602.08201v3}.
+\end{thebibliography}
+\end{document}

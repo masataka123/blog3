@@ -1,0 +1,1855 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{\let\mathbbm\mathbb}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Minimal bilingual additions. Compile with XeLaTeX (TeX Live 2023).
+% A disclosed substitute template ending 112042, not the unavailable 112225, was used.
+\setlength{\emergencystretch}{2em}
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\setmainjfont{HaranoAjiMincho-Regular}[
+  BoldFont={HaranoAjiMincho-Bold}
+]
+\setsansjfont{HaranoAjiGothic-Medium}[
+  BoldFont={HaranoAjiGothic-Bold}
+]
+\setmonojfont{HaranoAjiGothic-Medium}
+\newcommand{\Cost}{\mathsf E}
+\newcommand{\JetCost}{\mathsf J}
+\theoremstyle{definition}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jprop}[thm]{命題}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jcor}[thm]{系}
+\hypersetup{pdftitle={Joint collision and pole regularization in weighted Bergman interpolation},pdfauthor={ChatGPT 6 Astra}}
+\title[Collision and pole regularization]{Joint collision and pole regularization
+in weighted Bergman interpolation}
+\author{ChatGPT 6 Astra}
+\date{September 9, 2026}
+\subjclass[2020]{32A36, 32A25, 32U05}
+\keywords{Minimal $L^2$ interpolation, weighted Bergman kernel, colliding points, logarithmic pole, jets, relative asymptotics}
+\begin{document}
+\begin{abstract}
+We study least-norm interpolation at the zeros of $z^N-a^N$ in a weighted
+Bergman space on the unit disc. The weight is
+$\rho(|z|^2)(|z|^2+\varepsilon)^{-c}$, where $\rho$ is positive and
+$C^1$, and $c=N+\tau/\log(1/\varepsilon)$ with $\tau$ bounded.
+We determine a relative asymptotic formula uniform in all relative rates of
+$a\to0$ and $\varepsilon\to0$, and uniform over all interpolation data.
+Each Fourier component has a denominator consisting of a low-degree term
+and a term of order $a^{2N}$. The highest component contains the critical
+factor $\log(1/\varepsilon)(e^\tau-1)/\tau$, whereas the other components
+have power-law scales. We compute the corresponding limiting extremizers
+and give a necessary and sufficient condition for the interpolation norm
+to approach the jet norm relatively. An explicit two-point example shows
+why convergence of weights and collision of points alone do not imply
+this relative conclusion. The proof uses orthogonal monomials, a discrete
+Fourier transform, and uniform moment estimates. The result is a model
+calculation concerning singular weights and non-reduced limiting
+constraints; it makes no assertion about singular ambient spaces.
+The novelty assessment is provisional and is stated explicitly.
+\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+\subsection{Background and the question}
+The $L^2$ method initiated by H\"ormander \cite{H65} and the extension
+theorem of Ohsawa--Takegoshi \cite{OT87} connect curvature conditions with
+existence and norm control for holomorphic objects. Higher-codimension
+extension \cite{M93}, optimal constants \cite{B13,GZ15}, and the
+curvature-based proof of Berndtsson--Lempert \cite{BL16} substantially
+refine this connection. The classical estimates do not, by themselves,
+specify the exact least norm for every varying interpolation configuration.
+
+We ask a concrete question at the intersection of extension and stability:
+when a reduced interpolation scheme approaches a non-reduced scheme,
+and the weight simultaneously develops a logarithmic pole, when is the
+least interpolation norm relatively close to the corresponding jet norm?
+Here ``relatively'' is essential. An additive estimate for a reproducing
+kernel can lose its information when that kernel tends to zero and must
+be inverted.
+
+\subsection{Main statement}
+Let $\D=\{z\in\C:|z|<1\}$, and use
+\begin{equation}\label{en:area}
+ d\nu(z)=\frac{dx\,dy}{\pi}=\frac{\sqrt{-1}}{2\pi}dz\wedge d\bar z.
+\end{equation}
+Fix an integer $N\ge1$, a number $T\ge0$, and a real function
+$\rho\in C^1([0,1])$ such that $\rho>0$ on $[0,1]$. Set
+\begin{equation}\label{en:parameters}
+ L=\log(1/\varepsilon),\qquad
+ c=N+\frac{\tau}{L},\qquad x=a^{2N},\qquad |\tau|\le T.
+\end{equation}
+We always take $0<\varepsilon<1$ sufficiently small that $c>0$, and
+$0<a<1$. For holomorphic $F$ define
+\begin{equation}\label{en:norm}
+ \|F\|_{\varepsilon,\tau}^2
+ =\int_\D |F(z)|^2\frac{\rho(|z|^2)}{(|z|^2+\varepsilon)^c}\,d\nu(z).
+\end{equation}
+For $v=(v_0,\ldots,v_{N-1})\in\C^N$, write
+$p_v(z)=\sum_{r=0}^{N-1}v_rz^r$, and let $\omega=e^{2\pi\sqrt{-1}/N}$.
+Define the least squared norm
+\begin{equation}\label{en:cost}
+ \Cost_{\varepsilon,\tau,a}(v)
+ =\inf\{\|F\|_{\varepsilon,\tau}^2:
+ F\in\cO(\D),\ F(a\omega^j)=p_v(a\omega^j),\ 0\le j<N\}.
+\end{equation}
+This parametrization fixes the polynomial representing the limiting jet;
+it does not hold the unscaled values at the moving points fixed.
+
+Put
+\begin{equation}\label{en:constants}
+ b_r=\left(\int_0^1t^r\rho(t)\,dt\right)^{-1},\qquad
+ H(\tau)=\begin{cases}(e^\tau-1)/\tau,&\tau\ne0,\\1,&\tau=0.\end{cases}
+\end{equation}
+For $0\le r\le N-2$ set
+\begin{equation}\label{en:power}
+ A_r=\frac{(N-1)!}{\rho(0)r!(N-r-2)!},\qquad
+ U_r=e^{-\tau}A_r\varepsilon^{N-r-1},
+\end{equation}
+and set
+\begin{equation}\label{en:critical}
+ U_{N-1}=\frac{1}{\rho(0)LH(\tau)},\qquad
+ Q_{\varepsilon,\tau,a}(v)=\sum_{r=0}^{N-1}\frac{|v_r|^2}{U_r+b_rx}.
+\end{equation}
+When $N=1$, the range in \eqref{en:power} is empty.
+
+\begin{thm}[Uniform collision formula]\label{en:main}
+With precisely the data and normalization above, there are positive
+constants $C,L_0,x_0$, depending only on $N,T,\rho$, such that
+for $L\ge L_0$, $0<x\le x_0$, and $|\tau|\le T$,
+\begin{equation}\label{en:mainestimate}
+ \left|\frac{\Cost_{\varepsilon,\tau,a}(v)}
+ {Q_{\varepsilon,\tau,a}(v)}-1\right|
+ \le C\left(\frac1L+x\right)\qquad(v\ne0).
+\end{equation}
+The infimum in \eqref{en:cost} is attained by a unique holomorphic
+function. For the pure datum $p(z)=z^r$, suppose along any sequence that
+$a\to0$, $\varepsilon\to0$, $|\tau|\le T$, and
+\begin{equation}\label{en:lambda}
+ \frac{b_rx}{U_r}\longrightarrow\lambda\in[0,+\infty].
+\end{equation}
+The corresponding minimizers satisfy, locally uniformly on the
+$\zeta$-plane,
+\begin{equation}\label{en:profile}
+ \frac{F_{\varepsilon,\tau,a}(a\zeta)}{a^r}
+ \longrightarrow
+ \frac{\zeta^r+\lambda\zeta^{r+N}}{1+\lambda}.
+\end{equation}
+For $\lambda=+\infty$ the right side means $\zeta^{r+N}$.
+\end{thm}
+
+The constants in the leading terms of $Q$ are exact asymptotic
+coefficients. We do not claim optimality of the unspecified constant
+$C$ in the error bound. Section~\ref{en:sharpsec} shows that all transition
+parameters $\lambda$ occur and determines the equality cases of the exact
+extremal problem. For $\rho=1$, $N=2$, and $\tau=0$, the formula reads
+\begin{equation}\label{en:twopointintro}
+ \Cost_{\varepsilon,0,a}(v)
+ =(1+o(1))\left\{
+ \frac{|v_0|^2}{\varepsilon+a^4}
+ +\frac{|v_1|^2}{L^{-1}+2a^4}\right\},
+\end{equation}
+with relative error uniform over $v\ne0$ and over both small parameters.
+
+\subsection{Comparison with existing results}
+Hosono's Theorem~1.1 \cite{Hos20} gives optimal extension for a
+homogeneous jet quotient with a specifically defined residue metric.
+Guan--Yuan's Theorem~1.11 in the inspected preprint \cite{GY25}
+characterizes equality for weighted multiple jets on open Riemann
+surfaces. These results already cover substantial jet and equality
+theory; our claim is not a new existence theorem for jets.
+
+Chen's Theorem~1.1 \cite{Chen15} proves locally uniform convergence of
+weighted Bergman kernels on bounded hyperconvex domains, assuming
+almost-everywhere convergence of negative psh weights and local
+integrable domination away from a closed complete pluripolar set.
+For $\rho=1$, our regularized psh weights fit that convergence mechanism
+after harmless constant adjustments. This still does not furnish
+\eqref{en:mainestimate}: the Gram matrix of the moving evaluations
+degenerates, and a uniform relative estimate is needed before inversion.
+More recent work also treats dependence of $p$-Bergman kernels on
+weights \cite{Zyn26}; no specific theorem number is used here.
+
+Bao--Guan--Yuan \cite{BGY25}, particularly Theorem~1.6 of the inspected
+preprint, relate growth rates of generalized Bergman kernels on psh
+sublevel sets to multiplier-ideal thresholds. The present formula
+concerns a fixed disc, a regularized pole, moving finite constraints,
+and the bounded exponent window $(c-N)L=\tau$. It retains both competing
+terms and the critical function $H(\tau)$, rather than only a logarithmic
+growth exponent. Neither the stated convergence theorem nor those
+sublevel growth statements supply this formula by direct substitution.
+
+Relative asymptotics for vanishing-section kernels also occur in
+Sun's work \cite{Sun21}, in a high-tensor-power setting with a fixed
+smooth subvariety. The publisher records a correction; we use no
+numerical statement from that paper. This related theory is another
+reason not to claim that relative Bergman asymptotics themselves
+are unexplored.
+
+The proof below makes the additional computation explicit: the
+noncritical moments have beta-integral asymptotics, the critical moment
+has a uniform logarithmic transition, and a positive tail estimate
+controls the inverse problem at every relative speed. Orthogonal
+projection, Fourier diagonalization, and tensor products are standard
+methods; they are not claimed as contributions.
+
+\subsection{Novelty status}
+The status assigned to Theorem~\ref{en:main}, its precise transition
+profiles, and the relative collision criterion is
+\begin{center}\small
+\texttt{POTENTIALLY NEW BUT LITERATURE CHECK INCOMPLETE}.
+\end{center}
+The statements have complete proofs here. The literature search did not
+establish exhaustive coverage of extremal interpolation or weighted
+operator theory, and the full text of \cite{LXZ23} was not accessible.
+We therefore make no priority claim. The accompanying audit records
+the compared theorems, discarded candidates, and search limitations.
+
+\section{Preliminaries on \texorpdfstring{$L^2$}{L2} estimates}
+\subsection{Weights and curvature conventions}
+For a twice differentiable real function $\varphi$ on a domain in
+$\C^d$, we use the complex Hessian
+$(\partial^2\varphi/\partial z_j\partial\bar z_k)_{j,k}$.
+Plurisubharmonicity means that this matrix is semipositive; for singular
+functions it means subharmonicity on every complex line, with the usual
+upper semicontinuous representative. The typical scalar H\"ormander
+estimate on a pseudoconvex domain, for strictly psh $\varphi$, solves
+$\bar\partial u=f$ for $\bar\partial$-closed $(0,1)$-forms and controls
+the weighted squared norm of $u$ by the inverse-Hessian energy of $f$.
+On complete K\"ahler manifolds the corresponding bundle statement uses
+the Nakano curvature operator; see \cite{H65,D82}.
+
+In our model the weight equals $e^{-\varphi}$ with
+\begin{equation}\label{en:psh}
+ \varphi(z)=c\log(|z|^2+\varepsilon)-\log\rho(|z|^2).
+\end{equation}
+If $\psi=-\log\rho$ is $C^2$ and
+$\psi'(t)+t\psi''(t)\ge0$, then
+\begin{equation}\label{en:hessian}
+ \frac{\partial^2\varphi}{\partial z\partial\bar z}
+ =\frac{c\varepsilon}{(|z|^2+\varepsilon)^2}
+  +\psi'(|z|^2)+|z|^2\psi''(|z|^2)>0.
+\end{equation}
+Thus $\rho=1$ and $\rho(t)=e^{-t}$ lie in the strictly psh setting.
+Theorem~\ref{en:main} needs only positive $C^1$ radial density, and so
+also applies beyond psh weights. Its proof computes the extremal
+problem directly and does not invoke an unproved regularization of
+bundle curvature.
+
+\subsection{Multiplier ideals and the critical integer}
+Our convention is
+\[
+ \cI(\varphi)_0
+ =\{f\in\cO_{\C,0}: |f|^2e^{-\varphi}\text{ is locally integrable}\}.
+\]
+If $f=z^ku$, $u(0)\ne0$, local integrability against $|z|^{-2c}$ is
+equivalent to $\int_0^\delta t^{k-c}\,dt<\infty$, namely $k+1>c$.
+Consequently, for $c\ge0$,
+\begin{equation}\label{en:ideal}
+ \cI(c\log|z|^2)_0=(z^{\lfloor c\rfloor}).
+\end{equation}
+In particular the equality case $k+1=c$ is divergent, not integrable.
+This direct calculation is a standard example, consistent with strong
+openness \cite{GZSO} and the semicontinuity theory of singularity
+exponents \cite{DK01}. Effective versions such as \cite{GY22} give
+quantitative integrability under specified extremal bounds. We do not
+claim to improve those general results.
+
+At $c=N$, the multiplier ideal in \eqref{en:ideal} agrees with the ideal
+of the limiting interpolation scheme. This agreement explains the
+choice of pole order in \eqref{en:parameters}: each of the $N$ residue
+classes has exactly one low-degree mode whose norm diverges and a next
+mode whose norm stays finite.
+
+\subsection{Which recent generalizations are already available}
+For orientation, several recent developments were treated as known
+input to problem selection. The smooth Nakano converse is established
+in \cite{DNWZ23}; its inspected preprint Theorem~1.1 specifies the
+auxiliary positive bundles and the completeness condition for the
+reverse direction. Singular vector-valued extension is addressed by
+\cite{GMY26}, under its specified singular Nakano hypotheses. The
+direct-image results \cite{Ber09,IMW24} distinguish smooth curvature
+from positivity defined through optimal estimates.
+
+Non-reduced extension is already developed in
+\cite{Dem17,CDM17,ZZ19,LXZ23}; qualitative surjectivity and a sharp
+bound for a specified class of sections must be distinguished.
+In division theory, \cite{LZ26}, Theorem~1.1, extends Skoda's estimate \cite{Sk72}
+to $L^2$-optimal pairs. The converse in \cite{LMNZ25}, Theorem~1.4,
+requires a bounded domain, a $C^2$ weight, and its particular universal
+division condition for a nonzero weighted-square-integrable function.
+It is not a converse to arbitrary ideal membership.
+
+For singular hypersurfaces the source measure is an essential part of
+the theorem: \cite{KS23}, Theorem~1.8, obstructs replacement of the
+Ohsawa measure by a locally integrable measure in its non-klt
+normalization/different setting. Singular ambient-space $L^2$
+resolutions require a specified analytic realization \cite{Wat26}.
+Our disc is smooth throughout. No passage across a singular ambient
+locus is used in this paper.
+
+\section{The extremal problem and its exact solution}
+\subsection{The family of quotient spaces}
+The monic equation $z^N-a^N=0$ has $N$ simple zeros for $a\ne0$ and
+defines the length-$N$ non-reduced scheme $(z^N)$ at $a=0$.
+Algebraically, $\C[a,z]/(z^N-a^N)$ is free over $\C[a]$ with basis
+$1,z,\ldots,z^{N-1}$: division by a monic polynomial gives existence
+and uniqueness of the remainder. This is the flat family underlying
+our choice of data $v$.
+
+For a fixed positive $\varepsilon$ the weight in \eqref{en:norm} is
+bounded above and below by positive constants. The weighted Bergman
+space is therefore a Hilbert space, its topology controls uniform
+convergence on compact subdiscs, and all evaluation maps are
+continuous. The polynomial $p_v$ has finite norm, so the admissible
+affine space is nonempty and closed. These facts already give existence
+and uniqueness of its minimal vector. We next compute it, using the
+standard reproducing-kernel principle \cite{Ar50} in coefficient form.
+
+\begin{prop}[Exact diagonal formula]\label{en:exact}
+For the fixed parameters above, define
+\begin{equation}\label{en:moments}
+ m_k=\int_0^1t^k\rho(t)(t+\varepsilon)^{-c}\,dt,
+ \qquad
+ T_r=\sum_{\ell=0}^{\infty}\frac{x^\ell}{m_{r+N\ell}}.
+\end{equation}
+Then $0<T_r<\infty$, and
+\begin{equation}\label{en:exactcost}
+ \Cost_{\varepsilon,\tau,a}(v)=\sum_{r=0}^{N-1}\frac{|v_r|^2}{T_r}.
+\end{equation}
+The unique minimizer is
+\begin{equation}\label{en:extremizer}
+ F_v(z)=\sum_{r=0}^{N-1}\frac{v_r}{T_r}
+ \sum_{\ell=0}^{\infty}
+ \frac{a^{N\ell}z^{r+N\ell}}{m_{r+N\ell}}.
+\end{equation}
+Every admissible $F$ of finite norm satisfies
+\begin{equation}\label{en:pythagoras}
+ \|F\|_{\varepsilon,\tau}^2
+ =\Cost_{\varepsilon,\tau,a}(v)+\|F-F_v\|_{\varepsilon,\tau}^2.
+\end{equation}
+\end{prop}
+\begin{proof}
+Write $F(z)=\sum_{k\ge0}f_kz^k$. For each radius $R<1$, convergence
+of its Taylor series is uniform on the circle $|z|=R$. Angular
+orthogonality gives its squared circle integral as
+$\sum_k|f_k|^2R^{2k}$. Integrating this nonnegative identity and applying
+Tonelli gives
+\begin{equation}\label{en:parseval}
+ \|F\|_{\varepsilon,\tau}^2=\sum_{k\ge0}m_k|f_k|^2.
+\end{equation}
+The substitution $t=R^2$ is responsible for the absence of a factor
+$2$ or $\pi$ in \eqref{en:moments}.
+
+Discrete Fourier inversion at the $N$ nodes gives
+\begin{equation}\label{en:fourier}
+ \frac1N\sum_{j=0}^{N-1}F(a\omega^j)\omega^{-jr}
+ =a^r\sum_{\ell\ge0}f_{r+N\ell}a^{N\ell}=a^rv_r.
+\end{equation}
+The finite sum and Taylor series may be interchanged because $a<1$.
+Since $a>0$, the constraint in component $r$ is
+$\sum_{\ell\ge0}f_{r+N\ell}a^{N\ell}=v_r$.
+The weight has a lower bound $w_*>0$, so $m_k\ge w_* /(k+1)$;
+this proves convergence of $T_r$.
+
+The Cauchy--Schwarz inequality now yields
+\[
+ |v_r|^2\le
+ \left(\sum_{\ell\ge0}m_{r+N\ell}|f_{r+N\ell}|^2\right)T_r.
+\]
+Equality holds precisely when
+$f_{r+N\ell}=v_ra^{N\ell}/(m_{r+N\ell}T_r)$ for every $\ell$.
+These coefficients give a normally convergent series on $\D$:
+the bound on $1/m_k$ reduces each inner series in
+\eqref{en:extremizer} to a polynomially weighted geometric series
+in $a^Nz^N$. Its norm is exactly \eqref{en:exactcost}, so it is
+admissible and realizes equality in every component. Finally, the
+coefficients of $F-F_v$ obey homogeneous versions of
+\eqref{en:fourier}; their inner product with those of $F_v$ vanishes.
+Expansion of the Hilbert norm proves \eqref{en:pythagoras}.
+\end{proof}
+
+\section{Uniform moment estimates}
+All constants in this section can depend on $N,T,\rho$, but not on
+$\varepsilon$, $\tau$, $a$, or $v$. We take $L$ large enough that
+$|\delta|\le1/2$, where $\delta=\tau/L$.
+
+\begin{lem}[The three types of moments]\label{en:momentlemma}
+Uniformly for $|\tau|\le T$, as $\varepsilon\to0$,
+\begin{align}
+ m_r^{-1}&=U_r(1+O(L^{-1})),&&0\le r<N,\label{en:lowmom}\\
+ m_{N+r}^{-1}&=b_r(1+O(L^{-1})),&&0\le r<N.\label{en:highmom}
+\end{align}
+Moreover, for all $k\ge0$ one has $m_k^{-1}\le C(k+1)$ with a
+constant uniform in these parameters.
+\end{lem}
+\begin{proof}
+We separate the three regimes before taking any inverse.
+
+\emph{Power-divergent moments.}
+Let $r\le N-2$ and $d=N-r-1\ge1$. The substitution $t=\varepsilon s$
+gives
+\begin{equation}\label{en:beta}
+ m_r=\varepsilon^{-d}e^\tau
+ \int_0^{1/\varepsilon}
+ \frac{s^r\rho(\varepsilon s)}{(1+s)^{N+\delta}}\,ds.
+\end{equation}
+The complete integral with $\rho(\varepsilon s)$ replaced by $\rho(0)$ is
+$\rho(0)B(r+1,d+\delta)$, where
+$B(u,v)=\int_0^\infty s^{u-1}(1+s)^{-u-v}\,ds$.
+For $|\delta|\le1/2$ the derivative of this integral in $\delta$ is
+dominated by an integrable multiple of
+$s^r(1+s)^{-N+1/2}\log(1+s)$. Therefore
+\[
+ B(r+1,d+\delta)=B(r+1,d)+O(|\delta|).
+\]
+Its omitted tail from $1/\varepsilon$ to infinity is at most
+$C\varepsilon^{d+\delta}=O_T(\varepsilon^d)$.
+
+The mean value theorem gives
+$|\rho(\varepsilon s)-\rho(0)|\le\|\rho'\|_\infty\varepsilon s$
+on the integration interval. Its contribution is bounded by
+\[
+ C\varepsilon\int_0^{1/\varepsilon}
+ s^{r+1}(1+s)^{-N-\delta}\,ds=O_T(\varepsilon L).
+\]
+For $d=1$, bound $s^{-\delta}$ by $e^T$ on $1\le s\le1/\varepsilon$
+and integrate $s^{-1}$; for $d\ge2$, the same bound leaves an
+integrable $s^{-d}$. On $(0,1)$ the integral is uniformly bounded.
+Since $\varepsilon L=O(L^{-1})$, \eqref{en:beta} becomes
+\[
+ m_r=\rho(0)\varepsilon^{-d}e^\tau
+ B(r+1,d)(1+O(L^{-1})).
+\]
+The identity $B(r+1,d)=r!(d-1)!/(r+d)!$ proves
+\eqref{en:lowmom} in this range, with exactly \eqref{en:power}.
+
+\emph{The critical moment.}
+For $r=N-1$, compare $m_{N-1}$ to
+\begin{equation}\label{en:criticalintegral}
+ \rho(0)\int_\varepsilon^1t^{-1-\delta}\,dt
+ =\rho(0)LH(\tau).
+\end{equation}
+The contribution to $m_{N-1}$ from $(0,\varepsilon)$ is bounded by
+$C\varepsilon^{-\delta}\le Ce^T$, after the same substitution.
+On $(\varepsilon,1)$ write the integrand as
+$t^{-1-\delta}\rho(t)(1+\varepsilon/t)^{-N-\delta}$.
+Because $c=N+\delta$ is in a fixed positive compact interval,
+\[
+ |(1+\varepsilon/t)^{-c}-1|\le C\varepsilon/t.
+\]
+The resulting error is at most
+$C\varepsilon\int_\varepsilon^1t^{-2-\delta}\,dt\le C_T$.
+Replacing $\rho(t)$ by $\rho(0)$ contributes at most
+$C\int_\varepsilon^1t^{-\delta}\,dt\le C_T$.
+Thus
+\begin{equation}\label{en:critmoment}
+ m_{N-1}=\rho(0)LH(\tau)+O(1).
+\end{equation}
+One can also write $H(\tau)=\int_0^1e^{\tau s}\,ds$; it is bounded
+above and below by positive constants on $[-T,T]$. Inverting
+\eqref{en:critmoment} gives the remaining case of \eqref{en:lowmom}.
+
+\emph{Finite moments.}
+For $k=N+r$ the integral is
+\[
+ m_{N+r}=\int_0^1t^r\rho(t)t^{-\delta}
+ (1+\varepsilon/t)^{-N-\delta}\,dt.
+\]
+The change from $t^{-\delta}$ to $1$ is bounded in integral by
+\[
+ C|\delta|\int_0^1t^{r-1/2}|\log t|\,dt=O(L^{-1}).
+\]
+For the smoothing factor, split at $t=\varepsilon$. On the first
+interval the integral of $t^{r-\delta}$ is $O_T(\varepsilon^{r+1})$;
+on the second the error is at most
+$C\varepsilon\int_\varepsilon^1t^{r-1-\delta}\,dt
+=O_T(\varepsilon L)$. Hence
+$m_{N+r}=b_r^{-1}+O(L^{-1})$, proving \eqref{en:highmom} after inversion.
+
+Finally $\rho(t)\ge\rho_{\min}>0$ and
+$(t+\varepsilon)^{-c}\ge2^{-N-1/2}$ on $[0,1]$, for the specified
+parameters. Integration of $t^k$ proves the asserted uniform bound.
+Every use of differentiation or passage to a limiting integral above
+has an integrable majorant or an explicit tail estimate.
+\end{proof}
+
+\section{Proof of the main estimate and the collision criterion}
+\begin{proof}[Proof of \eqref{en:mainestimate}]
+Separate the terms $\ell=0,1$ in \eqref{en:moments}:
+\[
+ T_r=m_r^{-1}+xm_{r+N}^{-1}
+     +\sum_{\ell\ge2}x^\ell m_{r+N\ell}^{-1}.
+\]
+The last sum is nonnegative and, for $x\le1/2$, at most
+$C\sum_{\ell\ge2}(r+N\ell+1)x^\ell\le C'x^2$.
+Lemma~\ref{en:momentlemma} therefore gives
+\begin{equation}\label{en:relativeT}
+ |T_r-(U_r+b_rx)|
+ \le C L^{-1}(U_r+b_rx)+C'x^2
+ \le C''(L^{-1}+x)(U_r+b_rx).
+\end{equation}
+The last step uses $U_r+b_rx\ge b_rx$ and
+$\min_{0\le r<N}b_r>0$. This lower bound is the reason the argument
+is uniform even when $U_r$ is much smaller or larger than $x$.
+Choose $L_0,x_0$ so that the relative error in \eqref{en:relativeT}
+is at most $1/2$. Taking reciprocals changes it by at most a factor
+$2$. Sum the reciprocal estimates against the nonnegative numbers
+$|v_r|^2$ and use \eqref{en:exactcost}. This proves the assertion
+uniformly for all nonzero $v$. Existence and uniqueness were proved
+in Proposition~\ref{en:exact}; the profile is proved in the next section.
+\end{proof}
+
+For fixed $\varepsilon,\tau$, the least norm with Taylor coefficients
+of orders $0,\ldots,N-1$ prescribed by $v$ is exactly
+\begin{equation}\label{en:jetcost}
+ \JetCost_{\varepsilon,\tau}(v)=\sum_{r=0}^{N-1}m_r|v_r|^2.
+\end{equation}
+Indeed the prescribed polynomial is orthogonal to all powers $z^k$
+with $k\ge N$. Define the relative defect
+\begin{equation}\label{en:defect}
+ D_{\varepsilon,\tau,a}
+ =\sup_{v\ne0}\left|1-
+ \frac{\Cost_{\varepsilon,\tau,a}(v)}{\JetCost_{\varepsilon,\tau}(v)}
+ \right|.
+\end{equation}
+
+\begin{thm}[Sharp relative collision criterion]\label{en:criterion}
+Let $a\to0$, $\varepsilon\to0$, and let $\tau$ vary arbitrarily in
+$[-T,T]$. If $N\ge2$, then
+\begin{equation}\label{en:criterionN}
+ D_{\varepsilon,\tau,a}\longrightarrow0
+ \quad\Longleftrightarrow\quad
+ a^{2N}=o(\varepsilon^{N-1}).
+\end{equation}
+If $N=1$, the equivalent condition is
+$a^2\log(1/\varepsilon)\to0$.
+For the pure datum $z^r$, condition \eqref{en:lambda} gives
+\begin{equation}\label{en:individualratio}
+ \frac{\Cost_{\varepsilon,\tau,a}(e_r)}
+ {\JetCost_{\varepsilon,\tau}(e_r)}
+ \longrightarrow\frac{1}{1+\lambda},
+\end{equation}
+where the limit is zero when $\lambda=+\infty$.
+\end{thm}
+\begin{proof}
+The polynomial $p_v$ is admissible, so $\Cost(v)\le\JetCost(v)$.
+By the exact diagonal formulas, their ratio is a weighted average of
+$(m_rT_r)^{-1}$. Thus
+\begin{equation}\label{en:exactdefect}
+ D_{\varepsilon,\tau,a}
+ =\max_{0\le r<N}\left(1-\frac1{m_rT_r}\right).
+\end{equation}
+Moreover
+\[
+ m_rT_r-1=x\frac{m_r}{m_{r+N}}
+  +m_r\sum_{\ell\ge2}\frac{x^\ell}{m_{r+N\ell}}.
+\]
+The tail is $O(m_rx^2)$, whereas $m_{r+N}^{-1}$ stays bounded
+above and below. Consequently
+\begin{equation}\label{en:jetlambda}
+ m_rT_r-1=\frac{b_rx}{U_r}(1+O(L^{-1}+x)).
+\end{equation}
+This proves both \eqref{en:individualratio} and the equivalence of
+$D\to0$ with $b_rx/U_r\to0$ for every $r$.
+
+For $N\ge2$, the $r=0$ condition is equivalent, uniformly in bounded
+$\tau$, to $x/\varepsilon^{N-1}\to0$. It implies the other power
+conditions because
+$x/\varepsilon^{N-r-1}=(x/\varepsilon^{N-1})\varepsilon^r$.
+It also implies $xL\to0$ since $\varepsilon^{N-1}L\to0$.
+Necessity follows from the $r=0$ term alone. For $N=1$ only the
+critical term exists, and $H(\tau)$ is uniformly comparable to $1$.
+\end{proof}
+
+\section{Sharpness and equality cases}\label{en:sharpsec}
+\subsection{Extremizer profiles and energy allocation}
+For pure datum $z^r$ put
+\begin{equation}\label{en:probabilities}
+ p_\ell=\frac{x^\ell}{m_{r+N\ell}T_r},\qquad \ell\ge0.
+\end{equation}
+These numbers are positive and sum to one. Equation~\eqref{en:extremizer}
+gives the exact identity
+\begin{equation}\label{en:scaledseries}
+ a^{-r}F_v(a\zeta)=\sum_{\ell\ge0}p_\ell\zeta^{r+N\ell}.
+\end{equation}
+The fraction of the total squared norm in monomial degree $r+N\ell$
+is also exactly $p_\ell$: substitute its coefficient into
+\eqref{en:parseval} and divide by $1/T_r$.
+
+\begin{proof}[Proof of the profile assertion in Theorem~\ref{en:main}]
+The moment estimates and \eqref{en:relativeT} imply, under
+\eqref{en:lambda},
+\[
+ p_0\to(1+\lambda)^{-1},\qquad
+ p_1\to\lambda(1+\lambda)^{-1}.
+\]
+The conventions at $\lambda=+\infty$ give $p_0\to0$, $p_1\to1$.
+For any fixed $R>0$, using $T_r\ge C^{-1}x$, the remaining part
+of \eqref{en:scaledseries} is bounded on $|\zeta|\le R$ by
+\[
+ \frac{C}{x}\sum_{\ell\ge2}
+ (r+N\ell+1)x^\ell\max(1,R)^{r+N\ell}=O_R(x).
+\]
+For sufficiently small $a$, that compact disc is within the domain
+$|\zeta|<1/a$ of the scaled function. This proves local uniform
+convergence, and completes the proof of Theorem~\ref{en:main}.
+\end{proof}
+
+Fixing $\tau=\tau_0$ and taking $x=\lambda U_r/b_r$ realizes every
+$0<\lambda<\infty$. Taking $x=U_r^2$ realizes zero; taking
+$x=\sqrt{U_r}$ realizes infinity. All these choices have $x\to0$.
+Thus the coefficients in \eqref{en:profile} and the function in
+\eqref{en:individualratio} are attained limits, not merely bounds.
+They show that the leading constants in the transition formula cannot
+be changed while preserving relative convergence in every regime.
+
+\subsection{Exact equality and near-minimizers}
+The precise sharp inequality for fixed parameters is
+$\|F\|_{\varepsilon,\tau}^2\ge\sum_r|v_r|^2/T_r$.
+By \eqref{en:pythagoras}, equality holds if and only if $F=F_v$.
+For any $\eta\ge0$, an admissible $F$ satisfies
+\[
+ \|F\|_{\varepsilon,\tau}^2\le(1+\eta)\Cost(v)
+ \quad\Longrightarrow\quad
+ \|F-F_v\|_{\varepsilon,\tau}^2\le\eta\Cost(v).
+\]
+This is the standard Hilbert-space stability identity, recorded to
+avoid conflating equality of a universal extension bound with equality
+in our exact extremal problem. No curvature-flatness or domain-rigidity
+conclusion is implied: even a strictly subharmonic weight has a unique
+least-norm interpolant for every datum.
+
+\section{Examples and counterexamples}
+\subsection{Two points and an explicit failure of unrestricted relative stability}
+Take $N=2$, $\rho=1$, $\tau=0$. Direct integration gives
+\begin{align}
+ m_0&=\frac1\varepsilon-\frac1{1+\varepsilon}
+     =\frac1{\varepsilon(1+\varepsilon)},\label{en:m0exact}\\
+ m_1&=\log\frac{1+\varepsilon}{\varepsilon}
+       +\frac\varepsilon{1+\varepsilon}-1.\label{en:m1exact}
+\end{align}
+Also $m_2\to1$ and $m_3\to1/2$. Thus the constants in
+\eqref{en:twopointintro} can be checked without a beta function.
+
+For constant data at $a$ and $-a$, the squared norm is asymptotic to
+$(\varepsilon+a^4)^{-1}$; for the datum $p(z)=z$ it is asymptotic
+to $(L^{-1}+2a^4)^{-1}$. The respective transition scales are
+$a^4\asymp\varepsilon$ and $a^4\asymp L^{-1}$, which are different.
+
+\begin{prop}[A relative-stability counterexample]\label{en:counterexample}
+In the preceding two-point setting, take $\varepsilon=a^8$ and
+$p(z)=1$. Then the strictly subharmonic weights
+$2\log(|z|^2+a^8)$ converge in $L^1(\D)$ to $2\log|z|^2$, and
+the interpolation schemes converge to $(z^2)$, but
+\begin{equation}\label{en:counterratio}
+ \frac{\Cost_{a^8,0,a}(e_0)}{\JetCost_{a^8,0}(e_0)}
+ \sim a^4\longrightarrow0.
+\end{equation}
+\end{prop}
+\begin{proof}
+The difference between the logarithmic weights is nonnegative, and
+its normalized $L^1$ integral is
+$2\int_0^1\log(1+a^8/t)\,dt$, which tends to zero. For example,
+for $a\le1$ the integrand is dominated by
+$\log(1+1/t)$, an integrable function, so dominated convergence applies.
+The scheme statement follows from $z^2-a^2\to z^2$ in the monic
+flat family. Formula~\eqref{en:m0exact} gives
+$\JetCost(e_0)\sim a^{-8}$, while
+Theorem~\ref{en:main} gives $\Cost(e_0)\sim a^{-4}$.
+This proves \eqref{en:counterratio}.
+\end{proof}
+The false assertion refuted here is specifically that these two
+convergences force relative approximation by the jet norm without a
+rate condition. The example does not refute Chen's kernel convergence
+theorem, strong openness, or a sharp extension theorem with its own
+source measure. It is not asserted that this qualitative type of
+failure was previously unknown.
+
+\subsection{The exponent window}
+For $N=2$ and $c=2+\tau/L$, the two model denominators become
+\[
+ e^{-\tau}\varepsilon+a^4,
+ \qquad (LH(\tau))^{-1}+2a^4.
+\]
+The factor $H$ cannot be replaced by $1$ when $\tau$ stays nonzero.
+Indeed the exact critical integral \eqref{en:criticalintegral} is
+$LH(\tau)$. Taking $a^4=o(L^{-1})$ isolates that coefficient in
+the extension norm. The window $|c-N|=O(1/L)$ is part of the
+theorem; no uniform assertion for unbounded $\tau$ is made.
+
+\subsection{The singular limit and the unweighted check}
+For $\rho=1$, $c=N$, and $\varepsilon=0$, finite norm requires
+$F=z^NG$ and $\|F\|_{0}^2=\int_\D|G|^2d\nu$.
+The unweighted kernel is $(1-z\bar w)^{-2}$, as follows by summing
+$\sum_{k\ge0}(k+1)(z\bar w)^k$. Consequently
+\begin{equation}\label{en:singularkernel}
+ K_0(z,w)=\frac{(z\bar w)^N}{(1-z\bar w)^2}.
+\end{equation}
+For $a>0$, the exact singular-limit component denominator is
+\begin{equation}\label{en:singularT}
+ T_r^0=\sum_{\ell\ge1}(r+N\ell+1-N)x^\ell
+ =\frac{x\{(r+1)+(N-r-1)x\}}{(1-x)^2}.
+\end{equation}
+For the unweighted space, the same computation starts with $\ell=0$
+and gives
+\begin{equation}\label{en:unweightedT}
+ T_r^{\rm unw}=\frac{(r+1)+(N-r-1)x}{(1-x)^2}.
+\end{equation}
+These are elementary exact formulas, included as checks rather than
+novel results. At the central non-reduced fiber, a nonzero polynomial
+of degree less than $N$ cannot be represented by a finite-norm function
+for the singular weight. Our comparison always uses the jet norm
+at positive $\varepsilon$, not a finite nonexistent central norm.
+
+\subsection{Dimension one and standard model normalizations}
+When $N=1$ the theorem is the point-evaluation formula
+\[
+ \Cost(v_0)=(1+o(1))
+ \frac{|v_0|^2}{(\rho(0)LH(\tau))^{-1}+b_0a^2}.
+\]
+Here $N$ counts points and pole order; it is not the ambient complex
+dimension. The primary ambient dimension is one for every $N$.
+
+For comparison, normalized Lebesgue measure $dV/\pi^d$ gives
+\begin{equation}\label{en:modelnorms}
+\begin{aligned}
+ \int_{\D^d}|z^\alpha|^2\frac{dV}{\pi^d}
+   &=\prod_{j=1}^d\frac1{\alpha_j+1},\\
+ \int_{\mathbb B^d}|z^\alpha|^2\frac{dV}{\pi^d}
+   &=\frac{\alpha!}{(|\alpha|+d)!},\\
+ \int_{\C^d}|z^\alpha|^2e^{-s|z|^2}\frac{dV}{\pi^d}
+   &=\frac{\alpha!}{s^{|\alpha|+d}}\qquad(s>0).
+\end{aligned}
+\end{equation}
+The first and third identities are products of one-variable polar
+integrals. For the second, put $t_j=|z_j|^2$ and integrate
+$\prod t_j^{\alpha_j}$ over the simplex $\sum t_j<1$, using successive
+beta integrals. In particular the normalized ball volume is $1/d!$,
+not $1$. Ordinary, unnormalized planar area multiplies every squared
+norm and cost in our theorem by $\pi$; it divides $U_r,b_r$ by $\pi$
+if the moment definition is changed accordingly.
+
+\subsection{Reproducible numerical checks}
+The accompanying script uses 90-decimal arithmetic and independently
+checks $233$ parameter choices with $1\le N\le4$, both signs of
+$\tau$, and three relative scales. It also compares the Fourier
+formula to dense kernel Gram inversion, checks the exact two-point
+moments symbolically, and tests $\rho(t)=e^{-t}$. Tail bounds are
+recorded in the output table. These computations check constants and
+normalization; the proofs above, rather than numerical agreement,
+establish the assertions.
+
+\section{Further consequences}
+\subsection{A product-domain consequence}
+Let $d\ge2$ and let $B\subset\C^{d-1}$ be a bounded domain. Let
+$d\mu$ have a positive locally integrable density that is locally
+bounded below by positive constants, and let
+$\cH=A^2(B,d\mu)$. On $\D\times B$ use the product of $d\mu$ and
+the weighted measure in \eqref{en:norm}. For $v_r\in\cH$, prescribe
+\[
+ F(a\omega^j,w)=\sum_{r=0}^{N-1}v_r(w)(a\omega^j)^r.
+\]
+\begin{cor}\label{en:product}
+The exact least squared norm is
+\begin{equation}\label{en:productcost}
+ \sum_{r=0}^{N-1}\frac{\|v_r\|_{\cH}^2}{T_r}.
+\end{equation}
+Formula~\eqref{en:extremizer}, with $v_r$ replaced by $v_r(w)$,
+is the minimizer. Estimate~\eqref{en:mainestimate} holds with
+$|v_r|^2$ replaced by $\|v_r\|_{\cH}^2$ and with the same constants.
+\end{cor}
+\begin{proof}
+For almost every $w$, apply the scalar lower bound and integrate
+using Tonelli. The proposed function is holomorphic, because each
+inner series is normally convergent and the finite collection of
+holomorphic functions $v_r$ is bounded on compact subsets of $B$.
+Tonelli and \eqref{en:parseval} show that its norm is exactly
+\eqref{en:productcost}; hence the bound is attained. Strict convexity
+or the integrated orthogonality identity proves uniqueness.
+Summing the uniform scalar reciprocal estimates proves the last claim.
+\end{proof}
+This is a formal product consequence, not a separate novelty claim.
+Taking $B=\D^{d-1}$ gives an example in any ambient dimension; taking
+a pseudoconvex $B$ and a psh base weight gives a psh product setting.
+
+\subsection{Local and global information in the constants}
+The leading divergent coefficients depend only on $\rho(0)$.
+The coefficients $b_r$, by contrast, depend on the full radial
+integrals $\int_0^1t^r\rho(t)dt$. Thus the transition involves both
+the local pole and a global finite-norm alternative. For instance
+$\rho(t)=e^{-t}$ changes $b_0$ from $1$ to $(1-e^{-1})^{-1}$ while
+leaving $\rho(0)=1$. This observation follows directly from the
+proved formula and does not assert localization of the entire
+extension problem.
+
+\section{Scope, limitations, and research record}
+The fully proved output consists of the uniform relative formula,
+the limiting two-monomial profiles, and the necessary and sufficient
+relative collision criterion in the stated radial cyclic setting.
+The finite-parameter projection formula, the singular kernel
+factorization, multiplier-ideal calculation, and tensorization are
+standard or elementary background computations and are classified
+as \texttt{KNOWN} for the purpose of the novelty audit.
+
+The proof does not address general configurations of colliding points,
+nonradial singular weights, arbitrary non-reduced subspaces, or a
+singular ambient variety. In those settings the Fourier decomposition
+used here is absent or the source norm must be defined differently.
+We do not label all such extensions as open problems.
+
+The investigation screened nine candidates after constructing a
+27-entry literature map. Two proof audits separately checked the
+analytic moment argument and the kernel-matrix formulation. The
+separate research log records the bibliographic access levels and
+the incomplete novelty assessment. This manuscript is a complete
+proof of the specified model statements, not a certification of
+publication priority.
+
+\bibliographystyle{alpha}
+\bibliography{references}
+
+\newpage
+% Full Japanese version; numerical theorem/equation labels correspond to English.
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHequation}{ja.\thesection.\arabic{equation}}
+\renewcommand{\theHthm}{ja.\thesection.\arabic{thm}}
+\markboth{CHATGPT 6 ASTRA}{点の衝突と極の正則化}
+\linespread{1.08}\selectfont
+\begin{center}
+{\Large\bfseries 重み付き Bergman 補間における\par
+点の衝突と極の正則化の同時極限}\par\medskip
+{\scshape ChatGPT 6 Astra}\par\smallskip
+2026年9月9日
+\end{center}
+\medskip
+\noindent\textbf{摘要.}
+単位円板上の重み付き Bergman 空間において、$z^N-a^N$ の零点での最小ノルム補間を考える。
+重みは $\rho(|z|^2)(|z|^2+\varepsilon)^{-c}$ とし、$\rho$ は正の $C^1$ 関数、
+$c=N+\tau/\log(1/\varepsilon)$、$\tau$ は有界とする。
+$a\to0$ と $\varepsilon\to0$ の相対的な速度によらず、すべての補間データについて一様な相対漸近公式を求める。
+各 Fourier 成分の分母は低次数項と $a^{2N}$ の次数の項との和になる。
+最高の成分には臨界因子 $\log(1/\varepsilon)(e^\tau-1)/\tau$ が現れ、
+他の成分は冪の尺度をもつ。対応する極小関数の極限を計算し、
+補間ノルムがジェットノルムに相対的に近づくための必要十分条件を与える。
+明示的な二点の例により、重みの収束と点の衝突だけからこの相対的な結論が従わないことを示す。
+証明は直交単項式、離散 Fourier 変換、および一様なモーメント評価による。
+本稿は特異重みと非被約な極限拘束に関するモデル計算であり、特異な周囲空間についての主張は行わない。
+新規性の評価は暫定的なものであり、その状態を明示する。
+\par\medskip
+\noindent\textbf{2020 Mathematics Subject Classification.} 32A36, 32A25, 32U05.\par
+\noindent\textbf{キーワード.} 最小 $L^2$ 補間、重み付き Bergman 核、点の衝突、対数的極、ジェット、相対漸近。
+
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+
+\section{序論}
+\subsection{背景と問題}
+H\"ormander に始まる $L^2$ 法 \cite{H65} と Ohsawa--Takegoshi の延長定理 \cite{OT87} は、
+曲率条件と正則な対象の存在・ノルム制御を結びつける。
+高余次元からの延長 \cite{M93}、最適定数 \cite{B13,GZ15}、
+および Berndtsson--Lempert による曲率を用いた証明 \cite{BL16} は、この関係を大きく精密化した。
+ただし、これらの古典的評価だけで、変動するすべての補間配置について正確な最小ノルムが指定されるわけではない。
+
+本稿では延長と安定性の接点にある具体的な問題を扱う。
+被約な補間スキームが非被約なスキームに近づくと同時に重みが対数的極を生じるとき、
+最小補間ノルムが対応するジェットノルムに相対的に近づくのはいつか。
+ここで「相対的に」という語が本質的である。
+再生核が零に近づき、その逆を取る必要がある場合、再生核の加法的な評価だけでは必要な情報が失われうる。
+
+\subsection{主結果}
+$\D=\{z\in\C:|z|<1\}$ とし、面積を
+\begin{equation}\label{ja:area}
+ d\nu(z)=\frac{dx\,dy}{\pi}=\frac{\sqrt{-1}}{2\pi}dz\wedge d\bar z
+\end{equation}
+と正規化する。整数 $N\ge1$、数 $T\ge0$、および $[0,1]$ 上で正の実関数
+$\rho\in C^1([0,1])$ を固定する。
+\begin{equation}\label{ja:parameters}
+ L=\log(1/\varepsilon),\qquad
+ c=N+\frac{\tau}{L},\qquad x=a^{2N},\qquad |\tau|\le T
+\end{equation}
+とおく。常に $0<\varepsilon<1$ は $c>0$ となるほど小さく、$0<a<1$ とする。
+正則関数 $F$ に対して
+\begin{equation}\label{ja:norm}
+ \|F\|_{\varepsilon,\tau}^2
+ =\int_\D |F(z)|^2\frac{\rho(|z|^2)}{(|z|^2+\varepsilon)^c}\,d\nu(z)
+\end{equation}
+と定める。$v=(v_0,\ldots,v_{N-1})\in\C^N$ に対して
+$p_v(z)=\sum_{r=0}^{N-1}v_rz^r$ と書き、$\omega=e^{2\pi\sqrt{-1}/N}$ とする。
+最小二乗ノルムを
+\begin{equation}\label{ja:cost}
+ \Cost_{\varepsilon,\tau,a}(v)
+ =\inf\{\|F\|_{\varepsilon,\tau}^2:
+ F\in\cO(\D),\ F(a\omega^j)=p_v(a\omega^j),\ 0\le j<N\}
+\end{equation}
+と定める。このデータの表示は極限ジェットを代表する多項式を固定するものであり、
+動く点での、尺度補正をしない値を固定するものではない。
+
+次をおく。
+\begin{equation}\label{ja:constants}
+ b_r=\left(\int_0^1t^r\rho(t)\,dt\right)^{-1},\qquad
+ H(\tau)=\begin{cases}(e^\tau-1)/\tau,&\tau\ne0,\\1,&\tau=0.\end{cases}
+\end{equation}
+$0\le r\le N-2$ については
+\begin{equation}\label{ja:power}
+ A_r=\frac{(N-1)!}{\rho(0)r!(N-r-2)!},\qquad
+ U_r=e^{-\tau}A_r\varepsilon^{N-r-1}
+\end{equation}
+とし、さらに
+\begin{equation}\label{ja:critical}
+ U_{N-1}=\frac{1}{\rho(0)LH(\tau)},\qquad
+ Q_{\varepsilon,\tau,a}(v)=\sum_{r=0}^{N-1}\frac{|v_r|^2}{U_r+b_rx}
+\end{equation}
+とおく。$N=1$ のとき \eqref{ja:power} の添字の範囲は空である。
+
+\begin{jthm}[一様な衝突公式]\label{ja:main}
+以上で指定したデータと正規化のもとで、$N,T,\rho$ のみに依存する正の定数
+$C,L_0,x_0$ が存在し、$L\ge L_0$、$0<x\le x_0$、$|\tau|\le T$ ならば
+\begin{equation}\label{ja:mainestimate}
+ \left|\frac{\Cost_{\varepsilon,\tau,a}(v)}
+ {Q_{\varepsilon,\tau,a}(v)}-1\right|
+ \le C\left(\frac1L+x\right)\qquad(v\ne0)
+\end{equation}
+が成り立つ。\eqref{ja:cost} の下限は一意的な正則関数によって達成される。
+単一成分のデータ $p(z)=z^r$ を考え、任意の列に沿って
+$a\to0$、$\varepsilon\to0$、$|\tau|\le T$、および
+\begin{equation}\label{ja:lambda}
+ \frac{b_rx}{U_r}\longrightarrow\lambda\in[0,+\infty]
+\end{equation}
+を仮定する。対応する極小関数は $\zeta$ 平面上局所一様に
+\begin{equation}\label{ja:profile}
+ \frac{F_{\varepsilon,\tau,a}(a\zeta)}{a^r}
+ \longrightarrow
+ \frac{\zeta^r+\lambda\zeta^{r+N}}{1+\lambda}
+\end{equation}
+を満たす。$\lambda=+\infty$ の場合、右辺は $\zeta^{r+N}$ を意味する。
+\end{jthm}
+
+$Q$ の主項に現れる定数は正確な漸近係数である。
+誤差評価中の未指定の定数 $C$ の最適性は主張しない。
+第\ref{ja:sharpsec}節で、すべての遷移パラメータ $\lambda$ が実現することと、
+正確な極値問題の等号条件を示す。$\rho=1$、$N=2$、$\tau=0$ の場合、公式は
+\begin{equation}\label{ja:twopointintro}
+ \Cost_{\varepsilon,0,a}(v)
+ =(1+o(1))\left\{
+ \frac{|v_0|^2}{\varepsilon+a^4}
+ +\frac{|v_1|^2}{L^{-1}+2a^4}\right\}
+\end{equation}
+となり、その相対誤差は $v\ne0$ と二つの小さいパラメータの双方について一様である。
+
+\subsection{既存結果との比較}
+Hosono の定理1.1 \cite{Hos20} は、特定の留数計量を備えた斉次ジェット商について最適延長を与える。
+Guan--Yuan の確認したプレプリント \cite{GY25} の定理1.11 は、
+開 Riemann 面上の重み付き多点ジェット延長における等号を特徴づける。
+これらは既にジェットおよび等号に関する広い理論を含む。
+したがって、本稿はジェットの新たな存在定理を主張するものではない。
+
+Chen の定理1.1 \cite{Chen15} は、有界超凸領域上で、負の psh 重みのほとんど至る所での収束と、
+閉完全多重極集合の外での局所的に可積分な優関数の存在を仮定し、
+重み付き Bergman 核の局所一様収束を証明する。
+$\rho=1$ の場合、本稿の正則化された psh 重みは、無害な定数調整の後、この収束機構に適合する。
+しかし、それだけから \eqref{ja:mainestimate} は得られない。
+動く評価汎関数の Gram 行列が退化するため、逆行列を取る前に一様な相対評価が必要になる。
+最近の研究では $p$-Bergman 核の重みへの依存性も扱われている \cite{Zyn26}。
+ここでは同論文の特定の定理番号を用いない。
+
+Bao--Guan--Yuan \cite{BGY25}、特に確認したプレプリントの定理1.6 は、
+psh 劣位集合上の一般化 Bergman 核の増大率を乗数イデアルの閾値と関係づける。
+本稿の公式は固定円板、正則化された極、動く有限個の拘束、および有界な指数窓 $(c-N)L=\tau$ を扱う。
+対数的な増大指数だけでなく、競合する二つの項と臨界関数 $H(\tau)$ を保持する。
+上述の収束定理にも、劣位集合上の増大率に関する主張にも、直接代入するだけでこの公式が含まれるわけではない。
+
+消滅条件を課した切断の核についての相対漸近式は、Sun の研究 \cite{Sun21} にも現れる。
+その設定は高いテンソル冪と固定された滑らかな部分多様体を用いる。
+出版社は訂正の存在を記録しており、本稿では同論文の数値的な主張を使用しない。
+この関連理論も、相対的な Bergman 漸近そのものが未研究であると主張すべきでない理由である。
+
+以下の証明では、追加して必要な計算を明示する。
+非臨界モーメントにはベータ積分の漸近式、臨界モーメントには一様な対数遷移式を用い、
+正の尾部の評価によってすべての相対速度で逆問題を制御する。
+直交射影、Fourier 対角化、テンソル積は標準的な方法であり、それ自体を本稿の寄与とはしない。
+
+\subsection{新規性の状態}
+定理\ref{ja:main}、その正確な遷移形状、および相対衝突条件に付す状態は
+\begin{center}\small
+\texttt{POTENTIALLY NEW BUT LITERATURE CHECK INCOMPLETE}
+\end{center}
+である。これらの主張には本稿内で完全な証明を与える。
+一方、文献検索によって極値補間や重み付き作用素論の文献を網羅できたとは確認しておらず、
+\cite{LXZ23} の全文にもアクセスできなかった。このため優先権を主張しない。
+付属の検証ログには、比較した定理、採用しなかった候補、および検索の限界を記録する。
+
+\section{\texorpdfstring{$L^2$}{L2} 評価の準備}
+\subsection{重みと曲率の規約}
+$\C^d$ の領域上の二回微分可能な実関数 $\varphi$ に対して、複素 Hessian を
+$(\partial^2\varphi/\partial z_j\partial\bar z_k)_{j,k}$ とする。
+多重劣調和性はこの行列が半正値であることを意味する。
+特異関数については、通常の上半連続な代表を用い、各複素直線への制限の劣調和性を意味する。
+擬凸領域上で狭義 psh 重み $\varphi$ に関する典型的なスカラー H\"ormander 評価は、
+$\bar\partial$ 閉な $(0,1)$ 形式に対する $\bar\partial u=f$ を解き、
+$u$ の重み付き二乗ノルムを $f$ の逆 Hessian エネルギーで制御する。
+完備 K\"ahler 多様体上の対応するベクトル束の主張では、中野曲率作用素を用いる。
+\cite{H65,D82} を参照されたい。
+
+本稿のモデルでは重みは $e^{-\varphi}$ であり、
+\begin{equation}\label{ja:psh}
+ \varphi(z)=c\log(|z|^2+\varepsilon)-\log\rho(|z|^2)
+\end{equation}
+である。$\psi=-\log\rho$ が $C^2$ で
+$\psi'(t)+t\psi''(t)\ge0$ ならば
+\begin{equation}\label{ja:hessian}
+ \frac{\partial^2\varphi}{\partial z\partial\bar z}
+ =\frac{c\varepsilon}{(|z|^2+\varepsilon)^2}
+  +\psi'(|z|^2)+|z|^2\psi''(|z|^2)>0
+\end{equation}
+となる。したがって $\rho=1$ と $\rho(t)=e^{-t}$ は狭義 psh の設定に入る。
+定理\ref{ja:main} は正の $C^1$ 動径密度しか仮定しないため、psh 重み以外にも適用できる。
+証明では極値問題を直接計算し、ベクトル束曲率について未証明の正則化を用いない。
+
+\subsection{乗数イデアルと臨界整数}
+規約を
+\[
+ \cI(\varphi)_0
+ =\{f\in\cO_{\C,0}: |f|^2e^{-\varphi}\text{ が局所可積分}\}
+\]
+とする。$f=z^ku$、$u(0)\ne0$ ならば、$|z|^{-2c}$ に関する局所可積分性は
+$\int_0^\delta t^{k-c}\,dt<\infty$、すなわち $k+1>c$ と同値である。
+よって $c\ge0$ に対して
+\begin{equation}\label{ja:ideal}
+ \cI(c\log|z|^2)_0=(z^{\lfloor c\rfloor})
+\end{equation}
+となる。特に等号 $k+1=c$ では積分は発散する。
+この直接計算は標準的な例であり、strong openness \cite{GZSO} と
+特異点指数の半連続性理論 \cite{DK01} に整合する。
+\cite{GY22} のような有効版は、指定された極値量の評価のもとで定量的な可積分性を与える。
+これらの一般的結果を改良するとは主張しない。
+
+$c=N$ では \eqref{ja:ideal} の乗数イデアルは極限補間スキームのイデアルと一致する。
+この一致が \eqref{ja:parameters} の極の次数を選んだ理由である。
+$N$ 個の各剰余類には、ノルムが発散する低次数モードがちょうど一つあり、
+次のモードのノルムは有限にとどまる。
+
+\subsection{既に得られている近年の一般化}
+問題選択に際しては、次の発展を既知のものとして扱った。
+滑らかな場合の中野正値性の逆定理は \cite{DNWZ23} で確立されている。
+確認したプレプリントの定理1.1 は、補助的な正の直線束と逆向きに必要な完備性条件を指定している。
+\cite{GMY26} は、そこで指定された特異中野条件のもとで特異ベクトル値延長を扱う。
+順像に関する \cite{Ber09,IMW24} では、滑らかな曲率と最適評価によって定義される正値性を区別する必要がある。
+
+非被約構造からの延長は既に \cite{Dem17,CDM17,ZZ19,LXZ23} で展開されている。
+定性的な全射性と、指定された切断のクラスについての鋭い評価とは区別しなければならない。
+除法理論では \cite{LZ26} の定理1.1 が Skoda の評価 \cite{Sk72} を $L^2$-optimal pair に拡張する。
+\cite{LMNZ25} の定理1.4 の逆定理は、有界領域、$C^2$ 重み、および
+重み付き二乗可積分な非零関数に対する同論文固有の普遍的除法条件を要求する。
+任意のイデアル所属判定の逆定理ではない。
+
+特異超曲面では延長元の測度が定理の本質的な部分である。
+\cite{KS23} の定理1.8 は、正規化と different に関する非 klt の設定で、
+Ohsawa 測度を局所可積分な測度に置き換えることを妨げる。
+特異な周囲空間における $L^2$ 分解には、指定された解析的実現が必要である \cite{Wat26}。
+本稿の円板は終始滑らかであり、特異な周囲空間の特異点集合を越える操作は用いない。
+
+\section{極値問題とその正確な解}
+\subsection{商空間の族}
+モニック方程式 $z^N-a^N=0$ は $a\ne0$ では $N$ 個の単純零点をもち、
+$a=0$ では長さ $N$ の非被約スキーム $(z^N)$ を定める。
+代数的には $\C[a,z]/(z^N-a^N)$ は $\C[a]$ 上の自由加群で、
+基底は $1,z,\ldots,z^{N-1}$ である。モニック多項式による除法が余りの存在と一意性を与えるからである。
+これがデータ $v$ の選択の基礎となる平坦族である。
+
+正の $\varepsilon$ を固定すると、\eqref{ja:norm} の重みは正の定数によって上下から抑えられる。
+したがって重み付き Bergman 空間は Hilbert 空間であり、その位相はコンパクトな小円板上の一様収束を制御し、
+すべての点評価写像は連続である。多項式 $p_v$ のノルムは有限なので、許容関数のアフィン空間は空でなく閉である。
+これだけで最小ベクトルの存在と一意性が従う。
+次に、標準的な再生核の原理 \cite{Ar50} を係数の形で用いてこれを計算する。
+
+\begin{jprop}[正確な対角公式]\label{ja:exact}
+上記の固定パラメータに対して
+\begin{equation}\label{ja:moments}
+ m_k=\int_0^1t^k\rho(t)(t+\varepsilon)^{-c}\,dt,
+ \qquad
+ T_r=\sum_{\ell=0}^{\infty}\frac{x^\ell}{m_{r+N\ell}}
+\end{equation}
+と定める。このとき $0<T_r<\infty$ であり、
+\begin{equation}\label{ja:exactcost}
+ \Cost_{\varepsilon,\tau,a}(v)=\sum_{r=0}^{N-1}\frac{|v_r|^2}{T_r}
+\end{equation}
+が成り立つ。一意的な極小関数は
+\begin{equation}\label{ja:extremizer}
+ F_v(z)=\sum_{r=0}^{N-1}\frac{v_r}{T_r}
+ \sum_{\ell=0}^{\infty}
+ \frac{a^{N\ell}z^{r+N\ell}}{m_{r+N\ell}}
+\end{equation}
+である。有限ノルムをもつすべての許容関数 $F$ に対して
+\begin{equation}\label{ja:pythagoras}
+ \|F\|_{\varepsilon,\tau}^2
+ =\Cost_{\varepsilon,\tau,a}(v)+\|F-F_v\|_{\varepsilon,\tau}^2
+\end{equation}
+が成り立つ。
+\end{jprop}
+\begin{proof}[証明]
+$F(z)=\sum_{k\ge0}f_kz^k$ と書く。各 $R<1$ に対して Taylor 級数は円周 $|z|=R$ 上で一様収束する。
+角度方向の直交性により、円周平均した絶対値の二乗は $\sum_k|f_k|^2R^{2k}$ である。
+この非負の恒等式を積分して Tonelli の定理を適用すると
+\begin{equation}\label{ja:parseval}
+ \|F\|_{\varepsilon,\tau}^2=\sum_{k\ge0}m_k|f_k|^2
+\end{equation}
+を得る。変数変換 $t=R^2$ により、\eqref{ja:moments} には因子 $2$ や $\pi$ が現れない。
+
+$N$ 個の点で離散 Fourier 逆変換を行うと
+\begin{equation}\label{ja:fourier}
+ \frac1N\sum_{j=0}^{N-1}F(a\omega^j)\omega^{-jr}
+ =a^r\sum_{\ell\ge0}f_{r+N\ell}a^{N\ell}=a^rv_r
+\end{equation}
+となる。$a<1$ なので有限和と Taylor 級数を交換できる。
+$a>0$ より、第 $r$ 成分の拘束は
+$\sum_{\ell\ge0}f_{r+N\ell}a^{N\ell}=v_r$ である。
+重みに正の下界 $w_*>0$ があるため $m_k\ge w_* /(k+1)$ であり、これから $T_r$ の収束が従う。
+
+Cauchy--Schwarz の不等式から
+\[
+ |v_r|^2\le
+ \left(\sum_{\ell\ge0}m_{r+N\ell}|f_{r+N\ell}|^2\right)T_r
+\]
+を得る。等号は、すべての $\ell$ について
+$f_{r+N\ell}=v_ra^{N\ell}/(m_{r+N\ell}T_r)$ のとき、かつそのときに限り成り立つ。
+これらの係数で定まる級数は $\D$ 上で広義一様絶対収束する。
+実際、$1/m_k$ の評価によって \eqref{ja:extremizer} の各内側の級数は、
+$a^Nz^N$ に関する多項式重み付きの等比級数で抑えられる。
+そのノルムは正確に \eqref{ja:exactcost} であるから、許容関数であり、各成分で等号を達成する。
+最後に $F-F_v$ の係数は \eqref{ja:fourier} の斉次版を満たすので、
+$F_v$ の係数との内積は零になる。Hilbert ノルムを展開すれば \eqref{ja:pythagoras} を得る。
+\end{proof}
+
+\section{一様なモーメント評価}
+この節の定数は $N,T,\rho$ に依存してよいが、$\varepsilon,\tau,a,v$ には依存しない。
+$\delta=\tau/L$ とおき、$|\delta|\le1/2$ となるよう $L$ を十分大きく取る。
+
+\begin{jlem}[三種類のモーメント]\label{ja:momentlemma}
+$\varepsilon\to0$ のとき、$|\tau|\le T$ について一様に
+\begin{align}
+ m_r^{-1}&=U_r(1+O(L^{-1})),&&0\le r<N,\label{ja:lowmom}\\
+ m_{N+r}^{-1}&=b_r(1+O(L^{-1})),&&0\le r<N\label{ja:highmom}
+\end{align}
+が成り立つ。さらに、すべての $k\ge0$ について
+$m_k^{-1}\le C(k+1)$ が成り立ち、定数はこれらのパラメータについて一様である。
+\end{jlem}
+\begin{proof}[証明]
+逆数を取る前に三つの場合を分ける。
+
+\emph{冪で発散するモーメント。}
+$r\le N-2$、$d=N-r-1\ge1$ とする。$t=\varepsilon s$ と変数変換すると
+\begin{equation}\label{ja:beta}
+ m_r=\varepsilon^{-d}e^\tau
+ \int_0^{1/\varepsilon}
+ \frac{s^r\rho(\varepsilon s)}{(1+s)^{N+\delta}}\,ds
+\end{equation}
+となる。$\rho(\varepsilon s)$ を $\rho(0)$ に置き換えた完全積分は
+$\rho(0)B(r+1,d+\delta)$ である。ここで
+$B(u,v)=\int_0^\infty s^{u-1}(1+s)^{-u-v}\,ds$ とする。
+$|\delta|\le1/2$ のもとで、この積分の $\delta$ 微分は可積分な関数
+$s^r(1+s)^{-N+1/2}\log(1+s)$ の定数倍によって抑えられる。したがって
+\[
+ B(r+1,d+\delta)=B(r+1,d)+O(|\delta|)
+\]
+である。$1/\varepsilon$ から無限大までの省略した尾部は
+$C\varepsilon^{d+\delta}=O_T(\varepsilon^d)$ 以下である。
+
+平均値の定理から、積分区間上で
+$|\rho(\varepsilon s)-\rho(0)|\le\|\rho'\|_\infty\varepsilon s$ が成り立つ。
+この差の寄与は
+\[
+ C\varepsilon\int_0^{1/\varepsilon}
+ s^{r+1}(1+s)^{-N-\delta}\,ds=O_T(\varepsilon L)
+\]
+で抑えられる。$d=1$ のときは $1\le s\le1/\varepsilon$ 上で
+$s^{-\delta}\le e^T$ として $s^{-1}$ を積分する。
+$d\ge2$ では同じ評価の後に残る $s^{-d}$ は可積分である。
+$(0,1)$ 上の積分は一様に有界である。$\varepsilon L=O(L^{-1})$ なので、\eqref{ja:beta} は
+\[
+ m_r=\rho(0)\varepsilon^{-d}e^\tau
+ B(r+1,d)(1+O(L^{-1}))
+\]
+となる。恒等式 $B(r+1,d)=r!(d-1)!/(r+d)!$ から、
+この範囲での \eqref{ja:lowmom} が、正確に \eqref{ja:power} の係数をもって従う。
+
+\emph{臨界モーメント。}
+$r=N-1$ の場合、$m_{N-1}$ を
+\begin{equation}\label{ja:criticalintegral}
+ \rho(0)\int_\varepsilon^1t^{-1-\delta}\,dt
+ =\rho(0)LH(\tau)
+\end{equation}
+と比較する。同じ変数変換により、$m_{N-1}$ の $(0,\varepsilon)$ からの寄与は
+$C\varepsilon^{-\delta}\le Ce^T$ で抑えられる。
+$(\varepsilon,1)$ 上で被積分関数を
+$t^{-1-\delta}\rho(t)(1+\varepsilon/t)^{-N-\delta}$ と書く。
+$c=N+\delta$ は固定された正のコンパクト区間にあるので
+\[
+ |(1+\varepsilon/t)^{-c}-1|\le C\varepsilon/t
+\]
+が成り立つ。これによる誤差は
+$C\varepsilon\int_\varepsilon^1t^{-2-\delta}\,dt\le C_T$ 以下である。
+$\rho(t)$ を $\rho(0)$ に置き換える寄与は
+$C\int_\varepsilon^1t^{-\delta}\,dt\le C_T$ 以下である。よって
+\begin{equation}\label{ja:critmoment}
+ m_{N-1}=\rho(0)LH(\tau)+O(1)
+\end{equation}
+を得る。$H(\tau)=\int_0^1e^{\tau s}\,ds$ とも書けるため、
+$H$ は $[-T,T]$ 上で正の定数によって上下から抑えられる。
+\eqref{ja:critmoment} の逆数を取れば、\eqref{ja:lowmom} の残りの場合を得る。
+
+\emph{有限モーメント。}
+$k=N+r$ では積分は
+\[
+ m_{N+r}=\int_0^1t^r\rho(t)t^{-\delta}
+ (1+\varepsilon/t)^{-N-\delta}\,dt
+\]
+である。$t^{-\delta}$ を $1$ に変える誤差の積分は
+\[
+ C|\delta|\int_0^1t^{r-1/2}|\log t|\,dt=O(L^{-1})
+\]
+で抑えられる。正則化因子については $t=\varepsilon$ で分割する。
+最初の区間で $t^{r-\delta}$ の積分は $O_T(\varepsilon^{r+1})$ であり、
+次の区間の誤差は
+$C\varepsilon\int_\varepsilon^1t^{r-1-\delta}\,dt
+=O_T(\varepsilon L)$ 以下である。
+したがって $m_{N+r}=b_r^{-1}+O(L^{-1})$ であり、逆数を取って \eqref{ja:highmom} を得る。
+
+最後に、指定されたパラメータでは $[0,1]$ 上で
+$\rho(t)\ge\rho_{\min}>0$ および $(t+\varepsilon)^{-c}\ge2^{-N-1/2}$ が成り立つ。
+$t^k$ を積分すると、主張した一様評価を得る。
+以上で行った微分や積分の極限操作は、すべて可積分な優関数または明示的な尾部評価によって正当化されている。
+\end{proof}
+
+\section{主評価の証明と衝突条件}
+\begin{proof}[\eqref{ja:mainestimate} の証明]
+\eqref{ja:moments} の $\ell=0,1$ の項を分離する。
+\[
+ T_r=m_r^{-1}+xm_{r+N}^{-1}
+     +\sum_{\ell\ge2}x^\ell m_{r+N\ell}^{-1}.
+\]
+最後の和は非負であり、$x\le1/2$ では
+$C\sum_{\ell\ge2}(r+N\ell+1)x^\ell\le C'x^2$ 以下である。
+したがって補題\ref{ja:momentlemma} より
+\begin{equation}\label{ja:relativeT}
+ |T_r-(U_r+b_rx)|
+ \le C L^{-1}(U_r+b_rx)+C'x^2
+ \le C''(L^{-1}+x)(U_r+b_rx)
+\end{equation}
+となる。最後の段階では $U_r+b_rx\ge b_rx$ と
+$\min_{0\le r<N}b_r>0$ を用いた。
+この下界こそが、$U_r$ が $x$ よりはるかに小さい場合にも大きい場合にも議論が一様になる理由である。
+\eqref{ja:relativeT} の相対誤差が $1/2$ 以下となるように $L_0,x_0$ を選ぶ。
+逆数を取ることによる誤差の増加は高々 $2$ 倍である。
+逆数の評価に非負の数 $|v_r|^2$ を掛けて和を取り、\eqref{ja:exactcost} を使えば、
+すべての非零 $v$ について一様な主張を得る。
+存在と一意性は命題\ref{ja:exact} で証明済みであり、極限形状は次節で証明する。
+\end{proof}
+
+$\varepsilon,\tau$ を固定したとき、$0,\ldots,N-1$ 次の Taylor 係数を $v$ で指定した最小ノルムは、正確に
+\begin{equation}\label{ja:jetcost}
+ \JetCost_{\varepsilon,\tau}(v)=\sum_{r=0}^{N-1}m_r|v_r|^2
+\end{equation}
+である。指定多項式が $k\ge N$ のすべての $z^k$ に直交するからである。相対的なずれを
+\begin{equation}\label{ja:defect}
+ D_{\varepsilon,\tau,a}
+ =\sup_{v\ne0}\left|1-
+ \frac{\Cost_{\varepsilon,\tau,a}(v)}{\JetCost_{\varepsilon,\tau}(v)}
+ \right|
+\end{equation}
+と定める。
+
+\begin{jthm}[鋭い相対衝突条件]\label{ja:criterion}
+$a\to0$、$\varepsilon\to0$ とし、$\tau$ は $[-T,T]$ 内を任意に動くとする。
+$N\ge2$ ならば
+\begin{equation}\label{ja:criterionN}
+ D_{\varepsilon,\tau,a}\longrightarrow0
+ \quad\Longleftrightarrow\quad
+ a^{2N}=o(\varepsilon^{N-1})
+\end{equation}
+である。$N=1$ では同値な条件は $a^2\log(1/\varepsilon)\to0$ である。
+単一成分のデータ $z^r$ について、条件 \eqref{ja:lambda} のもとで
+\begin{equation}\label{ja:individualratio}
+ \frac{\Cost_{\varepsilon,\tau,a}(e_r)}
+ {\JetCost_{\varepsilon,\tau}(e_r)}
+ \longrightarrow\frac{1}{1+\lambda}
+\end{equation}
+が成り立つ。$\lambda=+\infty$ ならば極限は零である。
+\end{jthm}
+\begin{proof}[証明]
+多項式 $p_v$ は許容関数なので $\Cost(v)\le\JetCost(v)$ である。
+正確な対角公式より、両者の比は $(m_rT_r)^{-1}$ の加重平均である。したがって
+\begin{equation}\label{ja:exactdefect}
+ D_{\varepsilon,\tau,a}
+ =\max_{0\le r<N}\left(1-\frac1{m_rT_r}\right)
+\end{equation}
+となる。さらに
+\[
+ m_rT_r-1=x\frac{m_r}{m_{r+N}}
+  +m_r\sum_{\ell\ge2}\frac{x^\ell}{m_{r+N\ell}}
+\]
+である。尾部は $O(m_rx^2)$ であり、$m_{r+N}^{-1}$ は正の定数で上下から抑えられる。よって
+\begin{equation}\label{ja:jetlambda}
+ m_rT_r-1=\frac{b_rx}{U_r}(1+O(L^{-1}+x))
+\end{equation}
+を得る。これにより \eqref{ja:individualratio} と、$D\to0$ がすべての $r$ に対する
+$b_rx/U_r\to0$ と同値であることが従う。
+
+$N\ge2$ では、$r=0$ の条件は有界な $\tau$ について一様に
+$x/\varepsilon^{N-1}\to0$ と同値である。この条件は他の冪の条件も含意する。
+実際、$r>0$ では $x/\varepsilon^{N-r-1}
+=(x/\varepsilon^{N-1})\varepsilon^r$ である。
+また $\varepsilon^{N-1}L\to0$ なので、臨界条件 $xL\to0$ も従う。
+逆向きは $r=0$ の成分だけから従う。
+$N=1$ では臨界成分のみが存在し、$H$ が正の定数で上下から抑えられることを使えばよい。
+\end{proof}
+
+\section{鋭さと等号条件}\label{ja:sharpsec}
+\subsection{極小関数の極限形状}
+単一成分のデータ $z^r$ に対して
+\begin{equation}\label{ja:probabilities}
+ p_\ell=\frac{x^\ell/m_{r+N\ell}}{T_r}\qquad(\ell\ge0)
+\end{equation}
+とおく。これらは非負で、$\sum p_\ell=1$ である。
+公式 \eqref{ja:extremizer} は
+\begin{equation}\label{ja:scaledseries}
+ a^{-r}F(a\zeta)=\sum_{\ell\ge0}p_\ell\zeta^{r+N\ell}
+\end{equation}
+となる。\begin{proof}[定理\ref{ja:main} の極限形状の主張の証明]
+$b_rx/U_r\to\lambda$ と \eqref{ja:relativeT} より
+$p_0\to(1+\lambda)^{-1}$、$p_1\to\lambda/(1+\lambda)$ を得る。
+$\lambda=+\infty$ ではこれらはそれぞれ $0,1$ と読む。
+
+任意の固定された $R>0$ に対し、$xR^{2N}$ が十分小さければ、
+一様評価 $m_k^{-1}\le C(k+1)$ と下界 $T_r\ge C^{-1}x$ より
+\[
+ \sum_{\ell\ge2}p_\ell R^{r+N\ell}
+ \le C_R x^{-1}\sum_{\ell\ge2}(r+N\ell+1)(xR^N)^\ell
+ =O_R(x)
+\]
+となる。固定円板 $|\zeta|\le R$ は最終的には $|a\zeta|<1$ に含まれる。
+したがって \eqref{ja:profile} が局所一様に成り立つ。
+また \eqref{ja:parseval} より、第 $\ell$ 単項式が極小ノルムに占める比率は、正確に $p_\ell$ である。
+よって極限の二つの係数はノルムの配分率でもある。
+これで定理\ref{ja:main} の証明が完了する。
+\end{proof}
+
+すべての $\lambda\in[0,+\infty]$ が実現する。
+$\tau$ を固定し、$0<\lambda<\infty$ には $x=\lambda U_r/b_r$ を選ぶ。
+$\lambda=0$ には $x=U_r^2$、$\lambda=+\infty$ には $x=\sqrt{U_r}$ を選べばよい。
+いずれも $x\to0$ であり、$a=x^{1/(2N)}$ が許容される。
+したがって、すべての領域で相対収束を保ったまま主項係数 $A_r,b_r,H(\tau)$ を変更することはできない。
+
+\subsection{正確な等号と準極小関数}
+固定パラメータについての正確で鋭い不等式は
+$\|F\|_{\varepsilon,\tau}^2\ge\sum_r|v_r|^2/T_r$ である。
+\eqref{ja:pythagoras} より、等号は $F=F_v$ のとき、かつそのときに限り成り立つ。
+任意の $\eta\ge0$ と許容関数 $F$ について
+\[
+ \|F\|_{\varepsilon,\tau}^2\le(1+\eta)\Cost(v)
+ \quad\Longrightarrow\quad
+ \|F-F_v\|_{\varepsilon,\tau}^2\le\eta\Cost(v)
+\]
+となる。これは標準的な Hilbert 空間の安定性恒等式であり、
+普遍的な延長評価での等号と、本稿の正確な極値問題での等号とを混同しないために記載した。
+曲率の平坦性や領域の剛性は結論しない。
+狭義劣調和な重みでも、各データに一意的な最小ノルム補間関数が存在する。
+
+\section{例と反例}
+\subsection{二点の場合と無条件の相対安定性の明示的な破綻}
+$N=2$、$\rho=1$、$\tau=0$ とする。直接積分すると
+\begin{align}
+ m_0&=\frac1\varepsilon-\frac1{1+\varepsilon}
+     =\frac1{\varepsilon(1+\varepsilon)},\label{ja:m0exact}\\
+ m_1&=\log\frac{1+\varepsilon}{\varepsilon}
+       +\frac\varepsilon{1+\varepsilon}-1\label{ja:m1exact}
+\end{align}
+を得る。また $m_2\to1$、$m_3\to1/2$ である。
+したがって \eqref{ja:twopointintro} の定数はベータ関数を使わずに検算できる。
+
+$a,-a$ での定数データの二乗ノルムは $(\varepsilon+a^4)^{-1}$ と漸近同値であり、
+データ $p(z)=z$ では $(L^{-1}+2a^4)^{-1}$ と漸近同値である。
+それぞれの遷移尺度は $a^4\asymp\varepsilon$ と $a^4\asymp L^{-1}$ であって、異なっている。
+
+\begin{jprop}[相対安定性の反例]\label{ja:counterexample}
+上記の二点の設定で $\varepsilon=a^8$、$p(z)=1$ とする。
+狭義劣調和な重み $2\log(|z|^2+a^8)$ は $L^1(\D)$ で $2\log|z|^2$ に収束し、
+補間スキームは $(z^2)$ に収束するが、
+\begin{equation}\label{ja:counterratio}
+ \frac{\Cost_{a^8,0,a}(e_0)}{\JetCost_{a^8,0}(e_0)}
+ \sim a^4\longrightarrow0
+\end{equation}
+が成り立つ。
+\end{jprop}
+\begin{proof}[証明]
+対数重みの差は非負であり、その正規化された $L^1$ 積分は
+$2\int_0^1\log(1+a^8/t)\,dt$ で、零に収束する。
+例えば $a\le1$ では被積分関数は可積分な関数 $\log(1+1/t)$ に支配されるため、優収束定理を適用できる。
+スキームの主張は、モニックな平坦族における $z^2-a^2\to z^2$ から従う。
+\eqref{ja:m0exact} より $\JetCost(e_0)\sim a^{-8}$、
+定理\ref{ja:main} より $\Cost(e_0)\sim a^{-4}$ である。
+これが \eqref{ja:counterratio} を証明する。
+\end{proof}
+ここで否定した主張は、二つの収束だけから速度条件なしにジェットノルムによる相対近似が従う、という特定の主張である。
+この例は Chen の核収束定理、strong openness、あるいはそれぞれ固有の延長元測度を備えた鋭い延長定理に反するものではない。
+また、この種の定性的な破綻が従来知られていなかったとは主張しない。
+
+\subsection{指数の窓}
+$N=2$、$c=2+\tau/L$ では、二つのモデル分母は
+\[
+ e^{-\tau}\varepsilon+a^4,
+ \qquad (LH(\tau))^{-1}+2a^4
+\]
+となる。$\tau$ が非零にとどまる場合、因子 $H$ を $1$ に置き換えることはできない。
+実際、正確な臨界積分 \eqref{ja:criticalintegral} は $LH(\tau)$ である。
+$a^4=o(L^{-1})$ を取ると、延長ノルムの中でこの係数を単独で取り出せる。
+窓 $|c-N|=O(1/L)$ は定理の一部であり、非有界な $\tau$ について一様な主張は行わない。
+
+\subsection{特異極限と重みなしの場合の検算}
+$\rho=1$、$c=N$、$\varepsilon=0$ では、有限ノルムであるために $F=z^NG$ が必要であり、
+$\|F\|_0^2=\int_\D|G|^2d\nu$ である。
+重みなしの核は $(1-z\bar w)^{-2}$ である。
+これは $\sum_{k\ge0}(k+1)(z\bar w)^k$ を足し合わせれば従う。よって
+\begin{equation}\label{ja:singularkernel}
+ K_0(z,w)=\frac{(z\bar w)^N}{(1-z\bar w)^2}
+\end{equation}
+となる。$a>0$ での正確な特異極限の成分分母は
+\begin{equation}\label{ja:singularT}
+ T_r^0=\sum_{\ell\ge1}(r+N\ell+1-N)x^\ell
+ =\frac{x\{(r+1)+(N-r-1)x\}}{(1-x)^2}
+\end{equation}
+である。重みなしの空間では、同じ計算を $\ell=0$ から始めて
+\begin{equation}\label{ja:unweightedT}
+ T_r^{\rm unw}=\frac{(r+1)+(N-r-1)x}{(1-x)^2}
+\end{equation}
+を得る。これらは初等的な正確な公式であり、新規な結果としてではなく検算として掲げる。
+中心の非被約ファイバーでは、次数が $N$ 未満の非零多項式は、特異重みに関して有限ノルムをもつ関数では代表できない。
+本稿の比較は常に正の $\varepsilon$ でのジェットノルムを用いる。
+存在しない有限な中心ノルムを用いるものではない。
+
+\subsection{一次元と標準モデルの正規化}
+$N=1$ では定理は点評価公式
+\[
+ \Cost(v_0)=(1+o(1))
+ \frac{|v_0|^2}{(\rho(0)LH(\tau))^{-1}+b_0a^2}
+\]
+になる。ここで $N$ は点の数と極の次数を数えるものであり、周囲空間の複素次元ではない。
+主たる周囲空間の次元は、すべての $N$ について一である。
+
+比較のため、正規化された Lebesgue 測度 $dV/\pi^d$ では
+\begin{equation}\label{ja:modelnorms}
+\begin{aligned}
+ \int_{\D^d}|z^\alpha|^2\frac{dV}{\pi^d}
+   &=\prod_{j=1}^d\frac1{\alpha_j+1},\\
+ \int_{\mathbb B^d}|z^\alpha|^2\frac{dV}{\pi^d}
+   &=\frac{\alpha!}{(|\alpha|+d)!},\\
+ \int_{\C^d}|z^\alpha|^2e^{-s|z|^2}\frac{dV}{\pi^d}
+   &=\frac{\alpha!}{s^{|\alpha|+d}}\qquad(s>0)
+\end{aligned}
+\end{equation}
+が成り立つ。第一式と第三式は一変数の極座標積分の積である。
+第二式では $t_j=|z_j|^2$ とおき、単体 $\sum t_j<1$ 上で
+$\prod t_j^{\alpha_j}$ を逐次ベータ積分する。
+特に、正規化された球の体積は $1/d!$ であり、$1$ ではない。
+通常の、正規化しない平面面積を使うと、本定理のすべての二乗ノルムとコストは $\pi$ 倍になる。
+それに合わせてモーメントの定義を変えれば、$U_r,b_r$ は $\pi$ で割られる。
+
+\subsection{再現可能な数値検算}
+付属のスクリプトは90桁演算を用い、$1\le N\le4$、$\tau$ の両符号、および三つの相対尺度を含む
+233個のパラメータを独立に検算する。
+さらに Fourier 公式を稠密な核 Gram 行列の逆行列計算と比較し、
+二点での正確なモーメントを記号計算で確認し、$\rho(t)=e^{-t}$ も調べる。
+尾部の評価は出力表に記録されている。
+これらの計算は定数と正規化の検算であり、主張を確立するのは数値的一致ではなく上述の証明である。
+
+\section{さらなる帰結}
+\subsection{積領域での帰結}
+$d\ge2$ とし、$B\subset\C^{d-1}$ を有界領域とする。
+$d\mu$ は、正の局所可積分な密度であって局所的に正の定数の下界をもつものによる測度とする。
+$\cH=A^2(B,d\mu)$ とおく。$\D\times B$ 上では、$d\mu$ と \eqref{ja:norm} の重み付き測度との積を用いる。
+$v_r\in\cH$ に対して
+\[
+ F(a\omega^j,w)=\sum_{r=0}^{N-1}v_r(w)(a\omega^j)^r
+\]
+を指定する。
+\begin{jcor}\label{ja:product}
+正確な最小二乗ノルムは
+\begin{equation}\label{ja:productcost}
+ \sum_{r=0}^{N-1}\frac{\|v_r\|_{\cH}^2}{T_r}
+\end{equation}
+である。\eqref{ja:extremizer} の $v_r$ を $v_r(w)$ に置き換えた関数が極小関数になる。
+評価 \eqref{ja:mainestimate} は、$|v_r|^2$ を $\|v_r\|_{\cH}^2$ に置き換えて、同じ定数で成り立つ。
+\end{jcor}
+\begin{proof}[証明]
+ほとんどすべての $w$ に対してスカラーの下界を適用し、Tonelli の定理で積分する。
+候補の関数は正則である。各内側の級数が広義一様収束し、有限個の正則関数 $v_r$ が
+$B$ のコンパクト部分集合上で有界だからである。
+Tonelli の定理と \eqref{ja:parseval} より、そのノルムは正確に \eqref{ja:productcost} となり、下界が達成される。
+狭義凸性、あるいは積分した直交恒等式により一意性が従う。
+一様なスカラーの逆数評価を足し合わせれば最後の主張を得る。
+\end{proof}
+これは形式的な積の帰結であり、独立の新規性を主張するものではない。
+$B=\D^{d-1}$ とすれば任意次元での例になる。
+擬凸な $B$ と psh な底の重みを取れば、psh な積の設定が得られる。
+
+\subsection{定数に含まれる局所的情報と大域的情報}
+発散する主係数は $\rho(0)$ のみに依存する。
+一方、$b_r$ は動径積分全体 $\int_0^1t^r\rho(t)dt$ に依存する。
+したがって遷移には局所的な極と、大域的に有限ノルムをもつ代替モードの双方が関わる。
+例えば $\rho(t)=e^{-t}$ は $\rho(0)=1$ を保ちながら、$b_0$ を $1$ から $(1-e^{-1})^{-1}$ に変える。
+この観察は証明済みの公式から直接従うものであり、延長問題全体の局所化を主張するものではない。
+
+\section{適用範囲、限界、および研究記録}
+完全に証明した成果は、指定された動径・巡回対称性の設定における一様相対公式、
+二つの単項式による極限形状、および必要十分な相対衝突条件である。
+有限パラメータでの射影公式、特異核の因数分解、乗数イデアルの計算、テンソル化は、
+標準的または初等的な背景計算であり、新規性監査上は \texttt{KNOWN} と分類する。
+
+証明は、衝突する点の一般配置、非動径の特異重み、任意の非被約部分空間、特異な周囲多様体を扱わない。
+これらの設定では、ここで使った Fourier 分解が存在しないか、延長元のノルムを別に定義する必要がある。
+こうした一般化のすべてが未解決であると分類することはしない。
+
+調査では27項目の文献マップを作成した後に九つの候補を検討した。
+二回の証明監査により、解析的なモーメントの議論と核行列による定式化を別々に確認した。
+別添の研究ログには、文献へのアクセスの程度と、不完全な新規性評価を記録する。
+本原稿は指定したモデル命題の完全な証明であり、出版上の優先権を認証するものではない。
+
+% Repeat the complete bibliography without duplicating citation anchors/aux data.
+\begingroup
+\renewcommand{\refname}{参考文献}
+\makeatletter
+\renewcommand{\bibitem}[2][]{\item[\hfil\@biblabel{#1}]}
+\makeatother
+\InputIfFileExists{l2_collision_bilingual.bbl}{}{}
+\endgroup
+\end{document}

@@ -1,0 +1,1416 @@
+% !TeX program = xelatex
+% UTF-8. Compile with XeLaTeX three times; the bibliography is self-contained.
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{ulem.sty}{\usepackage[normalem]{ulem}}{}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Bilingual support; the mathematical environments and layout above are retained.
+\usepackage[no-math]{fontspec}
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+
+\setmainfont{Latin Modern Roman}
+
+\setmainjfont{HaranoAjiMincho-Regular}[
+  BoldFont={HaranoAjiMincho-Bold}
+]
+\setsansjfont{HaranoAjiGothic-Medium}[
+  BoldFont={HaranoAjiGothic-Bold}
+]
+\setmonojfont{HaranoAjiGothic-Medium}
+\usepackage{xurl}
+\DeclareMathOperator{\PG}{PGL}
+\DeclareMathOperator{\Ext}{Ext}
+\emergencystretch=2em
+\renewcommand{\bibliofont}{\fontsize{10}{11.3}\selectfont}
+\hypersetup{pdftitle={Minimal local sprays and a rank obstruction on projective-space bundles},
+  pdfauthor={chatGPT 6 Astra},pdfsubject={Holomorphic sprays and projective-space bundles},
+  pdfkeywords={Oka theory, holomorphic spray, Euler sequence, jet rigidity}}
+\title[Minimal local sprays on projective-space bundles]{Minimal local sprays and a rank obstruction on projective-space bundles}
+\author{chatGPT 6 Astra}
+\date{9 September 2026}
+\renewcommand{\subjclassname}{\textup{2020} Mathematics Subject Classification}
+\subjclass[2020]{Primary 32Q56; Secondary 32M25, 14F06, 14J45, 32Q15}
+\keywords{Oka theory, holomorphic sprays, projective-space bundles, Euler sequence, jet rigidity, tangent bundle}
+\baselineskip=15pt
+\footskip=32pt
+\begin{document}
+\begin{abstract}
+We study the source bundles of holomorphic sprays on projective-space bundles. Let $p:X\to B$ be a holomorphic $\mP^n$-bundle between connected smooth compact K\"ahler manifolds, with $n\geq2$. We prove that a dominating relative spray, defined near the entire zero section and having source rank at most $n+1$, has source the relative Euler bundle and, after a bundle isomorphism, is the canonical Euler spray as a germ. This germ has an unavoidable indeterminacy at the negative identity section. Consequently the minimum local rank is $n+1$, whereas every global dominating relative spray has rank at least $n+2$. The argument combines the obstruction to a holomorphic affine connection, extension classes, vanishing of higher vertical jets, and descent along $p$. For $\mP^2$ the minimum global rank is therefore four. We distinguish this source-bundle obstruction from the existence results of Oka theory and give a dated audit of the relevant literature. Novelty is asserted only relative to the sources inspected; no new implication from rational connectedness to the Oka property is claimed.
+\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+\paragraph{Known.}
+Complex homogeneous manifolds, in particular projective spaces and flag manifolds, are elliptic and hence Oka. The existence of a spray on these manifolds is classical \cite{en:Gromov,en:Book,en:Recent}. The recent theorem of Forstneri\v c--L\'arusson identifies the Oka property with ellipticity for projective manifolds \cite[Theorem~1.1]{en:FLell}. Existence does not, however, specify which vector bundle can serve as the source, or whether a given local spray can be extended on that same source. Their Problem~3.2 asks which source bundles admit local dominating sprays; their Proposition~3.3 gives a homogeneity obstruction when the source is globally generated.
+
+\paragraph{New contribution and its qualification.}
+Theorem~\ref{en:main} classifies all dominating relative spray germs of rank at most $n+1$ on a $\mP^n$-bundle, $n\geq2$, including bundles which are not presented as projectivizations of vector bundles on the base. It also proves their nonextendability on the same source. The conclusion concerns the simultaneous classification of the source and all higher jets, rather than the already known ellipticity of $\mP^n$. In particular it separates minimum local rank from minimum global rank. We have not found this statement in the literature after checking the sources and searches recorded in Section~\ref{en:audit}. This is a bounded novelty assessment, not a guarantee of priority. The proofs below are supplied in full, and do not depend on that assessment.
+
+\paragraph{Method.}
+An identity-differential spray on a tangent bundle would induce a holomorphic affine connection. On projective space this is impossible. An extension calculation then forces every rank-$n+1$ source to be the Euler bundle. The vanishing
+\[
+H^0\bigl(\mP^n,T_{\mP^n}(-k)\bigr)=0\quad(k\geq2)
+\]
+forces every higher vertical Taylor coefficient of a difference of sprays to vanish. In families, the kernel line bundle descends to the base and its extension class trivializes that descent. Finally an explicit two-direction limit detects the obstruction to extension. Neither a deformation of rational curves nor an Oka approximation theorem constructs these constrained germs.
+
+The focus emerged from an audit of positivity and flexibility. Fano manifolds with nef tangent bundle are natural targets, but their Oka property is not settled here. Projective space, a basic such manifold, already shows that positivity and a dominating differential do not authorize arbitrary global integration on a prescribed source. The relative theorem makes this issue applicable to projective-space contractions and bundles without imposing the Campana--Peternell conjecture.
+
+\section{Oka notions and the meaning of a local spray}\label{en:notions}
+All manifolds and vector bundles in this paper are smooth complex analytic objects unless algebraicity is explicitly stated. A neighbourhood of a compact set is an unspecified open neighbourhood. Fix any distance inducing the topology of a target manifold.
+
+\begin{defn}\label{en:spraydef}
+Let $p:X\to B$ be a holomorphic submersion and $\pi:E\to X$ a holomorphic vector bundle. A \emph{local relative spray} is a holomorphic map $s:U\to X$, where $U\subset E$ is an open neighbourhood of the entire zero section, such that
+\[
+s(0_x)=x,\qquad p\circ s=p\circ\pi.
+\]
+Its vertical differential is the bundle map
+\[
+\phi_s:E\longrightarrow T_{X/B},\qquad
+(\phi_s)_x=\left.ds_{0_x}\right|_{E_x}.
+\]
+The spray is \emph{dominating} if $\phi_s$ is surjective. It is \emph{global} if $U=E$. Two local sprays define the same germ if they agree on some neighbourhood of the entire zero section. For $B$ a point these are absolute sprays.
+\end{defn}
+
+Here ``local'' restricts the fibre variables, not the set of base points $x\in X$. It must not be confused with an algebraic spray defined only over a Zariski open subset of $X$. A global holomorphic spray need not be an algebraic morphism.
+
+\begin{defn}
+A complex manifold $Y$ is \emph{elliptic} if it admits one global dominating spray. It is \emph{subelliptic} if finitely many global sprays have differential images whose sum is $T_yY$ at every $y$. It is \emph{Oka} if it has the convex approximation property: for every $m$, every compact convex $K\subset\C^m$, and every holomorphic map from a neighbourhood of $K$ to $Y$, entire maps $\C^m\to Y$ approximate it uniformly on $K$. This is equivalent to the usual Oka principles with approximation and interpolation \cite{en:Book}.
+
+The condition $hP(Y)$ means that every continuous map from every Stein manifold to $Y$ is homotopic to a holomorphic map. It specifies neither approximation nor interpolation. A $d$-dimensional $Y$ is \emph{dominable} if a holomorphic map $\C^d\to Y$ has surjective differential somewhere, and \emph{strongly dominable} if such a map can be chosen through every point of $Y$.
+\end{defn}
+
+\begin{defn}\label{en:okaone}
+A manifold $Y$ is \emph{Oka-1} if the following holds. For an open Riemann surface $R$, a Runge compact $K\subset R$, a closed discrete sequence $(a_j)$, a continuous $f:R\to Y$ holomorphic near $K\cup\{a_j\}$, $\epsilon>0$, and positive integers $k_j$, there is a holomorphic $F:R\to Y$, homotopic to $f$, with
+\[
+\sup_K d(F,f)<\epsilon,\qquad j^{k_j}_{a_j}F=j^{k_j}_{a_j}f\quad\text{for every }j.
+\]
+A smooth algebraic $Y$ is \emph{aOka-1} if the analogous assertion holds with $R$ a smooth affine algebraic curve, a finite interpolation set $A\subset K$, a common finite jet order, and $F$ an algebraic morphism \cite{en:AF,en:FLone}. The initial map $f$ is still continuous and holomorphic near $K$.
+\end{defn}
+
+For completeness, \emph{LSAP} is an approximation condition on sprays of maps from discs, not the existence of a spray in Definition~\ref{en:spraydef}. A special pair $D\subset D'$ consists of compact discs with piecewise smooth boundary, with $D'\setminus\mathring D$ a disc attached along an arc. LSAP at $y\in Y$ asks for a neighbourhood $V$ of $y$ such that each holomorphic $F:D\times\mathbb B^N\to V$ can, for some $r\in(0,1)$, be approximated uniformly on $D\times r\mathbb B^N$ by holomorphic maps $D'\times r\mathbb B^N\to Y$. The maps are understood to be holomorphic on neighbourhoods in the disc variable \cite[Definitions~5.1--5.2]{en:FLone}.
+
+The implications used for orientation are
+\[
+\text{elliptic}\ \Longrightarrow\ \text{subelliptic}\ \Longrightarrow\ \text{Oka}
+\ \Longrightarrow\ \text{LSAP}\ \Longrightarrow\ \text{Oka-1},
+\]
+as well as $\text{Oka}\Rightarrow hP$ and $\text{Oka}\Rightarrow$ strong dominability. The algebraic statement $\text{aOka-1}\Rightarrow\text{Oka-1}$ is distinct. No reverse arrow is assumed. An Oka map is a holomorphic map which is a Serre fibration and satisfies the parametric Oka property for liftings; holomorphic fibre bundles with Oka fibre are standard examples. Kusakabe's elliptic characterizations use sprays over Stein sources and must not be read as an unrestricted equivalence between Oka and Gromov elliptic \cite{en:Kus21,en:Kus24}. The algebraic equivalence of ellipticity and subellipticity in \cite{en:KZ} has its stated algebraic scope.
+
+\section{Geometric background and the relative Euler bundle}
+\subsection{Positivity and structure}
+A vector bundle $V$ is nef when $\cO_{\mP(V^*)}(1)$ is nef, with projectivization interpreted as lines; $X$ is Fano when it is smooth projective and $-K_X$ is ample. A CP-manifold is Fano with nef $T_X$. The assertion that every CP-manifold is rational homogeneous remains a conjecture in the generality at issue \cite{en:CP,en:DPS}. Nefness does not mean global generation.
+
+For a smooth projective manifold, the MRC quotient has rationally connected general fibres and non-uniruled base, after making the usual birational choices. It need not be a holomorphic fibre bundle. Positivity structure theorems, including those of Hosono--Iwai--Matsumura and Iwai--Matsumura--Zhong, require their exact positivity, smoothness or singularity, and projectivity hypotheses \cite{en:HIM,en:IMZ}. Compact K\"ahler extensions for pseudo-effective tangent bundles use specified analytic positivity notions \cite{en:MQ}. Results on locally constant fibrations impose additional curvature hypotheses \cite{en:Muller}. None of these results alone supplies the global fibrewise spray on a prescribed bundle required here. We use an actual holomorphic $\mP^n$-bundle, not an arbitrary MRC fibration or smooth rationally connected morphism.
+
+\subsection{The Euler bundle without a chosen vector-bundle lift}\label{en:eulerconstruction}
+Write $V_0=\C^{n+1}$ and let $\mP(V_0)$ parametrize lines. At a line $\ell\subset V_0$ put
+\[
+A_\ell=\Homop(\ell,V_0),\qquad
+\iota_\ell:\ell\hookrightarrow V_0.
+\]
+The Euler sequence is
+\begin{equation}\label{en:euler}
+0\longrightarrow\cO_{\mP^n}\xrightarrow{\iota}
+A=\cO_{\mP^n}(1)^{\oplus(n+1)}
+\xrightarrow{q}T_{\mP^n}\longrightarrow0,
+\end{equation}
+where $q_\ell$ is composition with $V_0\to V_0/\ell$.
+An element $g\in\GL(V_0)$ acts on $A$ by
+\[
+(\ell,u)\longmapsto\bigl(g\ell,\ g\circ u\circ(g|_\ell)^{-1}\bigr).
+\]
+A scalar matrix acts trivially. Thus $A$, its identity section, and its quotient map are $\PG(V_0)$-equivariant.
+
+If $p:X\to B$ is any holomorphic $\mP^n$-bundle, its transition maps take values in $\PG(V_0)$. The preceding equivariance glues the Euler sequence to
+\begin{equation}\label{en:relativeeuler}
+0\longrightarrow\cO_X\xrightarrow{\iota}\cA_p
+\xrightarrow{q}T_{X/B}\longrightarrow0.
+\end{equation}
+We call $\cA_p$ the \emph{relative Euler bundle}. If $X=\mP(V)$ for a vector bundle $V\to B$, it equals $S^*\otimes p^*V$, where $S$ is the tautological line. The equivariant construction does not require such a $V$ to exist.
+
+The formula
+\begin{equation}\label{en:canonical}
+S_p(\ell,u)=(\iota_\ell+u)(\ell)
+\end{equation}
+defines a holomorphic relative map on $\cA_p\setminus\sigma(X)$, where
+$\sigma(x)=-\iota_x$. Indeed a nonzero map from a line has a one-dimensional image, and it is zero precisely at $u=-\iota_\ell$. The formula is equivariant, sends $0_\ell$ to $\ell$, and has vertical differential $q$. It is therefore a local dominating relative spray over all of $X$.
+
+\section{Main theorem}\label{en:mainsection}
+\begin{thm}[Minimal relative sprays and nonextension]\label{en:main}
+Let $p:X\to B$ be a holomorphic fibre bundle with fibre $\mP^n$, where $n\geq2$ and $X,B$ are connected smooth compact K\"ahler manifolds. Let $E\to X$ be a holomorphic vector bundle and let $s$ be a local dominating relative spray on $E$.
+\begin{enumerate}
+\item If $\rk E\leq n+1$, then $\rk E=n+1$. There is a holomorphic bundle isomorphism $\Psi:E\to\cA_p$ over $X$ such that
+\[
+q\circ\Psi=\phi_s,\qquad s=S_p\circ\Psi
+\quad\text{as germs along the zero section.}
+\]
+\item A germ as in (1) has no holomorphic extension to all of $E$, even if the putative extension is not required to be a relative spray.
+\item The minimum rank of a local dominating relative spray is $n+1$. Every global dominating relative spray has rank at least $n+2$.
+\end{enumerate}
+\end{thm}
+
+\begin{rem}\label{en:scope}
+The proof works, unchanged, for a holomorphic $\mP^n$-bundle over any connected complex manifold. The displayed compact K\"ahler hypotheses specify the geometric setting of the paper; the properness needed below already follows from being a $\mP^n$-bundle. The lower bound concerns relative sprays. It is not a bound for absolute sprays on $X$ that move the base point in $B$.
+\end{rem}
+
+\section{Proof of the main theorem}
+\subsection{The tangent-source obstruction}
+\begin{lem}\label{en:connection}
+If a complex manifold $Y$ admits a local spray on $T_Y$ whose vertical differential is the identity, then $T_Y$ has a torsion-free holomorphic affine connection. Consequently $\mP^n$, $n\geq1$, has no such spray. Moreover, the differential of a local dominating spray on $\mP^n$ cannot admit a holomorphic right inverse.
+\end{lem}
+\begin{proof}
+In local coordinates $z$, with tangent coordinate $v$, write
+\[
+s_i(z,v)=z+v+\tfrac12 B_i(z)(v,v)+O(|v|^3),
+\]
+where $B_i$ is holomorphic and symmetric bilinear. For a change of coordinates $y=f(z)$ the tangent variable becomes $w=Df(z)v$. Expanding $f(s_i(z,v))$ to order two gives
+\begin{equation}\label{en:connectionlaw}
+B_j(f(z))(Df(z)v,Df(z)v)
+=Df(z)B_i(z)(v,v)+D^2f(z)(v,v).
+\end{equation}
+Set $\Gamma_i=-B_i$. Equation~\eqref{en:connectionlaw}, polarized in the two tangent arguments, is exactly the transformation rule for the Christoffel coefficients of a connection: the $D^2f$ term is cancelled when differentiating a transformed vector field. Explicitly,
+\[
+(\nabla_U V)_i=dV_i(U_i)+\Gamma_i(U_i,V_i)
+\]
+transforms by $Df$, satisfies the Leibniz rule, and is torsion-free because $\Gamma_i$ is symmetric. This proves the first assertion directly; the general connection framework is discussed in \cite{en:Atiyah}.
+
+For $Y=\mP^n$, the induced determinant connection would be a holomorphic connection on $\det T_Y=\cO(n+1)$. Pull it back to a projective line. A holomorphic line-bundle connection on $\mP^1$ is flat, since its curvature is a holomorphic two-form. Parallel transport on the simply connected $\mP^1$ then trivializes the line bundle, so its degree is zero. This contradicts $\deg\cO_{\mP^1}(n+1)=n+1$.
+
+Finally, if $\phi:E\to T_{\mP^n}$ had a holomorphic right inverse $j$, the composite $s\circ j$ would be defined near the zero section of $T_{\mP^n}$ and have vertical differential $\phi j=\id$. This is the already excluded case.
+\end{proof}
+
+\subsection{Cohomology and extensions on a fibre}
+\begin{lem}\label{en:cohom}
+For $n\geq2$ and $a\in\Z$,
+\begin{equation}\label{en:extcalc}
+H^1(\mP^n,\Omega^1_{\mP^n}(a))=
+\begin{cases}\C,&a=0,\\0,&a\ne0.\end{cases}
+\end{equation}
+For every $k\geq2$,
+\begin{equation}\label{en:jetvanish}
+H^0(\mP^n,T_{\mP^n}(-k))=0.
+\end{equation}
+\end{lem}
+\begin{proof}
+The line-bundle cohomology of projective space gives $H^1(\mP^n,\cO(a))=0$ for all $a$ when $n\geq2$; one may use \cite[Lemma~30.8.1]{en:Stacks} and GAGA \cite{en:Serre}. In the twisted cotangent Euler sequence
+\[
+0\longrightarrow\Omega^1(a)\longrightarrow
+\cO(a-1)^{\oplus(n+1)}\longrightarrow\cO(a)\longrightarrow0,
+\]
+the desired $H^1$ is therefore the cokernel of the map on $H^0$. For $a<0$ both spaces of sections are zero. For $a=0$ they are respectively zero and $\C$. For $a\geq1$ the map sends $(P_i)$ to $\sum x_iP_i$, which is onto because every degree-$a$ monomial is divisible by some $x_i$. This proves \eqref{en:extcalc}.
+
+Twisting \eqref{en:euler} by $\cO(-k)$ gives
+\[
+0\longrightarrow\cO(-k)\longrightarrow
+\cO(1-k)^{\oplus(n+1)}\longrightarrow T_{\mP^n}(-k)\longrightarrow0.
+\]
+For $k\geq2$ the middle $H^0$ and the first $H^1$ vanish, proving \eqref{en:jetvanish}.
+\end{proof}
+
+\begin{lem}\label{en:fibreclass}
+If $s$ is a local dominating spray on a rank-$r$ holomorphic bundle $E\to\mP^n$, where $n\geq2$ and $r\leq n+1$, then $r=n+1$ and its differential fits, after a bundle isomorphism, into the Euler sequence \eqref{en:euler}.
+\end{lem}
+\begin{proof}
+Surjectivity gives $r\geq n$. If $r=n$, the differential is a bundle isomorphism, contradicting Lemma~\ref{en:connection}. For $r=n+1$, its kernel is a line bundle and hence is $\cO(a)$ for some $a\in\Z$. The resulting extension is classified by
+\[
+\Ext^1(T_{\mP^n},\cO(a))
+=H^1(\mP^n,\Omega^1_{\mP^n}(a)).
+\]
+If $a\ne0$, Lemma~\ref{en:cohom} forces a split extension, which is excluded by Lemma~\ref{en:connection}. For $a=0$ the extension class must be nonzero. The Euler class is nonzero: a split Euler sequence would have $h^0(A^*)\geq h^0(\cO)=1$, whereas $A^*=\cO(-1)^{\oplus(n+1)}$ has no sections. Since the extension space is one-dimensional, rescaling the identification of the kernel with $\cO$ makes the two extension classes equal. Equivalence of extensions gives an isomorphism $E\to A$ inducing the identity on the quotient $T_{\mP^n}$.
+\end{proof}
+
+\subsection{Rigidity of higher vertical jets}
+\begin{lem}\label{en:jets}
+Let $E\to X$ be a holomorphic vector bundle and $p:X\to B$ a holomorphic submersion. Suppose
+\[
+H^0\bigl(X,\Hom(\Sym^k E,T_{X/B})\bigr)=0\quad\text{for every }k\geq2.
+\]
+Two local relative sprays on $E$ having the same vertical differential agree as germs along the zero section.
+\end{lem}
+\begin{proof}
+Their values at zero and their first vertical jets agree by assumption. Suppose inductively that the jets agree through degree $k-1$. In a source bundle trivialization and relative target coordinates, subtract their degree-$k$ fibrewise Taylor terms. A target-coordinate change acts on this difference by its first derivative: all nonlinear contributions involve lower differences, which are zero. Source transition functions are linear in the fibre variables. The differences consequently glue to a holomorphic section of $\Hom(\Sym^k E,T_{X/B})$. This section is zero by hypothesis, completing the induction.
+
+At each point of the zero section choose coordinate neighbourhoods on which both maps are holomorphic. All fibre derivatives of their coordinate difference vanish at zero, for every base point in a smaller neighbourhood. The convergent Taylor expansions in the fibre variables therefore coincide on a neighbourhood of that part of the zero section. Taking the union over the base points proves equality of germs. This last step uses convergence of holomorphic Taylor series, not a formal-to-analytic assertion without justification.
+\end{proof}
+
+For $A=\cO(1)^{\oplus(n+1)}$, the sheaf $\Hom(\Sym^k A,T_{\mP^n})$ is a direct sum of copies of $T_{\mP^n}(-k)$. Thus Lemmas~\ref{en:cohom} and \ref{en:jets} already classify the full germ on each projective-space fibre.
+
+\subsection{Descent of the source and its extension class}
+\begin{proof}[Proof of Theorem~\ref{en:main}]
+Assume first $r=\rk E\leq n+1$. For each $b\in B$ the restriction to $F_b=p^{-1}(b)$ is a local dominating spray on $\mP^n$. Lemma~\ref{en:fibreclass} gives $r=n+1$ and shows that the line bundle $K=\ker\phi_s$ restricts trivially to every fibre. In particular $h^0(F_b,K|_{F_b})=1$ and $h^1(F_b,K|_{F_b})=0$. Proper holomorphic base change \cite{en:Grauert} implies that $M=p_*K$ is a line bundle and the evaluation map
+\[
+p^*M\longrightarrow K
+\]
+is an isomorphism: on each fibre it is evaluation of the constant sections of a trivial line bundle, hence is everywhere nonzero.
+
+Put $\Omega=\Omega^1_{X/B}$. On a local product chart for $p$, cohomology on the fibres and Lemma~\ref{en:cohom} give
+\[
+p_*\Omega=0,\qquad R^1p_*\Omega\simeq\cO_B.
+\]
+The second identification is global and canonical after choosing the Euler class as generator. Indeed every projective linear transformation preserves the equivariant Euler extension, so acts trivially on its one-dimensional extension space. Projection formula and the low-degree terms of the Leray spectral sequence now give
+\begin{equation}\label{en:leray}
+\Ext^1(T_{X/B},p^*M)
+=H^1(X,\Omega\otimes p^*M)
+\simeq H^0(B,M).
+\end{equation}
+There are no other contributions in degree one or an outgoing differential here: the terms $H^1(B,p_*(\Omega\otimes p^*M))$ and $H^2(B,p_*(\Omega\otimes p^*M))$ both vanish.
+
+Under \eqref{en:leray} the extension defined by $E$ corresponds to a holomorphic section $e$ of $M$, and $e(b)$ is its fibre extension class in the Euler normalization. Each such class is nonzero by Lemma~\ref{en:fibreclass}. Hence $e$ is nowhere zero and trivializes $M$. In this trivialization the extension class is $1$, precisely the class of \eqref{en:relativeeuler}. We obtain an isomorphism $\Psi:E\to\cA_p$ satisfying $q\Psi=\phi_s$.
+
+For $k\geq2$, every global section of
+$\Hom(\Sym^k\cA_p,T_{X/B})$ restricts on every fibre to a direct sum of sections of $T_{\mP^n}(-k)$, hence to zero. It is zero at every point of $X$. Apply Lemma~\ref{en:jets} to $s\Psi^{-1}$ and $S_p$. Their vertical differentials are both $q$, so their germs agree. This proves (1).
+
+For nonextension fix $x=\ell$ in a product chart and view $(\cA_p)_x=\Homop(\ell,V_0)$. Choose nonzero maps $a,b:\ell\to V_0$ whose images are distinct lines. Along the punctured paths
+\[
+u_a(t)=-\iota_\ell+ta,\qquad
+u_b(t)=-\iota_\ell+tb\qquad(t\ne0),
+\]
+formula \eqref{en:canonical} has constant values $a(\ell)$ and $b(\ell)$ respectively. Thus it has no continuous extension at $-\iota_\ell$.
+
+If a holomorphic extension of the germ to all of $E$ existed, conjugate it by $\Psi$ and restrict it to this vector fibre. It agrees with $S_p$ on an open neighbourhood of $0$. The domain $(\cA_p)_x\setminus\{-\iota_\ell\}$ is connected, so the identity theorem for holomorphic maps into a complex manifold gives equality on that punctured fibre. The two different limits contradict continuity of the proposed extension. This argument does not assume that the extension preserves $p$, proving (2). Finally \eqref{en:canonical} gives a rank-$n+1$ local spray; (1) excludes smaller ranks and (2) excludes all global ranks at most $n+1$. This proves (3).
+\end{proof}
+
+\section{Consequences, bounds, and tests on examples}
+\begin{cor}\label{en:globalbounds}
+For $n\geq2$, let $r_{\mathrm{glob}}(\mP^n)$ denote the minimum rank of a global dominating holomorphic spray on $\mP^n$, allowing arbitrary holomorphic source bundles. Then
+\[
+n+2\leq r_{\mathrm{glob}}(\mP^n)\leq2n.
+\]
+In particular $r_{\mathrm{glob}}(\mP^2)=4$, while its minimum local rank is $3$. If the source is required to be trivial, its minimum rank is $2n$ both locally and globally, also for $n=1$.
+\end{cor}
+\begin{proof}
+The lower bound for arbitrary sources is Theorem~\ref{en:main}. We give the upper bound and the trivial-source assertion explicitly, without claiming their independent novelty.
+
+Put $W=H^0(\mP^n,T_{\mP^n})$. Evaluation $W\to T_x\mP^n$ is surjective because the projective linear action is transitive. In $W^{2n}$, the tuples whose values at a fixed $x$ fail to span have codimension $2n-n+1=n+1$, the codimension of the matrices of rank at most $n-1$ in the space of $n\times2n$ matrices. The incidence set of bad tuples and points therefore has dimension at most $\dim W^{2n}-1$. Its projection to $W^{2n}$ is closed since $\mP^n$ is proper. Choose a tuple $(V_1,\ldots,V_{2n})$ outside that projection. These fields span at every point. They are induced by matrices $A_i$ modulo scalars; their entire flows are $x\mapsto\exp(tA_i)x$. Hence
+\begin{equation}\label{en:flows}
+s(x,t_1,\ldots,t_{2n})
+=\exp(t_1A_1)\cdots\exp(t_{2n}A_{2n})x
+\end{equation}
+is a global holomorphic spray from the trivial rank-$2n$ bundle. Its differential at zero is $\sum t_iV_i(x)$ and is surjective.
+
+Conversely, a dominating differential from $\cO^r$ has a kernel bundle $K$ of rank $r-n$. Write $h=c_1(\cO(1))$. The Euler sequence gives $c(T_{\mP^n})=(1+h)^{n+1}$, so
+\[
+c(K)=(1+h)^{-(n+1)},\qquad
+c_n(K)=(-1)^n\binom{2n}{n}h^n\ne0.
+\]
+A bundle of rank less than $n$ has zero $n$th Chern class. Thus $r-n\geq n$, proving $r\geq2n$. This argument applies to a local differential as well. Formula~\eqref{en:flows} proves sharpness.
+\end{proof}
+
+\begin{prop}\label{en:relativeexistence}
+Every holomorphic $\mP^n$-bundle admits a global dominating relative holomorphic spray of rank $(n+1)^2-1$.
+\end{prop}
+\begin{proof}
+Let $P\to B$ be its principal $\PG(n+1,\C)$-bundle and let $\operatorname{ad}(P)$ be the associated bundle with fibre $\mathfrak{sl}_{n+1}(\C)$ and conjugation action. On $p^*\operatorname{ad}(P)\to X$, define in a product chart
+\[
+(b,\ell,A)\longmapsto (b,\exp(A)\ell).
+\]
+Since $\exp(gAg^{-1})=g\exp(A)g^{-1}$, the local maps glue. The exponential is defined for every matrix, and the derivative is the infinitesimal transitive projective linear action. This proves both global definition and relative domination. No algebraicity of the exponential is asserted.
+\end{proof}
+
+\begin{eg}[Sharp boundary in dimension one]\label{en:pone}
+For $\mP^1$, Corollary~\ref{en:globalbounds}'s trivial-source argument gives a global spray of rank $2$. Thus the bound $n+2$ in the main theorem would be false for $n=1$. Precisely the vanishings used in Lemma~\ref{en:cohom} fail: $T_{\mP^1}(-2)\simeq\cO$ and $H^1(\mP^1,\cO(-2))\ne0$. This is a counterexample to removing the dimension hypothesis, not an omitted case of the proof.
+\end{eg}
+
+The following tests delimit the conclusion. They do not turn known examples into new Oka results.
+\begin{itemize}
+\item For $\mP^1\times\mP^{n-1}$, projection to $\mP^1$ is covered when $n-1\geq2$. For $\mP^1\times\mP^1$ that projection has one-dimensional fibres and is excluded. The other projection has $\mP^1$ fibres and is likewise excluded.
+\item Quadrics, flag manifolds and rational homogeneous manifolds are elliptic. The theorem applies to their morphisms only when those morphisms are actual projective-space bundles of the required fibre dimension. The Euler cohomology calculation is not being asserted for an arbitrary homogeneous fibre.
+\item Smooth toric Fano manifolds and smooth projective rational varieties provide many Oka examples. For the latter, the current algebraic ellipticity results follow from Banecki's retract-rational work \cite{en:Banecki}. The Hirzebruch surface $\mathbb F_1=\operatorname{Bl}_{\mathrm{pt}}\mP^2$ is Fano and Oka, but its tangent bundle is not nef: on the exceptional curve it has the quotient normal bundle $\cO_{\mP^1}(-1)$. Thus the argument must not confuse Fano with nef tangent, or a nonextension obstruction with non-Oka behaviour.
+\item On a complex torus $T=\C^d/\Lambda$, addition gives a global spray $T\times\C^d\to T$ of rank $d$. This includes abelian varieties and nonprojective compact K\"ahler tori, with nef tangent and non-Fano canonical class. A universal compact K\"ahler lower bound $d+2$ would be false.
+\item Kummer K3 surfaces and elliptic K3 surfaces are Oka-1 examples in \cite{en:AF}; their full Oka property is not supplied by that result. Arbitrary K3 surfaces and arbitrary elliptic surfaces are not covered by an unqualified assertion here. In particular, they are not presented as proved examples of Oka-1 manifolds failing to be Oka.
+\item Blow-ups require separate control. Blow-ups of smooth projective rational varieties along smooth centres remain smooth projective rational varieties and lie in the preceding known class. No assertion that every blow-up of every Oka manifold is Oka is used.
+\end{itemize}
+
+\section{Campana specialness, the core, and the \texorpdfstring{$h$}{h}-principle}
+A smooth compact K\"ahler manifold is special if it has no Bogomolov sheaf: no saturated rank-one subsheaf $L\subset\Omega_X^a$, $1\leq a\leq\dim X$, with $\kappa(L)=a$. Campana's core separates a special general fibre from an orbifold base of general type. Rationally connected manifolds and manifolds of Kodaira dimension zero are special \cite{en:Campana}.
+
+There is an important distinction in the audit. Campana's Corollary~8.11 in \cite{en:Campana} states that a $\C^d$-dominable compact manifold in Fujiki class $\mathcal C$ is special. Since an Oka manifold is strongly dominable, this already implies
+\[
+X\text{ compact K\"ahler and Oka}\ \Longrightarrow\ X\text{ special}.
+\]
+This is a known consequence, not a theorem of the present paper. For the weaker condition $hP$ alone, the projective result is Campana--Winkelmann's theorem \cite{en:CWhP}; their compact K\"ahler extension is posed as a conjecture. Its projective proof cannot simply be transferred using an unverified analogue of the Jouanolou construction. Our proof uses neither such a transfer nor a new vanishing theorem for the core.
+
+Holomorphic fibre bundles with Oka fibre have Oka total space exactly when the base is Oka \cite{en:Book}. Thus a projective-space bundle over an Oka torus is Oka by known theory. It is consequently special when compact K\"ahler, while its relative minimum-rank spray still has the nonextension proved here. There is no incompatibility: global sprays on other source bundles remain available, as Proposition~\ref{en:relativeexistence} illustrates in the vertical directions.
+
+Oka manifolds have vanishing Kobayashi pseudodistance, by interpolation at two points of $\C$. Dense entire curves in rationally connected manifolds are provided by Campana--Winkelmann \cite{en:CWdense}. Neither the existence of one dense curve nor vanishing pseudodistance supplies the approximation property in Definition~\ref{en:okaone}, let alone the full Oka property. No general converse from specialness is used.
+
+\section{Oka-1, rational connectedness, and version control}\label{en:versions}
+The version distinction is mathematically consequential. In the first arXiv version of \cite{en:AF}, Section~9 presented rationally connected compact manifolds as Oka-1, with an argument based on Gournay \cite{en:Gournay}. The final arXiv version, v5 of 10 April 2025, instead labels the projective assertion \emph{Conjecture~9.1} and explains that the authors could not understand the required proof in Gournay's paper. The 2023 R\'enyi lecture slides \cite{en:Slides} also state the earlier theorem; they are not a replacement for the later proof assessment. The ICM survey \cite{en:ICM}, arXiv v1 of 25 September 2025, continues to describe the general assertion as conjectural.
+
+Benoist--Wittenberg prove tight approximation under rational simple connectedness hypotheses \cite{en:BW}, including their projective constant-target application. This gives aOka-1 and Oka-1 in that class, with a proof in the paper; smooth degree-$d$ hypersurfaces in $\mP^N$ with $N\geq d^2-1$ are among their applications. It does not establish the assertion for every rationally connected manifold. Unirational smooth projective manifolds are known to be Oka-1 through dense dominability; this does not prove that they are Oka or aOka-1. A different established source of aOka-1 examples is birational equivalence to an algebraically elliptic projective manifold \cite[Theorem~1.6 and Remark~1.10]{en:FLone}. Projective aOka-1 manifolds are rationally connected, but an analytic Oka manifold need not be: an abelian variety of positive dimension is Oka and is not rationally connected.
+
+Accordingly, the implications $\text{Fano}\Rightarrow\text{rationally connected}$ and $T_X$ nef do not settle either the general Oka problem for CP-manifolds or a rank-constrained spray construction. Our main theorem needs none of the unsettled rational-connectedness implications. Its targets along the fibres are homogeneous, where ellipticity is already known.
+
+\section{Further questions}
+For $n\geq3$, what is $r_{\mathrm{glob}}(\mP^n)$ between $n+2$ and $2n$? The Chern-class proof determines only the trivial-source minimum; it does not exclude nontrivial source bundles of intermediate ranks. The rank-$n+1$ extension argument cannot be reused without new input once its kernel has rank at least two.
+
+For which homogeneous fibres $F$ can one classify low-rank extensions onto $T_F$ and obtain the higher-jet vanishing needed in Lemma~\ref{en:jets}? The projective-space proof suggests these two precise tasks, not an automatic generalization to all flags or quadrics. For a projective-space bundle, can monodromy force a larger global relative minimum than that on a single fibre?
+
+For positive tangent bundles beyond the homogeneous case, a concrete missing step is to construct a global dominating spray with a specified source and verify all its fibre variables, rather than merely integrate its first differential formally. We do not give such a construction for all CP-manifolds. The present obstruction shows why an argument based only on free curves or a bundle epimorphism must address this step separately.
+
+\section{Research and novelty audit}\label{en:audit}
+The audit was performed on 9 September 2026. It used original arXiv versions, available published or author-hosted full texts, publisher bibliographic records, author publication lists, and references in the papers. Public web searches included combinations of ``minimal rank holomorphic spray projective space'', ``Euler sequence spray'', ``local spray source bundle'', and ``projective bundle spray obstruction'', followed by the 2024--2026 literature cited below. Some exact-phrase searches produced no useful mathematical match. Absence from such searches is not evidence of an exhaustive search. No subscription MathSciNet search or exhaustive Google Scholar cited-by enumeration is claimed; publisher, arXiv and reference-list records supplied the accessible bibliographic audit.
+
+\subsection{Candidate selection}
+The following records the ten candidates actually considered. A candidate marked CONDITIONAL was not promoted to a theorem. ``Verified new candidate'' combines a completed proof with the bounded novelty assessment above.
+\begin{enumerate}
+\item Projective $hP\Rightarrow$ special: ALREADY KNOWN. Tool: Campana--Winkelmann; obstruction to novelty: identical conclusion.
+\item Compact K\"ahler Oka $\Rightarrow$ special: ALREADY KNOWN. Tool: dominability and Campana's Corollary~8.11; obstruction: already an immediate known consequence.
+\item Projective Oka $\Rightarrow$ elliptic: ALREADY KNOWN. Tool: negative source bundles and Oka approximation; the 2026 Forstneri\v c--L\'arusson paper proves it.
+\item All CP-manifolds are Oka: CONDITIONAL as explored. Homogeneity would suffice; the required general classification or replacement spray construction was not obtained.
+\item All rationally connected projective manifolds are Oka-1: CONDITIONAL as explored. Tool proposed in earlier literature: Gournay approximation; the latest proof assessment prevents its use as an established theorem.
+\item Homogeneous-fibre bundles over Oka tori are Oka: TRIVIAL CONSEQUENCE. Tool: the Oka fibre-bundle theorem; no new argument remains.
+\item Every compact K\"ahler Oka manifold is elliptic: CONDITIONAL as explored. The projective negative-line-bundle mechanism has not been justified in the nonprojective case.
+\item Integration of an assigned epimorphism after sufficiently negative twisting: TRIVIAL CONSEQUENCE in the projective Oka setting. Given an existing dominating spray $F\to X$ with differential $F\to T_X$, Serre vanishing lifts a map $L^{-m\,\oplus N}\to T_X$ to $F$ for $m$ sufficiently large; precomposition gives the spray. This does not furnish an independent new existence result.
+\item Rank-$n+1$ source and germ rigidity on $\mP^n$, $n\geq2$: VERIFIED NEW CANDIDATE. Tools: the connection obstruction, Euler extensions, and higher-jet vanishing; the nonextension is proved by explicit limits.
+\item Relative rigidity and nonextension for $\mP^n$-bundles: VERIFIED NEW CANDIDATE, selected as the main result. Additional tool: descent of the kernel and of the Euler extension class; no vector-bundle lift of the projective bundle is assumed.
+\end{enumerate}
+
+\subsection{Final theorem audit}
+\begin{description}[style=nextline,leftmargin=0pt,labelwidth=0pt,labelsep=0pt]
+\item[Main theorem.] Theorem~\ref{en:main}: classification of local relative sprays of rank at most $n+1$ and the global lower bound $n+2$ for $n\geq2$.
+\item[Nearest known result.] Problem~3.2 and Proposition~3.3 of \cite{en:FLell} concern allowable local source bundles and the obstruction supplied by global generation. Classical homogeneous sprays already give existence.
+\item[Precise difference.] We identify the minimum source, determine its entire germ, descend the classification in families, and prove nonextension on that source. This is not the homogeneity conclusion, nor a new proof of existence of some spray.
+\item[Why nontrivial.] The proof requires a nonsplit extension calculation, elimination of all higher jets, a base-change and extension-class argument, and a genuine analytic nonextension. No cited theorem directly states these conclusions.
+\item[Immediate consequence check.] Global generation alone gives homogeneity, not a classification of the source or its higher jets. The negative-source existence theorem changes the source and so does not extend the Euler germ. The rejected twisting candidate explains a nearby argument which would only give a mechanical consequence.
+\item[Counterexample search.] Section~6 checks homogeneous varieties, toric Fano and blow-up examples, tori, K3 and elliptic surfaces; $\mP^1$ disproves removal of $n\geq2$, and tori disprove a universal dimension-only bound.
+\item[Novelty search.] No matching statement was located in the inspected corpus or the searches described above. Priority remains subject to literature beyond that corpus.
+\item[Proof status: VERIFIED.] Every step is proved above or uses the stated elementary cohomology, GAGA or proper base-change theorem with its hypotheses checked. Here VERIFIED means checked within this manuscript's research process, not independent peer review.
+\end{description}
+
+\subsection{Versions and sources actually checked}
+For \cite{en:AF}, both v1 (2023) and v5 (10 April 2025) were compared; the latter agrees with the 2025 published bibliographic record. For \cite{en:FLone}, v4 (29 December 2024) was read. For \cite{en:FLell}, v6 (5 May 2026), including Section~3, was read and the 2026 journal record checked. For \cite{en:BW}, the author-hosted full proof and 2025 publication were checked. Banecki's v4 of 3 August 2026 was included \cite{en:Banecki}. Campana's printed Corollary~8.11, the published \cite{en:CWhP}, and the full text of \cite{en:CWdense} were checked. The 2026 lecture material and the ICM survey were used to compare status, never to substitute for an unavailable proof. Positivity papers \cite{en:IMZ,en:MQ,en:Muller} were inspected for hypotheses, but are not inputs to Theorem~\ref{en:main}.
+
+The general Fano/CP Oka problem remains unresolved by this work. The verified outcome is the source-rigidity and rank-obstruction theorem, with the concrete minimum $r_{\mathrm{glob}}(\mP^2)=4$ and its relative extension.
+
+\begin{thebibliography}{99}
+\bibitem[1]{en:AF}
+A. Alarc\'on and F. Forstneri\v c,
+\emph{Oka-1 manifolds}, Math. Z. \textbf{311} (2025), no.~2, article~33, 34~pp.
+\href{https://doi.org/10.1007/s00209-025-03833-4}{doi:10.1007/s00209-025-03833-4}.
+\href{https://arxiv.org/abs/2303.15855v5}{arXiv:2303.15855v5}; v1 also consulted.
+
+\bibitem[2]{en:Atiyah}
+M. F. Atiyah, \emph{Complex analytic connections in fibre bundles},
+Trans. Amer. Math. Soc. \textbf{85} (1957), 181--207.
+\href{https://doi.org/10.1090/S0002-9947-1957-0086359-5}{doi:10.1090/S0002-9947-1957-0086359-5}.
+
+\bibitem[3]{en:Banecki}
+J. Banecki, \emph{Retract rational varieties are uniformly retract rational},
+preprint (2024), version~4, 3 August 2026, 8~pp.
+\href{https://arxiv.org/abs/2411.17892v4}{arXiv:2411.17892v4}.
+
+\bibitem[4]{en:BW}
+O. Benoist and O. Wittenberg,
+\emph{Tight approximation for rationally simply connected varieties},
+Taiwanese J. Math. \textbf{29} (2025), no.~6, 1165--1183.
+\href{https://doi.org/10.11650/tjm/250702}{doi:10.11650/tjm/250702}.
+
+\bibitem[5]{en:Campana}
+F. Campana, \emph{Orbifolds, special varieties and classification theory},
+Ann. Inst. Fourier (Grenoble) \textbf{54} (2004), no.~3, 499--630.
+\href{https://doi.org/10.5802/aif.2027}{doi:10.5802/aif.2027};
+\href{https://arxiv.org/abs/math/0110051}{arXiv:math/0110051}.
+
+\bibitem[6]{en:CP}
+F. Campana and T. Peternell,
+\emph{Projective manifolds whose tangent bundles are numerically effective},
+Math. Ann. \textbf{289} (1991), 169--187.
+\href{https://doi.org/10.1007/BF01446566}{doi:10.1007/BF01446566}.
+
+\bibitem[7]{en:CWhP}
+F. Campana and J. Winkelmann,
+\emph{On the h-principle and specialness for complex projective manifolds},
+Algebr. Geom. \textbf{2} (2015), no.~3, 298--314.
+\href{https://doi.org/10.14231/AG-2015-013}{doi:10.14231/AG-2015-013};
+\href{https://arxiv.org/abs/1210.7369}{arXiv:1210.7369}.
+
+\bibitem[8]{en:CWdense}
+F. Campana and J. Winkelmann, with an appendix by J. Koll\'ar,
+\emph{Dense entire curves in rationally connected manifolds},
+Algebr. Geom. \textbf{10} (2023), no.~5, 521--553.
+\href{https://arxiv.org/abs/1905.01104v3}{arXiv:1905.01104v3}.
+
+\bibitem[9]{en:DPS}
+J.-P. Demailly, T. Peternell and M. Schneider,
+\emph{Compact complex manifolds with numerically effective tangent bundles},
+J. Algebraic Geom. \textbf{3} (1994), no.~2, 295--345. MR1257325.
+\href{https://eref.uni-bayreuth.de/id/eprint/59615/}{Author-institution bibliographic record}.
+
+\bibitem[10]{en:Book}
+F. Forstneri\v c,
+\emph{Stein manifolds and holomorphic mappings: The homotopy principle in complex analysis},
+2nd ed., Ergebnisse der Mathematik und ihrer Grenzgebiete, 3. Folge, vol.~56,
+Springer, Cham, 2017.
+\href{https://doi.org/10.1007/978-3-319-61058-0}{doi:10.1007/978-3-319-61058-0}.
+
+\bibitem[11]{en:Recent}
+F. Forstneri\v c, \emph{Recent developments on Oka manifolds},
+Indag. Math. (N.S.) \textbf{34} (2023), no.~2, 367--417.
+\href{https://arxiv.org/abs/2006.07888}{arXiv:2006.07888}.
+
+\bibitem[12]{en:ICM}
+F. Forstneri\v c,
+\emph{From Stein manifolds to Oka manifolds: the h-principle in complex analysis},
+ICM 2026 survey, preprint (2025).
+\href{https://arxiv.org/abs/2509.21197v1}{arXiv:2509.21197v1}.
+
+\bibitem[13]{en:Slides}
+F. Forstneri\v c, \emph{Oka-1 manifolds}, lecture slides,
+Alfr\'ed R\'enyi Institute, Budapest, 27 June 2023,
+\url{https://users.fmf.uni-lj.si/forstneric/datoteke/2023-Renyi.pdf};
+\emph{From Stein manifolds to Oka manifolds: the h-principle in complex analysis},
+ICM 2026 lecture slides,
+\url{https://users.fmf.uni-lj.si/forstneric/datoteke/ICM2026.pdf}.
+Accessed 9 September 2026; used only for version comparison.
+
+\bibitem[14]{en:FLone}
+F. Forstneri\v c and F. L\'arusson,
+\emph{Oka-1 manifolds: New examples and properties},
+Math. Z. \textbf{309} (2025), no.~2, article~26, 16~pp.
+\href{https://doi.org/10.1007/s00209-024-03649-8}{doi:10.1007/s00209-024-03649-8};
+\href{https://arxiv.org/abs/2402.09798v4}{arXiv:2402.09798v4}.
+
+\bibitem[15]{en:FLell}
+F. Forstneri\v c and F. L\'arusson,
+\emph{Every projective Oka manifold is elliptic},
+Math. Res. Lett. \textbf{33} (2026), no.~1, 297--312.
+\href{https://doi.org/10.4310/MRL.260503003231}{doi:10.4310/MRL.260503003231};
+\href{https://arxiv.org/abs/2502.20028v6}{arXiv:2502.20028v6}.
+
+\bibitem[16]{en:Gournay}
+A. Gournay, \emph{A Runge approximation theorem for pseudo-holomorphic maps},
+Geom. Funct. Anal. \textbf{22} (2012), no.~2, 311--351.
+\href{https://arxiv.org/abs/1006.2005v2}{arXiv:1006.2005v2}.
+
+\bibitem[17]{en:Grauert}
+H. Grauert,
+\emph{Ein Theorem der analytischen Garbentheorie und die Modulr\"aume komplexer Strukturen},
+Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{5} (1960), 5--64.
+\url{https://www.numdam.org/item/PMIHES_1960__5__5_0/}.
+
+\bibitem[18]{en:Gromov}
+M. Gromov, \emph{Oka's principle for holomorphic sections of elliptic bundles},
+J. Amer. Math. Soc. \textbf{2} (1989), no.~4, 851--897.
+\href{https://doi.org/10.2307/1990897}{doi:10.2307/1990897}.
+
+\bibitem[19]{en:HIM}
+G. Hosono, M. Iwai and S.-i. Matsumura,
+\emph{On projective manifolds with pseudo-effective tangent bundle},
+J. Inst. Math. Jussieu \textbf{21} (2022), no.~5, 1801--1830.
+\href{https://doi.org/10.1017/S1474748020000754}{doi:10.1017/S1474748020000754};
+\href{https://arxiv.org/abs/1908.06421}{arXiv:1908.06421}.
+
+\bibitem[20]{en:IMZ}
+M. Iwai, S.-i. Matsumura and G. Zhong,
+\emph{Positivity of tangent sheaves of projective varieties---the structure of MRC fibrations},
+preprint (2023), version~2, 22 July 2025, 40~pp., announced for Algebr. Geom.
+\href{https://arxiv.org/abs/2309.09489v2}{arXiv:2309.09489v2}.
+
+\bibitem[21]{en:KZ}
+S. Kaliman and M. Zaidenberg, \emph{Gromov ellipticity and subellipticity},
+Forum Math. \textbf{36} (2024), no.~2, 373--376.
+\href{https://arxiv.org/abs/2301.03058}{arXiv:2301.03058}.
+
+\bibitem[22]{en:Kus21}
+Y. Kusakabe, \emph{Elliptic characterization and localization of Oka manifolds},
+Indiana Univ. Math. J. \textbf{70} (2021), no.~3, 1039--1054.
+\href{https://doi.org/10.1512/iumj.2021.70.8454}{doi:10.1512/iumj.2021.70.8454};
+\href{https://arxiv.org/abs/1808.06290}{arXiv:1808.06290}.
+
+\bibitem[23]{en:Kus24}
+Y. Kusakabe, \emph{Oka properties of complements of holomorphically convex sets},
+Ann. of Math. (2) \textbf{199} (2024), no.~2, 899--917.
+\href{https://arxiv.org/abs/2005.08247v2}{arXiv:2005.08247v2}.
+
+\bibitem[24]{en:MQ}
+S.-i. Matsumura and C. Qing,
+\emph{On compact K\"ahler manifolds with pseudo-effective tangent bundle},
+preprint (2025), 10~pp.
+\href{https://arxiv.org/abs/2502.00623v1}{arXiv:2502.00623v1}.
+
+\bibitem[25]{en:Muller}
+N. M\"uller, \emph{Locally constant fibrations and positivity of curvature},
+Bull. Lond. Math. Soc. \textbf{57} (2025), no.~4, 1005--1025.
+\href{https://doi.org/10.1112/blms.70012}{doi:10.1112/blms.70012};
+\href{https://arxiv.org/abs/2212.11530v3}{arXiv:2212.11530v3}.
+
+\bibitem[26]{en:Serre}
+J.-P. Serre, \emph{G\'eom\'etrie alg\'ebrique et g\'eom\'etrie analytique},
+Ann. Inst. Fourier (Grenoble) \textbf{6} (1955--1956), 1--42.
+\url{https://www.numdam.org/item/AIF_1956__6__1_0/}.
+
+\bibitem[27]{en:Stacks}
+The Stacks Project Authors, \emph{The Stacks Project},
+Section~30.8, Cohomology of projective space, Lemma~30.8.1, Tag~01XS.
+\url{https://stacks.math.columbia.edu/tag/01XS}. Accessed 9 September 2026.
+
+\end{thebibliography}
+\newpage
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\setcounter{thm}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHequation}{ja.\arabic{section}.\arabic{equation}}
+\renewcommand{\theHthm}{ja.\arabic{section}.\arabic{thm}}
+\renewcommand{\proofname}{証明}
+\markboth{chatGPT 6 Astra}{射影空間束上の最小局所 spray}
+\begin{center}
+{\Large\bfseries 射影空間束上の最小局所 spray とランク障害\par}
+\medskip
+{\large chatGPT 6 Astra\par}
+\medskip
+2026年9月9日\quad 日本語版全文
+\end{center}
+\medskip
+\noindent\textbf{概要.}
+射影空間束上の正則 spray の源となるベクトル束を調べる。
+$p:X\to B$ を連結な滑らかなコンパクト K\"ahler 多様体間の正則 $\mP^n$ 束とし、$n\geq2$ とする。
+零切断全体の近傍で定義された支配的な相対 spray の源のランクが $n+1$ 以下ならば、その源は相対 Euler 束であり、束同型による変換後、その芽は標準 Euler spray に一致することを証明する。この芽は負の恒等切断上に除去不能な不定性を持つ。したがって局所的な最小ランクは $n+1$ である一方、すべての大域的な支配的相対 spray のランクは $n+2$ 以上である。証明は正則アフィン接続の障害、拡大類、高次の垂直ジェットの消滅、および $p$ に沿う降下を組み合わせる。特に $\mP^2$ 上の大域的な最小ランクは $4$ となる。この源の束に関する障害を Oka 理論の存在定理から区別し、調査日を明示した文献監査を付す。新規性の評価は実際に確認した文献の範囲に限り、有理連結性から Oka 性への新たな含意は主張しない。
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+\paragraph{既知の結果（Known）.}
+複素等質多様体、特に射影空間と旗多様体は elliptic であり、したがって Oka である。これらの多様体上の spray の存在は古典的である \cite{ja:Gromov,ja:Book,ja:Recent}。最近の Forstneri\v c--L\'arusson の定理は、射影多様体に対して Oka 性と ellipticity が同値であることを示した \cite[Theorem~1.1]{ja:FLell}。しかし存在だけでは、どのベクトル束が源になり得るか、また所与の局所 spray が同じ源の全体に延長できるかは決まらない。同論文の Problem~3.2 は局所的な支配的 spray を許す源の束を問うものであり、Proposition~3.3 は源が大域生成される場合に等質性による障害を与える。
+
+\paragraph{本論文の寄与とその限定（New）.}
+定理~\ref{ja:main} は、$n\geq2$ の $\mP^n$ 束についてランク $n+1$ 以下のすべての支配的相対 spray の芽を分類する。基底上のベクトル束の射影化として表示されていない束も含む。さらに同じ源の全体への延長不可能性を証明する。結論は源とすべての高次ジェットを同時に分類するものであり、既知の $\mP^n$ の ellipticity ではない。特に局所的な最小ランクと大域的な最小ランクを区別する。第~\ref{ja:audit}節に記載した文献と検索を確認した範囲では、この主張は見つからなかった。これは範囲を限定した新規性評価であり、優先権の保証ではない。以下の証明はすべて記述し、その正しさは新規性評価に依存しない。
+
+\paragraph{方法（Method）.}
+接束上に垂直微分が恒等写像である spray があれば、正則アフィン接続が誘導される。射影空間上ではこれは不可能である。次に拡大の計算から、ランク $n+1$ の源は必ず Euler 束であることが従う。消滅
+\[
+H^0\bigl(\mP^n,T_{\mP^n}(-k)\bigr)=0\quad(k\geq2)
+\]
+により、二つの spray の差の高次の垂直 Taylor 係数はすべて零になる。族の場合には核の直線束を基底へ降下させ、その拡大類を使って降下した束を自明化する。最後に異なる二方向からの極限を明示し、延長の障害を検出する。これらの制約された芽は、有理曲線の変形や Oka 近似定理を適用して構成するものではない。
+
+主軸の選定は positivity と flexibility の監査から生じた。接束が nef な Fano 多様体は自然な対象であるが、その Oka 性をここで解決するわけではない。その基本例である射影空間においてすら、正値性と支配的な微分の存在だけでは、指定した源上での任意の大域的積分は正当化できない。相対定理は Campana--Peternell 予想を課すことなく、射影空間をファイバーとする収縮や束にこの問題を適用できるようにする。
+
+\section{Oka の諸概念と局所 spray の意味}\label{ja:notions}
+代数性を明示しない限り、本論文の多様体とベクトル束はすべて滑らかな複素解析的対象とする。コンパクト集合の近傍とは、特定していない開近傍を指す。標的の位相を定める任意の距離を固定する。
+
+\begin{defn}\label{ja:spraydef}
+$p:X\to B$ を正則沈め込み、$\pi:E\to X$ を正則ベクトル束とする。\emph{局所相対 spray} とは、零切断全体の開近傍 $U\subset E$ 上の正則写像 $s:U\to X$ であって
+\[
+s(0_x)=x,\qquad p\circ s=p\circ\pi
+\]
+を満たすものをいう。その垂直微分は束写像
+\[
+\phi_s:E\longrightarrow T_{X/B},\qquad
+(\phi_s)_x=\left.ds_{0_x}\right|_{E_x}
+\]
+である。$\phi_s$ が全射ならば spray は\emph{支配的}（dominating）である。$U=E$ ならば\emph{大域的}である。二つの局所 spray が零切断全体のある近傍で一致するとき、同じ芽を定めるという。$B$ が一点の場合は絶対的な spray である。
+\end{defn}
+
+ここで「局所的」はファイバー変数を制限するものであり、基点 $x\in X$ の集合を制限するものではない。$X$ の Zariski 開集合上でのみ定義される代数的 spray と混同してはならない。また大域的な正則 spray は代数的射とは限らない。
+
+\begin{defn}
+複素多様体 $Y$ が一つの大域的な支配的 spray を持つとき \emph{elliptic} という。有限個の大域 spray の微分像の和が各点 $y$ で $T_yY$ となるとき \emph{subelliptic} という。$Y$ が\emph{Oka} であるとは凸近似性を満たすこと、すなわち任意の $m$、コンパクト凸集合 $K\subset\C^m$、および $K$ の近傍から $Y$ への正則写像に対し、整写像 $\C^m\to Y$ による $K$ 上の一様近似が可能なことをいう。これは近似と補間を伴う通常の Oka 原理と同値である \cite{ja:Book}。
+
+条件 $hP(Y)$ とは、任意の Stein 多様体から $Y$ へのすべての連続写像が正則写像にホモトピックであることをいう。近似も補間も指定していない。$d$ 次元の $Y$ が \emph{dominable} であるとは、ある正則写像 $\C^d\to Y$ の微分がある点で全射となることをいい、そのような写像を $Y$ の各点を通るように選べる場合を \emph{strongly dominable} という。
+\end{defn}
+
+\begin{defn}\label{ja:okaone}
+多様体 $Y$ が \emph{Oka-1} であるとは、次の性質をいう。開 Riemann 面 $R$、Runge コンパクト集合 $K\subset R$、閉離散列 $(a_j)$、$K\cup\{a_j\}$ の近傍で正則な連続写像 $f:R\to Y$、$\epsilon>0$、および正整数 $k_j$ に対し、$f$ にホモトピックな正則写像 $F:R\to Y$ で
+\[
+\sup_K d(F,f)<\epsilon,\qquad j^{k_j}_{a_j}F=j^{k_j}_{a_j}f\quad\text{（すべての }j\text{）}
+\]
+を満たすものが存在する。
+滑らかな代数多様体 $Y$ が \emph{aOka-1} であるとは、$R$ を滑らかなアフィン代数曲線、補間集合を有限集合 $A\subset K$、ジェットの次数を共通の有限次数とし、$F$ を代数的射とする同様の性質をいう \cite{ja:AF,ja:FLone}。初期写像 $f$ は、この場合も連続写像であって $K$ の近傍で正則とする。
+\end{defn}
+
+完全を期して \emph{LSAP} も説明する。これは円板からの写像の spray に関する近似条件であって、定義~\ref{ja:spraydef}の spray の存在ではない。特殊対 $D\subset D'$ とは、区分的に滑らかな境界を持つコンパクト円板の対で、$D'\setminus\mathring D$ が弧に沿って付加された円板となるものをいう。点 $y\in Y$ における LSAP は、$y$ の近傍 $V$ があり、任意の正則写像 $F:D\times\mathbb B^N\to V$ に対してある $r\in(0,1)$ を選ぶと、正則写像 $D'\times r\mathbb B^N\to Y$ によって $D\times r\mathbb B^N$ 上で一様近似できることを要求する。円板変数については近傍で正則と解釈する \cite[Definitions~5.1--5.2]{ja:FLone}。
+
+位置づけのために用いる含意は
+\[
+\text{elliptic}\ \Longrightarrow\ \text{subelliptic}\ \Longrightarrow\ \text{Oka}
+\ \Longrightarrow\ \text{LSAP}\ \Longrightarrow\ \text{Oka-1}
+\]
+および $\text{Oka}\Rightarrow hP$、$\text{Oka}\Rightarrow$ strong dominability である。代数的な主張 $\text{aOka-1}\Rightarrow\text{Oka-1}$ は別のものである。逆向きの矢印は仮定しない。Oka map とは Serre fibration であり、持ち上げについてパラメータ付き Oka 性を満たす正則写像である。Oka ファイバーを持つ正則ファイバー束は標準的な例である。Kusakabe の elliptic な特徴づけは Stein な源上の spray を用いるものであり、Oka と Gromov elliptic の無条件な同値と読んではならない \cite{ja:Kus21,ja:Kus24}。文献 \cite{ja:KZ} における ellipticity と subellipticity の同値性には、そこで述べられた代数的範囲がある。
+
+\section{幾何学的背景と相対 Euler 束}
+\subsection{正値性と構造}
+射影化を直線の空間と解釈するとき、ベクトル束 $V$ が nef であるとは $\cO_{\mP(V^*)}(1)$ が nef であることをいう。$X$ が Fano であるとは、滑らかかつ射影的であり $-K_X$ が ample であることをいう。CP-manifold とは $T_X$ が nef な Fano 多様体である。すべての CP-manifold が有理等質であるという主張は、ここで問題となる一般性では依然として予想である \cite{ja:CP,ja:DPS}。Nef であることは大域生成を意味しない。
+
+滑らかな射影多様体の MRC 商は、通常の双有理的選択を行った後、有理連結な一般ファイバーと非単線織な基底を持つ。しかし正則ファイバー束とは限らない。Hosono--Iwai--Matsumura および Iwai--Matsumura--Zhong の結果を含む正値性の構造定理では、正値性、滑らかさまたは特異点、射影性について各定理の正確な仮定を守る必要がある \cite{ja:HIM,ja:IMZ}。擬有効な接束についてのコンパクト K\"ahler への拡張は、指定された解析的正値性を用いる \cite{ja:MQ}。局所定数なファイバー空間についての結果には追加の曲率仮定がある \cite{ja:Muller}。これらの結果だけでは、ここで必要とする指定された束上の大域的なファイバー方向の spray は得られない。本論文では実際の正則 $\mP^n$ 束を用い、任意の MRC fibration や滑らかな有理連結射を用いるわけではない。
+
+\subsection{ベクトル束への持ち上げを選ばない Euler 束}\label{ja:eulerconstruction}
+$V_0=\C^{n+1}$ とし、$\mP(V_0)$ は直線をパラメータ化するとする。直線 $\ell\subset V_0$ に対して
+\[
+A_\ell=\Homop(\ell,V_0),\qquad
+\iota_\ell:\ell\hookrightarrow V_0
+\]
+と置く。Euler 完全列は
+\begin{equation}\label{ja:euler}
+0\longrightarrow\cO_{\mP^n}\xrightarrow{\iota}
+A=\cO_{\mP^n}(1)^{\oplus(n+1)}
+\xrightarrow{q}T_{\mP^n}\longrightarrow0
+\end{equation}
+であり、$q_\ell$ は $V_0\to V_0/\ell$ との合成である。
+$g\in\GL(V_0)$ は $A$ に
+\[
+(\ell,u)\longmapsto\bigl(g\ell,\ g\circ u\circ(g|_\ell)^{-1}\bigr)
+\]
+によって作用する。スカラー行列の作用は自明である。したがって $A$、その恒等切断、および商写像は $\PG(V_0)$ 同変である。
+
+$p:X\to B$ を任意の正則 $\mP^n$ 束とすると、その変換関数は $\PG(V_0)$ に値を取る。上の同変性によって Euler 完全列は
+\begin{equation}\label{ja:relativeeuler}
+0\longrightarrow\cO_X\xrightarrow{\iota}\cA_p
+\xrightarrow{q}T_{X/B}\longrightarrow0
+\end{equation}
+へ貼り合わさる。$\cA_p$ を\emph{相対 Euler 束}と呼ぶ。基底上のベクトル束 $V\to B$ に対して $X=\mP(V)$ と書けるならば、これは $S^*\otimes p^*V$ に等しい。ここで $S$ は同語反復直線束である。同変な構成は、そのような $V$ の存在を必要としない。
+
+公式
+\begin{equation}\label{ja:canonical}
+S_p(\ell,u)=(\iota_\ell+u)(\ell)
+\end{equation}
+は $\cA_p\setminus\sigma(X)$ 上の正則な相対写像を定める。ただし $\sigma(x)=-\iota_x$ とする。実際、直線からの非零写像の像は一次元であり、その写像が零になるのは $u=-\iota_\ell$ のときに限る。この公式は同変であり、$0_\ell$ を $\ell$ に送り、垂直微分は $q$ である。よって $X$ 全体の上の局所的な支配的相対 spray を与える。
+
+\section{主定理}\label{ja:mainsection}
+\begin{thm}[最小相対 spray と延長不可能性]\label{ja:main}
+$p:X\to B$ をファイバーが $\mP^n$ の正則ファイバー束とする。ここで $n\geq2$ とし、$X,B$ は連結な滑らかなコンパクト K\"ahler 多様体とする。$E\to X$ を正則ベクトル束、$s$ を $E$ 上の局所的な支配的相対 spray とする。
+\begin{enumerate}
+\item $\rk E\leq n+1$ ならば $\rk E=n+1$ である。$X$ 上の正則束同型 $\Psi:E\to\cA_p$ が存在し、
+\[
+q\circ\Psi=\phi_s,\qquad s=S_p\circ\Psi
+\quad\text{（零切断に沿う芽として）}
+\]
+が成り立つ。
+\item (1) の芽は $E$ 全体へ正則に延長できない。延長に相対 spray であることを要求しなくても不可能である。
+\item 局所的な支配的相対 spray の最小ランクは $n+1$ である。すべての大域的な支配的相対 spray のランクは $n+2$ 以上である。
+\end{enumerate}
+\end{thm}
+
+\begin{rem}\label{ja:scope}
+証明は任意の連結複素多様体上の正則 $\mP^n$ 束に対して、そのまま成り立つ。明示したコンパクト K\"ahler 仮定は本論文の幾何学的設定を指定するものであり、以下で必要な固有性は $\mP^n$ 束であることから既に従う。下界は相対 spray に関するものである。$B$ 内の基点を動かす $X$ 上の絶対的な spray に対する下界ではない。
+\end{rem}
+
+\section{主定理の証明}
+\subsection{接束を源とすることの障害}
+\begin{lem}\label{ja:connection}
+複素多様体 $Y$ が $T_Y$ 上に垂直微分が恒等写像である局所 spray を持つならば、$T_Y$ は捩れのない正則アフィン接続を持つ。したがって $\mP^n$、$n\geq1$ はそのような spray を持たない。さらに $\mP^n$ 上の局所的な支配的 spray の微分は正則な右逆写像を持ち得ない。
+\end{lem}
+\begin{proof}
+局所座標を $z$、接変数を $v$ として
+\[
+s_i(z,v)=z+v+\tfrac12 B_i(z)(v,v)+O(|v|^3)
+\]
+と書く。ここで $B_i$ は正則で対称な双線形写像である。座標変換 $y=f(z)$ の下で接変数は $w=Df(z)v$ となる。$f(s_i(z,v))$ を二次まで展開すると
+\begin{equation}\label{ja:connectionlaw}
+B_j(f(z))(Df(z)v,Df(z)v)
+=Df(z)B_i(z)(v,v)+D^2f(z)(v,v)
+\end{equation}
+を得る。$\Gamma_i=-B_i$ と置く。式~\eqref{ja:connectionlaw}を二つの接変数について偏極すると、ちょうど接続の Christoffel 係数の変換則になる。すなわち、変換されたベクトル場を微分すると現れる $D^2f$ の項が打ち消される。具体的には
+\[
+(\nabla_U V)_i=dV_i(U_i)+\Gamma_i(U_i,V_i)
+\]
+は $Df$ によって変換し、Leibniz 則を満たす。$\Gamma_i$ が対称なので捩れはない。これで最初の主張を直接証明した。一般的な接続の枠組みは \cite{ja:Atiyah} にある。
+
+$Y=\mP^n$ の場合、誘導される行列式の接続は $\det T_Y=\cO(n+1)$ 上の正則接続になる。これを射影直線へ引き戻す。$\mP^1$ 上の直線束の正則接続は、曲率が正則二形式であるため平坦である。単連結な $\mP^1$ 上の平行移動は直線束を自明化するので、その次数は零となる。これは $\deg\cO_{\mP^1}(n+1)=n+1$ に矛盾する。
+
+最後に $\phi:E\to T_{\mP^n}$ が正則な右逆写像 $j$ を持つならば、合成 $s\circ j$ は $T_{\mP^n}$ の零切断の近傍で定義され、垂直微分 $\phi j=\id$ を持つ。これは既に排除した場合である。
+\end{proof}
+
+\subsection{ファイバー上のコホモロジーと拡大}
+\begin{lem}\label{ja:cohom}
+$n\geq2$、$a\in\Z$ に対して
+\begin{equation}\label{ja:extcalc}
+H^1(\mP^n,\Omega^1_{\mP^n}(a))=
+\begin{cases}\C,&a=0,\\0,&a\ne0\end{cases}
+\end{equation}
+が成り立つ。また、すべての $k\geq2$ に対して
+\begin{equation}\label{ja:jetvanish}
+H^0(\mP^n,T_{\mP^n}(-k))=0
+\end{equation}
+が成り立つ。
+\end{lem}
+\begin{proof}
+射影空間の直線束のコホモロジーから、$n\geq2$ ならばすべての $a$ に対して $H^1(\mP^n,\cO(a))=0$ である。例えば \cite[Lemma~30.8.1]{ja:Stacks} と GAGA \cite{ja:Serre} を用いればよい。捻った余接 Euler 完全列
+\[
+0\longrightarrow\Omega^1(a)\longrightarrow
+\cO(a-1)^{\oplus(n+1)}\longrightarrow\cO(a)\longrightarrow0
+\]
+において、求める $H^1$ は $H^0$ 上の写像の余核となる。$a<0$ ならば両方の切断空間が零である。$a=0$ ならばそれぞれ零と $\C$ である。$a\geq1$ ならば写像は $(P_i)$ を $\sum x_iP_i$ に送る。次数 $a$ のすべての単項式はある $x_i$ で割り切れるので、これは全射である。これで式~\eqref{ja:extcalc}が従う。
+
+式~\eqref{ja:euler}を $\cO(-k)$ で捻ると
+\[
+0\longrightarrow\cO(-k)\longrightarrow
+\cO(1-k)^{\oplus(n+1)}\longrightarrow T_{\mP^n}(-k)\longrightarrow0
+\]
+を得る。$k\geq2$ では中央の $H^0$ と最初の $H^1$ が消滅するので、式~\eqref{ja:jetvanish}が従う。
+\end{proof}
+
+\begin{lem}\label{ja:fibreclass}
+$n\geq2$、$r\leq n+1$ とし、$s$ をランク $r$ の正則束 $E\to\mP^n$ 上の局所的な支配的 spray とする。このとき $r=n+1$ であり、束同型によってその微分は Euler 完全列~\eqref{ja:euler}に組み込まれる。
+\end{lem}
+\begin{proof}
+全射性から $r\geq n$ である。$r=n$ ならば微分は束同型であり、補題~\ref{ja:connection}に矛盾する。$r=n+1$ ならば核は直線束であるから、ある $a\in\Z$ に対して $\cO(a)$ である。得られた拡大は
+\[
+\Ext^1(T_{\mP^n},\cO(a))
+=H^1(\mP^n,\Omega^1_{\mP^n}(a))
+\]
+によって分類される。$a\ne0$ ならば補題~\ref{ja:cohom}によって拡大は分裂するが、これは補題~\ref{ja:connection}によって排除される。$a=0$ では拡大類は非零でなければならない。Euler 類も非零である。実際、Euler 完全列が分裂すれば $h^0(A^*)\geq h^0(\cO)=1$ となるが、$A^*=\cO(-1)^{\oplus(n+1)}$ は非零切断を持たない。拡大空間は一次元なので、核と $\cO$ との同一視を定数倍して二つの拡大類を一致させられる。拡大の同値性から、商 $T_{\mP^n}$ 上で恒等写像を誘導する同型 $E\to A$ が得られる。
+\end{proof}
+
+\subsection{高次の垂直ジェットの剛性}
+\begin{lem}\label{ja:jets}
+$E\to X$ を正則ベクトル束、$p:X\to B$ を正則沈め込みとする。すべての $k\geq2$ に対して
+\[
+H^0\bigl(X,\Hom(\Sym^k E,T_{X/B})\bigr)=0
+\]
+と仮定する。同じ垂直微分を持つ $E$ 上の二つの局所相対 spray は、零切断に沿う芽として一致する。
+\end{lem}
+\begin{proof}
+零での値と一次の垂直ジェットは仮定によって一致する。帰納的に $k-1$ 次まで一致するとする。源の束の自明化と標的の相対座標を用い、ファイバー方向の Taylor 展開の $k$ 次の項の差を取る。標的の座標変換はこの差に対して一次微分によって作用する。非線形な寄与はすべて低次の差を含み、それらは零だからである。源の変換関数はファイバー変数について線形である。したがってこの差は $\Hom(\Sym^k E,T_{X/B})$ の正則切断へ貼り合わさる。仮定によってこの切断は零であり、帰納法が完了する。
+
+零切断の各点で、両方の写像が正則となる座標近傍を取る。座標での差のすべてのファイバー微分は、小さくした近傍の各基点において零である。したがってファイバー変数に関する収束 Taylor 展開は、零切断のその部分の近傍で一致する。基点全体についてこれらの近傍の和を取れば、芽の一致が従う。この最後の段階は正則 Taylor 級数の収束を用いており、根拠のない形式的対象から解析的対象への移行ではない。
+\end{proof}
+
+$A=\cO(1)^{\oplus(n+1)}$ に対して、層 $\Hom(\Sym^k A,T_{\mP^n})$ は $T_{\mP^n}(-k)$ の直和である。したがって補題~\ref{ja:cohom}と補題~\ref{ja:jets}により、各射影空間ファイバー上では芽全体が既に分類される。
+
+\subsection{源と拡大類の降下}
+\begin{proof}[定理~\ref{ja:main}の証明]
+まず $r=\rk E\leq n+1$ と仮定する。各 $b\in B$ に対して $F_b=p^{-1}(b)$ への制限は $\mP^n$ 上の局所的な支配的 spray である。補題~\ref{ja:fibreclass}より $r=n+1$ であり、直線束 $K=\ker\phi_s$ はすべてのファイバー上で自明になる。特に $h^0(F_b,K|_{F_b})=1$、$h^1(F_b,K|_{F_b})=0$ である。固有正則写像についての底変換定理 \cite{ja:Grauert} から $M=p_*K$ は直線束であり、評価写像
+\[
+p^*M\longrightarrow K
+\]
+は同型である。実際、各ファイバー上でこれは自明直線束の定数切断の評価であり、至る所で非零である。
+
+$\Omega=\Omega^1_{X/B}$ と置く。$p$ の局所的な積表示上で、ファイバーのコホモロジーと補題~\ref{ja:cohom}から
+\[
+p_*\Omega=0,\qquad R^1p_*\Omega\simeq\cO_B
+\]
+を得る。二番目の同一視は Euler 類を生成元として選ぶと大域的かつ標準的である。実際、すべての射影線形変換は同変な Euler 拡大を保存するため、その一次元の拡大空間に自明に作用する。射影公式と Leray スペクトル系列の低次部分から
+\begin{equation}\label{ja:leray}
+\Ext^1(T_{X/B},p^*M)
+=H^1(X,\Omega\otimes p^*M)
+\simeq H^0(B,M)
+\end{equation}
+を得る。ここには次数一での他の寄与も、そこから出る微分もない。項 $H^1(B,p_*(\Omega\otimes p^*M))$ と $H^2(B,p_*(\Omega\otimes p^*M))$ がともに消滅するからである。
+
+式~\eqref{ja:leray}の下で、$E$ が定める拡大は $M$ の正則切断 $e$ に対応し、$e(b)$ は Euler 類による正規化でのファイバーの拡大類となる。補題~\ref{ja:fibreclass}により、その類はすべて非零である。したがって $e$ は零点を持たず、$M$ を自明化する。この自明化では拡大類は $1$ であり、ちょうど式~\eqref{ja:relativeeuler}の類に等しい。よって $q\Psi=\phi_s$ を満たす同型 $\Psi:E\to\cA_p$ を得る。
+
+$k\geq2$ に対して、$\Hom(\Sym^k\cA_p,T_{X/B})$ の任意の大域切断を各ファイバーに制限すると、$T_{\mP^n}(-k)$ の切断の直和となるため零になる。したがってその切断は $X$ の各点で零である。補題~\ref{ja:jets}を $s\Psi^{-1}$ と $S_p$ に適用する。両者の垂直微分はともに $q$ なので、その芽は一致する。これで (1) を得た。
+
+延長不可能性のため、積表示内の $x=\ell$ を固定し、$(\cA_p)_x=\Homop(\ell,V_0)$ と見る。像が異なる直線となる二つの非零写像 $a,b:\ell\to V_0$ を選ぶ。穿孔した経路
+\[
+u_a(t)=-\iota_\ell+ta,\qquad
+u_b(t)=-\iota_\ell+tb\qquad(t\ne0)
+\]
+に沿って、式~\eqref{ja:canonical}の値はそれぞれ $a(\ell)$ と $b(\ell)$ に一定である。したがって $-\iota_\ell$ で連続に延長できない。
+
+もし芽の $E$ 全体への正則な延長があれば、$\Psi$ によって移してこのベクトルファイバーに制限する。その写像は $0$ の開近傍で $S_p$ に一致する。定義域 $(\cA_p)_x\setminus\{-\iota_\ell\}$ は連結なので、複素多様体への正則写像の一致の定理により、この穿孔したファイバー全体で一致する。異なる二つの極限は延長の連続性に矛盾する。この議論は延長が $p$ を保存することを仮定しておらず、(2) が従う。最後に式~\eqref{ja:canonical}はランク $n+1$ の局所 spray を与える。(1) がそれ未満のランクを排除し、(2) が $n+1$ 以下のすべての大域ランクを排除する。これで (3) が従う。
+\end{proof}
+
+\section{帰結、上下界、および例による検算}
+\begin{cor}\label{ja:globalbounds}
+$n\geq2$ とし、$r_{\mathrm{glob}}(\mP^n)$ を、任意の正則な源の束を許した場合の $\mP^n$ 上の大域的な支配的正則 spray の最小ランクとする。このとき
+\[
+n+2\leq r_{\mathrm{glob}}(\mP^n)\leq2n
+\]
+が成り立つ。特に $r_{\mathrm{glob}}(\mP^2)=4$ であり、局所的な最小ランクは $3$ である。源を自明束に限ると、局所的にも大域的にも最小ランクは $2n$ であり、この主張は $n=1$ に対しても成り立つ。
+\end{cor}
+\begin{proof}
+任意の源に対する下界は定理~\ref{ja:main}である。上界と自明な源に関する主張は、その独立の新規性を主張せず、以下で明示的に証明する。
+
+$W=H^0(\mP^n,T_{\mP^n})$ と置く。射影線形群の作用は推移的なので、評価 $W\to T_x\mP^n$ は全射である。$W^{2n}$ において、固定した $x$ での値が接空間を生成しない組の余次元は $2n-n+1=n+1$ である。これは $n\times2n$ 行列の空間におけるランク $n-1$ 以下の行列の余次元である。したがって悪い組と点の incidence 集合の次元は $\dim W^{2n}-1$ 以下である。$\mP^n$ は固有なので、その $W^{2n}$ への射影は閉集合である。この射影の外の組 $(V_1,\ldots,V_{2n})$ を選ぶ。これらの場は各点で接空間を生成する。スカラーの違いを除いた行列 $A_i$ がこれらを誘導し、その整フローは $x\mapsto\exp(tA_i)x$ である。したがって
+\begin{equation}\label{ja:flows}
+s(x,t_1,\ldots,t_{2n})
+=\exp(t_1A_1)\cdots\exp(t_{2n}A_{2n})x
+\end{equation}
+はランク $2n$ の自明束からの大域的正則 spray である。零での微分は $\sum t_iV_i(x)$ であり、全射である。
+
+逆に、$\cO^r$ からの支配的微分はランク $r-n$ の核束 $K$ を持つ。$h=c_1(\cO(1))$ と書く。Euler 完全列から $c(T_{\mP^n})=(1+h)^{n+1}$ なので
+\[
+c(K)=(1+h)^{-(n+1)},\qquad
+c_n(K)=(-1)^n\binom{2n}{n}h^n\ne0
+\]
+となる。ランクが $n$ 未満の束の第 $n$ Chern 類は零である。よって $r-n\geq n$、したがって $r\geq2n$ である。この議論は局所 spray の微分にも適用できる。式~\eqref{ja:flows}が鋭さを示す。
+\end{proof}
+
+\begin{prop}\label{ja:relativeexistence}
+すべての正則 $\mP^n$ 束は、ランク $(n+1)^2-1$ の大域的な支配的相対正則 spray を持つ。
+\end{prop}
+\begin{proof}
+$P\to B$ をその主 $\PG(n+1,\C)$ 束とし、$\operatorname{ad}(P)$ をファイバー $\mathfrak{sl}_{n+1}(\C)$ と共役作用による付随束とする。$p^*\operatorname{ad}(P)\to X$ 上に、積表示で
+\[
+(b,\ell,A)\longmapsto (b,\exp(A)\ell)
+\]
+と定める。$\exp(gAg^{-1})=g\exp(A)g^{-1}$ より局所写像は貼り合わさる。指数写像はすべての行列上で定義され、その微分は推移的な射影線形作用の無限小作用である。これで大域的な定義と相対的な支配性の両方が従う。指数写像の代数性は主張しない。
+\end{proof}
+
+\begin{eg}[一次元での鋭い境界]\label{ja:pone}
+$\mP^1$ では、系~\ref{ja:globalbounds}の自明な源に関する議論からランク $2$ の大域 spray が得られる。したがって主定理の下界 $n+2$ は $n=1$ では偽となる。補題~\ref{ja:cohom}で使った消滅がまさに破れており、$T_{\mP^1}(-2)\simeq\cO$ かつ $H^1(\mP^1,\cO(-2))\ne0$ である。これは次元仮定を外すことへの反例であり、証明で処理を省略した場合ではない。
+\end{eg}
+
+以下の検算は結論の適用範囲を定めるものであり、既知の例を新しい Oka の結果に変えるものではない。
+\begin{itemize}
+\item $\mP^1\times\mP^{n-1}$ について、$\mP^1$ への射影は $n-1\geq2$ の場合に対象となる。$\mP^1\times\mP^1$ ではそのファイバーは一次元であり対象外である。もう一方の射影も $\mP^1$ をファイバーに持つため対象外である。
+\item 二次超曲面、旗多様体、有理等質多様体は elliptic である。それらの射に本定理を適用できるのは、必要なファイバー次元を持つ実際の射影空間束である場合に限る。任意の等質ファイバーについて Euler コホモロジーの計算を主張しているわけではない。
+\item 滑らかな toric Fano 多様体と滑らかな射影有理多様体は多くの Oka の例を与える。後者の代数的 ellipticity は現在では Banecki の retract rational に関する研究から従う \cite{ja:Banecki}。Hirzebruch 曲面 $\mathbb F_1=\operatorname{Bl}_{\mathrm{pt}}\mP^2$ は Fano かつ Oka であるが、接束は nef ではない。例外曲線上に法束 $\cO_{\mP^1}(-1)$ という商を持つからである。したがって Fano と接束の nef 性、また延長障害と非 Oka 性を混同してはならない。
+\item 複素トーラス $T=\C^d/\Lambda$ 上では、加法がランク $d$ の大域 spray $T\times\C^d\to T$ を与える。Abel 多様体と非射影的なコンパクト K\"ahler トーラスも含まれ、接束は nef であるが Fano ではない。すべてのコンパクト K\"ahler 多様体に共通する下界 $d+2$ は偽となる。
+\item Kummer K3 曲面と楕円 K3 曲面は \cite{ja:AF} における Oka-1 の例である。その結果は完全な Oka 性を与えていない。任意の K3 曲面や任意の楕円曲面について無条件な主張をするものではない。特に、Oka-1 だが Oka でないことが証明された例として挙げているわけではない。
+\item ブローアップは別個の確認を要する。滑らかな射影有理多様体を滑らかな中心に沿ってブローアップしても滑らかな射影有理多様体であり、上の既知のクラスに属する。任意の Oka 多様体の任意のブローアップが Oka であるという主張は用いない。
+\end{itemize}
+
+\section{Campana specialness、core、および \texorpdfstring{$h$}{h}-principle}
+滑らかなコンパクト K\"ahler 多様体が special であるとは、Bogomolov sheaf を持たないこと、すなわち $1\leq a\leq\dim X$ に対して $\kappa(L)=a$ を満たす飽和階数一部分層 $L\subset\Omega_X^a$ を持たないことをいう。Campana の core は、special な一般ファイバーと一般型の orbifold 基底を分離する。有理連結多様体および小平次元零の多様体は special である \cite{ja:Campana}。
+
+監査では重要な区別がある。文献 \cite{ja:Campana} の Corollary~8.11 は、Fujiki class $\mathcal C$ に属する $\C^d$-dominable なコンパクト多様体は special であると述べている。Oka 多様体は strongly dominable なので、これから既に
+\[
+X\text{ が compact K\"ahler かつ Oka}\ \Longrightarrow\ X\text{ は special}
+\]
+が従う。これは既知の帰結であり、本論文の定理ではない。より弱い $hP$ だけを仮定する場合、射影的な結果は Campana--Winkelmann の定理であり \cite{ja:CWhP}、同論文ではコンパクト K\"ahler への拡張を予想としている。射影的な証明を、未確認の Jouanolou 構成の類似物によってそのまま移すことはできない。本論文の証明はそのような移行も、core に関する新しい消滅定理も用いない。
+
+Oka ファイバーを持つ正則ファイバー束では、全空間が Oka であることと基底が Oka であることは同値である \cite{ja:Book}。したがって Oka なトーラス上の射影空間束は既知の理論から Oka である。コンパクト K\"ahler ならば special でもあるが、その相対的な最小ランクの spray には依然として本論文の延長障害がある。矛盾はない。別の源の束上には大域 spray が存在し得るからであり、垂直方向には命題~\ref{ja:relativeexistence}がそれを示している。
+
+Oka 多様体の Kobayashi 擬距離は、$\C$ の二点での補間から零になる。有理連結多様体上の稠密な entire curve は Campana--Winkelmann によって構成されている \cite{ja:CWdense}。一本の稠密な曲線の存在も擬距離の消滅も、定義~\ref{ja:okaone}の近似性を与えるものではなく、まして完全な Oka 性を与えるものではない。Specialness からの一般的な逆向きの含意は用いない。
+
+\section{Oka-1、有理連結性、および版の確認}\label{ja:versions}
+版の違いには数学的な意味がある。文献 \cite{ja:AF} の arXiv 初版の第9節では、Gournay \cite{ja:Gournay} に基づく議論によって有理連結なコンパクト多様体が Oka-1 であると述べられていた。一方、2025年4月10日の最終 arXiv 版 v5 では、射影的な主張は \emph{Conjecture~9.1} とされ、Gournay 論文の必要な証明を著者らが理解できなかったことが説明されている。2023年の R\'enyi 講演スライド \cite{ja:Slides} にも以前の定理が記載されているが、後の証明評価に代えることはできない。2025年9月25日の arXiv v1 である ICM survey \cite{ja:ICM} も、一般の主張を引き続き予想と記述している。
+
+Benoist--Wittenberg は有理単連結性の仮定の下で tight approximation を証明しており \cite{ja:BW}、射影的な定数標的への適用も含まれる。このクラスでは論文内に証明があり、aOka-1 と Oka-1 が得られる。$N\geq d^2-1$ を満たす $\mP^N$ 内の滑らかな次数 $d$ の超曲面はその適用例である。しかし、すべての有理連結多様体についての主張を証明するものではない。単有理な滑らかな射影多様体は dense dominability により Oka-1 であることが知られているが、これは Oka や aOka-1 であることの証明ではない。aOka-1 の別の確立した例は、代数的に elliptic な射影多様体と双有理同値な多様体から得られる \cite[Theorem~1.6 and Remark~1.10]{ja:FLone}。射影的な aOka-1 多様体は有理連結であるが、解析的な Oka 多様体はそうとは限らない。正次元の Abel 多様体は Oka であり、有理連結ではない。
+
+したがって $\text{Fano}\Rightarrow\text{rationally connected}$ という含意と $T_X$ の nef 性は、CP-manifold に対する一般の Oka 問題もランクを制約した spray の構成も解決しない。本論文の主定理は有理連結性についての未解決の含意を一切必要としない。ファイバー方向の標的は等質であり、その ellipticity は既知である。
+
+\section{今後の問題}
+$n\geq3$ に対して、$n+2$ と $2n$ の間にある $r_{\mathrm{glob}}(\mP^n)$ の値はいくつか。Chern 類の議論で決まるのは自明な源での最小値だけであり、中間ランクの非自明な源を排除しない。核のランクが二以上になると、ランク $n+1$ の拡大の議論を新たな材料なしに再利用することはできない。
+
+どの等質ファイバー $F$ に対して、$T_F$ への低ランクの拡大を分類し、補題~\ref{ja:jets}に必要な高次ジェットの消滅を得られるか。射影空間の証明はこの二つの具体的課題を示唆するものであり、すべての旗多様体や二次超曲面への自動的な一般化ではない。射影空間束の場合、モノドロミーによって大域的相対最小ランクが単一ファイバー上の最小ランクより大きくなることはあるか。
+
+等質の場合を越えた正値な接束について、具体的に不足している段階は、指定した源を持つ大域的な支配的 spray を構成し、そのすべてのファイバー変数を検証することである。一次微分を形式的に積分するだけでは足りない。本論文はすべての CP-manifold に対してそのような構成を与えない。ここで得た障害は、free curve や束の全射だけに基づく議論で、この段階を別途扱う必要がある理由を示している。
+
+\section{研究過程と新規性の監査}\label{ja:audit}
+監査は2026年9月9日に行った。arXiv 原版、利用可能な公刊本文または著者公開本文、出版社の書誌記録、著者の論文一覧、および各論文の参考文献を用いた。公開ウェブ検索では ``minimal rank holomorphic spray projective space''、``Euler sequence spray''、``local spray source bundle''、``projective bundle spray obstruction'' の組合せと、以下に引用する2024--2026年の文献を調べた。完全一致の検索の一部では有用な数学的結果が得られなかった。そのような検索で見つからないことは、網羅的な調査の証拠にはならない。購読制 MathSciNet での検索や Google Scholar の被引用文献の網羅的な列挙を行ったとは主張しない。アクセス可能な書誌監査には、出版社、arXiv、および参考文献一覧の記録を用いた。
+
+\subsection{候補の選別}
+以下は実際に検討した十個の候補である。CONDITIONAL とした候補は定理として採用していない。「Verified new candidate」は、完成した証明と上で限定した新規性評価を合わせた表示である。
+\begin{enumerate}
+\item 射影的 $hP\Rightarrow$ special：ALREADY KNOWN。道具は Campana--Winkelmann。新規性の障害は結論が同一であること。
+\item Compact K\"ahler Oka $\Rightarrow$ special：ALREADY KNOWN。道具は dominability と Campana の Corollary~8.11。障害は既に直接の既知の帰結であること。
+\item 射影的 Oka $\Rightarrow$ elliptic：ALREADY KNOWN。道具は負の源の束と Oka 近似。2026年の Forstneri\v c--L\'arusson 論文が証明している。
+\item すべての CP-manifold は Oka：検討した範囲では CONDITIONAL。等質性があれば十分だが、必要な一般の分類も代替の spray 構成も得られなかった。
+\item すべての有理連結射影多様体は Oka-1：検討した範囲では CONDITIONAL。以前の文献で提案された道具は Gournay の近似であるが、最新の証明評価により確立した定理としては使用できない。
+\item Oka なトーラス上の等質ファイバー束は Oka：TRIVIAL CONSEQUENCE。道具は Oka ファイバー束定理であり、新たな議論は残らない。
+\item すべての compact K\"ahler Oka 多様体は elliptic：検討した範囲では CONDITIONAL。射影的な場合の負の直線束による方法は、非射影的な場合に正当化できていない。
+\item 十分負に捻った後での所与の全射の積分：射影的 Oka の設定では TRIVIAL CONSEQUENCE。微分 $F\to T_X$ を持つ既存の支配的 spray $F\to X$ があれば、十分大きい $m$ に対して Serre 消滅により写像 $L^{-m\,\oplus N}\to T_X$ を $F$ に持ち上げられ、前合成により spray を得る。これは独立した新しい存在結果ではない。
+\item $n\geq2$ の $\mP^n$ 上のランク $n+1$ の源と芽の剛性：VERIFIED NEW CANDIDATE。道具は接続障害、Euler 拡大、高次ジェットの消滅。延長不可能性は明示的な極限で証明した。
+\item $\mP^n$ 束に対する相対的剛性と延長不可能性：VERIFIED NEW CANDIDATE として主結果に選定。追加の道具は核と Euler 拡大類の降下であり、射影空間束のベクトル束への持ち上げは仮定しない。
+\end{enumerate}
+
+\subsection{最終的な定理の監査}
+\begin{description}[style=nextline,leftmargin=0pt,labelwidth=0pt,labelsep=0pt]
+\item[主定理（Main theorem）.]
+定理~\ref{ja:main}。$n\geq2$ に対するランク $n+1$ 以下の局所相対 spray の分類と、大域的な下界 $n+2$。
+\item[最も近い既知結果（Nearest known result）.]
+文献 \cite{ja:FLell} の Problem~3.2 と Proposition~3.3 は、局所的な源として許される束と大域生成による障害を扱う。古典的な等質 spray によって存在は既に得られる。
+\item[正確な差（Precise difference）.]
+最小の源を特定し、その芽全体を決定し、族で分類を降下させ、その源上での延長不可能性を証明する。等質性という結論でも、何らかの spray の存在の再証明でもない。
+\item[非自明である理由（Why nontrivial）.]
+証明には非分裂拡大の計算、すべての高次ジェットの排除、底変換と拡大類の議論、および実際の解析的延長不可能性が必要である。引用した定理にこれらの結論を直接述べたものはない。
+\item[直接の帰結かの確認（Immediate consequence check）.]
+大域生成だけから得られるのは等質性であり、源や高次ジェットの分類ではない。負の源の存在定理は源を変更するため、Euler 芽を延長するものではない。棄却した捻りの候補は、近接する議論が機械的な帰結にしかならない例を説明する。
+\item[反例探索（Counterexample search）.]
+第6節では等質多様体、toric Fano とブローアップの例、トーラス、K3 曲面と楕円曲面を検討した。$\mP^1$ は $n\geq2$ を外すことを反証し、トーラスは次元だけによる普遍的な下界を反証する。
+\item[新規性検索（Novelty search）.]
+確認した文献群と上記の検索では一致する主張を見つけなかった。優先権についてはその範囲外の文献による修正の余地がある。
+\item[証明の状態（Proof status）：VERIFIED.]
+すべての段階を上で証明するか、仮定を確認した初等的なコホモロジー、GAGA、または固有底変換定理を用いた。ここで VERIFIED とは本原稿の研究過程内で検証したという意味であり、独立した査読を意味しない。
+\end{description}
+
+\subsection{実際に確認した版と資料}
+文献 \cite{ja:AF} は v1（2023年）と v5（2025年4月10日）を比較し、後者の2025年公刊書誌情報を確認した。文献 \cite{ja:FLone} は v4（2024年12月29日）を読んだ。文献 \cite{ja:FLell} は第3節を含む v6（2026年5月5日）を読み、2026年の雑誌掲載情報を確認した。文献 \cite{ja:BW} は著者公開の完全な証明と2025年の公刊情報を確認した。Banecki の2026年8月3日の v4 も含めた \cite{ja:Banecki}。Campana の公刊 Corollary~8.11、公刊された \cite{ja:CWhP}、および \cite{ja:CWdense} の全文を確認した。2026年の講演資料と ICM survey は状況の比較に用い、確認できない証明の代わりには用いなかった。正値性の論文 \cite{ja:IMZ,ja:MQ,ja:Muller} は仮定を調べたが、定理~\ref{ja:main}の入力ではない。
+
+Fano/CP 多様体に関する一般の Oka 問題は本研究では未解決である。検証された成果は源の剛性とランク障害の定理であり、具体的な最小値 $r_{\mathrm{glob}}(\mP^2)=4$ とその相対的拡張を含む。
+
+\renewcommand{\refname}{参考文献}
+\begin{thebibliography}{99}
+\bibitem[1]{ja:AF}
+A. Alarc\'on and F. Forstneri\v c,
+\emph{Oka-1 manifolds}, Math. Z. \textbf{311} (2025), no.~2, article~33, 34~pp.
+\href{https://doi.org/10.1007/s00209-025-03833-4}{doi:10.1007/s00209-025-03833-4}.
+\href{https://arxiv.org/abs/2303.15855v5}{arXiv:2303.15855v5}; v1 also consulted.
+
+\bibitem[2]{ja:Atiyah}
+M. F. Atiyah, \emph{Complex analytic connections in fibre bundles},
+Trans. Amer. Math. Soc. \textbf{85} (1957), 181--207.
+\href{https://doi.org/10.1090/S0002-9947-1957-0086359-5}{doi:10.1090/S0002-9947-1957-0086359-5}.
+
+\bibitem[3]{ja:Banecki}
+J. Banecki, \emph{Retract rational varieties are uniformly retract rational},
+preprint (2024), version~4, 3 August 2026, 8~pp.
+\href{https://arxiv.org/abs/2411.17892v4}{arXiv:2411.17892v4}.
+
+\bibitem[4]{ja:BW}
+O. Benoist and O. Wittenberg,
+\emph{Tight approximation for rationally simply connected varieties},
+Taiwanese J. Math. \textbf{29} (2025), no.~6, 1165--1183.
+\href{https://doi.org/10.11650/tjm/250702}{doi:10.11650/tjm/250702}.
+
+\bibitem[5]{ja:Campana}
+F. Campana, \emph{Orbifolds, special varieties and classification theory},
+Ann. Inst. Fourier (Grenoble) \textbf{54} (2004), no.~3, 499--630.
+\href{https://doi.org/10.5802/aif.2027}{doi:10.5802/aif.2027};
+\href{https://arxiv.org/abs/math/0110051}{arXiv:math/0110051}.
+
+\bibitem[6]{ja:CP}
+F. Campana and T. Peternell,
+\emph{Projective manifolds whose tangent bundles are numerically effective},
+Math. Ann. \textbf{289} (1991), 169--187.
+\href{https://doi.org/10.1007/BF01446566}{doi:10.1007/BF01446566}.
+
+\bibitem[7]{ja:CWhP}
+F. Campana and J. Winkelmann,
+\emph{On the h-principle and specialness for complex projective manifolds},
+Algebr. Geom. \textbf{2} (2015), no.~3, 298--314.
+\href{https://doi.org/10.14231/AG-2015-013}{doi:10.14231/AG-2015-013};
+\href{https://arxiv.org/abs/1210.7369}{arXiv:1210.7369}.
+
+\bibitem[8]{ja:CWdense}
+F. Campana and J. Winkelmann, with an appendix by J. Koll\'ar,
+\emph{Dense entire curves in rationally connected manifolds},
+Algebr. Geom. \textbf{10} (2023), no.~5, 521--553.
+\href{https://arxiv.org/abs/1905.01104v3}{arXiv:1905.01104v3}.
+
+\bibitem[9]{ja:DPS}
+J.-P. Demailly, T. Peternell and M. Schneider,
+\emph{Compact complex manifolds with numerically effective tangent bundles},
+J. Algebraic Geom. \textbf{3} (1994), no.~2, 295--345. MR1257325.
+\href{https://eref.uni-bayreuth.de/id/eprint/59615/}{Author-institution bibliographic record}.
+
+\bibitem[10]{ja:Book}
+F. Forstneri\v c,
+\emph{Stein manifolds and holomorphic mappings: The homotopy principle in complex analysis},
+2nd ed., Ergebnisse der Mathematik und ihrer Grenzgebiete, 3. Folge, vol.~56,
+Springer, Cham, 2017.
+\href{https://doi.org/10.1007/978-3-319-61058-0}{doi:10.1007/978-3-319-61058-0}.
+
+\bibitem[11]{ja:Recent}
+F. Forstneri\v c, \emph{Recent developments on Oka manifolds},
+Indag. Math. (N.S.) \textbf{34} (2023), no.~2, 367--417.
+\href{https://arxiv.org/abs/2006.07888}{arXiv:2006.07888}.
+
+\bibitem[12]{ja:ICM}
+F. Forstneri\v c,
+\emph{From Stein manifolds to Oka manifolds: the h-principle in complex analysis},
+ICM 2026 survey, preprint (2025).
+\href{https://arxiv.org/abs/2509.21197v1}{arXiv:2509.21197v1}.
+
+\bibitem[13]{ja:Slides}
+F. Forstneri\v c, \emph{Oka-1 manifolds}, lecture slides,
+Alfr\'ed R\'enyi Institute, Budapest, 27 June 2023,
+\url{https://users.fmf.uni-lj.si/forstneric/datoteke/2023-Renyi.pdf};
+\emph{From Stein manifolds to Oka manifolds: the h-principle in complex analysis},
+ICM 2026 lecture slides,
+\url{https://users.fmf.uni-lj.si/forstneric/datoteke/ICM2026.pdf}.
+Accessed 9 September 2026; used only for version comparison.
+
+\bibitem[14]{ja:FLone}
+F. Forstneri\v c and F. L\'arusson,
+\emph{Oka-1 manifolds: New examples and properties},
+Math. Z. \textbf{309} (2025), no.~2, article~26, 16~pp.
+\href{https://doi.org/10.1007/s00209-024-03649-8}{doi:10.1007/s00209-024-03649-8};
+\href{https://arxiv.org/abs/2402.09798v4}{arXiv:2402.09798v4}.
+
+\bibitem[15]{ja:FLell}
+F. Forstneri\v c and F. L\'arusson,
+\emph{Every projective Oka manifold is elliptic},
+Math. Res. Lett. \textbf{33} (2026), no.~1, 297--312.
+\href{https://doi.org/10.4310/MRL.260503003231}{doi:10.4310/MRL.260503003231};
+\href{https://arxiv.org/abs/2502.20028v6}{arXiv:2502.20028v6}.
+
+\bibitem[16]{ja:Gournay}
+A. Gournay, \emph{A Runge approximation theorem for pseudo-holomorphic maps},
+Geom. Funct. Anal. \textbf{22} (2012), no.~2, 311--351.
+\href{https://arxiv.org/abs/1006.2005v2}{arXiv:1006.2005v2}.
+
+\bibitem[17]{ja:Grauert}
+H. Grauert,
+\emph{Ein Theorem der analytischen Garbentheorie und die Modulr\"aume komplexer Strukturen},
+Publ. Math. Inst. Hautes \'Etudes Sci. \textbf{5} (1960), 5--64.
+\url{https://www.numdam.org/item/PMIHES_1960__5__5_0/}.
+
+\bibitem[18]{ja:Gromov}
+M. Gromov, \emph{Oka's principle for holomorphic sections of elliptic bundles},
+J. Amer. Math. Soc. \textbf{2} (1989), no.~4, 851--897.
+\href{https://doi.org/10.2307/1990897}{doi:10.2307/1990897}.
+
+\bibitem[19]{ja:HIM}
+G. Hosono, M. Iwai and S.-i. Matsumura,
+\emph{On projective manifolds with pseudo-effective tangent bundle},
+J. Inst. Math. Jussieu \textbf{21} (2022), no.~5, 1801--1830.
+\href{https://doi.org/10.1017/S1474748020000754}{doi:10.1017/S1474748020000754};
+\href{https://arxiv.org/abs/1908.06421}{arXiv:1908.06421}.
+
+\bibitem[20]{ja:IMZ}
+M. Iwai, S.-i. Matsumura and G. Zhong,
+\emph{Positivity of tangent sheaves of projective varieties---the structure of MRC fibrations},
+preprint (2023), version~2, 22 July 2025, 40~pp., announced for Algebr. Geom.
+\href{https://arxiv.org/abs/2309.09489v2}{arXiv:2309.09489v2}.
+
+\bibitem[21]{ja:KZ}
+S. Kaliman and M. Zaidenberg, \emph{Gromov ellipticity and subellipticity},
+Forum Math. \textbf{36} (2024), no.~2, 373--376.
+\href{https://arxiv.org/abs/2301.03058}{arXiv:2301.03058}.
+
+\bibitem[22]{ja:Kus21}
+Y. Kusakabe, \emph{Elliptic characterization and localization of Oka manifolds},
+Indiana Univ. Math. J. \textbf{70} (2021), no.~3, 1039--1054.
+\href{https://doi.org/10.1512/iumj.2021.70.8454}{doi:10.1512/iumj.2021.70.8454};
+\href{https://arxiv.org/abs/1808.06290}{arXiv:1808.06290}.
+
+\bibitem[23]{ja:Kus24}
+Y. Kusakabe, \emph{Oka properties of complements of holomorphically convex sets},
+Ann. of Math. (2) \textbf{199} (2024), no.~2, 899--917.
+\href{https://arxiv.org/abs/2005.08247v2}{arXiv:2005.08247v2}.
+
+\bibitem[24]{ja:MQ}
+S.-i. Matsumura and C. Qing,
+\emph{On compact K\"ahler manifolds with pseudo-effective tangent bundle},
+preprint (2025), 10~pp.
+\href{https://arxiv.org/abs/2502.00623v1}{arXiv:2502.00623v1}.
+
+\bibitem[25]{ja:Muller}
+N. M\"uller, \emph{Locally constant fibrations and positivity of curvature},
+Bull. Lond. Math. Soc. \textbf{57} (2025), no.~4, 1005--1025.
+\href{https://doi.org/10.1112/blms.70012}{doi:10.1112/blms.70012};
+\href{https://arxiv.org/abs/2212.11530v3}{arXiv:2212.11530v3}.
+
+\bibitem[26]{ja:Serre}
+J.-P. Serre, \emph{G\'eom\'etrie alg\'ebrique et g\'eom\'etrie analytique},
+Ann. Inst. Fourier (Grenoble) \textbf{6} (1955--1956), 1--42.
+\url{https://www.numdam.org/item/AIF_1956__6__1_0/}.
+
+\bibitem[27]{ja:Stacks}
+The Stacks Project Authors, \emph{The Stacks Project},
+Section~30.8, Cohomology of projective space, Lemma~30.8.1, Tag~01XS.
+\url{https://stacks.math.columbia.edu/tag/01XS}. Accessed 9 September 2026.
+
+\end{thebibliography}
+
+\end{document}

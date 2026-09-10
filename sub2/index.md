@@ -83,7 +83,10 @@
 
 
 # **chatGPTが書いたノート**
-chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あってるか知らないので注意すること
+chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あってるか知らないので注意すること. 
+
+近年流行っている分野の単語をいれてプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. 
+ここにおいたのは「論文っぽいものが容易に1時間で作れる」と言うのを見てほしいためです. (これをそのまま論文にするつもりはないです.)
 
 - [A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/toric_MY_20260908.pdf) 
 - [Maximal relative anticanonical growth and finite etale splitting](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/anticanonical_20260908.pdf) 
@@ -99,14 +102,19 @@ chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あっ�
 - [Heat-semigroup defects, gaussian approximation, and spectral multiplicities on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_bilingual.pdf) 
 - [Spectral cluster multiplicities from almost gaussian eigenfunctions on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_2.pdf) 
 
-近年流行っている分野の単語をいれてプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. 私は概念くらいしか知りません. 近年流行っている分野を選んだのは問題が作りやすいと思ったためです. みたらわかるが, 修士論文でこれが出てきても特に何も思わないし, むしろよくできていると思う. 
+- [Minimal local sprays and a rank obstruction on projective-space bundles](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/oka_geometry.pdf) 
+- [Asymptotic relative Chow polystability for products of polarized Hirzebruch surfaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/relative_chow_tori.pdf) 
+- [Torsion obstructions to generalized abundance](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/mmp_torsion_note.pdf) 
+- [Joint collision and pole regularization in weighted Bergman interpolation](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/l2_collision.pdf) 
+- [Algebraic rigidity and prescribed convergence sets for triangular non-autonomous automorphisms](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/complex_dynamics_scv.pdf) 
 
+
+みたらわかるが, 修士論文でこれが出てきても特に何も思わないし, むしろよくできていると思う. 
 しかし恐ろしい時代になったものである. 
 証明を知ってなくても上の論文を自分の論文だと言い張って出すことはできるからである. 
 多分こういったことをする人は増えていくと思う. 
 
-ちなみに私はしょうもないプライドがあるので, 絶対にしないつもりである. そもそもこんな簡単な論文を書いて出しても面白くないためである. まあそれも状況が変わればどうなるかわかりませんが. 
-
+ちなみに私はしょうもないプライドがあるので, 絶対にしないつもりである. そもそもこんな簡単な論文を書いて出しても面白くないためである. 
 
 
 # **数学以外の論文・プレプリント**
