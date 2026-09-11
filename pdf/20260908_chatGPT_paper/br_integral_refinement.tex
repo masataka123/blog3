@@ -1,0 +1,2008 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{luatexja}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{ulem.sty}{\usepackage[normalem]{ulem}}{}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{luatex85} % Compatibility for the template\'s legacy Xy-pic driver.
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions for the present bilingual research note.
+\usepackage{needspace}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,
+  keepspaces=true,showstringspaces=false,frame=single}
+\newcommand{\Fil}{\operatorname{Fil}}
+\newcommand{\Span}{\operatorname{Span}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\dep}{\operatorname{dep}}
+\newcommand{\ZA}{\mathcal Z_{\mathcal A}}
+\newcommand{\ZAf}{\mathcal Z_{\mathcal A}^{\mathrm f}}
+\newcommand{\zf}{\zeta_{\mathcal A}^{\mathrm f}}
+\newcommand{\za}{\zeta_{\mathcal A}}
+\newcommand{\Dbar}{\overline{\mathcal D}_k}
+\newcommand{\Dtilde}{\widetilde{\mathcal D}_k}
+\newcommand{\Rdy}{\Z[1/2]}
+\newcommand{\Ztwo}{\Z_{(2)}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\sh}{\mathbin{\sha}}
+\newcommand{\rev}{\operatorname{rev}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\Relf}{\operatorname{Rel}}
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jprop}[thm]{命題}
+\newtheorem{jcor}[thm]{系}
+\theoremstyle{definition}
+\newtheorem{jdef}[thm]{定義}
+\theoremstyle{remark}
+\newtheorem{jrem}[thm]{注意}
+\emergencystretch=2em
+\title[Integral refinement of the Bachmann--Risan matrix]{An integral refinement of the Bachmann--Risan matrix:\\determinant divisibility, kernel reduction, and exact computations}
+\author{chatGPT 6Astra}
+\date{September 10, 2026}
+\subjclass[2020]{Primary 11M32; Secondary 11B68, 11C20, 11F11}
+\keywords{formal finite multiple zeta values, double zeta space, Bernoulli numbers, determinant integrality, exact computation}
+\hypersetup{pdftitle={An integral refinement of the Bachmann--Risan matrix},
+ pdfauthor={chatGPT 6Astra}}
+\begin{document}
+\raggedbottom
+\begin{abstract}
+We study the matrix $A_k$ defined by Bachmann--Risan in
+arXiv:\allowbreak2608.15480v1, equation (5.31), with its original normalization
+$2H=A_kZ$. Put $N=k/2-2$, $a=\lceil N/2\rceil$, and
+$\epsilon=N\bmod 2$. We prove, for every even $k\geq6$, the arithmetic refinement
+\[
+ \det A_k\in 2^a(k/2)^\epsilon\Z.
+\]
+The proof compares an integral double-shuffle presentation with the
+odd--odd basis, controls its determinant away from $2$ by a reflection
+and finite-difference argument, and treats $2$ directly from the
+Bernoulli recurrence. We also give an explicit reversal block decomposition
+and an integral, Bernoulli-free construction of relation certificates.
+Independent exact computations give $\det A_k\ne0$ for every even
+$6\leq k\leq300$. In depth five we obtain finite exact certificates through
+weight $15$ and record a fully proved special-family reduction which is
+a consequence of the known antipode method. The universal nonsingularity
+conjecture is not proved here; neither the computation nor the integrality
+theorem implies it. The literature audit found no statement of the above
+arithmetic refinement in the sources checked, without establishing an
+absolute priority claim.
+\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+
+\section{Introduction and the scope of the result}
+The starting point is Bachmann--Risan \cite{BR}, particularly
+\S5.3. Their matrix already has the name $A_k$. Its nonsingularity is
+Conjecture 5.16, stated there for even $k\geq6$, and their reported exact
+verification covers even $k\leq100$. At the audit date of September 10,
+2026, the arXiv record displayed only version 1, submitted August 16,
+2026. The author publication pages linked this work; no subsequent proof
+of Conjecture 5.16 was identified in the searches described in
+Section~\ref{en:audit}.
+
+The principal proved result of this note is an arithmetic statement,
+valid without assuming nonsingularity.
+\Needspace{12\baselineskip}
+\begin{thm}[Integral refinement]\label{en:main}
+Let $k\geq6$ be even, and let $A_k$ have exactly the row order, column
+order, and normalization in \cite[(5.28)--(5.31)]{BR}. Set
+\[
+ N=\frac{k}{2}-2,\qquad a=\left\lceil\frac N2\right\rceil,
+ \qquad \epsilon=\begin{cases}1&k\equiv2\pmod4,\\0&k\equiv0\pmod4.
+ \end{cases}
+\]
+Then
+\begin{equation}\label{en:divisibility}
+ \boxed{\det A_k\in 2^a(k/2)^\epsilon\Z.}
+\end{equation}
+In particular, its determinant is an integer although its entries need
+not be integers. The statement permits the determinant to be zero.
+\end{thm}
+
+The closest input is the odd--odd basis theorem and its finite-difference
+proof in Gangl--Kaneko--Zagier \cite[Theorem 2 and \S4,
+Proposition 3]{GKZ}. Those results concern a rational basis change.
+Our refinement tracks the determinant over $\Z[1/2]$, identifies the entire
+odd-prime denominator contribution of the presentation matrix, and cancels
+it against explicit factors from paired $H$-rows. The Bernoulli recurrence
+then removes the remaining possible powers of $2$ in the denominator.
+This proves a uniform arithmetic conclusion for every even weight.
+We do not describe rational basis existence itself as new.
+
+\begin{center}
+\begin{tabular}{p{.28\textwidth}p{.61\textwidth}}
+\toprule
+Prior result & $A_k$ is nonsingular for even $k\leq100$ by the computation
+reported in \cite{BR}; nonsingularity in cusp-free weights is proved there.\\
+Proved here & Formula \eqref{en:divisibility}, in every even weight,
+and an explicit integral presentation for certificates.\\
+Computed here & Nonsingularity for every even $k\leq300$, using exact arithmetic.\\
+Not established here & Nonsingularity for all even weights; a new general
+depth-five parity theorem; bijectivity of $\beta_k$.\\
+\bottomrule
+\end{tabular}
+\end{center}
+The power and odd factor in \eqref{en:divisibility} are uniform guaranteed
+divisors, not a claim of optimal valuations at every weight.
+
+\section{Finite, symmetric, and formal values}
+We use decreasing summation indices. For an index
+$\boldsymbol k=(k_1,\ldots,k_d)$ of positive integers, its weight and depth
+are $|\boldsymbol k|=\sum k_i$ and $d$. For $k_1\geq2$,
+\[
+ \zeta(\boldsymbol k)=\sum_{m_1>\cdots>m_d>0}
+ m_1^{-k_1}\cdots m_d^{-k_d}.
+\]
+Let $\mathcal Z$ denote the rational algebra generated by these values.
+For finite values set
+\[
+ \mathcal A=\prod_p\mathbb F_p\big/\bigoplus_p\mathbb F_p,
+ \qquad
+ \za(\boldsymbol k)=
+ \left(\sum_{p>m_1>\cdots>m_d>0}\prod_i m_i^{-k_i}\bmod p\right)_p.
+\]
+Finitely many inadmissible denominator components do not affect an element
+of $\mathcal A$. The increasing-index convention of Kaneko--Zagier
+\cite{KZ} is converted to ours by reversing indices.
+
+Write $\zeta^{*,T}$ for stuffle-regularized classical values, with
+$\zeta^{*,T}(1)=T$ and the empty value equal to $1$. Symmetric values are
+\[
+ \zeta_{\mathcal S}(\boldsymbol k)=
+ \sum_{j=0}^d(-1)^{k_1+\cdots+k_j}
+ \zeta^{*,T}(k_j,\ldots,k_1)
+ \zeta^{*,T}(k_{j+1},\ldots,k_d)
+ \pmod{\zeta(2)\mathcal Z}.
+\]
+The regularization comparison is discussed in
+\cite[\S2, Theorem 1]{IKZ}; the finite/symmetric construction and its
+conjectural correspondence are in \cite[\S\S7--9]{KZ}.
+
+For the formal finite algebra let $\mathfrak H=\Q\langle x,y\rangle$,
+$\mathfrak H^1=\Q+\mathfrak Hy$, and $z_j=x^{j-1}y$.
+The stuffle product is
+\[
+ z_a u*z_b v=z_a(u*z_bv)+z_b(z_au*v)+z_{a+b}(u*v).
+\]
+The shuffle product $\sh$ is the usual shuffle of the letters $x,y$,
+with multiplicities. Let $R$ reverse the sequence of $z$-letters.
+Following \cite[Definition 3.1]{BR}, form the quotient of
+$\mathfrak H^1_*$ by the stuffle ideal generated by
+\begin{equation}\label{en:lsf}
+ u\sh v-(-1)^{\wt(u)}R(u)v\qquad(u,v\in\mathfrak H^1).
+\end{equation}
+It is $\ZAf$, and the class of $z_{k_1}\cdots z_{k_d}$ is
+$\zf(\boldsymbol k)$. Empty words are allowed in
+\eqref{en:lsf}; in particular it gives reversal. Its depth filtration is
+\[
+ \Fil_d\mathcal Z^{\mathrm f}_{\mathcal A,k}
+ =\Span_{\Q}\{\zf(\boldsymbol k):|\boldsymbol k|=k,
+                      \dep(\boldsymbol k)\leq d\}.
+\]
+The formal classical algebra is the quotient by extended double-shuffle
+relations, with formal symmetric values defined by the same regularized
+alternating sum. Bachmann--Risan's Main Theorem A gives a surjection
+$\ZAf\longrightarrow\mathcal Z^{\mathrm f}/\zeta^{\mathrm f}(2)
+\mathcal Z^{\mathrm f}$. Injectivity is not used here.
+Their Main Theorem B proves strong parity only through depth four.
+
+\section{The precise Bachmann--Risan matrix}
+The formal double zeta space $\mathcal D_k$ has generators $Z_{r,s}$,
+$P_{r,s}$ for $r+s=k$, $r,s\geq1$, and $Z_k$, subject to
+\begin{equation}\label{en:ds}
+ P_{r,s}=Z_{r,s}+Z_{s,r}+Z_k
+ =\sum_{u+v=k}\left[\binom{u-1}{r-1}+\binom{u-1}{s-1}\right]Z_{u,v}.
+\end{equation}
+The two quotients must be distinguished:
+\[
+ \Dbar=\mathcal D_k/(\Q Z_k+\Q Z_{1,k-1}),\qquad
+ \Dtilde=\Dbar/\Span\{P_{r,k-r}:r\text{ even}\}.
+\]
+Put $I_k=(3,5,\ldots,k-3)$ in increasing order.
+The classes $Z_{r,k-r}$, $r\in I_k$, form a basis of $\Dbar$,
+whereas they can satisfy relations in $\Dtilde$
+\cite[Lemma 5.14 and Proposition 5.3]{BR}. Their dimensions are
+$N$ and $N-\dim\mathcal S_k$, respectively, with
+$\mathcal S_k$ the cusp forms of weight $k$ on $\mathrm{SL}_2(\Z)$.
+
+For $r,s\geq3$ odd and $r+s=k$, the original elements are
+\begin{align}\label{en:H}
+2H_{r,s}={}&(rs-r+1)Z_{r,s}+(rs+s-1)Z_{s,r}
+ +(s+1)Z_{s+1,r-1}-(r+1)Z_{r+1,s-1}\notag\\
+ &+\sum_{\ell\in I_k}
+ \left[\binom{k-\ell}{s}-\binom{k-\ell}{r}\right]P_{\ell,k-\ell}.
+\end{align}
+The formula makes sense in $\mathcal D_k$ before either projection.
+Throughout, binomial coefficients outside $0\leq j\leq i$ are zero.
+Bernoulli numbers have the convention
+\[
+ \frac{t}{e^t-1}=\sum_{j\geq0}B_j\frac{t^j}{j!},\qquad
+ B_1=-\frac12,\qquad B_j=0\quad(j<0).
+\]
+For odd $m$ define precisely as in \cite[(5.28)]{BR}
+\begin{equation}\label{en:lambda}
+ \lambda'_{m,k-m}(u,k-u)=
+ \sum_{\ell=0}^{u-2}\binom{k-2-\ell}{m-1}
+                 \binom{u-1}{\ell}B_{k-m-\ell-1}.
+\end{equation}
+The summation is empty when $u=1$. Define
+$L_m(u)=\lambda'_{m,k-m}(u,k-u)$, solely as an abbreviation.
+Expanding \cite[(5.30)]{BR} and using
+$Z_{k-1,1}=-\sum_{t\in I_k}Z_{t,k-t}$ gives the entry formula
+\begin{align}\label{en:Aentry}
+ (A_k)_{r,t}={}&(rs-r+1)\delta_{r,t}+(rs+s-1)\delta_{s,t}\notag\\
+ &+\binom{k-t}{s}-\binom{k-t}{r}
+       +\binom{t}{s}-\binom{t}{r}\notag\\
+ &+2\left\{\frac{r+1}{r}\bigl(L_r(t)-L_r(k-1)\bigr)
+       -\frac{s+1}{s}\bigl(L_s(t)-L_s(k-1)\bigr)\right\}.
+\end{align}
+Here $s=k-r$. Thus $A_k$ has size $N\times N$ and
+\begin{equation}\label{en:AZ}
+ 2(H_{r,k-r})_{r\in I_k}=A_k(Z_{r,k-r})_{r\in I_k}
+ \quad\text{in }\Dbar.
+\end{equation}
+There is no additional transposition or factorial scaling in this equation.
+The factor $2$ would change a determinant by $2^N$ if omitted.
+
+\section{An integral presentation and its odd-prime determinant}
+Set $k=2m+2$ with $m\geq1$, so $N=m-1$. Put
+$x_j=Z_{j,k-j}$ and set $x_1=Z_k=0$. Order the remaining variables as
+\[
+ E=(x_2,x_4,\ldots,x_{2m},x_{2m+1}),\qquad
+ O=(x_3,x_5,\ldots,x_{2m-1}).
+\]
+For $1\leq r\leq m+1$ and $2\leq j\leq2m+1$, let
+\begin{equation}\label{en:Tentry}
+ T_{r,j}=\binom{j-1}{r-1}+\binom{j-1}{2m+1-r}
+                  -\delta_{j,r}-\delta_{j,2m+2-r}.
+\end{equation}
+These are the shuffle-minus-stuffle equations in \eqref{en:ds}.
+Write their integral matrix as $(B\ C)$ according to $(E,O)$.
+The symbol $B$ here denotes a presentation matrix, not a Bernoulli number.
+
+\begin{lem}[Odd-prime determinant]\label{en:Blemma}
+The matrix $B$ is square of size $m+1$, and
+\begin{equation}\label{en:Bunit}
+ \frac{\det B}{(2m-1)!!}\in\Rdy^{\times}.
+\end{equation}
+In particular, $B$ is invertible over $\Q$. For every odd prime $p$,
+$v_p(\det B)=v_p((2m-1)!!)$. No sign convention is suppressed in a
+subsequent equality: \eqref{en:Bunit} only asserts membership in the
+unit group, whose elements are $\pm2^j$.
+\end{lem}
+
+\begin{proof}
+We give the integral refinement of the finite-difference argument
+in \cite[\S4, Proposition 3]{GKZ}. Let $n=2m$ and work over $R=\Rdy$.
+For homogeneous degree-$n$ polynomials define the free $R$-modules
+\[
+ G=\{g:g(Y-X,Y)=g(X,Y)\},\quad
+ S=\{h:h(Y,X)=h(X,Y)\}.
+\]
+Bases are
+$g_j=(X-Y/2)^{2j}Y^{n-2j}$, $0\leq j\leq m$, for $G$, and
+$h_i=X^iY^{n-i}+X^{n-i}Y^i$ for $0\leq i<m$, together with
+$h_m=X^mY^m$, for $S$.
+Consider
+\[
+ \mathcal Cg=g(X,Y)+g(Y,X)-g(X,X-Y).
+\]
+It is symmetric: the difference between the last terms after swapping
+$X,Y$ vanishes, because
+\[
+ g(Y,Y-X)=g(-X,Y-X)=g(X,X-Y).
+\]
+The first equality uses the defining reflection of $G$, and the second
+uses that $n$ is even. If $h=\mathcal Cg$, substitution gives
+\begin{equation}\label{en:Cinverse}
+ \frac{h(X,Y)+h(Y-X,Y)}2=g(X,Y).
+\end{equation}
+Indeed the two $g(X,X-Y)$ terms and the two $g(Y,X)$ terms cancel.
+Thus $\mathcal C$ is injective; both modules have rank $m+1$, so it is an
+isomorphism over $\Q$. Formula \eqref{en:Cinverse} shows that its inverse
+is defined over $R$, hence its matrix $C_0$ in the displayed bases has
+$\det C_0\in R^\times$.
+
+Let $\mathcal F:S\to R^{m+1}$ take the coefficients of
+$X^1Y^{n-1},X^3Y^{n-3},\ldots,X^{n-1}Y,X^n$ in
+\[
+ h(X,X+Y)-h(X,Y).
+\]
+We compute $\det(\mathcal F\mathcal C)$. In the one-variable model write
+$g(t)=g(t,1)$, $h(t)=h(t,1)$. Then $g(1-t)=g(t)$, so
+$\Delta g(t)=g(t+1)-g(t)$ is odd. The polynomial
+$a(t)=h(t)-g(t)$ satisfies $a(1-t)=-a(t)$: to see this, write
+\[
+ a(t)=u(t)-u(1-t),\qquad u(t)=t^n g(1/t),
+\]
+where homogeneity makes $u$ a polynomial. Consequently
+$\Delta a(-t)=\Delta a(t)$, and the odd part of $\Delta h$ equals
+$\Delta g$. Symmetry of $h$ identifies
+$h(X,X+Y)-h(X,Y)$ with the variable swap of
+$h(X+Y,Y)-h(X,Y)$. Its odd coefficients are therefore the reversed
+odd coefficients of $\Delta g$.
+
+For $j\geq1$,
+\[
+ \Delta g_j(t)=(t+1/2)^{2j}-(t-1/2)^{2j}
+              =2j\,t^{2j-1}+\text{lower odd powers}.
+\]
+For $g_0=Y^n$, the odd coefficients vanish, while
+\[
+ (\mathcal Cg_0)(X,X+Y)-(\mathcal Cg_0)(X,Y)
+ =(X+Y)^n+(X-Y)^n-2Y^n
+\]
+has $X^n$ coefficient $2$. Hence, including only an irrelevant ordering
+sign,
+\[
+ \det(\mathcal F\mathcal C)=\pm2\prod_{j=1}^m(2j)
+                          =\pm2^{m+1}m!.
+\]
+
+To recover $B^\mathsf T$, replace $h_i$ by
+$\binom ni h_i$ for $i<m$, and $h_m$ by
+$2\binom nm h_m$. Divide the output coefficient of $X^{2j-1}Y^{n-2j+1}$
+by $\binom n{2j-1}$, leaving the last coefficient unchanged. Expanding
+$h(X,X+Y)$ proves entry by entry that the resulting matrix is precisely
+$B^\mathsf T$ in \eqref{en:Tentry}; the central row is doubled because
+both summands in \eqref{en:ds} coincide. Therefore
+\[
+ \det B=\frac{\pm2^{m+2}m!}{\det C_0}
+       \frac{\prod_{i=0}^m\binom{2m}{i}}
+            {\prod_{j=1}^m\binom{2m}{2j-1}}.
+\]
+The factorial cancellation is
+\[
+ \frac{\prod_{i=0}^m\binom{2m}{i}}
+      {\prod_{j=1}^m\binom{2m}{2j-1}}
+ =\frac{(2m)!}{2^m(m!)^2}
+ =\frac{(2m-1)!!}{m!}.
+\]
+Since $\det C_0$ is a unit of $R$, this proves \eqref{en:Bunit}.
+\end{proof}
+
+\section{Proof of the integral refinement}
+In the variables $(E,O)$, write the integer coefficient matrix of all
+$2H_{r,k-r}$, using \eqref{en:H} and $P_{u,v}=x_u+x_v$, as $(V\ W)$.
+The full square integer matrix is
+\begin{equation}\label{en:Q}
+ Q_k=\begin{pmatrix}B&C\\V&W\end{pmatrix},\qquad
+ Q_k\in M_{2m}(\Z).
+\end{equation}
+Its first $m+1$ rows are double-shuffle relations and its last $N=m-1$
+rows are the $2H$ expressions. Eliminating $E$ by $BE+CO=0$ gives
+\begin{equation}\label{en:schur}
+ A_k=W-VB^{-1}C,\qquad \det Q_k=\det B\det A_k.
+\end{equation}
+The first identity follows from \eqref{en:AZ} and the uniqueness of its
+coordinates in $\Dbar$; it is also an independent way to compute $A_k$
+without Bernoulli numbers. The block factorization proving the determinant
+identity is
+\[
+ Q_k=\begin{pmatrix}I&0\\VB^{-1}&I\end{pmatrix}
+     \begin{pmatrix}B&C\\0&A_k\end{pmatrix}.
+\]
+
+\begin{proof}[Proof of Theorem~\ref{en:main}]
+Adding the formula for $2H_{r,s}$ to that for $2H_{s,r}$ cancels
+the even--even terms and the binomial product terms, giving
+\begin{equation}\label{en:rowsum}
+ 2H_{r,s}+2H_{s,r}=2rs(x_r+x_s).
+\end{equation}
+For each pair $r<s$ in $I_k$, replace one of the two corresponding rows
+of $Q_k$ by their sum. This is an integral elementary row operation with
+determinant $1$. It permits a factor $2rs$ to be extracted from that row.
+If a central index $r=s=c=k/2$ occurs, its unpaired row is
+$2H_{c,c}=2c^2x_c$. There are $a=\lceil N/2\rceil$ extracted rows.
+Every noncentral odd index occurs exactly once in the product of the
+$rs$'s; the central index, when present, occurs twice. Consequently
+\[
+ \det Q_k\in 2^a(2m-1)!!c^\epsilon\Z.
+\]
+Using Lemma~\ref{en:Blemma} in \eqref{en:schur} proves
+\begin{equation}\label{en:away2}
+ \det A_k/c^\epsilon\in\Z[1/2].
+\end{equation}
+This step cancels the odd-prime factors of the basis change even when
+the determinant is zero; it does not divide by $\det A_k$.
+
+It remains to control the prime $2$. The recurrence
+\[
+ B_{2j}=-\frac{1}{2j+1}\sum_{i=0}^{2j-1}
+                 \binom{2j+1}{i}B_i
+\]
+and $B_1=-1/2$, $B_{2j+1}=0$ for $j\geq1$, show inductively that
+$2B_i\in\Ztwo$ for every $i\geq0$. The odd-index vanishing also follows
+directly because $t/(e^t-1)+t/2$ is even. In the recurrence the divisor
+$2j+1$ is odd, so induction in $j$ is valid in $\Ztwo$.
+Formula \eqref{en:lambda} therefore gives $2L_r(t)\in\Ztwo$.
+Since $r,s$ in \eqref{en:Aentry} are odd, every entry of $A_k$ belongs to
+$\Ztwo$.
+
+Now apply the same paired-row operations to $A_k$. By
+\eqref{en:rowsum} and independence of the odd--odd coordinates, the sum
+of rows $r,s$ is $2rs(e_r^{\mathsf T}+e_s^{\mathsf T})$. A central row is
+$2c^2e_c^{\mathsf T}$. Dividing each of these $a$ rows by $2$ leaves
+a matrix over $\Ztwo$. Thus
+\[
+ \det A_k\in2^a\Ztwo.
+\]
+If $\epsilon=1$, then $c$ is odd, hence
+$\det A_k/(2^ac^\epsilon)\in\Ztwo$. Equation \eqref{en:away2} also places
+this rational number in $\Z[1/2]$. The intersection
+$\Z[1/2]\cap\Ztwo=\Z$ proves \eqref{en:divisibility}.
+\end{proof}
+
+\section{Reversal blocks and integral relation certificates}
+Write $h=\lfloor N/2\rfloor$. For the first $h$ indices $r$ of $I_k$,
+use the paired vectors $e_r+e_{k-r}$ and $e_r-e_{k-r}$, and insert the
+central vector among the symmetric ones if $N$ is odd. Let $P$ be the
+matrix with these columns, symmetric ones first. Define
+\[
+ D_k=\operatorname{diag}\{2r(k-r):r\in I_k,\ r\leq k/2\},
+ \quad (M_k)_{r,t}=(A_k)_{r,t}-(A_k)_{r,k-t}\quad(r,t<k/2).
+\]
+The letters $D_k,M_k$ are new auxiliary notation and are not replacements
+for the original $A_k$.
+\begin{prop}\label{en:block}
+Define the $h\times a$ block, for $r<k/2$, by
+\[
+ (F_k)_{r,t}=\begin{cases}
+ (A_k)_{r,t}+(A_k)_{r,k-t}-2r(k-r)\delta_{r,t},&t<k/2,\\
+ (A_k)_{r,k/2},&t=k/2\text{ when present}.
+ \end{cases}
+\]
+Then
+\[
+ P^{-1}A_kP=\begin{pmatrix}D_k&0\\F_k&M_k\end{pmatrix}.
+\]
+In particular,
+\[
+ \det A_k=\left(\prod_{r\leq k/2,\ r\in I_k}2r(k-r)\right)\det M_k,
+ \quad \rank A_k=a+\rank M_k.
+\]
+Every vector in $\ker A_k$ is antisymmetric under index reversal, and
+the displayed change of coordinates identifies $\ker A_k$ with
+$\ker M_k$. The left kernel is exactly
+\[
+ \{(-vF_kD_k^{-1},v)P^{-1}:vM_k=0\}.
+\]
+\end{prop}
+\begin{proof}
+The coefficient identity \eqref{en:rowsum} says that the symmetric
+coordinate of $A_kv$ for a paired index $r$ equals $2r(k-r)$ times
+the corresponding symmetric coordinate of $v$. For a central coordinate
+the same statement follows from its single row. This proves the upper
+two blocks. For antisymmetric input, the $r$-th output coordinate is
+$\sum_{t<k/2}((A_k)_{r,t}-(A_k)_{r,k-t})v_t$; its symmetric part is zero,
+which proves the formula for $M_k$. The diagonal entries of $D_k$ are
+positive and nonzero. Block elimination proves the rank formula, and
+the first block equation forces the symmetric coordinates of any kernel
+vector to be zero. Taking the antisymmetric part of $A_k(e_t+e_{k-t})$
+(or of the central column) gives the stated $F_k$. Finally a row
+$(u,v)$ annihilates the block matrix if and only if
+$uD_k+vF_k=0$ and $vM_k=0$, proving the left-kernel formula.
+\end{proof}
+This factorization does not prove that $M_k$ is nonsingular. For example,
+its eigenvalue in weight $8$ is $-18/5$; the signs are not uniformly positive.
+
+Let $p\in\Q[X,Y]$ be an even period polynomial. We require both evenness and
+homogeneity of degree $k-2$, together with
+\[
+ p(X,Y)=p(X+Y,Y)-p(X+Y,X).
+\]
+Write
+\[
+ p(X+Y,Y)=\sum_{r+s=k}\binom{k-2}{r-1}q_{r,s}X^{r-1}Y^{s-1},
+ \quad b_r=q_{r,k-r}-q_{k-1,1}\quad(r\in I_k).
+\]
+The known period-polynomial theorem in
+\cite[Proposition 5.3]{BR}, based on \cite[Theorem 3]{GKZ}, states
+that $\sum b_rZ_{r,k-r}=0$ in $\Dtilde$, and that these give all such
+relations, with kernel the noncuspidal line $\Q(X^{k-2}-Y^{k-2})$.
+
+\begin{prop}[Integral certificate]\label{en:cert}
+Choose a positive integer $L$ such that every $Lb_r$ is integral and put
+\[
+ \gamma=(0,\ldots,0,Lb_3,Lb_5,\ldots,Lb_{k-3})\adj(Q_k).
+\]
+The first $m+1$ zero entries correspond to $E$. Let $\gamma_H$ be the
+last $N$ components, corresponding to the $2H$ rows. Then
+\[
+ \sum_{r\in I_k}(\gamma_H)_rH_{r,k-r}=0\quad\text{in }\Dtilde.
+\]
+The coefficients are integers computed entirely from binomial coefficients.
+This construction is valid even if $Q_k$ is singular; the resulting
+vector may then be zero.
+\end{prop}
+\begin{proof}
+The adjugate identity gives $\gamma Q_k=\det(Q_k)(0,Lb)$.
+Evaluate this row identity on $(E,O)^{\mathsf T}$. The first $m+1$ rows
+of $Q_k$ are zero in $\Dbar$, and the remaining rows are $2H$.
+The right side is $L\det(Q_k)\sum b_rZ_{r,k-r}$, which vanishes in
+$\Dtilde$. Division by $2$ is valid over $\Q$. Integrality follows
+from $Q_k\in M_{2m}(\Z)$ and the definition of its adjugate.
+\end{proof}
+
+\section{Consequences for finite values: the precise implications}
+Bachmann--Risan's Main Theorem C(i) already proves that the $H$-classes
+span $\Dtilde$ in every even weight, independently of Conjecture 5.16.
+Their Main Theorem D already gives the unconditional surjection
+\[
+ \beta_k:\Dtilde\longrightarrow\Fil_4\mathcal Z_{\mathcal A,k},
+ \qquad H_{r,s}\longmapsto\za(r-1,1,s-1,1).
+\]
+Applying this known map to Proposition~\ref{en:cert} gives the explicit
+integer-coefficient identity
+\begin{equation}\label{en:finitecert}
+ \sum_{r\in I_k}(\gamma_H)_r\za(r-1,1,k-r-1,1)=0.
+\end{equation}
+As a normalization check, take $p=X^2Y^2(X^2-Y^2)^3$ at $k=12$.
+Then $b=(0,2/15,5/42,1/45)$ and $L=630$. Dividing the integral
+certificate by its common factor, and choosing its first sign positive,
+gives $(16,9,18,-2)$, hence
+\[
+ \begin{split}
+ 16\za(2,1,8,1)+9\za(4,1,6,1)
+ +18\za(6,1,4,1)-2\za(8,1,2,1)=0.
+ \end{split}
+\]
+This is the known relation in \cite[(1.6), Example 5.18]{BR}, not a new
+relation; it checks the certificate's normalization against the source.
+
+For the formal finite analogue, Conjecture 5.6 of \cite{BR} remains a
+sufficient hypothesis for the existence of $\beta_k^{\mathrm f}$.
+We do not remove that hypothesis.
+
+If $\det A_k\ne0$, the usual coefficient row is
+$2\det(A_k)bA_k^{-1}$, exactly as in \cite[Theorem 5.17]{BR}.
+By Schur elimination, the certificate above is the same row multiplied
+by $L\det(B)/2$. This nonzero scalar explains its compatibility with
+the original period-polynomial construction. It follows that for every
+computed even $k\leq300$ the cuspidal period-polynomial relations are
+independent and exhaust the relations among the formal $H$-classes.
+The assertion for this finite range uses the exact determinant certificates.
+
+More generally, whenever $A_k$ is invertible, the relation spaces fit into
+\begin{equation}\label{en:exactseq}
+ 0\longrightarrow\Relf(H)\longrightarrow\Relf(\za)
+ \longrightarrow\ker\beta_k\longrightarrow0.
+\end{equation}
+Indeed the surjective coordinate map $\Q^N\to\Dtilde$ has kernel
+$\Relf(H)$; restricting it to the kernel of its composition with $\beta_k$
+maps onto $\ker\beta_k$. Consequently
+\[
+ \dim\Relf(\za)=\dim\mathcal S_k+\dim\ker\beta_k,
+ \qquad \dim\Fil_4\mathcal Z_{\mathcal A,k}
+ =N-\dim\mathcal S_k-\dim\ker\beta_k.
+\]
+In fact these dimension statements only need the already known spanning
+theorem; invertibility identifies the explicit period-polynomial basis
+of $\Relf(H)$. Thus no lower bound on actual finite-MZV dimensions, and
+no proof of Main Conjecture E, follows from Theorem~\ref{en:main}.
+The integral certificate is an additional computational presentation of
+known period relations, not a claim of additional independent relations.
+
+\section{Exact computations, false strengthenings, and proof selection}
+The supplied program uses Python integers and \texttt{python-flint}
+rational matrices. A separate SymPy implementation first reproduced
+\cite[Example 5.18]{BR} entry by entry:
+\[
+ A_{12}=\begin{pmatrix}
+ -39&-23/3&-35/3&-289/9\\
+ -90&-278/5&-310/7&-1594/15\\
+ 90&628/5&800/7&1594/15\\
+ 93&23/3&35/3&775/9
+ \end{pmatrix},\qquad\det A_{12}=48672.
+\]
+For all even $k\leq100$ the rational reduced row echelon form was also
+computed and has full rank. The determinant calculation, independently
+checked against the reversal block determinant, was extended to every
+even $k\leq300$. There are $149$ weights if the empty weight-$4$ matrix
+is included. Its determinant $1$ is our explicit empty-matrix convention;
+the source conjecture starts at $k=6$.
+
+\begin{center}
+\begin{tabular}{rrrrl}
+\toprule
+$k$&size&rank&$\det A_k$&factorization of $|\det A_k|$\\
+\midrule
+4&0&0&1&1\\
+6&1&1&18&$2\cdot3^2$\\
+8&2&2&$-108$&$2^2\cdot3^3$\\
+10&3&3&$-3600$&$2^4\cdot3^2\cdot5^2$\\
+12&4&4&48672&$2^5\cdot3^2\cdot13^2$\\
+14&5&5&846720&$2^7\cdot3^3\cdot5\cdot7^2$\\
+16&6&6&$-38916864$&$2^8\cdot3^2\cdot7\cdot19\cdot127$\\
+18&7&7&5654707200&$2^{10}\cdot3^7\cdot5^2\cdot101$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The determinant at weight $300$ is a positive integer with $2427$
+decimal digits; the matrix has size and rank $148$. Full numerator and
+denominator data are retained in the accompanying results. Large
+numerators were not all prime-factorized, and no large-cofactor
+primality claim is made.
+
+The following counterexamples are exact and minimal within the stated
+weight range starting at $6$.
+\begin{enumerate}
+\item Always-positive determinant fails first at $k=8$, where
+$A_8=\left(\begin{smallmatrix}15&93/5\\15&57/5\end{smallmatrix}\right)$
+and its determinant is $-108$. Total nonnegativity, and hence total
+positivity in the original ordering, fails there as well.
+\item Nonvanishing of all principal minors fails first at $k=10$:
+$A_{10}$ has $(A_{10})_{3,3}=0$, although its determinant is $-3600$.
+All nonempty principal minors at weights $6,8$ are nonzero.
+\item A rational $LU$ decomposition without row exchanges does not exist
+for $A_{10}$ with a nonsingular diagonal in $U$, because its first pivot
+is zero and its first column is nonzero. A universal pivot-free $LDU$
+argument in this ordering is therefore unavailable.
+\item Naively extending the odd--odd indexing to odd weights is not a
+well-formed extension of this problem: two odd positive integers cannot
+sum to an odd weight. It would require a different matrix.
+\end{enumerate}
+For cusp-free weights $k=4,6,8,10,14$, nonsingularity was already
+proved in \cite[Proposition 5.15]{BR}. The noncuspidal polynomial
+$X^{k-2}-Y^{k-2}$ has $b_r=0$ for all internal odd $r$, so its relation
+coefficient vector vanishes, exactly as required.
+
+Several proof mechanisms were actually tested. Reversal gives
+Proposition~\ref{en:block}; binomial/Pascal conjugation did not give a
+triangular remaining block, and the weight-$10$ zero pivot excludes a
+universal pivot-free decomposition of the original matrix. Even the
+weight-$12$ antisymmetric block has characteristic polynomial
+\[
+ t^2+\frac{5734}{315}t+\frac{1352}{105}.
+\]
+Simple diagonal symmetrization of the weight-$16$ block fails the
+necessary three-cycle compatibility of entry ratios. No Toeplitz,
+Hankel, Cauchy, or orthogonal-moment identification, nor a hypergeometric
+determinant recurrence proving nonsingularity, was obtained. Rather than
+assert such identifications, the proof above uses the successful
+finite-difference and local-arithmetic mechanism. Determinant integrality
+was discovered computationally and then proved without finite verification.
+
+\section{The depth-five fallback: certified and general statements}
+For each odd $k=5,7,9,11,13,15$ we enumerated every composition of $k$
+of length five. In the quotient by $\Fil_4$, we formed all leading-depth
+parts of $g*w$, where $g$ is a defining relation \eqref{en:lsf} and
+the depths of $g$ and $w$ sum to five. The leading-depth stuffle is
+ordinary interleaving of the index sequences, whereas the shuffle inside
+$g$ is the shuffle of the binary words. These operations must not be
+confused. Every row is a proved relation modulo $\Fil_4$.
+Incremental elimination over $\mathbb F_{1000003}$ selected independent
+integer rows; the selected square matrices were then checked over
+$\Q$ with nonzero exact determinants.
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$k$&all columns $\binom{k-1}{4}$&exact rational rank&rows examined\\
+\midrule
+5&1&1&1\\7&15&15&137\\9&70&70&677\\
+11&210&210&2083\\13&495&495&4970\\15&1001&1001&10018\\
+\bottomrule
+\end{tabular}
+\end{center}
+Hence strong depth-five parity is certified in those finite weights.
+This is an exhaustive finite-weight statement, not an infinite-family
+novelty claim. The row construction may omit consequences originating
+at higher depth; full row span is sufficient for the stated conclusion,
+so that omission cannot invalidate a certificate.
+
+Here is a completely proved infinite family, explicitly separated from
+the new arithmetic refinement.
+\begin{prop}[Known antipode mechanism, specialized]\label{en:depthfamily}
+Let $w=(a,b,c,d,e)$ have odd weight. Suppose $a+b$ and $d+e$ are even.
+Let $\mathcal C^*(w)$ be the set of the $15$ proper coarsenings of $w$,
+obtained by removing a nonempty subset of the four separators and adding
+the adjacent entries. Each separator choice is counted, even when the
+resulting indices coincide. Then
+\[
+ \zf(w)=-\frac12\sum_{v\in\mathcal C^*(w)}\zf(v).
+\]
+In particular this is an explicit depth-at-most-four reduction of
+$\zf(a,1,b,1,c)$ for all positive odd $a,b,c$.
+\end{prop}
+\begin{proof}
+The stuffle antipode sends a word of length $d$ to $(-1)^d$ times
+the sum of all coarsenings of its reversal. For a length-five word of
+odd weight, reversal multiplies every coarsening by $-1$. The antipode
+of the full word therefore evaluates to the sum of all its coarsenings.
+In $\sum_{uv=w}S_*(u)*v=0$, the cuts at lengths $1$ and $4$ have a
+depth-one factor and vanish. The cut at length $2$ has a factor
+$\zf(b,a)+\zf(a+b)$; both summands vanish because depth-one values
+vanish and the depth-two weight $a+b$ is even. The cut at length $3$
+has factor $\zf(d,e)=0$ because $d+e$ is even. The two remaining end
+terms are the original value and the sum of all its coarsenings. This
+proves $2\zf(w)+\sum_{v\in\mathcal C^*(w)}\zf(v)=0$.
+The facts about depths one and two are \cite[Proposition 3.3]{BR}.
+\end{proof}
+This proposition is an immediate specialization of the known antipode
+argument in \cite[Theorem 4.1]{BR} and \cite[\S6, Proposition 6]{KZ},
+with the contractions retained. It is not offered as a new theorem under
+the novelty standard of the task. For the more difficult pattern
+$\zf(a,1,b,1,c)$ with $a,c$ even and $b$ odd, the surviving obstruction is
+\[
+ \begin{split}
+ 2\zf(a,1,b,1,c)\equiv{}&-(a+1)\mathfrak z^{\mathrm f}(a+1)
+                         \zf(b,1,c)\\
+ &+(c+1)\mathfrak z^{\mathrm f}(c+1)\zf(a,1,b)
+ \pmod{\Fil_4},
+ \end{split}
+\]
+where $\mathfrak z^{\mathrm f}(r)=\zf(r-1,1)/r$.
+It follows by retaining the two nontrivial cuts and using the depth-two
+formula in \cite[Proposition 3.3]{BR}. This note does not prove that
+this obstruction vanishes for all parameters.
+
+\section{Novelty comparison and remaining uncertainty}\label{en:audit}
+The initial and final audits used the exact title and arXiv identifier;
+the author names with ``matrix'', ``nonsingularity'', ``determinant'',
+``integrality'', and ``divisibility''; and the terms ``period polynomial
+matrices'', ``Bernoulli determinant'', ``Pascal matrix'', and ``Hankel
+determinants''. The coefficient $48672$ was also searched. The following
+distinctions are essential.
+\begin{enumerate}
+\item The text of \cite{BR}, including Conjecture 5.16, Proposition 5.15,
+and Theorem 5.17, was checked, not just its abstract. The public version
+and the author pages did not supply a general proof.
+\item The original \cite{GKZ} was checked at its basis theorem, its
+Bernoulli formula (7), and the polynomial proof in \S4. Our reflection
+map is based on that proof; its rational existence is prior work. The
+new assertion investigated here is the arithmetic refinement for $A_k$.
+\item The Kaneko--Zagier manuscript \cite{KZ} and \cite{IKZ} were checked
+in the authors' public copies. The current KZ manuscript is a
+to-appear work, not an invented journal citation.
+\item The determinant literature checked includes Dilcher--Jiu
+\cite{DJ} and the recent Jiu--Yin preprint \cite{JY}. Their Hankel
+structures are different from \eqref{en:Aentry}; no equality of those
+determinants with $\det A_k$ was established.
+Brunault \cite[definition of $D_{k,N}$ and Theorem 4.1]{Bru}
+evaluates Bernoulli-polynomial matrices indexed by residue classes, using
+Dirichlet-character blocks. This is a different defining matrix; we found
+no transformation identifying it with the fixed-weight double-zeta matrix.
+\item Publicly indexed searches associated with MathSciNet, zbMATH,
+and Google Scholar were attempted. A complete subscription-database
+or citation-index audit was not available. The absence of a search
+hit is not a proof of priority.
+\end{enumerate}
+We did not find Theorem~\ref{en:main}, with the matrix and normalization
+fixed above, in the literature searched. This is a bounded novelty
+assessment, not a guarantee that the result is unknown. The theorem is
+an unconditional all-weight arithmetic refinement, but it does not
+achieve the requested all-weight nonvanishing conclusion. The integral
+certificate and block formulas are useful structural consequences;
+neither they nor the depth-five finite computations are represented
+as a solution of the outstanding conjectures.
+
+\appendix
+\section{Reproducible exact computation}
+The accompanying file \texttt{br\_exact.py} runs the matrix scan,
+independent presentation checks, structure checks, and the depth-five
+certificates. It requires \texttt{python-flint} and \texttt{sympy}; every
+matrix calculation relevant to a conclusion uses integers, rational
+numbers, or an explicitly specified finite field. The core construction
+below also fixes all conventions independently of any downloaded source.
+\Needspace{10\baselineskip}
+\begin{lstlisting}[language=Python]
+from math import comb
+from functools import lru_cache
+from flint import fmpq, fmpq_mat
+
+def C(n, j):
+    return comb(n, j) if 0 <= j <= n else 0
+
+def A(k):
+    assert k >= 4 and k % 2 == 0
+    I = list(range(3, k-2, 2))
+    B = [fmpq.bernoulli(j) for j in range(k)]
+    assert B[1] == fmpq(-1, 2)
+    @lru_cache(None)
+    def lam(m, u):
+        return sum((B[k-m-j-1]*C(k-2-j,m-1)*C(u-1,j)
+                    for j in range(u-1)
+                    if 0 <= k-m-j-1 < k), fmpq(0))
+    def entry(r,t):
+        s = k-r
+        q = fmpq((r*s-r+1)*(t==r)+(r*s+s-1)*(t==s))
+        q += C(k-t,s)-C(k-t,r)+C(t,s)-C(t,r)
+        q += 2*(fmpq(r+1,r)*(lam(r,t)-lam(r,k-1))
+                -fmpq(s+1,s)*(lam(s,t)-lam(s,k-1)))
+        return q
+    return fmpq_mat(len(I),len(I),
+                    [entry(r,t) for r in I for t in I])
+
+for k in range(4,301,2):
+    M = A(k)
+    d = M.det()
+    n = k//2-2
+    divisor = 2**((n+1)//2)*(k//2 if n%2 else 1)
+    assert d != 0
+    assert d.q == 1 and int(d.p) % divisor == 0
+    if k <= 100:
+        _, rank = M.rref()
+        assert rank == n
+    print(k, n, str(d))
+\end{lstlisting}
+The independent presentation check builds $B,C,V,W$ from
+\eqref{en:Tentry} and \eqref{en:H}, compares $W-VB^{-1}C$ with $A(k)$,
+and checks the odd part of $\det B$. In the depth-five calculation,
+columns are all compositions of $k$ of length five. The supplied code
+enumerates every defining shuffle generator and every interleaving
+factor whose total depth is five, until a full-rank square integer
+certificate has been selected. Nonzero rational determinants of those
+selected matrices certify the finite claims; no floating-point rank
+threshold is involved.
+
+\begin{thebibliography}{BR26}
+\bibitem[BR26]{BR} H. Bachmann and Risan,
+\emph{Formal finite multiple zeta values}, arXiv:2608.15480v1 (2026),
+\S\S2--5, particularly (5.28)--(5.33), Lemma 5.14,
+Conjecture 5.16, and Theorem 5.17.
+\url{https://arxiv.org/abs/2608.15480v1}.
+\bibitem[GKZ06]{GKZ} H. Gangl, M. Kaneko, and D. Zagier,
+\emph{Double zeta values and modular forms}, in
+\emph{Automorphic Forms and Zeta Functions}, World Scientific (2006),
+71--106; Theorems 2--3, equation (7), and \S4, Proposition 3.
+\url{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/35Double_zeta_values.pdf}.
+\bibitem[IKZ06]{IKZ} K. Ihara, M. Kaneko, and D. Zagier,
+\emph{Derivation and double shuffle relations for multiple zeta values},
+Compos. Math. \textbf{142} (2006), 307--338; \S\S1--2, Theorem 1.
+\url{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/34Derivation_double_shuffle.pdf}.
+\bibitem[KZ]{KZ} M. Kaneko and D. Zagier,
+\emph{Finite multiple zeta values}, to appear in the Proceedings of the
+17th MSJ-SI Conference on Modular Forms and Multiple Zeta Values;
+public 50-page manuscript accessed September 10, 2026, \S6,
+Proposition 6, and \S8, Theorem 4 and its corollary.
+\url{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/FMZV.pdf}.
+\bibitem[DJ22]{DJ} K. Dilcher and L. Jiu,
+\emph{Hankel determinants of sequences related to Bernoulli and Euler
+polynomials}, Int. J. Number Theory \textbf{18} (2022), 331--359;
+preprint arXiv:2007.09821, \S\S1--2.
+\url{https://arxiv.org/abs/2007.09821}.
+\bibitem[JY26]{JY} L. Jiu and Y. Yin,
+\emph{Partial results on Hankel determinants and the corresponding
+J-fractions of a sequence related to Bernoulli numbers},
+arXiv:2609.05827v1 (2026), \S3.
+\url{https://arxiv.org/abs/2609.05827v1}.
+\bibitem[Bru26]{Bru} F. Brunault,
+\emph{Bernoulli determinants and cuspidal subgroups},
+arXiv:2607.13536v1 (2026), \S\S1--4, Theorem 4.1.
+\url{https://arxiv.org/abs/2607.13536v1}.
+\end{thebibliography}
+
+\newpage
+\let\sectionname\empty
+\renewcommand{\proofname}{証明}
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHthm}{ja.\arabic{section}.\arabic{thm}}
+\renewcommand{\theHequation}{ja.\arabic{section}.\arabic{equation}}
+\markboth{chatGPT 6Astra}{Bachmann--Risan 行列の整数論的精密化}
+\begin{center}
+{\Large\bfseries Bachmann--Risan 行列の整数論的精密化：\\[4pt]
+行列式の整除性，核の縮約，厳密計算}\par\medskip
+chatGPT 6Astra\par\medskip
+2026年9月10日
+\end{center}
+\begin{quotation}\small
+\textbf{概要．}
+Bachmann--Risan の arXiv:2608.15480v1 の式 (5.31) で定義される
+行列 $A_k$ を，原論文の規格化 $2H=A_kZ$ のまま研究する．
+$N=k/2-2$，$a=\lceil N/2\rceil$，$\epsilon=N\bmod2$ とおくと，
+すべての偶数 $k\geq6$ について
+\[
+ \det A_k\in2^a(k/2)^\epsilon\Z
+\]
+が成り立つことを証明する．証明では整数係数の二重シャッフル関係の
+表示と奇数・奇数基底を比較し，反射と有限差分によって奇素数での
+分母を制御し，最後に Bernoulli 数の漸化式で素数 $2$ を処理する．
+添字反転による明示的ブロック分解と，Bernoulli 数を使わない整数係数の
+関係式証明書も与える．独立な厳密計算により，偶数 $6\leq k\leq300$
+のすべてで非退化性を確認した．深さ5については重さ15までの有限な
+厳密証明書を得るとともに，既知の対蹠写像の方法から従う特殊族の
+完全な縮約公式を記す．全重さの非退化性予想は本稿では証明していない．
+計算も整数性定理もその証明にはならない．調査した文献中に上の
+算術的精密化の記述は見つからなかったが，絶対的な優先権は主張しない．
+\end{quotation}
+以下は英語版の本文全体に対応する日本語版である．節番号および定理番号は
+英語版とそろえ，ラベルと PDF 内リンクだけを区別する．
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+
+\section{序論と得られた結果の範囲}
+出発点は Bachmann--Risan \cite{jBR}，特に \S5.3 である．原論文の
+行列名はすでに $A_k$ であり，その非退化性は偶数 $k\geq6$ に対する
+Conjecture 5.16 として述べられている．原論文で報告されている厳密な
+計算範囲は偶数 $k\leq100$ である．2026年9月10日の確認時点で，
+arXiv の履歴には2026年8月16日提出の v1 のみが表示されていた．
+著者の論文一覧もこの論文を参照しており，
+第\ref{ja:audit}節に記す検索では予想の一般証明を確認できなかった．
+
+本稿で完全に証明する主結果は，非退化性を仮定しない次の算術的主張である．
+\Needspace{12\baselineskip}
+\begin{jthm}[整数論的精密化]\label{ja:main}
+$k\geq6$ を偶数とし，$A_k$ の行順序，列順序，規格化を
+\cite[(5.28)--(5.31)]{jBR} のものとする．
+\[
+ N=\frac{k}{2}-2,\qquad a=\left\lceil\frac N2\right\rceil,
+ \qquad \epsilon=\begin{cases}1&k\equiv2\pmod4,\\0&k\equiv0\pmod4
+ \end{cases}
+\]
+とおく．このとき
+\begin{equation}\label{ja:divisibility}
+ \boxed{\det A_k\in2^a(k/2)^\epsilon\Z}
+\end{equation}
+である．特に，成分が整数とは限らないにもかかわらず，行列式は整数となる．
+この主張は行列式が零である可能性を排除しない．
+\end{jthm}
+
+最も近い既知の材料は，Gangl--Kaneko--Zagier
+\cite[Theorem 2 および \S4, Proposition 3]{jGKZ} の奇数・奇数基底定理と
+その有限差分による証明である．そこで扱われるのは有理数体上の基底変換である．
+本稿ではこの行列式を $\Z[1/2]$ 上で追跡し，表示行列の奇素数に関する
+分母の寄与全体を特定して，対となる $H$ の行から取り出す因子で相殺する．
+Bernoulli 数の漸化式によって，最後に残る素数 $2$ の分母も排除する．
+これによってすべての偶数重さに対する一様な算術的結論を得る．
+有理数体上の基底の存在そのものを新しい結果と呼ぶものではない．
+
+\begin{center}
+\begin{tabular}{p{.24\textwidth}p{.65\textwidth}}
+\toprule
+既知の結果 & \cite{jBR} は偶数 $k\leq100$ の非退化性を計算で確認し，
+尖点形式がない重さでは非退化性を証明している．\\
+今回の証明 & 全偶数重さに対する \eqref{ja:divisibility} と，
+関係式証明書の整数係数表示．\\
+今回の計算 & すべての偶数 $k\leq300$ での厳密な非退化性確認．\\
+未達成の部分 & 全偶数重さでの非退化性，新しい一般的な深さ5の
+パリティ定理，$\beta_k$ の全単射性．\\
+\bottomrule
+\end{tabular}
+\end{center}
+式 \eqref{ja:divisibility} の因子は一様に保証される約数であり，各重さで
+付値が最良であると主張してはいない．
+
+\section{有限値，対称値，形式的な値}
+総和の添字は減少順にとる．正整数の列
+$\boldsymbol k=(k_1,\ldots,k_d)$ の重さは $|\boldsymbol k|=\sum_i k_i$，
+深さは $d$ である．$k_1\geq2$ のとき
+\[
+ \zeta(\boldsymbol k)=\sum_{m_1>\cdots>m_d>0}
+ m_1^{-k_1}\cdots m_d^{-k_d}
+\]
+と定義し，これらの値が生成する有理数代数を $\mathcal Z$ とする．有限値には
+\[
+ \mathcal A=\prod_p\mathbb F_p\big/\bigoplus_p\mathbb F_p,
+ \qquad
+ \za(\boldsymbol k)=
+ \left(\sum_{p>m_1>\cdots>m_d>0}\prod_i m_i^{-k_i}\bmod p\right)_p
+\]
+を用いる．有限個の素数における分母の問題は $\mathcal A$ の元を変えない．
+Kaneko--Zagier \cite{jKZ} は増加順の規約を用いるので，本稿との変換は
+添字列の反転である．
+
+$\zeta^{*,T}$ を $\zeta^{*,T}(1)=T$ を満たす stuffle 正則化とし，
+空列の値を $1$ とする．対称多重ゼータ値は
+\[
+ \zeta_{\mathcal S}(\boldsymbol k)=
+ \sum_{j=0}^d(-1)^{k_1+\cdots+k_j}
+ \zeta^{*,T}(k_j,\ldots,k_1)
+ \zeta^{*,T}(k_{j+1},\ldots,k_d)
+ \pmod{\zeta(2)\mathcal Z}
+\]
+である．正則化の比較については \cite[\S2, Theorem 1]{jIKZ}，有限値と
+対称値の構成および予想上の対応については \cite[\S\S7--9]{jKZ} を参照する．
+
+形式的有限代数について，$\mathfrak H=\Q\langle x,y\rangle$，
+$\mathfrak H^1=\Q+\mathfrak Hy$，$z_j=x^{j-1}y$ とおく．stuffle 積は
+\[
+ z_a u*z_b v=z_a(u*z_bv)+z_b(z_au*v)+z_{a+b}(u*v)
+\]
+で定まり，$\sh$ は文字 $x,y$ の通常の shuffle 積で，重複度を数える．
+$R$ を $z$-文字の列の反転とする．\cite[Definition 3.1]{jBR} に従い，
+\begin{equation}\label{ja:lsf}
+ u\sh v-(-1)^{\wt(u)}R(u)v\qquad(u,v\in\mathfrak H^1)
+\end{equation}
+で生成される stuffle イデアルによる $\mathfrak H^1_*$ の商をとる．
+これが $\ZAf$ であり，$z_{k_1}\cdots z_{k_d}$ の類を
+$\zf(\boldsymbol k)$ と書く．式 \eqref{ja:lsf} では空語も許す．
+特に反転関係が得られる．深さフィルトレーションは
+\[
+ \Fil_d\mathcal Z^{\mathrm f}_{\mathcal A,k}
+ =\Span_\Q\{\zf(\boldsymbol k):|\boldsymbol k|=k,
+                         \dep(\boldsymbol k)\leq d\}
+\]
+である．
+形式的な古典代数は拡張二重シャッフル関係による商であり，形式的対称値は
+同じ正則化された交代和で定義する．Bachmann--Risan の Main Theorem A は
+$\ZAf\to\mathcal Z^{\mathrm f}/\zeta^{\mathrm f}(2)\mathcal Z^{\mathrm f}$
+の全射性を与える．その単射性は使用しない．同論文の Main Theorem B が
+証明する強いパリティは深さ4までである．
+
+\section{Bachmann--Risan 行列の正確な定義}
+形式的二重ゼータ空間 $\mathcal D_k$ は，$r+s=k$，$r,s\geq1$ に対する
+生成元 $Z_{r,s},P_{r,s}$ と $Z_k$ に関係式
+\begin{equation}\label{ja:ds}
+ P_{r,s}=Z_{r,s}+Z_{s,r}+Z_k
+ =\sum_{u+v=k}\left[\binom{u-1}{r-1}+\binom{u-1}{s-1}\right]Z_{u,v}
+\end{equation}
+を課した有理数ベクトル空間である．次の二つの商を区別する必要がある：
+\[
+ \Dbar=\mathcal D_k/(\Q Z_k+\Q Z_{1,k-1}),\qquad
+ \Dtilde=\Dbar/\Span\{P_{r,k-r}:r\text{ は偶数}\}.
+\]
+増加順の添字集合を $I_k=(3,5,\ldots,k-3)$ とする．
+$Z_{r,k-r}$，$r\in I_k$ は $\Dbar$ の基底だが，$\Dtilde$ では
+関係式を持つことがある \cite[Lemma 5.14, Proposition 5.3]{jBR}．
+それぞれの次元は $N$ と $N-\dim\mathcal S_k$ である．ここで
+$\mathcal S_k$ は $\mathrm{SL}_2(\Z)$ 上の重さ $k$ の尖点形式の空間である．
+
+奇数 $r,s\geq3$，$r+s=k$ に対し，原論文の元は
+\begin{align}\label{ja:H}
+2H_{r,s}={}&(rs-r+1)Z_{r,s}+(rs+s-1)Z_{s,r}
+ +(s+1)Z_{s+1,r-1}-(r+1)Z_{r+1,s-1}\notag\\
+ &+\sum_{\ell\in I_k}
+ \left[\binom{k-\ell}{s}-\binom{k-\ell}{r}\right]P_{\ell,k-\ell}
+\end{align}
+である．この式は商に射影する前の $\mathcal D_k$ でも意味を持つ．
+以下，$0\leq j\leq i$ を満たさない二項係数 $\binom ij$ は零とする．
+Bernoulli 数の規約は
+\[
+ \frac{t}{e^t-1}=\sum_{j\geq0}B_j\frac{t^j}{j!},\qquad
+ B_1=-\frac12,\qquad B_j=0\quad(j<0)
+\]
+である．奇数 $m$ に対し，\cite[(5.28)]{jBR} の通り
+\begin{equation}\label{ja:lambda}
+ \lambda'_{m,k-m}(u,k-u)=
+ \sum_{\ell=0}^{u-2}\binom{k-2-\ell}{m-1}
+                   \binom{u-1}{\ell}B_{k-m-\ell-1}
+\end{equation}
+とする．$u=1$ では空和である．以下では省略記号としてのみ
+$L_m(u)=\lambda'_{m,k-m}(u,k-u)$ を使う．
+\cite[(5.30)]{jBR} を展開し，
+$Z_{k-1,1}=-\sum_{t\in I_k}Z_{t,k-t}$ を代入すると
+\begin{align}\label{ja:Aentry}
+ (A_k)_{r,t}={}&(rs-r+1)\delta_{r,t}+(rs+s-1)\delta_{s,t}\notag\\
+ &+\binom{k-t}{s}-\binom{k-t}{r}
+       +\binom{t}{s}-\binom{t}{r}\notag\\
+ &+2\left\{\frac{r+1}{r}\bigl(L_r(t)-L_r(k-1)\bigr)
+       -\frac{s+1}{s}\bigl(L_s(t)-L_s(k-1)\bigr)\right\}
+\end{align}
+を得る．ここで $s=k-r$ である．従って $A_k$ は $N\times N$ 行列であり，
+\begin{equation}\label{ja:AZ}
+ 2(H_{r,k-r})_{r\in I_k}=A_k(Z_{r,k-r})_{r\in I_k}
+ \quad\text{in }\Dbar
+\end{equation}
+が成り立つ．この式には追加の転置も階乗による規格化もない．
+左辺の $2$ を省くと行列式が $2^N$ 倍だけ変わるので注意が必要である．
+
+\section{整数係数表示と奇素数に関する行列式}
+$k=2m+2$，$m\geq1$ とおく．すると $N=m-1$ である．
+$x_j=Z_{j,k-j}$ とし，$x_1=Z_k=0$ とする．残る変数は
+\[
+ E=(x_2,x_4,\ldots,x_{2m},x_{2m+1}),\qquad
+ O=(x_3,x_5,\ldots,x_{2m-1})
+\]
+の順に並べる．$1\leq r\leq m+1$，$2\leq j\leq2m+1$ に対して
+\begin{equation}\label{ja:Tentry}
+ T_{r,j}=\binom{j-1}{r-1}+\binom{j-1}{2m+1-r}
+                -\delta_{j,r}-\delta_{j,2m+2-r}
+\end{equation}
+とおく．これは \eqref{ja:ds} の shuffle 側から stuffle 側を引いた
+関係式である．$(E,O)$ に従う整数行列を $(B\ C)$ と書く．ここでの
+$B$ は表示行列であり，Bernoulli 数ではない．
+
+\begin{jlem}[奇素数に関する行列式]\label{ja:Blemma}
+$B$ は大きさ $m+1$ の正方行列で，
+\begin{equation}\label{ja:Bunit}
+ \frac{\det B}{(2m-1)!!}\in\Rdy^\times
+\end{equation}
+を満たす．特に $B$ は $\Q$ 上可逆であり，任意の奇素数 $p$ について
+$v_p(\det B)=v_p((2m-1)!!)$ である．式 \eqref{ja:Bunit} は単元群への
+所属だけを述べており，単元は $\pm2^j$ である．以後の等式で行列式の
+符号を暗黙に変更するわけではない．
+\end{jlem}
+
+\begin{proof}
+\cite[\S4, Proposition 3]{jGKZ} の有限差分の議論を整数論的に精密化する．
+$n=2m$，$R=\Rdy$ とする．次数 $n$ の斉次多項式の自由 $R$-加群
+\[
+ G=\{g:g(Y-X,Y)=g(X,Y)\},\quad
+ S=\{h:h(Y,X)=h(X,Y)\}
+\]
+を考える．$G$ の基底は
+$g_j=(X-Y/2)^{2j}Y^{n-2j}$，$0\leq j\leq m$，
+$S$ の基底は $h_i=X^iY^{n-i}+X^{n-i}Y^i$，$0\leq i<m$ と
+$h_m=X^mY^m$ である．写像
+\[
+ \mathcal Cg=g(X,Y)+g(Y,X)-g(X,X-Y)
+\]
+を考える．その値は対称である．実際，$X,Y$ を交換したときの最後の
+項の差は
+\[
+ g(Y,Y-X)=g(-X,Y-X)=g(X,X-Y)
+\]
+によって零となる．最初の等式には $G$ の反射条件を，二番目には
+$n$ が偶数であることを使った．$h=\mathcal Cg$ なら代入によって
+\begin{equation}\label{ja:Cinverse}
+ \frac{h(X,Y)+h(Y-X,Y)}2=g(X,Y)
+\end{equation}
+が得られる．左右を展開すると，$g(X,X-Y)$ の項と $g(Y,X)$ の項が
+それぞれ相殺するためである．従って $\mathcal C$ は単射であり，両加群の
+階数が $m+1$ なので $\Q$ 上同型である．式 \eqref{ja:Cinverse} はその
+逆写像が $R$ 上で定義されることも示す．従って上の基底での行列 $C_0$ は
+$\det C_0\in R^\times$ を満たす．
+
+$\mathcal F:S\to R^{m+1}$ を，
+\[
+ h(X,X+Y)-h(X,Y)
+\]
+の $X^1Y^{n-1},X^3Y^{n-3},\ldots,X^{n-1}Y,X^n$ の係数をこの順に
+取り出す写像とする．$\det(\mathcal F\mathcal C)$ を計算する．一変数表示で
+$g(t)=g(t,1)$，$h(t)=h(t,1)$ と書く．$g(1-t)=g(t)$ なので
+$\Delta g(t)=g(t+1)-g(t)$ は奇多項式である．また
+$a(t)=h(t)-g(t)$ は $a(1-t)=-a(t)$ を満たす．これは
+\[
+ a(t)=u(t)-u(1-t),\qquad u(t)=t^n g(1/t)
+\]
+と書けば分かる．斉次性によって $u$ は多項式となる．従って
+$\Delta a(-t)=\Delta a(t)$ であり，$\Delta h$ の奇数次部分は
+$\Delta g$ に一致する．$h$ の対称性により
+$h(X,X+Y)-h(X,Y)$ は $h(X+Y,Y)-h(X,Y)$ の変数を交換したものである．
+従ってその奇数次係数は $\Delta g$ の奇数次係数を逆順にしたものである．
+
+$j\geq1$ では
+\[
+ \Delta g_j(t)=(t+1/2)^{2j}-(t-1/2)^{2j}
+             =2j\,t^{2j-1}+\text{より低い奇数次数の項}
+\]
+である．$g_0=Y^n$ では奇数次係数は零で，
+\[
+ (\mathcal Cg_0)(X,X+Y)-(\mathcal Cg_0)(X,Y)
+ =(X+Y)^n+(X-Y)^n-2Y^n
+\]
+の $X^n$ の係数は $2$ である．従って順序による符号を除けば
+\[
+ \det(\mathcal F\mathcal C)=\pm2\prod_{j=1}^m(2j)
+                          =\pm2^{m+1}m!
+\]
+となる．
+
+$B^{\mathsf T}$ を得るため，入力基底の $h_i$ を $i<m$ では
+$\binom ni h_i$ に，中央の $h_m$ を $2\binom nm h_m$ に取り替える．
+出力の $X^{2j-1}Y^{n-2j+1}$ の係数は $\binom n{2j-1}$ で割り，
+最後の係数は変えない．$h(X,X+Y)$ を展開すると，得られる行列は
+成分ごとに \eqref{ja:Tentry} の $B^{\mathsf T}$ と一致する．中央の行の
+因子 $2$ は，\eqref{ja:ds} の二つの項がそこで一致することに対応する．
+よって
+\[
+ \det B=\frac{\pm2^{m+2}m!}{\det C_0}
+      \frac{\prod_{i=0}^m\binom{2m}{i}}
+           {\prod_{j=1}^m\binom{2m}{2j-1}}.
+\]
+ここで階乗を消去すると
+\[
+ \frac{\prod_{i=0}^m\binom{2m}{i}}
+      {\prod_{j=1}^m\binom{2m}{2j-1}}
+ =\frac{(2m)!}{2^m(m!)^2}
+ =\frac{(2m-1)!!}{m!}
+\]
+である．$\det C_0$ は $R$ の単元なので，\eqref{ja:Bunit} が従う．
+\end{proof}
+
+\section{整数論的精密化の証明}
+式 \eqref{ja:H} に $P_{u,v}=x_u+x_v$ を代入して得る，すべての
+$2H_{r,k-r}$ の $(E,O)$ に関する整数係数行列を $(V\ W)$ と書く．
+全体の整数正方行列を
+\begin{equation}\label{ja:Q}
+ Q_k=\begin{pmatrix}B&C\\V&W\end{pmatrix},\qquad Q_k\in M_{2m}(\Z)
+\end{equation}
+とする．最初の $m+1$ 行は二重シャッフル関係であり，最後の $N=m-1$ 行は
+$2H$ の表示である．$BE+CO=0$ から $E$ を消去すると
+\begin{equation}\label{ja:schur}
+ A_k=W-VB^{-1}C,\qquad \det Q_k=\det B\det A_k
+\end{equation}
+を得る．最初の等式は \eqref{ja:AZ} と $\Dbar$ における座標の一意性から
+従い，Bernoulli 数を使わずに $A_k$ を計算する独立な方法でもある．
+行列式の等式は次のブロック分解による：
+\[
+ Q_k=\begin{pmatrix}I&0\\VB^{-1}&I\end{pmatrix}
+     \begin{pmatrix}B&C\\0&A_k\end{pmatrix}.
+\]
+
+\begin{proof}[定理\ref{ja:main}の証明]
+$2H_{r,s}$ と $2H_{s,r}$ の表示を加えると，偶数・偶数の項および
+二項係数を含む積の項が相殺し，
+\begin{equation}\label{ja:rowsum}
+ 2H_{r,s}+2H_{s,r}=2rs(x_r+x_s)
+\end{equation}
+となる．$I_k$ の各対 $r<s$ について，$Q_k$ の対応する二つの行の一方を
+その和に取り替える．これは行列式 $1$ の整数行基本変形であり，
+その行から $2rs$ を取り出せる．中央の添字 $r=s=c=k/2$ がある場合，
+対応する一行は $2H_{c,c}=2c^2x_c$ となる．取り出す行は全部で
+$a=\lceil N/2\rceil$ 個である．中央以外の各奇数添字は $rs$ の積に
+一度ずつ現れ，中央の添字がある場合にはそれが二度現れる．従って
+\[
+ \det Q_k\in2^a(2m-1)!!c^\epsilon\Z.
+\]
+補題\ref{ja:Blemma}と \eqref{ja:schur} によって
+\begin{equation}\label{ja:away2}
+ \det A_k/c^\epsilon\in\Z[1/2]
+\end{equation}
+を得る．この段階で基底変換の奇素数因子をすべて相殺した．
+$\det A_k$ では割っていないので，それが零でも議論は有効である．
+
+残る素数 $2$ を処理する．漸化式
+\[
+ B_{2j}=-\frac1{2j+1}\sum_{i=0}^{2j-1}\binom{2j+1}{i}B_i
+\]
+と $B_1=-1/2$，$B_{2j+1}=0$（$j\geq1$）から，帰納的に
+$2B_i\in\Ztwo$ がすべての $i\geq0$ について成り立つ．
+奇数添字の消滅は $t/(e^t-1)+t/2$ が偶級数であることからも直ちに従う．
+漸化式の分母 $2j+1$ は奇数だから，この帰納法は $\Ztwo$ 上で正当である．
+式 \eqref{ja:lambda} より $2L_r(t)\in\Ztwo$ となる．
+式 \eqref{ja:Aentry} の $r,s$ は奇数なので，$A_k$ の全成分が
+$\Ztwo$ に属する．
+
+今度は同じ対となる行の変形を $A_k$ 自体に施す．式 \eqref{ja:rowsum} と
+奇数・奇数座標の独立性から，$r,s$ の行の和は
+$2rs(e_r^{\mathsf T}+e_s^{\mathsf T})$ であり，中央の行は
+$2c^2e_c^{\mathsf T}$ である．これら $a$ 行をそれぞれ $2$ で割っても
+$\Ztwo$ 上の行列のままなので，
+\[
+ \det A_k\in2^a\Ztwo
+\]
+である．$\epsilon=1$ の場合の $c$ は奇数であり，従って
+$\det A_k/(2^ac^\epsilon)\in\Ztwo$ となる．
+式 \eqref{ja:away2} から同じ有理数は $\Z[1/2]$ にも属する．
+$\Z[1/2]\cap\Ztwo=\Z$ より \eqref{ja:divisibility} が従う．
+\end{proof}
+
+\section{反転ブロックと整数係数の関係式証明書}
+$h=\lfloor N/2\rfloor$ とする．$I_k$ の最初の $h$ 個の添字 $r$ について
+$e_r+e_{k-r}$ と $e_r-e_{k-r}$ をとり，$N$ が奇数なら中央のベクトルを
+対称側に加える．これらを対称側が先になるように並べた列行列を $P$ とする．
+\[
+ D_k=\operatorname{diag}\{2r(k-r):r\in I_k,\ r\leq k/2\},
+ \quad (M_k)_{r,t}=(A_k)_{r,t}-(A_k)_{r,k-t}\quad(r,t<k/2)
+\]
+と定義する．$D_k,M_k$ は本稿の補助記号であり，原論文の $A_k$ を
+別の記号に置き換えるものではない．
+\begin{jprop}\label{ja:block}
+$r<k/2$ に対し，$h\times a$ ブロックを
+\[
+ (F_k)_{r,t}=\begin{cases}
+ (A_k)_{r,t}+(A_k)_{r,k-t}-2r(k-r)\delta_{r,t},&t<k/2,\\
+ (A_k)_{r,k/2},&t=k/2\text{ が存在する場合}
+ \end{cases}
+\]
+で定める．このとき
+\[
+ P^{-1}A_kP=\begin{pmatrix}D_k&0\\F_k&M_k\end{pmatrix}
+\]
+である．特に
+\[
+ \det A_k=\left(\prod_{r\leq k/2,\ r\in I_k}2r(k-r)\right)\det M_k,
+ \quad \rank A_k=a+\rank M_k.
+\]
+$\ker A_k$ の元はすべて添字反転に関して反対称であり，上の座標変換は
+$\ker A_k$ と $\ker M_k$ を同一視する．左核はちょうど
+\[
+ \{(-vF_kD_k^{-1},v)P^{-1}:vM_k=0\}
+\]
+である．
+\end{jprop}
+\begin{proof}
+式 \eqref{ja:rowsum} は，$A_kv$ の対 $r,k-r$ に対応する対称座標が
+$v$ の対応する対称座標の $2r(k-r)$ 倍であることを意味する．
+中央の座標でもその一行を見れば同じことが分かる．これが上側の二つの
+ブロックを与える．反対称な入力に対する出力の第 $r$ 座標は
+$\sum_{t<k/2}((A_k)_{r,t}-(A_k)_{r,k-t})v_t$ であり，
+その対称部分は零である．これが $M_k$ の式を与える．
+$D_k$ の対角成分は正で非零なので，ブロック消去によって階数公式が従う．
+核の元の対称座標は最初のブロック方程式から零となる．
+$A_k(e_t+e_{k-t})$（中央ではその一列）の反対称部分をとると $F_k$ の式が従う．
+最後に，行 $(u,v)$ がブロック行列を消すための必要十分条件は
+$uD_k+vF_k=0$，$vM_k=0$ であり，これが左核の式を与える．
+\end{proof}
+この分解だけでは $M_k$ の非退化性は証明できない．重さ8ではその固有値は
+$-18/5$ であり，一様な正値性はない．
+
+$p\in\Q[X,Y]$ を偶周期多項式とする．次数 $k-2$ の斉次性と各変数の偶数冪だけを
+含むことに加えて，
+\[
+ p(X,Y)=p(X+Y,Y)-p(X+Y,X)
+\]
+を要求する．
+\[
+ p(X+Y,Y)=\sum_{r+s=k}\binom{k-2}{r-1}q_{r,s}X^{r-1}Y^{s-1},
+ \quad b_r=q_{r,k-r}-q_{k-1,1}\quad(r\in I_k)
+\]
+と書く．\cite[Theorem 3]{jGKZ} に基づく
+\cite[Proposition 5.3]{jBR} は，$\Dtilde$ において
+$\sum b_rZ_{r,k-r}=0$ であること，これらがそのような関係式をすべて与えること，
+およびこの対応の核が非尖点成分の直線 $\Q(X^{k-2}-Y^{k-2})$ であることを述べる．
+
+\begin{jprop}[整数係数証明書]\label{ja:cert}
+すべての $Lb_r$ が整数となる正整数 $L$ をとり，
+\[
+ \gamma=(0,\ldots,0,Lb_3,Lb_5,\ldots,Lb_{k-3})\adj(Q_k)
+\]
+とおく．最初の $m+1$ 個の零は $E$ に対応する．$2H$ の行に対応する
+最後の $N$ 成分を $\gamma_H$ とすれば，
+\[
+ \sum_{r\in I_k}(\gamma_H)_rH_{r,k-r}=0\quad\text{in }\Dtilde
+\]
+である．係数は整数であり，二項係数だけから計算できる．
+この構成は $Q_k$ が特異でも成立するが，その場合に係数ベクトルが
+零となる可能性はある．
+\end{jprop}
+\begin{proof}
+余因子行列の恒等式より $\gamma Q_k=\det(Q_k)(0,Lb)$ である．
+両辺を $(E,O)^{\mathsf T}$ に適用する．$Q_k$ の最初の $m+1$ 行は
+$\Dbar$ で零であり，残りの行は $2H$ である．右辺は
+$L\det(Q_k)\sum b_rZ_{r,k-r}$ であり，$\Dtilde$ では消える．
+$\Q$ 上で $2$ で割れば主張となる．整数性は
+$Q_k\in M_{2m}(\Z)$ と余因子行列の定義から従う．
+\end{proof}
+
+\section{有限多重ゼータ値への帰結と正確な含意}
+Bachmann--Risan の Main Theorem C(i) は，Conjecture 5.16 とは独立に，
+全偶数重さで $H$ の類が $\Dtilde$ を張ることをすでに証明している．
+同論文の Main Theorem D は無条件の全射
+\[
+ \beta_k:\Dtilde\longrightarrow\Fil_4\mathcal Z_{\mathcal A,k},
+ \qquad H_{r,s}\longmapsto\za(r-1,1,s-1,1)
+\]
+をすでに与えている．この既知の写像を命題\ref{ja:cert}に適用すれば，
+整数係数の恒等式
+\begin{equation}\label{ja:finitecert}
+ \sum_{r\in I_k}(\gamma_H)_r\za(r-1,1,k-r-1,1)=0
+\end{equation}
+を得る．規格化の検査として，$k=12$ で $p=X^2Y^2(X^2-Y^2)^3$ とする．
+このとき $b=(0,2/15,5/42,1/45)$，$L=630$ である．整数証明書を
+公約数で割り，最初の符号を正にすると $(16,9,18,-2)$ が得られ，
+\[
+ 16\za(2,1,8,1)+9\za(4,1,6,1)
+ +18\za(6,1,4,1)-2\za(8,1,2,1)=0
+\]
+となる．これは \cite[(1.6), Example 5.18]{jBR} の既知の関係式であり，
+新しい関係式ではない．原文との規格化の一致を確認する例である．
+
+形式的有限値については，\cite{jBR} の Conjecture 5.6 が
+$\beta_k^{\mathrm f}$ の存在を保証する十分条件として依然必要である．
+本稿はこの仮定を除去していない．
+
+$\det A_k\ne0$ なら，通常の係数行は
+$2\det(A_k)bA_k^{-1}$ であり，\cite[Theorem 5.17]{jBR} と一致する．
+Schur 消去により，本稿の証明書はその行の $L\det(B)/2$ 倍である．
+この非零スカラーによって，原論文の周期多項式による構成との整合性が分かる．
+従って，今回計算した偶数 $k\leq300$ のそれぞれで，尖点周期多項式からの
+関係式は独立であり，形式的 $H$ の類の関係式を尽くす．この有限範囲の
+結論では厳密な行列式証明書を使用する．
+
+一般に $A_k$ が可逆な場合，関係式空間について
+\begin{equation}\label{ja:exactseq}
+ 0\longrightarrow\Relf(H)\longrightarrow\Relf(\za)
+ \longrightarrow\ker\beta_k\longrightarrow0
+\end{equation}
+が成り立つ．実際，座標からの全射 $\Q^N\to\Dtilde$ の核は
+$\Relf(H)$ であり，$\beta_k$ との合成の核へ制限すると
+$\ker\beta_k$ への全射となる．従って
+\[
+ \dim\Relf(\za)=\dim\mathcal S_k+\dim\ker\beta_k,
+ \qquad \dim\Fil_4\mathcal Z_{\mathcal A,k}
+ =N-\dim\mathcal S_k-\dim\ker\beta_k.
+\]
+実際にはこの次元公式自体に必要なのは既知の生成定理だけである．
+可逆性は $\Relf(H)$ の明示的な周期多項式基底を同定するために働く．
+したがって，定理\ref{ja:main}から実際の有限MZVの次元の下界や
+Main Conjecture E の証明は得られない．整数係数証明書は既知の周期関係の
+計算上の追加表示であり，新たな独立な関係式を増やすとの主張ではない．
+
+\section{厳密計算，成り立たない強化，証明法の選択}
+添付プログラムでは Python の整数と \texttt{python-flint} の有理行列を使う．
+最初に独立の SymPy 実装によって \cite[Example 5.18]{jBR} を
+成分ごとに再現した：
+\[
+ A_{12}=\begin{pmatrix}
+ -39&-23/3&-35/3&-289/9\\
+ -90&-278/5&-310/7&-1594/15\\
+ 90&628/5&800/7&1594/15\\
+ 93&23/3&35/3&775/9
+ \end{pmatrix},\qquad\det A_{12}=48672.
+\]
+すべての偶数 $k\leq100$ で有理数上の簡約行階段形も計算し，最大階数を
+確認した．行列式計算は反転ブロックの行列式と独立に照合したうえで，
+すべての偶数 $k\leq300$ まで延長した．重さ4の空行列も数えれば149個の
+重さとなる．空行列の行列式 $1$ は本稿で明示的に採用する規約であり，
+原論文の予想は $k=6$ から始まる．
+
+\begin{center}
+\begin{tabular}{rrrrl}
+\toprule
+$k$&大きさ&階数&$\det A_k$&$|\det A_k|$ の素因数分解\\
+\midrule
+4&0&0&1&1\\
+6&1&1&18&$2\cdot3^2$\\
+8&2&2&$-108$&$2^2\cdot3^3$\\
+10&3&3&$-3600$&$2^4\cdot3^2\cdot5^2$\\
+12&4&4&48672&$2^5\cdot3^2\cdot13^2$\\
+14&5&5&846720&$2^7\cdot3^3\cdot5\cdot7^2$\\
+16&6&6&$-38916864$&$2^8\cdot3^2\cdot7\cdot19\cdot127$\\
+18&7&7&5654707200&$2^{10}\cdot3^7\cdot5^2\cdot101$\\
+\bottomrule
+\end{tabular}
+\end{center}
+重さ300の行列式は正の2427桁の整数で，行列の大きさと階数は148である．
+全分子・分母データは計算結果に収録した．巨大な分子をすべて素因数分解した
+わけではなく，大きな未分解因子の素数性は主張しない．
+
+以下の反例は厳密なものであり，$k=6$ から始める重さの範囲で最小である．
+\begin{enumerate}
+\item 行列式が常に正という主張は $k=8$ で初めて破れる．
+$A_8=\left(\begin{smallmatrix}15&93/5\\15&57/5\end{smallmatrix}\right)$
+の行列式は $-108$ である．元の行・列順序での全非負性，従って全正値性も
+この重さで破れる．
+\item すべての主小行列式が非零という主張は $k=10$ で初めて破れる．
+$(A_{10})_{3,3}=0$ だが，行列式は $-3600$ である．重さ6と8の
+空でない主小行列式はすべて非零である．
+\item $A_{10}$ は，$U$ の対角成分がすべて非零となる行交換なしの
+有理 $LU$ 分解を持たない．最初のピボットが零で，最初の列は零でない
+ためである．従って，この順序で普遍的なピボットなしの $LDU$ 分解を
+使う証明はできない．
+\item 奇数・奇数の添字をそのまま奇数重さへ延長するのは，この問題の
+定義として成立しない．二つの奇数の和は奇数にならないためであり，
+別の行列を定義する必要がある．
+\end{enumerate}
+尖点形式のない $k=4,6,8,10,14$ の非退化性は
+\cite[Proposition 5.15]{jBR} ですでに証明されている．
+非尖点多項式 $X^{k-2}-Y^{k-2}$ では内部のすべての奇数 $r$ に対して
+$b_r=0$ となり，関係式の係数ベクトルが零になる．これは理論通りである．
+
+複数の証明法を実際に検討した．反転から命題\ref{ja:block}を得たが，
+二項係数行列・Pascal 行列による共役では残りのブロックは三角化できなかった．
+重さ10の零ピボットは元の行列に対する普遍的なピボットなしの分解を排除する．
+重さ12の反対称ブロックですら特性多項式は
+\[
+ t^2+\frac{5734}{315}t+\frac{1352}{105}
+\]
+となる．重さ16のブロックを単純な対角共役で対称化する試みは，
+成分比の三項循環条件を満たさない．Toeplitz，Hankel，Cauchy 行列や
+直交多項式のモーメント行列との同定，または超幾何的な行列式漸化式による
+非退化性の証明は得られなかった．これらの同定を主張する代わりに，
+実際に成立した有限差分と局所的算術の方法を上の証明に用いた．
+行列式の整数性は計算から発見したが，最終的な証明は有限検証に依存しない．
+
+\section{深さ5の代替課題：有限証明書と一般的主張}
+各奇数重さ $k=5,7,9,11,13,15$ に対し，長さ5の $k$ の組成をすべて列挙した．
+$\Fil_4$ を法として，定義関係 \eqref{ja:lsf} を $g$ とし，$g$ と語 $w$ の
+深さの和が5になるすべての $g*w$ の最高深さ部分をとった．
+stuffle の最高深さ部分は添字列の通常の挿入混合である一方，$g$ の中の
+shuffle は二文字語の shuffle である．この二つの操作は区別しなければならない．
+各行は $\Fil_4$ を法とする正当な関係式である．
+$\mathbb F_{1000003}$ 上で逐次消去して独立な整数行を選び，選ばれた
+正方行列の行列式をさらに $\Q$ 上で厳密に計算して非零を確認した．
+
+\begin{center}
+\begin{tabular}{rrrr}
+\toprule
+$k$&全列数 $\binom{k-1}{4}$&有理数上の厳密階数&調べた行数\\
+\midrule
+5&1&1&1\\7&15&15&137\\9&70&70&677\\
+11&210&210&2083\\13&495&495&4970\\15&1001&1001&10018\\
+\bottomrule
+\end{tabular}
+\end{center}
+従ってこれらの有限重さでは強い深さ5のパリティを証明書によって確認した．
+これは全添字を尽くした有限重さの主張であり，新しい無限族という主張ではない．
+この行列構成は，より高い深さから生じる関係を取り込まない可能性がある．
+しかし行の張る空間が全空間であることは今回の結論に十分であり，
+その省略は証明書の妥当性を損なわない．
+
+次の無限族については完全な証明を与えられるが，新しい算術的精密化とは
+明確に区別する．
+\begin{jprop}[既知の対蹠写像の方法の特殊化]\label{ja:depthfamily}
+$w=(a,b,c,d,e)$ の重さを奇数とし，$a+b$ と $d+e$ を偶数とする．
+$\mathcal C^*(w)$ を，四つの区切りの空でない部分集合を取り除き，
+隣接する成分を足すことで得る15個の真の粗化の集まりとする．
+結果の添字が一致しても，区切りの選び方ごとに重複を数える．このとき
+\[
+ \zf(w)=-\frac12\sum_{v\in\mathcal C^*(w)}\zf(v).
+\]
+特に正の奇数 $a,b,c$ のすべてに対し，$\zf(a,1,b,1,c)$ の
+深さ4以下への明示的な縮約が得られる．
+\end{jprop}
+\begin{proof}
+stuffle の対蹠写像は，長さ $d$ の語を，その反転のすべての粗化の和の
+$(-1)^d$ 倍へ送る．長さ5で重さが奇数の場合，どの粗化の反転にも
+符号 $-1$ が付く．従って語全体の対蹠写像の評価は，そのすべての粗化の
+和に等しい．恒等式 $\sum_{uv=w}S_*(u)*v=0$ において，長さ1と4の
+切断の項は深さ1の因子を持つので消える．長さ2での切断には
+$\zf(b,a)+\zf(a+b)$ という因子がある．深さ1の値が零であり，
+深さ2の重さ $a+b$ が偶数なので，この二つはともに零である．
+長さ3での切断には因子 $\zf(d,e)=0$ がある．残る両端の項は
+元の値と，すべての粗化の和である．従って
+$2\zf(w)+\sum_{v\in\mathcal C^*(w)}\zf(v)=0$ を得る．
+深さ1と2に関する事実は \cite[Proposition 3.3]{jBR} による．
+\end{proof}
+この命題は \cite[Theorem 4.1]{jBR} および
+\cite[\S6, Proposition 6]{jKZ} の既知の対蹠写像の議論で，縮約項を
+残して特殊化したものである．依頼で指定された新規性基準の意味での
+新定理として提示してはいない．より難しい $a,c$ 偶数，$b$ 奇数の場合，
+残る障害は
+\[
+ \begin{split}
+ 2\zf(a,1,b,1,c)\equiv{}&-(a+1)\mathfrak z^{\mathrm f}(a+1)
+                             \zf(b,1,c)\\
+ &+(c+1)\mathfrak z^{\mathrm f}(c+1)\zf(a,1,b)
+ \pmod{\Fil_4}
+ \end{split}
+\]
+である．ここで $\mathfrak z^{\mathrm f}(r)=\zf(r-1,1)/r$ である．
+この式は二つの非自明な切断を残し，\cite[Proposition 3.3]{jBR} の
+深さ2の公式を用いて従う．本稿ではこの障害がすべてのパラメータについて
+消えることまでは証明していない．
+
+\section{新規性の比較と残る不確実性}\label{ja:audit}
+最初と最後の監査では，正確な論文名と arXiv 識別子，著者名と
+``matrix'', ``nonsingularity'', ``determinant'', ``integrality'',
+``divisibility'' の組合せ，および ``period polynomial matrices'',
+``Bernoulli determinant'', ``Pascal matrix'', ``Hankel determinants''
+を検索した．係数 $48672$ についても検索した．次の区別が必要である．
+\begin{enumerate}
+\item \cite{jBR} は概要だけでなく，Conjecture 5.16，Proposition 5.15，
+Theorem 5.17 を含む本文を確認した．公開版と著者ページでは一般証明を
+確認できなかった．
+\item \cite{jGKZ} の原文で基底定理，Bernoulli 数の式 (7)，\S4 の
+多項式による証明を確認した．本稿の反射写像はその証明に基づき，
+有理数体上の存在は既知のものである．今回研究した新しい主張は
+$A_k$ に対する算術的な精密化である．
+\item Kaneko--Zagier の原稿 \cite{jKZ} と \cite{jIKZ} は，著者が公開した
+原文を確認した．現在の KZ 原稿は出版予定のものであり，存在しない
+雑誌情報を補ってはいない．
+\item 行列式の文献として Dilcher--Jiu \cite{jDJ} および最近の
+Jiu--Yin \cite{jJY} も確認した．そこでの Hankel 構造は
+\eqref{ja:Aentry} と異なり，それらの行列式と $\det A_k$ が一致するとの
+同定は得られなかった．
+Brunault \cite[$D_{k,N}$ の定義，Theorem 4.1]{jBru} は，剰余類で
+添字付けられた Bernoulli 多項式の行列を Dirichlet 指標ごとのブロックに
+分けて評価する．定義される行列は異なり，固定重さの二重ゼータ行列と
+同定する変換は確認できなかった．
+\item MathSciNet，zbMATH，Google Scholar に関連する公開索引の検索も
+試みたが，購読制データベースや引用索引を完全に調査できたわけではない．
+検索に見つからないことは優先権の証明にならない．
+\end{enumerate}
+調査した文献中には，行列と規格化を上の通り固定した
+定理\ref{ja:main}の記述は見つからなかった．これは範囲を限った新規性評価であり，
+結果が必ず未知であるとの保証ではない．定理は全重さに対する無条件の
+算術的精密化だが，依頼の第一目標である全重さの非零性には到達していない．
+整数証明書とブロック公式は構造的な帰結を与えるものの，これらや深さ5の
+有限計算を未解決予想の解決として扱うことはしない．
+
+\appendix
+\renewcommand{\theHsection}{ja.appendix.\Alph{section}}
+\section{再現可能な厳密計算}
+添付ファイル \texttt{br\_exact.py} は，行列の走査，独立な表示行列による
+照合，構造の確認，深さ5の証明書を再現する．必要なパッケージは
+\texttt{python-flint} と \texttt{sympy} であり，結論に用いる行列計算は
+整数，有理数，または明示した有限体で行う．以下の中核部分は，
+ダウンロードした原論文のコードに依存せずにすべての規約を固定する．
+\Needspace{10\baselineskip}
+\begin{lstlisting}[language=Python]
+from math import comb
+from functools import lru_cache
+from flint import fmpq, fmpq_mat
+
+def C(n, j):
+    return comb(n, j) if 0 <= j <= n else 0
+
+def A(k):
+    assert k >= 4 and k % 2 == 0
+    I = list(range(3, k-2, 2))
+    B = [fmpq.bernoulli(j) for j in range(k)]
+    assert B[1] == fmpq(-1, 2)
+    @lru_cache(None)
+    def lam(m, u):
+        return sum((B[k-m-j-1]*C(k-2-j,m-1)*C(u-1,j)
+                    for j in range(u-1)
+                    if 0 <= k-m-j-1 < k), fmpq(0))
+    def entry(r,t):
+        s = k-r
+        q = fmpq((r*s-r+1)*(t==r)+(r*s+s-1)*(t==s))
+        q += C(k-t,s)-C(k-t,r)+C(t,s)-C(t,r)
+        q += 2*(fmpq(r+1,r)*(lam(r,t)-lam(r,k-1))
+                -fmpq(s+1,s)*(lam(s,t)-lam(s,k-1)))
+        return q
+    return fmpq_mat(len(I),len(I),
+                    [entry(r,t) for r in I for t in I])
+
+for k in range(4,301,2):
+    M = A(k)
+    d = M.det()
+    n = k//2-2
+    divisor = 2**((n+1)//2)*(k//2 if n%2 else 1)
+    assert d != 0
+    assert d.q == 1 and int(d.p) % divisor == 0
+    if k <= 100:
+        _, rank = M.rref()
+        assert rank == n
+    print(k, n, str(d))
+\end{lstlisting}
+独立な表示による照合では，\eqref{ja:Tentry} と \eqref{ja:H} から
+$B,C,V,W$ を構成し，$W-VB^{-1}C$ と $A(k)$ を比較するとともに
+$\det B$ の奇数部分を確認する．深さ5の計算では，列は重さ $k$，長さ5の
+すべての組成である．添付コードは，定義 shuffle 関係と，総深さが5に
+なるすべての挿入混合因子を列挙し，最大階数の整数正方証明書が選べた
+時点で停止する．選ばれた行列の有理数上の行列式が非零であることが
+有限範囲の主張を証明し，浮動小数点の階数判定の閾値は使わない．
+
+\begin{thebibliography}{BR26}
+\bibitem[BR26]{jBR} H. Bachmann and Risan,
+\emph{Formal finite multiple zeta values}, arXiv:2608.15480v1 (2026),
+\S\S2--5，特に (5.28)--(5.33)，Lemma 5.14，Conjecture 5.16，Theorem 5.17．
+\url{https://arxiv.org/abs/2608.15480v1}.
+\bibitem[GKZ06]{jGKZ} H. Gangl, M. Kaneko, and D. Zagier,
+\emph{Double zeta values and modular forms},
+\emph{Automorphic Forms and Zeta Functions}, World Scientific (2006),
+71--106；Theorems 2--3，式 (7)，\S4, Proposition 3．
+\url{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/35Double_zeta_values.pdf}.
+\bibitem[IKZ06]{jIKZ} K. Ihara, M. Kaneko, and D. Zagier,
+\emph{Derivation and double shuffle relations for multiple zeta values},
+Compos. Math. \textbf{142} (2006), 307--338；\S\S1--2，Theorem 1．
+\url{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/34Derivation_double_shuffle.pdf}.
+\bibitem[KZ]{jKZ} M. Kaneko and D. Zagier,
+\emph{Finite multiple zeta values}, 第17回 MSJ-SI
+Modular Forms and Multiple Zeta Values 会議録に出版予定．
+2026年9月10日に確認した公開50ページ原稿，\S6, Proposition 6，
+\S8, Theorem 4 とその系．
+\url{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/FMZV.pdf}.
+\bibitem[DJ22]{jDJ} K. Dilcher and L. Jiu,
+\emph{Hankel determinants of sequences related to Bernoulli and Euler
+polynomials}, Int. J. Number Theory \textbf{18} (2022), 331--359；
+プレプリント arXiv:2007.09821，\S\S1--2．
+\url{https://arxiv.org/abs/2007.09821}.
+\bibitem[JY26]{jJY} L. Jiu and Y. Yin,
+\emph{Partial results on Hankel determinants and the corresponding
+J-fractions of a sequence related to Bernoulli numbers},
+arXiv:2609.05827v1 (2026)，\S3．
+\url{https://arxiv.org/abs/2609.05827v1}.
+\bibitem[Bru26]{jBru} F. Brunault,
+\emph{Bernoulli determinants and cuspidal subgroups},
+arXiv:2607.13536v1 (2026)，\S\S1--4，Theorem 4.1．
+\url{https://arxiv.org/abs/2607.13536v1}.
+\end{thebibliography}
+\bibliographystyle{alpha}
+\end{document}

@@ -114,6 +114,15 @@ chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あっ�
 - [Joint collision and pole regularization in weighted Bergman interpolation](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/l2_collision.pdf) 
 - [Algebraic rigidity and prescribed convergence sets for triangular non-autonomous automorphisms](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/complex_dynamics_scv.pdf) 
 
+その他
+- [Depth-three symmetric Eisenstein series](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/symmetric_triple_eisenstein.pdf) 
+- [Graphic matroid Chow polynomials](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/graphic_matroid_chow.pdf) 
+- [Minimal signless laplacian coefficient vectors of cacti and sharp incidence energy in the even-cycle class](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/cactus_coefficients.pdf) 
+- [Sharp separation from twelve intersection polynomials: long virtual knots with identical closures](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/virtual_knot_separation.pdf) 
+- [Sharp polarized Chern inequalities for rank-four matroids:](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/matroid_miyaoka_yau.pdf) 
+- [Virtual tightness on M(5, 2): a lens-space reduction and an explicit double cover](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/m52_contact.pdf) 
+- [An integral refinement of the Bachmann–Risan matrix](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/br_integral_refinement.pdf) 
+- [Robin eigenvalues on weighted intervals:collapse of the infimum and sharp upper-model rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/br_integral_refinement.pdf) 
 
 みたらわかるが, 修士論文でこれが出てきても特に何も思わないし, むしろよくできていると思う. 
 しかし恐ろしい時代になったものである. 

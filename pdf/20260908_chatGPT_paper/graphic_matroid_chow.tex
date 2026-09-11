@@ -1,0 +1,1920 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{luatexja}
+\usepackage{luatex85} % Compatibility for the template's Xy-pic PDF driver.
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\providecommand{\mathds}{\mathbb}}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{\providecommand{\mathbbm}{\mathbb}}
+
+% ============================================================
+% Graphics
+% ============================================================
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions for this research note; the supplied layout and theorem styles are retained.
+\usepackage{booktabs,longtable,array}
+\newcommand{\HCh}{\mathrm{H}}
+\newcommand{\Bmat}{\mathsf{B}}
+\newcommand{\clmat}{\operatorname{cl}}
+\newcommand{\des}{\operatorname{des}}
+\newcommand{\si}{\operatorname{si}}
+\newcommand{\Gam}{\Gamma}
+\newcommand{\Dop}[1]{\mathscr{L}_{#1}}
+\newcommand{\Core}{\operatorname{Core}}
+\setlength{\emergencystretch}{2em}
+\hypersetup{pdftitle={Graphic matroid Chow polynomials: clique blocks and strict interlacing},pdfauthor={chatGPT 6 Astra}}
+\title[Graphic matroid Chow polynomials]{Graphic matroid Chow polynomials:\\clique blocks, strict interlacing, and theta recurrences}
+\author{chatGPT 6 Astra}
+\date{September 10, 2026}
+\subjclass[2020]{Primary 05B35; Secondary 05C31, 05E14, 26C10}
+\keywords{graphic matroid, Chow polynomial, real-rootedness, interlacing, coloop, theta graph}
+\begin{document}
+\begin{abstract}
+We prove that the ordinary Chow polynomial of every block graph whose blocks are complete graphs on at most four vertices has only simple negative zeros. Both the cyclic part and the total rank may be arbitrarily large. A factor-insertion theorem for Eulerian combinations proves strict interlacing under adding a bridge, replacing a bridge by a triangle, and replacing a triangle by a complete graph on four vertices. The argument also treats direct sums of arbitrary rank-two matroids. A separate rank-three calculation covers diamond and four-cycle cores with arbitrary attached trees. We also derive exact recurrences for all cactus and theta matroids, and an exponential generating function for book graphs. Exhaustive computations cover all 11,462 connected simple graphs with at most eleven edges. General theta, bicyclic, and series-parallel real-rootedness remain unproved here. The literature audit includes results available through September 10, 2026; publication priority for the particular family results is not independently guaranteed.
+\end{abstract}
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+
+\section{Introduction}
+Throughout, Chow rings use the maximal building set and rational coefficients. The problem is whether the polynomial
+\[
+ \HCh_M(t)=\sum_{i=0}^{r-1}\dim_{\Q} A^i(M)t^i,
+ \qquad r=\rk M>0,
+\]
+has only real zeros. We investigate graphic matroids by actual graph enumeration, exact computations, recurrence derivations, and proofs. A graph decomposition is useful, but its associated direct sum of matroids does not turn the maximal-building-set Chow polynomial into a product.
+
+The main result allows arbitrarily many triangle and $K_4$ blocks joined at cut vertices, together with arbitrary bridges. Thus the rank remains unbounded even after all bridges are deleted. Triangle-only block graphs are cactus graphs; allowing $K_4$ blocks also gives noncactus graphs with $K_4$ minors. A second theorem treats the diamond $D=K_4\setminus e=\Theta_{1,2,2}$ and other small cores with arbitrary bridges. These results do not settle all cactus, theta, bicyclic, or series-parallel graphs.
+
+The mechanism uses convolution powers of the characteristic function on the lattice of flats. For triangles and $K_4$ these powers factor into explicit linear factors in $k(t-1)$ and $1+t$. Products of lattices preserve this factorization. A simultaneous induction on the number of factors proves real-rootedness, factor-deletion interlacing, and coloop interlacing. This supplies the missing preservation argument after the known direct-sum identities; scalar multiplicativity is never assumed.
+
+\section{Statement of main results}
+Write $\Bmat_b=U_{b,b}$, including the empty matroid $\Bmat_0$, and
+\[
+ A_n(t)=\sum_{\pi\in S_n}t^{\des(\pi)},\qquad A_0(t)=1.
+\]
+For positive-degree polynomials $f,g$ with positive leading coefficients, we write $f\prec g$ when their zeros are simple, real, and strictly alternate in the order
+\[
+ y_1<x_1<y_2<\cdots<x_d<y_{d+1},
+\]
+where the $x_i$ are the zeros of $f$ and the $y_i$ those of $g$. Thus $\deg g=\deg f+1$. A positive constant interlaces a linear polynomial vacuously.
+
+
+A block graph is a simple graph whose blocks are complete graphs; bridges count as $K_2$ blocks. Write $H_{r,s,b}$ for the Chow polynomial of a connected block graph with $r$ triangle blocks, $s$ $K_4$ blocks, and $b$ bridge blocks. Its cycle matroid is
+\[
+ U_{2,3}^{\oplus r}\oplus M(K_4)^{\oplus s}\oplus\Bmat_b,
+\]
+so attachment positions do not affect $H_{r,s,b}$.
+\begin{samepage}
+\begin{thm}[Main theorem: arbitrarily many clique blocks]\label{en-block-main}
+Every connected block graph with at least one edge and all blocks of order at most four has a Chow polynomial with only simple strictly negative zeros, unless it is constant. The conclusion survives parallel extensions. For every nonempty matroid $M$ in this class,
+\begin{equation}\label{en-block-chain}
+ \HCh_M\prec\HCh_{M\oplus U_{1,1}}
+ \prec\HCh_{M\oplus U_{2,3}}
+ \prec\HCh_{M\oplus M(K_4)}.
+\end{equation}
+More generally, the same real-rootedness and strict coloop interlacing hold for any positive-rank direct sum of rank-two loopless matroids, copies of $M(K_4)$, and coloops.
+\end{thm}
+\end{samepage}
+For $N=b+r+s\geq1$ the explicit formula is
+\begin{equation}\label{en-block-formula}
+\begin{split}
+ H_{r,s,b}={}&2^{-(r+s)}
+ \sum_{i=0}^{r+s}\sum_{j=0}^{s}
+ \binom{r+s}{i}\binom{s}{j}3^i2^j
+ (-1)^{r+2s-i-j}\\[-2pt]
+ &\hspace{14mm}\cdot(1+t)^{r+2s-i-j}A_{N+i+j}(t).
+\end{split}
+\end{equation}
+Its degree is $b+2r+3s-1$. For example, three $K_4$ blocks already have rank nine and no bridges. This is neither a low-rank theorem nor a theorem obtained merely by adding bridges to a fixed core.
+
+\begin{samepage}
+\begin{thm}[Cores of rank at most three]\label{en-main}
+Let $M$ be a nonempty loopless graphic matroid. Delete all its coloops to obtain $N$. Suppose $\rk N\leq3$. Then $\HCh_M$ has only simple strictly negative zeros, unless it is constant. Moreover,
+\[
+ \HCh_M\prec \HCh_{M\oplus U_{1,1}}.
+\]
+This includes every connected simple graph obtained by attaching trees to one of
+\[
+ C_3,\qquad C_4,\qquad D=K_4\setminus e,\qquad K_4,
+\]
+and all nonempty trees. Parallel extensions of these matroids preserve the conclusion.
+\end{thm}
+\end{samepage}
+
+Here trees are attached without creating new cycles: each new edge is a bridge. Arbitrary attachment positions and branching patterns are allowed. The assertion for matroids includes disconnected graph representations. Simplification can convert parallel classes into coloops, so the stated matroid hypothesis is sufficient, not an isomorphism classification of every possible graph representation.
+
+For $X=C_4,D,K_4$, put $P_b^X=\HCh_{M(X)\oplus\Bmat_b}$. The formulas are
+\begin{align}
+ P_b^{C_4}&=2A_{b+3}-(1+t)A_{b+2}+tA_{b+1},\label{en-c4}\\
+ P_b^D&=\frac73A_{b+3}-\frac32(1+t)A_{b+2}
+       +\frac16(t^2+4t+1)A_{b+1},\label{en-diamond}\\
+ P_b^{K_4}&=3A_{b+3}-\frac52(1+t)A_{b+2}
+       +\frac12(1+t)^2A_{b+1}.\label{en-k4}
+\end{align}
+Despite their rational presentation, these expressions have integer coefficients. For the triangle,
+\begin{equation}\label{en-triangle}
+ T_b:=\HCh_{M(C_3)\oplus\Bmat_b}
+ =\frac32A_{b+2}-\frac12(1+t)A_{b+1}.
+\end{equation}
+The theorem gives arbitrarily large ranks $b+3$, rather than a restriction to rank three. For $D$ or $K_4$ and $b\geq4$, it goes beyond the known general bound $r\leq6$.
+
+\section{Previous work and novelty}
+The following results were checked in their source texts. The comparison concerns the maximal building set unless explicitly stated otherwise.
+\begin{center}\small
+\begin{tabular}{p{2.6cm}p{5.1cm}p{5.4cm}}
+\toprule
+Reference & Previously known result & Relation to this note\\\midrule
+\cite{AHK18}, Thm.~1.4 & Hard Lefschetz and Hodge--Riemann relations & Imply unimodality, not the interlacing proved here.\\
+\cite{FMSV24}, Thms.~1.8, 1.10, 5.10 & $\gamma$-positivity; augmented uniform real-rootedness; ordinary real-rootedness in rank $\leq5$ & General recurrences are inputs, not new results here.\\
+\cite{BV26}, Thm.~1.1 & Ordinary uniform real-rootedness & Does not cover repeated nonuniform clique blocks.\\
+\cite{BVTN25}, Cor.~7.2 & Paving matroids are real-rooted & Multiple triangle or $K_4$ blocks have circuits of size $3$ in arbitrarily high rank, so need not be paving.\\
+\cite{CFL25}, Thms.~1.2--1.3 & UMEL-shellable lattices, with interlacing & Repeated clique blocks need not be upper rank-uniform; explicit witnesses appear below.\\
+\cite{Pie25}, Thms.~1.2--1.3, 1.9 & Recursive direct-sum decompositions & These identities do not assert preservation; factor insertion supplies an additional interlacing proof.\\
+\cite{CFL26}, Cor.~8.5 & Every matroid of rank $\leq6$ is real-rooted & Both cyclic rank and total rank in Theorem~\ref{en-block-main} are unbounded.\\
+\cite{EFMPV26}, Thm.~1.6 & Counterexamples for other building sets & Those counterexamples do not address the invariant used here.\\\bottomrule
+\end{tabular}
+\end{center}
+Further 2026 checks include low-rank log-concavity in \cite{SV26}, and real-rootedness for noncrossing partition lattices in \cite{Alex26}. Neither identifies the clique-block theorem above. The latter concerns a different family of posets, and must not be confused with all graphic lattices.
+
+To the best of our literature search as of September 10, 2026, we did not locate Theorem~\ref{en-block-main}, its explicit formula \eqref{en-block-formula} and factor-insertion interlacing proof, or the additional rank-three incidence criterion below. This is a bounded literature-search conclusion, not a certification of publication priority. No novelty is claimed for the general conjecture, uniform cases, low-rank cases, or the underlying incidence-algebra and Chow-ring identities.
+
+\section{Matroid Chow polynomials}
+A loopless matroid has a rank function $r_M$ on subsets of $E$. A subset $F$ is a flat precisely when
+\[
+ r_M(F\cup\{e\})>r_M(F)\quad(e\notin F).
+\]
+Write $L(M)$ for its lattice of flats. We use the presentation
+\[
+ A^\bullet(M)=\Q[x_F:\varnothing\ne F\subsetneq E\text{ a flat}]/(I+J),
+\]
+where $I$ is generated by $x_Fx_G$ for incomparable flats, and $J$ by
+\[
+ \sum_{F\ni e}x_F-\sum_{F\ni f}x_F\qquad(e,f\in E).
+\]
+This is the usual matroid Chow ring, equivalent to the Feichtner--Yuzvinsky presentation for all nonempty flats, including the top. All variables have degree one. It depends only on $L(M)$; hence simplification and parallel extension do not change $\HCh_M$.
+
+Set $\HCh_{\Bmat_0}=1$ as an auxiliary rank-zero convention. Set
+\[
+ [d]_t=1+t+\cdots+t^{d-1}\ (d\geq1),\qquad
+ q_d(t)=\begin{cases}t+\cdots+t^{d-1}&d\geq2,\\0&d=0,1.\end{cases}
+\]
+The monomial basis of \cite{FY04}, Corollary~1, gives
+\begin{equation}\label{en-chain}
+ \HCh_M=\sum_{\varnothing=F_0\subsetneq\cdots\subsetneq F_k}
+          \prod_{j=1}^k q_{r(F_j)-r(F_{j-1})},
+\end{equation}
+including the empty chain with weight $1$. Grouping chains by their first nonempty proper flat, or by the first flat being $E$, gives
+\begin{equation}\label{en-positive}
+ \HCh_M=[r]_t+
+ \sum_{\varnothing\subsetneq F\subsetneq E}q_{r(F)}\HCh_{M/F}.
+\end{equation}
+Indeed a chain beginning at $F$ has initial factor $q_{r(F)}$, followed by any chain in $[F,E]$; the empty chain and the one-flat chain $E$ contribute $1+q_r=[r]_t$. This also proves that the recurrence is triangular in rank.
+
+The augmented polynomial is different:
+\[
+ \HCh_M^{\rm aug}(t)=\sum_{F\in L(M)}t^{r(F)}\HCh_{M/F}(t).
+\]
+No augmented real-rootedness theorem is inferred from our ordinary theorem. Since $\HCh_M(0)=1$ and its coefficients are nonnegative, it is positive for $t\geq0$. Thus any real zero is strictly negative. In general a nonnegative-coefficient polynomial can have a zero at $0$ if its constant term vanishes.
+
+A palindromic polynomial of degree $d$ has the unique expansion
+\[
+ h(t)=(1+t)^d\gamma_h\!\left(\frac{t}{(1+t)^2}\right).
+\]
+$\gamma$-positivity is weaker than real-rootedness. For example,
+\[
+ (1+t)^4+t(1+t)^2+10t^2=1+5t+18t^2+5t^3+t^4
+\]
+has positive, log-concave, unimodal coefficients and a positive $\gamma$-vector, but its $\gamma$-polynomial $1+z+10z^2$ has nonreal zeros, so the displayed polynomial is not real-rooted.
+
+\section{Graphic matroids and graph decompositions}
+For a graph $G=(V,E)$ without loops, $r_{M(G)}(F)=|V|-c(V,F)$, where isolated vertices are counted as components. A subset is independent exactly when it is a forest. A flat contains every edge of $G$ joining two vertices in the same component of $(V,F)$: this is precisely the rank test above.
+
+An edge belongs to no cycle if and only if it is a bridge; in the cycle matroid this says that it belongs to every basis, hence is a coloop. Circuits of a graph lie in its cyclic blocks. It follows, by testing independence separately in each block, that a cactus with cycle lengths $\ell_1,\ldots,\ell_s$ and $b$ bridges has
+\begin{equation}\label{en-cactus-matroid}
+ M(G)\cong\bigoplus_{i=1}^sU_{\ell_i-1,\ell_i}\oplus\Bmat_b.
+\end{equation}
+In particular a connected unicyclic graph gives $U_{\ell-1,\ell}\oplus\Bmat_b$. The case $b=0$ is the known uniform theorem. Arbitrary $b$ cannot be discarded from the invariant.
+
+For a connected bicyclic graph, prune degree-one vertices and suppress degree-two vertices only to classify the remaining topology. The resulting connected core has
+\[
+ \sum_v(\deg v-2)=2.
+\]
+There is either one degree-four vertex, or two degree-three vertices. These alternatives give a figure-eight, or respectively a theta or dumbbell. Suppression records path lengths; it does not preserve the matroid. Figure-eight and dumbbell matroids have two circuit summands and a Boolean summand; the connecting path in a dumbbell also consists of bridges. Thus deleting only leaves does not remove all coloops.
+
+For $\Theta_{a,b,c}$, the three internally disjoint paths have positive lengths. Parallel edges are permitted when a length is $1$. There are $a+b+c$ edges and $a+b+c-1$ vertices, so
+\[
+ \rk M(\Theta_{a,b,c})=a+b+c-2.
+\]
+Its circuits are unions of two of the three paths. A theta matroid is generally not a direct sum of circuit matroids. The boundary family $\Theta_{1,1,c}$ simplifies to $C_{c+1}$ for $c\geq2$, while $\Theta_{1,1,1}$ simplifies to one Boolean element. Its real-rootedness is consequently the known uniform result, not a new theta theorem.
+
+\section{Computational exploration}
+We enumerated every isomorphism class of connected simple graph with at most eleven edges, including the one-vertex graph. Since a connected graph has $|V|\leq |E|+1$, running \texttt{geng -cq} for $1\leq |V|\leq12$ is exhaustive in this range. The counts by exact edge number are
+\begin{center}\small
+\begin{tabular}{c|rrrrrrrrrrrr}
+$|E|$&0&1&2&3&4&5&6&7&8&9&10&11\\\hline
+count&1&1&1&3&5&12&30&79&227&710&2322&8071
+\end{tabular}
+\end{center}
+The total is $11\,462$, with $822$ distinct Chow polynomials. There are $987$ trees (including the trivial graph), $2846$ unicyclic graphs, $2616$ theta-type bicyclic graphs, $731$ figure-eight graphs, $456$ dumbbells, and $3826$ graphs of larger cyclomatic number. Degree-two elimination with fill edges identifies $10\,088$ graphs as $K_4$-minor-free.
+
+The C++ computation enumerates all edge subsets, constructs flats using disjoint sets, and evaluates \eqref{en-chain} with integer coefficients. Its arithmetic fits in signed 64-bit integers in this range: every flat chain is a Boolean subset chain, and each rank increment is bounded by its cardinality increment, so the coefficients are bounded coefficientwise by $A_{11}$ and in particular by $11!$. The included independent Python implementation uses unbounded integers. The two implementations were compared on $111$ samples, including all graphs on at most four vertices. Separate flat-type recurrences were also checked against direct flat enumeration.
+
+Each distinct polynomial was square-free factored over $\Q$. The number of roots in $(-\infty,0)$, counted with multiplicity, was computed by exact Sturm methods for the factors, and equaled the degree. Root approximations to $55$ digits were additionally obtained from rational isolating intervals for the $\gamma$-polynomial. The approximations are not the root certificate.
+
+Further data comprise all $174$ sorted triples $1\leq a\leq b\leq c$ with $a+b+c\leq18$, and $63$ cases from $C_4,D,K_4$ with $0\leq b\leq20$ bridges. All are real-rooted by exact certification. All $441$ available one-path subdivision comparisons in the theta table pass the numerical strict-interlacing check. Across all connected simple source graphs with $1\leq|E|\leq10$, bridge addition ($3390$ cases) and edge subdivision ($32\,251$ cases) pass an \emph{exact} strict-interlacing check: rational isolating intervals and interval evaluation determine the signs at the old roots; gcd computations exclude common roots. These are $1348$ distinct polynomial pairs. No finite computation proves the infinite-family theorem.
+
+
+For the new main theorem, the full parameter grid $0\leq r\leq2$, $0\leq s\leq3$, $0\leq b\leq4$, excluding $(0,0,0)$, gives $59$ polynomials of ranks up to $17$. All pass exact negative-root and square-free tests. The $147$ bridge/replacement comparisons on this grid pass exact interlacing tests using rational isolating intervals and signs at their endpoints. There are $21$ independent flat-enumeration comparisons with at most eleven edges. Twenty additional rational-parameter cases test the factor identity and interlacing, including zero parameters and a parameter equal to $100$. The identities and the theorem, rather than these finite checks, prove the unlimited statement. The new scripts are \texttt{block\_factor\_search.py} and \texttt{book\_factor\_identity.py}.
+\begin{center}\small
+\begin{tabular}{c|l}
+$(r,s,b)$&$H_{r,s,b}(t)$\\\hline
+$(2,0,0)$&$1+18t+18t^2+t^3$\\
+$(1,1,0)$&$1+65t+200t^2+65t^3+t^4$\\
+$(0,2,0)$&$1+212t+1615t^2+1615t^3+212t^4+t^5$
+\end{tabular}
+\end{center}
+The independent coefficient check $[t]H_{r,s,b}=5^r15^s2^b-3r-6s-b-1$ follows because these lattices have $5^r15^s2^b$ flats and $3r+6s+b$ atoms: the degree-one Chow-ring generators are the proper nonempty flats, with one fewer independent linear relations than atoms. It also gives zero in the rank-one constant case.
+
+\section{Recurrence formulas and an Eulerian conversion}
+Let $\chi$ be the characteristic function in the incidence algebra of $L(M)$; on an interval,
+\[
+ \chi_{F,G}(t)=\sum_{F\leq K\leq G}\mu(F,K)t^{r(G)-r(K)},\qquad \chi_{F,F}=1.
+\]
+Write $\delta$ for the identity function. The reduced characteristic function has diagonal $-1$, so
+\[
+ \overline\chi=\frac{\chi-t\delta}{t-1},\qquad
+ \HCh=(-\overline\chi)^{-1}=(t-1)(t\delta-\chi)^{-1}.
+\]
+This is the intrinsic Chow identity of \cite{FMSV24}, Theorems~1.4--1.5. Introduce an independent variable $z$, expand $(\delta-z\chi)^{-1}$, and then substitute $z=1/t$. The result is the rational-function identity
+\begin{equation}\label{en-resolvent}
+ \HCh_M(t)=(t-1)\sum_{k\geq0}\frac{(\chi^{*k})_{\varnothing,E}(t)}{t^{k+1}}.
+\end{equation}
+The sum is interpreted rationally, not as an analytic convergence assertion.
+
+For a product of lattices, characteristic functions and their convolution powers factor componentwise. This follows by writing the convolution sum over pairs of flats; each coordinate can be summed independently. For a one-element Boolean matroid,
+\[
+ (\chi^{*k})_{0,1}=k(t-1).
+\]
+Consequently, for any nonempty $M$,
+\begin{equation}\label{en-coloop-resolvent}
+ \HCh_{M\oplus\Bmat_b}
+ =(t-1)^{b+1}\sum_{k\geq0}
+ \frac{k^b(\chi_M^{*k})_{\varnothing,E}}{t^{k+1}}.
+\end{equation}
+More generally \eqref{en-resolvent} with the product of the convolution powers is an exact direct-sum formula. It needs more information than the two scalar Chow polynomials.
+The general direct-sum decomposition is already established in \cite{Pie25}, Theorems~1.2--1.3 and 1.9. Taking Hilbert series gives, for nonempty $M,N$,
+\begin{equation}\label{en-known-directsum}
+ \HCh_{M\oplus N}=\HCh_M\HCh_N+
+ t\sum_{\substack{\varnothing\ne F\in L(M)\\\varnothing\ne G\in L(N)}}
+ \HCh_{(M/F)\oplus(N/G)}\HCh_{M|F}\HCh_{N|G}.
+\end{equation}
+Both top flats are allowed, with the rank-zero convention above. This known identity does not by itself certify real-rootedness; the restrictions and contractions vary with the flats.
+
+
+
+\subsection{Factor conversion for clique blocks}
+For $N\geq1$ and a list $\Lambda=(\lambda_1,\ldots,\lambda_m)$ of nonnegative real numbers, define
+\begin{equation}\label{en-factor-def}
+ F_{N;\Lambda}(t)=
+ \sum_{S\subseteq[m]}
+ \Bigl(\prod_{i\in S}(1+\lambda_i)\Bigr)
+ \Bigl(\prod_{i\notin S}(-\lambda_i)\Bigr)
+ (1+t)^{m-|S|}A_{N+|S|}(t).
+\end{equation}
+Equivalently, expand $X^N\prod_i((1+\lambda_i)X-\lambda_i(1+t))$ and replace every $X^j$ by $A_j(t)$. Denote deletion of entry $i$ by $\Lambda\setminus i$. Direct expansion gives
+\begin{equation}\label{en-factor-insert}
+ F_{N;\Lambda}=(1+\lambda_i)F_{N+1;\Lambda\setminus i}
+                  -\lambda_i(1+t)F_{N;\Lambda\setminus i}.
+\end{equation}
+All these polynomials are palindromic, monic, and have constant term one: every summand has formal degree $N+m-1$, and the leading and constant coefficients sum to $\prod_i((1+\lambda_i)-\lambda_i)=1$.
+
+To identify the graphic polynomials, put $X=k(t-1)$. For the rank-two uniform matroid on $p\geq2$ atoms, the characteristic polynomial is $(t-1)(t-p+1)$. The only intermediate flats are its $p$ atoms, so
+\[
+ (\chi_{U_{2,p}}^{*k})_{0,1}
+ =k(t-1)(t-p+1)+\binom{k}{2}p(t-1)^2
+ =X\left(\frac p2X-\frac{p-2}{2}(1+t)\right).
+\]
+For $K_4$, the rank-three incidence computation below, with $(p,\ell,I)=(6,7,18)$, gives
+\begin{equation}\label{en-k4-factor}
+ (\chi_{M(K_4)}^{*k})_{0,1}
+ =\frac X2(3X-(1+t))(2X-(1+t)).
+\end{equation}
+A coloop contributes $X$. The product-lattice identity and the Eulerian power-sum identity therefore prove
+\begin{equation}\label{en-block-factor-conversion}
+ H_{r,s,b}=F_{b+r+s;\,(1/2)^{r+s},1^s},
+\end{equation}
+where superscripts on parameters mean repetitions. Expanding the factors proves \eqref{en-block-formula}. A general rank-two summand contributes one factor with $\lambda=(p-2)/2$ and one power of $X$, proving the analogous conversion for the matroid extension in Theorem~\ref{en-block-main}.
+
+Two useful recurrences, including their base values $H_{0,0,b}=A_b$ for $b\geq1$, are
+\begin{align*}
+ H_{r+1,s,b}&=\tfrac32H_{r,s,b+2}-\tfrac12(1+t)H_{r,s,b+1},\\
+ H_{r,s+1,b}&=3H_{r,s,b+3}-\tfrac52(1+t)H_{r,s,b+2}
+                         +\tfrac12(1+t)^2H_{r,s,b+1}.
+\end{align*}
+They follow from multiplication by the displayed characteristic factors, not from a guessed coefficient pattern. With $\mathcal A(z,t)=\sum_{n\geq0}A_n(t)z^n/n!$, for $r+s\geq1$ we also obtain
+\begin{equation}\label{en-block-egf}
+ \sum_{b\geq0}H_{r,s,b}\frac{z^b}{b!}
+ =\frac{\partial_z^{r+s}(3\partial_z-(1+t))^{r+s}
+                (2\partial_z-(1+t))^s}{2^{r+s}}\mathcal A(z,t).
+\end{equation}
+Here $t$ is held constant under $\partial_z$. The case $r=s=0$ is the Eulerian generating function itself.
+
+\begin{samepage}
+\begin{prop}[Rank-three formula]\label{en-rankthree}
+Suppose $\rk M=3$. Let $p$ be its number of atoms, $\ell$ its number of rank-two flats, and $I$ its number of atom--rank-two-flat incidences. Define
+\begin{equation}\label{en-parameters}
+ \alpha=\frac I6,\quad \beta=\frac{p+\ell-I}{2},\quad
+ u=1-\frac{p+\ell}{2}+\frac I3,\quad v=1-p+\frac I3.
+\end{equation}
+Then for every $b\geq0$,
+\begin{equation}\label{en-rankthree-formula}
+ \HCh_{M\oplus\Bmat_b}
+ =\alpha A_{b+3}+\beta(1+t)A_{b+2}
+       +\{u(1+t^2)+vt\}A_{b+1}.
+\end{equation}
+\end{prop}
+\end{samepage}
+\begin{proof}
+Put $\eta=\chi-\delta$. Since any strict chain has length at most three,
+\[
+ (\chi^{*k})_{0,1}=k\chi_{0,1}+\binom{k}{2}(\eta^{*2})_{0,1}
+                         +\binom{k}{3}(\eta^{*3})_{0,1}.
+\]
+A rank-two flat containing $s$ atoms has characteristic polynomial $(t-1)(t-s+1)$. Summing the Möbius values gives
+\begin{align*}
+ \chi_{0,1}&=(t-1)\{t^2+(1-p)t+1-p+I-\ell\},\\
+ (\eta^{*2})_{0,1}&=(t-1)^2\{(p+\ell)t-(2I-p-\ell)\},\\
+ (\eta^{*3})_{0,1}&=I(t-1)^3.
+\end{align*}
+For the middle line, sum first over atoms and then over rank-two flats. The numbers of incidences seen from either side both sum to $I$. Expanding the binomial coefficients now yields
+\[
+ (\chi^{*k})_{0,1}
+ =\alpha k^3(t-1)^3+\beta k^2(t+1)(t-1)^2
+   +k(t-1)\{u(1+t^2)+vt\}.
+\]
+For every $j\geq1$, the Eulerian power-sum identity is
+\[
+ \sum_{k\geq0}\frac{k^j}{t^{k+1}}=\frac{A_j(t)}{(t-1)^{j+1}}.
+\]
+It follows by applying $z\frac{d}{dz}$ repeatedly to $(1-z)^{-1}$ and setting $z=1/t$; the usual Eulerian recurrence identifies the numerator. Substitute this identity into \eqref{en-coloop-resolvent}. All powers of $t-1$ cancel and give \eqref{en-rankthree-formula}.
+\end{proof}
+
+The incidence data are
+\begin{center}
+\begin{tabular}{c|rrr|rrrr}
+core&$p$&$\ell$&$I$&$\alpha$&$\beta$&$u$&$v$\\\hline
+$C_4$&4&6&12&2&$-1$&0&1\\
+$D$&5&6&14&$7/3$&$-3/2$&$1/6$&$2/3$\\
+$K_4$&6&7&18&3&$-5/2$&$1/2$&1
+\end{tabular}
+\end{center}
+In the diamond, the six rank-two flats consist of two three-edge triangles and four two-edge flats; in $K_4$ they consist of four triangles and three disjoint edge pairs. This verifies every table entry without relying on numerical root data. Applying the same convolution calculation in rank two, with three atoms, gives \eqref{en-triangle}.
+
+\section{Theta and bicyclic graphs: exact flat-type recurrences}
+\begin{samepage}
+Define
+\[
+ C_{\boldsymbol\ell;b}=\HCh_{(\bigoplus_iU_{\ell_i-1,\ell_i})\oplus\Bmat_b}.
+\]
+\end{samepage}
+A circuit of length $2$ may be replaced by one Boolean element when computing $\HCh$, because its simplification is $U_{1,1}$. Thus lengths $2$ in this notation are allowed. The base case is $C_{\varnothing;b}=A_b$.
+
+For a circuit of length $L$, a flat is either the entire circuit, with rank $L-1$, multiplicity $1$, and no remaining circuit after contraction, or a subset of size $i\leq L-2$, with rank $i$, multiplicity $\binom Li$, and contracted circuit length $L-i$. For each circuit choose one of these options, and choose $j$ of the $b$ bridges. Let $f$ be the sum of the chosen ranks plus $j$, $w$ the product of the multiplicities times $\binom bj$, and $\boldsymbol d$ the list of remaining lengths. If $R=\sum_i(\ell_i-1)+b$, then
+\begin{equation}\label{en-cactus-recurrence}
+ C_{\boldsymbol\ell;b}=[R]_t+
+       \sum_{\text{options with }2\leq f<R}wq_f C_{\boldsymbol d;b-j}.
+\end{equation}
+This is an exact block-decomposition recurrence, rather than multiplicativity. Its proof is the description of every flat in a product lattice followed by \eqref{en-positive}.
+
+For the theta case write $T_{a,b,c;k}=\HCh_{M(\Theta_{a,b,c})\oplus\Bmat_k}$; this four-index notation is separate from the triangle polynomial $T_b$ in \eqref{en-triangle}. Let $\boldsymbol a=(a,b,c)$ and $N=a+b+c$. For a subset $F$ of the theta edges, let $d_i$ be the number of omitted edges on path $i$, and let $s$ be the number of positive $d_i$.
+
+\begin{samepage}
+\begin{lem}[Classification of theta flats]\label{en-theta-flats}
+The possible omission vectors of a flat are exactly:
+\begin{enumerate}
+\item $s=3$, with each positive $d_i$ arbitrary;
+\item $s=2$, with both positive $d_i\geq2$;
+\item $s=1$, with its positive entry $d_i\geq2$;
+\item $s=0$, the whole theta edge set.
+\end{enumerate}
+Their multiplicities are $\prod_i\binom{a_i}{d_i}$. Their contractions are, respectively, a theta with lengths $\boldsymbol d$, two circuit summands of those lengths, one circuit summand, and the empty matroid.
+\end{lem}
+\end{samepage}
+\begin{proof}
+If no path is entirely selected, the two distinguished vertices are disconnected. Each selected component is a path segment, so every omitted edge joins different components, proving the first case is flat. If at least one path is entirely selected, the distinguished vertices are in the same component. A path missing exactly one edge then has the two endpoints of that missing edge in this component, violating flatness. A path missing at least two edges has no omitted edge whose endpoints have become connected. This proves the remaining cases and exhausts the alternatives. Contracting selected path segments shortens each path. Once a full path is contracted, the distinguished vertices coincide; the remaining paths become cycles attached at this single vertex. Their cycle matroids are direct sums. The counts follow by choosing which edges on each path are omitted.
+\end{proof}
+
+For a permitted vector $\boldsymbol d$ and $0\leq h\leq k$, let $Q_{\boldsymbol d;h}$ be the polynomial of the contraction in the lemma with $h$ bridges, and let its rank be
+\[
+ \rho(\boldsymbol d,h)=
+ \begin{cases}|\boldsymbol d|-2+h&s=2,3,\\
+ |\boldsymbol d|-1+h&s=1,\\h&s=0.
+ \end{cases}
+\]
+For $s=3$, $Q_{\boldsymbol d;h}=T_{d_1,d_2,d_3;h}$; otherwise it is the corresponding $C$-polynomial. Setting $R=N-2+k$, we obtain
+\begin{equation}\label{en-theta-recurrence}
+ T_{a,b,c;k}=[R]_t+
+ \sum_{\substack{\boldsymbol d\text{ permitted},\ 0\leq h\leq k\\
+                  2\leq R-\rho(\boldsymbol d,h)<R}}
+ \binom{k}{h}\prod_i\binom{a_i}{d_i}\,
+ q_{R-\rho(\boldsymbol d,h)}Q_{\boldsymbol d;h}.
+\end{equation}
+Every contraction on the right has smaller rank. Rank-one and rank-two cases give $1$ and $1+t$, respectively; $C_{\varnothing;0}=1$. Thus \eqref{en-cactus-recurrence}--\eqref{en-theta-recurrence} determine all cactus and theta polynomials, including all connected bicyclic cases, with no enumeration of individual flats needed. The supplied code implements precisely these sums.
+
+Some exact examples are
+\begin{center}\small
+\begin{tabular}{c|l}
+$(a,b,c)$&$\HCh_{M(\Theta_{a,b,c})}$\\\hline
+$(1,2,2)$&$1+7t+t^2$\\
+$(1,2,3)$&$1+24t+24t^2+t^3$\\
+$(2,2,2)$&$1+27t+27t^2+t^3$\\
+$(2,2,3)$&$1+71t+225t^2+71t^3+t^4$\\
+$(3,3,3)$&$1+394t+5905t^2+13471t^3+5905t^4+394t^5+t^6$
+\end{tabular}
+\end{center}
+These recurrences do not themselves prove real-rootedness: their summands need not have a known common interlacer. We do not assert the all-theta or all-bicyclic conjecture as a theorem.
+
+\section{Proof of the main real-rootedness theorem}
+We give an elementary sign proof, including the interlacing mechanism. No stability-preservation theorem is invoked without proof.
+
+\begin{samepage}
+\begin{lem}[Sign test]\label{en-sign}
+Let $g$ have $d$ simple negative zeros and positive leading coefficient. Let $f$ have degree $d+1$, positive leading coefficient and $f(0)>0$. If
+\[
+ \frac{f(x)}{g'(x)}<0\quad\text{at every zero }x\text{ of }g,
+\]
+then $g\prec f$, and all zeros of $f$ are simple and negative.
+\end{lem}
+\end{samepage}
+\begin{proof}
+Order the zeros $x_1<\cdots<x_d$. The signs of $g'(x_i)$ alternate, starting with $(-1)^{d-1}$. The required signs of $f(x_i)$ therefore alternate. There is a zero of $f$ in each intervening interval, one to the left of $x_1$ by the leading sign at $-\infty$, and one between $x_d$ and $0$ because $f(x_d)<0<f(0)$. These are $d+1$ distinct negative zeros, exhausting the degree. Each has multiplicity one. For $d=0$, a linear polynomial with positive leading and constant terms has its unique zero negative.
+\end{proof}
+
+Eulerian polynomials satisfy
+\begin{equation}\label{en-euler-recurrence}
+ A_{n+1}=(1+nt)A_n+t(1-t)A_n',\qquad A_1=1.
+\end{equation}
+Insertion of the largest letter into a permutation proves the coefficient recurrence, and hence this differential identity. At a negative zero of $A_n$, its right side divided by $A_n'$ is $t(1-t)<0$. Its leading and constant coefficients are $1$. Lemma~\ref{en-sign}, starting at $A_1$, proves that all zeros are simple and negative and $A_n\prec A_{n+1}$.
+
+
+\subsection{A simultaneous factor-insertion induction}
+\begin{samepage}
+\begin{thm}[Eulerian factor theorem]\label{en-factor-theorem}
+For every $N\geq1$ and every nonnegative list $\Lambda$, $F_{N;\Lambda}$ has only simple negative zeros, apart from the constant case. For every entry $i$,
+\[
+ F_{N;\Lambda\setminus i}\prec F_{N;\Lambda}
+ \prec F_{N+1;\Lambda}.
+\]
+The second relation also holds when $\Lambda$ is empty.
+\end{thm}
+\end{samepage}
+\begin{proof}
+Put $\mathcal D_R f=(1+Rt)f+t(1-t)f'$. In addition to \eqref{en-factor-insert}, the defining expansion gives
+\begin{equation}\label{en-factor-shift}
+ F_{N+1;\Lambda}=\mathcal D_{N+m}F_{N;\Lambda}
+                +2t\sum_{i=1}^m\lambda_i F_{N;\Lambda\setminus i}.
+\end{equation}
+Indeed, on a term $(1+t)^dA_j$ with $j+d=N+m$, the difference between $\mathcal D_{N+m}$ and shifting $A_j$ to $A_{j+1}$ is $2dt(1+t)^{d-1}A_j$. Differentiating the coefficient product with respect to the placeholder $1+t$ gives $-\sum_i\lambda_iF_{N;\Lambda\setminus i}$, which proves the sign and factor two in \eqref{en-factor-shift}.
+
+We induct on $m$, proving the statements for all $N$ simultaneously. If $m=0$, these are the Eulerian results already proved from $A_1=1$. Assume the assertions for all lists of length $m-1$. Fix $N$ and $\Lambda$ of length $m$. For each $i$, put $Q_i=F_{N;\Lambda\setminus i}$. By induction,
+$Q_i\prec F_{N+1;\Lambda\setminus i}$. At a root $x$ of $Q_i$, equation \eqref{en-factor-insert} gives
+\[
+ \frac{F_{N;\Lambda}(x)}{Q_i'(x)}
+ =(1+\lambda_i)\frac{F_{N+1;\Lambda\setminus i}(x)}{Q_i'(x)}<0.
+\]
+The degree, leading coefficient, and constant term required by Lemma~\ref{en-sign} were checked after \eqref{en-factor-insert}. Thus $Q_i\prec F_{N;\Lambda}$, with simple negative roots, for every $i$. A constant $Q_i$ is covered by the degree-zero case of the sign test.
+
+At any root $x$ of $P=F_{N;\Lambda}$ we consequently have $Q_i(x)/P'(x)>0$ for every $i$. Equation \eqref{en-factor-shift} gives
+\[
+ \frac{F_{N+1;\Lambda}(x)}{P'(x)}
+ =x(1-x)+2x\sum_i\lambda_i\frac{Q_i(x)}{P'(x)}<0.
+\]
+The first term is strictly negative and the sum is nonpositive, since $x<0$ and $\lambda_i\geq0$. The sign test proves $P\prec F_{N+1;\Lambda}$ and closes the induction. This argument includes zero parameters and excludes all repeated roots and all common roots in the asserted pairs.
+\end{proof}
+
+Formula \eqref{en-block-factor-conversion} now proves the real-rootedness part of Theorem~\ref{en-block-main}. Adding a coloop increases $N$ by one; adding a triangle instead then inserts the parameter $1/2$; replacing that triangle by $K_4$ inserts the parameter $1$. The factor theorem proves each comparison in \eqref{en-block-chain}. The general rank-two case follows from $\lambda=(p-2)/2\geq0$. Simplification preserves the flat lattice, and hence gives the parallel-extension assertion. This completes the full proof of the main theorem.
+
+\subsection{The additional rank-three core theorem}
+
+Put $s=1+t$, $B=t(1-t)$, and
+\[
+ \Dop{j}f=(1+jt)f+Bf'.
+\]
+For the parameters in Proposition~\ref{en-rankthree}, let $w=v-2u$ and $P_b=\HCh_{M\oplus\Bmat_b}$. Direct use of \eqref{en-euler-recurrence} gives
+\begin{equation}\label{en-P-recurrence}
+ P_{b+1}=\Dop{b+3}P_b+tK_b,\qquad
+ K_b=-2\beta A_{b+2}-(2u+v)sA_{b+1}.
+\end{equation}
+To check all coefficients, use
+\[
+ \Dop{j}(sA_{j-1})=sA_j+2tA_{j-1},
+\]
+\[
+ \Dop{j}((us^2+wt)A_{j-2})
+ =(us^2+wt)A_{j-1}+(4u+w)tsA_{j-2}.
+\]
+Since $4u+w=2u+v$, these imply \eqref{en-P-recurrence}.
+
+\begin{samepage}
+\begin{lem}[Auxiliary interlacer]\label{en-aux}
+Suppose $\alpha>0$, $a=-2\beta>c=2u+v\geq0$, and put $\lambda=c/a$. If
+\[
+ \mathcal T=2\alpha\lambda+w\geq0,\qquad
+ \mathcal S=\alpha\lambda^2+\beta\lambda+u\leq0,
+\]
+then, for every $b\geq0$,
+\[
+ A_{b+1}\prec K_b\prec P_b\prec P_{b+1}.
+\]
+\end{lem}
+\end{samepage}
+\begin{proof}
+Write $n=b+1$, $P=A_n$, $E=A_{n+1}$, and $F=A_{n+2}$. Then $K_b=aE-csP$. At a zero $x$ of $P$, $K_b(x)=aB(x)P'(x)$. Its leading and constant coefficients are $a-c>0$. The sign test proves $P\prec K_b$; it applies also when $P=A_1$ is constant. In particular, at a zero $x$ of $K_b$,
+\[
+ \frac{P(x)}{K_b'(x)}>0.
+\]
+This follows by comparing the alternating signs of the two polynomials at the simple zeros of $K_b$, or directly from the order of their roots.
+
+At such a zero, $E=\lambda sP$. Differentiate $K_b=aE-csP$, and use $BP'=E-(1+nt)P$. Substituting these identities into $F=(1+(n+1)t)E+BE'$ gives, at $x$,
+\[
+ F=\frac{B}{a}K_b'+(2\lambda t+\lambda^2s^2)P.
+\]
+Therefore
+\begin{equation}\label{en-aux-eval}
+ \frac{P_b(x)}{K_b'(x)}
+ =\frac\alpha a B(x)
+ +\{\mathcal T x+\mathcal S(1+x)^2\}\frac{P(x)}{K_b'(x)}<0.
+\end{equation}
+The first term is strictly negative; the second is nonpositive. Since $P_b$ is monic with constant term $1$, the sign test gives $K_b\prec P_b$. Finally $K_b(x)/P_b'(x)>0$ at each root $x$ of $P_b$. Equation~\eqref{en-P-recurrence} gives
+\[
+ \frac{P_{b+1}(x)}{P_b'(x)}=B(x)+x\frac{K_b(x)}{P_b'(x)}<0.
+\]
+A last application of the sign test proves $P_b\prec P_{b+1}$. All inequalities are strict and hence exclude repeated and common zeros.
+\end{proof}
+
+\begin{samepage}
+For the three rank-three graphic cores, the remaining parameters are
+\begin{center}
+\begin{tabular}{c|rrrrr}
+core&$a$&$c$&$\lambda$&$\mathcal T$&$\mathcal S$\\\hline
+$C_4$&2&1&$1/2$&3&0\\
+$D$&3&1&$1/3$&$17/9$&$-2/27$\\
+$K_4$&5&2&$2/5$&$12/5$&$-1/50$
+\end{tabular}
+\end{center}
+\end{samepage}
+Every hypothesis of Lemma~\ref{en-aux} is thus verified for every $b$, proving the assertion for these cores.
+
+For $C_3$, formula \eqref{en-triangle} and \eqref{en-euler-recurrence} give $A_{b+1}\prec T_b$ by the same sign test, and
+\[
+ T_{b+1}=\Dop{b+2}T_b+tA_{b+1}.
+\]
+Evaluation at the roots of $T_b$ proves $T_b\prec T_{b+1}$. Trees give Eulerian polynomials and were already treated.
+
+It remains to justify the graph class. After simplification and deletion of any newly created coloops, a loopless graphic matroid of rank at most three is represented by a simple bridgeless graph of rank at most three. Every nontrivial cyclic component has rank at least two. Thus at most one cyclic component occurs. It has at most four vertices, and is $C_3$, or, on four vertices, $C_4$, $K_4\setminus e$, or $K_4$. The remaining components contribute only coloops. This classification follows by listing simple bridgeless connected graphs on four vertices: with four edges the graph is a cycle; with five or six edges it is respectively the diamond or $K_4$. If there are no cyclic components the matroid is Boolean. All reductions preserve the lattice or separate Boolean factors, so the formulas above apply and prove Theorem~\ref{en-main}.
+
+\section{Interlacing and stronger consequences}
+
+For the clique-block class, \eqref{en-block-chain} gives strict interlacing for three explicit graph operations. There is also a continuous refinement. Fix all parameters but $\lambda_i$ and let $x$ be a root of $F_{N;\Lambda}$. Simplicity and the implicit function theorem, together with \eqref{en-factor-insert}, yield
+\begin{equation}\label{en-factor-motion}
+ \frac{dx}{d\lambda_i}
+ =\frac{(1+x)F_{N;\Lambda\setminus i}(x)}
+        {(1+\lambda_i)F_{N;\Lambda}'(x)}.
+\end{equation}
+The ratio excluding $1+x$ is strictly positive by Theorem~\ref{en-factor-theorem}. Thus roots below $-1$ move left and roots above $-1$ move right as the parameter increases; a root at $-1$ is stationary. This is an exact sign conclusion, not a numerical root trajectory. Palindromicity makes $-1$ a root precisely in odd degree, with multiplicity one.
+
+For the diamond, $K_b=3A_{b+2}-(1+t)A_{b+1}=2T_b$. Thus
+\begin{equation}\label{en-diamond-interlace}
+ \HCh_{M(C_3)\oplus\Bmat_b}\prec
+ \HCh_{M(D)\oplus\Bmat_b}\prec
+ \HCh_{M(D)\oplus\Bmat_{b+1}}.
+\end{equation}
+The first comparison is also a contraction comparison: contracting any noncentral edge of the diamond gives a triangle after simplification. Contracting its central edge gives a Boolean matroid of rank two; we do not need that different contraction in the proof.
+
+All main-family polynomials are palindromic. Their zeros therefore occur in reciprocal pairs, with the zero $-1$ occurring precisely when the degree is odd, and then with multiplicity one. By Newton's inequalities, if $P_b=\sum_{i=0}^d h_i t^i$, the sequence $h_i/\binom di$ is log-concave (the coefficients are ultra log-concave). Their $\gamma$-polynomials are real-rooted with negative zeros: each reciprocal pair corresponds to one negative value $z=t/(1+t)^2$. These consequences are applications of real-rootedness, not substitutes for its proof.
+
+There is also a general incidence criterion beyond the graphic cases.
+\begin{samepage}
+\begin{thm}\label{en-incidence-criterion}
+For any loopless rank-three matroid with parameters $p,\ell,I$, suppose
+\[
+ 3(p-1)\leq I<3(p+\ell)-6.
+\]
+Then $\HCh_{M\oplus\Bmat_b}$ has only simple negative zeros for every $b\geq0$, and
+\[
+ A_{b+2}\prec\HCh_{M\oplus\Bmat_b}.
+\]
+\end{thm}
+\end{samepage}
+\begin{proof}
+The assumptions say $v\geq0$ and $\alpha>u$, with $\alpha>0$, in \eqref{en-parameters}. We need an elementary estimate. If $x<0$ is a zero of $A_{n+1}$, then
+\begin{equation}\label{en-ratio}
+ 0<\frac{A_n(x)}{A_{n+1}'(x)}\leq\frac{-x(1-x)}{1+x^2}.
+\end{equation}
+For $n=1$ this is equality at $x=-1$. For $n\geq2$, put $L=A_n'/A_n$ and $B=x(1-x)$. At $x$, $L=-(1+nx)/B$ and
+\[
+ \frac{A_{n+1}'}{A_n}=n+(1-2x)L+BL'.
+\]
+Writing $L=\sum_j(x-\xi_j)^{-1}$ for the $n-1$ roots of $A_n$, Cauchy--Schwarz gives $-L'\geq L^2/(n-1)$. Since $B<0$,
+\[
+ \frac{A_{n+1}'}{A_n}\geq
+ \frac{n(1+x^2)+2x}{(n-1)(-B)}
+ \geq\frac{1+x^2}{-B},
+\]
+because the difference of the two numerators after the common scaling is $(1+x)^2$. This proves \eqref{en-ratio}.
+
+Now take $n=b+1$ and evaluate \eqref{en-rankthree-formula} at a zero of $A_{b+2}$. Divide by $A_{b+2}'$. The result is
+\[
+ \alpha B+\{u(1+x^2)+vx\}\frac{A_{b+1}}{A_{b+2}'}.
+\]
+If the brace is nonpositive, the expression is negative. Otherwise $u>0$, and \eqref{en-ratio} bounds it above by $B(\alpha-u)<0$. The sign test completes the proof. This criterion is sufficient; necessity is not asserted.
+\end{proof}
+
+Finally let
+\[
+ \mathcal A(z,t)=\sum_{n\geq0}A_n(t)\frac{z^n}{n!}
+ =\frac{1-t}{e^{(t-1)z}-t}.
+\]
+The rank-three formula supplies a closed exponential generating function:
+\[
+ \sum_{b\geq0}P_b(t)\frac{z^b}{b!}
+ =\alpha\partial_z^3\mathcal A+\beta(1+t)\partial_z^2\mathcal A
+       +\{u(1+t^2)+vt\}\partial_z\mathcal A.
+\]
+Together with \eqref{en-P-recurrence}, this gives both an explicit formula and a differential recurrence for every main family.
+
+\section{Series-parallel extensions and book graphs}
+Theorem~\ref{en-block-main} settles all cactus graphs whose cycles are triangles, with arbitrary numbers of cycles and bridges. It also includes non-series-parallel graphs through $K_4$ blocks. It does not settle arbitrary series extension. Series extension and subdivision are not the same as adding a coloop. A useful larger test family is the book graph $\mathcal B_n=K_{2,n}$ with the edge between the two distinguished vertices added, for $n\geq0$. These are series-parallel graphs with $2n+1$ edges and rank $n+1$. Their cores and cyclomatic numbers are unbounded. Put $B_n(t)=\HCh_{M(\mathcal B_n)}(t)$.
+
+\begin{samepage}
+\begin{prop}\label{en-book}
+For all $n\geq0$, $B_0=1$ and
+\begin{equation}\label{en-book-rec}
+ B_n=[n+1]_t+
+ \sum_{j=2}^{n}\binom nj2^jq_jB_{n-j}
+ +\sum_{j=1}^{n-1}\binom njq_{j+1}A_{n-j}.
+\end{equation}
+In particular,
+\begin{equation}\label{en-book-egf}
+ \sum_{n\geq0}B_n(t)\frac{z^n}{n!}
+ =\frac{(1-t)^2e^{(1-2t)z}}
+ {(1-te^{(1-t)z})(1-te^{2(1-t)z})}.
+\end{equation}
+The identity is understood formally, with removable specialization at $t=1$.
+\end{prop}
+\end{samepage}
+\begin{proof}
+If the distinguished vertices remain disconnected in a flat, choose $j$ non-base vertices and attach each to either distinguished vertex. There are $\binom nj2^j$ choices of rank $j$, and the contraction simplifies to $\mathcal B_{n-j}$. If the distinguished vertices are in the same component, choose $j$ non-base vertices in that component. The flat has rank $j+1$, multiplicity $\binom nj$, and Boolean contraction of rank $n-j$. The full flat corresponds to $j=n$ and is excluded from the proper-flat sum. This proves \eqref{en-book-rec} by \eqref{en-positive}.
+
+Let $\mathcal B(z)=\sum B_nz^n/n!$. The exponential generating functions of $[n+1]_t$, $q_n$, and $q_{n+1}$ are, respectively,
+\[
+ S(z)=\frac{e^z-te^{tz}}{1-t},\quad
+ Q(z)=\frac{te^z-e^{tz}+1-t}{1-t},\quad
+ R(z)=\frac{t(e^z-e^{tz})}{1-t}.
+\]
+Thus $\mathcal B=S+Q(2z)\mathcal B+R(z)(\mathcal A-1)$. Substitution and simplification give
+\[
+ \mathcal B=\frac{(1-t)^2e^{(1+t)z}}
+ {(e^{tz}-te^z)(e^{2tz}-te^{2z})},
+\]
+which is \eqref{en-book-egf}.
+\end{proof}
+For $0\leq n\leq25$, exact Sturm computation gives real-rootedness; consecutive polynomials also pass the numerical interlacing check. For $n\leq5$, the recurrence agrees with independent flat enumeration. We do not have an all-$n$ real-rootedness proof for this family, and do not infer one from its generating function.
+
+
+The generating function has a further exact interpretation. Let $d_n^{\rm B}$ be the type B derangement polynomial in the excedance convention of \cite{Ma20}, equation~(3.3), and put $D_n(t)=t^n d_n^{\rm B}(1/t)$. Reciprocity gives
+\[
+ \sum_{n\geq0}D_n(t)\frac{z^n}{n!}
+ =\frac{(1-t)e^{-tz}}{1-t e^{2(1-t)z}}.
+\]
+Multiplying by $\mathcal A(z,t)$ and comparing with \eqref{en-book-egf} proves
+\begin{equation}\label{en-book-convolution}
+ B_n(t)=\sum_{k=0}^n\binom nk A_k(t)D_{n-k}(t).
+\end{equation}
+The reciprocal convention matters: $D_1=t$ and $D_2=4t+t^2$. This convolution alone does not prove real-rootedness. For example, the proposed auxiliary interlacer $D_5$ fails for the summand $f=A_3D_2$. Here
+\[
+ f=t(t+4)(t^2+4t+1),\qquad
+ D_5=t(t^4+232t^3+1312t^2+752t+32).
+\]
+At the smallest root $-4$ of $f$, one has $f'(-4)=-4$ and $D_5(-4)=-13696$, so $D_5(-4)/f'(-4)=3424>0$, incompatible even with the weak alternating order $f\preceq D_5$. The common zero at $0$ does not change this obstruction at $-4$. This disproves the proposed interlacer, not real-rootedness of the book graph polynomial.
+
+\section{Counterexamples, operations, and sharpness of the claims}
+There was no non-real-rooted maximal-building-set graphic example in the computed range. Thus no minimal such counterexample, or sharp structural classification of failures, is claimed. There are, however, exact obstructions to several tempting proof shortcuts.
+
+The parameter hypothesis in Theorem~\ref{en-factor-theorem} cannot simply be omitted: $F_{2;(-2)}=-A_3+2(1+t)A_2=1+t^2$ is not real-rooted. This is a counterexample to an unrestricted analytic extension, not a matroid counterexample.
+
+First, direct-sum multiplicativity already fails for two coloops:
+\[
+ \HCh_{U_{1,1}}^2=1,\qquad \HCh_{U_{2,2}}=1+t.
+\]
+Second, there cannot be a universal scalar operator $\mathcal T$ with $\HCh_{M\oplus e}=\mathcal T(\HCh_M)$, even among graphic matroids:
+\begin{align*}
+ \HCh_{M(C_4)}=\HCh_{M(D)}&=1+7t+t^2,\\
+ \HCh_{M(C_4)\oplus e}&=1+18t+18t^2+t^3,\\
+ \HCh_{M(D)\oplus e}&=1+19t+19t^2+t^3.
+\end{align*}
+Even rank and the input polynomial do not remove this ambiguity. Likewise subdividing a central or a noncentral edge of the same diamond gives respectively $1+27t+27t^2+t^3$ and $1+24t+24t^2+t^3$. A scalar subdivision operator on the unmarked polynomial is therefore impossible.
+
+\begin{samepage}
+For completeness, the exact operation rules available here are as follows.
+\begin{center}\small
+\begin{tabular}{p{3.0cm}p{10.3cm}}
+\toprule
+Operation & Exact rule and scope\\\midrule
+Bridge / coloop & Equations \eqref{en-coloop-resolvent} and \eqref{en-P-recurrence}; also the known formula below.\\
+Parallel extension & The lattice of flats is unchanged up to isomorphism, so $\HCh$ is unchanged.\\
+Adding a loop & Outside our loopless Chow-ring convention. If one explicitly defines $\HCh^{\rm lf}(M)=\HCh_{M\setminus\text{loops}}$, it leaves that extended invariant unchanged.\\
+Graph $1$-sum / blocks & Direct sum of cycle matroids; use the product-lattice resolvent, not multiplication of scalar $\HCh$.\\
+Deletion / contraction & Use the rank formulas $r_{M\setminus e}(S)=r_M(S)$ and $r_{M/e}(S)=r_M(S\cup e)-r_M(e)$, then the flat test and \eqref{en-chain}.\\
+Series extension / subdivision & A series extension is a $2$-sum with $U_{2,3}$ at the marked element when it is neither loop nor coloop. Subdividing a bridge instead adds a coloop.\\
+Matroid $2$-sum & For the shared element $e$ neither loop nor coloop, and $S=S_1\sqcup S_2$ on the remaining ground sets, $r(S)=r_1(S_1)+r_2(S_2)-\epsilon$, with $\epsilon=1$ exactly when $e\in\clmat_1(S_1)\cap\clmat_2(S_2)$. The flat test plus \eqref{en-chain} is an exact algorithm.\\\bottomrule
+\end{tabular}
+\end{center}
+\end{samepage}
+The $2$-sum rank formula follows from its circuits: besides circuits avoiding $e$ in either summand, the new circuits are $(C_1\cup C_2)\setminus e$ with both $C_i$ containing $e$. An independent union loses exactly one rank precisely when both sides span $e$. No scalar $\HCh$-only $2$-sum preservation theorem is asserted.
+
+The semi-small decomposition gives, for a non-coloop $e$,
+\[
+ \HCh_M=\HCh_{M\setminus e}
+ +t\sum_{F\in\mathcal S_e}\HCh_{M/(F\cup e)}\HCh_{M|F},
+\]
+where $\mathcal S_e$ consists of nonempty flats $F\subsetneq E\setminus e$ for which $F\cup e$ is also a flat. For a new coloop it gives
+\[
+ \HCh_{M\oplus e}=(1+t)\HCh_M+
+ t\sum_{\varnothing\subsetneq F\subsetneq E}\HCh_{M|F}\HCh_{M/F}.
+\]
+These are \cite{FMSV24}, Corollary~3.24 and Remark~3.26, coming from \cite{BHM22}. The auxiliary restrictions and contractions are essential. Neither formula supplies general real-rootedness merely because its summands are real-rooted.
+
+\section{Novelty audit and limitations}
+The search included the literal subjects ``graphic matroid Chow polynomial'', ``real-rooted Chow polynomial'', ``theta graph matroid'', ``bicyclic graphic matroid'', ``cactus matroid'', ``series-parallel matroid Chow polynomial'', ``Chow polynomial recurrence'', and ``interlacing Chow polynomial'', together with coloop, bridge, book, and diamond refinements. Returned primary texts were inspected for theorem statements. The dated source list and the exact queries are included in the supplement.
+
+The diamond extension $M(D)\oplus\Bmat_b$ is not uniform, and for $b\geq1$ it is not paving. Its lattice is not upper rank-uniform: contraction of the central diamond edge has $b+2$ atoms, whereas contraction of a noncentral edge has $b+3$. Thus it is not UMEL-shellable. It is not lower rank-uniform either: a rank-two triangle flat has three atoms and a rank-two forest flat has two. Consequently the usual TN-poset theorem cannot be applied directly to this lattice. These checks explain why the cited family theorems do not immediately settle our all-$b$ assertion. They do not rule out an as-yet-unlocated argument in other literature.
+
+
+The new main family also fails the relevant uniformity hypotheses in unbounded cyclic rank. For $U_{2,3}^{\oplus r}$ with $r\geq2$, two rank-two flats are a full triangle and one edge in each of two different triangles. Their contractions have respectively $3r-3$ and $3r-4$ atoms. Their lower intervals also differ, having three and two atoms. Thus these lattices are neither upper nor lower rank-uniform, and in particular are not UMEL-shellable or TN-posets. For $M(K_4)^{\oplus s}$ with $s\geq2$, a rank-two flat within one block and two rank-one flats in different blocks give contraction atom counts $6s-5$ and $6s-6$. Taking $r\geq4$ or $s\geq3$ exceeds rank six without adding any bridge. Triangle circuits exclude paving once rank exceeds three. These explicit checks separate the main result from the directly cited uniform, low-rank, TN, and UMEL theorems.
+
+We also checked \cite{Ath25}, Theorem~1.1, on an Eulerian transformation of nonnegative combinations of $x^{n-k}(1+x)^k$; its input and coefficient hypotheses differ from the alternating, $t$-dependent factor expansion \eqref{en-factor-def}. September 2026 checks included the insertion operators in \cite{Ma26} and the permutation families in \cite{AlexE26}. Their inspected statements do not identify the present clique-block formula or its factor-deletion/coloop induction. This comparison does not certify the absence of every possible indirect argument.
+
+The principal contribution is the clique-block formula and a complete factor-insertion proof of real-rootedness and strict interlacing in unbounded cyclic rank. The additional results are the rank-three Eulerian conversion and incidence criterion. The theta and book recurrences are proved exact identities, with their own literature-search qualification; they are not advertised as solutions to all-theta or all-series-parallel real-rootedness. The main class contains all triangular cactus graphs and noncactus clique-block graphs, but does \emph{not} contain every cactus graph. The additional diamond theorem covers a theta core. Neither argument proves arbitrary subdivision preservation.
+
+\section{Open problems and reproducibility}
+The remaining targets are real-rootedness for arbitrary $T_{a,b,c;k}$, arbitrary $C_{\boldsymbol\ell;b}$, all book graphs, and all series-parallel matroids. The first concrete missing ingredient is a compatible interlacing refinement of \eqref{en-theta-recurrence}, controlling the theta, two-circuit, and one-circuit contraction terms simultaneously. The bridge interlacer used here is insufficient for those terms. Whether the sufficient incidence conditions in Theorem~\ref{en-incidence-criterion} can be removed is another separate question.
+
+The supplement contains the graph6 list, integer tables, root certificates, family recurrences, and reproduction scripts. General source enumeration used nauty 2.8.6, NetworkX 3.6.1, SymPy 1.14.0, and mpmath 1.3.0. Root certificates are exact; printed decimal roots are approximations. The supplied TeX template was retained, with its unfinished title repaired, LuaLaTeX Japanese support added, and optional unavailable double-struck-font packages given compatible fallbacks. Both language versions below contain the same mathematical statements and proofs.
+\newpage
+\begin{center}
+{\Large グラフィック・マトロイドのChow多項式：\\クリーク・ブロック、厳密な交互配置、theta漸化式}\par\medskip
+chatGPT 6 Astra\par\medskip
+日本語版全文
+\end{center}
+\addcontentsline{toc}{section}{日本語版全文}
+\renewcommand{\proofname}{証明}
+\noindent\textbf{要旨.}
+各blockが高々4頂点の完全グラフである任意のblock graphについて、通常のChow多項式の零点がすべて単純な負の実数であることを証明する。cycleを含む部分のrankも全体のrankも任意に大きくなる。Eulerian多項式の組合せに対する因子挿入定理により、橋の追加、橋から三角形への置換、三角形から4頂点完全グラフへの置換に対する厳密なinterlacingを証明する。同じ方法は任意のrank 2マトロイドの直和も扱う。別のrank 3の計算により、diamondおよび4-cycleに任意の木を付けた族も扱う。さらに、任意のcactusおよびtheta matroidの厳密な漸化式と、book graphの指数型母関数を導く。11辺以下の連結単純グラフ11,462個を完全列挙して検証した。任意のtheta、bicyclic、series-parallel matroidに対する一般的実根性は本稿では未証明である。新規性監査は2026年9月10日までに検索できた文献を対象とするが、個別の無限族定理の出版上の先取性を独立に保証するものではない。
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+
+\section{序論}
+全編を通して、Chow環にはmaximal building setと有理数係数を用いる。中心問題は
+\[
+ \HCh_M(t)=\sum_{i=0}^{r-1}\dim_{\Q} A^i(M)t^i,
+ \qquad r=\rk M>0,
+\]
+の零点がすべて実数であるか、というものである。本稿ではgraphic matroidを対象に、グラフの列挙、厳密計算、漸化式の導出、および証明を実行する。グラフの分解は有用だが、それに対応するマトロイドの直和によってmaximal-building-set Chow多項式が単なる積になるわけではない。
+
+主定理では、三角形および$K_4$のblockを切断頂点で任意個つなぎ、さらに任意個の橋を加えることを許す。従って、すべての橋を除いてもrankに上限はない。三角形だけをcycle blockに持つものはcactusであり、$K_4$ blockを許すと$K_4$ minorを持つ非cactusも得られる。第二の定理はdiamond $D=K_4\setminus e=\Theta_{1,2,2}$などの小さいcoreと任意個の橋を扱う。任意のcactus、theta、bicyclic、series-parallel graphの問題をすべて解決するものではない。
+
+証明はflatの格子上の特性関数の畳み込み冪を用いる。三角形と$K_4$では、この冪が$k(t-1)$と$1+t$に関する明示的な一次因子に分解される。格子の積はこの因数分解を保つ。因子数に関する同時帰納法により、実根性、因子削除に対するinterlacing、およびコループに対するinterlacingを証明する。これにより既知の直和恒等式の後に必要な保存性の議論が得られる。Chow多項式の単純な乗法性は仮定しない。
+
+\section{主結果の定式化}
+$\Bmat_b=U_{b,b}$と書き、$\Bmat_0$は空マトロイドとする。また
+\[
+ A_n(t)=\sum_{\pi\in S_n}t^{\des(\pi)},\qquad A_0(t)=1
+\]
+とおく。最高次係数が正の多項式$f,g$に対して、$f\prec g$とは、その零点が単純な実数であり、
+\[
+ y_1<x_1<y_2<\cdots<x_d<y_{d+1}
+\]
+の順で厳密に交互に並ぶことをいう。ここで$x_i$は$f$の零点、$y_i$は$g$の零点であり、$\deg g=\deg f+1$である。正の定数と一次多項式については、交互配置の条件を空条件として扱う。
+
+
+block graphとは、各blockが完全グラフである単純グラフをいう。橋は$K_2$ blockとして数える。三角形blockを$r$個、$K_4$ blockを$s$個、橋を$b$本持つ連結block graphのChow多項式を$H_{r,s,b}$と書く。そのcycle matroidは
+\[
+ U_{2,3}^{\oplus r}\oplus M(K_4)^{\oplus s}\oplus\Bmat_b
+\]
+なので、blockを付ける位置は$H_{r,s,b}$に影響しない。
+\begin{samepage}
+\begin{thm}[主定理：任意個のクリーク・ブロック]\label{ja-block-main}
+少なくとも一辺を持ち、すべてのblockが高々4頂点である任意の連結block graphのChow多項式は、定数でなければ、単純な負の実零点だけを持つ。parallel extensionでも結論は保たれる。このクラスの空でないマトロイド$M$に対し
+\begin{equation}\label{ja-block-chain}
+ \HCh_M\prec\HCh_{M\oplus U_{1,1}}
+ \prec\HCh_{M\oplus U_{2,3}}
+ \prec\HCh_{M\oplus M(K_4)}
+\end{equation}
+が成り立つ。さらに一般に、rank 2のloopless matroid、$M(K_4)$のコピー、およびコループの、正のrankを持つ任意の直和について、同じ実根性と厳密なコループinterlacingが成り立つ。
+\end{thm}
+\end{samepage}
+$N=b+r+s\geq1$に対する明示式は
+\begin{equation}\label{ja-block-formula}
+\begin{split}
+ H_{r,s,b}={}&2^{-(r+s)}
+ \sum_{i=0}^{r+s}\sum_{j=0}^{s}
+ \binom{r+s}{i}\binom{s}{j}3^i2^j
+ (-1)^{r+2s-i-j}\\[-2pt]
+ &\hspace{14mm}\cdot(1+t)^{r+2s-i-j}A_{N+i+j}(t)
+\end{split}
+\end{equation}
+であり、次数は$b+2r+3s-1$である。例えば$K_4$ blockを三つつないだものは、橋なしで既にrank 9となる。従って低rankの定理でも、固定したcoreに橋だけを追加した定理でもない。
+
+\begin{samepage}
+\begin{thm}[rankが高々3のcore]\label{ja-main}
+$M$を空でないloopless graphic matroidとし、すべてのコループを除いたマトロイドを$N$とする。$\rk N\leq3$を仮定する。このとき$\HCh_M$が定数でなければ、その零点はすべて単純な負の実数である。さらに
+\[
+ \HCh_M\prec \HCh_{M\oplus U_{1,1}}
+\]
+が成り立つ。特に、
+\[
+ C_3,\qquad C_4,\qquad D=K_4\setminus e,\qquad K_4
+\]
+のいずれかに木を付けて得られる任意の連結単純グラフ、および少なくとも一辺を持つ任意の木に適用できる。これらのマトロイドのparallel extensionについても結論は保たれる。
+\end{thm}
+\end{samepage}
+
+木の付加は新しいcycleを作らない操作、すなわち新しい辺がすべて橋となる操作を意味する。付ける位置や分岐の仕方は任意でよい。マトロイドとしての主張には非連結グラフによる表示も含まれる。簡約化によってparallel classがコループに変わる場合があるため、上のマトロイドに関する仮定は十分条件であり、あらゆるグラフ表示の同型分類を主張するものではない。
+
+$X=C_4,D,K_4$に対して$P_b^X=\HCh_{M(X)\oplus\Bmat_b}$とおくと、次の明示式が成り立つ。
+\begin{align}
+ P_b^{C_4}&=2A_{b+3}-(1+t)A_{b+2}+tA_{b+1},\label{ja-c4}\\
+ P_b^D&=\frac73A_{b+3}-\frac32(1+t)A_{b+2}
+       +\frac16(t^2+4t+1)A_{b+1},\label{ja-diamond}\\
+ P_b^{K_4}&=3A_{b+3}-\frac52(1+t)A_{b+2}
+       +\frac12(1+t)^2A_{b+1}.\label{ja-k4}
+\end{align}
+有理数を用いた表示だが、多項式の係数は整数である。三角形については
+\begin{equation}\label{ja-triangle}
+ T_b:=\HCh_{M(C_3)\oplus\Bmat_b}
+ =\frac32A_{b+2}-\frac12(1+t)A_{b+1}
+\end{equation}
+を得る。追加定理のrankは$b+3$まで任意に大きくなり、rank 3に制限されない。$D$または$K_4$に対して$b\geq4$の場合は、既知の一般的なrank bound $r\leq6$を越える。
+
+\section{先行研究と新規性}
+以下の結果は文献本文のstatementを確認した。特に断らない限りmaximal building setについて比較する。
+\begin{center}\small
+\begin{tabular}{p{2.6cm}p{5.1cm}p{5.4cm}}
+\toprule
+文献 & 既知結果 & 本稿との関係\\\midrule
+\cite{AHK18}, Thm.~1.4 & Hard LefschetzとHodge--Riemann関係 & 単峰性を与えるが、本稿のinterlacingそのものは与えない。\\
+\cite{FMSV24}, Thms.~1.8, 1.10, 5.10 & $\gamma$正値性、uniformのaugmented実根性、rank $\leq5$の通常の実根性 & 一般的漸化式は本稿の出発点であり、新結果として数えない。\\
+\cite{BV26}, Thm.~1.1 & uniform matroidの通常の実根性 & 非uniformなクリーク・ブロックを反復した族は含まれない。\\
+\cite{BVTN25}, Cor.~7.2 & paving matroidの実根性 & 三角形や$K_4$のblockを複数持つと、任意に大きいrankで大きさ3のcircuitがあり、pavingとは限らない。\\
+\cite{CFL25}, Thms.~1.2--1.3 & UMEL-shellableな格子の実根性とinterlacing & クリーク・ブロックの反復はupper rank-uniformとは限らない。具体例は後述する。\\
+\cite{Pie25}, Thms.~1.2--1.3, 1.9 & direct sumの再帰的分解 & 実根性の保存は主張されておらず、因子挿入による追加のinterlacingの証明を与える。\\
+\cite{CFL26}, Cor.~8.5 & rank $\leq6$の任意のmatroidの実根性 & 定理\ref{ja-block-main}ではcycle部分のrankも全体のrankも無限に大きい。\\
+\cite{EFMPV26}, Thm.~1.6 & 別のbuilding setに関する反例 & 本稿で扱う不変量の反例ではない。\\\bottomrule
+\end{tabular}
+\end{center}
+2026年の文献として、\cite{SV26}の低rankでの対数凹性、および\cite{Alex26}のnoncrossing partition latticeの実根性も確認した。どちらにも上記のクリーク・ブロックの定理は見当たらなかった。後者は別のposetの族に関するもので、任意のgraphic latticeの結果と混同してはいけない。
+
+2026年9月10日時点で実行した文献検索の範囲では、定理\ref{ja-block-main}、その明示式\eqref{ja-block-formula}と因子挿入によるinterlacingの証明、および後述するrank 3の接続数による判定法は見つからなかった。これは範囲を限定した検索結果であり、出版上の先取性の保証ではない。一般予想、uniformの場合、低rankの場合、および基礎となるincidence algebraやChow環の恒等式について新規性を主張しない。
+
+\section{マトロイドのChow多項式}
+loopless matroidは台集合$E$の部分集合上のrank関数$r_M$を持つ。$F$がflatであることは
+\[
+ r_M(F\cup\{e\})>r_M(F)\quad(e\notin F)
+\]
+と同値である。flatの格子を$L(M)$と書く。本稿では
+\[
+ A^\bullet(M)=\Q[x_F:\varnothing\ne F\subsetneq E\text{ はflat}]/(I+J)
+\]
+という表示を用いる。$I$は比較不能なflatに対する$x_Fx_G$で生成され、$J$は
+\[
+ \sum_{F\ni e}x_F-\sum_{F\ni f}x_F\qquad(e,f\in E)
+\]
+で生成される。これは通常のmatroid Chow環であり、最大元を含むすべての非空flatを用いたFeichtner--Yuzvinskyの表示と同値である。変数の次数はすべて1とする。この環は$L(M)$だけで決まるので、簡約化とparallel extensionは$\HCh_M$を変えない。
+
+rank 0の補助的な規約として$\HCh_{\Bmat_0}=1$とする。また
+\[
+ [d]_t=1+t+\cdots+t^{d-1}\ (d\geq1),\qquad
+ q_d(t)=\begin{cases}t+\cdots+t^{d-1}&d\geq2,\\0&d=0,1\end{cases}
+\]
+とおく。\cite{FY04}, Corollary~1の単項式基底から
+\begin{equation}\label{ja-chain}
+ \HCh_M=\sum_{\varnothing=F_0\subsetneq\cdots\subsetneq F_k}
+          \prod_{j=1}^k q_{r(F_j)-r(F_{j-1})}
+\end{equation}
+が従う。空のchainの重みは1とする。最初の非空な真のflatでchainを分類し、最初のflatが$E$である場合を別にすると、
+\begin{equation}\label{ja-positive}
+ \HCh_M=[r]_t+
+ \sum_{\varnothing\subsetneq F\subsetneq E}q_{r(F)}\HCh_{M/F}
+\end{equation}
+を得る。実際、$F$から始まるchainは最初の因子$q_{r(F)}$と、区間$[F,E]$の任意のchainからなる。空のchainと$E$だけのchainの寄与は$1+q_r=[r]_t$である。この説明により、rankに関する三角的な漸化式であることも分かる。
+
+augmented Chow多項式は別の不変量であり、
+\[
+ \HCh_M^{\rm aug}(t)=\sum_{F\in L(M)}t^{r(F)}\HCh_{M/F}(t)
+\]
+である。本稿の通常のChow多項式の定理から、augmented版の実根性を推論しない。$\HCh_M(0)=1$であり係数が非負なので、$t\geq0$では$\HCh_M(t)>0$である。したがって実零点は厳密に負である。一般の非負係数多項式では、定数項が0の場合に限り0が零点となり得る。
+
+次数$d$の回文多項式は一意的に
+\[
+ h(t)=(1+t)^d\gamma_h\!\left(\frac{t}{(1+t)^2}\right)
+\]
+と展開できる。$\gamma$正値性は実根性より弱い。例えば
+\[
+ (1+t)^4+t(1+t)^2+10t^2=1+5t+18t^2+5t^3+t^4
+\]
+は係数が正、対数凹、単峰であり、$\gamma$係数も正である。しかし$\gamma$多項式$1+z+10z^2$の零点は非実数なので、元の多項式は実根多項式でない。
+
+\section{Graphic matroidとグラフの分解}
+loopのないグラフ$G=(V,E)$では$r_{M(G)}(F)=|V|-c(V,F)$である。ここで孤立頂点も連結成分として数える。独立集合とは森である。部分集合$F$がflatであることは、$(V,F)$の同じ連結成分内の二頂点を結ぶ$G$の辺をすべて含むことと同値であり、上のrank判定そのものである。
+
+辺がどのcycleにも含まれないことと橋であることは同値である。cycle matroidでは、これはすべての基底に属すること、すなわちコループであることを意味する。グラフのcircuitはcycleを持つblockに含まれる。各blockで独立性を別々に判定できるので、cycleの長さが$\ell_1,\ldots,\ell_s$で橋が$b$本のcactusについて
+\begin{equation}\label{ja-cactus-matroid}
+ M(G)\cong\bigoplus_{i=1}^sU_{\ell_i-1,\ell_i}\oplus\Bmat_b
+\end{equation}
+を得る。特に連結unicyclic graphは$U_{\ell-1,\ell}\oplus\Bmat_b$を与える。$b=0$は既知のuniformの定理に含まれる。一方、一般の$b$を不変量から消去してよいわけではない。
+
+連結bicyclic graphについて、次数1の頂点を除き、次数2の頂点を抑制する。ただし後者は残る位相的な型を分類するためだけに用いる。連結なcoreでは
+\[
+ \sum_v(\deg v-2)=2
+\]
+である。したがって次数4の頂点が一つあるか、次数3の頂点が二つある。前者はfigure-eight、後者はthetaまたはdumbbellを与える。次数2の頂点を抑制するときにはpath lengthを記録しなければならず、この操作はマトロイドを保存しない。figure-eightとdumbbellのマトロイドは二つのcircuitの直和とBoolean因子である。dumbbellの二つのcycleを結ぶpathも橋からなるので、葉を除くだけではすべてのコループを除いたことにならない。
+
+$\Theta_{a,b,c}$の三本の内部頂点を共有しないpathの長さを正整数とする。長さ1のpathがある場合には平行辺を許す。辺数は$a+b+c$、頂点数は$a+b+c-1$なので、
+\[
+ \rk M(\Theta_{a,b,c})=a+b+c-2
+\]
+である。circuitは三本のpathのうち二本の和集合である。theta matroidは一般にはcircuit matroidの直和ではない。
+
+境界の族$\Theta_{1,1,c}$は$c\geq2$で$C_{c+1}$に簡約され、$\Theta_{1,1,1}$は一つのBoolean要素に簡約される。従って、この族の実根性は既知のuniformの結果であり、新しいthetaの定理ではない。
+
+\section{計算による探索}
+11辺以下の連結単純グラフを、1頂点のグラフも含めて同型を除いてすべて列挙した。連結グラフでは$|V|\leq|E|+1$なので、$1\leq|V|\leq12$に対して\texttt{geng -cq}を実行すれば、この範囲を完全に列挙できる。辺数ごとの個数は次の通りである。
+\begin{center}\small
+\begin{tabular}{c|rrrrrrrrrrrr}
+$|E|$&0&1&2&3&4&5&6&7&8&9&10&11\\\hline
+個数&1&1&1&3&5&12&30&79&227&710&2322&8071
+\end{tabular}
+\end{center}
+合計は$11\,462$個で、異なるChow多項式は$822$種類であった。内訳は、木$987$個（自明なグラフを含む）、unicyclic $2846$個、theta型bicyclic $2616$個、figure-eight $731$個、dumbbell $456$個、cycle数がさらに大きいもの$3826$個である。次数2以下の頂点の除去と必要な辺の追加による判定では、$10\,088$個が$K_4$-minor-freeであった。
+
+C++の実装はすべての辺部分集合を列挙し、素集合データ構造でflatを構成し、\eqref{ja-chain}を整数係数で計算する。この範囲では符号付き64-bit整数に収まる。実際、flatの鎖はBooleanな部分集合の鎖でもあり、rankの増分は濃度の増分以下なので、係数は係数ごとに$A_{11}$で、特に$11!$で抑えられる。独立したPython実装では任意精度整数を用いる。4頂点以下の全例を含む$111$例で両実装を比較した。flatの型を用いた別の漸化式も、flatの直接列挙と比較した。
+
+各多項式を$\Q$上でsquare-free分解し、各因子の$(-\infty,0)$内の零点数を厳密なSturm法で計算して、重複度を含めた合計が次数に等しいことを確認した。さらに$\gamma$多項式の有理数による零点分離区間から、55桁の近似値を得た。近似値そのものを実根性の証明に用いてはいない。
+
+追加データは、$1\leq a\leq b\leq c$、$a+b+c\leq18$を満たす全$174$組と、$C_4,D,K_4$に$0\leq b\leq20$本の橋を加えた$63$例である。すべて厳密な実根認証を通過した。theta表で比較可能なpathの一回の細分$441$件はすべて数値的な厳密interlacingの検査を通過した。また、$1\leq|E|\leq10$のすべての連結単純グラフについて、橋の追加$3390$件と辺の細分$32\,251$件は、\emph{厳密な}interlacingの検査を通過した。有理分離区間と区間演算で元の零点における符号を決定し、gcd計算で共通零点がないことを確認した。異なる多項式対は$1348$組である。これらの有限計算は無限族の定理の証明ではない。
+
+
+新しい主定理について、$(0,0,0)$を除く$0\leq r\leq2$、$0\leq s\leq3$、$0\leq b\leq4$の全パラメータ格子は、rankが高々$17$の$59$多項式を与える。すべて負の実根数およびsquare-free性の厳密な検査を通過した。この格子上の橋の追加および置換に関する$147$比較は、有理分離区間と端点での符号による厳密なinterlacingの検査を通過した。11辺以下では、独立したflat列挙との比較を$21$件行った。さらに、零のパラメータや$100$というパラメータを含む20個の有理数パラメータの例で、因子恒等式とinterlacingを検査した。無限個の主張を証明するのは、これらの有限検査ではなく、恒等式と定理の証明である。追加スクリプトは\texttt{block\_factor\_search.py}と\texttt{book\_factor\_identity.py}である。
+\begin{center}\small
+\begin{tabular}{c|l}
+$(r,s,b)$&$H_{r,s,b}(t)$\\\hline
+$(2,0,0)$&$1+18t+18t^2+t^3$\\
+$(1,1,0)$&$1+65t+200t^2+65t^3+t^4$\\
+$(0,2,0)$&$1+212t+1615t^2+1615t^3+212t^4+t^5$
+\end{tabular}
+\end{center}
+独立した係数の確認として、$[t]H_{r,s,b}=5^r15^s2^b-3r-6s-b-1$を得る。flat数は$5^r15^s2^b$、atom数は$3r+6s+b$であり、次数1のChow環の生成元は真の非空flat、独立な一次関係の個数はatom数より一つ少ないからである。rank 1の定数の場合にもこの式は0を与える。
+
+\section{漸化式とEulerian多項式への変換}
+$L(M)$のincidence algebraにおける特性関数を$\chi$とする。区間上では
+\[
+ \chi_{F,G}(t)=\sum_{F\leq K\leq G}\mu(F,K)t^{r(G)-r(K)},\qquad \chi_{F,F}=1
+\]
+である。単位元を$\delta$と書く。被約特性関数の対角成分は$-1$なので
+\[
+ \overline\chi=\frac{\chi-t\delta}{t-1},\qquad
+ \HCh=(-\overline\chi)^{-1}=(t-1)(t\delta-\chi)^{-1}
+\]
+となる。これは\cite{FMSV24}, Theorems~1.4--1.5のChow恒等式である。独立変数$z$を導入して$(\delta-z\chi)^{-1}$を展開し、$z=1/t$を代入すると、有理関数として
+\begin{equation}\label{ja-resolvent}
+ \HCh_M(t)=(t-1)\sum_{k\geq0}\frac{(\chi^{*k})_{\varnothing,E}(t)}{t^{k+1}}
+\end{equation}
+を得る。この和は有理関数として解釈し、解析的な収束を主張していない。
+
+格子の積について、特性関数とその畳み込み冪は座標ごとの積に分解する。畳み込みの和をflatの対について書くと、それぞれの座標で独立に和を取れるからである。1要素のBoolean matroidでは
+\[
+ (\chi^{*k})_{0,1}=k(t-1)
+\]
+なので、空でない任意の$M$について
+\begin{equation}\label{ja-coloop-resolvent}
+ \HCh_{M\oplus\Bmat_b}
+ =(t-1)^{b+1}\sum_{k\geq0}
+ \frac{k^b(\chi_M^{*k})_{\varnothing,E}}{t^{k+1}}
+\end{equation}
+を得る。より一般には、\eqref{ja-resolvent}の畳み込み冪を各因子の積に置き換えたものが直和の厳密な公式である。二つのscalarなChow多項式だけよりも多くの情報を必要とする。
+
+一般のdirect sumの分解は既に\cite{Pie25}, Theorems~1.2--1.3および1.9で得られている。Hilbert級数を取ると、空でない$M,N$について
+\begin{equation}\label{ja-known-directsum}
+ \HCh_{M\oplus N}=\HCh_M\HCh_N+
+ t\sum_{\substack{\varnothing\ne F\in L(M)\\\varnothing\ne G\in L(N)}}
+ \HCh_{(M/F)\oplus(N/G)}\HCh_{M|F}\HCh_{N|G}
+\end{equation}
+となる。両方の最大flatを含め、上記のrank 0の規約を用いる。この既知の恒等式自体が実根性を認証するわけではない。制限と収縮はflatによって変化するからである。
+
+
+\subsection{クリーク・ブロックの因子変換}
+$N\geq1$および非負実数の列$\Lambda=(\lambda_1,\ldots,\lambda_m)$に対し
+\begin{equation}\label{ja-factor-def}
+ F_{N;\Lambda}(t)=
+ \sum_{S\subseteq[m]}
+ \Bigl(\prod_{i\in S}(1+\lambda_i)\Bigr)
+ \Bigl(\prod_{i\notin S}(-\lambda_i)\Bigr)
+ (1+t)^{m-|S|}A_{N+|S|}(t)
+\end{equation}
+と定義する。同値に、$X^N\prod_i((1+\lambda_i)X-\lambda_i(1+t))$を展開し、各$X^j$を$A_j(t)$で置き換える。第$i$成分の削除を$\Lambda\setminus i$で表す。展開から
+\begin{equation}\label{ja-factor-insert}
+ F_{N;\Lambda}=(1+\lambda_i)F_{N+1;\Lambda\setminus i}
+                  -\lambda_i(1+t)F_{N;\Lambda\setminus i}
+\end{equation}
+を得る。これらはすべてpalindromicかつmonicで、定数項は1である。実際、各項の形式的次数は$N+m-1$であり、最高次係数および定数項の和は$\prod_i((1+\lambda_i)-\lambda_i)=1$となる。
+
+graphicの場合の同定のため$X=k(t-1)$とおく。$p\geq2$個のatomを持つrank 2のuniform matroidの特性多項式は$(t-1)(t-p+1)$である。中間flatは$p$個のatomだけなので
+\[
+ (\chi_{U_{2,p}}^{*k})_{0,1}
+ =k(t-1)(t-p+1)+\binom{k}{2}p(t-1)^2
+ =X\left(\frac p2X-\frac{p-2}{2}(1+t)\right)
+\]
+を得る。$K_4$については、後述のrank 3の接続数計算に$(p,\ell,I)=(6,7,18)$を代入すると
+\begin{equation}\label{ja-k4-factor}
+ (\chi_{M(K_4)}^{*k})_{0,1}
+ =\frac X2(3X-(1+t))(2X-(1+t))
+\end{equation}
+となる。コループの寄与は$X$である。積格子の恒等式とEulerianの冪和恒等式により
+\begin{equation}\label{ja-block-factor-conversion}
+ H_{r,s,b}=F_{b+r+s;\,(1/2)^{r+s},1^s}
+\end{equation}
+を得る。ここでパラメータの上添字は反復回数を意味する。因子を展開すれば\eqref{ja-block-formula}となる。一般のrank 2の直和因子は、$\lambda=(p-2)/2$の一次因子一つと$X$一つを与える。これで定理\ref{ja-block-main}のマトロイドへの拡張についても変換が証明された。
+
+初期値$H_{0,0,b}=A_b$（$b\geq1$）とともに、次の二つの漸化式を得る。
+\begin{align*}
+ H_{r+1,s,b}&=\tfrac32H_{r,s,b+2}-\tfrac12(1+t)H_{r,s,b+1},\\
+ H_{r,s+1,b}&=3H_{r,s,b+3}-\tfrac52(1+t)H_{r,s,b+2}
+                         +\tfrac12(1+t)^2H_{r,s,b+1}.
+\end{align*}
+これは上の特性関数の因子を掛けることで得られ、係数の数値的推測ではない。$\mathcal A(z,t)=\sum_{n\geq0}A_n(t)z^n/n!$とすれば、$r+s\geq1$に対し
+\begin{equation}\label{ja-block-egf}
+ \sum_{b\geq0}H_{r,s,b}\frac{z^b}{b!}
+ =\frac{\partial_z^{r+s}(3\partial_z-(1+t))^{r+s}
+                (2\partial_z-(1+t))^s}{2^{r+s}}\mathcal A(z,t)
+\end{equation}
+も得る。$\partial_z$の作用中は$t$を定数とする。$r=s=0$の場合はEulerian母関数そのものとなる。
+
+\begin{samepage}
+\begin{prop}[rank 3の公式]\label{ja-rankthree}
+$\rk M=3$とし、atom数を$p$、rank 2のflat数を$\ell$、atomとrank 2のflatの接続対の個数を$I$とする。
+\begin{equation}\label{ja-parameters}
+ \alpha=\frac I6,\quad \beta=\frac{p+\ell-I}{2},\quad
+ u=1-\frac{p+\ell}{2}+\frac I3,\quad v=1-p+\frac I3
+\end{equation}
+とおけば、すべての$b\geq0$について
+\begin{equation}\label{ja-rankthree-formula}
+ \HCh_{M\oplus\Bmat_b}
+ =\alpha A_{b+3}+\beta(1+t)A_{b+2}
+       +\{u(1+t^2)+vt\}A_{b+1}
+\end{equation}
+が成り立つ。
+\end{prop}
+\end{samepage}
+\begin{proof}
+$\eta=\chi-\delta$とおく。strict chainの長さは高々3なので
+\[
+ (\chi^{*k})_{0,1}=k\chi_{0,1}+\binom{k}{2}(\eta^{*2})_{0,1}
+                         +\binom{k}{3}(\eta^{*3})_{0,1}
+\]
+である。$s$個のatomを含むrank 2のflatの特性多項式は$(t-1)(t-s+1)$である。Möbius関数の値を足し合わせると
+\begin{align*}
+ \chi_{0,1}&=(t-1)\{t^2+(1-p)t+1-p+I-\ell\},\\
+ (\eta^{*2})_{0,1}&=(t-1)^2\{(p+\ell)t-(2I-p-\ell)\},\\
+ (\eta^{*3})_{0,1}&=I(t-1)^3
+\end{align*}
+を得る。中央の式では、atomを経由するものとrank 2のflatを経由するものに分けて和を取る。どちら側から数えても接続数の合計は$I$である。二項係数を展開すれば
+\[
+ (\chi^{*k})_{0,1}
+ =\alpha k^3(t-1)^3+\beta k^2(t+1)(t-1)^2
+   +k(t-1)\{u(1+t^2)+vt\}
+\]
+となる。$j\geq1$について、Eulerian多項式の冪和恒等式は
+\[
+ \sum_{k\geq0}\frac{k^j}{t^{k+1}}=\frac{A_j(t)}{(t-1)^{j+1}}
+\]
+である。これは$(1-z)^{-1}$に$z\frac{d}{dz}$を繰り返し作用させ、$z=1/t$を代入すれば得られる。分子は通常のEulerian漸化式で同定される。この式を\eqref{ja-coloop-resolvent}に代入すると$t-1$の冪がすべて相殺し、\eqref{ja-rankthree-formula}を得る。
+\end{proof}
+
+接続数の具体的な値は次の通りである。
+\begin{center}
+\begin{tabular}{c|rrr|rrrr}
+core&$p$&$\ell$&$I$&$\alpha$&$\beta$&$u$&$v$\\\hline
+$C_4$&4&6&12&2&$-1$&0&1\\
+$D$&5&6&14&$7/3$&$-3/2$&$1/6$&$2/3$\\
+$K_4$&6&7&18&3&$-5/2$&$1/2$&1
+\end{tabular}
+\end{center}
+diamondのrank 2のflatは、二つの3辺の三角形と四つの2辺のflatからなる。$K_4$では四つの三角形と三つの互いに交わらない辺の対である。これにより、零点の数値計算を使わずに表の全数値を確認できる。atom数が3のrank 2の場合にも同じ畳み込み計算を適用すると、\eqref{ja-triangle}を得る。
+
+\section{Thetaとbicyclic graph：flatの型による厳密な漸化式}
+\[
+ C_{\boldsymbol\ell;b}=\HCh_{(\bigoplus_iU_{\ell_i-1,\ell_i})\oplus\Bmat_b}
+\]
+と定義する。長さ2のcircuitは簡約化すると$U_{1,1}$になるため、$\HCh$の計算では一つのBoolean要素に置き換えられる。したがって、この記法では長さ2を許す。初期条件は$C_{\varnothing;b}=A_b$である。
+
+長さ$L$のcircuitのflatは、全体である場合と、大きさ$i\leq L-2$の部分集合である場合に限る。前者のrankは$L-1$、個数は1で、収縮後にcircuitは残らない。後者のrankは$i$、個数は$\binom Li$で、収縮後には長さ$L-i$のcircuitが残る。各circuitでいずれかを選び、さらに$b$本の橋のうち$j$本を選ぶ。選んだrankの和に$j$を加えたものを$f$、個数の積に$\binom bj$を掛けたものを$w$、残るcircuitの長さの列を$\boldsymbol d$とする。$R=\sum_i(\ell_i-1)+b$とおけば
+\begin{equation}\label{ja-cactus-recurrence}
+ C_{\boldsymbol\ell;b}=[R]_t+
+       \sum_{\text{選択で }2\leq f<R}wq_f C_{\boldsymbol d;b-j}
+\end{equation}
+となる。これはblock分解に関する厳密な漸化式であり、乗法性ではない。証明は積格子のすべてのflatを上記のように記述し、\eqref{ja-positive}を適用することである。
+
+thetaの場合は$T_{a,b,c;k}=\HCh_{M(\Theta_{a,b,c})\oplus\Bmat_k}$と書く。この4添字の記法は、\eqref{ja-triangle}の三角形の多項式$T_b$とは別である。$\boldsymbol a=(a,b,c)$、$N=a+b+c$とおく。thetaの辺部分集合$F$について、path $i$から除かれた辺数を$d_i$、正の$d_i$の個数を$s$とする。
+
+\begin{samepage}
+\begin{lem}[Thetaのflatの分類]\label{ja-theta-flats}
+flatの省略辺数のベクトルは、ちょうど次のものである。
+\begin{enumerate}
+\item $s=3$で、正の各$d_i$は任意。
+\item $s=2$で、正の二成分がともに$d_i\geq2$。
+\item $s=1$で、正の一成分が$d_i\geq2$。
+\item $s=0$で、thetaの全辺集合。
+\end{enumerate}
+その個数は$\prod_i\binom{a_i}{d_i}$である。収縮は順に、長さ$\boldsymbol d$のtheta、対応する長さの二つのcircuitの直和、一つのcircuit、空マトロイドとなる。
+\end{lem}
+\end{samepage}
+\begin{proof}
+どのpathも全体が選ばれていなければ、二つの端点は連結でない。選ばれた連結成分はpathの断片なので、除かれた各辺の両端は異なる成分に属する。したがって第1の場合はflatである。少なくとも一つのpath全体が選ばれていれば、二つの端点は同じ連結成分に属する。このとき、ただ一辺だけ欠けたpathがあれば、その欠けた辺の両端が同じ成分に入り、flatの条件に反する。二辺以上欠けたpathでは、そのように両端が連結になる欠損辺はない。これで残りの場合と、その完全性が分かる。選ばれた断片を収縮すると各pathの長さが短くなる。全pathが一つ収縮されると二つの端点が一致し、残るpathは同じ頂点に付いたcycleになる。そのcycle matroidは直和である。個数は各pathでどの辺を除くかを選ぶことで得られる。
+\end{proof}
+
+許されるベクトル$\boldsymbol d$と$0\leq h\leq k$について、補題の収縮に$h$本の橋を残した多項式を$Q_{\boldsymbol d;h}$とし、そのrankを
+\[
+ \rho(\boldsymbol d,h)=
+ \begin{cases}|\boldsymbol d|-2+h&s=2,3,\\
+ |\boldsymbol d|-1+h&s=1,\\h&s=0
+ \end{cases}
+\]
+とする。$s=3$なら$Q_{\boldsymbol d;h}=T_{d_1,d_2,d_3;h}$であり、それ以外は対応する$C$多項式である。$R=N-2+k$とおけば
+\begin{equation}\label{ja-theta-recurrence}
+ T_{a,b,c;k}=[R]_t+
+ \sum_{\substack{\boldsymbol d\text{ は許される},\ 0\leq h\leq k\\
+                  2\leq R-\rho(\boldsymbol d,h)<R}}
+ \binom{k}{h}\prod_i\binom{a_i}{d_i}\,
+ q_{R-\rho(\boldsymbol d,h)}Q_{\boldsymbol d;h}
+\end{equation}
+を得る。右辺の各収縮のrankは真に小さい。rank 1と2ではそれぞれ$1$、$1+t$であり、$C_{\varnothing;0}=1$である。したがって\eqref{ja-cactus-recurrence}--\eqref{ja-theta-recurrence}は、任意のcactusとtheta、従って任意の連結bicyclicの場合のChow多項式を、個々のflatを列挙せずに決定する。添付コードはこの和をそのまま実装する。
+
+厳密計算の例を挙げる。
+\begin{center}\small
+\begin{tabular}{c|l}
+$(a,b,c)$&$\HCh_{M(\Theta_{a,b,c})}$\\\hline
+$(1,2,2)$&$1+7t+t^2$\\
+$(1,2,3)$&$1+24t+24t^2+t^3$\\
+$(2,2,2)$&$1+27t+27t^2+t^3$\\
+$(2,2,3)$&$1+71t+225t^2+71t^3+t^4$\\
+$(3,3,3)$&$1+394t+5905t^2+13471t^3+5905t^4+394t^5+t^6$
+\end{tabular}
+\end{center}
+ただし、これらの漸化式だけでは実根性は証明されない。各項に共通するinterlacerが分かっていないからである。任意のthetaまたは任意のbicyclic graphに関する予想を定理として主張しない。
+
+\section{主実根性定理の証明}
+interlacingの仕組みを含めて、初等的な符号の証明を与える。実根性を保存する定理を、仮定や証明の確認なしに用いることはしない。
+
+\begin{samepage}
+\begin{lem}[符号による判定]\label{ja-sign}
+$g$が$d$個の単純な負の零点を持ち、最高次係数が正であるとする。$f$の次数は$d+1$、最高次係数は正、$f(0)>0$と仮定する。$g$の各零点$x$で
+\[
+ \frac{f(x)}{g'(x)}<0
+\]
+ならば、$g\prec f$であり、$f$のすべての零点は単純で負である。
+\end{lem}
+\end{samepage}
+\begin{proof}
+零点を$x_1<\cdots<x_d$と並べる。$g'(x_i)$の符号は$(-1)^{d-1}$から始まって交互に変わるので、指定された$f(x_i)$の符号も交互に変わる。従って各隣接区間に$f$の零点がある。また、$-\infty$での最高次項の符号により$x_1$より左に一つあり、$f(x_d)<0<f(0)$より$x_d$と0の間にも一つある。合計$d+1$個の異なる負の零点が得られ、次数を尽くすので重複度はすべて1である。$d=0$の場合は、最高次係数と定数項が正の一次多項式の零点が負であることを使う。
+\end{proof}
+
+Eulerian多項式は
+\begin{equation}\label{ja-euler-recurrence}
+ A_{n+1}=(1+nt)A_n+t(1-t)A_n',\qquad A_1=1
+\end{equation}
+を満たす。最大の文字を置換に挿入することで係数の漸化式が得られ、従ってこの微分恒等式が従う。$A_n$の負の零点で、右辺を$A_n'$で割ると$t(1-t)<0$となる。最高次係数と定数項は1である。$A_1$から始めて補題\ref{ja-sign}を適用すれば、全零点が単純で負であり$A_n\prec A_{n+1}$であることを証明できる。
+
+
+\subsection{因子挿入に関する同時帰納法}
+\begin{samepage}
+\begin{thm}[Eulerian因子定理]\label{ja-factor-theorem}
+任意の$N\geq1$と非負のパラメータ列$\Lambda$に対し、$F_{N;\Lambda}$は、定数の場合を除き、単純な負の実零点だけを持つ。各成分$i$に対して
+\[
+ F_{N;\Lambda\setminus i}\prec F_{N;\Lambda}
+ \prec F_{N+1;\Lambda}
+\]
+が成り立つ。後半の関係は$\Lambda$が空の場合にも成り立つ。
+\end{thm}
+\end{samepage}
+\begin{proof}
+$\mathcal D_R f=(1+Rt)f+t(1-t)f'$とおく。\eqref{ja-factor-insert}に加えて、定義の展開から
+\begin{equation}\label{ja-factor-shift}
+ F_{N+1;\Lambda}=\mathcal D_{N+m}F_{N;\Lambda}
+                +2t\sum_{i=1}^m\lambda_i F_{N;\Lambda\setminus i}
+\end{equation}
+が成り立つ。実際、$j+d=N+m$を満たす項$(1+t)^dA_j$に作用させると、$\mathcal D_{N+m}$と$A_j$を$A_{j+1}$に移す操作の差は$2dt(1+t)^{d-1}A_j$となる。係数の積に現れる$1+t$を独立な変数とみなして微分すると$-\sum_i\lambda_iF_{N;\Lambda\setminus i}$が得られる。従って\eqref{ja-factor-shift}の符号と係数2が正確に得られる。
+
+$m$について帰納し、すべての$N$に対する主張を同時に証明する。$m=0$は$A_1=1$から既に証明したEulerianの場合である。長さ$m-1$のすべての列について主張を仮定する。$N$および長さ$m$の列$\Lambda$を固定する。各$i$について$Q_i=F_{N;\Lambda\setminus i}$とおく。帰納法の仮定から$Q_i\prec F_{N+1;\Lambda\setminus i}$である。$Q_i$の零点$x$において\eqref{ja-factor-insert}より
+\[
+ \frac{F_{N;\Lambda}(x)}{Q_i'(x)}
+ =(1+\lambda_i)\frac{F_{N+1;\Lambda\setminus i}(x)}{Q_i'(x)}<0
+\]
+を得る。補題\ref{ja-sign}が必要とする次数、最高次係数、定数項は\eqref{ja-factor-insert}の直後で確認した。よって各$i$について$Q_i\prec F_{N;\Lambda}$となり、零点は単純で負である。$Q_i$が定数の場合は符号判定の次数0の場合を用いる。
+
+従って$P=F_{N;\Lambda}$の任意の零点$x$で、すべての$i$について$Q_i(x)/P'(x)>0$が成り立つ。\eqref{ja-factor-shift}から
+\[
+ \frac{F_{N+1;\Lambda}(x)}{P'(x)}
+ =x(1-x)+2x\sum_i\lambda_i\frac{Q_i(x)}{P'(x)}<0
+\]
+を得る。第一項は厳密に負であり、$x<0$かつ$\lambda_i\geq0$なので残りの和は非正である。符号判定から$P\prec F_{N+1;\Lambda}$となり帰納法が閉じる。零のパラメータも含まれており、主張した組について重根および共通零点はすべて排除される。
+\end{proof}
+
+\eqref{ja-block-factor-conversion}により、定理\ref{ja-block-main}の実根性が従う。コループの追加は$N$を一つ増やす。そのコループの代わりに三角形を加える操作はパラメータ$1/2$を挿入し、さらにその三角形を$K_4$に置き換える操作はパラメータ$1$を挿入する。因子定理から\eqref{ja-block-chain}の各interlacingが従う。一般のrank 2の場合は$\lambda=(p-2)/2\geq0$を用いる。簡約化はflatの格子を保つのでparallel extensionの主張も従う。これで主定理の完全な証明が終わった。
+
+\subsection{rank 3のcoreに対する追加定理}
+
+$s=1+t$、$B=t(1-t)$とおき、
+\[
+ \Dop{j}f=(1+jt)f+Bf'
+\]
+と定義する。命題\ref{ja-rankthree}のパラメータに対して$w=v-2u$、$P_b=\HCh_{M\oplus\Bmat_b}$とおく。\eqref{ja-euler-recurrence}を使うと
+\begin{equation}\label{ja-P-recurrence}
+ P_{b+1}=\Dop{b+3}P_b+tK_b,\qquad
+ K_b=-2\beta A_{b+2}-(2u+v)sA_{b+1}
+\end{equation}
+を得る。係数を省略せずに確認するには
+\[
+ \Dop{j}(sA_{j-1})=sA_j+2tA_{j-1},
+\]
+\[
+ \Dop{j}((us^2+wt)A_{j-2})
+ =(us^2+wt)A_{j-1}+(4u+w)tsA_{j-2}
+\]
+を用いればよい。$4u+w=2u+v$なので、これらから\eqref{ja-P-recurrence}が従う。
+
+\begin{samepage}
+\begin{lem}[補助interlacer]\label{ja-aux}
+$\alpha>0$、$a=-2\beta>c=2u+v\geq0$と仮定し、$\lambda=c/a$とおく。
+\[
+ \mathcal T=2\alpha\lambda+w\geq0,\qquad
+ \mathcal S=\alpha\lambda^2+\beta\lambda+u\leq0
+\]
+ならば、すべての$b\geq0$について
+\[
+ A_{b+1}\prec K_b\prec P_b\prec P_{b+1}
+\]
+が成り立つ。
+\end{lem}
+\end{samepage}
+\begin{proof}
+$n=b+1$、$P=A_n$、$E=A_{n+1}$、$F=A_{n+2}$と書く。このとき$K_b=aE-csP$である。$P$の零点$x$では$K_b(x)=aB(x)P'(x)$となる。$K_b$の最高次係数と定数項は$a-c>0$なので、符号判定によって$P\prec K_b$を得る。$P=A_1$が定数の場合も同じ判定が使える。特に$K_b$の零点$x$では
+\[
+ \frac{P(x)}{K_b'(x)}>0
+\]
+となる。これは$K_b$の単純零点で双方の符号を比較するか、零点の順序から直接確認できる。
+
+そのような零点で$E=\lambda sP$である。$K_b=aE-csP$を微分し、$BP'=E-(1+nt)P$を用いる。これを$F=(1+(n+1)t)E+BE'$に代入すると、$x$において
+\[
+ F=\frac{B}{a}K_b'+(2\lambda t+\lambda^2s^2)P
+\]
+を得る。従って
+\begin{equation}\label{ja-aux-eval}
+ \frac{P_b(x)}{K_b'(x)}
+ =\frac\alpha a B(x)
+ +\{\mathcal T x+\mathcal S(1+x)^2\}\frac{P(x)}{K_b'(x)}<0
+\end{equation}
+である。第一項は厳密に負、第二項は非正である。$P_b$はmonicで定数項が1なので、符号判定より$K_b\prec P_b$となる。最後に、$P_b$の各零点$x$で$K_b(x)/P_b'(x)>0$である。\eqref{ja-P-recurrence}から
+\[
+ \frac{P_{b+1}(x)}{P_b'(x)}=B(x)+x\frac{K_b(x)}{P_b'(x)}<0
+\]
+を得て、再び符号判定を使えば$P_b\prec P_{b+1}$が従う。すべての不等式は厳密であり、重複零点と共通零点を排除している。
+\end{proof}
+
+\begin{samepage}
+三つのrank 3のgraphic coreについて、残るパラメータは次の通りである。
+\begin{center}
+\begin{tabular}{c|rrrrr}
+core&$a$&$c$&$\lambda$&$\mathcal T$&$\mathcal S$\\\hline
+$C_4$&2&1&$1/2$&3&0\\
+$D$&3&1&$1/3$&$17/9$&$-2/27$\\
+$K_4$&5&2&$2/5$&$12/5$&$-1/50$
+\end{tabular}
+\end{center}
+\end{samepage}
+従って補題\ref{ja-aux}の仮定がすべての$b$について満たされ、これらのcoreの場合が証明された。
+
+$C_3$については、\eqref{ja-triangle}と\eqref{ja-euler-recurrence}を使った同じ符号判定で$A_{b+1}\prec T_b$を得る。また
+\[
+ T_{b+1}=\Dop{b+2}T_b+tA_{b+1}
+\]
+なので、$T_b$の零点で評価すれば$T_b\prec T_{b+1}$が従う。木の場合はEulerian多項式となり、すでに扱った。
+
+最後にグラフのクラスを確認する。rankが高々3のloopless graphic matroidを簡約化し、新たに生じたコループも除くと、rankが高々3の単純なbridgeless graphで表示できる。自明でないcycleを持つ連結成分のrankは少なくとも2なので、そのような成分は高々一つである。その頂点数は高々4であり、$C_3$、または4頂点上の$C_4$、$K_4\setminus e$、$K_4$のいずれかとなる。他の成分はコループだけを与える。この分類は4頂点の単純bridgeless連結グラフを辺数で調べれば分かる。4辺ならcycle、5辺ならdiamond、6辺なら$K_4$である。cycleを持つ成分がなければBoolean matroidである。以上の簡約は格子を保存するかBoolean因子を分ける操作なので、上の公式が適用でき、定理\ref{ja-main}が証明された。
+
+\section{Interlacingとその帰結}
+
+クリーク・ブロックのクラスでは、\eqref{ja-block-chain}が三つの明示的なグラフ操作に対する厳密なinterlacingを与える。連続的な細分化も得られる。$\lambda_i$以外のパラメータを固定し、$x$を$F_{N;\Lambda}$の零点とする。単純性、陰関数定理、および\eqref{ja-factor-insert}から
+\begin{equation}\label{ja-factor-motion}
+ \frac{dx}{d\lambda_i}
+ =\frac{(1+x)F_{N;\Lambda\setminus i}(x)}
+        {(1+\lambda_i)F_{N;\Lambda}'(x)}
+\end{equation}
+を得る。$1+x$以外の比は定理\ref{ja-factor-theorem}により厳密に正である。従ってパラメータを増やすと、$-1$より小さい零点は左へ、$-1$より大きい零点は右へ動き、$-1$にある零点は動かない。これは数値的軌跡ではなく厳密な符号の結論である。palindromicityにより、$-1$は次数が奇数のとき、かつそのときに限り零点となり、その重複度は1である。
+
+diamondでは$K_b=3A_{b+2}-(1+t)A_{b+1}=2T_b$なので、
+\begin{equation}\label{ja-diamond-interlace}
+ \HCh_{M(C_3)\oplus\Bmat_b}\prec
+ \HCh_{M(D)\oplus\Bmat_b}\prec
+ \HCh_{M(D)\oplus\Bmat_{b+1}}
+\end{equation}
+を得る。第一の比較は収縮に関する比較でもある。diamondの中心辺以外の辺を収縮すると、簡約化後に三角形を得るからである。中心辺を収縮した場合にはrank 2のBoolean matroidとなり、この別の収縮は証明に必要ない。
+
+主定理の多項式はすべて回文である。従って零点は逆数の対をなし、$-1$が零点となるのは次数が奇数の場合に限る。その重複度は1である。Newtonの不等式によって、$P_b=\sum_{i=0}^d h_it^i$と書けば、二項係数で正規化した係数列$h_i/\binom di$はlog-concaveである（元の係数列はultra log-concaveである）。$\gamma$多項式も負の実零点だけを持つ。各逆数対が$z=t/(1+t)^2$によって一つの負の値に対応するからである。これらは実根性からの帰結であり、実根性の証明の代わりではない。
+
+graphicの場合以外にも、接続数による一般的な十分条件が得られる。
+\begin{samepage}
+\begin{thm}\label{ja-incidence-criterion}
+任意のloopless rank 3 matroidのパラメータ$p,\ell,I$が
+\[
+ 3(p-1)\leq I<3(p+\ell)-6
+\]
+を満たすならば、すべての$b\geq0$について$\HCh_{M\oplus\Bmat_b}$の零点は単純な負の実数であり、
+\[
+ A_{b+2}\prec\HCh_{M\oplus\Bmat_b}
+\]
+が成り立つ。
+\end{thm}
+\end{samepage}
+\begin{proof}
+仮定は\eqref{ja-parameters}の$v\geq0$、$\alpha>u$に対応し、$\alpha>0$も成り立つ。まず初等的な評価を示す。$x<0$が$A_{n+1}$の零点ならば
+\begin{equation}\label{ja-ratio}
+ 0<\frac{A_n(x)}{A_{n+1}'(x)}\leq\frac{-x(1-x)}{1+x^2}
+\end{equation}
+である。$n=1$では$x=-1$における等式である。$n\geq2$の場合は$L=A_n'/A_n$、$B=x(1-x)$とおく。$x$において$L=-(1+nx)/B$であり、
+\[
+ \frac{A_{n+1}'}{A_n}=n+(1-2x)L+BL'
+\]
+となる。$A_n$の$n-1$個の零点を$\xi_j$と書けば$L=\sum_j(x-\xi_j)^{-1}$であり、Cauchy--Schwarzから$-L'\geq L^2/(n-1)$を得る。$B<0$なので
+\[
+ \frac{A_{n+1}'}{A_n}\geq
+ \frac{n(1+x^2)+2x}{(n-1)(-B)}
+ \geq\frac{1+x^2}{-B}
+\]
+となる。最後の比較では、分母を揃えた分子の差が$(1+x)^2$である。これで\eqref{ja-ratio}が示された。
+
+$n=b+1$とし、\eqref{ja-rankthree-formula}を$A_{b+2}$の零点で評価して$A_{b+2}'$で割ると、
+\[
+ \alpha B+\{u(1+x^2)+vx\}\frac{A_{b+1}}{A_{b+2}'}
+\]
+を得る。波括弧が非正なら全体は負である。そうでなければ$u>0$であり、\eqref{ja-ratio}によって全体は$B(\alpha-u)<0$以下となる。符号判定を適用すればよい。この条件は十分条件であり、必要性は主張しない。
+\end{proof}
+
+最後に
+\[
+ \mathcal A(z,t)=\sum_{n\geq0}A_n(t)\frac{z^n}{n!}
+ =\frac{1-t}{e^{(t-1)z}-t}
+\]
+とおく。rank 3の公式は次の閉じた指数型母関数を与える。
+\[
+ \sum_{b\geq0}P_b(t)\frac{z^b}{b!}
+ =\alpha\partial_z^3\mathcal A+\beta(1+t)\partial_z^2\mathcal A
+       +\{u(1+t^2)+vt\}\partial_z\mathcal A.
+\]
+これと\eqref{ja-P-recurrence}により、主定理の各族について明示式と微分漸化式の両方が得られる。
+
+\section{Series-parallelへの拡張とbook graph}
+定理\ref{ja-block-main}により、cycleがすべて三角形であるcactus graphについて、cycle数と橋数を任意に許した実根性が解決する。$K_4$ blockによってseries-parallelでないグラフも含まれるが、任意のseries extensionを解決したものではない。series extensionや辺の細分は、コループを加える操作と異なる。より大きな検証対象として、$\mathcal B_n$を$K_{2,n}$に二つの端点を結ぶ辺を加えたbook graphとする。$n\geq0$とする。辺数$2n+1$、rank $n+1$のseries-parallel graphであり、coreとcycle数の双方が任意に大きくなる。$B_n(t)=\HCh_{M(\mathcal B_n)}(t)$とおく。
+
+\begin{samepage}
+\begin{prop}\label{ja-book}
+すべての$n\geq0$について$B_0=1$であり、
+\begin{equation}\label{ja-book-rec}
+ B_n=[n+1]_t+
+ \sum_{j=2}^{n}\binom nj2^jq_jB_{n-j}
+ +\sum_{j=1}^{n-1}\binom njq_{j+1}A_{n-j}
+\end{equation}
+が成り立つ。特に
+\begin{equation}\label{ja-book-egf}
+ \sum_{n\geq0}B_n(t)\frac{z^n}{n!}
+ =\frac{(1-t)^2e^{(1-2t)z}}
+ {(1-te^{(1-t)z})(1-te^{2(1-t)z})}
+\end{equation}
+である。恒等式は形式的に解釈し、$t=1$での特異性は除去可能である。
+\end{prop}
+\end{samepage}
+\begin{proof}
+flatにおいて二つの端点が連結でなければ、$j$個の付加頂点を選び、それぞれをどちらかの端点につなぐ。rank $j$の選択が$\binom nj2^j$通りあり、収縮後の簡約化は$\mathcal B_{n-j}$である。二つの端点が同じ成分に属するなら、その成分に入る付加頂点を$j$個選ぶ。rankは$j+1$、個数は$\binom nj$で、収縮はrank $n-j$のBoolean matroidとなる。$j=n$は全flatに対応するので真のflatの和から除く。従って\eqref{ja-positive}から\eqref{ja-book-rec}を得る。
+
+$\mathcal B(z)=\sum B_nz^n/n!$とおく。$[n+1]_t$、$q_n$、$q_{n+1}$の指数型母関数は、それぞれ
+\[
+ S(z)=\frac{e^z-te^{tz}}{1-t},\quad
+ Q(z)=\frac{te^z-e^{tz}+1-t}{1-t},\quad
+ R(z)=\frac{t(e^z-e^{tz})}{1-t}
+\]
+である。従って$\mathcal B=S+Q(2z)\mathcal B+R(z)(\mathcal A-1)$となる。代入して整理すると
+\[
+ \mathcal B=\frac{(1-t)^2e^{(1+t)z}}
+ {(e^{tz}-te^z)(e^{2tz}-te^{2z})}
+\]
+を得て、これは\eqref{ja-book-egf}と同じである。
+\end{proof}
+$0\leq n\leq25$では厳密なSturm計算によって実根性を確認し、連続する多項式も数値的interlacingの検査を通過した。$n\leq5$では漸化式と独立したflatの列挙が一致した。ただし全$n$についての実根性の証明は得られておらず、母関数が得られたことだけから実根性を推論しない。
+
+
+母関数にはさらに厳密な解釈がある。$d_n^{\rm B}$を\cite{Ma20}の式(3.3)のexcedanceの流儀によるtype B derangement多項式とし、$D_n(t)=t^n d_n^{\rm B}(1/t)$とおく。相反変換から
+\[
+ \sum_{n\geq0}D_n(t)\frac{z^n}{n!}
+ =\frac{(1-t)e^{-tz}}{1-t e^{2(1-t)z}}
+\]
+を得る。$\mathcal A(z,t)$を掛け、\eqref{ja-book-egf}と比較すれば
+\begin{equation}\label{ja-book-convolution}
+ B_n(t)=\sum_{k=0}^n\binom nk A_k(t)D_{n-k}(t)
+\end{equation}
+が証明される。相反変換の流儀は重要で、$D_1=t$、$D_2=4t+t^2$である。この畳み込みだけでは実根性は従わない。例えば、項$f=A_3D_2$に対し、補助interlacerの候補$D_5$は機能しない。実際、
+\[
+ f=t(t+4)(t^2+4t+1),\qquad
+ D_5=t(t^4+232t^3+1312t^2+752t+32)
+\]
+である。$f$の最小零点$-4$において$f'(-4)=-4$、$D_5(-4)=-13696$なので、$D_5(-4)/f'(-4)=3424>0$となり、弱い交互配置$f\preceq D_5$にも反する。$0$の共通零点は$-4$でのこの障害を解消しない。これは候補interlacerに対する反例であって、book graphのChow多項式の実根性に対する反例ではない。
+
+\section{反例、グラフ操作、および主張の限界}
+計算範囲内では、maximal building setのgraphic matroidに非実根の反例はなかった。従って最小反例や、実根性が破れる構造のsharpな分類を主張しない。ただし、誤った証明の近道を排除する厳密な例はある。
+
+定理\ref{ja-factor-theorem}のパラメータの仮定を単に取り除くことはできない。実際、$F_{2;(-2)}=-A_3+2(1+t)A_2=1+t^2$は実根でない。これは制限なしの解析的拡張に対する反例であって、マトロイドの反例ではない。
+
+まず直和の乗法性は二つのコループですでに破れる。
+\[
+ \HCh_{U_{1,1}}^2=1,\qquad \HCh_{U_{2,2}}=1+t.
+\]
+また、$\HCh_{M\oplus e}=\mathcal T(\HCh_M)$となる普遍的なscalar作用素$\mathcal T$は、graphic matroidに限定しても存在しない。実際、
+\begin{align*}
+ \HCh_{M(C_4)}=\HCh_{M(D)}&=1+7t+t^2,\\
+ \HCh_{M(C_4)\oplus e}&=1+18t+18t^2+t^3,\\
+ \HCh_{M(D)\oplus e}&=1+19t+19t^2+t^3
+\end{align*}
+である。rankと入力多項式が同じでもこの曖昧さは残る。同じdiamondの中心辺とそれ以外の辺を細分すると、それぞれ$1+27t+27t^2+t^3$と$1+24t+24t^2+t^3$になる。従って、辺の指定情報を持たない多項式だけに作用する普遍的な細分作用素も存在しない。
+
+\begin{samepage}
+本稿で得られる厳密な操作則を整理する。
+\begin{center}\small
+\begin{tabular}{p{3.0cm}p{10.3cm}}
+\toprule
+操作 & 厳密な関係と適用範囲\\\midrule
+橋・コループ & \eqref{ja-coloop-resolvent}、\eqref{ja-P-recurrence}、および下記の既知公式。\\
+parallel extension & flatの格子は同型の範囲で変わらないので$\HCh$も不変。\\
+loopの追加 & 本稿のloopless Chow環の規約の範囲外。明示的に$\HCh^{\rm lf}(M)=\HCh_{M\setminus\text{loops}}$と拡張定義すれば、その拡張不変量は変わらない。\\
+graph $1$-sum・block & cycle matroidの直和となる。scalarな$\HCh$の積ではなく、積格子のresolventを使う。\\
+削除・収縮 & $r_{M\setminus e}(S)=r_M(S)$、$r_{M/e}(S)=r_M(S\cup e)-r_M(e)$とflat判定、\eqref{ja-chain}を使う。\\
+series extension・細分 & 指定要素がloopでもcoloopでもないとき、series extensionは$U_{2,3}$との$2$-sum。橋を細分する場合はコループの追加となる。\\
+matroid $2$-sum & 共通要素$e$がloopでもcoloopでもないとする。残る台集合上の$S=S_1\sqcup S_2$について$r(S)=r_1(S_1)+r_2(S_2)-\epsilon$。ここで$\epsilon=1$は$e\in\clmat_1(S_1)\cap\clmat_2(S_2)$の場合に限る。flat判定と\eqref{ja-chain}から厳密な計算法を得る。\\\bottomrule
+\end{tabular}
+\end{center}
+\end{samepage}
+$2$-sumのrank公式は、そのcircuitの記述から分かる。各因子の$e$を含まないcircuitのほかに、双方の$C_i$が$e$を含むときの$(C_1\cup C_2)\setminus e$が新しいcircuitとなる。独立集合の和集合がちょうど一つrankを失うのは、両側がともに$e$をspanするときに限る。$\HCh$だけを使った一般的な$2$-sumの実根性保存定理は主張しない。
+
+semi-small decompositionは、非コループ$e$に対して
+\[
+ \HCh_M=\HCh_{M\setminus e}
+ +t\sum_{F\in\mathcal S_e}\HCh_{M/(F\cup e)}\HCh_{M|F}
+\]
+を与える。$\mathcal S_e$は$F\cup e$もflatとなる非空flat $F\subsetneq E\setminus e$の集合である。新しいコループに対しては
+\[
+ \HCh_{M\oplus e}=(1+t)\HCh_M+
+ t\sum_{\varnothing\subsetneq F\subsetneq E}\HCh_{M|F}\HCh_{M/F}
+\]
+を得る。これらは\cite{FMSV24}, Corollary~3.24、Remark~3.26であり、\cite{BHM22}に由来する。補助的な制限と収縮は不可欠である。各項が実根多項式であることだけから、これらの和の一般的実根性は従わない。
+
+\section{新規性監査と限界}
+検索では、``graphic matroid Chow polynomial''、``real-rooted Chow polynomial''、``theta graph matroid''、``bicyclic graphic matroid''、``cactus matroid''、``series-parallel matroid Chow polynomial''、``Chow polynomial recurrence''、``interlacing Chow polynomial''を対象とし、さらにcoloop、bridge、book、diamondを加えた検索を行った。取得した一次文献のtheorem statementを確認した。日付を付けた文献一覧と実行した検索語は補足資料に保存した。
+
+diamondの拡大$M(D)\oplus\Bmat_b$はuniformではなく、$b\geq1$ではpavingでもない。格子はupper rank-uniformでない。中心辺の収縮は$b+2$個のatomを持つ一方、中心辺以外の収縮は$b+3$個のatomを持つからである。従ってUMEL-shellableではない。またrank 2の三角形flatは3個のatomを持ち、rank 2の森のflatは2個しか持たないため、lower rank-uniformでもない。従って通常のTN-posetの定理をこの格子に直接適用できない。以上は、引用した無限族の定理が本稿の全$b$の主張を直ちには解決しない理由である。ただし、まだ発見していない別の文献の議論まで排除するものではない。
+
+
+新しい主定理の族についても、cycle部分のrankが任意に大きいところで関連するuniformityの仮定が破れる。$r\geq2$の$U_{2,3}^{\oplus r}$で、一つの三角形全体と、異なる二つの三角形から一辺ずつを選んだものは、いずれもrank 2のflatである。収縮のatom数はそれぞれ$3r-3$と$3r-4$であり、下側区間のatom数も3と2で異なる。従ってupperにもlowerにもrank-uniformでなく、UMEL-shellableでもTN-posetでもない。$s\geq2$の$M(K_4)^{\oplus s}$についても、一つのblock内のrank 2のflatと、異なるblockの二つのrank 1のflatでは、収縮のatom数が$6s-5$と$6s-6$となる。$r\geq4$または$s\geq3$をとれば、橋を一つも加えずにrank 6を越える。rankが3を越えると、三角形circuitによってpavingの仮定も破れる。これらの具体的な確認により、主定理と直接引用したuniform、低rank、TN、UMELの定理との差が明らかになる。
+
+さらに\cite{Ath25}の定理1.1を確認した。これは$x^{n-k}(1+x)^k$の非負結合に対するEulerian変換を扱うが、その入力および係数の仮定は、\eqref{ja-factor-def}の交代符号を持ち$t$にも依存する因子展開とは異なる。2026年9月の確認には\cite{Ma26}の挿入作用素と\cite{AlexE26}の置換族も含めた。確認したstatementは、本稿のクリーク・ブロックの公式や、因子削除とコループの同時帰納法を同定するものではなかった。この比較は、あらゆる間接的な証明が存在しないことの保証ではない。
+
+中心的な寄与は、クリーク・ブロックの公式と、cycle部分のrankが任意に大きい族に対する、因子挿入を用いた実根性と厳密なinterlacingの完全な証明である。追加結果としてrank 3のEulerian変換と接続数による十分条件を得た。thetaとbookの漸化式は証明済みの厳密な恒等式であり、それらについても文献検索上の留保を付ける。任意のthetaやseries-parallelの実根性を解決したと主張するものではない。主定理のクラスは三角形cactusをすべて含み、cactusでないクリーク・ブロックも含むが、\emph{すべてのcactusを含むわけではない}。追加のdiamondの定理はtheta coreを扱う。いずれの議論も、任意の細分に対する保存性を証明するものではない。
+
+\section{未解決問題と再現方法}
+残る目標は、任意の$T_{a,b,c;k}$、任意の$C_{\boldsymbol\ell;b}$、任意のbook graph、そして任意のseries-parallel matroidの実根性である。最初に欠けている具体的な要素は、\eqref{ja-theta-recurrence}のtheta、二つのcircuit、一つのcircuitという収縮項を同時に制御する、整合的なinterlacingの細分化である。本稿で用いた橋に対するinterlacerではこれらを制御できない。定理\ref{ja-incidence-criterion}の十分条件を取り除けるかどうかも別の問題である。
+
+補足資料にはgraph6の一覧、整数係数表、零点の認証、族の漸化式、および再現用スクリプトを含めた。一般のグラフ列挙にはnauty 2.8.6、NetworkX 3.6.1、SymPy 1.14.0、mpmath 1.3.0を使用した。零点の認証は厳密であり、印字した小数は近似値である。提供されたTeXテンプレートを維持し、未完成のtitleを修正し、LuaLaTeXの日本語対応を追加し、利用できない可能性のある二重線字体パッケージには互換的な代替を設けた。英語版と日本語版には同じ数学的statementと証明を含めている。
+
+\newpage
+\renewcommand{\refname}{References / 参考文献}
+\bibliographystyle{alpha}
+\begin{thebibliography}{EFMPV26}
+
+\bibitem[AHK18]{AHK18}
+K. Adiprasito, J. Huh, and E. Katz,
+\emph{Hodge theory for combinatorial geometries},
+Ann. of Math. (2) \textbf{188} (2018), no.~2, 381--452.
+\href{https://annals.math.princeton.edu/2018/188-2/p01}{Journal article}.
+
+\bibitem[Alex26]{Alex26}
+P. Alexandersson,
+\emph{Parking functions, Smirnov words, and noncrossing Chow polynomials},
+arXiv:2609.05131v1 (2026).
+\href{https://arxiv.org/abs/2609.05131}{arXiv preprint}.
+
+\bibitem[AlexE26]{AlexE26}
+P. Alexandersson, \emph{Real-rooted Eulerian polynomials from permutations, words, and paths},
+preprint (2026).
+\href{https://arxiv.org/abs/2609.07325}{arXiv:2609.07325}.
+
+\bibitem[Ath25]{Ath25}
+C.~A. Athanasiadis, \emph{On the real-rootedness of the Eulerian transformation},
+J. London Math. Soc. (2025), article e70083.
+\href{https://doi.org/10.1112/jlms.70083}{doi:10.1112/jlms.70083};
+\href{https://arxiv.org/abs/2302.00754}{arXiv:2302.00754}.
+
+\bibitem[BHM22]{BHM22}
+T. Braden, J. Huh, J.~P. Matherne, N. Proudfoot, and B. Wang,
+\emph{A semi-small decomposition of the Chow ring of a matroid},
+Adv. Math. \textbf{409} (2022), article 108646.
+\href{https://arxiv.org/abs/2002.03341}{arXiv:2002.03341}.
+
+\bibitem[BV26]{BV26}
+P. Br\"and\'en and L. Vecchi,
+\emph{Chow polynomials of uniform matroids are real-rooted},
+Combin. Theory \textbf{6} (2026), no.~1, article 15.
+\href{https://doi.org/10.5070/C66165702}{doi:10.5070/C66165702}.
+
+\bibitem[BVTN25]{BVTN25}
+P. Br\"and\'en and L. Vecchi,
+\emph{Chow polynomials of totally nonnegative matrices and posets},
+arXiv:2509.17852v2 (2025).
+\href{https://arxiv.org/abs/2509.17852}{arXiv preprint}.
+
+\bibitem[CFL25]{CFL25}
+B. Coron, L. Ferroni, and S. Li,
+\emph{Chow polynomials of rank-uniform labeled posets},
+arXiv:2511.13819v2 (2025).
+\href{https://arxiv.org/abs/2511.13819}{arXiv preprint}.
+
+\bibitem[CFL26]{CFL26}
+B. Coron, L. Ferroni, and S. Li,
+\emph{Matroid analogues of Gal's conjecture},
+arXiv:2604.04550v3 (2026).
+\href{https://arxiv.org/abs/2604.04550}{arXiv preprint}.
+
+\bibitem[EFMPV26]{EFMPV26}
+C. Eur, L. Ferroni, J.~P. Matherne, R. Pagaria, and L. Vecchi,
+\emph{Building sets, Chow rings, and their Hilbert series},
+Selecta Math. (N.S.) \textbf{32} (2026), article 85.
+\href{https://doi.org/10.1007/s00029-026-01186-2}{doi:10.1007/s00029-026-01186-2}.
+
+\bibitem[FMSV24]{FMSV24}
+L. Ferroni, J.~P. Matherne, M. Stevens, and L. Vecchi,
+\emph{Hilbert--Poincar\'e series of matroid Chow rings and intersection cohomology},
+Adv. Math. \textbf{449} (2024), article 109733.
+\href{https://doi.org/10.1016/j.aim.2024.109733}{doi:10.1016/j.aim.2024.109733};
+\href{https://arxiv.org/abs/2212.03190}{arXiv:2212.03190}.
+
+\bibitem[FY04]{FY04}
+E.~M. Feichtner and S. Yuzvinsky,
+\emph{Chow rings of toric varieties defined by atomic lattices},
+Invent. Math. \textbf{155} (2004), 515--536.
+\href{https://arxiv.org/abs/math/0305142}{arXiv:math/0305142}.
+
+\bibitem[Ma20]{Ma20}
+S.-M. Ma, J. Ma, J. Yeh, and Y.-N. Yeh,
+\emph{The $1/k$-Eulerian polynomials of type B}, preprint (2020).
+\href{https://arxiv.org/abs/2001.07833}{arXiv:2001.07833}.
+
+\bibitem[Ma26]{Ma26}
+S.-M. Ma, \emph{Eulerian insertion operators and an Eulerian form of the Pieri rule},
+preprint (2026).
+\href{https://arxiv.org/abs/2609.03881}{arXiv:2609.03881}.
+
+\bibitem[Pie25]{Pie25}
+P. Pielasa,
+\emph{Decompositions of Chow rings of direct sums of matroids},
+arXiv:2511.10746v1 (2025).
+\href{https://arxiv.org/abs/2511.10746}{arXiv preprint}.
+
+\bibitem[SV26]{SV26}
+A. Schweitzer and L. Vecchi,
+\emph{Existence of K\"ahler algebras with Chow polynomials as Hilbert series},
+arXiv:2601.00782v2 (2026).
+\href{https://arxiv.org/abs/2601.00782}{arXiv preprint}.
+\end{thebibliography}
+\end{document}

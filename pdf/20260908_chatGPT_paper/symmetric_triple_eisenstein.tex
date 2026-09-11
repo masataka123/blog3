@@ -1,0 +1,2039 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{luatexja}
+\usepackage[haranoaji]{luatexja-preset}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{ulem.sty}{\usepackage[normalem]{ulem}}{}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{luatex85} % Compatibility for the template's Xy-pic package.
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical macros retained from the supplied template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Additions for the present article; the supplied layout/macros are retained.
+\usepackage{booktabs,longtable,needspace}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@setauthors}{\MakeUppercase{\authors}}{\authors}{}{}
+\makeatother
+\hypersetup{pdftitle={Depth-three symmetric Eisenstein series: permutation sums and a linear-shuffle obstruction},
+pdfauthor={chatGPT 6Astra},pdfsubject={Exact structure and relations in a depth-three symmetric Eisenstein sector},
+pdfkeywords={symmetric multiple Eisenstein series, linear shuffle, free Lie algebra, quasimodular forms}}
+\newcommand{\sh}{\mathbin{\amalg}}
+\newcommand{\sG}[1]{\widetilde G^{\sh,S}_{#1}}
+\newcommand{\SG}[1]{G^{\sh,S}_{#1}}
+\newcommand{\LS}{\mathrm{LSh}}
+\newcommand{\Span}{\operatorname{Span}_{\mathbb Q}}
+\newcommand{\CT}{\operatorname{CT}}
+\newcommand{\ev}{\operatorname{ev}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\RR}{\mathcal R^{\mathrm{LS}}}
+\newcommand{\WW}{\mathcal W}
+\newcommand{\FF}{\mathsf F}
+\newcommand{\CC}[3]{C_{#1,#2,#3}}
+\newcommand{\fC}[3]{\mathsf C_{#1,#2,#3}}
+\newcommand{\Al}{\mathcal A}
+\newcommand{\transpose}{\mathsf T}
+\allowdisplaybreaks[2]
+\renewcommand{\bibliofont}{\fontsize{9}{10.5}\selectfont}
+\numberwithin{equation}{section}
+\setlength{\emergencystretch}{2em}
+\title[Symmetric triples and shuffle obstructions]{Depth-three symmetric Eisenstein series:\\
+permutation sums and a linear-shuffle obstruction}
+\author{chatGPT 6Astra}
+\date{September 10, 2026}
+\subjclass[2020]{Primary 11F11, 11M32; Secondary 17B01}
+\keywords{symmetric multiple Eisenstein series, linear shuffle relations, free Lie algebra,
+quasimodular forms, exact computation}
+\begin{document}
+\renewcommand{\thesection}{E.\arabic{section}}
+\renewcommand{\theHsection}{E.\arabic{section}}
+\begin{abstract}
+We study two structures attached to depth-three symmetric multiple Eisenstein
+series in the normalization of Hara--Sakugawa--Tasaka. The quotient by the
+linear shuffle relations has dimension $\binom{\lfloor k/2\rfloor}{2}$ in
+weight $k$. For even $k\ge10$, the span of the six-term permutation sums with
+indices at least two is
+$M_k^{\Q}\oplus A_2M_{k-2}^{\Q}\oplus\Q A_2^2A_{k-4}$, of dimension
+$\lfloor k/6\rfloor+2$. We give an explicit basis and a polynomial test for
+all relations in this sector. Most concretely, for every even $k\ge18$ we
+exhibit a relation that vanishes analytically but survives the linear shuffle
+quotient, with a closed nonzero pairing certifying survival. The proofs are
+uniform in weight. Rational computations through weight 60 check the formulas.
+The dimension of the full analytic depth-three space is not determined.
+The novelty audit is incomplete, especially concerning unpublished sources;
+no priority claim is made.
+\end{abstract}
+\maketitle
+\markboth{chatGPT 6Astra}{Symmetric triples and shuffle obstructions}
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+\subsection{Background}
+The natural question is whether the relations of a specified formal model
+account for the relations between its analytic realizations. In the present
+problem these are quite different questions. We keep three vector spaces
+separate: the full analytic space of symmetric triples, its permutation-sum
+sector, and the quotient of formal triple symbols by linear shuffle relations.
+
+\subsection{Known results}
+We use the 43-page PDF of \cite{hst}.
+The version arXiv:\allowbreak2601.13626v1 was listed as current when checked
+on September 10, 2026.
+Its Proposition 3.9 proves linear shuffle; Theorem 1.2 determines depth two;
+Lemma 6.5 and the proof of Theorem 1.1 place
+$M_k^{\Q}\oplus\Q D A_{k-2}$ inside the symmetric triple space for even
+$k\ge10$. Here $D=q\,d/dq$ and $A_r=\widetilde G_r^{\sh}$ for even $r$.
+
+\subsection{Main results}
+Our formal dimension result is Theorem~\ref{e:formal}; the exact analytic
+sector and its dimension are Theorem~\ref{e:orbit}. Theorem~\ref{e:negative}
+gives an infinite obstruction to completeness of linear shuffle alone.
+The last assertion concerns a precisely specified relation space, not a
+claim that all known stuffle, Fay, derivative, and modular relations fail.
+
+\subsection{Known result versus new result}
+\begin{center}\small
+\begin{tabular}{p{.43\textwidth}p{.48\textwidth}}
+\toprule Known & This paper: proved statements, priority unverified\\\midrule
+Linear shuffle and computed depth-three dimensions through weight 16
+in \cite[Table 4]{hst} & A uniform formal dimension and a translation-invariant
+free-Lie description.\\
+Modular inclusion in the full triple space & Exact equality for the
+permutation-sum sector, including its nonmodular components.\\
+Stuffle identities for convergent indices & An explicit relation surviving
+linear shuffle in every even weight at least 18.\\
+Polynomial structure of quasimodular forms & An exact polynomial kernel
+test and explicit basis in a specified symmetric-triple sector.\\\bottomrule
+\end{tabular}\end{center}
+The permutation identity used below is a classical symmetric-sum consequence
+of stuffle, not a new identity. The extraction of $A_k$ in the proof of
+Theorem~\ref{e:orbit} follows the mechanism of \cite[Lemma 6.5]{hst}.
+We do not count that extraction as an independent discovery. The exact sector
+and the uniform nonmembership certificate are the additional statements.
+
+\subsection{Strategy of proof}
+For the formal problem, replace three gap variables by four variables with
+sum zero. Linear shuffle becomes ordinary alternality in tensor length four.
+The Poincar\'e--Birkhoff--Witt identity computes the Hilbert series. For the
+analytic problem, partition finite lattice sums by equality patterns, then
+take the prescribed iterated limit. Finally, a specific length-four Lie
+polynomial gives a linear functional which kills every linear shuffle
+relation but detects the analytic relation in Theorem~\ref{e:negative}.
+
+\section{Symmetric multiple Eisenstein series}
+\subsection{Definitions and conventions}
+All vector spaces and relation coefficients are over $\Q$. Put
+$q=e^{2\pi i\tau}$, $\Im\tau>0$, and use ascending indices:
+\[
+ \zeta(k_1,\ldots,k_d)=\sum_{0<n_1<\cdots<n_d}
+             n_1^{-k_1}\cdots n_d^{-k_d},\qquad k_d\ge2.
+\]
+Here $M_m^{\Q}$ denotes the holomorphic modular forms for
+$\mathrm{SL}_2(\Z)$ of weight $m$ whose Fourier coefficients are rational.
+Let $e_r=e_1e_0^{r-1}$ in $\Q\langle e_0,e_1\rangle$, and let $\sh$
+be the ordinary shuffle of the binary words. The lattice order is
+$m\tau+n>0$ if $m>0$ or $m=0,n>0$.
+We use exactly the shuffle regularization $G_{\boldsymbol k}^{\sh}$ of
+\cite[Theorem 2.7]{hst}, and put
+\begin{equation}\label{e:def}
+ \SG{k_1,\ldots,k_d}
+ =\sum_{j=0}^d(-1)^{k_{j+1}+\cdots+k_d}
+   G_{k_1,\ldots,k_j}^{\sh}G_{k_d,\ldots,k_{j+1}}^{\sh},
+ \qquad \sG{\boldsymbol k}=(2\pi i)^{-\wt(\boldsymbol k)}\SG{\boldsymbol k}.
+\end{equation}
+Empty indices have value one. The full normalized triple space is denoted
+$\mathcal{TE}_k^S$, as in \cite[\S6.3]{hst}.
+
+\subsection{Regularization}
+For entries at least two, $G^{\sh}$ equals the limit of the positive-lattice
+sum, taking the integer-coordinate bound $N\to\infty$ before the
+$\tau$-coordinate bound $M\to\infty$. The symmetric version uses the order
+``positive part, then negative part'' of \cite[Definition 3.6 and
+Proposition 3.7]{hst}. Entries at least three give absolute convergence;
+entries equal to two need the prescribed limit.
+
+When an entry is one we use the cited shuffle regularization, never an
+unregularized lattice sum. More precisely its construction is the convolution
+of the shuffle-regularized zeta character, with $\zeta^{\sh}(1)=0$, and
+the regularized divisor-sum character under the Goncharov coproduct.
+In particular $G^{\sh}_1$ is not zero:
+\[
+ (2\pi i)^{-1}G^{\sh}_1=-\sum_{n\ge1}\sigma_0(n)q^n.
+\]
+No analytic argument below applies an unrestricted stuffle formula to an
+index containing one. Such indices are included in the formal shuffle
+calculation and in the definition of $\mathcal{TE}_k^S$.
+
+For even $r\ge2$ write $L_r=2A_r=2\widetilde G_r^{\sh}$ and set $L_r=0$
+for odd $r\ge3$. Thus
+\begin{equation}\label{e:fourier}
+ L_r=-\frac{B_r}{r!}+\frac{2}{(r-1)!}\sum_{n\ge1}\sigma_{r-1}(n)q^n
+ \quad(r\text{ even}),\qquad
+ \frac{t}{e^t-1}=\sum_{r\ge0}B_r\frac{t^r}{r!}.
+\end{equation}
+Here $\sigma_j(n)=\sum_{d\mid n}d^j$.
+Hence $A_2=-E_2/24$, $A_4=E_4/1440$ and $A_6=-E_6/60480$, where
+the classical $E_r$ has constant term one. Notice the sign at weight two.
+
+\subsection{Linear shuffle relations}
+Let $\FF_k$ have basis $[a,b,c]$, $a,b,c\ge1$, $a+b+c=k$.
+Let $\RR_k$ be generated by
+\begin{equation}\label{e:lswords}
+ [e_{k_1,\ldots,k_j}\sh e_{k_{j+1},\ldots,k_3}]
+ -(-1)^{k_{j+1}+\cdots+k_3}
+ [k_1,\ldots,k_j,k_3,\ldots,k_{j+1}],\qquad j=0,1,2,
+\end{equation}
+where brackets extend linearly on depth-three words.
+The analytic evaluation $\ev_k([a,b,c])=\sG{a,b,c}$ kills $\RR_k$.
+
+The dual of $\FF_k/\RR_k$ is $\LS_{k-3}^{(3)}$. Explicitly, for $w=k-3$,
+this consists of homogeneous polynomials $f(x,y,z)$ of degree $w$ satisfying
+\begin{align}
+ f(x,y,z)&=-f(-z,-y,-x),\label{e:rev}\\
+ f(x,x+y,x+z)+f(y,x+y,x+z)+f(y,z,x+z)&=f(x,-z,-y),\label{e:ls1}\\
+ f(x,y,y+z)+f(x,x+z,y+z)+f(z,x+z,y+z)&=-f(x,y,-z).\label{e:ls2}
+\end{align}
+The pairing is coefficient extraction:
+$\langle[a,b,c],f\rangle=[x^{a-1}y^{b-1}z^{c-1}]f$.
+
+\subsection{Known depth-two results}
+For comparison, the normalized depth-two space is
+$M_k^{\Q}\oplus\Q D A_{k-2}$ for even $k\ge6$, and has basis
+$\{\sG{j,k-j}:1\le j\le\lfloor k/3\rfloor\}$ for odd $k\ge3$
+\cite[Theorem 1.2]{hst}. This does not determine the dimension at depth three.
+
+\section{Exact experiments and counterexample tests}
+\subsection{Algorithm and scope}
+The code expands the three substitutions
+\eqref{e:rev}--\eqref{e:ls2} by integer binomial coefficients. This gives
+a $3\binom{k-1}{2}$ by $\binom{k-1}{2}$ integer matrix.
+Its row rank is $\dim\RR_k$, and its nullity is the formal quotient dimension.
+This calculation includes every composition, including ones.
+
+For $a,b,c\ge2$ define the six-term sum
+\begin{equation}\label{e:orbitdef}
+ \begin{aligned}
+ C_{a,b,c}&=\sum_{\sigma\in\mathfrak S_3}
+          \sG{k_{\sigma(1)},k_{\sigma(2)},k_{\sigma(3)}},
+ \quad (k_1,k_2,k_3)=(a,b,c),\\
+ \WW_k&=\Span\{C_{a,b,c}:a,b,c\ge2,\ a+b+c=k\}.
+ \end{aligned}
+\end{equation}
+Repeated permutations are counted: $C_{a,a,a}=6\sG{a,a,a}$.
+The exact identity proved below is
+\begin{equation}\label{e:sym}
+ C_{a,b,c}=L_aL_bL_c-L_{a+b}L_c-L_{a+c}L_b-L_{b+c}L_a+2L_k.
+\end{equation}
+Divisor sums in \eqref{e:fourier}, followed by rational convolution, therefore
+compute this entire sector. These are actual rational Fourier coefficients,
+not a specialization of unknown odd zeta values.
+
+\subsection{Rank and kernel computations}
+The initial range was $3\le k\le30$; the separate test range was
+$31\le k\le60$. All formal ranks agree with Theorem~\ref{e:formal}.
+For orbit sums we used coefficients from $q^0$ through $q^{40}$ throughout
+$3\le k\le60$. Independent polynomial computations using
+\eqref{e:recurrence} give the same analytic dimensions. The kernel file
+lists a basis indexed by nonpivot columns for every even $10\le k\le60$.
+Formal parity-sector image ranks were also computed through weight 16;
+the analytic all-even and two-odd orbit-sector ranks were computed through
+weight 60. The data specify which of these different ranks is being reported.
+
+\subsection{Candidate structure and validation}
+The depth-three row of the published Table 4 was reproduced exactly.
+The weight-four check
+$\sG{2,2}=4A_4-D A_2$ was reproduced through $q^{24}$.
+Finite ordered rational-lattice sums independently check
+\eqref{e:sym} for all unordered triples of weights 6 through 16.
+These tests suggested the formal Hilbert series and the analytic sector in
+Theorems~\ref{e:formal} and \ref{e:orbit}; their proofs do not use the tests.
+
+\subsection{Counterexample search and limitations}
+At weight 12, $C_{2,3,7}=C_{2,5,5}$ is already a relation.
+Testing the corresponding formal classes led to the family in
+Theorem~\ref{e:negative}. Its coefficient witness is checked against every
+shuffle-matrix row for all even weights from 18 to 60.
+No counterexample to any stated theorem was found in the tested range.
+
+We have not implemented the full individual-triple Fourier matrix with its
+MZV coefficient algebra, and we report no analytic rank for
+$\mathcal{TE}_k^S$. Rational ranks of a formal specialization would not justify
+such a claim. The number of unexplained full analytic relations remains
+undetermined. For $\WW_k$, by contrast, the polynomial kernel below is complete.
+
+\section{Main theorems}
+\begin{thm}[Formal depth-three structure]\label{e:formal}
+For every $k\ge3$,
+\[
+ \dim_{\Q}(\FF_k/\RR_k)=\dim_{\Q}\LS_{k-3}^{(3)}
+      =\binom{\lfloor k/2\rfloor}{2},\qquad
+ \sum_{w\ge0}\dim\LS_w^{(3)}t^w=\frac{t(1+t)}{(1-t^2)^3}.
+\]
+The space $\LS_w^{(3)}$ is canonically isomorphic, under the coordinate
+map in the proof, to the translation-invariant alternal polynomials of
+degree $w$ in four variables. In particular
+$\dim\mathcal{TE}_k^S\le\binom{\lfloor k/2\rfloor}{2}$.
+\end{thm}
+
+\begin{thm}[Exact permutation-sum sector]\label{e:orbit}
+For every even $k\ge10$,
+\begin{equation}\label{e:decomp}
+ \WW_k=M_k^{\Q}\oplus A_2M_{k-2}^{\Q}\oplus\Q A_2^2A_{k-4},
+ \qquad \dim_{\Q}\WW_k=\left\lfloor\frac{k}{6}\right\rfloor+2.
+\end{equation}
+For odd $k$, $\WW_k=0$. The remaining nonzero low weights are
+$\WW_6=\Q C_{2,2,2}$ and
+$\WW_8=\Q C_{2,2,4}\oplus\Q C_{2,3,3}$.
+An explicit basis by orbit combinations is given in \S\ref{e:basis}.
+\end{thm}
+
+\begin{thm}[Uniform failure of linear-shuffle completeness]\label{e:negative}
+For every even $k\ge18$ put $c=k-10$ and
+\[
+ r_k=\fC{3}{7}{c}-\fC{5}{5}{c}\in\FF_k,\qquad
+ \fC{a}{b}{c}=\sum_{\sigma\in\mathfrak S_3}
+ [k_{\sigma(1)},k_{\sigma(2)},k_{\sigma(3)}].
+\]
+Then $\ev_k(r_k)=0$ but $r_k\notin\RR_k$. More precisely there is an
+explicit $f_k\in\LS_{k-3}^{(3)}$ such that
+\begin{equation}\label{e:certificate}
+ \langle r_k,f_k\rangle
+ =2\left\{\binom{k-7}{6}-\binom{k-7}{4}\right\}
+ =\frac{(k-17)(k-6)}{15}\binom{k-7}{4}>0.
+\end{equation}
+Consequently $\ker\ev_k/\RR_k\ne0$ in every such weight. This remains
+an obstruction inside the formal subspace generated by permutation sums
+whose indices are at least two.
+Combining this with Theorem~\ref{e:formal} gives the unconditional strict bound
+\[
+ \dim_{\Q}\mathcal{TE}_k^S\le\binom{k/2}{2}-1\qquad(k\ge18\text{ even}).
+\]
+\end{thm}
+
+\section{Proofs}
+\subsection{From linear shuffle to four-variable Lie polynomials}
+A polynomial $H(x_1,x_2,x_3,x_4)$ is called alternal if the sum over every
+$(j,4-j)$ shuffle of its four arguments vanishes, for $j=1,2,3$.
+The order within each block is preserved. It is translation invariant if
+$H(x_1+u,\ldots,x_4+u)=H(x_1,\ldots,x_4)$.
+
+\begin{lem}\label{e:coordinate}
+The map
+\begin{equation}\label{e:beta}
+ \beta(H)(x,y,z)=H(-x,x-y,y-z,z)
+\end{equation}
+is an isomorphism from the translation-invariant alternal polynomials onto
+$\LS^{(3)}$. For all alternal polynomials, without imposing translation
+invariance, its degree-$w$ kernel is
+$(x_1+x_2+x_3+x_4)\Al_{w-1}$, where $\Al_w$ is the degree-$w$ alternal space.
+\end{lem}
+\begin{proof}
+The displayed substitution parametrizes the hyperplane $\sum x_i=0$.
+Every polynomial on that hyperplane has a unique translation-invariant lift:
+put $s=(x_1+x_2+x_3+x_4)/4$, $z_i=x_i-s$, and set
+\[
+ H(x_1,x_2,x_3,x_4)=f(-z_1,-z_1-z_2,z_4).
+\]
+Thus the coordinate map and its inverse are defined over $\Q$.
+
+Write $H(abcd)$ for $H(a,b,c,d)$ and
+$S(a;b,c,d)=H(abcd)+H(bacd)+H(bcad)+H(bcda)$.
+On $a+b+c+d=0$, set $x=-a$, $y=-b$, $z=-b-c$.
+The four terms of $S$ become
+\[
+ f(x,x+y,x+z),\quad f(y,x+y,x+z),\quad
+ f(y,z,x+z),\quad f(y,z,-x).
+\]
+By \eqref{e:rev}, the last term is $-f(x,-z,-y)$.
+Reversal of $H$ is precisely \eqref{e:rev}.
+Therefore \eqref{e:rev} and \eqref{e:ls1} imply that $H$ is
+antisymmetric under reversal and has zero $(1,3)$ shuffle.
+
+These conditions imply the missing $(2,2)$ shuffle. Indeed its six terms,
+in the order
+\[
+ H(1234)+H(1324)+H(1342)+H(3124)+H(3142)+H(3412),
+\]
+equal $S(1;3,2,4)+S(1;3,4,2)+S(4;1,2,3)$ modulo three sums
+$H(abcd)+H(dcba)$, and hence vanish. Reversal gives the $(3,1)$ shuffle.
+Conversely alternality gives reversal by the antipode identity for primitive
+elements in tensor length four; explicitly that antipode reverses four
+letters and acts by minus one on a primitive element. The $(1,3)$ shuffle
+then gives \eqref{e:ls1}. The $(3,1)$ shuffle, evaluated at
+$(-x,x-y,y-z,z)$, reads
+\[
+ f(x,y,z)+f(x,y,y-z)+f(x,x-z,y-z)+f(-z,x-z,y-z)=0,
+\]
+which is \eqref{e:ls2} with the third variable replaced by $-z$.
+Translation invariance extends all identities on the hyperplane to all
+four variables. This proves the asserted isomorphism.
+
+For the kernel assertion, vanishing on the hyperplane means divisibility
+by $\sum x_i$. Dividing by this symmetric linear polynomial preserves all
+shuffle equations: each shuffle sum for the quotient, multiplied by
+$\sum x_i$, is zero in a polynomial ring, which is an integral domain.
+This proves the exact kernel.
+\end{proof}
+
+To finish Theorem~\ref{e:formal}, identify a tensor
+$Y_{n_1}\cdots Y_{n_4}$ with $x_1^{n_1}\cdots x_4^{n_4}$, where
+$Y_0,Y_1,\ldots$ are free generators of degree $n$ and tensor length one.
+The primitive-element criterion identifies alternal polynomials with the
+length-four part of the free Lie algebra. This criterion and PBW are
+standard free-Lie facts; see \cite{reutenauer}.
+Let $a_r(t)$ be its degree series in tensor length $r$.
+The tensor algebra on these generators has series
+$1/(1-z/(1-t))$. PBW and the logarithm of its product formula give
+\[
+ \begin{gathered}
+ \frac{1}{4(1-t)^4}=a_4(t)+\tfrac12a_2(t^2)+\tfrac14a_1(t^4),
+ \\ a_1(t)=\frac1{1-t},\qquad
+ a_2(t)=\tfrac12\left(\frac1{(1-t)^2}-\frac1{1-t^2}\right).
+ \end{gathered}
+\]
+Thus
+\[
+ a_4(t)=\tfrac14\left(\frac1{(1-t)^4}-\frac1{(1-t^2)^2}\right).
+\]
+Equivalently, writing each alternal polynomial in the variable
+$s=\sum x_i/4$ gives $\Al=\Q[s]\otimes\Al^{\rm tr}$, because permutations
+fix $s$. The Hilbert series of the translation-invariant part is therefore
+\[
+ (1-t)a_4(t)=\frac{t(1+t)}{(1-t^2)^3}.
+\]
+Its coefficients at $w=2m+1$ and $w=2m+2$ are both $\binom{m+2}{2}$;
+the constant coefficient is zero. Substituting $w=k-3$ proves the theorem.
+
+\subsection{Proof of the exact analytic sector}
+First prove \eqref{e:sym} on a finite totally ordered set of nonzero lattice
+points. The product of three single sums partitions into triples of pairwise
+distinct points, three types with exactly two equal points, and the case
+where all points are equal. The six ordered sums account for the distinct
+case. Subtracting the three pair-contraction products subtracts the all-equal
+case three times, so one adds it twice. This is exactly \eqref{e:sym}.
+For a finite lattice rectangle with the symmetric order, take $N\to\infty$
+first, then $M\to\infty$. Each ordered sum and each single sum has the
+specified limit for indices at least two; there are only finitely many
+products. Hence the identity passes to that limit without interchanging
+infinite sums. For odd total weight every term on its right has an odd
+factor, so it vanishes.
+
+Assume now that $k\ge10$ is even. Equation~\eqref{e:sym} immediately places
+$\WW_k$ in the right side of \eqref{e:decomp}: with two odd indices it
+is a pair of even Eisenstein series plus a single one; with three even
+indices it is a product of at most three even series. For $k\ge10$, at most
+two factors in a triple product can be $A_2$. The other possibilities lie in
+$M_k^{\Q}$ and $A_2M_{k-2}^{\Q}$.
+
+For the reverse inclusion, if $r,s\ge3$ are odd and $t\ge2$ is even,
+\begin{equation}\label{e:oddpair}
+ C_{r,s,t}=4(A_k-A_{r+s}A_t).
+\end{equation}
+Every even pair $a+b=k$, $a,b\ge2$, has a member at least six.
+Splitting that member as $3+(a-3)$ shows that $A_aA_b\equiv A_k\pmod{\WW_k}$.
+Also $A_4^2=\frac76 A_8$, by the weight-eight modular identity or directly
+by the recurrence in \S\ref{e:kernel}. Substituting $(4,4,k-8)$ in
+\eqref{e:sym} gives
+\[
+ C_{4,4,k-8}=\tfrac{16}{3}A_8A_{k-8}-8A_4A_{k-4}+4A_k
+             \equiv\tfrac43 A_k\pmod{\WW_k}.
+\]
+Hence $A_k$, and then every pair $A_aA_b$, belong to $\WW_k$.
+Solving \eqref{e:sym} for $A_aA_bA_c$ shows that every triple of even
+single series of total weight $k$ belongs as well.
+
+The modular product basis of \cite[Corollary 2, arXiv v1]{hirose}
+implies that $A_k$ and the pairs with both indices at least four span
+$M_k^{\Q}$. Applying it in weight $k-2$ shows that pairs and triples just
+obtained also span $A_2M_{k-2}^{\Q}$. The product $A_2^2A_{k-4}$ is present.
+This proves equality.
+
+For directness one may use \cite[Proposition 1(b)]{kzqm}. Here is also a
+direct check. The transformation law of $A_2$ is
+\[
+ A_2(\gamma\tau)=(c\tau+d)^2A_2(\tau)-\frac{c(c\tau+d)}{4\pi i}.
+\]
+If $\sum_{p=0}^2 A_2^pf_p=0$, with $f_p$ modular of weight $k-2p$,
+apply $\gamma_m=\left(\begin{smallmatrix}1&0\\m&1\end{smallmatrix}\right)$
+and divide by $(m\tau+1)^k$. The resulting polynomial in
+$m/(m\tau+1)$ vanishes at infinitely many distinct values for every fixed
+$\tau$. Its highest coefficient gives $f_2=0$, followed by $f_1=f_0=0$.
+The dimension is $m(k)+m(k-2)+1$, where
+\[
+ m(k)=\lfloor k/12\rfloor+1-\mathbf1_{k\equiv2\ (12)}
+ \quad(k\ge4\text{ even}).
+\]
+Checking the six even residues modulo 12 gives $\lfloor k/6\rfloor+2$.
+At weights 6 and 8 there are respectively one and two unordered triples;
+their polynomial expressions in \S8 prove the stated independence.
+
+\subsection{Proof of the infinite obstruction}
+Equation~\eqref{e:oddpair} gives the common analytic value
+\[
+ C_{3,7,c}=C_{5,5,c}=4(A_k-A_{10}A_c).
+\]
+This equality is a stuffle consequence. We now prove that its difference
+is not a linear shuffle consequence.
+
+Set $N=k-7=c+3$, an odd integer at least 11. Form the genuine free-Lie word
+\[
+ P_N=[Y_0,[Y_2,[Y_2,Y_N]]].
+\]
+Under the polynomial identification its value is
+\begin{align*}
+ H_N={}&x_2^2x_3^2x_4^N-2x_2^2x_3^Nx_4^2+x_2^Nx_3^2x_4^2\\
+       &-x_1^2x_2^2x_3^N+2x_1^2x_2^Nx_3^2-x_1^Nx_2^2x_3^2.
+\end{align*}
+It is alternal, so $f_k=H_N(-x,x-y,y-z,z)$ belongs to $\LS_{k-3}^{(3)}$
+by Lemma~\ref{e:coordinate}. Its degree is $N+4=k-3$.
+
+For completeness, put $B_j=\binom Nj$. Pairing the six displayed terms
+after substitution with the two orbit symbols gives the following exact
+coefficient table, including multiplicities in the repeated-index orbit:
+\begin{center}
+\begin{tabular}{crr}\toprule
+Term & $\langle\fC{3}{7}{c},\,\cdot\,\rangle$
+     & $\langle\fC{5}{5}{c},\,\cdot\,\rangle$\\\midrule
+1 & $0$ & $0$\\
+2 & $2(B_6-B_4)$ & $0$\\
+3 & $B_4-B_6$ & $0$\\
+4 & $B_4-B_6$ & $0$\\
+5 & $2(B_6-B_4)$ & $0$\\
+6 & $0$ & $0$\\\bottomrule
+\end{tabular}\end{center}
+To check this table, the general coefficient in
+$(-x)^a(x-y)^b(y-z)^cz^d$ at $x^Ay^Bz^C$ is
+\begin{equation}\label{e:binomcoeff}
+ (-1)^{a+b-j+c-l}\binom bj\binom cl,
+ \qquad j=A-a,\quad l=B-b+j,
+\end{equation}
+when $0\le j\le b$, $0\le l\le c$ and $c-l+d=C$, and zero otherwise.
+Apply it to all six permutations of $(2,6,c-1)$ and $(4,4,c-1)$.
+The first and last terms vanish since $N>\max\{6,c-1\}$.
+For the repeated-index orbit the contributions in terms 3 and 4 cancel
+using $\binom N{c-1}=\binom N4$; the other terms cannot supply all three
+exponents. This explains every entry and the coefficient signs.
+
+The total is $2(B_6-B_4)$, and
+\[
+ 2(B_6-B_4)=\frac{(N-10)(N+1)}{15}\binom N4>0.
+\]
+Every member of $\RR_k$ pairs to zero with $f_k$, whereas $r_k$ does not.
+This proves Theorem~\ref{e:negative}, independently of any rank experiment.
+
+\section{Explicit bases and complete polynomial relations}
+\subsection{An explicit orbit-combination basis}\label{e:basis}
+For even $k\ge10$ define
+\begin{align}
+ U_k&=\tfrac34 C_{4,4,k-8}+C_{3,5,k-8}-\tfrac32 C_{3,k-7,4},\label{e:U}\\
+ V_{a,b}&=U_k-\tfrac14 C_{3,u-3,v},\quad
+ u=\max(a,b),\ v=\min(a,b),\ a+b=k,\label{e:V}\\
+ T_{a,b,c}&=\tfrac18 C_{a,b,c}
+  +\tfrac12(V_{a+b,c}+V_{a+c,b}+V_{b+c,a})-\tfrac12 U_k.
+ \label{e:T}
+\end{align}
+The $V$ and $T$ indices in these formulas are even and at least two.
+The previous proof gives the exact identities
+$U_k=A_k$, $V_{a,b}=A_aA_b$, and $T_{a,b,c}=A_aA_bA_c$.
+All orbit indices on the right sides are at least two, including $k=10$.
+Put
+\[
+ J_m=\{j\in\Z:\lfloor(m-2)/6\rfloor+2\le j\le\lfloor m/4\rfloor\}.
+\]
+An explicit basis of $\WW_k$ is
+\begin{equation}\label{e:basisformula}
+ \{U_k\}\ \cup\ \{V_{2j,k-2j}:j\in J_k\}
+ \ \cup\ \{V_{2,k-2}\}
+ \ \cup\ \{T_{2,2j,k-2-2j}:j\in J_{k-2}\}
+ \ \cup\ \{T_{2,2,k-4}\}.
+\end{equation}
+Indeed the first two sets are the modular product basis, the next two are
+$A_2$ times that basis in weight $k-2$, and the last element spans the final
+summand of \eqref{e:decomp}. Directness proves independence. This is a basis
+by explicitly given combinations of triples, not an assertion that these
+combinations are individual triple generators.
+
+\subsection{A complete kernel test}\label{e:kernel}
+Let $\mathsf P_k$ have basis the unordered triples $2\le a\le b\le c$ of
+sum $k$, evaluated to $C_{a,b,c}$. Define homogeneous polynomials of weighted
+degrees $\deg X=2,\deg Y=4,\deg Z=6$ by $P_2=X,P_4=Y,P_6=Z$,
+$P_r=0$ for odd $r\ge3$, and
+\begin{equation}\label{e:recurrence}
+ P_{2m}=\frac{3}{(m-3)(2m-1)(2m+1)}
+ \sum_{r=2}^{m-2}(2r-1)(2m-2r-1)P_{2r}P_{2m-2r},\quad m\ge4.
+\end{equation}
+Define the explicit linear map
+\begin{equation}\label{e:polymap}
+ \Psi_k([a,b,c])=P_aP_bP_c-P_{a+b}P_c-P_{a+c}P_b-P_{b+c}P_a+2P_k.
+\end{equation}
+\begin{prop}\label{e:kernelprop}
+The evaluation kernel on $\mathsf P_k$ is exactly $\ker\Psi_k$.
+For even $k\ge10$ its dimension is
+\[
+ \left\lfloor\frac{(k-3)^2+3}{12}\right\rfloor
+       -\left\lfloor\frac{k}{6}\right\rfloor-2.
+\]
+Thus comparison of the coefficients of the finitely many monomials in
+\eqref{e:polymap} gives a complete set of rational linear conditions for a
+relation in this sector.
+\end{prop}
+\begin{proof}
+For an ordinary lattice the expansion
+$\wp(z)=z^{-2}+\sum_{n\ge1}(2n+1)G^{\rm lat}_{2n+2}z^{2n}$ and the equation
+$\wp''=6\wp^2-g_2/2$ imply, on comparing $z^{2m-4}$ for $m\ge4$,
+\[
+ (2m-6)(2m-1)(2m+1)G^{\rm lat}_{2m}
+ =6\sum_{r=2}^{m-2}(2r-1)(2m-2r-1)
+           G^{\rm lat}_{2r}G^{\rm lat}_{2m-2r}.
+\]
+Normalization by $(2\pi i)^{2m}$ gives \eqref{e:recurrence} for $L_{2m}$.
+The series of weights 4 and 6 start the recurrence; $L_2$ is separate.
+Therefore the analytic evaluation factors as $\Psi_k$ followed by
+$(X,Y,Z)\mapsto(L_2,L_4,L_6)$.
+
+This latter map is injective on weight-$k$ polynomials. First, powers of
+$L_2$ with modular coefficients are independent by the transformation-law
+argument above. In a fixed modular weight, a relation between $L_4^aL_6^b$
+would, after factoring common powers, give a polynomial relation in
+$L_6^2/L_4^3$. This function is nonconstant, as is seen from its constant and
+first Fourier coefficients, so no such relation exists. This proves the
+kernel assertion. The number of unordered triples is the coefficient of
+$t^{k-6}$ in $1/((1-t)(1-t^2)(1-t^3))$, namely
+$\lfloor((k-3)^2+3)/12\rfloor$; it also follows by summing
+$\sum_{a=2}^{\lfloor k/3\rfloor}(\lfloor(k-a)/2\rfloor-a+1)$.
+Subtract the dimension in Theorem~\ref{e:orbit}.
+\end{proof}
+
+The saved nullspace bases are independent for a simple reason: each relation
+has coefficient one at a different nonpivot column and zero at all other
+nonpivot columns. They are therefore a basis of the entire computed kernel.
+In any weight, \eqref{e:polymap} gives the same procedure with a proved
+finite stopping criterion, without presuming a quasimodular Sturm bound.
+
+\section{Consequences for symmetric multiple zeta values}
+The constant term of \eqref{e:def} is the shuffle symmetric real MZV
+$\zeta^{\sh,S}(\boldsymbol k)$. Put
+$\ell_r=-B_r/r!$ for even $r\ge2$ and $\ell_r=0$ for odd $r\ge3$.
+Taking constant terms of \eqref{e:sym} yields
+\begin{equation}\label{e:constant}
+ \frac{\sum_{\sigma\in\mathfrak S_3}
+        \zeta^{\sh,S}(k_{\sigma(1)},k_{\sigma(2)},k_{\sigma(3)})}{(2\pi i)^k}
+ =\ell_a\ell_b\ell_c-\ell_{a+b}\ell_c-\ell_{a+c}\ell_b-\ell_{b+c}\ell_a+2\ell_k.
+\end{equation}
+In particular for every even $c\ge8$,
+\[
+ \sum_{\sigma}\zeta^{\sh,S}(\sigma(3,7,c))
+ -\sum_{\sigma}\zeta^{\sh,S}(\sigma(5,5,c))=0.
+\]
+This is an exact equality in the real MZV algebra $\mathcal Z$.
+It is a known-type symmetric-sum consequence, not a new MZV identity.
+Its image in $\mathcal Z/\zeta(2)\mathcal Z$ also vanishes. One should take
+this quotient after undoing the normalization; powers of $2\pi i$ are not
+being adjoined to that quotient. For the classical and finite-MZV distinction see \cite{kaneko}.
+No Kaneko--Zagier conjecture is invoked,
+and no identification with finite MZVs is asserted.
+
+\section{Examples and boundary cases}
+With $X=L_2,Y=L_4,Z=L_6$, the low-weight sector is
+\[
+ C_{2,2,2}=X^3-3XY+2Z,\quad
+ C_{2,2,4}=X^2Y-2XZ-\tfrac17Y^2,\quad
+ C_{2,3,3}=-XZ+\tfrac67Y^2.
+\]
+These give the dimensions 1 and 2 at weights 6 and 8. Weight 10 has
+four unordered generators and the single relation
+\[
+ C_{3,3,4}+C_{2,3,5}+\tfrac34 C_{2,4,4}=0.
+\]
+For example $\{C_{2,2,6},C_{2,3,5},C_{2,4,4}\}$ is a basis there.
+At weight 12 the seven generators have dimension four. At weight 60 the
+271 generators have dimension twelve and kernel dimension 259.
+
+For the formal problem, $\FF_3/\RR_3=0$, while the dimensions at weights
+4 and 5 are both one. These boundary statements include the regularized
+indices and do not follow by deleting them. At $k=18$ the obstruction
+certificate is $264$; at $k=20$ it is $2002$.
+
+\section{Novelty audit and precise limitations}
+The search was performed through September 10, 2026. The PDF of the primary
+paper, including its proofs and references, was read; the arXiv abstract page
+listed only v1. The main comparisons were \cite{bt,matthes,brown,anzawa,bim,kanno,bk,by}
+and the classical modular and shuffle sources \cite{gkz,kzqm,hirose,reutenauer}.
+The elliptic length-two/Fay setting of \cite{matthes} and the motivic
+depth-graded setting of \cite{brown} have different evaluation maps.
+The schemes in \cite{anzawa} impose additional adjoint stuffle conditions.
+The Schur basis in \cite{by} addresses a different family of quasimodular
+forms. Their conclusions are not substituted for an analytic triple rank.
+
+Reverse searches used the phrases ``linear shuffle space'', ``depth three
+dimension'', ``translation invariant alternal'', ``permutation sums symmetric
+Eisenstein'', ``linear shuffle incomplete'', and the indices $(3,7,c)$ and
+$(5,5,c)$. Recent-paper searches included 2025--2026 multiple Eisenstein
+series and their derivations. The peripheral paper \cite{br} was inspected
+for overlap only; it is not the research object or an input to the proofs.
+Its references pointed to the adjoint literature. No accessed source was
+found to state our explicit nonmembership certificate. Absence of a search
+match is not a proof of priority.
+
+In particular the unpublished Kaneko--Zagier preprint and the 2025 thesis
+cited in \cite{br} were not available for a complete comparison here.
+Citation-network searches and bibliographic access were not exhaustive.
+\emph{We have not been able to verify novelty completely.}
+The formal dimension may be implicit in older free-Lie descriptions;
+the analytic sector is obtained from classical ingredients and a refinement
+of the extraction argument already present in \cite{hst}. Accordingly this
+article records proved structural results and an explicit obstruction, not
+a certified first proof or a solution of the full depth-three problem.
+
+The finite Fourier tests have a specific logical role. Independent truncated
+columns always give independent functions: a functional relation forces each
+coefficient relation. The converse is false in general. Here the general
+dimension theorem supplies the upper bound, and equality of the truncated
+rank to that bound proves that the saved kernels are actual kernels.
+No floating-point rank, PSLQ, or conjectural MZV independence is used.
+
+\appendix
+\renewcommand{\thesection}{E.\Alph{section}}
+\renewcommand{\theHsection}{E.\Alph{section}}
+\section{Exact computational data}
+The first block was used for discovery and the second as a separate test.
+$g$ is the number of all positive compositions; $r$ is the rank of the
+linear-shuffle relation matrix; $d_F=g-r$. For the analytic permutation
+sector, $h$ counts unordered triples with indices at least two, $d_W$ is the
+proved dimension certified by the coefficient matrix, and $h-d_W$ is its
+kernel dimension. Odd-weight orbit sums vanish.
+\begingroup\small
+\begin{longtable}{rrrrrrr}
+\caption{Discovery range: weights 3--30.}\\
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endfirsthead
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endhead
+\bottomrule\endfoot
+3 & 1 & 1 & 0 & 0 & 0 & 0\\
+4 & 3 & 2 & 1 & 0 & 0 & 0\\
+5 & 6 & 5 & 1 & 0 & 0 & 0\\
+6 & 10 & 7 & 3 & 1 & 1 & 0\\
+7 & 15 & 12 & 3 & 1 & 0 & 1\\
+8 & 21 & 15 & 6 & 2 & 2 & 0\\
+9 & 28 & 22 & 6 & 3 & 0 & 3\\
+10 & 36 & 26 & 10 & 4 & 3 & 1\\
+11 & 45 & 35 & 10 & 5 & 0 & 5\\
+12 & 55 & 40 & 15 & 7 & 4 & 3\\
+13 & 66 & 51 & 15 & 8 & 0 & 8\\
+14 & 78 & 57 & 21 & 10 & 4 & 6\\
+15 & 91 & 70 & 21 & 12 & 0 & 12\\
+16 & 105 & 77 & 28 & 14 & 4 & 10\\
+17 & 120 & 92 & 28 & 16 & 0 & 16\\
+18 & 136 & 100 & 36 & 19 & 5 & 14\\
+19 & 153 & 117 & 36 & 21 & 0 & 21\\
+20 & 171 & 126 & 45 & 24 & 5 & 19\\
+21 & 190 & 145 & 45 & 27 & 0 & 27\\
+22 & 210 & 155 & 55 & 30 & 5 & 25\\
+23 & 231 & 176 & 55 & 33 & 0 & 33\\
+24 & 253 & 187 & 66 & 37 & 6 & 31\\
+25 & 276 & 210 & 66 & 40 & 0 & 40\\
+26 & 300 & 222 & 78 & 44 & 6 & 38\\
+27 & 325 & 247 & 78 & 48 & 0 & 48\\
+28 & 351 & 260 & 91 & 52 & 6 & 46\\
+29 & 378 & 287 & 91 & 56 & 0 & 56\\
+30 & 406 & 301 & 105 & 61 & 7 & 54\\
+\end{longtable}
+\endgroup
+\Needspace{450pt}
+\begingroup\small
+\begin{longtable}{rrrrrrr}
+\caption{Separate test range: weights 31--60.}\\
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endfirsthead
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endhead
+\bottomrule\endfoot
+31 & 435 & 330 & 105 & 65 & 0 & 65\\
+32 & 465 & 345 & 120 & 70 & 7 & 63\\
+33 & 496 & 376 & 120 & 75 & 0 & 75\\
+34 & 528 & 392 & 136 & 80 & 7 & 73\\
+35 & 561 & 425 & 136 & 85 & 0 & 85\\
+36 & 595 & 442 & 153 & 91 & 8 & 83\\
+37 & 630 & 477 & 153 & 96 & 0 & 96\\
+38 & 666 & 495 & 171 & 102 & 8 & 94\\
+39 & 703 & 532 & 171 & 108 & 0 & 108\\
+40 & 741 & 551 & 190 & 114 & 8 & 106\\
+41 & 780 & 590 & 190 & 120 & 0 & 120\\
+42 & 820 & 610 & 210 & 127 & 9 & 118\\
+43 & 861 & 651 & 210 & 133 & 0 & 133\\
+44 & 903 & 672 & 231 & 140 & 9 & 131\\
+45 & 946 & 715 & 231 & 147 & 0 & 147\\
+46 & 990 & 737 & 253 & 154 & 9 & 145\\
+47 & 1035 & 782 & 253 & 161 & 0 & 161\\
+48 & 1081 & 805 & 276 & 169 & 10 & 159\\
+49 & 1128 & 852 & 276 & 176 & 0 & 176\\
+50 & 1176 & 876 & 300 & 184 & 10 & 174\\
+51 & 1225 & 925 & 300 & 192 & 0 & 192\\
+52 & 1275 & 950 & 325 & 200 & 10 & 190\\
+53 & 1326 & 1001 & 325 & 208 & 0 & 208\\
+54 & 1378 & 1027 & 351 & 217 & 11 & 206\\
+55 & 1431 & 1080 & 351 & 225 & 0 & 225\\
+56 & 1485 & 1107 & 378 & 234 & 11 & 223\\
+57 & 1540 & 1162 & 378 & 243 & 0 & 243\\
+58 & 1596 & 1190 & 406 & 252 & 11 & 241\\
+59 & 1653 & 1247 & 406 & 261 & 0 & 261\\
+60 & 1711 & 1276 & 435 & 271 & 12 & 259\\
+\end{longtable}
+\endgroup
+
+\section{Algorithms and reproducibility}
+Run, with Python containing SymPy and python-flint,
+\begin{verbatim}
+python compute_symmetric_triples.py --formal-max 60 \
+    --orbit-max 60 --q-order 40
+\end{verbatim}
+The routines \texttt{formal\_matrix}, \texttt{orbit\_expansion},
+\texttt{eisenstein\_polynomial}, and \texttt{structural\_checks} implement
+respectively the binomial relation matrix, rational Fourier generation,
+the polynomial recurrence, and the explicit obstruction checks.
+The supplementary archive contains the initial and test-range formal data,
+orbit ranks and nullspaces, polynomial ranks, witness values, and validation
+records. The optional low-weight formal parity columns are image ranks in
+the formal quotient, not analytic parity ranks.
+
+The two independent analytic checks use a divisor-sum Fourier formula and
+the Weierstrass polynomial recurrence. The formal witness is checked both
+by the matrix equations and by direct binomial extraction. For source
+verification the original HST weight-four identity and its depth-three
+Table 4 are used. The weight-twelve discriminant expression in its
+introduction was not reproduced, since that would require the full
+individual-triple coefficient algebra absent from this implementation.
+
+The supplied template was used as the preamble. Its incomplete title and
+previous author information were replaced; LuaTeX-ja and the LuaTeX
+compatibility package for Xy-pic were added; optional unused font and
+decoration packages were guarded when unavailable. Its mathematical
+macros, theorem environments, and page dimensions were retained.
+The companion compile log records actual LuaLaTeX runs, not a compatibility
+prediction. Both languages use the same numbered section structure, with
+prefixes E and J. Mathematical statements and proofs are repeated in full.
+
+\begin{thebibliography}{HST26}
+\bibitem[HST26]{hst}
+T.~Hara, K.~Sakugawa and K.~Tasaka,
+\emph{Symmetric multiple Eisenstein series},
+\href{https://arxiv.org/abs/2601.13626}{arXiv:2601.13626v1} (2026).
+All numbered citations refer to the v1 PDF.
+
+\bibitem[BT18]{bt}
+H.~Bachmann and K.~Tasaka,
+\emph{The double shuffle relations for multiple Eisenstein series},
+Nagoya Math. J. \textbf{230} (2018), 180--212;
+\href{https://arxiv.org/abs/1501.03408}{arXiv:1501.03408}.
+
+\bibitem[HST15]{hirose}
+M.~Hirose, N.~Sato and K.~Tasaka,
+\emph{Eisenstein series identities based on partial fraction decomposition},
+Ramanujan J. \textbf{38} (2015), 455--463;
+\href{https://arxiv.org/abs/1402.1585}{arXiv:1402.1585}.
+The product basis cited here is Corollary 2 of arXiv v1.
+
+\bibitem[KZ95]{kzqm}
+M.~Kaneko and D.~Zagier,
+\emph{A generalized Jacobi theta function and quasimodular forms},
+in \emph{The Moduli Space of Curves}, Progr. Math. \textbf{129},
+Birkh\"auser, 1995, 165--172.
+\href{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/12quasimodular.pdf}{Author-hosted text}.
+
+\bibitem[GKZ06]{gkz}
+H.~Gangl, M.~Kaneko and D.~Zagier,
+\emph{Double zeta values and modular forms},
+in \emph{Automorphic Forms and Zeta Functions}, World Scientific, 2006, 71--106.
+\href{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/35Double_zeta_values.pdf}{Author-hosted text}.
+
+\bibitem[Kan19]{kaneko}
+M.~Kaneko, \emph{An introduction to classical and finite multiple zeta values},
+Publ. Math. Besan\c{c}on, Alg\`ebre Th\'eorie Nr. (2019), no.~1, 103--129.
+\href{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/Lyon_Proc_rev.pdf}{Author-hosted text}.
+
+\bibitem[Mat17]{matthes}
+N.~Matthes, \emph{Elliptic double zeta values},
+J. Number Theory \textbf{171} (2017), 227--251;
+\href{https://arxiv.org/abs/1509.08760}{arXiv:1509.08760}.
+
+\bibitem[Bro20]{brown}
+F.~Brown, \emph{Depth-graded motivic multiple zeta values},
+\href{https://arxiv.org/abs/1301.3053}{arXiv:1301.3053v2} (2020).
+
+\bibitem[Reu93]{reutenauer}
+C.~Reutenauer, \emph{Free Lie Algebras},
+London Mathematical Society Monographs, New Series \textbf{7},
+Clarendon Press, Oxford, 1993.
+
+\bibitem[Anz25]{anzawa}
+T.~Anzawa, \emph{A Lie algebra associated with adjoint multiple zeta values},
+\href{https://arxiv.org/abs/2511.03177}{arXiv:2511.03177v2} (2025).
+
+\bibitem[BIM24]{bim}
+H.~Bachmann and J.~W.~van Ittersum, with an appendix by N.~Matthes,
+\emph{Formal multiple Eisenstein series and their derivations},
+\href{https://arxiv.org/abs/2312.04124}{arXiv:2312.04124v3} (2024).
+
+\bibitem[Kan25]{kanno}
+H.~Kanno, \emph{Shuffle regularization for multiple Eisenstein series of level $N$},
+Ramanujan J. \textbf{67} (2025), article 95.
+\href{https://doi.org/10.1007/s11139-025-01136-0}{doi:10.1007/s11139-025-01136-0}.
+
+\bibitem[BK26]{bk}
+H.~Bachmann and H.~Kanno,
+\emph{Relations and Derivatives of Multiple Eisenstein Series},
+\href{https://arxiv.org/abs/2602.08176}{arXiv:2602.08176v1} (2026).
+
+\bibitem[BY26]{by}
+H.~Bachmann and J.~Yu,
+\emph{Schur Eisenstein series and Schur MacMahon series},
+\href{https://arxiv.org/abs/2607.27702}{arXiv:2607.27702v1} (2026).
+
+\bibitem[BR26]{br}
+H.~Bachmann and Risan,
+\emph{Formal finite multiple zeta values},
+\href{https://arxiv.org/abs/2608.15480}{arXiv:2608.15480} (2026).
+Consulted only for the overlap audit.
+\end{thebibliography}
+
+\clearpage
+\setcounter{section}{0}
+\renewcommand{\sectionname}{}
+\renewcommand{\proofname}{証明}
+\renewcommand{\thesection}{J.\arabic{section}}
+\renewcommand{\theHsection}{J.\arabic{section}}
+\begin{center}
+{\Large\bfseries Depth 3 の symmetric Eisenstein 級数：\\
+全置換和と線形 shuffle 関係の障害}\par\medskip
+chatGPT 6Astra\par\medskip
+2026年9月10日
+\end{center}
+\section*{要旨}
+Hara--Sakugawa--Tasaka の正規化に従い、depth 3 の symmetric multiple
+Eisenstein series に付随する二つの構造を調べる。線形 shuffle 関係による形式的商の
+weight $k$ の次元は $\binom{\lfloor k/2\rfloor}{2}$ である。
+偶数 $k\ge10$ に対し、すべての添字が2以上である6項の全置換和が張る空間は
+$M_k^{\Q}\oplus A_2M_{k-2}^{\Q}\oplus\Q A_2^2A_{k-4}$ に等しく、
+次元は $\lfloor k/6\rfloor+2$ となる。この空間の明示的基底と、全関係を判定する
+多項式写像を与える。さらに、すべての偶数 $k\ge18$ において、解析的には消えるが
+線形 shuffle 商では消えない関係を構成し、その非消滅を明示的な非零の pairing で
+証明する。証明は一般の weight に対して成立し、weight 60 までの有理数上の計算で
+検算する。解析的な depth 3 全体の次元は決定していない。特に未公開文献に関する
+新規性監査は不完全であり、先取権の主張は行わない。
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+\subsection{背景}
+指定された形式的モデルの関係が、その解析的実現の関係をすべて説明するかが
+自然な問題である。ここでは両者を異なる問題として扱う。すなわち、symmetric triple
+全体の解析的空間、全置換和の解析的部分空間、および形式的な triple の記号を
+線形 shuffle 関係で割った空間を区別する。
+
+\subsection{既知の結果}
+出発点は \cite{j-hst} の43ページの PDF、arXiv:2601.13626v1 である。
+2026年9月10日に確認した arXiv の履歴では、この版が最新版として表示されていた。
+同論文の Proposition 3.9 は線形 shuffle 関係、Theorem 1.2 は depth 2 の構造を
+与える。Lemma 6.5 と Theorem 1.1 の証明では、偶数 $k\ge10$ について
+$M_k^{\Q}\oplus\Q D A_{k-2}$ が symmetric triple の空間に含まれる。
+ここで $D=q\,d/dq$、偶数 $r$ に対し $A_r=\widetilde G_r^{\sh}$ とする。
+
+\subsection{主結果}
+形式的次元の結果は定理\ref{j:formal}、解析的な部分空間の完全な決定は
+定理\ref{j:orbit}である。定理\ref{j:negative}は、線形 shuffle 関係だけでは
+完全でないことを示す無限族の障害を与える。この主張の対象は明確に指定した関係空間
+であり、既知の stuffle、Fay、微分、modular な関係をすべて加えても不完全だと
+主張するものではない。
+
+\subsection{Known result versus new result}
+\begin{center}\small
+\begin{tabular}{p{.43\textwidth}p{.48\textwidth}}
+\toprule 既知の結果 & 本稿で証明する結果（先取権は未確認）\\\midrule
+線形 shuffle と weight 16 までの depth 3 の計算値
+\cite[Table 4]{j-hst} & 全 weight の形式的次元と平行移動不変な自由 Lie 代数による記述。\\
+triple 全体への modular forms の包含 & 全置換和の部分空間の等式による決定と
+非 modular な成分の記述。\\
+収束する添字の stuffle 恒等式 & すべての偶数 weight 18 以上で線形 shuffle
+商に残る明示的な関係。\\
+準モジュラー形式の多項式構造 & 指定した symmetric triple の部分空間における
+完全な多項式 kernel 判定と明示的基底。\\\bottomrule
+\end{tabular}\end{center}
+以下で使う全置換和の恒等式自体は、stuffle から従う古典的な対称和公式であり、
+新しい恒等式ではない。定理\ref{j:orbit}の証明で $A_k$ を取り出す部分は
+\cite[Lemma 6.5]{j-hst} の仕組みに従う。この取り出しを独立した新発見とは数えない。
+それに加える主張は、部分空間の完全な決定と、全 weight にわたる非所属の証明書である。
+
+\subsection{証明の方針}
+形式的問題では、三つの間隙の変数を、和が零の四つの変数に置き換える。
+すると線形 shuffle は tensor length 4 の通常の alternality に変換される。
+Poincar\'e--Birkhoff--Witt 恒等式から Hilbert 級数を計算する。
+解析的問題では、有限格子上の和を格子点の一致の仕方によって分割し、その後で
+指定された反復極限を取る。最後に特定の length 4 の Lie 多項式から、
+すべての線形 shuffle 関係を消す一方で、定理\ref{j:negative}の解析的関係を
+検出する線形汎関数を構成する。
+
+\section{Symmetric multiple Eisenstein series}
+\subsection{定義と規約}
+ベクトル空間と関係の係数はすべて $\Q$ 上で考える。
+$q=e^{2\pi i\tau}$、$\Im\tau>0$ とし、添字は増加する順序を採用する：
+\[
+ \zeta(k_1,\ldots,k_d)=\sum_{0<n_1<\cdots<n_d}
+ n_1^{-k_1}\cdots n_d^{-k_d},\qquad k_d\ge2.
+\]
+$M_m^{\Q}$ は $\mathrm{SL}_2(\Z)$ 上の weight $m$ の正則 modular forms のうち、
+Fourier 係数が有理数であるものの空間を表す。
+$\Q\langle e_0,e_1\rangle$ において $e_r=e_1e_0^{r-1}$ とし、$\sh$ は
+二つの文字からなる語の通常の shuffle 積とする。格子の順序は
+$m\tau+n>0$ が $m>0$ または $m=0,n>0$ と同値になるように定める。
+\cite[Theorem 2.7]{j-hst} の shuffle 正則化 $G_{\boldsymbol k}^{\sh}$ をそのまま用い、
+\begin{equation}\label{j:def}
+ \SG{k_1,\ldots,k_d}
+ =\sum_{j=0}^d(-1)^{k_{j+1}+\cdots+k_d}
+   G_{k_1,\ldots,k_j}^{\sh}G_{k_d,\ldots,k_{j+1}}^{\sh},
+ \qquad \sG{\boldsymbol k}=(2\pi i)^{-\wt(\boldsymbol k)}\SG{\boldsymbol k}
+\end{equation}
+と置く。空の添字の値は1である。正規化した triple 全体の空間を、
+\cite[\S6.3]{j-hst} に従い $\mathcal{TE}_k^S$ と書く。
+
+\subsection{正則化}
+すべての添字が2以上なら、$G^{\sh}$ は正の格子点上の和について、整数方向の
+上限 $N\to\infty$ を先に、$\tau$ 方向の上限 $M\to\infty$ を後に取った極限に
+等しい。symmetric 版では \cite[Definition 3.6, Proposition 3.7]{j-hst} の
+「正の部分の後に負の部分を置く」順序を使う。すべての添字が3以上なら絶対収束するが、
+2を含む場合にはこの極限規約を必要とする。
+
+1を含む添字には、引用した shuffle 正則化を用い、正則化していない格子和を
+代入しない。正確には、$\zeta^{\sh}(1)=0$ を満たす正則化 zeta character と、
+正則化 divisor-sum character の Goncharov coproduct による convolution
+がその構成である。特に $G^{\sh}_1$ は零ではなく、
+\[
+ (2\pi i)^{-1}G^{\sh}_1=-\sum_{n\ge1}\sigma_0(n)q^n
+\]
+である。以下の解析的な証明では、1を含む添字に無制限の stuffle 公式を適用しない。
+一方、形式的 shuffle 計算と $\mathcal{TE}_k^S$ の定義には1を含む添字も入っている。
+
+偶数 $r\ge2$ には $L_r=2A_r=2\widetilde G_r^{\sh}$、奇数 $r\ge3$ には
+$L_r=0$ と置く。すると
+\begin{equation}\label{j:fourier}
+ L_r=-\frac{B_r}{r!}+\frac{2}{(r-1)!}\sum_{n\ge1}\sigma_{r-1}(n)q^n
+ \quad(r\text{：偶数}),\qquad
+ \frac{t}{e^t-1}=\sum_{r\ge0}B_r\frac{t^r}{r!}.
+\end{equation}
+ここで $\sigma_j(n)=\sum_{d\mid n}d^j$ である。
+したがって、定数項を1とする通常の Eisenstein 級数 $E_r$ を用いると
+$A_2=-E_2/24$、$A_4=E_4/1440$、$A_6=-E_6/60480$ となる。
+weight 2 の符号に注意する。
+
+\subsection{線形 shuffle 関係}
+$\FF_k$ を $a,b,c\ge1$、$a+b+c=k$ なる $[a,b,c]$ を基底とする空間とする。
+$\RR_k$ は次の式が生成する部分空間である：
+\begin{equation}\label{j:lswords}
+ [e_{k_1,\ldots,k_j}\sh e_{k_{j+1},\ldots,k_3}]
+ -(-1)^{k_{j+1}+\cdots+k_3}
+ [k_1,\ldots,k_j,k_3,\ldots,k_{j+1}],\qquad j=0,1,2.
+\end{equation}
+括弧は depth 3 の語に線形に拡張する。
+解析的評価 $\ev_k([a,b,c])=\sG{a,b,c}$ は $\RR_k$ を消す。
+
+$\FF_k/\RR_k$ の双対は $\LS_{k-3}^{(3)}$ である。
+具体的には $w=k-3$ としたとき、次を満たす次数 $w$ の斉次多項式 $f(x,y,z)$ の空間である：
+\begin{align}
+ f(x,y,z)&=-f(-z,-y,-x),\label{j:rev}\\
+ f(x,x+y,x+z)+f(y,x+y,x+z)+f(y,z,x+z)&=f(x,-z,-y),\label{j:ls1}\\
+ f(x,y,y+z)+f(x,x+z,y+z)+f(z,x+z,y+z)&=-f(x,y,-z).\label{j:ls2}
+\end{align}
+pairing は係数抽出
+$\langle[a,b,c],f\rangle=[x^{a-1}y^{b-1}z^{c-1}]f$ で定義する。
+
+\subsection{既知の depth 2 の結果}
+比較のために述べると、正規化された depth 2 の空間は、偶数 $k\ge6$ では
+$M_k^{\Q}\oplus\Q D A_{k-2}$ であり、奇数 $k\ge3$ では
+$\{\sG{j,k-j}:1\le j\le\lfloor k/3\rfloor\}$ が基底である
+\cite[Theorem 1.2]{j-hst}。この結果は depth 3 の次元を決定するものではない。
+
+\section{厳密計算と反例検査}
+\subsection{アルゴリズムと対象範囲}
+コードは\eqref{j:rev}--\eqref{j:ls2} の三つの変数変換を整数の二項係数で展開する。
+得られる整数行列は $3\binom{k-1}{2}$ 行、$\binom{k-1}{2}$ 列である。
+行 rank が $\dim\RR_k$、nullity が形式的商の次元となる。
+1を含むすべての composition を計算対象とする。
+
+$a,b,c\ge2$ に対し、6項の和
+\begin{equation}\label{j:orbitdef}
+ \begin{aligned}
+ C_{a,b,c}&=\sum_{\sigma\in\mathfrak S_3}
+          \sG{k_{\sigma(1)},k_{\sigma(2)},k_{\sigma(3)}},
+ \quad (k_1,k_2,k_3)=(a,b,c),\\
+ \WW_k&=\Span\{C_{a,b,c}:a,b,c\ge2,\ a+b+c=k\}
+ \end{aligned}
+\end{equation}
+を定義する。同じ置換結果も重複して数えるため、$C_{a,a,a}=6\sG{a,a,a}$ である。
+以下で証明する恒等式は
+\begin{equation}\label{j:sym}
+ C_{a,b,c}=L_aL_bL_c-L_{a+b}L_c-L_{a+c}L_b-L_{b+c}L_a+2L_k
+\end{equation}
+である。\eqref{j:fourier} の約数和と有理数上の convolution により、この部分空間
+全体を計算できる。これは実際の有理 Fourier 係数であり、未知の奇数 zeta 値を
+便宜的に特殊化したものではない。
+
+\subsection{Rank と kernel の計算}
+最初の範囲を $3\le k\le30$、それとは別の検証範囲を $31\le k\le60$ とした。
+すべての形式的 rank は定理\ref{j:formal} と一致する。
+全置換和については $3\le k\le60$ の全範囲で $q^0$ から $q^{40}$ までの係数を
+使用した。\eqref{j:recurrence} による独立な多項式計算でも同じ解析的次元を得た。
+kernel のファイルには、各偶数 $10\le k\le60$ に対し、非 pivot 列で添字付けた
+基底を記録した。形式的商における parity sector の像の rank は weight 16 まで、
+解析的な全偶数および二つの奇数を持つ全置換和 sector の rank は weight 60 まで
+計算した。データでは、これら異なる rank のどれを報告しているかを明示している。
+
+\subsection{構造の候補と実装の検証}
+原論文 Table 4 の depth 3 の行を厳密に再現した。
+weight 4 の式 $\sG{2,2}=4A_4-D A_2$ は $q^{24}$ まで再現した。
+有限個の有理数を順序付けた格子和でも、weight 6 から16までのすべての unordered
+triple について\eqref{j:sym} を独立に検証した。
+これらの計算から定理\ref{j:formal}、\ref{j:orbit} の Hilbert 級数と解析的構造を
+検討したが、一般証明は有限計算を根拠としない。
+
+\subsection{反例探索と限界}
+weight 12 ですでに $C_{2,3,7}=C_{2,5,5}$ という関係が現れる。
+対応する形式的な類を調べることで定理\ref{j:negative} の無限族を得た。
+その係数による証明書は、18から60までのすべての偶数 weight で、
+shuffle 行列の全行に対して検査した。検査範囲内では本稿の定理への反例は見つからなかった。
+
+個々の triple 全体について、MZV を係数環とする Fourier 行列は実装していない。
+そのため $\mathcal{TE}_k^S$ の解析的 rank は報告しない。
+形式的な特殊化の有理 rank だけでは、そのような主張は正当化できない。
+全体の解析的 kernel に残る未説明の関係の数は未決定である。
+これに対し、$\WW_k$ については以下の多項式 kernel が全関係を与える。
+
+\section{主定理}
+\begin{thm}[形式的な depth 3 の構造]\label{j:formal}
+すべての $k\ge3$ に対し、
+\[
+ \dim_{\Q}(\FF_k/\RR_k)=\dim_{\Q}\LS_{k-3}^{(3)}
+      =\binom{\lfloor k/2\rfloor}{2},\qquad
+ \sum_{w\ge0}\dim\LS_w^{(3)}t^w=\frac{t(1+t)}{(1-t^2)^3}.
+\]
+$\LS_w^{(3)}$ は、証明中の座標写像により、四変数の次数 $w$ の平行移動不変な
+alternal 多項式の空間と標準的に同型になる。
+特に $\dim\mathcal{TE}_k^S\le\binom{\lfloor k/2\rfloor}{2}$ である。
+\end{thm}
+
+\begin{thm}[全置換和の部分空間の完全な決定]\label{j:orbit}
+すべての偶数 $k\ge10$ に対し、
+\begin{equation}\label{j:decomp}
+ \WW_k=M_k^{\Q}\oplus A_2M_{k-2}^{\Q}\oplus\Q A_2^2A_{k-4},
+ \qquad \dim_{\Q}\WW_k=\left\lfloor\frac{k}{6}\right\rfloor+2.
+\end{equation}
+奇数 $k$ では $\WW_k=0$ である。残る低 weight の非零な場合は
+$\WW_6=\Q C_{2,2,2}$ と
+$\WW_8=\Q C_{2,2,4}\oplus\Q C_{2,3,3}$ である。
+全置換和の明示的な組合せによる基底を\S\ref{j:basis}で与える。
+\end{thm}
+
+\begin{thm}[線形 shuffle の完全性の一様な破れ]\label{j:negative}
+任意の偶数 $k\ge18$ に対し $c=k-10$ とし、
+\[
+ r_k=\fC{3}{7}{c}-\fC{5}{5}{c}\in\FF_k,\qquad
+ \fC{a}{b}{c}=\sum_{\sigma\in\mathfrak S_3}
+ [k_{\sigma(1)},k_{\sigma(2)},k_{\sigma(3)}]
+\]
+と置く。このとき $\ev_k(r_k)=0$ だが $r_k\notin\RR_k$ である。
+さらに、明示的な $f_k\in\LS_{k-3}^{(3)}$ であって
+\begin{equation}\label{j:certificate}
+ \langle r_k,f_k\rangle
+ =2\left\{\binom{k-7}{6}-\binom{k-7}{4}\right\}
+ =\frac{(k-17)(k-6)}{15}\binom{k-7}{4}>0
+\end{equation}
+を満たすものが存在する。したがって、これらすべての weight で
+$\ker\ev_k/\RR_k\ne0$ となる。この障害は、すべての添字が2以上の全置換和の
+記号が生成する形式的部分空間の中にも存在する。
+定理\ref{j:formal}と合わせると、無条件の真に小さい上界
+\[
+ \dim_{\Q}\mathcal{TE}_k^S\le\binom{k/2}{2}-1\qquad(k\ge18\text{：偶数})
+\]
+も得られる。
+\end{thm}
+
+\section{証明}
+\subsection{線形 shuffle から四変数の Lie 多項式へ}
+多項式 $H(x_1,x_2,x_3,x_4)$ が alternal であるとは、$j=1,2,3$ の各
+$(j,4-j)$ shuffle で引数を置換した和が零になることをいう。
+各 block の内部の順序は保つ。また平行移動不変とは
+$H(x_1+u,\ldots,x_4+u)=H(x_1,\ldots,x_4)$ が成立することである。
+
+\begin{lem}\label{j:coordinate}
+写像
+\begin{equation}\label{j:beta}
+ \beta(H)(x,y,z)=H(-x,x-y,y-z,z)
+\end{equation}
+は、平行移動不変な alternal 多項式の空間から $\LS^{(3)}$ への同型である。
+平行移動不変性を課さない全 alternal 多項式上では、その次数 $w$ の kernel は
+$(x_1+x_2+x_3+x_4)\Al_{w-1}$ である。
+ここで $\Al_w$ は次数 $w$ の alternal 多項式の空間を表す。
+\end{lem}
+\begin{proof}
+この代入は超平面 $\sum x_i=0$ をパラメータ付けする。
+その超平面上の多項式は一意に平行移動不変な多項式へ持ち上がる。
+具体的には $s=(x_1+x_2+x_3+x_4)/4$、$z_i=x_i-s$ と置き、
+\[
+ H(x_1,x_2,x_3,x_4)=f(-z_1,-z_1-z_2,z_4)
+\]
+とすればよい。したがって座標写像とその逆はともに $\Q$ 上で定義される。
+
+$H(abcd)=H(a,b,c,d)$ と略記し、
+$S(a;b,c,d)=H(abcd)+H(bacd)+H(bcad)+H(bcda)$ と置く。
+$a+b+c+d=0$ 上で $x=-a$、$y=-b$、$z=-b-c$ とすると、$S$ の四つの項は
+\[
+ f(x,x+y,x+z),\quad f(y,x+y,x+z),\quad
+ f(y,z,x+z),\quad f(y,z,-x)
+\]
+になる。\eqref{j:rev} により最後の項は $-f(x,-z,-y)$ に等しい。
+$H$ の reversal はちょうど\eqref{j:rev} である。
+従って\eqref{j:rev} と\eqref{j:ls1} から、$H$ は reversal で符号を変え、
+$(1,3)$ shuffle の和が零になる。
+
+これらの条件から、残る $(2,2)$ shuffle も従う。その6項を
+\[
+ H(1234)+H(1324)+H(1342)+H(3124)+H(3142)+H(3412)
+\]
+と書く。この式は $S(1;3,2,4)+S(1;3,4,2)+S(4;1,2,3)$ と、
+$H(abcd)+H(dcba)$ という形の三つの和を除いて等しいため、零になる。
+reversal によって $(3,1)$ shuffle も従う。
+逆に alternality は tensor length 4 の primitive 元に対する antipode 恒等式から
+reversal を与える。実際、この antipode は四文字を反転し、primitive 元に対して
+は $-1$ 倍として作用する。そこから $(1,3)$ shuffle が\eqref{j:ls1} を与える。
+$(3,1)$ shuffle に $(-x,x-y,y-z,z)$ を代入すると
+\[
+ f(x,y,z)+f(x,y,y-z)+f(x,x-z,y-z)+f(-z,x-z,y-z)=0
+\]
+となる。これは\eqref{j:ls2} の第三変数を $-z$ に置き換えた式である。
+平行移動不変性により、超平面上のこれらの等式は四変数全体の等式へ拡張される。
+以上で同型を示した。
+
+kernel については、超平面上で消えることと $\sum x_i$ で割り切れることが同値である。
+この対称な一次式で割っても shuffle 方程式は保たれる。実際、商の shuffle の和に
+$\sum x_i$ を掛けた式が多項式環で零となり、多項式環は整域だから商の和も零になる。
+これで kernel を完全に決定した。
+\end{proof}
+
+定理\ref{j:formal}を完成させるため、tensor
+$Y_{n_1}\cdots Y_{n_4}$ を $x_1^{n_1}\cdots x_4^{n_4}$ と同一視する。
+$Y_0,Y_1,\ldots$ は次数がそれぞれ $n$、tensor length が1の自由生成元である。
+primitive 元の判定法により、alternal 多項式はこの自由 Lie 代数の length 4 の部分に
+対応する。この判定法と PBW は標準的な自由 Lie 代数の事実である\cite{j-reutenauer}。
+tensor length $r$ の次数に関する級数を $a_r(t)$ と書く。
+これらの生成元上の tensor 代数の級数は $1/(1-z/(1-t))$ である。
+PBW の積公式の対数から
+\[
+ \begin{gathered}
+ \frac{1}{4(1-t)^4}=a_4(t)+\tfrac12a_2(t^2)+\tfrac14a_1(t^4),
+ \\ a_1(t)=\frac1{1-t},\qquad
+ a_2(t)=\tfrac12\left(\frac1{(1-t)^2}-\frac1{1-t^2}\right)
+ \end{gathered}
+\]
+を得る。したがって
+\[
+ a_4(t)=\tfrac14\left(\frac1{(1-t)^4}-\frac1{(1-t^2)^2}\right).
+\]
+別の言い方では、alternal 多項式を $s=\sum x_i/4$ の多項式として展開すると、
+置換が $s$ を固定するため $\Al=\Q[s]\otimes\Al^{\rm tr}$ となる。
+よって平行移動不変な部分の Hilbert 級数は
+\[
+ (1-t)a_4(t)=\frac{t(1+t)}{(1-t^2)^3}
+\]
+である。$w=2m+1$ と $w=2m+2$ の係数はともに $\binom{m+2}{2}$、定数項は零である。
+$w=k-3$ を代入して定理が従う。
+
+\subsection{解析的部分空間の定理の証明}
+まず\eqref{j:sym} を有限個の非零格子点の全順序集合上で示す。
+三つの single sum の積を、三点がすべて異なる場合、ちょうど二点が等しい三つの場合、
+および三点がすべて等しい場合に分割する。6個の順序付きの和は、三点がすべて異なる
+場合を数える。三つの pair-contraction の積を引くと、三点が等しい場合を三回
+引くことになるため、最後に二回足す。この計算が\eqref{j:sym} そのものである。
+対称な順序を備えた有限格子長方形について、$N\to\infty$、$M\to\infty$ の順に
+極限を取る。添字は2以上なので、各順序付きの和と各 single sum は指定した極限を
+持ち、積の個数も有限である。無限和の交換を行わずに恒等式が極限へ移る。
+総 weight が奇数なら右辺の各項に奇数 weight の因子が存在するので零になる。
+
+以下、$k\ge10$ は偶数とする。\eqref{j:sym} から $\WW_k$ が\eqref{j:decomp} の
+右辺に含まれる。二つの添字が奇数なら、偶数 Eisenstein 級数二つの積と一つの級数に
+帰着する。三つが偶数なら、偶数級数の高々三つの積となる。
+$k\ge10$ なので、三つの積の中に $A_2$ は高々二つしか現れない。
+残る場合は $M_k^{\Q}$ または $A_2M_{k-2}^{\Q}$ に属する。
+
+逆の包含を示す。$r,s\ge3$ が奇数、$t\ge2$ が偶数なら
+\begin{equation}\label{j:oddpair}
+ C_{r,s,t}=4(A_k-A_{r+s}A_t).
+\end{equation}
+$a+b=k$、$a,b\ge2$ なる任意の偶数の組では、少なくとも一方は6以上である。
+その一方を $3+(a-3)$ と分ければ $A_aA_b\equiv A_k\pmod{\WW_k}$ を得る。
+また weight 8 の modular 恒等式、または\S\ref{j:kernel} の漸化式から
+$A_4^2=\frac76 A_8$ である。\eqref{j:sym} に $(4,4,k-8)$ を代入すると
+\[
+ C_{4,4,k-8}=\tfrac{16}{3}A_8A_{k-8}-8A_4A_{k-4}+4A_k
+             \equiv\tfrac43 A_k\pmod{\WW_k}.
+\]
+従って $A_k\in\WW_k$ であり、次にすべての積 $A_aA_b$ も $\WW_k$ に属する。
+\eqref{j:sym} を $A_aA_bA_c$ について解けば、偶数 weight の single series 三つの
+総 weight $k$ の積もすべて含まれる。
+
+\cite[Corollary 2, arXiv v1]{j-hirose} の modular product basis により、$A_k$ と、
+両方の添字が4以上の積は $M_k^{\Q}$ を張る。これを weight $k-2$ に適用すると、
+得られた二つまたは三つの積は $A_2M_{k-2}^{\Q}$ も張る。
+$A_2^2A_{k-4}$ も含まれるため、空間の等式が従う。
+
+直和性には \cite[Proposition 1(b)]{j-kzqm} を使えるが、直接にも次のように示せる。
+$A_2$ の変換公式は
+\[
+ A_2(\gamma\tau)=(c\tau+d)^2A_2(\tau)-\frac{c(c\tau+d)}{4\pi i}
+\]
+である。$f_p$ が weight $k-2p$ の modular form であり、
+$\sum_{p=0}^2 A_2^pf_p=0$ とする。
+$\gamma_m=\left(\begin{smallmatrix}1&0\\m&1\end{smallmatrix}\right)$ を適用し、
+$(m\tau+1)^k$ で割る。各 $\tau$ を固定すると、得られた
+$m/(m\tau+1)$ の多項式は無限個の相異なる値で零になる。
+最高次の係数から $f_2=0$、続いて $f_1=f_0=0$ を得る。
+次元は $m(k)+m(k-2)+1$ であり、
+\[
+ m(k)=\lfloor k/12\rfloor+1-\mathbf1_{k\equiv2\ (12)}
+ \quad(k\ge4\text{：偶数})
+\]
+である。modulo 12 の六つの偶数剰余類を確認すると $\lfloor k/6\rfloor+2$ となる。
+weight 6 と8には unordered triple がそれぞれ一つと二つしかなく、\S8の
+多項式表示により主張された独立性が従う。
+
+\subsection{無限族の障害の証明}
+\eqref{j:oddpair} から共通の解析的な値
+\[
+ C_{3,7,c}=C_{5,5,c}=4(A_k-A_{10}A_c)
+\]
+を得る。この等式自体は stuffle の帰結である。
+以下では、その差が線形 shuffle の帰結ではないことを示す。
+
+$N=k-7=c+3$ と置く。これは11以上の奇数である。
+自由 Lie 代数の元
+\[
+ P_N=[Y_0,[Y_2,[Y_2,Y_N]]]
+\]
+を考える。対応する多項式は
+\begin{align*}
+ H_N={}&x_2^2x_3^2x_4^N-2x_2^2x_3^Nx_4^2+x_2^Nx_3^2x_4^2\\
+       &-x_1^2x_2^2x_3^N+2x_1^2x_2^Nx_3^2-x_1^Nx_2^2x_3^2.
+\end{align*}
+これは alternal なので、補題\ref{j:coordinate} によって
+$f_k=H_N(-x,x-y,y-z,z)\in\LS_{k-3}^{(3)}$ となる。
+その次数は $N+4=k-3$ である。
+
+検算を完全に記述するため、$B_j=\binom Nj$ と置く。
+上記6項に座標代入したものと二つの全置換和の記号との pairing は次の表になる。
+同じ添字が現れる場合の置換の重複も含んでいる。
+\begin{center}
+\begin{tabular}{crr}\toprule
+項 & $\langle\fC{3}{7}{c},\,\cdot\,\rangle$
+   & $\langle\fC{5}{5}{c},\,\cdot\,\rangle$\\\midrule
+1 & $0$ & $0$\\
+2 & $2(B_6-B_4)$ & $0$\\
+3 & $B_4-B_6$ & $0$\\
+4 & $B_4-B_6$ & $0$\\
+5 & $2(B_6-B_4)$ & $0$\\
+6 & $0$ & $0$\\\bottomrule
+\end{tabular}\end{center}
+この表は、$(-x)^a(x-y)^b(y-z)^cz^d$ の $x^Ay^Bz^C$ の係数が
+\begin{equation}\label{j:binomcoeff}
+ (-1)^{a+b-j+c-l}\binom bj\binom cl,
+ \qquad j=A-a,\quad l=B-b+j
+\end{equation}
+になることから確認できる。ただし $0\le j\le b$、$0\le l\le c$、
+$c-l+d=C$ が必要であり、満たさない場合は零とする。
+これを $(2,6,c-1)$ と $(4,4,c-1)$ の各6置換に適用する。
+$N>\max\{6,c-1\}$ なので第一項と第六項は零になる。
+同じ添字を持つ orbit では、第三項と第四項の中の寄与が
+$\binom N{c-1}=\binom N4$ によってそれぞれ相殺する。
+それ以外の項は三つの指数を同時に供給できない。これで表の全成分と符号が確認できる。
+
+総和は $2(B_6-B_4)$ であり、
+\[
+ 2(B_6-B_4)=\frac{(N-10)(N+1)}{15}\binom N4>0
+\]
+となる。$\RR_k$ のすべての元は $f_k$ と pairing すると零になるが、$r_k$ は
+零にならない。これにより rank の有限計算に依存せず、定理\ref{j:negative} が従う。
+
+\section{明示的基底と完全な多項式関係}
+\subsection{全置換和の組合せによる基底}\label{j:basis}
+偶数 $k\ge10$ に対し、
+\begin{align}
+ U_k&=\tfrac34 C_{4,4,k-8}+C_{3,5,k-8}-\tfrac32 C_{3,k-7,4},\label{j:U}\\
+ V_{a,b}&=U_k-\tfrac14 C_{3,u-3,v},\quad
+ u=\max(a,b),\ v=\min(a,b),\ a+b=k,\label{j:V}\\
+ T_{a,b,c}&=\tfrac18 C_{a,b,c}
+  +\tfrac12(V_{a+b,c}+V_{a+c,b}+V_{b+c,a})-\tfrac12 U_k
+ \label{j:T}
+\end{align}
+と定める。ここで $V,T$ の添字は2以上の偶数である。
+前節の証明から $U_k=A_k$、$V_{a,b}=A_aA_b$、$T_{a,b,c}=A_aA_bA_c$ が厳密に従う。
+右辺の orbit の添字は $k=10$ の場合を含めてすべて2以上である。
+\[
+ J_m=\{j\in\Z:\lfloor(m-2)/6\rfloor+2\le j\le\lfloor m/4\rfloor\}
+\]
+と置く。このとき $\WW_k$ の明示的基底は
+\begin{equation}\label{j:basisformula}
+ \{U_k\}\ \cup\ \{V_{2j,k-2j}:j\in J_k\}
+ \ \cup\ \{V_{2,k-2}\}
+ \ \cup\ \{T_{2,2j,k-2-2j}:j\in J_{k-2}\}
+ \ \cup\ \{T_{2,2,k-4}\}
+\end{equation}
+で与えられる。最初の二つの集合は modular product basis、次の二つは weight
+$k-2$ のその基底に $A_2$ を掛けたもの、最後は\eqref{j:decomp} の最後の直和成分を
+張る元である。直和性から独立性が従う。これは triple の明示的な線形結合による基底であり、
+各基底元が個々の triple そのものであると主張しているわけではない。
+
+\subsection{Kernel の完全な判定}\label{j:kernel}
+$\mathsf P_k$ を $2\le a\le b\le c$、$a+b+c=k$ なる unordered triple を基底とし、
+$C_{a,b,c}$ に評価する空間とする。$\deg X=2,\deg Y=4,\deg Z=6$ の重み付き次数で
+斉次な多項式を、$P_2=X,P_4=Y,P_6=Z$、奇数 $r\ge3$ に対して $P_r=0$、さらに
+\begin{equation}\label{j:recurrence}
+ P_{2m}=\frac{3}{(m-3)(2m-1)(2m+1)}
+ \sum_{r=2}^{m-2}(2r-1)(2m-2r-1)P_{2r}P_{2m-2r},\quad m\ge4
+\end{equation}
+で定める。明示的な線形写像を
+\begin{equation}\label{j:polymap}
+ \Psi_k([a,b,c])=P_aP_bP_c-P_{a+b}P_c-P_{a+c}P_b-P_{b+c}P_a+2P_k
+\end{equation}
+で定義する。
+\begin{prop}\label{j:kernelprop}
+$\mathsf P_k$ 上の評価の kernel は正確に $\ker\Psi_k$ である。
+偶数 $k\ge10$ ではその次元は
+\[
+ \left\lfloor\frac{(k-3)^2+3}{12}\right\rfloor
+       -\left\lfloor\frac{k}{6}\right\rfloor-2
+\]
+となる。従って\eqref{j:polymap} の有限個の単項式の係数を比較する条件は、
+この部分空間における関係を判定する完全な有理線形条件を与える。
+\end{prop}
+\begin{proof}
+通常の格子の展開
+$\wp(z)=z^{-2}+\sum_{n\ge1}(2n+1)G^{\rm lat}_{2n+2}z^{2n}$ と
+方程式 $\wp''=6\wp^2-g_2/2$ の $z^{2m-4}$ の係数を、$m\ge4$ について比較する。
+すると
+\[
+ (2m-6)(2m-1)(2m+1)G^{\rm lat}_{2m}
+ =6\sum_{r=2}^{m-2}(2r-1)(2m-2r-1)
+           G^{\rm lat}_{2r}G^{\rm lat}_{2m-2r}
+\]
+を得る。$(2\pi i)^{2m}$ で正規化すると、$L_{2m}$ に対する\eqref{j:recurrence} が
+従う。weight 4 と6の級数が初期値であり、$L_2$ は別に扱う。
+従って解析的評価は、$\Psi_k$ と $(X,Y,Z)\mapsto(L_2,L_4,L_6)$ の合成に分解する。
+
+後者は weight $k$ の多項式上で単射である。
+まず、modular な係数を持つ $L_2$ の冪は、前節の変換公式による議論で独立である。
+modular weight を固定したとき $L_4^aL_6^b$ 間に関係があれば、共通因子を除くことで
+$L_6^2/L_4^3$ に関する多項式関係を得る。この関数は定数項と第一 Fourier 係数から
+非定数だと分かるので、そのような関係は存在しない。これで kernel の等式が従う。
+unordered triple の個数は $1/((1-t)(1-t^2)(1-t^3))$ の $t^{k-6}$ の係数であり、
+$\lfloor((k-3)^2+3)/12\rfloor$ に等しい。
+同じ個数は $\sum_{a=2}^{\lfloor k/3\rfloor}(\lfloor(k-a)/2\rfloor-a+1)$ を
+計算しても得られる。定理\ref{j:orbit}の次元を引けばよい。
+\end{proof}
+
+保存した nullspace の基底の独立性は明確である。各関係は対応する非 pivot 列で
+係数1を持ち、他の非 pivot 列の係数はすべて零である。
+従って計算された kernel 全体の基底になる。
+任意の weight で\eqref{j:polymap} は同じ手続を与え、有限回で停止することも
+証明されている。準モジュラー形式の Sturm bound を仮定してはいない。
+
+\section{Symmetric multiple zeta values への帰結}
+\eqref{j:def} の定数項は shuffle symmetric な実 MZV
+$\zeta^{\sh,S}(\boldsymbol k)$ である。偶数 $r\ge2$ に対して
+$\ell_r=-B_r/r!$、奇数 $r\ge3$ に対して $\ell_r=0$ と置く。
+\eqref{j:sym} の定数項を取ると
+\begin{equation}\label{j:constant}
+ \frac{\sum_{\sigma\in\mathfrak S_3}
+        \zeta^{\sh,S}(k_{\sigma(1)},k_{\sigma(2)},k_{\sigma(3)})}{(2\pi i)^k}
+ =\ell_a\ell_b\ell_c-\ell_{a+b}\ell_c-\ell_{a+c}\ell_b-\ell_{b+c}\ell_a+2\ell_k
+\end{equation}
+を得る。特に、すべての偶数 $c\ge8$ に対して
+\[
+ \sum_{\sigma}\zeta^{\sh,S}(\sigma(3,7,c))
+ -\sum_{\sigma}\zeta^{\sh,S}(\sigma(5,5,c))=0
+\]
+である。これは実 MZV の代数 $\mathcal Z$ における厳密な等式である。
+既知の型の対称和の帰結であり、新しい MZV 恒等式とは主張しない。
+$\mathcal Z/\zeta(2)\mathcal Z$ への像も零になる。
+この商は正規化を戻した後に取るべきものであり、$2\pi i$ の冪を商環に添加している
+わけではない。通常の MZV と finite MZV の区別は\cite{j-kaneko}も参照されたい。
+Kaneko--Zagier 予想は使わず、finite MZV との同一視も行わない。
+
+\section{例と境界の場合}
+$X=L_2,Y=L_4,Z=L_6$ と書くと、低 weight の元は
+\[
+ C_{2,2,2}=X^3-3XY+2Z,\quad
+ C_{2,2,4}=X^2Y-2XZ-\tfrac17Y^2,\quad
+ C_{2,3,3}=-XZ+\tfrac67Y^2
+\]
+となる。これらから weight 6、8の次元1、2が従う。
+weight 10 は4個の unordered generator とただ一つの関係
+\[
+ C_{3,3,4}+C_{2,3,5}+\tfrac34 C_{2,4,4}=0
+\]
+を持つ。例えば $\{C_{2,2,6},C_{2,3,5},C_{2,4,4}\}$ は基底である。
+weight 12 では7個の生成元の次元は4、weight 60 では271個の生成元の次元は12、
+kernel の次元は259である。
+
+形式的問題では $\FF_3/\RR_3=0$、weight 4、5の次元はともに1である。
+これらは正則化された添字を含む主張であり、その添字を削除して得られる結果ではない。
+障害の pairing の値は $k=18$ で264、$k=20$ で2002である。
+
+\section{新規性監査と正確な限界}
+検索は2026年9月10日までを対象とした。出発点の論文の PDF は証明と参考文献を含めて
+確認し、arXiv の abstract ページには v1 のみが掲載されていた。
+主な比較対象は \cite{j-bt,j-matthes,j-brown,j-anzawa,j-bim,j-kanno,j-bk,j-by} と、古典的な modular および
+shuffle の文献 \cite{j-gkz,j-kzqm,j-hirose,j-reutenauer} である。
+\cite{j-matthes} の elliptic length 2/Fay の設定や、\cite{j-brown} の motivic
+depth-graded な設定では評価写像が異なる。
+\cite{j-anzawa} の scheme は追加の adjoint stuffle 条件を課す。
+\cite{j-by} の Schur basis は準モジュラー形式の別の族を対象にする。
+これらの結論を、解析的な triple 全体の rank に置き換えてはいない。
+
+候補定理からの逆向き検索では ``linear shuffle space''、``depth three dimension''、
+``translation invariant alternal''、``permutation sums symmetric Eisenstein''、
+``linear shuffle incomplete''、および添字 $(3,7,c)$、$(5,5,c)$ を用いた。
+2025--2026年の multiple Eisenstein series とその微分に関する論文も検索した。
+周辺文献 \cite{j-br} は重複確認のためだけに調べ、研究対象にも証明の入力にもしていない。
+その参考文献から adjoint の文献にも進んだ。確認できた文献には本稿の明示的な
+非所属の証明書を述べたものは見つからなかった。しかし検索で見つからないことは、
+先取権の証明ではない。
+
+特に未公開の Kaneko--Zagier の preprint と、\cite{j-br} が引用する2025年の修士論文に
+ついては、本作業で完全な本文比較を行えなかった。被引用文献の探索および書誌情報への
+アクセスも網羅的ではない。
+\emph{We have not been able to verify novelty completely.}
+形式的次元は、以前の自由 Lie 代数による記述に暗に含まれている可能性がある。
+解析的部分空間の結果は古典的な素材と \cite{j-hst} の取り出しの議論の精密化から得られる。
+従って本稿は、証明済みの構造結果と明示的な障害を記録するものであり、確認済みの
+最初の証明や、depth 3 全体の問題の解決を宣言するものではない。
+
+有限 Fourier 検査の論理的役割も限定する。打切り係数の列が独立なら関数も独立である。
+関数の関係はすべての係数の関係を強制するからである。しかし逆は一般には成立しない。
+ここでは一般次元定理が上界を与え、打切り rank と上界の一致によって、保存した
+kernel が実際の kernel であることが従う。浮動小数点 rank、PSLQ、予想に依存する
+MZV の独立性は使用していない。
+
+\appendix
+\renewcommand{\thesection}{J.\Alph{section}}
+\renewcommand{\theHsection}{J.\Alph{section}}
+\section{厳密な計算データ}
+第一の表は候補検討用、第二の表は別枠の検証用である。
+$g$ は正の composition 全体の個数、$r$ は線形 shuffle 関係行列の rank、
+$d_F=g-r$ である。解析的な全置換和の部分空間について、$h$ は添字が2以上の
+unordered triple の個数、$d_W$ は係数行列でも認証された証明済みの次元、
+$h-d_W$ は kernel の次元である。奇数 weight の全置換和は零になる。
+\begingroup\small
+\begin{longtable}{rrrrrrr}
+\caption{発見に用いた範囲：weight 3--30。}\\
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endfirsthead
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endhead
+\bottomrule\endfoot
+3 & 1 & 1 & 0 & 0 & 0 & 0\\
+4 & 3 & 2 & 1 & 0 & 0 & 0\\
+5 & 6 & 5 & 1 & 0 & 0 & 0\\
+6 & 10 & 7 & 3 & 1 & 1 & 0\\
+7 & 15 & 12 & 3 & 1 & 0 & 1\\
+8 & 21 & 15 & 6 & 2 & 2 & 0\\
+9 & 28 & 22 & 6 & 3 & 0 & 3\\
+10 & 36 & 26 & 10 & 4 & 3 & 1\\
+11 & 45 & 35 & 10 & 5 & 0 & 5\\
+12 & 55 & 40 & 15 & 7 & 4 & 3\\
+13 & 66 & 51 & 15 & 8 & 0 & 8\\
+14 & 78 & 57 & 21 & 10 & 4 & 6\\
+15 & 91 & 70 & 21 & 12 & 0 & 12\\
+16 & 105 & 77 & 28 & 14 & 4 & 10\\
+17 & 120 & 92 & 28 & 16 & 0 & 16\\
+18 & 136 & 100 & 36 & 19 & 5 & 14\\
+19 & 153 & 117 & 36 & 21 & 0 & 21\\
+20 & 171 & 126 & 45 & 24 & 5 & 19\\
+21 & 190 & 145 & 45 & 27 & 0 & 27\\
+22 & 210 & 155 & 55 & 30 & 5 & 25\\
+23 & 231 & 176 & 55 & 33 & 0 & 33\\
+24 & 253 & 187 & 66 & 37 & 6 & 31\\
+25 & 276 & 210 & 66 & 40 & 0 & 40\\
+26 & 300 & 222 & 78 & 44 & 6 & 38\\
+27 & 325 & 247 & 78 & 48 & 0 & 48\\
+28 & 351 & 260 & 91 & 52 & 6 & 46\\
+29 & 378 & 287 & 91 & 56 & 0 & 56\\
+30 & 406 & 301 & 105 & 61 & 7 & 54\\
+\end{longtable}
+\endgroup
+\Needspace{450pt}
+\begingroup\small
+\begin{longtable}{rrrrrrr}
+\caption{独立の検証範囲：weight 31--60。}\\
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endfirsthead
+\toprule $k$ & $g$ & $r$ & $d_F$ & $h$ & $d_W$ & $h-d_W$\\\midrule\endhead
+\bottomrule\endfoot
+31 & 435 & 330 & 105 & 65 & 0 & 65\\
+32 & 465 & 345 & 120 & 70 & 7 & 63\\
+33 & 496 & 376 & 120 & 75 & 0 & 75\\
+34 & 528 & 392 & 136 & 80 & 7 & 73\\
+35 & 561 & 425 & 136 & 85 & 0 & 85\\
+36 & 595 & 442 & 153 & 91 & 8 & 83\\
+37 & 630 & 477 & 153 & 96 & 0 & 96\\
+38 & 666 & 495 & 171 & 102 & 8 & 94\\
+39 & 703 & 532 & 171 & 108 & 0 & 108\\
+40 & 741 & 551 & 190 & 114 & 8 & 106\\
+41 & 780 & 590 & 190 & 120 & 0 & 120\\
+42 & 820 & 610 & 210 & 127 & 9 & 118\\
+43 & 861 & 651 & 210 & 133 & 0 & 133\\
+44 & 903 & 672 & 231 & 140 & 9 & 131\\
+45 & 946 & 715 & 231 & 147 & 0 & 147\\
+46 & 990 & 737 & 253 & 154 & 9 & 145\\
+47 & 1035 & 782 & 253 & 161 & 0 & 161\\
+48 & 1081 & 805 & 276 & 169 & 10 & 159\\
+49 & 1128 & 852 & 276 & 176 & 0 & 176\\
+50 & 1176 & 876 & 300 & 184 & 10 & 174\\
+51 & 1225 & 925 & 300 & 192 & 0 & 192\\
+52 & 1275 & 950 & 325 & 200 & 10 & 190\\
+53 & 1326 & 1001 & 325 & 208 & 0 & 208\\
+54 & 1378 & 1027 & 351 & 217 & 11 & 206\\
+55 & 1431 & 1080 & 351 & 225 & 0 & 225\\
+56 & 1485 & 1107 & 378 & 234 & 11 & 223\\
+57 & 1540 & 1162 & 378 & 243 & 0 & 243\\
+58 & 1596 & 1190 & 406 & 252 & 11 & 241\\
+59 & 1653 & 1247 & 406 & 261 & 0 & 261\\
+60 & 1711 & 1276 & 435 & 271 & 12 & 259\\
+\end{longtable}
+\endgroup
+
+\section{アルゴリズムと再現方法}
+SymPy と python-flint を備えた Python で次を実行する：
+\begin{verbatim}
+python compute_symmetric_triples.py --formal-max 60 \
+    --orbit-max 60 --q-order 40
+\end{verbatim}
+\texttt{formal\_matrix}、\texttt{orbit\_expansion}、
+\texttt{eisenstein\_polynomial}、\texttt{structural\_checks} はそれぞれ二項係数による
+関係行列、有理 Fourier 展開、多項式の漸化式、明示的な障害の検査を実装する。
+補足アーカイブには初期範囲と検証範囲の形式的データ、orbit の rank と nullspace、
+多項式 rank、witness の値、および実装検証の記録を含めた。
+低 weight の形式的 parity 列は、形式的商における像の rank であり、
+解析的 parity rank ではない。
+
+解析的な二つの独立検算には約数和の Fourier 公式と Weierstrass の多項式漸化式を使う。
+形式的 witness は行列方程式と直接の二項係数抽出の両方で検査する。
+原典との照合には HST の weight 4 の恒等式と depth 3 の Table 4 を用いる。
+同論文序論の weight 12 の discriminant の表示は再現していない。
+そのためには、本実装が備えていない個々の triple の係数代数が必要になるからである。
+
+添付テンプレートを preamble の出発点として用いた。不完全な title と以前の著者情報を
+置き換え、LuaTeX-ja と Xy-pic 用の LuaTeX 互換パッケージを加えた。
+利用できない任意の未使用 font・装飾 package には条件付きの読込みを施した。
+数学用 macro、定理環境、およびページ寸法は保持した。
+添付 compile log は実際の LuaLaTeX 実行を記録したものであり、互換性の推測ではない。
+英語版と日本語版は同じ節番号構造を用い、E と J の接頭辞で区別する。
+数学的主張と証明は両言語に完全に記載している。
+
+\renewcommand{\refname}{参考文献}
+\begin{thebibliography}{HST26}
+\bibitem[HST26]{j-hst}
+T.~Hara, K.~Sakugawa and K.~Tasaka,
+\emph{Symmetric multiple Eisenstein series},
+\href{https://arxiv.org/abs/2601.13626}{arXiv:2601.13626v1} (2026).
+All numbered citations refer to the v1 PDF.
+
+\bibitem[BT18]{j-bt}
+H.~Bachmann and K.~Tasaka,
+\emph{The double shuffle relations for multiple Eisenstein series},
+Nagoya Math. J. \textbf{230} (2018), 180--212;
+\href{https://arxiv.org/abs/1501.03408}{arXiv:1501.03408}.
+
+\bibitem[HST15]{j-hirose}
+M.~Hirose, N.~Sato and K.~Tasaka,
+\emph{Eisenstein series identities based on partial fraction decomposition},
+Ramanujan J. \textbf{38} (2015), 455--463;
+\href{https://arxiv.org/abs/1402.1585}{arXiv:1402.1585}.
+The product basis cited here is Corollary 2 of arXiv v1.
+
+\bibitem[KZ95]{j-kzqm}
+M.~Kaneko and D.~Zagier,
+\emph{A generalized Jacobi theta function and quasimodular forms},
+in \emph{The Moduli Space of Curves}, Progr. Math. \textbf{129},
+Birkh\"auser, 1995, 165--172.
+\href{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/12quasimodular.pdf}{Author-hosted text}.
+
+\bibitem[GKZ06]{j-gkz}
+H.~Gangl, M.~Kaneko and D.~Zagier,
+\emph{Double zeta values and modular forms},
+in \emph{Automorphic Forms and Zeta Functions}, World Scientific, 2006, 71--106.
+\href{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/35Double_zeta_values.pdf}{Author-hosted text}.
+
+\bibitem[Kan19]{j-kaneko}
+M.~Kaneko, \emph{An introduction to classical and finite multiple zeta values},
+Publ. Math. Besan\c{c}on, Alg\`ebre Th\'eorie Nr. (2019), no.~1, 103--129.
+\href{https://www2.math.kyushu-u.ac.jp/~mkaneko/papers/Lyon_Proc_rev.pdf}{Author-hosted text}.
+
+\bibitem[Mat17]{j-matthes}
+N.~Matthes, \emph{Elliptic double zeta values},
+J. Number Theory \textbf{171} (2017), 227--251;
+\href{https://arxiv.org/abs/1509.08760}{arXiv:1509.08760}.
+
+\bibitem[Bro20]{j-brown}
+F.~Brown, \emph{Depth-graded motivic multiple zeta values},
+\href{https://arxiv.org/abs/1301.3053}{arXiv:1301.3053v2} (2020).
+
+\bibitem[Reu93]{j-reutenauer}
+C.~Reutenauer, \emph{Free Lie Algebras},
+London Mathematical Society Monographs, New Series \textbf{7},
+Clarendon Press, Oxford, 1993.
+
+\bibitem[Anz25]{j-anzawa}
+T.~Anzawa, \emph{A Lie algebra associated with adjoint multiple zeta values},
+\href{https://arxiv.org/abs/2511.03177}{arXiv:2511.03177v2} (2025).
+
+\bibitem[BIM24]{j-bim}
+H.~Bachmann and J.~W.~van Ittersum, with an appendix by N.~Matthes,
+\emph{Formal multiple Eisenstein series and their derivations},
+\href{https://arxiv.org/abs/2312.04124}{arXiv:2312.04124v3} (2024).
+
+\bibitem[Kan25]{j-kanno}
+H.~Kanno, \emph{Shuffle regularization for multiple Eisenstein series of level $N$},
+Ramanujan J. \textbf{67} (2025), article 95.
+\href{https://doi.org/10.1007/s11139-025-01136-0}{doi:10.1007/s11139-025-01136-0}.
+
+\bibitem[BK26]{j-bk}
+H.~Bachmann and H.~Kanno,
+\emph{Relations and Derivatives of Multiple Eisenstein Series},
+\href{https://arxiv.org/abs/2602.08176}{arXiv:2602.08176v1} (2026).
+
+\bibitem[BY26]{j-by}
+H.~Bachmann and J.~Yu,
+\emph{Schur Eisenstein series and Schur MacMahon series},
+\href{https://arxiv.org/abs/2607.27702}{arXiv:2607.27702v1} (2026).
+
+\bibitem[BR26]{j-br}
+H.~Bachmann and Risan,
+\emph{Formal finite multiple zeta values},
+\href{https://arxiv.org/abs/2608.15480}{arXiv:2608.15480} (2026).
+Consulted only for the overlap audit.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,2129 @@
+\documentclass[12pt]{amsart}
+% Added for native LuaLaTeX Japanese typesetting.
+\usepackage{luatexja-fontspec}
+\usepackage{luatex85} % Legacy PDF primitives required by the template's Xy-pic.
+\setmainjfont[BoldFont=IPAexGothic,ItalicFont=IPAexMincho,
+ BoldItalicFont=IPAexGothic]{IPAexMincho}
+\setsansjfont[BoldFont=IPAexGothic,ItalicFont=IPAexGothic,
+ BoldItalicFont=IPAexGothic]{IPAexGothic}
+
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\usepackage{dsfont}
+\usepackage{bbm}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+% Research-specific additions; the original template macros are retained.
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jprop}[thm]{命題}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jcor}[thm]{系}
+\hypersetup{pdftitle={Minimal signless Laplacian coefficient vectors of cacti},
+ pdfauthor={chatGPT 6Astra},unicode=true}
+\providecommand{\theHthm}{}
+\renewcommand{\theHthm}{en.\thesection.\arabic{thm}}
+\renewcommand{\theHsection}{en.\arabic{section}}
+\renewcommand{\theHequation}{en.\thesection.\arabic{equation}}
+\setlength{\emergencystretch}{2em}
+\title[Minimal signless Laplacian coefficients of cacti]
+{Minimal signless Laplacian coefficient vectors of cacti and sharp incidence
+energy in the even-cycle class}
+\author{chatGPT 6Astra}
+\date{10 September 2026, version 0.01}
+\subjclass[2020]{Primary 05C50; Secondary 05C35, 05C70}
+\keywords{cactus graph, signless Laplacian coefficients, incidence energy,
+coefficientwise order, principal minors, subdivision matchings}
+\bibliographystyle{alpha}
+\begin{document}
+\raggedbottom
+\begin{abstract}
+We give a self-contained classification of the coefficientwise minimal elements
+of the signless Laplacian characteristic polynomial among connected simple
+cacti with prescribed order and size. Every minimal graph is a bouquet of
+triangles, squares, and pendant edges. There are at most four minimal graphs;
+the admissible numbers of squares are given by an explicit table, with changes
+at cyclomatic numbers $4$, $6$, and $9$. The proof uses a positive
+principal-minor expansion for concentrating blocks, a parity-preserving
+cycle-shortening identity, and two polynomial induction certificates.
+We also determine the unique incidence-energy minimizer in every fixed-parity
+class, in particular in the entire class of bipartite cacti, and give its
+spectrum explicitly. Exact enumeration covers all $121\,167$ cacti of orders
+$1$ through $13$. The remaining incidence-energy comparison between the
+incomparable minimal graphs in the unrestricted class is not resolved here.
+Priority is not claimed: the original texts of the two requested anchor papers
+could not be obtained, so the historical open-problem statement and a complete
+novelty audit remain unverified.
+\end{abstract}
+\maketitle
+\tableofcontents
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+
+\section{Results and scope}
+All graphs in this paper are finite, simple, undirected, and connected.
+A cactus is a graph in which every edge belongs to at most one cycle.
+Put $n=|V(G)|$, $m=|E(G)|$, and $r=m-n+1$. Write
+\[
+ Q(G)=D(G)+A(G),\qquad
+ \det(xI-Q(G))=\sum_{k=0}^n(-1)^k\phi_k(G)x^{n-k}.
+\]
+We order graphs of the same order by $G\preceq_Q H$ if
+$\phi_k(G)\leq\phi_k(H)$ for every $k$. The word \emph{minimal} means
+Pareto minimal, whereas a \emph{least} graph is below every graph in the class.
+These notions are different.
+
+For $0\le b\le\min(r,n-2r-1)$, let $B_{n,r,b}$ be the graph obtained by
+identifying one vertex from each of $r-b$ triangles and $b$ squares, and
+attaching $n-2r-b-1$ pendant edges at that common vertex. All these
+identifications use otherwise disjoint vertex sets.
+
+\begin{thm}[Complete coefficient frontier]\label{en:frontier}
+Suppose $r\ge1$ and $n\ge2r+1$. Define $s=n-2r-1$ and
+\[
+ \mathcal I_r=
+ \begin{cases}
+ \{0,1,\ldots,r\},&1\le r\le3,\\
+ \{0,r-2,r-1,r\},&4\le r\le5,\\
+ \{0,r-1,r\},&6\le r\le8,\\
+ \{0,r\},&r\ge9.
+ \end{cases}
+\]
+The minimal graphs in $\mathcal C_{n,m}$, up to isomorphism, are exactly
+\[
+ \bigl\{B_{n,r,b}:b\in\mathcal I_r,\ b\le s\bigr\}.
+\]
+Their coefficient vectors are pairwise distinct and incomparable. A graph
+in this list is determined up to isomorphism within $\mathcal C_{n,m}$ by
+its entire coefficient vector. For $r=0$, the unique least graph is the star
+$K_{1,n-1}$, with the convention $K_{1,0}=K_1$.
+\end{thm}
+
+This is a classification for every admissible pair $(n,m)$, rather than an
+extrapolation from small orders. The proof is in Sections 2--5. Section 6
+settles incidence energy for fixed numbers of odd and even cycles; its
+all-even specialization is the first fallback problem in the research brief.
+For the unrestricted energy problem, Section 6 gives an exact reduction to
+at most four explicitly specified graphs, but does not decide all comparisons
+as functions of $n$ and $r$.
+
+The requested starting point was Wang--Zhong--Zheng \cite{en-wzz}.
+Its bibliographic record was verified, and its treatment of graphs without
+even cycles is described in the introduction of \cite{en-zw}, p.~4216.
+The particular future-problem passage in \cite{en-wzz} was not verified in
+the original text. Accordingly, we do not assert that Theorem
+\ref{en:frontier} is a historically new solution of a verified published
+open problem. The limitations of the source audit are recorded in Section 9.
+
+\section{Conventions and positive rooted polynomials}
+Two cycles in a cactus have at most one common vertex. Conversely, this
+condition implies that every edge lies on at most one cycle. If two cycles
+share a path or at least two vertices, taking consecutive common vertices
+along suitable differing arcs produces a theta subgraph, and one of its
+edges belongs to two cycles. Thus both conventions give the same class.
+The blocks of a cactus are edges and cycles. Its block-cut incidence graph
+is a tree: a cycle in that incidence graph would provide a route outside
+one block between two of its vertices, contradicting maximality of the
+blocks. Counting vertices by successively attaching leaf blocks gives
+\begin{equation}\label{en:count}
+ n=1+t+\sum_{i=1}^r(\ell_i-1),\qquad
+ m=t+\sum_{i=1}^r\ell_i,
+\end{equation}
+where $t$ is the number of bridges and $\ell_i$ are the cycle lengths.
+
+\begin{prop}[Admissible parameters]\label{en:range}
+For $n\ge1$, the class $\mathcal C_{n,m}$ is nonempty exactly when
+$m=n-1+r$ with $0\le r\le\lfloor(n-1)/2\rfloor$.
+The subclass with exactly $a$ odd and $b$ even cycles is nonempty exactly when
+$n\ge1+2a+3b$. For prescribed cycle lengths $\ell_1,\ldots,\ell_r$,
+the condition is $n\ge1+\sum_i(\ell_i-1)$.
+\end{prop}
+\begin{proof}
+The necessary inequalities follow from \eqref{en:count}, using
+$\ell_i\ge3$, or $\ell_i\ge4$ for even cycles. For sufficiency, identify
+one vertex of the required cycles and add the nonnegative number of
+remaining vertices as pendant neighbors of that vertex. For the parity
+condition choose triangles and squares. The construction is simple and
+connected and preserves the prescribed cycle counts. The case $r=0$ is
+the star construction.
+\end{proof}
+
+It is convenient to use the polynomial with positive coefficients
+\begin{equation}\label{en:P}
+ P_G(x)=\det(xI+Q(G))=\sum_{k=0}^n\phi_k(G)x^{n-k}.
+\end{equation}
+For polynomials, $f\ge_c g$ means that $f-g$ has nonnegative coefficients.
+We use $G\prec_Q H$ to mean $G\preceq_Q H$ and inequality in at least
+one coefficient; it does not mean strict inequality in every coefficient.
+
+\begin{lem}[Positivity and bipartiteness]\label{en:positive}
+$Q(G)$ is positive semidefinite. Every proper principal submatrix of
+$Q(G)$ is positive definite. Moreover, $\det Q(G)=0$ precisely when $G$
+is bipartite. If $G$ is bipartite, $Q(G)$ and $L(G)=D(G)-A(G)$ are similar.
+\end{lem}
+\begin{proof}
+For a real vector $z$,
+\[
+ z^{\mathsf T}Q(G)z=\sum_{uv\in E(G)}(z_u+z_v)^2.
+\]
+If a vector on a proper vertex subset is extended by zero, vanishing of
+this sum forces zero at its neighbors, and then at every vertex by
+connectedness. This proves positive definiteness of every nonempty proper
+principal submatrix; the empty determinant is $1$.
+For the full matrix, a kernel vector must satisfy $z_u=-z_v$ across each
+edge. A nonzero such vector exists precisely when a consistent two-coloring
+exists. An odd cycle forces its value, and hence every value, to vanish.
+For a bipartition, let $S$ be diagonal with entries $1$ on one part and
+$-1$ on the other. Then $S^2=I$, $SDS=D$, and $SAS=-A$. Consequently
+$SQS=L$. A cactus with only even cycles admits a two-coloring, by extending
+the coloring successively across its edge and even-cycle blocks.
+\end{proof}
+
+For a rooted graph $(A,u)$ define
+\begin{equation}\label{en:RH}
+ R_A(x)=\det\bigl((xI+Q(A))[V(A)\setminus\{u\}]\bigr),\qquad
+ H_A(x)=P_A(x)-xR_A(x).
+\end{equation}
+The degrees in this principal submatrix are the degrees in $A$; this is
+\emph{not} the signless Laplacian of the vertex-deleted graph.
+
+\begin{lem}[Rooted positivity]\label{en:rooted}
+The polynomials $R_A,H_A$ have nonnegative coefficients. If $A$ is
+connected with $h\ge2$ vertices, $R_A$ has strictly positive coefficients
+in all degrees $0,\ldots,h-1$, and $H_A$ has strictly positive coefficients
+in all degrees $1,\ldots,h-1$. Its leading coefficient is $d_A(u)$.
+For $A=K_1$, $R_A=1$ and $H_A=0$.
+\end{lem}
+\begin{proof}
+Expanding a determinant in the diagonal variable $x$ gives
+\[
+ H_A(x)=\sum_{\substack{U\subseteq V(A)\\u\in U}}
+       \det Q(A)[U],x^{h-|U|}.
+\]
+Every term is nonnegative by Lemma \ref{en:positive}. All nonempty
+proper principal minors are positive, which gives the asserted positive
+coefficients. The term $U=\{u\}$ is $d_A(u)x^{h-1}$.
+The corresponding expansion of $R_A$ gives its assertions.
+\end{proof}
+
+\section{Concentrating blocks without changing cycle lengths}
+Let $B$ be a connected vertex-transitive graph. At distinct vertices
+$v_1,\ldots,v_h$ of $B$, attach rooted connected graphs
+$(A_1,u_1),\ldots,(A_h,u_h)$ by identifying $u_i$ with $v_i$.
+All other vertices are disjoint. Call the result $G$. Let $G_\star$ be
+obtained by attaching all the same rooted graphs at one vertex of $B$.
+Write $M=xI+Q(B)$ and
+$R_i=R_{A_i}$, $H_i=H_{A_i}$.
+
+\begin{lem}[Exact concentration identity]\label{en:concentrate}
+With these hypotheses,
+\begin{equation}\label{en:concentration}
+ P_G-P_{G_\star}=
+ \sum_{\substack{I\subseteq\{1,\ldots,h\}\\|I|\ge2}}
+ \det M[V(B)\setminus\{v_i:i\in I\}]
+ \prod_{i\in I}H_i\prod_{j\notin I}R_j\ \ge_c0.
+\end{equation}
+If at least two $A_i$ are nontrivial, every coefficient of $x^j$ for
+$2\le j\le |V(G)|-2$ on the right is strictly positive.
+In particular the decrease in $\phi_2$ is
+\[
+ \phi_2(G)-\phi_2(G_\star)
+   =\sum_{i<j}d_{A_i}(u_i)d_{A_j}(u_j)>0.
+\]
+\end{lem}
+\begin{proof}
+For $x>0$, eliminate the nonroot vertices of each $A_i$ by a Schur
+complement. The determinant acquires a factor $R_i$ and the diagonal
+entry at $v_i$ acquires $H_i/R_i$. Thus
+\[
+ P_G=\Bigl(\prod_iR_i\Bigr)
+ \det\left(M+\sum_i\frac{H_i}{R_i}E_{v_iv_i}\right).
+\]
+Expanding multilinearly in these diagonal additions gives one term for
+each subset $I$. The empty term is $P_B\prod R_i$. The singleton term for
+$i$ is the principal cofactor at $v_i$ times $H_i\prod_{j\ne i}R_j$.
+Vertex transitivity makes these principal cofactors identical. For
+$G_\star$, only the empty and singleton terms occur, since a determinant
+is affine in a single diagonal entry. Subtraction proves
+\eqref{en:concentration} for $x>0$, hence as a polynomial identity.
+Each remaining factor is a principal-minor polynomial of a positive
+semidefinite matrix, or a polynomial in Lemma \ref{en:rooted}.
+For any two nontrivial attachments, the term $I=\{i,j\}$ has positive
+coefficients in degrees $2$ through $n-2$: multiply the full intervals
+of positive coefficients supplied by Lemma \ref{en:rooted} and the
+positive definite proper principal submatrix of $Q(B)$.
+Only terms with $|I|=2$ contribute in degree $n-2$, and their leading
+coefficients are $d_{A_i}(u_i)d_{A_j}(u_j)$.
+\end{proof}
+
+\begin{cor}[Prescribed lengths]\label{en:lengths}
+Fix $n$ and a cycle-length multiset $(\ell_1,\ldots,\ell_r)$ satisfying
+Proposition \ref{en:range}. The unique least cactus is the bouquet of
+these cycles with $t=n-1-\sum_i(\ell_i-1)$ pendant edges at the hub.
+Every other graph has strictly larger $\phi_k$ for $2\le k\le n-2$,
+whenever this index interval is nonempty.
+\end{cor}
+\begin{proof}
+If a cactus has at least two cut vertices, the path between two such
+vertices in its block-cut tree contains a block incident with at least
+two cut vertices. This block is either an edge or a cycle, and is
+vertex transitive. At each of its vertices, combine all off-block
+components with that vertex to form one rooted attachment. Apply
+Lemma \ref{en:concentrate}, choosing an existing cut vertex as the new
+attachment vertex. All other cut vertices on this block disappear;
+off-block cut vertices retain their status, and no new cut vertex is
+created. The number of cut vertices strictly decreases. The graph
+remains a cactus with the same blocks, order, and size.
+Iteration terminates at a graph with at most one cut vertex. In a
+connected block-cut tree with at most one cut vertex, every block meets
+that vertex, unless there is just one block. Hence the terminal graph
+is exactly the stated bouquet. Any nontrivial iteration is strict in
+$\phi_2$ and in all the stated intermediate coefficients. This also
+proves uniqueness and covers trees. Graphs with zero or one block are
+already in the required form.
+\end{proof}
+
+\section{Parity-preserving shortening}
+Let $D_{-1}=0$, $D_0=1$, and
+\begin{equation}\label{en:D}
+ D_j=(x+2)D_{j-1}-D_{j-2}\quad(j\ge1).
+\end{equation}
+This is the determinant of the $j\times j$ tridiagonal matrix with
+diagonal $x+2$ and off-diagonal $1$. Put $E_j=D_j-D_{j-1}$.
+Then $E_0=1$ and $E_j=xD_{j-1}+E_{j-1}$, while $D_j=D_{j-1}+E_j$.
+These two positive recurrences prove that both polynomials have strictly
+positive coefficients in every degree from $0$ to $j$.
+
+For a cycle rooted at any vertex, direct determinant expansion gives
+\begin{equation}\label{en:cycle}
+ R_{C_\ell}=D_{\ell-1},\qquad
+ P_{C_\ell}=xD_{\ell-1}
+       +2(D_{\ell-1}-D_{\ell-2})+2(-1)^{\ell-1}.
+\end{equation}
+Indeed, the cycle determinant equals
+$(x+2)D_{\ell-1}-2D_{\ell-2}+2(-1)^{\ell-1}$:
+the two oriented full-cycle permutations supply the last term, and
+the two ways to use a root edge as a transposition supply the two path
+minors. Formula \eqref{en:cycle} follows by collecting the diagonal term.
+
+\begin{lem}[Two-vertex shortening]\label{en:shorten}
+For $\ell\ge5$, replace a rooted $C_\ell$ by a rooted $C_{\ell-2}$
+with two new pendant edges at its root. Denote the new rooted graph by
+$T_\ell$. Both graphs have $\ell$ vertices and $\ell$ edges. With
+$\epsilon=(-1)^{\ell-1}$,
+\begin{align}
+ R_{C_\ell}-R_{T_\ell}
+  &=xD_{\ell-3}+(x+2)(D_{\ell-3}-D_{\ell-4}),\label{en:DR}\\
+ P_{C_\ell}-P_{T_\ell}
+  &=x\{2D_{\ell-3}+xD_{\ell-4}-2\epsilon(x+2)\}.\label{en:DP}
+\end{align}
+Both differences are coefficientwise nonnegative. The second has strictly
+positive coefficients in every degree $1,\ldots,\ell-2$.
+The replacement remains coefficientwise decreasing after attachment
+at the root to any connected rooted graph.
+\end{lem}
+\begin{proof}
+A pendant edge has $R=x+1$, $H=x$. Two such attachments give
+\[
+ R_{T_\ell}=(x+1)^2D_{\ell-3},\qquad
+ P_{T_\ell}=(x+1)^2P_{C_{\ell-2}}
+                      +2x(x+1)D_{\ell-3}.
+\]
+Substitute \eqref{en:cycle} and use \eqref{en:D} twice to obtain
+\eqref{en:DR}--\eqref{en:DP}. The first right-hand side is positive
+by the recurrences for $D,E$. If $\epsilon=-1$, positivity of the
+braces in \eqref{en:DP} follows term by term. If $\epsilon=1$, use
+$D_{\ell-3}\ge_c D_2=x^2+4x+3$ and
+$2D_2-2(x+2)=2x^2+6x+2$. This also proves positivity throughout the
+asserted degree interval.
+For rooted coalescence $A\vee T$, Schur elimination gives
+\begin{equation}\label{en:coalesce}
+ P_{A\vee T}=R_A P_T+H_A R_T.
+\end{equation}
+Its difference under the replacement is therefore
+$R_A\Delta P+H_A\Delta R\ge_c0$. Since $R_A$ has positive coefficients
+in all its degrees, this difference is strictly positive in degrees
+$1$ through $|V(A\vee C_\ell)|-2$. This proves strictness in
+$\phi_2,\ldots,\phi_{n-1}$ as well.
+\end{proof}
+
+\begin{thm}[Fixed parity]\label{en:parity}
+Fix $a,b\ge0$ and $n\ge1+2a+3b$. Among cacti with $a$ odd and $b$
+even cycles, the unique least graph is
+$B_{n,a+b,b}$. Every nonisomorphic graph has strictly larger $\phi_2$
+and, more generally, $\phi_k$ for $2\le k\le n-2$.
+\end{thm}
+\begin{proof}
+First apply Corollary \ref{en:lengths}. Then shorten every odd cycle
+to a triangle and every even cycle to a square using Lemma
+\ref{en:shorten}. Both parity counts remain fixed. The liberated vertices
+are pendant neighbors of the common hub. This ends at $B_{n,a+b,b}$.
+If the original graph was different, at least one concentration or
+shortening step was nontrivial and strict in $\phi_2$. The stronger
+intermediate strictness follows from the two lemmas. When the class
+contains only one graph, the strict assertion is vacuous.
+\end{proof}
+
+\section{Proof of the complete frontier}
+Write $z=x+1$ and introduce the following rooted polynomials:
+\begin{align*}
+ R_3&=(x+1)(x+3),&H_3&=2(x+1)(x+2),\\
+ R_4&=(x+2)(x^2+4x+2),&H_4&=2x(x+2)(x+3).
+\end{align*}
+Let $U$ be a triangle with one pendant edge at the root and let $V=C_4$.
+Set
+\begin{align}
+ u=R_U&=(x+1)^2(x+3),&v=R_V&=(x+2)(x^2+4x+2),\nonumber\\
+ h=H_U&=(x+1)(3x^2+9x+4),&k=H_V&=2x(x+2)(x+3),\label{en:uv}\\
+ f=v-u&=x^2+3x+1,&P_V-P_U&=x^2-4.\nonumber
+\end{align}
+All of $u,v,h,k,f$ are coefficientwise nonnegative.
+
+\begin{lem}[A single square exchange]\label{en:exchange}
+Suppose the rooted context $A$ is a bouquet containing $c$ triangles
+and any number of squares and pendant edges. Then
+\[
+ H_A\ge_c\frac{4c}{3}R_A.
+\]
+If $c\ge3$, replacing an additional rooted $U$ by $V$ increases every
+coefficient weakly, and increases $\phi_2$ strictly.
+\end{lem}
+\begin{proof}
+For a rooted bouquet, $R_A$ is the product of the petal $R$ polynomials
+and $H_A$ is the sum of one petal $H$ times all the other $R$ factors.
+For a triangle,
+$H_3-\frac43R_3=\frac23x(x+1)\ge_c0$.
+The other petal terms are nonnegative, proving the first assertion.
+Using \eqref{en:coalesce} and \eqref{en:uv}, the difference is
+\[
+ R_A(x^2-4)+H_Af
+ \ \ge_c R_A\left(x^2-4+\frac{4c}{3}f\right)\ge_c0
+\]
+when $c\ge3$. Strictness in $\phi_2$ also follows from the degree
+calculation below, equation \eqref{en:phi2difference}.
+\end{proof}
+
+For $c,d\ge1$, put $\alpha=4c/3$ and define
+\begin{equation}\label{en:Fcd}
+ F_{c,d}=(x+\alpha)(v^d-u^d)
+                +d(kv^{d-1}-hu^{d-1}).
+\end{equation}
+
+\begin{lem}[Two larger exchanges]\label{en:large}
+$F_{2,d}\ge_c0$ for every $d\ge4$, and $F_{1,d}\ge_c0$ for every
+$d\ge8$. Consequently, in a context with $c$ triangles and arbitrary
+pendant edges, replacing $d$ copies of $U$ by $d$ copies of $V$ is
+coefficientwise increasing for $(c,d)=(2,d\ge4)$ or $(1,d\ge8)$.
+\end{lem}
+\begin{proof}
+Direct multiplication gives the identity
+\begin{align}
+ F_{c,d+1}={}&vF_{c,d}+k(v^d-u^d)\nonumber\\
+ &+u^{d-1}\{u(x^2-4+\alpha f)+dhf\}.\label{en:induction}
+\end{align}
+Here $v^d-u^d=f\sum_{j=0}^{d-1}v^{d-1-j}u^j\ge_c0$. For
+$\alpha\ge4/3$ and $d\ge2$, the expression in braces is bounded below
+coefficientwise by
+\begin{equation}\label{en:Kpositive}
+ u(x^2-4+\tfrac43f)+2hf
+   =\tfrac{x}{3}(130+395x+413x^2+173x^3+25x^4)\ge_c0.
+\end{equation}
+Appendix A displays the integer coefficients of $3F_{2,4}$ and
+$3F_{1,8}$; every coefficient is positive. Those are explicit polynomial
+identities obtained from \eqref{en:uv}--\eqref{en:Fcd}, not numerical
+eigenvalue comparisons. Equation \eqref{en:induction} proves both
+assertions for all $d$ by induction.
+For the consequence, coalesce the $d$ petals with $A$. The difference is
+\[
+ R_A F_{c,d}+(H_A-\alpha R_A)(v^d-u^d)\ge_c0.
+\]
+This follows by writing the petal bouquet polynomial as
+$xR^d+dHR^{d-1}$ and using Lemma \ref{en:exchange}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{en:frontier}]
+Theorem \ref{en:parity} shows that every minimal graph is one of
+$B_{n,r,b}$ with $0\le b\le\min(r,s)$. Each bouquet has hub degree
+$n-1-b$, $2r+b$ other vertices of degree $2$, and $s-b$ leaves.
+The identity
+\[
+ \phi_2=\frac{(\tr Q)^2-\tr(Q^2)}2
+       =2m^2-m-\frac12\sum_vd(v)^2
+\]
+therefore gives, for $0\le a<b\le\min(r,s)$,
+\begin{equation}\label{en:phi2difference}
+ \phi_2(B_{n,r,b})-\phi_2(B_{n,r,a})
+       =\frac{(b-a)(2n-5-a-b)}2>0.
+\end{equation}
+Thus a bouquet with more squares cannot dominate one with fewer squares.
+At $x=0$, its determinant is
+\begin{equation}\label{en:det}
+ d_b:=\det Q(B_{n,r,b})=
+ \begin{cases}4(r-b)3^{r-b-1}4^b,&b<r,\\0,&b=r.
+ \end{cases}
+\end{equation}
+To see this, multiply the rooted constants $R_3(0)=3$, $R_4(0)=4$,
+$R_{K_2}(0)=1$, and use $H_3(0)/R_3(0)=4/3$, while the other petal
+$H$ constants vanish.
+
+First eliminate all $1\le b\le r-3$. Each consecutive exchange from
+$b-1$ to $b$ has $r-b\ge3$ triangles in its context; Lemma
+\ref{en:exchange} shows that $B_{n,r,0}\prec_Q B_{n,r,b}$.
+Every intermediate bouquet is admissible because its number of squares
+does not exceed the final $b$.
+
+Next, if $b=r-2$ and $r\ge6$, apply Lemma \ref{en:large} with
+$c=2$ and $d=r-2\ge4$. The context has these two triangles and
+$s-d$ pendant edges. Before the exchange it has, in total, $r$ triangles
+and $s$ leaves; afterwards it is $B_{n,r,r-2}$. Thus this graph is
+dominated by $B_{n,r,0}$. For $b=r-1$ and $r\ge9$, use $c=1$,
+$d=r-1\ge8$ in exactly the same identity, with $s-d\ge0$ leaves.
+All the exclusions are strict by \eqref{en:phi2difference}.
+
+It remains to prove that no graph in the displayed list can be eliminated.
+For $r=2,\ldots,8$,
+\[
+ \frac{d_{r-1}}{d_0}=\frac1r\left(\frac43\right)^{r-1}<1.
+\]
+For $r=3,4,5$, the ratios $d_{r-2}/d_0$ are respectively
+$8/9,8/9,128/135$, also less than $1$.
+For the first inequality, the successive ratio of these ratios is
+$4r/(3r+3)$; checking $r=2,3,4,8$, with the last value
+$2048/2187<1$, proves every indicated case. Among the last three
+indices, the determinants strictly decrease as $b$ increases:
+$d_{r-1}/d_{r-2}=2/3$, and $d_r=0$. When $r=1$, $d_0=4>d_1=0$.
+Together with \eqref{en:phi2difference}, these facts prove pairwise
+incomparability of all the retained bouquets. The eliminated bouquets
+are dominated by $B_{n,r,0}$, so none can dominate a retained one.
+Any nonbouquet is strictly dominated within its parity class. This
+proves minimality, completeness, and the asserted spectral rigidity.
+For $r=0$ apply Corollary \ref{en:lengths}.
+\end{proof}
+
+\begin{cor}[When a least graph exists]\label{en:least}
+For $r\ge1$, there is no least graph exactly in the following ranges:
+\[
+ \begin{array}{c|c}
+ r&\text{range with no least graph}\\\hline
+ 1\le r\le3&n\ge2r+2\\
+ 4\le r\le5&n\ge3r-1\\
+ 6\le r\le8&n\ge3r\\
+ r\ge9&n\ge3r+1.
+ \end{array}
+\]
+For every other admissible pair the unique least graph is $B_{n,r,0}$.
+\end{cor}
+\begin{proof}
+The first positive index of $\mathcal I_r$ is respectively
+$1,r-2,r-1,r$. It is admissible precisely when it is at most $s$.
+The explicit domination proof above gives a least graph when only
+index $0$ remains; two incomparable minimal elements preclude a least graph.
+\end{proof}
+
+\section{Incidence energy and equality}
+Let $q_1,\ldots,q_n$ be the eigenvalues of $Q(G)$ and put
+$IE(G)=\sum_i\sqrt{q_i}$. If $N$ is the unsigned vertex-edge incidence
+matrix, then $NN^{\mathsf T}=Q(G)$, so this is also the sum of the
+singular values of $N$.
+
+\begin{lem}[Strict energy monotonicity]\label{en:energy}
+For graphs of the same order, $G\preceq_Q H$ implies $IE(G)\le IE(H)$.
+If one coefficient inequality is strict, the energy inequality is strict.
+\end{lem}
+\begin{proof}
+For $q\ge0$, integration by parts after the substitution $u=tq$ gives
+\[
+ \int_0^\infty\frac{\log(1+tq)}{t^{3/2}}\,dt=2\pi\sqrt q.
+\]
+The boundary terms vanish: the logarithm is $O(t)$ at zero and
+$O(\log t)$ at infinity. Summing this finite collection of integrals yields
+\begin{equation}\label{en:IEint}
+ IE(G)=\frac1{2\pi}\int_0^\infty
+ \log\left(\sum_{k=0}^n\phi_k(G)t^k\right)\frac{dt}{t^{3/2}}.
+\end{equation}
+The integrand is monotone in each coefficient. If one difference is
+positive, the polynomial difference is positive for every $t>0$, so the
+logarithmic difference has strictly positive integral. This also checks
+the direction of the energy inequality without an appeal to a citation.
+\end{proof}
+
+\begin{thm}[All-even sharp minimum and its spectrum]\label{en:evenenergy}
+Let $r\ge1$ and $n\ge3r+1$, and set $t=n-3r-1$. Among all bipartite
+cacti with $n$ vertices and $r$ cycles, the unique least graph and the
+unique incidence-energy minimizer are $B_{n,r,r}$. Equality in the energy
+bound holds exactly for this graph up to isomorphism.
+Put $\eta=\sqrt{2+\sqrt2}+\sqrt{2-\sqrt2}$.
+If $t\ge1$, let $\lambda_1,\lambda_2,\lambda_3$ be the positive roots,
+with multiplicities, of
+\begin{equation}\label{en:cubic}
+ \lambda^3-(n-r+4)\lambda^2+(4n-4r+2)\lambda-2n=0.
+\end{equation}
+Then the minimum energy is exactly
+\begin{equation}\label{en:evenIE}
+ t-1+r\sqrt2+(r-1)\eta+\sum_{j=1}^3\sqrt{\lambda_j}.
+\end{equation}
+If $t=0$, replace the last formula by
+\begin{equation}\label{en:noleafIE}
+ r\sqrt2+(r-1)\eta+
+ \sqrt{r+2+\sqrt{r^2-2r+2}}+
+ \sqrt{r+2-\sqrt{r^2-2r+2}}.
+\end{equation}
+For $r=0$, the minimum is $n-2+\sqrt n$ for $n\ge2$, and $0$ for $n=1$.
+\end{thm}
+\begin{proof}
+The least-graph assertion is Theorem \ref{en:parity} with $a=0,b=r$;
+Lemma \ref{en:energy} and strictness in $\phi_2$ prove energy rigidity.
+Write $F=x^2+4x+2$. The rooted-petal formula gives, for $t\ge1$,
+\begin{align}
+ P_{B_{n,r,r}}(x)
+ &=x(x+1)^{t-1}(x+2)^rF^{r-1}C(x),\label{en:factor}\\
+ C(x)&=(x+t+1)F+2r(x+1)(x+3)\nonumber\\
+ &=x^3+(n-r+4)x^2+(4n-4r+2)x+2n.\nonumber
+\end{align}
+This follows by summing the hub term $x$, the $t$ contributions
+$x/(x+1)$, and the $r$ contributions $2x(x+3)/F$, and then multiplying
+by $(x+1)^t((x+2)F)^r$.
+The spectrum therefore consists of $0$, $1$ with multiplicity $t-1$,
+$2$ with multiplicity $r$, $2\pm\sqrt2$ each with multiplicity $r-1$,
+and the three roots in \eqref{en:cubic}. They are positive because the
+matrix is positive semidefinite and $C(0)=2n>0$.
+For $t=0$, $n=3r+1$ and $C(x)$ has a factor $x+1$; cancellation gives
+\[
+ P_{B_{3r+1,r,r}}
+ =x(x+2)^rF^{r-1}\{x^2+(2r+4)x+6r+2\}.
+\]
+This gives \eqref{en:noleafIE}, including $C_4$ when $r=1$.
+For a star with $n\ge2$, the spectrum is $0,1^{(n-2)},n$, giving the
+last assertion.
+\end{proof}
+
+For a nonminimal all-even cactus, every coefficient $\phi_k$ with
+$2\le k\le n-2$ is strictly larger than that of $B_{n,r,r}$.
+The coefficients $\phi_0,\phi_1,\phi_n$ always agree.
+Also $\phi_{n-1}=n\prod_i\ell_i$: choose one deleted edge in each
+cycle to count spanning trees and use the forest formula in Section 7.
+Consequently $\phi_{n-1}$ agrees exactly when all cycles already have
+length $4$, including the vacuous condition for trees.
+
+\begin{cor}[Prescribed parity or lengths]\label{en:fixedenergy}
+The bouquets in Theorem \ref{en:parity} and Corollary \ref{en:lengths}
+are also the unique incidence-energy minimizers in their respective
+classes. In particular, the assertion applies to every cactus class with
+exactly one even cycle and fixed $(n,m)$.
+\end{cor}
+\begin{proof}
+Apply Lemma \ref{en:energy} to the respective least-graph theorem.
+Fixed $n,m$ and exactly one even cycle fix the number $r-1$ of odd cycles.
+\end{proof}
+
+For completeness, all candidates in the unrestricted energy problem have
+explicit polynomials. If $a=r-b$ and $t=n-2r-b-1$, then
+\begin{equation}\label{en:generalP}
+ P_{B_{n,r,b}}=
+ (x+1)^tR_3^aR_4^b
+ \left(x+\frac{tx}{x+1}+\frac{aH_3}{R_3}
+                         +\frac{bH_4}{R_4}\right).
+\end{equation}
+Terms with zero multiplicity are omitted. All denominators cancel.
+In particular,
+\[
+ P_{B_{n,r,0}}=(x+1)^{n-r-2}(x+3)^{r-1}
+             \{x^3+(n+3)x^2+3nx+4r\}.
+\]
+Theorem \ref{en:frontier} and Lemma \ref{en:energy} reduce the unrestricted
+minimum to the least energy among the at most four listed bouquets, and
+exclude every other graph as an equality case. We do not claim a complete
+parameter classification of which of these incomparable bouquets wins or
+whether ties can occur for arbitrary parameters. The sharp all-even and
+fixed-parity conclusions above do not require that unresolved comparison.
+
+\section{TU-subgraphs and subdivision matchings}
+\begin{prop}[TU formula, with its normalization]\label{en:TU}
+A spanning TU-subgraph has components which are trees or unicyclic
+graphs with an odd cycle. If it has $c$ odd unicyclic components and tree
+components $T_1,\ldots,T_j$, its weight is
+$4^c\prod_i|V(T_i)|$. Then $\phi_k(G)$ is the sum of these weights over
+TU-subgraphs with $k$ edges. Isolated vertices are tree components of
+weight $1$.
+\end{prop}
+\begin{proof}
+Let $N$ be the unsigned incidence matrix. Expansion in principal minors
+and the Cauchy--Binet identity yield
+\[
+ \phi_k(G)=\sum_{|I|=|J|=k}\det N[I,J]^2.
+\]
+Fix the selected edge set $J$. A nonzero square determinant must select
+as many rows as columns in each edge component. A component with more
+edges than vertices gives zero. In a tree, exactly one row is omitted;
+each of the $|V(T)|$ choices has determinant $\pm1$, by successive leaf
+elimination. In a unicyclic component all rows must be selected. Removing
+tree leaves reduces its determinant to that of an unsigned cycle incidence
+matrix, which is zero for an even cycle and $\pm2$ for an odd cycle.
+The latter assertion follows from the two possible cycle permutations,
+whose signs coincide precisely for odd length. Squaring and multiplying
+over components gives the claimed weight. With oriented incidence instead,
+every cycle determinant vanishes, giving the Laplacian spanning-forest
+formula. This independently proves the normalization used here; compare
+\cite{en-crs} and the checked restatement \cite[Lemma 2.1, p.~4217]{en-zw}.
+\end{proof}
+
+Let $S(G)$ be the subdivision graph, and let $m_j(H)$ count its
+$j$-edge matchings, with $m_0=1$ and $m_j=0$ for $j<0$.
+
+\begin{prop}[Cycle-corrected matching formula]\label{en:matching}
+Let $\mathscr D$ run through all sets of pairwise vertex-disjoint cycles
+of $G$, including the empty set, and put $\ell(\mathscr D)=\sum_{C\in\mathscr D}|C|$.
+Then
+\begin{equation}\label{en:matchingformula}
+ \phi_k(G)=\sum_{\mathscr D}
+ 2^{|\mathscr D|}(-1)^{\ell(\mathscr D)+|\mathscr D|}
+ m_{k-\ell(\mathscr D)}\bigl(S(G)-V(S(\mathscr D))\bigr).
+\end{equation}
+Deletion includes both the original vertices on each selected cycle and
+the subdivision vertices of its edges.
+\end{prop}
+\begin{proof}
+In the bipartite ordering of $S(G)$ its adjacency matrix is
+$\left(\begin{smallmatrix}0&N\\N^{\mathsf T}&0\end{smallmatrix}\right)$.
+Block elimination for a nonzero indeterminate $y$ gives
+\[
+ \det(yI-A(S(G)))=y^{m-n}\det(y^2I-Q(G)).
+\]
+This is a Laurent-polynomial identity, valid also for trees where
+$m-n=-1$; its right side is nevertheless a polynomial. Expand the left
+determinant by permutations. Nontrivial permutation components are
+transpositions along matching edges and the two orientations of each
+cycle. A selected original cycle of length $\ell$ becomes a cycle of
+length $2\ell$ in $S(G)$ and supplies a factor $-2$, while every matching
+edge supplies $-1$. A term contributing to $y^{n+m-2k}$ with cycle set
+$\mathscr D$ thus has sign
+$(-1)^{k-\ell(\mathscr D)+|\mathscr D|}$ and factor $2^{|\mathscr D|}$.
+Divide by the coefficient sign $(-1)^k$ to obtain
+\eqref{en:matchingformula}. Vertex disjointness and the specified deletion
+are exactly what is required for the remaining transpositions.
+\end{proof}
+
+For $C_4$, the four-edge matchings of $S(C_4)=C_8$ number $2$ and the
+cycle correction is $-2$, giving $\phi_4=0$. For $C_3$ the correction is
+$+2$ and gives $\phi_3=4$. Thus raw subdivision matching counts do not
+equal signless Laplacian coefficients even in the all-even class. A
+matching injection alone does not control the alternating cycle terms.
+The principal-minor method in Sections 3--5 supplies positive differences
+directly, avoiding that cancellation problem. Formula
+\eqref{en:matchingformula} was independently derived here. Du's requested
+paper \cite{en-du} concerns this connection, but its exact formula and
+theorem number were not checked against the unavailable original text.
+
+\section{Exact enumeration and counterexample checks}
+The generator recursively attaches a leaf edge or a leaf cycle at every
+vertex orbit of a smaller cactus. Every nontrivial cactus has a leaf block,
+so deletion of that block proves completeness inductively. A rooted
+canonical code records a sorted list of incident child blocks. An edge
+records its child's code; a cycle records the cyclic sequence of child
+codes starting after the root, minimized over reversal. The unrooted code
+is the minimum over choices of root vertex. Induction on the block tree
+shows that equality of codes is equivalent to graph isomorphism. In
+particular, cyclic order is retained; a block-incidence tree alone would
+not be an adequate isomorphism certificate.
+
+\begin{center}
+\begin{tabular}{r|rrrrrrr}
+$n$&1&2&3&4&5&6&7\\\hline
+count&1&1&2&4&9&23&63\\[3pt]
+$n$&8&9&10&11&12&13&total\\\hline
+count&188&596&1979&6804&24118&87379&121167
+\end{tabular}
+\end{center}
+
+Integer powers of $Q$ and Newton identities compute every characteristic
+polynomial exactly:
+\[
+ e_0=1,\qquad
+ k e_k=\sum_{j=1}^k(-1)^{j-1}e_{k-j}\tr(Q^j).
+\]
+Every division is checked to be exact. As independent checks, all 291
+graphs through order 8 were recomputed by SymPy's exact characteristic
+polynomial routine, all 103 graphs through order 7 were checked by
+enumerating every edge subset in the TU formula, and the generator was
+compared with NetworkX's full graph atlas through order 7.
+There were 242,334 comparisons against the prescribed-length and
+prescribed-parity bouquets, with no counterexample. The shortening
+identities were checked symbolically for $5\le\ell\le50$.
+The frontier table was additionally checked in 930 bouquet parameter
+classes $1\le r\le30$, $0\le s\le30$. The proofs in Sections 3--5,
+including the two induction bases, establish the statements for all
+parameters independently of these searches.
+
+For every graph the data record its edges, all coefficients, cycle lengths,
+odd/even counts, degrees, blocks, block-cut incidences, diameter, and leaves.
+Floating-point energy is used only to screen candidates. For each of the
+49 order--cycle-count classes through order 13, exact rational isolation of
+the roots of the integer characteristic polynomial and rational square-root
+bounds certify the winning energy among the Pareto candidates. The bounds
+have more than 30 decimal places of separation precision and are stored as
+rational numbers, not merely decimal approximations.
+
+For a small normalization check, a triangle with one pendant edge has
+$P=x^4+8x^3+19x^2+16x+4$, whereas
+$P_{C_4}=x^4+8x^3+20x^2+16x$. Their difference is $x^2-4$.
+They are incomparable, although $C_4$ has the smaller incidence energy.
+The energy winner also changes with the parameters: at $(n,r)=(10,3)$
+and $(11,3)$ it has three squares, whereas at $(12,3)$ and $(13,3)$ it
+has three triangles. At $(12,3)$ the certified values begin
+$16.15344082377579$ for the triangle bouquet and
+$16.15781765716216$ for the square bouquet. These observations disprove a
+universal ``always choose as many even cycles as possible'' energy rule;
+they are not a substitute for a general energy-classification theorem.
+
+\section{Novelty audit and source limitations}
+The search cutoff was 10 September 2026. The requested combinations
+``cactus graph signless Laplacian coefficients'', ``cactus graphs incidence
+energy'', ``minimal signless Laplacian coefficients cactus'', ``signless
+Laplacian coefficient ordering cactus'', ``even cycles cactus signless
+Laplacian'', ``subdivision matching signless Laplacian cactus'', and
+``TU-subgraph cactus extremal'' were searched. Follow-up searches used
+``bouquet'', ``quadrangular'', ``vertex transitive blocks'', and
+``coalescence''. General web search often returned irrelevant results;
+this is not evidence of absence. Crossref, OpenAlex, and Semantic Scholar
+metadata and citation searches were also used. Direct Google Scholar and
+zbMATH requests returned access errors; MathSciNet was not available.
+
+\begin{center}\small
+\begin{tabular}{p{0.22\textwidth}p{0.68\textwidth}}
+Source&Verified scope and limitation\\\hline
+Wang--Zhong--Zheng \cite{en-wzz}&Title, authors, volume, pages, DOI verified.
+Publisher and DOI full-text routes failed. The future-problem page/section
+is \emph{unverified}. The no-even-cycle result is described in
+\cite{en-zw}, p.~4216.\\
+Du \cite{en-du}&2025 publication metadata verified. No accessible full text
+or repository copy was found. Its exact theorem and applicability could
+not be checked against the original.\\
+Zhong--Wang \cite{en-zw}&Full 18-page text read. Lemma 2.1 is on p.~4217;
+Theorems 3.17--3.18, p.~4231, concern unicyclic graphs with prescribed
+bipartition. They do not state an arbitrary-$r$ cactus theorem.\\
+Lu--Zhu \cite{en-lz}&Full text read. Sections 3--4, notably Theorems
+3.11 and 4.2, address tricyclic graphs. This fixes $r=3$.\\
+Kummel \cite{en-kummel}&2023 thesis inspected, including its introduction,
+the signless-Laplacian discussion and the reference to \cite{en-wzz}.
+It concerns forest generating functions; no general cactus frontier
+classification was located.\\
+Earlier coefficient papers&The unicyclic and bicyclic records
+\cite{en-lts,en-zz} were verified as related work. Their original theorem
+numbers are unverified. Spectral-radius extremality \cite{en-cz} is a
+different objective.\\
+\end{tabular}
+\end{center}
+
+OpenAlex returned three citing items for \cite{en-wzz}: the two 2020
+papers above and Kummel's thesis. Semantic Scholar returned the two 2020
+papers. These are all the items returned by those queries, not a claim
+that the databases contain every citation. Du's record returned no citing
+items in the queried Semantic Scholar response.
+
+The relation of the mathematical statements is precise. The fixed-parity
+theorem at $b=0$ concerns the no-even-cycle cactus class, and at $b>0$
+concerns classes containing even cycles. Their union over $a,b$ covers
+all cacti. The all-even theorem allows unbounded $r$ and is not just the
+$r=1$ or $r=3$ specialization covered by the checked related sources.
+The full frontier theorem then compares those parity classes with one
+another. Nevertheless, because the two requested anchor texts and the
+complete literature could not be checked, the audit has \emph{not}
+cleared any priority claim. The phrase ``proved here'' describes the
+self-contained derivation in this manuscript, not a certified novelty
+claim. No statement that the 2019 open problem remains open, or that this
+paper resolves that verified historical problem, is made.
+
+\section{Reproducibility and template changes}
+The implementation uses Python, NetworkX, NumPy, and SymPy. No random
+search is used. The supplied files have the following roles:
+\begin{itemize}
+\item \texttt{cactus\_exact.py}: complete cactus generation, exact
+coefficients, Pareto extraction, graph descriptors, and energy screening.
+\item \texttt{verify\_results.py}: graph-atlas comparison, independent
+polynomials, TU checks, bouquet comparisons, and rational energy certificates.
+\item \texttt{bouquet\_frontier.py}: integer-polynomial exploration of the
+reduced family and comparison with the proved frontier formula.
+\item \texttt{proof\_certificates.py}: exact verification of the exchange
+identities and the positive induction-base coefficient arrays.
+\item \texttt{cacti.jsonl}, \texttt{summary.json}, and
+\texttt{energy\_certificates.json}: machine-readable full and summary data.
+\end{itemize}
+The README gives execution commands and the environment versions.
+The uploaded template actually available in this task was the copy whose
+name ends in \texttt{134231.tex}; the brief also mentioned an earlier
+\texttt{133416.tex} copy which was not supplied here. The available copy
+was used as the base. Its \texttt{amsart} class, 12-point size, mathematical
+macros, theorem environments, margins, section style, and alpha bibliography
+style declaration were retained. The unfinished \verb|\title[}| was
+replaced, author metadata was set to \texttt{chatGPT 6Astra}, and
+LuaLaTeX Japanese support was added using \texttt{luatexja}, with explicit
+IPAex font-shape mappings. The \texttt{luatex85} compatibility package
+supplies the legacy PDF primitives required by the retained Xy-pic package. Japanese
+theorem environments share the same counter scheme. Hyperlink anchors
+have language prefixes so corresponding theorem numbers can be reused.
+The page bottoms are left ragged to avoid artificial vertical gaps around tables.
+Compilation uses LuaLaTeX exclusively; XeLaTeX is not used.
+
+\appendix
+\renewcommand{\theHsection}{en.appendix.\Alph{section}}
+\section{Positive induction-base certificates}
+The following table gives $[x^j](3F_{2,4})$ and $[x^j](3F_{1,8})$ from
+\eqref{en:Fcd}. A blank entry is zero. The omitted coefficients above the
+displayed degrees vanish. Substitution of the explicit polynomials
+\eqref{en:uv} verifies both identities over $\mathbb Z[x]$.
+\begin{center}\small
+\begin{tabular}{r|r|r}
+$j$&$[x^j](3F_{2,4})$&$[x^j](3F_{1,8})$\\\hline
+0&104&25948\\
+1&10889&5536949\\
+2&84792&96513760\\
+3&289390&807903964\\
+4&556584&4220825976\\
+5&666203&15366138242\\
+6&520272&41394570336\\
+7&269780&85640823708\\
+8&92152&139484195268\\
+9&19927&181934862179\\
+10&2472&192335903424\\
+11&134&166155480696\\
+12&&117896376080\\
+13&&68874191036\\
+14&&33118723264\\
+15&&13068481112\\
+16&&4205136292\\
+17&&1092070763\\
+18&&225304544\\
+19&&36054956\\
+20&&4312952\\
+21&&362802\\
+22&&19136\\
+23&&476
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{WZZ19}
+\bibitem[CRS07]{en-crs}
+D. Cvetkovi\'c, P. Rowlinson, and S. K. Simi\'c,
+\emph{Signless Laplacians of finite graphs}, Linear Algebra Appl.
+\textbf{423} (2007), 155--171.
+\href{https://doi.org/10.1016/j.laa.2007.01.009}{doi:10.1016/j.laa.2007.01.009}.
+\bibitem[CZ16]{en-cz}
+M. Chen and B. Zhou, \emph{On the signless Laplacian spectral radius of cacti},
+Croatica Chemica Acta \textbf{89} (2016), 493--498.
+\href{https://doi.org/10.5562/cca3018}{doi:10.5562/cca3018}.
+\bibitem[Du25]{en-du}
+Z. Du, \emph{When (signless) Laplacian coefficients meet matchings of subdivision},
+European J. Combin. \textbf{124} (2025), article 104087.
+\href{https://doi.org/10.1016/j.ejc.2024.104087}{doi:10.1016/j.ejc.2024.104087}.
+\bibitem[Kum23]{en-kummel}
+E. J. Kummel, \emph{Forest Generating Functions of Directed Graphs},
+Ph.D. dissertation, Portland State University, 2023.
+\href{https://doi.org/10.15760/etd.3693}{doi:10.15760/etd.3693}.
+\bibitem[LTS13]{en-lts}
+H. Li, B.-S. Tam, and L. Su,
+\emph{On the signless Laplacian coefficients of unicyclic graphs},
+Linear Algebra Appl. \textbf{439} (2013), 2008--2028.
+\href{https://doi.org/10.1016/j.laa.2013.05.030}{doi:10.1016/j.laa.2013.05.030}.
+\bibitem[LZ20]{en-lz}
+H. Lu and Z. Zhu, \emph{On the boundary of incidence energy and its extremum
+structure of tricycle graphs}, Frontiers in Physics \textbf{8} (2020), article 208.
+\href{https://doi.org/10.3389/fphy.2020.00208}{doi:10.3389/fphy.2020.00208}.
+\bibitem[WZZ19]{en-wzz}
+W.-H. Wang, L. Zhong, and L.-J. Zheng,
+\emph{The signless Laplacian coefficients and the incidence energy of the graphs
+without even cycles}, Linear Algebra Appl. \textbf{563} (2019), 476--493.
+\href{https://doi.org/10.1016/j.laa.2018.10.025}{doi:10.1016/j.laa.2018.10.025}.
+\bibitem[ZW20]{en-zw}
+L. Zhong and W.-H. Wang,
+\emph{The signless Laplacian coefficients and the incidence energy of graphs
+with a given bipartition}, Filomat \textbf{34} (2020), 4215--4232.
+\href{https://doi.org/10.2298/FIL2012215Z}{doi:10.2298/FIL2012215Z}.
+\bibitem[ZZ13]{en-zz}
+J. Zhang and X.-D. Zhang,
+\emph{The signless Laplacian coefficients and incidence energy of bicyclic graphs},
+Linear Algebra Appl. \textbf{439} (2013), 3859--3869.
+\href{https://doi.org/10.1016/j.laa.2013.10.026}{doi:10.1016/j.laa.2013.10.026}.
+\end{thebibliography}
+
+\newpage
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\sectionname}{}
+\renewcommand{\appendixname}{付録}
+\renewcommand{\proofname}{証明}
+\renewcommand{\refname}{参考文献}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHthm}{ja.\thesection.\arabic{thm}}
+\renewcommand{\theHequation}{ja.\thesection.\arabic{equation}}
+\markboth{chatGPT 6Astra}{cactus の signless Laplacian 係数}
+\begin{center}
+{\Large\bfseries cactus の signless Laplacian 係数の極小元と\\
+偶閉路クラスにおける incidence energy の鋭い最小値}\par\medskip
+{\large chatGPT 6Astra}\par\medskip
+日本語版全文
+\end{center}
+\begin{quotation}\small
+\textbf{要旨.}
+位数と辺数を固定した有限単純連結 cactus に対し、signless Laplacian
+特性多項式の係数を成分ごとに比較したときの極小元を、自己完結した証明により
+分類する。すべての極小グラフは三角形・四角形・葉を一つの頂点に集めた形を持つ。
+極小グラフは高々4種類であり、四角形の許される個数を明示的な表で与える。
+分類は閉路数が $4,6,9$ になるところで変化する。証明には、ブロックを集中させる
+主小行列式の正の展開、奇偶を保つ閉路短縮恒等式、および二つの多項式帰納法の
+初期証明書を用いる。また、奇閉路数と偶閉路数を固定した各クラス、特に二部
+cactus 全体において、incidence energy の一意な最小グラフを決定し、偶閉路
+クラスではそのスペクトルを明示する。厳密列挙は1頂点から13頂点までの
+$121\,167$ 個の cactus を対象とする。一般クラスに残る比較不能な極小グラフ
+の間の incidence energy の比較は、すべてのパラメータについては解決していない。
+指定された二つの基礎論文の原文を取得できなかったため、歴史的な未解決問題の
+記述と完全な新規性監査は未確認であり、本稿では優先権を主張しない。
+\end{quotation}
+
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+
+\section{結果と到達範囲}
+本稿のグラフはすべて有限・単純・無向・連結とする。各辺が高々一つの閉路に
+属するグラフを cactus と呼ぶ。$n=|V(G)|$, $m=|E(G)|$, $r=m-n+1$ とおき、
+\[
+ Q(G)=D(G)+A(G),\qquad
+ \det(xI-Q(G))=\sum_{k=0}^n(-1)^k\phi_k(G)x^{n-k}
+\]
+と定める。同じ頂点数を持つグラフについて、すべての $k$ で
+$\phi_k(G)\le\phi_k(H)$ が成り立つとき $G\preceq_Q H$ と書く。
+\emph{極小元}は Pareto 極小元を意味し、\emph{最小元}はクラスのすべての
+グラフ以下にあるものを意味する。この二つを区別する。
+
+$0\le b\le\min(r,n-2r-1)$ に対し、$r-b$ 個の三角形と $b$ 個の四角形の
+それぞれの一頂点を同一視し、その共通頂点に $n-2r-b-1$ 本の葉辺を付けた
+グラフを $B_{n,r,b}$ と書く。同一視する頂点以外の頂点集合は互いに素とする。
+
+\begin{jthm}[係数極小元の完全分類]\label{ja:frontier}
+$r\ge1$, $n\ge2r+1$ とする。$s=n-2r-1$ とおき、
+\[
+ \mathcal I_r=
+ \begin{cases}
+ \{0,1,\ldots,r\},&1\le r\le3,\\
+ \{0,r-2,r-1,r\},&4\le r\le5,\\
+ \{0,r-1,r\},&6\le r\le8,\\
+ \{0,r\},&r\ge9
+ \end{cases}
+\]
+と定める。$\mathcal C_{n,m}$ の極小元は、グラフ同型を除いて、ちょうど
+\[
+ \bigl\{B_{n,r,b}:b\in\mathcal I_r,\ b\le s\bigr\}
+\]
+である。これらの係数ベクトルは互いに異なり、どの二つも比較不能である。
+このリストの各グラフは、その係数ベクトル全体によって
+$\mathcal C_{n,m}$ の中で同型を除き一意に定まる。
+$r=0$ のときは星 $K_{1,n-1}$ が一意な最小元である。ただし $K_{1,0}=K_1$ とする。
+\end{jthm}
+
+この分類は、有限個の計算からの外挿ではなく、すべての許容される $(n,m)$ に
+対する定理である。証明は第2--5節に与える。第6節では奇閉路数と偶閉路数を
+固定した場合の incidence energy を解決する。その全偶閉路の場合が、依頼文の
+第一の fallback 問題に当たる。一般クラスの energy 問題については、明示された
+高々4グラフへの厳密な帰着を与えるが、$n,r$ の関数としての全比較は決定しない。
+
+指定された出発点は Wang--Zhong--Zheng \cite{ja-wzz} である。
+書誌情報は確認でき、その偶閉路を持たないグラフに関する結果は
+\cite[p.~4216]{ja-zw} の序論でも説明されている。しかし、\cite{ja-wzz} の
+特定の future problem の記述は原文で確認できなかった。したがって、定理
+\ref{ja:frontier} を、原文で確認済みの歴史的未解決問題に対する新しい解決である
+とは主張しない。文献監査の限界は第9節に記録する。
+
+\section{記法と根付き多項式の正値性}
+cactus の二つの閉路は高々一頂点を共有する。逆にこの条件から、各辺が高々
+一つの閉路に属することが従う。二つの閉路が道または二つ以上の頂点を共有すると、
+異なる弧に沿った適切な連続する共通頂点を選ぶことで theta 部分グラフが得られ、
+その辺の一つは二つの閉路に属する。したがって、二つの convention は同じ
+クラスを定める。cactus のブロックは辺または閉路であり、block-cut incidence
+graph は木になる。この incidence graph に閉路があると、一つのブロックの
+異なる二頂点をそのブロックの外側から結べるため、ブロックの極大性に反する。
+葉ブロックを順次付けることにより、
+\begin{equation}\label{ja:count}
+ n=1+t+\sum_{i=1}^r(\ell_i-1),\qquad
+ m=t+\sum_{i=1}^r\ell_i
+\end{equation}
+を得る。ここで $t$ は橋の本数、$\ell_i$ は閉路長である。
+
+\begin{jprop}[許容パラメータ]\label{ja:range}
+$n\ge1$ に対し、$\mathcal C_{n,m}$ が空でないための必要十分条件は、
+$m=n-1+r$ かつ $0\le r\le\lfloor(n-1)/2\rfloor$ である。
+奇閉路を $a$ 個、偶閉路を $b$ 個持つ部分クラスの条件は
+$n\ge1+2a+3b$ である。閉路長 $\ell_1,\ldots,\ell_r$ を指定したときの
+条件は $n\ge1+\sum_i(\ell_i-1)$ である。
+\end{jprop}
+\begin{proof}
+必要性は \eqref{ja:count} と、$\ell_i\ge3$、偶閉路については $\ell_i\ge4$
+から従う。十分性については、必要な閉路の一頂点ずつを同一視し、残った
+非負個数の頂点を共通頂点の葉として加える。奇偶の個数だけを指定する場合は
+三角形と四角形を用いる。この構成は単純性、連結性、指定した閉路数を保つ。
+$r=0$ では星を構成すればよい。
+\end{proof}
+
+正の係数を持つ多項式を用いるため、
+\begin{equation}\label{ja:P}
+ P_G(x)=\det(xI+Q(G))=\sum_{k=0}^n\phi_k(G)x^{n-k}
+\end{equation}
+とおく。$f-g$ の係数がすべて非負のとき $f\ge_c g$ と書く。
+$G\prec_Q H$ は、$G\preceq_Q H$ かつ少なくとも一つの係数で不等号が
+厳密であることを意味し、すべての係数で厳密であることは意味しない。
+
+\begin{jlem}[正値性と二部性]\label{ja:positive}
+$Q(G)$ は半正定値であり、その真の主部分行列は正定値である。
+また $\det Q(G)=0$ であることと $G$ が二部グラフであることは同値である。
+$G$ が二部グラフなら、$Q(G)$ と $L(G)=D(G)-A(G)$ は相似である。
+\end{jlem}
+\begin{proof}
+実ベクトル $z$ に対し、
+\[
+ z^{\mathsf T}Q(G)z=\sum_{uv\in E(G)}(z_u+z_v)^2
+\]
+である。真の頂点部分集合上のベクトルを外側でゼロに拡張すると、この和が
+ゼロなら隣接頂点でもゼロとなり、連結性により全頂点でゼロとなる。
+これで空でない真の主部分行列の正定値性が従う。空行列の行列式は1とする。
+全行列の核に属するベクトルは、各辺を横切るたびに $z_u=-z_v$ を満たす。
+非零のベクトルが存在することは、矛盾しない二色塗りが存在することと同値である。
+奇閉路があると、その上の値、したがってすべての値がゼロになる。
+二部グラフでは、一方の部で1、他方で$-1$を持つ対角行列を $S$ とする。
+$S^2=I$, $SDS=D$, $SAS=-A$ より $SQS=L$ である。
+偶閉路のみの cactus では、辺ブロックおよび偶閉路ブロックに沿って二色塗りを
+順次拡張できる。
+\end{proof}
+
+根付きグラフ $(A,u)$ に対し、
+\begin{equation}\label{ja:RH}
+ R_A(x)=\det\bigl((xI+Q(A))[V(A)\setminus\{u\}]\bigr),\qquad
+ H_A(x)=P_A(x)-xR_A(x)
+\end{equation}
+と定める。この主部分行列では次数は $A$ における次数のままである。
+頂点を削除したグラフの signless Laplacian とは異なる。
+
+\begin{jlem}[根付き多項式の正値性]\label{ja:rooted}
+$R_A,H_A$ の係数はすべて非負である。$A$ が $h\ge2$ 頂点の連結グラフなら、
+$R_A$ は次数 $0,\ldots,h-1$ のすべてで正の係数を持ち、$H_A$ は次数
+$1,\ldots,h-1$ のすべてで正の係数を持つ。$H_A$ の最高次係数は $d_A(u)$
+である。$A=K_1$ のとき $R_A=1$, $H_A=0$ である。
+\end{jlem}
+\begin{proof}
+対角変数 $x$ に関する行列式の展開から
+\[
+ H_A(x)=\sum_{\substack{U\subseteq V(A)\\u\in U}}
+        \det Q(A)[U],x^{h-|U|}
+\]
+を得る。各項は補題 \ref{ja:positive} により非負である。空でない真の
+主小行列式は正なので、指定された次数の係数はすべて正となる。
+$U=\{u\}$ の項は $d_A(u)x^{h-1}$ である。$R_A$ についても、その主小行列式
+展開に同じ正値性を適用すれば主張が従う。
+\end{proof}
+
+\section{閉路長を保つブロック集中}
+$B$ を連結かつ頂点推移的なグラフとする。その相異なる頂点
+$v_1,\ldots,v_h$ に根付き連結グラフ $(A_i,u_i)$ を、$u_i=v_i$ と同一視して
+付けたグラフを $G$ とする。他の頂点集合は互いに素とする。
+同じ根付きグラフをすべて $B$ の一頂点に付けたものを $G_\star$ と書く。
+$M=xI+Q(B)$, $R_i=R_{A_i}$, $H_i=H_{A_i}$ とおく。
+
+\begin{jlem}[集中に対する厳密な恒等式]\label{ja:concentrate}
+上の仮定の下で、
+\begin{equation}\label{ja:concentration}
+ P_G-P_{G_\star}=
+ \sum_{\substack{I\subseteq\{1,\ldots,h\}\\|I|\ge2}}
+ \det M[V(B)\setminus\{v_i:i\in I\}]
+ \prod_{i\in I}H_i\prod_{j\notin I}R_j\ \ge_c0
+\end{equation}
+が成り立つ。少なくとも二つの $A_i$ が一頂点グラフでなければ、右辺の
+$x^j$ の係数は $2\le j\le |V(G)|-2$ ですべて正である。特に、
+\[
+ \phi_2(G)-\phi_2(G_\star)
+   =\sum_{i<j}d_{A_i}(u_i)d_{A_j}(u_j)>0
+\]
+である。
+\end{jlem}
+\begin{proof}
+$x>0$ で各 $A_i$ の根以外の頂点を Schur complement により消去する。
+行列式には因子 $R_i$ が現れ、$v_i$ の対角成分には $H_i/R_i$ が加わる。したがって
+\[
+ P_G=\Bigl(\prod_iR_i\Bigr)
+ \det\left(M+\sum_i\frac{H_i}{R_i}E_{v_iv_i}\right)
+\]
+である。この対角成分の追加について多重線形に展開すると、部分集合 $I$ ごとに
+一項が現れる。空集合の項は $P_B\prod R_i$ である。一元集合 $\{i\}$ の項は、
+$v_i$ での主余因子と $H_i\prod_{j\ne i}R_j$ の積である。頂点推移性により
+これらの主余因子は同一である。$G_\star$ では一つの対角成分しか変えないので、
+行列式のその成分に関する一次性により、空集合と一元集合の項しか現れない。
+引き算により \eqref{ja:concentration} を $x>0$ で得る。両辺は多項式なので
+恒等式として成り立つ。
+残る各因子は半正定値行列の主小行列式多項式、または補題
+\ref{ja:rooted} の多項式である。非自明な付加グラフを二つ選んだ項
+$I=\{i,j\}$ を考えると、それぞれの正の係数の連続区間と、$Q(B)$ の真の
+主部分行列の正定値性から、積は次数 $2$ から $n-2$ まですべてで正となる。
+次数 $n-2$ に寄与するのは $|I|=2$ の項だけで、その最高次係数は
+$d_{A_i}(u_i)d_{A_j}(u_j)$ である。
+\end{proof}
+
+\begin{jcor}[閉路長固定の場合]\label{ja:lengths}
+命題 \ref{ja:range} の条件を満たす $n$ と閉路長多重集合
+$(\ell_1,\ldots,\ell_r)$ を固定する。一意な最小 cactus は、これらの閉路を
+一頂点に集め、その頂点に $t=n-1-\sum_i(\ell_i-1)$ 本の葉辺を付けたものである。
+他のグラフでは、$2\le k\le n-2$ のすべてで $\phi_k$ が厳密に大きい。
+この添字区間が空の場合の厳密不等式の主張は空虚である。
+\end{jcor}
+\begin{proof}
+二つ以上の切断頂点を持つ cactus では、block-cut tree においてそれらを
+結ぶ道上に、二つ以上の切断頂点に接続するブロックがある。そのブロックは辺か
+閉路なので頂点推移的である。その各頂点で、ブロック外のすべての成分を当該
+頂点と合わせて一つの根付き付加グラフとする。既存の切断頂点を新しい付着点に
+選んで補題 \ref{ja:concentrate} を適用する。ブロック上の他の切断頂点は
+消え、ブロック外の切断頂点の状態は変わらず、新しい切断頂点も生じない。
+したがって切断頂点数は厳密に減る。グラフは同じブロック、頂点数、辺数を持つ
+cactus のままである。
+反復は切断頂点が高々一つのグラフで停止する。その block-cut tree の構造より、
+ブロックが一つだけの場合を除き、すべてのブロックはその切断頂点で交わる。
+よって終点は指定した bouquet である。非自明な反復が一度でもあれば
+$\phi_2$ および主張した中間係数で厳密となり、一意性も従う。この証明は木も
+含む。ブロック数が0または1なら、初めから必要な形になっている。
+\end{proof}
+
+\section{奇偶を保つ閉路短縮}
+$D_{-1}=0$, $D_0=1$ とし、
+\begin{equation}\label{ja:D}
+ D_j=(x+2)D_{j-1}-D_{j-2}\quad(j\ge1)
+\end{equation}
+と定める。これは対角成分が $x+2$、隣接する非対角成分が1である
+$j\times j$ 三重対角行列の行列式である。$E_j=D_j-D_{j-1}$ とおくと、
+$E_0=1$, $E_j=xD_{j-1}+E_{j-1}$, $D_j=D_{j-1}+E_j$ となる。
+この二つの正の漸化式により、$D_j,E_j$ は次数0から$j$のすべてで正の係数を持つ。
+
+任意の頂点を根とする閉路では、行列式の展開から
+\begin{equation}\label{ja:cycle}
+ R_{C_\ell}=D_{\ell-1},\qquad
+ P_{C_\ell}=xD_{\ell-1}
+         +2(D_{\ell-1}-D_{\ell-2})+2(-1)^{\ell-1}
+\end{equation}
+を得る。実際、閉路の行列式は
+$(x+2)D_{\ell-1}-2D_{\ell-2}+2(-1)^{\ell-1}$ である。
+最後の項は全閉路を二つの向きに巡る置換に由来し、二つの道の小行列式は、
+根に接する辺を互換として使う二通りに由来する。対角項を整理すると
+\eqref{ja:cycle} となる。
+
+\begin{jlem}[二頂点ずつの短縮]\label{ja:shorten}
+$\ell\ge5$ とする。根付き $C_\ell$ を、根付き $C_{\ell-2}$ の根に二本の
+新しい葉辺を付けたグラフ $T_\ell$ で置き換える。両者の頂点数・辺数は
+ともに $\ell$ である。$\epsilon=(-1)^{\ell-1}$ とおくと、
+\begin{align}
+ R_{C_\ell}-R_{T_\ell}
+   &=xD_{\ell-3}+(x+2)(D_{\ell-3}-D_{\ell-4}),\label{ja:DR}\\
+ P_{C_\ell}-P_{T_\ell}
+   &=x\{2D_{\ell-3}+xD_{\ell-4}-2\epsilon(x+2)\}\label{ja:DP}
+\end{align}
+が成り立つ。両方の差は係数ごとに非負であり、後者は次数
+$1,\ldots,\ell-2$ のすべてで正である。この置換を、任意の根付き連結
+グラフに根で付着した後に行っても、係数は増加しない。
+\end{jlem}
+\begin{proof}
+根付き葉辺では $R=x+1$, $H=x$ なので、二本の付着により
+\[
+ R_{T_\ell}=(x+1)^2D_{\ell-3},\qquad
+ P_{T_\ell}=(x+1)^2P_{C_{\ell-2}}+2x(x+1)D_{\ell-3}
+\]
+を得る。\eqref{ja:cycle} を代入し、\eqref{ja:D} を二度使うと
+\eqref{ja:DR}--\eqref{ja:DP} が得られる。前者の正値性は $D,E$ の漸化式
+から従う。$\epsilon=-1$ なら後者の中括弧は項ごとに非負である。
+$\epsilon=1$ なら $D_{\ell-3}\ge_c D_2=x^2+4x+3$ と
+$2D_2-2(x+2)=2x^2+6x+2$ を使う。これにより、主張した次数の全区間での
+正値性も従う。
+根付きグラフを根で合わせた $A\vee T$ について、Schur 消去から
+\begin{equation}\label{ja:coalesce}
+ P_{A\vee T}=R_A P_T+H_A R_T
+\end{equation}
+となる。置換前後の差は $R_A\Delta P+H_A\Delta R\ge_c0$ である。
+$R_A$ はその全次数で正の係数を持つので、この差は次数1から
+$|V(A\vee C_\ell)|-2$ まですべてで正となる。これは
+$\phi_2,\ldots,\phi_{n-1}$ の厳密な減少も示している。
+\end{proof}
+
+\begin{jthm}[奇偶の個数を固定した場合]\label{ja:parity}
+$a,b\ge0$, $n\ge1+2a+3b$ を固定する。奇閉路を $a$ 個、偶閉路を $b$ 個
+持つ cactus の中で、一意な最小元は $B_{n,a+b,b}$ である。
+これと同型でないグラフは $\phi_2$ が厳密に大きく、より一般に
+$2\le k\le n-2$ のすべてで $\phi_k$ が厳密に大きい。
+\end{jthm}
+\begin{proof}
+まず系 \ref{ja:lengths} を適用する。次に補題 \ref{ja:shorten} により、
+奇閉路を三角形まで、偶閉路を四角形まで短縮する。奇閉路数と偶閉路数は
+変わらない。余った頂点は共通の中心に接する葉となるので、終点は
+$B_{n,a+b,b}$ である。最初のグラフがこれと異なれば、少なくとも一度の
+集中または短縮が非自明であり、$\phi_2$ が厳密に減る。中間係数についても
+二つの補題の厳密性を適用する。クラスに一つしかグラフがない場合、厳密性の
+主張は空虚である。
+\end{proof}
+
+\section{全極小元の分類の証明}
+$z=x+1$ とおき、次の根付き多項式を使う。
+\begin{align*}
+ R_3&=(x+1)(x+3),&H_3&=2(x+1)(x+2),\\
+ R_4&=(x+2)(x^2+4x+2),&H_4&=2x(x+2)(x+3).
+\end{align*}
+$U$ を根に一本の葉辺を付けた三角形、$V=C_4$ とし、
+\begin{align}
+ u=R_U&=(x+1)^2(x+3),&v=R_V&=(x+2)(x^2+4x+2),\nonumber\\
+ h=H_U&=(x+1)(3x^2+9x+4),&k=H_V&=2x(x+2)(x+3),\label{ja:uv}\\
+ f=v-u&=x^2+3x+1,&P_V-P_U&=x^2-4\nonumber
+\end{align}
+とおく。$u,v,h,k,f$ の係数はすべて非負である。
+
+\begin{jlem}[一個の四角形への交換]\label{ja:exchange}
+根付き付着先 $A$ が、$c$ 個の三角形と任意個数の四角形・葉辺を持つ
+bouquet であるとする。このとき $H_A\ge_c\frac{4c}{3}R_A$ である。
+$c\ge3$ なら、追加の根付き $U$ を $V$ に交換すると係数は弱く増加し、
+$\phi_2$ は厳密に増加する。
+\end{jlem}
+\begin{proof}
+根付き bouquet の $R_A$ は各構成部分の $R$ の積であり、$H_A$ は
+一つの構成部分の $H$ と他のすべての $R$ の積を足したものである。
+三角形について
+$H_3-\frac43R_3=\frac23x(x+1)\ge_c0$ となり、他の部分の項も非負なので
+最初の主張を得る。\eqref{ja:coalesce} と \eqref{ja:uv} より、交換後から
+交換前を引いた差は
+\[
+ R_A(x^2-4)+H_Af
+ \ \ge_c R_A\left(x^2-4+\frac{4c}{3}f\right)\ge_c0
+\]
+である。最後の不等式は $c\ge3$ を使う。$\phi_2$ の厳密性は、後の
+次数計算 \eqref{ja:phi2difference} からも従う。
+\end{proof}
+
+$c,d\ge1$ に対し $\alpha=4c/3$ とおき、
+\begin{equation}\label{ja:Fcd}
+ F_{c,d}=(x+\alpha)(v^d-u^d)
+                +d(kv^{d-1}-hu^{d-1})
+\end{equation}
+と定める。
+
+\begin{jlem}[二種類の大きな交換]\label{ja:large}
+すべての $d\ge4$ で $F_{2,d}\ge_c0$、すべての $d\ge8$ で
+$F_{1,d}\ge_c0$ である。したがって $c$ 個の三角形と任意個数の葉辺から
+なる付着先において、$d$ 個の $U$ を $d$ 個の $V$ に置き換える操作は、
+$(c,d)=(2,d\ge4)$ または $(1,d\ge8)$ のとき係数ごとに増加する。
+\end{jlem}
+\begin{proof}
+直接乗算すると、
+\begin{align}
+ F_{c,d+1}={}&vF_{c,d}+k(v^d-u^d)\nonumber\\
+ &+u^{d-1}\{u(x^2-4+\alpha f)+dhf\}\label{ja:induction}
+\end{align}
+を得る。$v^d-u^d=f\sum_{j=0}^{d-1}v^{d-1-j}u^j\ge_c0$ である。
+$\alpha\ge4/3$, $d\ge2$ のとき、中括弧は係数ごとに次で下から評価される。
+\begin{equation}\label{ja:Kpositive}
+ u(x^2-4+\tfrac43f)+2hf
+   =\tfrac{x}{3}(130+395x+413x^2+173x^3+25x^4)\ge_c0.
+\end{equation}
+付録Aに $3F_{2,4}$ および $3F_{1,8}$ の整数係数をすべて表示する。
+各係数は正である。これは \eqref{ja:uv}--\eqref{ja:Fcd} から得られる
+明示的な多項式恒等式であり、固有値の数値比較ではない。
+\eqref{ja:induction} により帰納法を適用して、すべての $d$ に対する主張が従う。
+交換操作への帰結については、$d$ 個の同じ構成部分の bouquet の多項式が
+$xR^d+dHR^{d-1}$ であることを使う。付着先 $A$ と根で合わせた後の差は
+\[
+ R_AF_{c,d}+(H_A-\alpha R_A)(v^d-u^d)\ge_c0
+\]
+となる。補題 \ref{ja:exchange} が残る因子の非負性を保証する。
+\end{proof}
+
+\begin{proof}[定理 \ref{ja:frontier} の証明]
+定理 \ref{ja:parity} により、すべての極小元は
+$0\le b\le\min(r,s)$ を満たす $B_{n,r,b}$ のいずれかである。
+このグラフには、次数 $n-1-b$ の中心、次数2の他の頂点が $2r+b$ 個、
+葉が $s-b$ 個ある。
+\[
+ \phi_2=\frac{(\tr Q)^2-\tr(Q^2)}2
+       =2m^2-m-\frac12\sum_vd(v)^2
+\]
+から、$0\le a<b\le\min(r,s)$ に対し
+\begin{equation}\label{ja:phi2difference}
+ \phi_2(B_{n,r,b})-\phi_2(B_{n,r,a})
+       =\frac{(b-a)(2n-5-a-b)}2>0
+\end{equation}
+となる。したがって四角形の多い bouquet が少ないものを支配することはない。
+$x=0$ では、
+\begin{equation}\label{ja:det}
+ d_b:=\det Q(B_{n,r,b})=
+ \begin{cases}4(r-b)3^{r-b-1}4^b,&b<r,\\0,&b=r
+ \end{cases}
+\end{equation}
+である。これは $R_3(0)=3$, $R_4(0)=4$, $R_{K_2}(0)=1$ を掛け合わせ、
+$H_3(0)/R_3(0)=4/3$ を使うと得られる。他の構成部分の $H$ の定数項はゼロである。
+
+まず $1\le b\le r-3$ をすべて除く。$b-1$ から $b$ への各交換の付着先には
+$r-b\ge3$ 個の三角形があるので、補題 \ref{ja:exchange} により
+$B_{n,r,0}\prec_Q B_{n,r,b}$ となる。途中の四角形の数は最後の $b$ 以下
+なので、すべての中間グラフは許容される。
+
+次に $b=r-2$, $r\ge6$ なら、補題 \ref{ja:large} を $c=2$,
+$d=r-2\ge4$ で使う。付着先は二つの三角形と $s-d$ 本の葉辺からなる。
+交換前には全体で $r$ 個の三角形と $s$ 本の葉辺があり、交換後は
+$B_{n,r,r-2}$ となる。よってこれも $B_{n,r,0}$ に支配される。
+$b=r-1$, $r\ge9$ なら、同じ恒等式に $c=1$, $d=r-1\ge8$ を代入し、
+付着先の葉を $s-d\ge0$ 本とする。すべての除外は
+\eqref{ja:phi2difference} により厳密である。
+
+残したグラフがこれ以上除かれないことを示す。$r=2,\ldots,8$ では
+\[
+ \frac{d_{r-1}}{d_0}=\frac1r\left(\frac43\right)^{r-1}<1
+\]
+である。$r=3,4,5$ の $d_{r-2}/d_0$ はそれぞれ
+$8/9,8/9,128/135$ なので、これらも1より小さい。
+最初の不等式について、その比の隣接項比は $4r/(3r+3)$ である。
+$r=2,3,4,8$ を確認し、最後の値が $2048/2187<1$ であることを使えば、
+指定範囲のすべての場合が従う。最後の三つの添字の間では、$b$ が増えると
+行列式は厳密に減る。実際 $d_{r-1}/d_{r-2}=2/3$ かつ $d_r=0$ である。
+$r=1$ では $d_0=4>d_1=0$ である。
+これらと \eqref{ja:phi2difference} を合わせると、残した bouquet は
+互いに比較不能である。除外したものは $B_{n,r,0}$ に支配されるので、残した
+グラフを支配できない。bouquet でないグラフは自分の奇偶クラス内で厳密に
+支配される。これで極小性、完全性、および係数ベクトルによる剛性が従う。
+$r=0$ の場合は系 \ref{ja:lengths} を適用する。
+\end{proof}
+
+\begin{jcor}[最小元が存在する範囲]\label{ja:least}
+$r\ge1$ に対し、最小元が存在しない範囲はちょうど次である。
+\[
+ \begin{array}{c|c}
+ r&\text{最小元が存在しない範囲}\\\hline
+ 1\le r\le3&n\ge2r+2\\
+ 4\le r\le5&n\ge3r-1\\
+ 6\le r\le8&n\ge3r\\
+ r\ge9&n\ge3r+1.
+ \end{array}
+\]
+それ以外の許容パラメータでは、$B_{n,r,0}$ が一意な最小元である。
+\end{jcor}
+\begin{proof}
+$\mathcal I_r$ の最初の正の添字は、それぞれ $1,r-2,r-1,r$ である。
+それが許容されることは $s$ 以下であることと同値である。
+添字0だけが残るとき、上の明示的な支配の証明は最小元を与える。
+二つの比較不能な極小元があるとき、最小元は存在しない。
+\end{proof}
+
+\section{Incidence energy と等号条件}
+$Q(G)$ の固有値を $q_1,\ldots,q_n$ とし、$IE(G)=\sum_i\sqrt{q_i}$ とする。
+符号を付けない頂点・辺 incidence matrix を $N$ とすると
+$NN^{\mathsf T}=Q(G)$ であるから、これは $N$ の特異値の和でもある。
+
+\begin{jlem}[Energy の厳密単調性]\label{ja:energy}
+同じ頂点数のグラフについて、$G\preceq_Q H$ なら $IE(G)\le IE(H)$ である。
+一つでも係数不等式が厳密なら、energy の不等式も厳密である。
+\end{jlem}
+\begin{proof}
+$q\ge0$ に対して $u=tq$ と置換し、部分積分を行うと、
+\[
+ \int_0^\infty\frac{\log(1+tq)}{t^{3/2}}\,dt=2\pi\sqrt q
+\]
+を得る。対数は原点で $O(t)$、無限遠で $O(\log t)$ なので境界項は消える。
+有限個の固有値について足し合わせて
+\begin{equation}\label{ja:IEint}
+ IE(G)=\frac1{2\pi}\int_0^\infty
+ \log\left(\sum_{k=0}^n\phi_k(G)t^k\right)\frac{dt}{t^{3/2}}
+\end{equation}
+となる。被積分関数は各係数について単調である。一つでも係数差が正なら、
+多項式の差はすべての $t>0$ で正となり、対数の差の積分も厳密に正となる。
+これにより、引用だけに頼らず energy 不等式の向きも確認できる。
+\end{proof}
+
+\begin{jthm}[全偶閉路クラスの鋭い最小値とスペクトル]\label{ja:evenenergy}
+$r\ge1$, $n\ge3r+1$ とし、$t=n-3r-1$ とおく。
+$n$ 頂点、$r$ 閉路の二部 cactus 全体の中で、一意な最小元かつ一意な
+incidence-energy 最小グラフは $B_{n,r,r}$ である。Energy の不等式の等号は、
+グラフがこれと同型である場合に限る。
+$\eta=\sqrt{2+\sqrt2}+\sqrt{2-\sqrt2}$ とおく。
+$t\ge1$ のとき、重複度を込めて正の三根 $\lambda_1,\lambda_2,\lambda_3$ を
+\begin{equation}\label{ja:cubic}
+ \lambda^3-(n-r+4)\lambda^2+(4n-4r+2)\lambda-2n=0
+\end{equation}
+で定める。Energy の最小値は厳密に
+\begin{equation}\label{ja:evenIE}
+ t-1+r\sqrt2+(r-1)\eta+\sum_{j=1}^3\sqrt{\lambda_j}
+\end{equation}
+である。$t=0$ のときは
+\begin{equation}\label{ja:noleafIE}
+ r\sqrt2+(r-1)\eta+
+ \sqrt{r+2+\sqrt{r^2-2r+2}}+
+ \sqrt{r+2-\sqrt{r^2-2r+2}}
+\end{equation}
+となる。$r=0$ のときは $n\ge2$ で $n-2+\sqrt n$、$n=1$ で0である。
+\end{jthm}
+\begin{proof}
+最小元の主張は定理 \ref{ja:parity} の $a=0,b=r$ の場合である。
+補題 \ref{ja:energy} と $\phi_2$ の厳密性から energy の剛性が従う。
+$F=x^2+4x+2$ とおく。根付き構成部分の公式により、$t\ge1$ では
+\begin{align}
+ P_{B_{n,r,r}}(x)
+ &=x(x+1)^{t-1}(x+2)^rF^{r-1}C(x),\label{ja:factor}\\
+ C(x)&=(x+t+1)F+2r(x+1)(x+3)\nonumber\\
+ &=x^3+(n-r+4)x^2+(4n-4r+2)x+2n\nonumber
+\end{align}
+である。これは中心の項 $x$、葉からの $t$ 個の寄与 $x/(x+1)$、四角形からの
+$r$ 個の寄与 $2x(x+3)/F$ を足し、
+$(x+1)^t((x+2)F)^r$ を掛けることで得られる。
+よってスペクトルは、$0$、重複度 $t-1$ の $1$、重複度 $r$ の $2$、それぞれ
+重複度 $r-1$ の $2\pm\sqrt2$、および \eqref{ja:cubic} の三根からなる。
+後者は半正定値性と $C(0)=2n>0$ により正である。
+$t=0$ では $n=3r+1$ であり、$C(x)$ に因子 $x+1$ がある。約分して
+\[
+ P_{B_{3r+1,r,r}}
+ =x(x+2)^rF^{r-1}\{x^2+(2r+4)x+6r+2\}
+\]
+となるので \eqref{ja:noleafIE} が従う。これは $r=1$ の $C_4$ も含む。
+$n\ge2$ の星のスペクトルは $0,1^{(n-2)},n$ であり、最後の主張を得る。
+\end{proof}
+
+最小でない全偶閉路 cactus では、$2\le k\le n-2$ のすべての $\phi_k$ が
+$B_{n,r,r}$ より厳密に大きい。$\phi_0,\phi_1,\phi_n$ は常に一致する。
+また $\phi_{n-1}=n\prod_i\ell_i$ である。各閉路で一本の辺を削除する選び方に
+より全域木数を数え、第7節の forest formula を使うとこの式が得られる。
+したがって $\phi_{n-1}$ が一致することは、すべての閉路が最初から長さ4で
+あることと同値である。木の場合は閉路についての条件を空虚な条件とする。
+
+\begin{jcor}[奇偶数または閉路長を指定した energy]\label{ja:fixedenergy}
+定理 \ref{ja:parity} と系 \ref{ja:lengths} の bouquet は、それぞれのクラスで
+一意な incidence-energy 最小グラフでもある。特に、$(n,m)$ を固定し、
+偶閉路をちょうど一つ持つ cactus のすべてのクラスに適用できる。
+\end{jcor}
+\begin{proof}
+それぞれの最小元定理に補題 \ref{ja:energy} を適用する。
+$n,m$ と偶閉路数1を固定すると、奇閉路数は $r-1$ に固定される。
+\end{proof}
+
+一般 energy 問題のすべての候補の多項式も明示できる。
+$a=r-b$, $t=n-2r-b-1$ とすると、
+\begin{equation}\label{ja:generalP}
+ P_{B_{n,r,b}}=
+ (x+1)^tR_3^aR_4^b
+ \left(x+\frac{tx}{x+1}+\frac{aH_3}{R_3}
+                        +\frac{bH_4}{R_4}\right)
+\end{equation}
+である。個数0の項は除く。すべての分母は約分される。特に
+\[
+ P_{B_{n,r,0}}=(x+1)^{n-r-2}(x+3)^{r-1}
+             \{x^3+(n+3)x^2+3nx+4r\}
+\]
+となる。定理 \ref{ja:frontier} と補題 \ref{ja:energy} により、一般の最小値は
+列挙された高々4個の bouquet の energy の最小値に帰着し、それ以外のグラフは
+等号成立候補から除かれる。しかし、これらの比較不能な bouquet のどれが勝つか、
+任意のパラメータで同値が起こり得るかについて、完全なパラメータ分類は主張しない。
+上の全偶閉路および奇偶固定の場合の鋭い結論には、この未解決の比較は必要ない。
+
+\section{TU-subgraph と subdivision の matching}
+\begin{jprop}[TU 公式と正規化]\label{ja:TU}
+全域 TU-subgraph とは、各連結成分が木または奇閉路を持つ unicyclic graph
+であるものをいう。奇 unicyclic 成分数を $c$、木成分を $T_1,\ldots,T_j$ と
+すると、その重みは $4^c\prod_i|V(T_i)|$ である。$\phi_k(G)$ は、辺数 $k$ の
+TU-subgraph の重みの総和に等しい。孤立頂点は重み1の木成分として数える。
+\end{jprop}
+\begin{proof}
+符号を付けない incidence matrix を $N$ とする。主小行列式による展開と
+Cauchy--Binet 恒等式から
+\[
+ \phi_k(G)=\sum_{|I|=|J|=k}\det N[I,J]^2
+\]
+を得る。辺集合 $J$ を固定する。正方行列式が非零であるためには、各辺成分で
+選ばれた行数と列数が等しくなければならない。頂点より辺が多い成分はゼロを与える。
+木成分では行をちょうど一つ除く。どの行を除いても、葉を順次消去すると行列式は
+$\pm1$ となり、その選択数は $|V(T)|$ である。unicyclic 成分では全行を
+選ばなければならない。木の葉を除去すると、unsigned cycle incidence matrix
+の行列式に帰着する。その値は偶閉路なら0、奇閉路なら $\pm2$ である。
+これは、閉路で可能な二つの置換の符号が、閉路長が奇数の場合に限って一致する
+ことから従う。二乗して成分ごとに掛け合わせると所望の重みになる。
+向き付き incidence matrix を使う場合は、すべての閉路行列式がゼロとなり、
+Laplacian の全域 forest formula が得られる。本稿で使う正規化はこの証明で
+独立に確認できる。\cite{ja-crs} および原文で確認した
+\cite[Lemma 2.1, p.~4217]{ja-zw} の再掲公式も参照されたい。
+\end{proof}
+
+$S(G)$ を subdivision graph とし、$m_j(H)$ を $H$ の $j$ 本の辺からなる
+matching の個数とする。$m_0=1$, $j<0$ では $m_j=0$ と定める。
+
+\begin{jprop}[閉路補正付き matching 公式]\label{ja:matching}
+$\mathscr D$ を、空集合を含む $G$ の頂点素な閉路の集合全体を動くものとし、
+$\ell(\mathscr D)=\sum_{C\in\mathscr D}|C|$ とおく。このとき
+\begin{equation}\label{ja:matchingformula}
+ \phi_k(G)=\sum_{\mathscr D}
+ 2^{|\mathscr D|}(-1)^{\ell(\mathscr D)+|\mathscr D|}
+ m_{k-\ell(\mathscr D)}\bigl(S(G)-V(S(\mathscr D))\bigr)
+\end{equation}
+である。削除する頂点には、選択した各閉路上の元の頂点と、その辺に挿入した
+subdivision 頂点の両方を含む。
+\end{jprop}
+\begin{proof}
+$S(G)$ の二部順序では、隣接行列は
+$\left(\begin{smallmatrix}0&N\\N^{\mathsf T}&0\end{smallmatrix}\right)$ である。
+非零の不定元 $y$ についてブロック消去を行うと
+\[
+ \det(yI-A(S(G)))=y^{m-n}\det(y^2I-Q(G))
+\]
+となる。これは Laurent 多項式としての恒等式であり、$m-n=-1$ となる木に
+対しても有効である。右辺全体は多項式となる。
+左辺の行列式を置換で展開する。非自明な置換成分は、matching 辺に沿う互換と、
+各閉路の二つの向きである。元の長さ $\ell$ の閉路は $S(G)$ では長さ
+$2\ell$ となり、因子$-2$を与える。matching の各辺は$-1$を与える。
+$y^{n+m-2k}$ に寄与する閉路集合 $\mathscr D$ の項は、符号
+$(-1)^{k-\ell(\mathscr D)+|\mathscr D|}$ と因子 $2^{|\mathscr D|}$ を持つ。
+係数の符号 $(-1)^k$ で割ることで \eqref{ja:matchingformula} を得る。
+頂点素条件と指定した削除条件は、残りの互換が作れるためにちょうど必要な条件である。
+\end{proof}
+
+$C_4$ では、$S(C_4)=C_8$ の4辺 matching は2個、閉路補正は$-2$なので、
+$\phi_4=0$ となる。$C_3$ では補正が$+2$となり、$\phi_3=4$ となる。
+したがって全偶閉路クラスであっても、subdivision の matching 数そのものは
+signless Laplacian 係数と一致しない。matching の単射だけでは、交代符号を
+持つ閉路補正項を制御できない。第3--5節の主小行列式による方法は、差を直接
+非負な形で与え、この相殺の問題を回避する。
+\eqref{ja:matchingformula} は本稿で独立に導出したものである。
+指定された Du の論文 \cite{ja-du} はこの関係を扱うが、その厳密な公式および
+定理番号を、取得できなかった原文と照合したわけではない。
+
+\section{厳密列挙と反例確認}
+生成器は、小さい cactus の各頂点軌道に葉辺または葉閉路を付ける操作を
+再帰的に行う。非自明な cactus は葉ブロックを持つので、それを削除することで
+生成の完全性が帰納的に従う。根付き canonical code には、接続する子ブロック
+のコードをソートしたリストを記録する。辺では子のコードを記録し、閉路では根の
+次から始まる子コードの巡回列を、反転したものとの小さい方に正規化する。
+根なしコードはすべての根の選択にわたる最小値とする。block tree に関する
+帰納法により、コードの一致とグラフ同型の同値性が従う。特に、閉路上の順序を
+保持している。ブロックと頂点の接続関係の木だけでは、同型判定には不十分である。
+
+\begin{center}
+\begin{tabular}{r|rrrrrrr}
+$n$&1&2&3&4&5&6&7\\\hline
+個数&1&1&2&4&9&23&63\\[3pt]
+$n$&8&9&10&11&12&13&合計\\\hline
+個数&188&596&1979&6804&24118&87379&121167
+\end{tabular}
+\end{center}
+
+整数行列 $Q$ の冪と Newton 恒等式により、各特性多項式を厳密に計算する。
+\[
+ e_0=1,\qquad
+ k e_k=\sum_{j=1}^k(-1)^{j-1}e_{k-j}\tr(Q^j).
+\]
+すべての除算が割り切れることを確認する。独立な確認として、8頂点以下の291
+グラフを SymPy の厳密特性多項式計算で再計算し、7頂点以下の103グラフを
+すべての辺部分集合について TU 公式で確認した。生成器は7頂点以下で NetworkX
+の全 graph atlas と照合した。閉路長固定および奇偶数固定の bouquet との
+比較は242,334回で、反例はなかった。短縮恒等式は $5\le\ell\le50$ で
+記号的に確認した。極小元分類表については、さらに
+$1\le r\le30$, $0\le s\le30$ の930個の bouquet パラメータクラスで確認した。
+第3--5節の証明は、二つの帰納法の初期多項式を含めて、これらの探索とは独立に
+すべてのパラメータを扱う。
+
+データには、各グラフの辺、全係数、閉路長、奇偶閉路数、次数、ブロック、
+block-cut incidences、直径、葉数を記録した。浮動小数点 energy は候補抽出
+だけに使う。13頂点以下の49個の頂点数・閉路数クラスすべてについて、整数係数
+特性多項式の根を有理区間で分離し、平方根の有理上下界を使って Pareto 候補間
+の最小 energy を保証した。30桁を超える精度の分離に対応する上下界を、単なる
+小数表示でなく有理数として保存している。
+
+小さい正規化確認として、一本の葉辺を持つ三角形では
+$P=x^4+8x^3+19x^2+16x+4$ であり、
+$P_{C_4}=x^4+8x^3+20x^2+16x$ である。その差は $x^2-4$ となる。
+両者は比較不能だが、incidence energy は $C_4$ の方が小さい。
+Energy の最小グラフはパラメータにより変化する。$(n,r)=(10,3),(11,3)$
+では三つの四角形を持つものが勝ち、$(12,3),(13,3)$ では三つの三角形を持つ
+ものが勝つ。$(12,3)$ では、保証付きの値の冒頭は、三角形 bouquet で
+$16.15344082377579$、四角形 bouquet で $16.15781765716216$ である。
+これらは「常に偶閉路を可能な限り多くすれば energy が最小」という規則の
+反例であるが、全パラメータに対する energy 分類定理の代わりにはならない。
+
+\section{新規性監査と文献上の限界}
+調査の期限は2026年9月10日とした。依頼された
+``cactus graph signless Laplacian coefficients'',
+``cactus graphs incidence energy'',
+``minimal signless Laplacian coefficients cactus'',
+``signless Laplacian coefficient ordering cactus'',
+``even cycles cactus signless Laplacian'',
+``subdivision matching signless Laplacian cactus'',
+``TU-subgraph cactus extremal'' の組合せを検索した。
+続いて ``bouquet'', ``quadrangular'', ``vertex transitive blocks'',
+``coalescence'' を使った検索も行った。一般の web 検索はしばしば無関係な結果
+を返したが、それを先行研究の不在の証拠とはしない。Crossref、OpenAlex、
+Semantic Scholar の書誌・引用検索も用いた。Google Scholar と zbMATH
+への直接アクセスはエラーとなり、MathSciNet は利用できなかった。
+
+\begin{center}\small
+\begin{tabular}{p{0.22\textwidth}p{0.68\textwidth}}
+文献&確認範囲と限界\\\hline
+Wang--Zhong--Zheng \cite{ja-wzz}&題名、著者、巻、ページ、DOI を確認した。
+出版社・DOI 経由の本文取得は失敗した。future problem のページ・節は
+\emph{未確認}である。偶閉路なしの場合の結果の紹介は
+\cite[p.~4216]{ja-zw} で確認した。\\
+Du \cite{ja-du}&2025年の出版書誌を確認した。利用可能な本文や repository
+版は見つからず、正確な定理と適用可能性を原文と照合できなかった。\\
+Zhong--Wang \cite{ja-zw}&18ページの全文を読んだ。Lemma 2.1 はp.~4217、
+Theorems 3.17--3.18 はp.~4231であり、二部分割の大きさを指定した
+unicyclic graph を扱う。任意の $r$ の cactus 定理を述べてはいない。\\
+Lu--Zhu \cite{ja-lz}&本文を読んだ。第3--4節、特にTheorems 3.11 と4.2は
+tricyclic graph を扱い、$r=3$ に固定されている。\\
+Kummel \cite{ja-kummel}&2023年の学位論文の序論、signless Laplacian
+の議論、\cite{ja-wzz} への引用を確認した。Forest generating function
+を扱う論文であり、一般 cactus の係数極小元分類は見つからなかった。\\
+以前の係数論文&関連文献 \cite{ja-lts,ja-zz} の unicyclic・bicyclic
+に関する書誌を確認した。原論文の定理番号は未確認である。
+\cite{ja-cz} の spectral-radius 極値は、係数全体の極値とは目的が異なる。\\
+\end{tabular}
+\end{center}
+
+OpenAlex は \cite{ja-wzz} の引用先として、上の2020年の二論文と Kummel
+の学位論文の計3件を返した。Semantic Scholar は2020年の二論文を返した。
+これは当該検索で返った全件を意味し、データベースがすべての引用を収録している
+という主張ではない。Du の文献について、取得した Semantic Scholar の応答には
+引用先がなかった。
+
+数学的な主張の関係は明確である。奇偶固定定理の $b=0$ は偶閉路なしの
+cactus クラスを扱い、$b>0$ は偶閉路を含むクラスを扱う。$a,b$ にわたる
+それらの合併は全 cactus である。全偶閉路定理は上限のない $r$ を許し、
+確認した関連論文の $r=1$ または $r=3$ の場合を単に言い換えたものではない。
+全極小元定理は、さらにこれらの奇偶クラス同士を比較する。
+しかし指定された二つの原文および文献全体を確認できていないため、優先権の
+主張について監査を通過したとは扱わない。「本稿で証明した」は、この原稿内で
+自己完結した導出を与えたという意味であり、新規性を認証したという意味ではない。
+2019年の問題が現在も未解決であるとも、本稿が原文確認済みのその歴史的問題を
+解決したとも主張しない。
+
+\section{再現方法とテンプレートの変更点}
+実装は Python、NetworkX、NumPy、SymPy を用いる。乱数探索は行っていない。
+添付するファイルの役割は次のとおりである。
+\begin{itemize}
+\item \texttt{cactus\_exact.py}: cactus の完全生成、厳密係数、Pareto
+極小元抽出、グラフの記述量、energy の候補抽出。
+\item \texttt{verify\_results.py}: graph atlas との照合、独立な多項式計算、
+TU 公式確認、bouquet 比較、有理数による energy 証明書。
+\item \texttt{bouquet\_frontier.py}: 帰着された族についての整数多項式探索と、
+証明された極小元分類との比較。
+\item \texttt{proof\_certificates.py}: 交換恒等式と帰納法の初期多項式の
+正の係数列の厳密検証。
+\item \texttt{cacti.jsonl}, \texttt{summary.json},
+\texttt{energy\_certificates.json}: 全データと要約の機械可読ファイル。
+\end{itemize}
+README に実行コマンドと環境のバージョンを記載する。
+今回実際に添付されていたテンプレートは末尾が \texttt{134231.tex} のコピー
+であり、依頼文に併記された以前の \texttt{133416.tex} はこの実行には
+添付されていなかった。実際の添付をベースとした。
+\texttt{amsart} クラス、12ポイント、数学マクロ、定理環境、余白、節のスタイル、
+alpha bibliography style の指定を保持した。未完成の \verb|\title[}| を
+置き換え、著者情報を \texttt{chatGPT 6Astra} とし、\texttt{luatexja} による
+LuaLaTeX の日本語対応と IPAex フォントの書体指定を追加した。
+保持した Xy-pic が必要とする旧 PDF プリミティブは、\texttt{luatex85}
+互換パッケージで補った。日本語定理環境も同じカウンタ体系を使う。
+対応する定理番号を再使用できるよう、hyperlink anchor に言語ごとの接頭辞を
+付けた。表の前後に不自然な縦の空白が生じないよう、ページ下端の強制揃えを解除した。
+コンパイルは LuaLaTeX のみを使用し、XeLaTeX は用いていない。
+
+\appendix
+\renewcommand{\theHsection}{ja.appendix.\Alph{section}}
+\section{帰納法の初期多項式の正値証明書}
+次の表は \eqref{ja:Fcd} による $[x^j](3F_{2,4})$ と
+$[x^j](3F_{1,8})$ を与える。空欄は0を意味し、表示した次数より高い係数は
+すべて0である。\eqref{ja:uv} の明示的な多項式を代入することで、
+$\mathbb Z[x]$ 上の二つの恒等式を検証できる。
+\begin{center}\small
+\begin{tabular}{r|r|r}
+$j$&$[x^j](3F_{2,4})$&$[x^j](3F_{1,8})$\\\hline
+0&104&25948\\
+1&10889&5536949\\
+2&84792&96513760\\
+3&289390&807903964\\
+4&556584&4220825976\\
+5&666203&15366138242\\
+6&520272&41394570336\\
+7&269780&85640823708\\
+8&92152&139484195268\\
+9&19927&181934862179\\
+10&2472&192335903424\\
+11&134&166155480696\\
+12&&117896376080\\
+13&&68874191036\\
+14&&33118723264\\
+15&&13068481112\\
+16&&4205136292\\
+17&&1092070763\\
+18&&225304544\\
+19&&36054956\\
+20&&4312952\\
+21&&362802\\
+22&&19136\\
+23&&476
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{WZZ19}
+\bibitem[CRS07]{ja-crs}
+D. Cvetkovi\'c, P. Rowlinson, and S. K. Simi\'c,
+\emph{Signless Laplacians of finite graphs}, Linear Algebra Appl.
+\textbf{423} (2007), 155--171.
+\href{https://doi.org/10.1016/j.laa.2007.01.009}{doi:10.1016/j.laa.2007.01.009}.
+\bibitem[CZ16]{ja-cz}
+M. Chen and B. Zhou, \emph{On the signless Laplacian spectral radius of cacti},
+Croatica Chemica Acta \textbf{89} (2016), 493--498.
+\href{https://doi.org/10.5562/cca3018}{doi:10.5562/cca3018}.
+\bibitem[Du25]{ja-du}
+Z. Du, \emph{When (signless) Laplacian coefficients meet matchings of subdivision},
+European J. Combin. \textbf{124} (2025), article 104087.
+\href{https://doi.org/10.1016/j.ejc.2024.104087}{doi:10.1016/j.ejc.2024.104087}.
+\bibitem[Kum23]{ja-kummel}
+E. J. Kummel, \emph{Forest Generating Functions of Directed Graphs},
+Ph.D. dissertation, Portland State University, 2023.
+\href{https://doi.org/10.15760/etd.3693}{doi:10.15760/etd.3693}.
+\bibitem[LTS13]{ja-lts}
+H. Li, B.-S. Tam, and L. Su,
+\emph{On the signless Laplacian coefficients of unicyclic graphs},
+Linear Algebra Appl. \textbf{439} (2013), 2008--2028.
+\href{https://doi.org/10.1016/j.laa.2013.05.030}{doi:10.1016/j.laa.2013.05.030}.
+\bibitem[LZ20]{ja-lz}
+H. Lu and Z. Zhu, \emph{On the boundary of incidence energy and its extremum
+structure of tricycle graphs}, Frontiers in Physics \textbf{8} (2020), article 208.
+\href{https://doi.org/10.3389/fphy.2020.00208}{doi:10.3389/fphy.2020.00208}.
+\bibitem[WZZ19]{ja-wzz}
+W.-H. Wang, L. Zhong, and L.-J. Zheng,
+\emph{The signless Laplacian coefficients and the incidence energy of the graphs
+without even cycles}, Linear Algebra Appl. \textbf{563} (2019), 476--493.
+\href{https://doi.org/10.1016/j.laa.2018.10.025}{doi:10.1016/j.laa.2018.10.025}.
+\bibitem[ZW20]{ja-zw}
+L. Zhong and W.-H. Wang,
+\emph{The signless Laplacian coefficients and the incidence energy of graphs
+with a given bipartition}, Filomat \textbf{34} (2020), 4215--4232.
+\href{https://doi.org/10.2298/FIL2012215Z}{doi:10.2298/FIL2012215Z}.
+\bibitem[ZZ13]{ja-zz}
+J. Zhang and X.-D. Zhang,
+\emph{The signless Laplacian coefficients and incidence energy of bicyclic graphs},
+Linear Algebra Appl. \textbf{439} (2013), 3859--3869.
+\href{https://doi.org/10.1016/j.laa.2013.10.026}{doi:10.1016/j.laa.2013.10.026}.
+\end{thebibliography}
+
+
+\end{document}

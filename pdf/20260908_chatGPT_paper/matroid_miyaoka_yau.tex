@@ -1,0 +1,1419 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{luatexja}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+\IfFileExists{dsfont.sty}{\usepackage{dsfont}}{\let\mathds\mathbb}
+\IfFileExists{bbm.sty}{\usepackage{bbm}}{\let\mathbbm\mathbb}
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+\usepackage[normalem]{ulem}
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{luatex85}
+\usepackage[all]{xy}
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+%These are added by TOMOYUKI 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathds{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+\emergencystretch=2em
+\hypersetup{pdftitle={Sharp polarized Chern inequalities for rank-four matroids},pdfauthor={chatGPT 6 Astra}}
+
+\title[Polarized Chern inequalities for matroids]{Sharp polarized Chern inequalities for rank-four matroids:\\incidence criteria, changing signs, and equality}
+\author{chatGPT 6 Astra}
+\date{10 September 2026}
+\subjclass[2020]{Primary 05B35, 14C17; Secondary 14M25, 52B40}
+\keywords{matroid Chow ring, tangent class, Miyaoka--Yau discriminant, nef polarization, sparse paving matroid}
+\begin{document}
+\begin{abstract}
+For the ordinary tangent class on the maximal Chow ring of a loopless rank-four matroid, we prove that $9c_2-3c_1^2$ has strictly positive degree against every nonzero nonnegative combination of $\alpha$ and $\beta$. The universal coefficient $9$ is optimal even among paving matroids realizable in any fixed positive characteristic. Explicit weighted incidence formulas determine the entire positivity interval for the usual coefficient $8$; these intervals can shrink to zero. For rank-four sparse paving matroids the optimal coefficient is $3$. Explicit examples on $469$ and $26$ points show, respectively, failure of the standard coefficient and the need for sparsity. The two optimal inequalities have no nonzero equality cases, while the usual discriminant can vanish at an interior polarization. Complete algebraic proofs, exact computations, and a bounded literature audit are included. The English and Japanese versions contain the same mathematical content.
+\end{abstract}
+\maketitle
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+\section{Introduction}
+Cheng constructs the tangent $K$-class of a matroid and proves a Miyaoka--Yau inequality against the hyperplane class $\alpha$; Cheng--Lin give a stronger $\alpha$-inequality and explicitly warn that the usual inequality can fail against $\beta$ \cite{Che,CL,CheG}. The new point of this work is a sharp replacement on the entire cone generated by $\alpha$ and $\beta$ in rank four, together with an incidence criterion for the usual coefficient, an explicit family with shrinking positivity intervals, and a stronger sharp result for sparse paving matroids.
+
+Throughout the new theorems the building set is maximal. For rank $r=d+1$ we use the ordinary tangent class, not the logarithmic tangent class, and set
+\[
+ \Delta_M=2(d+1)c_2(T_M)-d c_1(T_M)^2.
+\]
+The substantive results have $r=4$, $d=3$. They are unconditional statements about all loopless matroids of this rank; realizability is unnecessary. Higher ranks are explored computationally, but no general mixed theorem in those ranks is asserted.
+
+The distinction between validity and sharpness is essential. On our rank-four cone the coefficient $8$ fails; the optimal universal replacement is $9$. Equality for this optimal inequality never occurs for a nonzero polarization. Its sharpness is asymptotic, even among paving matroids realizable in any fixed positive characteristic. The coefficient drops to $3$ for rank-four sparse paving matroids, again with strict inequality and asymptotic sharpness. A $26$-point paving example shows that sparsity cannot be omitted. We also construct a $469$-point standard-coefficient counterexample. For the original coefficient $8$, equality can occur at an interior point of the segment joining $\alpha$ and $\beta$.
+
+\section{Statement of the main theorems}
+Write $\overline M=\operatorname{si}(M)$ for the simplification. All cardinalities below count points of $\overline M$. Put
+\[
+ n=|\overline M|,\quad \mathscr L=\{F:\rk F=2\},\quad
+ \mathscr H=\{F:\rk F=3\},\quad f_i=\#\{F:\rk F=i\},
+\]
+and, for $\ell\in\mathscr L$, put $h_\ell=\#\{H\in\mathscr H:\ell\subset H\}$. Define
+\begin{equation}\label{en-weights}
+ W_2=\sum_{\ell\in\mathscr L}(|\ell|-1),\quad
+ W_3=\sum_{H\in\mathscr H}(|H|-1),\quad
+ W_{23}=\sum_{\ell\in\mathscr L}(|\ell|-1)h_\ell.
+\end{equation}
+These are weighted incidence counts, rather than the usual unweighted flag Whitney numbers. Let $\mathscr C_M=\R_{\geq0}\alpha+\R_{\geq0}\beta$.
+
+\begin{thm}[Optimal universal coefficient on $\mathscr C_M$]\label{en-main}
+For every loopless rank-four matroid with maximal building set and every $a,b\geq0$, $a+b>0$,
+\begin{equation}\label{en-nine}
+ \deg\bigl((9c_2(T_M)-3c_1(T_M)^2)(a\alpha+b\beta)\bigr)>0.
+\end{equation}
+The least real number $\lambda$ for which
+$\deg((\lambda c_2-3c_1^2)L)\geq0$ holds for every such $M$ and $L\in\mathscr C_M$ is $9$.
+For each fixed prime $p$, the least coefficient remains $9$ if $M$ is restricted to paving matroids realizable over $\overline{\mathbb F}_p$.
+More precisely, with $I_{12}=\sum_\ell|\ell|$ and $I_{13}=\sum_H|H|$, the left-hand side of \eqref{en-nine} equals
+\begin{align}\label{en-certificate}
+ a(6+12f_2)+6b\bigl[&n-1+f_2+\sum_H(|H|-2)\notag\\
+                  &+(I_{13}-I_{12})\bigr],
+\end{align}
+and $I_{13}\geq I_{12}$. Thus the equality locus in the closed cone is exactly $L=0$.
+\end{thm}
+
+\begin{thm}[Exact positivity interval for the standard discriminant]\label{en-interval}
+For every loopless rank-four matroid, put
+\[
+ A=11f_2>0,\qquad B=12W_3-3W_2-W_{23}.
+\]
+Then
+\begin{equation}\label{en-linear}
+ P_M(t)=\deg\bigl((8c_2-3c_1^2)((1-t)\alpha+t\beta)\bigr)
+       =A(1-t)+Bt.
+\end{equation}
+If $B>0$, the polynomial is positive throughout $[0,1]$. If $B=0$, it vanishes exactly at $1$. If $B<0$, its nonnegative locus in $[0,1]$ is exactly
+\[
+ [0,t_M],\qquad t_M=\frac{A}{A-B},
+\]
+and equality occurs exactly at $t_M$.
+In particular the complete combinatorial equality criterion, for fixed $0<t\leq1$, is
+\begin{equation}\label{en-equality}
+ W_{23}+3W_2=12W_3+11f_2\frac{1-t}{t}.
+\end{equation}
+There is no universal $\varepsilon>0$ for which the standard inequality holds for every rank-four matroid and every $t\in[0,\varepsilon]$.
+\end{thm}
+
+\begin{thm}[Sparse paving improvement]\label{en-sparse}
+If the simplification of a loopless rank-four matroid is sparse paving, then
+\[
+ \deg\bigl((3c_2-3c_1^2)(a\alpha+b\beta)\bigr)>0
+ \quad(a,b\geq0,\ a+b>0).
+\]
+The optimal universal coefficient $\lambda$ on this class and cone is $3$. Equality again occurs only at $L=0$. For the standard coefficient $8$, $P_M(t)>0$ throughout $[0,1]$.
+\end{thm}
+
+\section{Comparison with previous work}
+The following comparison records the scope of the novelty claim. We do not claim the construction of $T_M$, the nefness of $\alpha,\beta$, or the failure of coefficient $8$ for arbitrary nef classes as new.
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{3.0cm}XX@{}}
+\toprule
+Reference&Previously known result&Difference from this work\\\midrule
+Cheng \cite{Che}, Def.~3.1, Thms.~3.4, 4.1&Tangent $K$-class and Chern formulas.&We evaluate the degree-two classes against $\beta$ and prove optimal bounds.\\
+Cheng \cite{CheG}, Cor.~4.23&Standard inequality against $\alpha$, including arbitrary building sets.&Our new theorems concern a second polarization and its cone, for the maximal set.\\
+Cheng--Lin \cite{CL}, Cor.~4.15, Rem.~4.16&The stronger $\alpha$ coefficient $(d+2)/2$; a warning about failure at $\beta$.&We determine rank-four constants $9$ and $3$, exact intervals, and explicit asymptotic obstructions.\\
+AHK \cite{AHK}; ADH \cite{ADH}&Hodge theory and mixed Hodge theory.&Our Chern discriminant requires a separate incidence calculation.\\
+Mannino \cite{Man}, Thms.~1.2, 1.5&Logarithmic Chern numbers and a rank-three ratio bound.&Our ordinary tangent class, rank, and polarized intersections differ.\\
+Aliabadi \cite{Ali}, Lem.~2.3&Construction of paving matroids from large hyperplanes.&The construction is not new; our claim concerns sharp polarized Chern bounds.\\
+de Borbon--Panov \cite{BP}, Thm.~1.1&An inequality for a parabolic class of stable weighted complex arrangements.&Our class is the ordinary tangent class, and no stability or complex realization is assumed.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The restriction of \eqref{en-nine} to the $\alpha$ ray is much weaker than Cheng--Lin's result, and is not itself a new inequality. The contribution is the $\beta$ estimate, its optimal universal constant, and its combination with the exact obstruction for coefficient $8$.
+
+\section{Matroid Chow rings and building sets}
+A matroid rank function $\rk:2^E\to\Z_{\geq0}$ is monotone, submodular, and satisfies $0\leq\rk(S)\leq|S|$. A flat is a subset $F$ such that adding any element outside $F$ increases rank. Looplessness means $\rk\{e\}=1$ for every $e$. Points are rank-one flats. Simplification retains one representative from each point. It preserves the ranked flat lattice.
+
+For the maximal building set, the ring used here is
+\begin{equation}\label{en-chow}
+ A^\bullet(M)=\frac{\Z[x_F:\emptyset\ne F\ne E\text{ a flat}]}{I+J},
+\end{equation}
+where $\deg x_F=1$, $I$ is generated by $x_Fx_G$ for incomparable flats, and $J$ by
+\[
+ \sum_{F\ni i}x_F-\sum_{F\ni j}x_F\quad(i,j\in E).
+\]
+It has top degree $d=r-1$. The degree of a monomial belonging to a complete flag of nonempty proper flats is $1$; this normalizes the degree map. We extend scalars to $\Q$ or $\R$ when needed \cite{FY,AHK}.
+
+A building set $\mathcal G$ contains nonempty flats and here is required to contain $E$. For each flat $F$, its maximal $\mathcal G$-members $G_i\subseteq F$ must induce an isomorphism $\prod_i[\emptyset,G_i]\simeq[\emptyset,F]$. A set is nested if the join of every incomparable subcollection of at least two members is outside $\mathcal G$. The Feichtner--Yuzvinsky presentation uses variables for all $G\in\mathcal G$, nonnested monomials, and relations $\sum_{G\supseteq p}x_G=0$ for points $p$. Eliminating $x_E=-\alpha$ gives \eqref{en-chow} when $\mathcal G$ is maximal \cite[Definitions 1--3]{FY}.
+
+\begin{rem}
+All weighted counts in this paper are taken after simplification. Using the sizes of parallel classes instead gives incorrect $\beta$ formulas. The presentations, degree maps, cutting classes and tangent formulas are transported by the ranked lattice isomorphism, so all our statements extend from simple to loopless matroids. Coloops are permitted: they do not change $d=r-1$ or remove the exceptional terms. Loops are excluded throughout.
+\end{rem}
+
+\section{Tangent and Chern classes}
+For the maximal building set, Cheng's original definition is the restriction of $T_{X_E}-Q_M$ from the permutohedral variety, where $Q_M$ is the tautological quotient $K$-class \cite[Definition 3.1]{Che}. For general $\mathcal G$, set
+\[
+ \theta_F=\alpha-\sum_{\substack{H\in\mathcal G\\F\subseteq H\subsetneq E}}x_H.
+\]
+The definition in \cite[Definition 3.3]{CheG} is
+\begin{align}\label{en-tangent}
+ T_{M,\mathcal G}={}&r[\mathcal O(\alpha)]-[\mathcal O]\notag\\
+ &+\sum_{F\in\mathcal G\setminus\{E\}}\bigl([\mathcal O(x_F)]-[\mathcal O]\notag\\
+ &\hspace{21mm}+\rk(F)([\mathcal O(\theta_F)]-[\mathcal O(\theta_F+x_F)])\bigr).
+\end{align}
+Its rank is $r-1=d$: every summand in the sum has rank zero. The Chern convention is $c(\mathcal O(D))=1+D$, extended multiplicatively to virtual differences. Thus
+\begin{equation}\label{en-total}
+ c(T_{M,\mathcal G})=(1+\alpha)^r
+ \prod_{F\in\mathcal G\setminus\{E\}}(1+x_F)
+ \left(\frac{1+\theta_F}{1+\theta_F+x_F}\right)^{\rk F}.
+\end{equation}
+The reciprocal factors are finite power series in the nilpotent positive-degree ideal. For a point $p$, $\theta_p=0$, and its entire factor is $1$.
+
+For a directly implementable expansion put $Q_2=2\ch_2(T_M)$. The degree-one and degree-two terms of \eqref{en-total} give
+\begin{align}\label{en-c12}
+ c_1&=r\alpha-\sum_{\rk F\geq2}(\rk F-1)x_F,\notag\\
+ Q_2&=r\alpha^2+\sum_{\rk F\geq2}
+       \bigl((1-\rk F)x_F^2-2\rk(F)\theta_Fx_F\bigr),\\
+ c_2&=\tfrac12(c_1^2-Q_2),\qquad
+ \Delta_M=c_1^2-rQ_2.\notag
+\end{align}
+These identities check both the minus sign and the coefficient in the question: $2r c_2-(r-1)c_1^2=c_1^2-rQ_2$. All intersections under consideration have degree $2+(d-2)=d$.
+
+In the realizable case \eqref{en-tangent} is the class of the ordinary tangent bundle of the corresponding wonderful model. Subtracting $\sum_F([\mathcal O(x_F)]-[\mathcal O])$ gives the logarithmic tangent class \cite[Section 3.2]{CheG}. These two Chern theories must not be interchanged.
+
+\section{Nef classes and polarizations}
+We take the established classes
+\begin{equation}\label{en-ab}
+ \alpha=\sum_{F\ni e}x_F,\qquad \beta=\sum_{F\not\ni e}x_F.
+\end{equation}
+They are independent of $e$, since $\alpha+\beta=\sum_Fx_F$ and the linear relations identify the $\alpha$ representatives. They are nef in the convex piecewise-linear sense of \cite[Definition 5.7 and Lemma 9.7]{AHK}. On the ambient permutohedral variety, Cremona inversion interchanges them. This does not assert a Cremona automorphism of the Bergman fan of an arbitrary matroid. Our proof requires only their nefness, not ampleness or the stronger operational positivity notions studied in \cite{Che}.
+
+For a simple rank-four matroid, summing the $n$ point relations yields
+\begin{equation}\label{en-beta-expand}
+ \beta=(n-1)\alpha-\sum_\ell(|\ell|-1)x_\ell
+                       -\sum_H(|H|-1)x_H.
+\end{equation}
+Indeed $n\alpha=\sum_F|F|x_F$; subtract this from the equality $\alpha+\beta=\sum_Fx_F$. Formula \eqref{en-beta-expand} is the link between polarization and incidence counts.
+
+\section{Rank-four intersection calculation}
+We give a ring proof valid also for nonrealizable matroids.
+\begin{lem}\label{en-monomials}
+Let $\ell\subset H$ be a line and a hyperplane. The required top-degree values are
+\[
+\begin{array}{c|rrrrrr}
+\text{monomial}&\alpha^3&\alpha x_\ell^2&x_H^3&x_\ell^2x_H&x_\ell x_H^2&x_\ell^3\\\hline
+\deg&1&-1&1&-1&0&2(h_\ell-1).
+\end{array}
+\]
+Also $\alpha x_H=0$ and $\alpha^2x_\ell=0$ in the Chow ring. Products of incomparable flats vanish.
+\end{lem}
+\begin{proof}
+Choosing an element outside $H$ in \eqref{en-ab} proves $\alpha x_H=0$. Choosing $e\notin\ell$ gives $\alpha x_\ell=x_\ell x_{\operatorname{cl}(\ell\cup e)}$, so $\alpha^2x_\ell=0$. If $e\in H\setminus\ell$, multiplication of its $\alpha$ relation by $x_\ell x_H$ gives $x_\ell x_H^2=0$.
+
+Choose a point $p\subset\ell$. The $p$ relation, multiplied by $x_\ell x_H$, reads
+$0=x_px_\ell x_H+x_\ell^2x_H+x_\ell x_H^2$.
+The first term has degree $1$, hence $\deg(x_\ell^2x_H)=-1$ and $\deg(\alpha x_\ell^2)=-1$.
+Choosing $e\in H\setminus p$ in the relation multiplied by $x_px_H$ gives $0=x_px_{\operatorname{cl}(p\cup e)}x_H+x_px_H^2$, whence $\deg(x_px_H^2)=-1$. The $p$ relation multiplied by $x_H^2$ now proves $\deg x_H^3=1$.
+
+Finally, $\deg(\alpha x_px_\ell)=1$, by choosing $e\notin\ell$. Choosing instead a point of $\ell$ different from $p$ gives
+$1=\deg(x_px_\ell^2)+h_\ell$.
+The $p$ relation multiplied by $x_\ell^2$ is consequently
+$-1=(1-h_\ell)+\deg x_\ell^3-h_\ell$.
+This proves the last formula. The normalization $\deg\alpha^3=1$ follows by successively using the same relation to extend a flag (equivalently \cite[Proposition 5.8]{AHK}).
+\end{proof}
+
+\begin{prop}\label{en-moments}
+With $u=n-1$, the endpoint Chern numbers are
+\begin{align}\label{en-endpoints}
+ \deg(c_2\alpha)&=6+f_2,& \deg(c_1^2\alpha)&=16-f_2,\notag\\
+ C:=\deg(c_2\beta)&=6u-3W_2+W_{23},\\
+ S:=\deg(c_1^2\beta)&=16u-7W_2+3W_{23}-4W_3.\notag
+\end{align}
+Consequently $\deg(\Delta_M\beta)=12W_3-3W_2-W_{23}$ and
+$\deg((9c_2-3c_1^2)\beta)=6(u-W_2+2W_3)$.
+\end{prop}
+\begin{proof}
+From \eqref{en-c12}, in rank four,
+\begin{align*}
+ c_1&=4\alpha-\sum_\ell x_\ell-2\sum_Hx_H,\\
+ Q_2&=4\alpha^2+\sum_\ell(3x_\ell^2-4\alpha x_\ell)
+       +4\sum_{\ell\subset H}x_\ell x_H
+       +\sum_H(4x_H^2-6\alpha x_H).
+\end{align*}
+Substitution of Lemma~\ref{en-monomials} gives the full intermediate table
+\[
+\begin{array}{c|ccc}
+ &\alpha&x_\ell&x_H\\\hline
+ c_1^2&16-f_2&6-2h_\ell&4-f_2(M|H)\\
+ c_2&6+f_2&4-2h_\ell&f_2(M|H)\\
+ 8c_2-3c_1^2&11f_2&14-10h_\ell&11f_2(M|H)-12.
+\end{array}
+\]
+Every entry means the degree after multiplying by the column divisor.
+For example,
+$\deg(c_1^2x_\ell)=2(h_\ell-1)+8-4h_\ell=6-2h_\ell$.
+The other entries follow by inserting each of the six monomials in the two displayed expansions and using $2c_2=c_1^2-Q_2$.
+
+The hyperplanes containing $\ell$ partition $E\setminus\ell$ after subtracting $\ell$: every outside point determines the unique flat $\operatorname{cl}(\ell\cup e)$. Therefore
+\begin{equation}\label{en-partition}
+ \sum_{H\supset\ell}(|H|-|\ell|)=n-|\ell|,
+\end{equation}
+and, on summing over $\ell$,
+\[
+ \sum_H(|H|-1)f_2(M|H)=u f_2-W_2+W_{23}.
+\]
+Multiplying \eqref{en-beta-expand} by $c_2$ now gives
+\[
+ C=u(6+f_2)-4W_2+2W_{23}-(uf_2-W_2+W_{23})
+   =6u-3W_2+W_{23}.
+\]
+Multiplication by $c_1^2$ gives
+\[
+ S=u(16-f_2)-6W_2+2W_{23}-4W_3+(uf_2-W_2+W_{23}),
+\]
+which is the stated formula. The two discriminant formulas follow by subtraction.
+\end{proof}
+
+\section{The polarized inequality and its optimal constant}
+\begin{lem}[An elementary incidence inequality]\label{en-incidence}
+For every simple rank-four matroid, $I_{13}\geq I_{12}$.
+\end{lem}
+\begin{proof}
+First let $N$ be a simple rank-three matroid with $v$ points and $w$ lines. Its point--line incidence matrix $D$ has
+\[
+ DD^{\mathsf T}=\mathbf 1\mathbf 1^{\mathsf T}
+                         +\operatorname{diag}(t_p-1),
+\]
+where $t_p$ is the number of lines through $p$. Distinct points lie on exactly one line. Every $t_p\geq2$, since a single line through $p$ containing every other point would make $N$ rank two. Thus this real matrix is positive definite: on a nonzero vector $z$ its quadratic form is $(\sum z_p)^2+\sum(t_p-1)z_p^2>0$. It has rank $v$, so $w\geq v$.
+
+Apply this argument to the simplification of $M/p$ for every point $p$ of $M$. The contraction is loopless because $p$ is a flat. Its points correspond to lines of $M$ containing $p$ and its lines to hyperplanes containing $p$. Summing $w\geq v$ over $p$ gives exactly $I_{13}\geq I_{12}$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en-main}, except sharpness]
+Proposition~\ref{en-moments} gives $\deg((9c_2-3c_1^2)\alpha)=6+12f_2$. At the other endpoint use
+\begin{align*}
+ u-W_2+2W_3
+ &=u-(I_{12}-f_2)+2(I_{13}-f_3)\\
+ &=u+f_2+\sum_H(|H|-2)+(I_{13}-I_{12}).
+\end{align*}
+Every summand on the last line is nonnegative, and $u>0$. Lemma~\ref{en-incidence} proves the claimed positive certificate. Linearity gives \eqref{en-certificate}. Moreover a nonnegative combination with $a+b>0$ cannot be the zero class: $\deg(\alpha^2(a\alpha+b\beta))=a+b(n-1)>0$.
+\end{proof}
+
+\begin{proof}[The interval and equality assertions of Theorem~\ref{en-interval}]
+The two endpoint formulas in Proposition~\ref{en-moments} give \eqref{en-linear}. A rank-four matroid has a line, so $A>0$. Solving this affine inequality gives all three cases. Setting its value equal to zero and dividing by $t>0$ yields \eqref{en-equality}. The absence of a uniform interval and the sharpness of $9$ follow from the next family.
+\end{proof}
+
+\section{Explicit counterexamples and shrinking intervals}
+For a prime power $q$, let $M_q=\operatorname{PG}(3,q)$ be the vector matroid on the one-dimensional subspaces of $\mathbb F_q^4$. Counting subspaces gives
+\begin{align*}
+ n&=(q+1)(q^2+1),& f_2&=(q^2+1)(q^2+q+1),& f_3&=n,\\
+ |\ell|&=q+1,& |H|&=q^2+q+1,& h_\ell&=q+1.
+\end{align*}
+For completeness, the point count is $(q^4-1)/(q-1)$. The line count is the number $(q^4-1)(q^4-q)$ of ordered independent pairs, divided by $(q^2-1)(q^2-q)$. Hyperplanes are kernels of nonzero linear forms up to scaling. The local counts follow from the same calculation inside a two- or three-dimensional subspace, or in the quotient by a line. Thus these formulas do not rely on an unexamined catalogue.
+
+Substituting $W_2=qf_2$, $W_3=(q^2+q)n$, and $W_{23}=q(q+1)f_2$ in Proposition~\ref{en-moments} gives
+\begin{align}\label{en-pg}
+ C_q&=q(q+1)(q^2-3q+4)(q^2+q+1),\notag\\
+ S_q&=q(3q^5-5q^4-6q^3+3q^2+7q+8),\\
+ B_q&=-q(q^2+1)(q^3-7q^2-19q-8),\notag\\
+ 9C_q-3S_q&=6q(q^4+3q^3+3q^2+4q+2)>0.\notag
+\end{align}
+In particular $C_q>0$ and $3S_q/C_q\to9$. For every $\lambda<9$ choose prime powers tending to infinity, for example $q=2^k$; then $(\lambda C_q-3S_q)<0$ eventually. This proves sharpness in Theorem~\ref{en-main}.
+
+The cubic $g(q)=q^3-7q^2-19q-8$ is negative for $2\leq q\leq7$, and $g(8)=-96$, $g(9)=-17$, $g(10)=102$. Its derivative is positive for $q\geq6$. Hence among prime powers the first negative $B_q$ occurs at $q=11$. There
+\[
+ P_{M_{11}}(t)=178486-536800t,\qquad t_{M_{11}}=\frac{133}{400}.
+\]
+For $q\geq11$ a prime power,
+\begin{equation}\label{en-tq}
+ t_{M_q}=\frac{11(q^2+q+1)}{q^4-7q^3-8q^2+3q+11}
+             \sim\frac{11}{q^2}.
+\end{equation}
+This proves the last assertion of Theorem~\ref{en-interval}. Rank four is the smallest possible counterexample rank for the stated discriminant: in rank three its degree is $8f_2>0$ and no polarization factor remains. We make no claim of minimal ground-set size. The number $1464$ for $M_{11}$ is minimal only within the displayed projective-geometry family.
+
+\begin{center}\small
+\begin{tabular}{rrrr}
+\toprule
+$q$&$A_q$&$B_q$&maximum allowed $t$\\\midrule
+2&385&660&1\\
+3&1430&3030&1\\
+9&82082&12546&1\\
+11&178486&$-358314$&$133/400$\\
+13&342210&$-1677390$&$61/360$\\
+16&771771&$-8191104$&$1001/11625$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Paving sharpness and a smaller explicit counterexample}
+A rank-four matroid is paving if every three-element subset is independent. The following construction uses familiar finite-field incidence objects; the new claim concerns their Chern intersections.
+
+\begin{prop}\label{en-inversive}
+For every prime power $q\geq2$, there is a rank-four paving matroid $N_q$, realizable over $\mathbb F_q$, on $n=q^2+1$ points. With $N=\binom n2$,
+\begin{align}\label{en-inversive-chern}
+ \deg(c_2\beta)&=6q^2+(q-2)N,&
+ \deg(c_1^2\beta)&=16q^2+3(q-4)N,\notag\\
+ P_{N_q}(t)&=N\bigl(11+(9-q)t\bigr).
+\end{align}
+The coefficient $9$ is sharp even on this family with $q$ restricted to powers of any fixed prime. The standard coefficient $8$ fails for $q>20$ precisely when $t>11/(q-9)$. For $q\leq20$ it is strictly positive on $[0,1]$.
+\end{prop}
+\begin{proof}
+Put $K=\mathbb F_{q^2}$ and $X=\mathbb P^1(K)$. Call each image of $\mathbb P^1(\mathbb F_q)$ under $\operatorname{PGL}_2(K)$ a circle. Every three distinct points of $X$ lie on exactly one circle. Here is a direct justification. Given independent representatives $v_a,v_b$ of two points and a representative $v_c$ of a third, write $v_c=u v_a+v v_b$. Both $u,v$ are nonzero. The matrix with columns $u v_a,v v_b$ sends $\infty,0,1$ to $a,b,c$. A projectivity fixing $\infty,0,1$ is scalar, so it is unique. If a circle contains these three points, precompose its defining projectivity with one over $\mathbb F_q$ taking $\infty,0,1$ to their preimages. Uniqueness shows that this circle is the one already constructed. Thus the circles form a $3$-$(q^2+1,q+1,1)$ design. In particular two distinct circles meet in at most two points.
+
+For a realization, let $V$ be the four-dimensional $\mathbb F_q$-space of Hermitian $2\times2$ matrices over $K$, using the involution $z\mapsto z^q$. Send $[v]\in\mathbb P^1(K)$ to the projective class of $vv^*$ in $\mathbb P(V)$. Multiplying $v$ by $a\in K^*$ multiplies $vv^*$ by $a^{q+1}\in\mathbb F_q^*$, so this is well defined. It is injective because the column space of $vv^*$ recovers the line $Kv$.
+
+The map $H\mapsto gHg^*$ is an invertible $\mathbb F_q$-linear map of $V$. Hence the projective action just used is induced by linear transformations. The images of $\infty,0,1$ are linearly independent. They span the three-dimensional subspace of symmetric matrices over $\mathbb F_q$, whose intersection with our point set is exactly $\mathbb P^1(\mathbb F_q)$. A point $z\in K\setminus\mathbb F_q$ has an off-diagonal entry outside $\mathbb F_q$, so lies outside this subspace. The point set therefore has rank four. By the projective action, every triple is independent, and its spanning hyperplane intersects the point set in its unique circle. Thus all rank-two flats are pairs, and all rank-three flats are circles. This verifies the claimed paving realization without appealing to a catalogue or assuming realizability from a design construction.
+
+Counting triples gives $f_3=\binom{q^2+1}{3}/\binom{q+1}{3}=q(q^2+1)$. The circles through a pair partition the other points into sets of size $q-1$, so their number is $q+1$. It follows that
+\[
+ f_2=W_2=N,\qquad W_3=2N,\qquad W_{23}=(q+1)N.
+\]
+Substitute these values into \eqref{en-endpoints}. This proves \eqref{en-inversive-chern}, and
+\[
+ 9\deg(c_2\beta)-3\deg(c_1^2\beta)=6(q^2+3N)>0,
+ \qquad\frac{3\deg(c_1^2\beta)}{\deg(c_2\beta)}\longrightarrow9.
+\]
+The denominator is positive for $q\geq2$. Taking $q=p^k$ proves the fixed-characteristic sharpness assertion in Theorem~\ref{en-main}. The displayed affine polynomial gives the sign and equality assertions. Since $20$ is not a prime power, no endpoint equality was suppressed.
+\end{proof}
+
+The first standard-coefficient counterexample in this family is $N_{23}$, with $530$ points and $P_{N_{23}}(t)=140185(11-14t)$. The sparse-paving coefficient $3$ already fails on $N_5$: it has $26$ points, and
+\[
+ \deg((3c_2-3c_1^2)\beta)=3(1125-1375)=-750.
+\]
+Its hyperplanes have six points, so it is paving but not sparse paving. Thus the hyperplane-size restriction in Theorem~\ref{en-sparse} is substantive.
+
+Here is a further explicit restriction with only $469$ points. Take $K=\mathbb F_{23}[\tau]/(\tau^2-5)$; $5^{11}\equiv-1\pmod{23}$, so $5$ is a nonsquare modulo $23$. Delete $\infty$, all $a+b\tau$ with $b=0,1$, and the fourteen points with $b=2$ and $a=0,\ldots,13$. Denote the resulting restriction of $N_{23}$ by $R$. Equivalently, its columns over $\mathbb F_{23}$ are
+\begin{equation}\label{en-small-columns}
+ (1,a,b,a^2-5b^2)^{\mathsf T},\quad
+ b\in\{2,\ldots,22\},\quad a\in\mathbb F_{23},\quad
+ (b,a)\notin\{(2,0),\ldots,(2,13)\}.
+\end{equation}
+The three sets $C_b=\{a+b\tau:a\in\mathbb F_{23}\}\cup\{\infty\}$, $b=0,1,2$, are circles. Exactly $C_0,C_1$ become empty, and $C_2$ retains nine points. Every other circle loses at most six points, because it meets each $C_b$ in at most two. Thus every remaining circle has at least three points, with distinct circles still defining distinct hyperplanes of $R$. Also $R$ has rank four since $469>24$ and every triple spans a circle.
+
+There are $23\cdot24=552$ circles through each point, and $24$ through each pair. Therefore
+\begin{align*}
+ f_2=W_2&=109746,& f_3&=12188,\\
+ W_3&=469\cdot552-12188=246700,& W_{23}&=24\cdot109746=2633904.
+\end{align*}
+Formula \eqref{en-endpoints} now gives
+\begin{align}\label{en-small-counter}
+ \deg(c_2\beta)&=2307474,& \deg(c_1^2\beta)&=6154178,\notag\\
+ P_R(t)&=1207206-1209948t,& t_R&=\frac{201201}{201658}.
+\end{align}
+In particular $P_R(1)=-2742$. This gives an explicit upper bound of $469$ for the least counterexample size; it does not prove global minimality.
+
+\section{Sparse paving matroids and the constant three}
+A rank-four sparse paving matroid is specified by its four-element circuit-hyperplanes $\mathcal B$, any two of which meet in at most two elements; all other four-subsets are bases. We include the Boolean case $n=4$, $\mathcal B=\emptyset$. Let $z=|\mathcal B|$ and $N=\binom n2$. Every line has two points. A circuit-hyperplane replaces four three-point hyperplanes by one four-point hyperplane. No triple is replaced twice. Consequently
+\begin{equation}\label{en-spcounts}
+ f_2=W_2=N,\quad W_3=2\binom n3-5z,\quad
+ W_{23}=N(n-2)-6z,\quad 4z\leq\binom n3.
+\end{equation}
+Formula \eqref{en-endpoints} becomes
+\begin{align}\label{en-spchern}
+ C&=6(n-1)+N(n-5)-6z,\notag\\
+ S&=16(n-1)+\frac{n-23}{3}N+2z,\\
+ B&=N(7n-17)-54z.\notag
+\end{align}
+The coefficients of $P_M(t)$ are therefore entirely explicit in $n,z$.
+
+\begin{proof}[Proof of Theorem~\ref{en-sparse}]
+At $\alpha$, $\deg((c_2-c_1^2)\alpha)=2N-10>0$ for $n\geq4$. At $\beta$,
+\[
+ C-S=\frac{n^3+3n^2-34n+30-24z}{3}
+       \geq2(n-5)(n-1).
+\]
+This is positive for $n\geq6$. For $n=4$ there is no circuit-hyperplane and $C-S=2$. For $n=5$, two four-subsets meet in three points, so $z\leq1$, and the exact expression gives $C-S=20-8z\geq12$. This proves the coefficient-$3$ inequality with no nonzero equality. In addition, \eqref{en-spcounts} implies
+\[
+ B\geq N\left(\frac52n-8\right)>0,
+\]
+so the standard coefficient is positive on the entire segment.
+
+To prove sharpness without assuming an existence theorem for designs, take the point set $\mathbb F_2^m$, $m\geq3$, and declare the four-subsets with sum zero to be circuit-hyperplanes. Three distinct points have exactly one fourth point completing a zero sum; hence distinct blocks share at most two points. The remaining four-subsets satisfy basis exchange: among two or more proposed replacements of a removed basis element, at most one can complete that fixed triple to a block. If there is just one possible replacement from the other basis, it produces that basis itself. There are bases, and every triple extends to a basis, since $2^m\geq8$. Each block has rank three and adding any outside point raises its rank. Thus this indeed defines a rank-four sparse paving matroid.
+
+Here $n=2^m$ and $z=n(n-1)(n-2)/24$. Substitution gives
+\[
+ C=\frac{(n-1)(n^2-8n+24)}4>0,\qquad
+ S=\frac{(n-1)(n-8)^2}4,
+\]
+so $3S/C\to3$ as $m\to\infty$. Every $\lambda<3$ therefore fails at $\beta$ in this family. This completes the proof.
+\end{proof}
+
+\section{Equality and rigidity}
+Theorems~\ref{en-main} and \ref{en-sparse} classify their equality loci completely: on their respective cones equality is equivalent to $L=0$. No Boolean, uniform, graphic, cographic, modular, or nonrealizable exception is hidden in the proof. Sharpness need not be attained by a finite matroid.
+
+For coefficient $8$ the classification is the incidence condition \eqref{en-equality}. It is a necessary and sufficient combinatorial condition, not a classification by a familiar named matroid class. At $t=0$ equality never occurs. At $t=1$ it is equivalent to $12W_3=3W_2+W_{23}$. When $B<0$ there is exactly one interior equality point. Thus the same $M_q$ can give a positive, zero, or negative discriminant as the polarization varies.
+
+The subspace lattice of $M_q$ is modular: the vector-space dimension formula is the modular equality. Every maximal flag is therefore a modular flag, so the lattice is also supersolvable. These properties do not prevent failure of coefficient $8$. This is an explicit obstruction to a proposed ``modular implies nonnegative for every $t$'' rigidity principle. Boolean matroids behave differently: for rank four, $P_{U_{4,4}}(t)=66$.
+
+For uniform rank-four matroids, \eqref{en-spchern} with $z=0$ gives
+\[
+ P_{U_{4,n}}(t)=\binom n2\bigl(11(1-t)+(7n-17)t\bigr)>0.
+\]
+Direct sums and the graphic/cographic examples in the computational table also have strict standard inequalities on this segment. These observations are not claimed as a theorem for every graphic, cographic, series-parallel, or direct-sum matroid in every rank. A circuit matroid such as $U_{4,5}$ is series-parallel and supplies one explicit test.
+
+At an interior equality point $t_{M_q}$ the polarization is big and nef: its cube is positive, since the nonnegative mixed $\alpha,\beta$ intersections include the term $(1-t)^3\deg\alpha^3>0$. Equality here records a cancellation of incidence counts. It does not imply the complex hyperbolic uniformization familiar from geometric Miyaoka--Yau equality. Moreover the finite-field examples are not being regarded as complex realizations.
+
+\section{Computational experiments and reproducibility}
+The supplementary code uses integers and \texttt{fractions.Fraction}; it requires only Python's standard library. It constructs the flat lattice from rank functions or, for projective geometries, directly from subspaces. Products with incomparable flats are discarded. To integrate a degree-$d$ chain monomial with a repeated flat $F$, remove one copy of $x_F$ and multiply the remaining monomial by an $i$--$j$ linear relation, where $i\in F\setminus F_{\rm prev}$ and $j\in F_{\rm next}\setminus F$. The coefficient of $x_F$ is $1$. Every surviving other flat refines the chain. The number of distinct flats therefore increases, so recursion terminates at complete flags of degree $1$, or at zero. This is an exact reduction algorithm, rather than numerical evaluation.
+
+There are 25 designated examples in ranks $3$--$6$, and 417 additional records: all 354 labelled simple rank-four matroids on at most six points, $\operatorname{PG}(3,2)$, $\operatorname{PG}(3,3)$, the eight-point zero-sum-block example, and 60 fixed-seed random vector matroids on eight elements over $\mathbb F_2,\mathbb F_3,\mathbb F_5$. The 354 count splits as $1,16,337$ on $4,5,6$ points. This is not a count of isomorphism types. Exhaustiveness follows by dualizing: a rank-two matroid is specified by its loops and a partition of its nonloops into parallel classes, and rank one is even simpler. The code enumerates these possibilities and retains precisely the simple rank-four duals.
+
+Three more direct Chow-ring computations for $N_2,N_3,N_5$ bring the total to $445$. Their circle lattices were constructed both by projectivities and by norm-level sets; for $q=2,3$ they were also checked against the vector realization. The $469$-point counterexample was checked separately by exact enumeration of all $12190$ ambient circles and their restrictions. Its file includes all $469$ columns of \eqref{en-small-columns}. This latter verification evaluates the proved incidence formula and is not a full Chow-ring enumeration on $469$ points.
+
+All computed $\alpha,\beta$ volume coefficients were checked against the reduced characteristic polynomial, using \cite[Proposition 9.5]{AHK}. The known $\alpha$ discriminant formula was checked in every record. For rank-four extended records the Chern numbers were separately compared with \eqref{en-endpoints}. The alternative Chern product in \cite[Theorem 3.4]{Che} was checked against every divisor on $U_{4,4}$, $U_{4,6}$, $\operatorname{PG}(3,2)$ and $\operatorname{PG}(3,3)$. These checks resolve coefficient and implementation risks; the proofs above are independent of the finite search.
+
+The initial small search contained no standard-discriminant counterexample or equality. The projective-geometry formulas subsequently supplied exact counterexamples. Rows for $q>3$ in that family are evaluations of a proved formula, not a full Chow-ring enumeration on those ground sets.
+
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+$M$&$\deg(c_1^2\beta)$&$\deg(c_2\beta)$&$(P_M(0),P_M(1))$\\\midrule
+$U_{4,4}$&10&12&$(66,66)$\\
+$U_{4,5}$&4&24&$(110,180)$\\
+$U_{4,6}$&$-5$&45&$(165,375)$\\
+Fano dual&$-2$&36&$(231,294)$\\
+V\'amos&$-18$&96&$(308,822)$\\
+Wheel graph on 5 vertices&$-2$&40&$(220,326)$\\
+$M(K_{3,3})^*$&$-4$&48&$(264,396)$\\
+$U_{2,3}\oplus U_{2,3}$&7&21&$(121,147)$\\
+$U_{3,4}\oplus U_{1,1}$&6&18&$(110,126)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+For the rank-three Fano and non-Fano matroids the respective pairs $(\deg c_1^2,\deg c_2)$ are $(2,10)$ and $(0,12)$, giving $P=56$ and $72$. These are ordinary, not logarithmic, Chern numbers.
+
+\section{Mixed inequalities and the comparison of proof strategies}
+For arbitrary rank, define the exact mixed coefficients
+\[
+ D_j(M)=\deg(\Delta_M\alpha^{d-2-j}\beta^j),\qquad 0\leq j\leq d-2.
+\]
+Then
+\begin{equation}\label{en-bernstein}
+ P_M(t)=\sum_{j=0}^{d-2}\binom{d-2}{j}D_j(M)(1-t)^{d-2-j}t^j.
+\end{equation}
+If all $D_j$ are nonnegative, expansion proves nonnegativity against any product of classes $a_i\alpha+b_i\beta$, $a_i,b_i\geq0$. This implication is elementary and is not advertised as a new mixed theorem. Pointwise nonnegativity of $P_M(t)$ alone does not prove nonnegativity of every mixed coefficient.
+
+For example the exact $D_j$ lists are
+\[
+\begin{array}{c|l}
+U_{5,5}&(140,220,140)\\
+U_{5,6}&(210,460,480)\\
+U_{6,6}&(255,545,545,255)\\
+U_{6,7}&(357,980,1365,1050).
+\end{array}
+\]
+Thus $P_{U_{5,5}}(t)=140+160t-160t^2$. All these particular mixed intersections are positive. Rank four has only one polarization factor, so Theorem~\ref{en-main} is not a genuine many-factor mixed theorem.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}X@{}}
+\toprule
+Method considered&Outcome for this task\\\midrule
+Hard Lefschetz; Hodge--Riemann&Control divisor intersection forms but do not assert positivity of $\Delta_M$.\\
+Mixed Hodge--Riemann; Alexandrov--Fenchel&The Lefschetz-fan result \cite[Theorem 5.20]{ADH} applies to primitive forms. No required primitive representation of $\Delta_M$ was established.\\
+Lorentzian polynomials&The volume and matroid polynomial theories \cite{BH} concern specified positive coefficients. A signed Chern differential operator need not preserve that positivity.\\
+Deletion--contraction; induction in rank or size&Deletion changes flat incidence and tangent classes; an uncontrolled correction cannot be discarded. Contraction at each point does give the elementary incidence lemma used here.\\
+Building-set blow-ups; wonderful models&The tangent product motivates the calculation. Direct Chow relations provide its proof without realizability. Smaller building sets have different answers.\\
+Valuative methods&Useful in the construction of the tangent theory, but no extra valuative extension is needed for our lattice proof.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+In particular none of the inequalities is justified by the sentence ``nefness implies it by Hodge--Riemann.'' The incidence certificate is the additional positivity input. General mixed inequalities in ranks at least five remain unresolved here.
+
+\section{Realizable matroids and wonderful models}
+If a matroid is represented by a subspace $V\subset K^E$ of dimension $r$, the projective wonderful compactification has dimension $r-1$ and is obtained from $\mathbb P(V)$ by blowing up arrangement strata in the appropriate order \cite{DCP,CheG}. For a complex realization of a rank-four matroid, Theorem~\ref{en-main} reads
+\[
+ \int_{W_V}(3c_2(T_{W_V})-c_1(T_{W_V})^2)(aH+bH_{\rm Cr})>0,
+\]
+where $H$ is the pullback of a hyperplane and $H_{\rm Cr}$ is the restricted ambient Cremona hyperplane class. No positivity of $K_{W_V}$ or stability of $T_{W_V}$ is assumed. The proof is the same intersection calculation.
+
+The optimality families $\operatorname{PG}(3,q)$ and $N_q$ are realized over $\mathbb F_q$. Their sharpness, including the paving assertion in each fixed positive characteristic, does not determine the optimal constant within complex-realizable matroids. The combinatorial argument avoids transplanting characteristic-zero differential geometry to these examples. The weighted complex-arrangement inequality of \cite[Theorem 1.1]{BP} concerns a parabolic class of a stable arrangement; it is not an inequality for the ordinary tangent class used here.
+
+Building-set dependence is already visible for a Boolean matroid. The building set consisting of points and $E$ gives $\mathbb P^d$, with $c_1=(d+1)H$, $c_2=\binom{d+1}2H^2$, and $\Delta=0$. The maximal building set gives the permutohedral model; for $U_{4,4}$ its standard discriminant against $\alpha$ is $66$. Our equality and sharp-constant statements consequently cannot be transferred unchanged to a smaller building set.
+
+\section{Novelty audit and open problems}
+The literature search was carried out on 10 September 2026. We examined Cheng's version 3 of \cite{Che}, version 2 of \cite{CheG}, Cheng--Lin's versions 1 and 3 of \cite{CL}, and the relevant statements in \cite{FY,AHK,ADH,BH,Man}. The final revision uses Cheng--Lin's latest version 3, dated 29 April 2026: Corollary 4.15 and the prior warning in Remark 4.16 remain in that version. We also screened the tangent-class companion paper \cite{CLG}, the tautological nef-cone paper \cite{Sta}, and the reciprocal-space polar-degree paper \cite{BKW}, and checked \cite[Theorem 1.1]{BP} and \cite[Lemma 2.3]{Ali}. These related notions do not identify the ordinary tangent discriminant with a logarithmic, parabolic, or tautological quotient discriminant.
+
+Searches included ``matroid Miyaoka Yau beta'', ``matroid tangent Chern polarization'', ``Cheng Lin Chern inequalities'', ``matroid Chern sparse paving'', and searches for sharp constants, projective geometries, inversive planes and elliptic quadrics. The search found the explicit prior warning in \cite[Remark 4.16]{CL}; that warning is acknowledged throughout. No theorem with the precise rank-four coefficient $9$ on $\mathscr C_M$, its sharpness already within fixed-characteristic realizable paving matroids, the sparse-paving coefficient $3$ with the zero-sum sharpness family, or the displayed shrinking-interval formulas was located in the inspected sources. To the best of our literature search as of September 2026, these are new conclusions. This is a bounded literature audit, not a guarantee that no unindexed or unpublished result exists.
+
+The endpoint formulas are supporting calculations. Their value here lies in the optimal inequalities and the uniform obstruction they establish, not merely in being new-looking expressions. The positivity interval once its endpoints are known is linear algebra, and is not counted as a separate deep theorem. The following questions remain open in this report:
+\begin{enumerate}
+\item Determine the least ground-set size of a standard-coefficient counterexample (our explicit upper bound is $469$), and classify rank-four matroids with $B=0$ by structure beyond the incidence identity.
+\item Determine the optimal coefficient on the entire nef cone, and on the $\alpha,\beta$ cone within complex-realizable or orientable matroids.
+\item Prove, disprove, or sharply correct genuinely mixed inequalities in ranks at least five. The sample computations supply evidence only.
+\item Track the new endpoint formulas and equality loci under nonmaximal building-set blow-ups.
+\end{enumerate}
+
+\newpage
+\setcounter{section}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\section*{日本語版}
+\begin{center}
+{\Large\bfseries 階数4のマトロイドに対する最適な偏極付きChern不等式：接続関係の判定，符号変化，等号}\\[6pt]
+chatGPT 6 Astra\\
+2026年9月10日
+\end{center}
+\noindent\textbf{要旨．}
+階数4のlooplessマトロイドの最大Chow環上の通常の接類について，$9c_2-3c_1^2$は$\alpha,\beta$の任意の非零非負結合と狭義に正のdegreeを持つことを証明する．普遍係数9は，任意に固定した正標数で実現可能なpavingマトロイドに限っても最適である．明示的な重み付き接続関係の公式は，通常の係数8に対する正値性区間全体を決定し，その区間は0へ縮小し得る．階数4のsparse pavingマトロイドでは最適係数は3である．469点と26点の明示的な例により，それぞれ標準係数の破綻とsparseという仮定の必要性を示す．二つの最適不等式に非零の等号例はないが，通常の判別式は内点の偏極で0になり得る．完全な代数的証明，厳密計算，範囲を明記した文献監査を収録する．英語版と日本語版の数学的内容は同一である．
+
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+\section{序論}
+Chengはマトロイドの接$K$類を構成し，超平面類$\alpha$に関するMiyaoka--Yau型不等式を証明している．Cheng--Linは$\alpha$に関するより強い不等式を与え，通常の不等式が$\beta$に対して破れることも明記している\cite{Che,CL,CheG}．本稿の新しい点は，階数4で$\alpha,\beta$が生成する錐全体における最適な修正不等式，通常の係数に関する接続関係の判定条件，正値性区間が縮小する明示的な無限族，およびsparse pavingマトロイドに対するさらに強い最適不等式である．
+
+新しい定理では常に最大building setを用いる．階数を$r=d+1$とし，対数接類ではなく通常の接類を用いて
+\[
+ \Delta_M=2(d+1)c_2(T_M)-d c_1(T_M)^2
+\]
+と定める．主要な結果の対象は$r=4$，$d=3$である．この階数のすべてのlooplessマトロイドについて無条件に成立し，実現可能性は仮定しない．より高い階数でも計算したが，その範囲で一般のmixed不等式を証明したとは主張しない．
+
+成立性と最適性の区別が重要である．階数4の対象の錐では係数8は破れ，最適な普遍的修正係数は9となる．この最適不等式では非零偏極に対して等号は起こらない．その最適性は，任意に固定した正標数で実現可能なpavingマトロイドに限っても漸近的に成立する．階数4のsparse pavingマトロイドでは係数を3まで下げられ，やはり狭義不等式と漸近的最適性が成立する．26点のpavingの例はsparseという仮定を外せないことを示す．また，標準係数の469点の反例を構成する．もとの係数8では$\alpha$と$\beta$を結ぶ線分の内点に等号が現れ得る．
+
+\section{主定理}
+$\overline M=\operatorname{si}(M)$を単純化とする．以下の集合の大きさはすべて$\overline M$の点を数える．
+\[
+ n=|\overline M|,\quad \mathscr L=\{F:\rk F=2\},\quad
+ \mathscr H=\{F:\rk F=3\},\quad f_i=\#\{F:\rk F=i\}
+\]
+とおく．$\ell\in\mathscr L$に対し，$h_\ell=\#\{H\in\mathscr H:\ell\subset H\}$とし，
+\begin{equation}\label{ja-weights}
+ W_2=\sum_{\ell\in\mathscr L}(|\ell|-1),\quad
+ W_3=\sum_{H\in\mathscr H}(|H|-1),\quad
+ W_{23}=\sum_{\ell\in\mathscr L}(|\ell|-1)h_\ell
+\end{equation}
+を定める．これらは重み付きの接続関係の数であり，通常の重みなしflag Whitney数とは異なる．$\mathscr C_M=\R_{\geq0}\alpha+\R_{\geq0}\beta$とおく．
+
+\begin{thm}[$\mathscr C_M$上の最適普遍係数]\label{ja-main}
+最大building setを備えた任意の階数4のlooplessマトロイドと，$a,b\geq0$，$a+b>0$に対して，
+\begin{equation}\label{ja-nine}
+ \deg\bigl((9c_2(T_M)-3c_1(T_M)^2)(a\alpha+b\beta)\bigr)>0
+\end{equation}
+が成立する．すべてのこのような$M$および$L\in\mathscr C_M$に対して
+$\deg((\lambda c_2-3c_1^2)L)\geq0$が成立する実数$\lambda$の最小値は9である．
+任意の固定した素数$p$について，$M$を$\overline{\mathbb F}_p$上で実現可能なpavingマトロイドに制限しても最小係数は9である．
+より詳しく，$I_{12}=\sum_\ell|\ell|$，$I_{13}=\sum_H|H|$とおくと，\eqref{ja-nine}の左辺は
+\begin{align}\label{ja-certificate}
+ a(6+12f_2)+6b\bigl[&n-1+f_2+\sum_H(|H|-2)\notag\\
+                  &+(I_{13}-I_{12})\bigr]
+\end{align}
+に等しく，$I_{13}\geq I_{12}$である．したがって閉錐における等号成立条件は正確に$L=0$である．
+\end{thm}
+
+\begin{thm}[標準判別式の正確な成立区間]\label{ja-interval}
+任意の階数4のlooplessマトロイドについて
+\[
+ A=11f_2>0,\qquad B=12W_3-3W_2-W_{23}
+\]
+とおく．このとき
+\begin{equation}\label{ja-linear}
+ P_M(t)=\deg\bigl((8c_2-3c_1^2)((1-t)\alpha+t\beta)\bigr)
+       =A(1-t)+Bt.
+\end{equation}
+$B>0$なら$[0,1]$全体で正である．$B=0$なら零点は1だけである．$B<0$なら$[0,1]$内で非負になる範囲は正確に
+\[
+ [0,t_M],\qquad t_M=\frac{A}{A-B}
+\]
+であり，等号は$t_M$でのみ成立する．特に，固定した$0<t\leq1$に対する完全な組合せ論的等号条件は
+\begin{equation}\label{ja-equality}
+ W_{23}+3W_2=12W_3+11f_2\frac{1-t}{t}
+\end{equation}
+である．すべての階数4のマトロイドとすべての$t\in[0,\varepsilon]$で標準不等式を成立させる普遍的な$\varepsilon>0$は存在しない．
+\end{thm}
+
+\begin{thm}[Sparse pavingの場合の改善]\label{ja-sparse}
+階数4のlooplessマトロイドの単純化がsparse pavingなら，
+\[
+ \deg\bigl((3c_2-3c_1^2)(a\alpha+b\beta)\bigr)>0
+ \quad(a,b\geq0,\ a+b>0)
+\]
+が成立する．このクラスと錐における最適普遍係数$\lambda$は3である．等号はやはり$L=0$の場合に限る．標準係数8については，$[0,1]$全体で$P_M(t)>0$である．
+\end{thm}
+
+\section{先行研究との比較}
+次の比較表は新規性の主張範囲を明確にする．$T_M$の構成，$\alpha,\beta$のnef性，任意のnef類に対して係数8が破れるという事実は，本稿の新結果に数えない．
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{3.0cm}XX@{}}
+\toprule
+文献&既知の結果&本稿との差\\\midrule
+Cheng \cite{Che}, Def.~3.1, Thms.~3.4, 4.1&接$K$類とChern類の公式．&次数2の類を$\beta$と交叉させ，最適な評価を証明する．\\
+Cheng \cite{CheG}, Cor.~4.23&一般building setも含む$\alpha$に関する標準不等式．&新定理は最大building setでの第二の偏極とその錐を扱う．\\
+Cheng--Lin \cite{CL}, Cor.~4.15, Rem.~4.16&強い$\alpha$係数$(d+2)/2$，および$\beta$での破綻の指摘．&階数4の係数9と3，正確な区間，明示的な漸近的障害を決定する．\\
+AHK \cite{AHK}; ADH \cite{ADH}&Hodge理論とmixed Hodge理論．&Chern判別式には独立した接続関係の計算が必要である．\\
+Mannino \cite{Man}, Thms.~1.2, 1.5&対数Chern数と階数3の比の評価．&通常の接類，階数，偏極を挟んだ交叉数が異なる．\\
+Aliabadi \cite{Ali}, Lem.~2.3&大きな超平面の族からのpavingマトロイドの構成．&構成自体は新しくない．本稿の主張は偏極付きChern数の最適評価である．\\
+de Borbon--Panov \cite{BP}, Thm.~1.1&安定な重み付き複素配置の放物型類に関する不等式．&本稿は通常の接類を用い，安定性や複素実現可能性を仮定しない．\\
+\bottomrule
+\end{tabularx}
+\end{center}
+\eqref{ja-nine}を$\alpha$の半直線に制限したものはCheng--Linの結果よりはるかに弱く，それ自体は新不等式ではない．貢献は$\beta$における評価とその最適普遍係数，および係数8の正確な障害との組合せにある．
+
+\section{マトロイドChow環とbuilding set}
+マトロイドの階数関数$\rk:2^E\to\Z_{\geq0}$は単調かつ劣モジュラーで，$0\leq\rk(S)\leq|S|$を満たす．外部の任意の元を加えると階数が増える集合をflatという．Looplessとはすべての$e$で$\rk\{e\}=1$という意味である．階数1のflatを点と呼ぶ．単純化は各点から代表元を一つずつ残す操作であり，階数付きflat格子を保存する．
+
+最大building setについて，本稿の環は
+\begin{equation}\label{ja-chow}
+ A^\bullet(M)=\frac{\Z[x_F:\emptyset\ne F\ne E\text{ はflat}]}{I+J}
+\end{equation}
+である．$\deg x_F=1$とし，$I$は比較不能なflatの積$x_Fx_G$で生成され，$J$は
+\[
+ \sum_{F\ni i}x_F-\sum_{F\ni j}x_F\quad(i,j\in E)
+\]
+で生成される．最高次数は$d=r-1$であり，空でない真のflatの完全旗に対応する単項式のdegreeを1とする．これがdegree写像の正規化である．必要に応じて係数を$\Q$または$\R$に拡大する\cite{FY,AHK}．
+
+Building set $\mathcal G$は空でないflatからなり，本稿では$E$を含むものとする．各flat $F$に含まれる極大な$\mathcal G$の元$G_i$が，$\prod_i[\emptyset,G_i]\simeq[\emptyset,F]$を誘導することを要求する．二つ以上の互いに比較不能な元の任意の部分集合のjoinが$\mathcal G$に属さないとき，その集合をnestedという．Feichtner--Yuzvinsky表示ではすべての$G\in\mathcal G$の変数，nonnested単項式，および各点$p$に対する関係$\sum_{G\supseteq p}x_G=0$を用いる．最大building setで$x_E=-\alpha$を消去すると\eqref{ja-chow}が得られる\cite[Definitions 1--3]{FY}．
+
+\begin{rem}
+本稿の重み付きの数はすべて単純化の後に計算する．平行類の元の個数をそのまま使うと$\beta$の公式は誤る．環の表示，degree写像，cutting class，接類の公式は階数付き格子同型で移るため，単純マトロイドの主張はlooplessマトロイドに拡張される．Coloopは許す．Coloopがあっても$d=r-1$は変わらず，例外的な項が消えるわけでもない．Loopは一貫して除外する．
+\end{rem}
+
+\section{接類とChern類}
+最大building setの場合，Chengのもとの定義は，permutohedral多様体上の$T_{X_E}-Q_M$の制限である．ここで$Q_M$はtautological quotient $K$類である\cite[Definition 3.1]{Che}．一般の$\mathcal G$について
+\[
+ \theta_F=\alpha-\sum_{\substack{H\in\mathcal G\\F\subseteq H\subsetneq E}}x_H
+\]
+とおく．\cite[Definition 3.3]{CheG}の定義は
+\begin{align}\label{ja-tangent}
+ T_{M,\mathcal G}={}&r[\mathcal O(\alpha)]-[\mathcal O]\notag\\
+ &+\sum_{F\in\mathcal G\setminus\{E\}}\bigl([\mathcal O(x_F)]-[\mathcal O]\notag\\
+ &\hspace{21mm}+\rk(F)([\mathcal O(\theta_F)]-[\mathcal O(\theta_F+x_F)])\bigr)
+\end{align}
+である．和の中の各項の階数は0なので，全体の階数は$r-1=d$である．Chern類は$c(\mathcal O(D))=1+D$という規約を仮想的な差に乗法的に拡張する．したがって
+\begin{equation}\label{ja-total}
+ c(T_{M,\mathcal G})=(1+\alpha)^r
+ \prod_{F\in\mathcal G\setminus\{E\}}(1+x_F)
+ \left(\frac{1+\theta_F}{1+\theta_F+x_F}\right)^{\rk F}.
+\end{equation}
+逆数は正次数部分の冪零性により有限の冪級数として解釈する．点$p$に対しては$\theta_p=0$であり，対応する因子全体が1になる．
+
+直接実装できる展開のため$Q_2=2\ch_2(T_M)$とおく．\eqref{ja-total}の次数1と2の部分から
+\begin{align}\label{ja-c12}
+ c_1&=r\alpha-\sum_{\rk F\geq2}(\rk F-1)x_F,\notag\\
+ Q_2&=r\alpha^2+\sum_{\rk F\geq2}
+       \bigl((1-\rk F)x_F^2-2\rk(F)\theta_Fx_F\bigr),\\
+ c_2&=\tfrac12(c_1^2-Q_2),\qquad
+ \Delta_M=c_1^2-rQ_2\notag
+\end{align}
+を得る．これにより質問の式の負号と係数を検算できる：$2r c_2-(r-1)c_1^2=c_1^2-rQ_2$である．対象の交叉数の次数はすべて$2+(d-2)=d$となる．
+
+実現可能な場合，\eqref{ja-tangent}は対応するwonderful modelの通常の接束の類である．ここから$\sum_F([\mathcal O(x_F)]-[\mathcal O])$を引いたものが対数接類となる\cite[Section 3.2]{CheG}．この二つのChern理論を取り違えてはいけない．
+
+\section{Nef類と偏極}
+既存の自然な類
+\begin{equation}\label{ja-ab}
+ \alpha=\sum_{F\ni e}x_F,\qquad \beta=\sum_{F\not\ni e}x_F
+\end{equation}
+を用いる．線形関係が$\alpha$の各表示を同一視し，$\alpha+\beta=\sum_Fx_F$であることから，両者は$e$の選択によらない．両者は\cite[Definition 5.7 and Lemma 9.7]{AHK}の凸区分線形関数という意味でnefである．周囲のpermutohedral多様体上ではCremona反転が両者を交換する．任意のマトロイドのBergman fan自体にCremona自己同型があると主張しているのではない．本証明に必要なのはnef性だけであり，ample性や\cite{Che}で研究されるさらに強い操作的正値性ではない．
+
+単純な階数4のマトロイドでは，$n$個の点の関係を足し合わせると
+\begin{equation}\label{ja-beta-expand}
+ \beta=(n-1)\alpha-\sum_\ell(|\ell|-1)x_\ell
+                       -\sum_H(|H|-1)x_H
+\end{equation}
+となる．実際$n\alpha=\sum_F|F|x_F$と$\alpha+\beta=\sum_Fx_F$の差を取ればよい．この式が偏極と接続関係の数を結び付ける．
+
+\section{階数4の交叉計算}
+非実現可能なマトロイドにも通用する環の中での証明を与える．
+\begin{lem}\label{ja-monomials}
+$\ell\subset H$を直線と超平面とする．必要な最高次数の値は
+\[
+\begin{array}{c|rrrrrr}
+\text{単項式}&\alpha^3&\alpha x_\ell^2&x_H^3&x_\ell^2x_H&x_\ell x_H^2&x_\ell^3\\\hline
+\deg&1&-1&1&-1&0&2(h_\ell-1)
+\end{array}
+\]
+である．またChow環の中で$\alpha x_H=0$，$\alpha^2x_\ell=0$であり，比較不能なflatの積は0となる．
+\end{lem}
+\begin{proof}
+\eqref{ja-ab}で$H$の外の元を選べば$\alpha x_H=0$となる．$e\notin\ell$を選ぶと$\alpha x_\ell=x_\ell x_{\operatorname{cl}(\ell\cup e)}$なので$\alpha^2x_\ell=0$である．$e\in H\setminus\ell$の$\alpha$関係に$x_\ell x_H$を掛けると$x_\ell x_H^2=0$を得る．
+
+点$p\subset\ell$を選ぶ．$p$の関係に$x_\ell x_H$を掛けると
+$0=x_px_\ell x_H+x_\ell^2x_H+x_\ell x_H^2$
+となる．最初の項のdegreeは1なので，$\deg(x_\ell^2x_H)=-1$，したがって$\deg(\alpha x_\ell^2)=-1$である．$e\in H\setminus p$の関係に$x_px_H$を掛けると
+$0=x_px_{\operatorname{cl}(p\cup e)}x_H+x_px_H^2$
+なので$\deg(x_px_H^2)=-1$となる．さらに$p$の関係に$x_H^2$を掛けると$\deg x_H^3=1$が従う．
+
+最後に，$e\notin\ell$を選べば$\deg(\alpha x_px_\ell)=1$である．代わりに$\ell$内の$p$と異なる点を選ぶと
+$1=\deg(x_px_\ell^2)+h_\ell$
+となる．したがって$p$の関係に$x_\ell^2$を掛けた式は
+$-1=(1-h_\ell)+\deg x_\ell^3-h_\ell$
+となり，最後の公式を得る．正規化$\deg\alpha^3=1$は，同じ関係で旗を順に延長すれば従う（\cite[Proposition 5.8]{AHK}も参照）．
+\end{proof}
+
+\begin{prop}\label{ja-moments}
+$u=n-1$とおくと，端点でのChern数は
+\begin{align}\label{ja-endpoints}
+ \deg(c_2\alpha)&=6+f_2,& \deg(c_1^2\alpha)&=16-f_2,\notag\\
+ C:=\deg(c_2\beta)&=6u-3W_2+W_{23},\\
+ S:=\deg(c_1^2\beta)&=16u-7W_2+3W_{23}-4W_3\notag
+\end{align}
+となる．その結果，$\deg(\Delta_M\beta)=12W_3-3W_2-W_{23}$，
+$\deg((9c_2-3c_1^2)\beta)=6(u-W_2+2W_3)$である．
+\end{prop}
+\begin{proof}
+\eqref{ja-c12}により階数4では
+\begin{align*}
+ c_1&=4\alpha-\sum_\ell x_\ell-2\sum_Hx_H,\\
+ Q_2&=4\alpha^2+\sum_\ell(3x_\ell^2-4\alpha x_\ell)
+       +4\sum_{\ell\subset H}x_\ell x_H
+       +\sum_H(4x_H^2-6\alpha x_H)
+\end{align*}
+である．補題\ref{ja-monomials}を代入すると，中間計算は次の表になる：
+\[
+\begin{array}{c|ccc}
+ &\alpha&x_\ell&x_H\\\hline
+ c_1^2&16-f_2&6-2h_\ell&4-f_2(M|H)\\
+ c_2&6+f_2&4-2h_\ell&f_2(M|H)\\
+ 8c_2-3c_1^2&11f_2&14-10h_\ell&11f_2(M|H)-12.
+\end{array}
+\]
+各成分はその列の因子を掛けた後のdegreeを表す．例えば
+$\deg(c_1^2x_\ell)=2(h_\ell-1)+8-4h_\ell=6-2h_\ell$
+である．他の成分も上の二つの展開に六つの単項式の値を代入し，$2c_2=c_1^2-Q_2$を使うことで得られる．
+
+$\ell$を含む超平面から$\ell$を取り除いた集合は$E\setminus\ell$を分割する．外部の各点$e$が唯一のflat $\operatorname{cl}(\ell\cup e)$を定めるためである．よって
+\begin{equation}\label{ja-partition}
+ \sum_{H\supset\ell}(|H|-|\ell|)=n-|\ell|
+\end{equation}
+であり，$\ell$について和を取ると
+\[
+ \sum_H(|H|-1)f_2(M|H)=uf_2-W_2+W_{23}
+\]
+を得る．\eqref{ja-beta-expand}に$c_2$を掛ければ
+\[
+ C=u(6+f_2)-4W_2+2W_{23}-(uf_2-W_2+W_{23})
+   =6u-3W_2+W_{23}.
+\]
+また$c_1^2$を掛ければ
+\[
+ S=u(16-f_2)-6W_2+2W_{23}-4W_3+(uf_2-W_2+W_{23})
+\]
+となり，主張の式が得られる．二つの判別式の公式は差を取れば従う．
+\end{proof}
+
+\section{偏極付き不等式と最適定数}
+\begin{lem}[初等的な接続関係の不等式]\label{ja-incidence}
+任意の単純な階数4のマトロイドに対して$I_{13}\geq I_{12}$である．
+\end{lem}
+\begin{proof}
+まず$N$を$v$個の点と$w$本の直線を持つ単純な階数3のマトロイドとする．点と直線の接続行列$D$は
+\[
+ DD^{\mathsf T}=\mathbf 1\mathbf 1^{\mathsf T}
+                         +\operatorname{diag}(t_p-1)
+\]
+を満たす．ここで$t_p$は$p$を通る直線の数である．相異なる二点はちょうど一本の直線上にある．また，$p$を通る直線が一本しかなければその直線が他のすべての点を含んでしまい階数2となるから，常に$t_p\geq2$である．従ってこの実行列は正定値である．実際，非零ベクトル$z$における二次形式は$(\sum z_p)^2+\sum(t_p-1)z_p^2>0$となる．階数は$v$なので$w\geq v$を得る．
+
+$M$の各点$p$について$M/p$の単純化にこの議論を適用する．$p$はflatなので縮約にloopは生じない．縮約の点は$p$を含む$M$の直線に，縮約の直線は$p$を含む超平面に対応する．$w\geq v$を$p$について足すと正確に$I_{13}\geq I_{12}$を得る．
+\end{proof}
+
+\begin{proof}[定理\ref{ja-main}の証明（最適性を除く）]
+命題\ref{ja-moments}により$\deg((9c_2-3c_1^2)\alpha)=6+12f_2$である．もう一つの端点では
+\begin{align*}
+ u-W_2+2W_3
+ &=u-(I_{12}-f_2)+2(I_{13}-f_3)\\
+ &=u+f_2+\sum_H(|H|-2)+(I_{13}-I_{12}).
+\end{align*}
+最後の行の各項は非負であり，$u>0$である．補題\ref{ja-incidence}と合わせ，正値性を与える分解が得られた．線形性により\eqref{ja-certificate}が成立する．さらに$a+b>0$の非負結合は零類ではない．実際，$\deg(\alpha^2(a\alpha+b\beta))=a+b(n-1)>0$である．
+\end{proof}
+
+\begin{proof}[定理\ref{ja-interval}の区間と等号条件の証明]
+命題\ref{ja-moments}の二つの端点の公式から\eqref{ja-linear}が従う．階数4のマトロイドは直線を持つので$A>0$である．この一次不等式を解くと三つの場合分けを得る．値を0とおき$t>0$で割ると\eqref{ja-equality}となる．一律の区間が存在しないことと係数9の最適性は次の族で示す．
+\end{proof}
+
+\section{明示的反例と縮小する区間}
+素数冪$q$に対し，$M_q=\operatorname{PG}(3,q)$を$\mathbb F_q^4$の一次元部分空間上のベクトルマトロイドとする．部分空間を数えると
+\begin{align*}
+ n&=(q+1)(q^2+1),& f_2&=(q^2+1)(q^2+q+1),& f_3&=n,\\
+ |\ell|&=q+1,& |H|&=q^2+q+1,& h_\ell&=q+1
+\end{align*}
+を得る．計数を明示すると，点の数は$(q^4-1)/(q-1)$である．直線の数は順序付き独立ベクトル対の数$(q^4-1)(q^4-q)$を$(q^2-1)(q^2-q)$で割ったものとなる．超平面は非零線形形式の核であり，形式のスカラー倍を同一視して数える．局所的な数は二次元・三次元部分空間の内部，または直線による商で同じ計算をすれば得られる．従って未検証のカタログに依存しない．
+
+$W_2=qf_2$，$W_3=(q^2+q)n$，$W_{23}=q(q+1)f_2$を命題\ref{ja-moments}に代入すると
+\begin{align}\label{ja-pg}
+ C_q&=q(q+1)(q^2-3q+4)(q^2+q+1),\notag\\
+ S_q&=q(3q^5-5q^4-6q^3+3q^2+7q+8),\\
+ B_q&=-q(q^2+1)(q^3-7q^2-19q-8),\notag\\
+ 9C_q-3S_q&=6q(q^4+3q^3+3q^2+4q+2)>0\notag
+\end{align}
+を得る．特に$C_q>0$かつ$3S_q/C_q\to9$である．任意の$\lambda<9$に対し，例えば$q=2^k$という無限大に向かう素数冪を選べば，十分大きい$q$で$\lambda C_q-3S_q<0$となる．これで定理\ref{ja-main}の最適性が証明された．
+
+三次式$g(q)=q^3-7q^2-19q-8$は$2\leq q\leq7$で負であり，$g(8)=-96$，$g(9)=-17$，$g(10)=102$である．導関数は$q\geq6$で正である．したがって素数冪の中で$B_q$が初めて負になるのは$q=11$であり，
+\[
+ P_{M_{11}}(t)=178486-536800t,\qquad t_{M_{11}}=\frac{133}{400}
+\]
+となる．素数冪$q\geq11$について
+\begin{equation}\label{ja-tq}
+ t_{M_q}=\frac{11(q^2+q+1)}{q^4-7q^3-8q^2+3q+11}
+             \sim\frac{11}{q^2}
+\end{equation}
+である．これで定理\ref{ja-interval}の最後の主張も従う．この判別式に反例が現れ得る最小の階数は4である．階数3ではdegreeが$8f_2>0$であり，偏極因子が残らないからである．台集合の大きさが全マトロイド中で最小だとは主張しない．$M_{11}$の1464点という大きさは，ここに示した有限射影幾何の族の中でのみ最小である．
+
+\begin{center}\small
+\begin{tabular}{rrrr}
+\toprule
+$q$&$A_q$&$B_q$&許される$t$の最大値\\\midrule
+2&385&660&1\\
+3&1430&3030&1\\
+9&82082&12546&1\\
+11&178486&$-358314$&$133/400$\\
+13&342210&$-1677390$&$61/360$\\
+16&771771&$-8191104$&$1001/11625$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Pavingでの最適性とより小さい明示的反例}
+階数4のマトロイドがpavingであるとは，任意の3元部分集合が独立であることをいう．以下では既存の有限体上の接続構造を用いる．新しい主張はそのChern交叉数に関するものである．
+
+\begin{prop}\label{ja-inversive}
+任意の素数冪$q\geq2$に対し，$n=q^2+1$点上の階数4のpavingマトロイド$N_q$が存在し，$\mathbb F_q$上で実現可能である．$N=\binom n2$とおくと，
+\begin{align}\label{ja-inversive-chern}
+ \deg(c_2\beta)&=6q^2+(q-2)N,&
+ \deg(c_1^2\beta)&=16q^2+3(q-4)N,\notag\\
+ P_{N_q}(t)&=N\bigl(11+(9-q)t\bigr)
+\end{align}
+となる．$q$を任意に固定した素数の冪に制限しても，この族だけで係数9は最適である．$q>20$の場合，標準係数8が破れるのは正確に$t>11/(q-9)$のときである．$q\leq20$の場合は$[0,1]$全体で狭義に正である．
+\end{prop}
+\begin{proof}
+$K=\mathbb F_{q^2}$，$X=\mathbb P^1(K)$とおく．$\operatorname{PGL}_2(K)$による$\mathbb P^1(\mathbb F_q)$の像を円と呼ぶ．$X$の任意の相異なる三点を通る円は唯一である．これを直接示す．二点の独立な代表ベクトル$v_a,v_b$と第三の点の代表$v_c$に対し，$v_c=u v_a+v v_b$と書く．$u,v$はともに非零である．$u v_a,v v_b$を列に持つ行列は$\infty,0,1$を$a,b,c$に送る．$\infty,0,1$を固定する射影変換はスカラー行列で与えられるため，この射影変換は唯一である．これらの三点を含む円に対し，その定義に用いた射影変換の前に，$\infty,0,1$を三点の逆像に送る$\mathbb F_q$上の射影変換を合成する．一意性から，この円は先ほど構成した円と一致する．従って円の族は$3$-$(q^2+1,q+1,1)$デザインとなる．特に相異なる二つの円の共通部分は高々二点である．
+
+実現を与えるため，$z\mapsto z^q$を対合とする$K$上の$2\times2$ Hermitian行列全体を，4次元$\mathbb F_q$線形空間$V$とする．$[v]\in\mathbb P^1(K)$を$\mathbb P(V)$の$vv^*$の射影類に送る．$v$を$a\in K^*$倍すると$vv^*$は$a^{q+1}\in\mathbb F_q^*$倍されるので，これはwell-definedである．$vv^*$の列空間から直線$Kv$が復元されるため，この写像は単射である．
+
+写像$H\mapsto gHg^*$は$V$の可逆な$\mathbb F_q$線形変換である．従って上で用いた射影作用は線形変換から誘導される．$\infty,0,1$の像は線形独立で，$\mathbb F_q$上の対称行列からなる3次元部分空間を張る．この部分空間と点集合との共通部分は正確に$\mathbb P^1(\mathbb F_q)$である．$z\in K\setminus\mathbb F_q$の像の非対角成分は$\mathbb F_q$に入らないため，この部分空間の外にある．よって点集合の階数は4である．射影作用により，任意の三点が独立で，それらが張る超平面と点集合との共通部分は三点を通る唯一の円になる．従って階数2のflatはすべて二点集合，階数3のflatはすべて円である．これで，カタログにも，デザインからの実現可能性の仮定にも依存せず，pavingマトロイドの実現を確認した．
+
+三点集合を数えると$f_3=\binom{q^2+1}{3}/\binom{q+1}{3}=q(q^2+1)$である．二点を通る円は，残りの点を$q-1$点ずつに分割するので，その数は$q+1$となる．従って
+\[
+ f_2=W_2=N,\qquad W_3=2N,\qquad W_{23}=(q+1)N
+\]
+である．これらを\eqref{ja-endpoints}に代入すると\eqref{ja-inversive-chern}を得る．また，
+\[
+ 9\deg(c_2\beta)-3\deg(c_1^2\beta)=6(q^2+3N)>0,
+ \qquad\frac{3\deg(c_1^2\beta)}{\deg(c_2\beta)}\longrightarrow9
+\]
+となる．分母は$q\geq2$で正である．$q=p^k$と取れば，定理\ref{ja-main}の固定した正標数での最適性が従う．表示された一次多項式から符号と等号の主張が従う．20は素数冪ではないので，端点の等号例を除外してしまうこともない．
+\end{proof}
+
+この族で最初の標準係数の反例は530点の$N_{23}$で，$P_{N_{23}}(t)=140185(11-14t)$である．Sparse pavingでの係数3は，すでに26点の$N_5$で破れ，
+\[
+ \deg((3c_2-3c_1^2)\beta)=3(1125-1375)=-750
+\]
+となる．その超平面は六点を持つため，pavingではあるがsparse pavingではない．従って定理\ref{ja-sparse}の超平面の大きさに対する制約は本質的である．
+
+さらに，469点だけの明示的な制限を構成する．$K=\mathbb F_{23}[\tau]/(\tau^2-5)$とおく．$5^{11}\equiv-1\pmod{23}$なので，5は23を法として平方剰余ではない．$\infty$，$b=0,1$であるすべての$a+b\tau$，および$b=2$，$a=0,\ldots,13$である十四点を除く．こうして得た$N_{23}$の制限を$R$とする．同値に，$\mathbb F_{23}$上の列ベクトルは
+\begin{equation}\label{ja-small-columns}
+ (1,a,b,a^2-5b^2)^{\mathsf T},\quad
+ b\in\{2,\ldots,22\},\quad a\in\mathbb F_{23},\quad
+ (b,a)\notin\{(2,0),\ldots,(2,13)\}
+\end{equation}
+で与えられる．三つの集合$C_b=\{a+b\tau:a\in\mathbb F_{23}\}\cup\{\infty\}$，$b=0,1,2$は円である．正確に$C_0,C_1$が空になり，$C_2$には九点が残る．他の円は各$C_b$と高々二点で交わるため，高々六点しか失わない．従って残る円はすべて三点以上を持ち，相異なる円は依然として$R$の相異なる超平面を定める．また，各三点が円を張り$469>24$であることから，$R$の階数は4である．
+
+各点を通る円は$23\cdot24=552$個，各二点を通る円は24個なので，
+\begin{align*}
+ f_2=W_2&=109746,& f_3&=12188,\\
+ W_3&=469\cdot552-12188=246700,& W_{23}&=24\cdot109746=2633904
+\end{align*}
+を得る．公式\eqref{ja-endpoints}から，
+\begin{align}\label{ja-small-counter}
+ \deg(c_2\beta)&=2307474,& \deg(c_1^2\beta)&=6154178,\notag\\
+ P_R(t)&=1207206-1209948t,& t_R&=\frac{201201}{201658}
+\end{align}
+となる．特に$P_R(1)=-2742$である．これにより最小反例サイズの明示的な上界469が得られるが，全体での最小性を証明したわけではない．
+
+\section{Sparse pavingマトロイドと係数3}
+階数4のsparse pavingマトロイドは4元のcircuit-hyperplaneの族$\mathcal B$で記述され，その相異なる二つの共通部分は高々2元である．他の4元部分集合はすべて基底となる．$n=4$，$\mathcal B=\emptyset$のBooleanの場合も含める．$z=|\mathcal B|$，$N=\binom n2$とおく．すべての直線は2点からなる．一つのcircuit-hyperplaneによって，四つの3点超平面が一つの4点超平面に置き換わる．同じ3点集合が二度置き換わることはない．よって
+\begin{equation}\label{ja-spcounts}
+ f_2=W_2=N,\quad W_3=2\binom n3-5z,\quad
+ W_{23}=N(n-2)-6z,\quad 4z\leq\binom n3
+\end{equation}
+である．\eqref{ja-endpoints}は
+\begin{align}\label{ja-spchern}
+ C&=6(n-1)+N(n-5)-6z,\notag\\
+ S&=16(n-1)+\frac{n-23}{3}N+2z,\\
+ B&=N(7n-17)-54z\notag
+\end{align}
+となる．従って$P_M(t)$の係数は$n,z$から完全に計算できる．
+
+\begin{proof}[定理\ref{ja-sparse}の証明]
+$\alpha$では$\deg((c_2-c_1^2)\alpha)=2N-10>0$が$n\geq4$で成立する．$\beta$では
+\[
+ C-S=\frac{n^3+3n^2-34n+30-24z}{3}
+       \geq2(n-5)(n-1)
+\]
+なので，$n\geq6$で正である．$n=4$ではcircuit-hyperplaneはなく$C-S=2$となる．$n=5$では二つの4元部分集合は3元で交わるので$z\leq1$であり，正確な式から$C-S=20-8z\geq12$を得る．これで係数3の不等式と非零の等号例がないことを証明した．また\eqref{ja-spcounts}から
+\[
+ B\geq N\left(\frac52n-8\right)>0
+\]
+となるので，標準係数でも線分全体で正である．
+
+デザインの存在定理を仮定せずに最適性を示すため，$m\geq3$として点集合$\mathbb F_2^m$を取り，和が0となる4元部分集合をcircuit-hyperplaneと定める．相異なる三点を指定すると，和を0にする第四の点は唯一に決まる．従って相異なるブロックの共通部分は高々2点である．残りの4元部分集合は基底交換公理を満たす．実際，基底の一元を除いてできた固定された三点に対し，二つ以上の交換候補があるとき，ブロックを作る候補は高々一つだからである．他方の基底から取れる交換候補が一つだけなら，交換後はその基底そのものになる．$2^m\geq8$なので基底は存在し，各三点集合も基底に延長できる．各ブロックの階数は3で，外部の任意の点を加えると階数が上がる．従って階数4のsparse pavingマトロイドが実際に定まる．
+
+この場合$n=2^m$，$z=n(n-1)(n-2)/24$である．代入により
+\[
+ C=\frac{(n-1)(n^2-8n+24)}4>0,\qquad
+ S=\frac{(n-1)(n-8)^2}4
+\]
+となる．従って$m\to\infty$で$3S/C\to3$であり，任意の$\lambda<3$はこの族の$\beta$で破れる．以上で証明が完了する．
+\end{proof}
+
+\section{等号と剛性}
+定理\ref{ja-main}と定理\ref{ja-sparse}は，各々の対象の錐における等号を完全に分類している．すなわち等号成立と$L=0$は同値である．Boolean，uniform，graphic，cographic，modular，あるいは非実現可能な場合の例外はない．最適性は有限のマトロイドで達成されるとは限らない．
+
+係数8の場合，分類は接続関係の条件\eqref{ja-equality}である．これは必要十分な組合せ論的条件であり，既存の名称を持つマトロイドクラスによる分類ではない．$t=0$では等号はなく，$t=1$では$12W_3=3W_2+W_{23}$と同値である．$B<0$なら内点の等号はちょうど一つある．したがって同じ$M_q$でも，偏極を変えるだけで判別式は正，零，負となる．
+
+$M_q$の部分空間格子はmodularである．ベクトル空間の次元公式がmodular等式を与えるからである．よって任意の極大旗はmodular flagであり，格子はsupersolvableでもある．これらの性質は係数8の破綻を防がない．従って「modularならすべての$t$で非負」という剛性原理の候補に対する明示的な障害となる．Booleanの場合は異なり，階数4では$P_{U_{4,4}}(t)=66$である．
+
+階数4のuniformマトロイドについては\eqref{ja-spchern}で$z=0$とすれば
+\[
+ P_{U_{4,n}}(t)=\binom n2\bigl(11(1-t)+(7n-17)t\bigr)>0
+\]
+となる．計算表の直和，graphic，cographicの例もこの線分上で標準不等式が狭義に成立する．ただしこれを任意の階数のすべてのgraphic，cographic，series-parallel，直和マトロイドについての定理とはしない．例えば回路マトロイド$U_{4,5}$はseries-parallelであり，明示的な検算例になる．
+
+内点の等号$t_{M_q}$における偏極はbigかつnefである．実際，非負な$\alpha,\beta$の混合交叉数による三乗の展開には，$(1-t)^3\deg\alpha^3>0$という項が含まれる．ここでの等号は接続関係の数の相殺を表し，幾何学的Miyaoka--Yau等号の場合の複素双曲的な一意化を意味しない．また有限体上の例を複素数体上の実現とみなしているのでもない．
+
+\section{計算機実験と再現性}
+補助コードは整数と\texttt{fractions.Fraction}だけで計算し，Python標準ライブラリのみを必要とする．階数関数からflat格子を作り，有限射影幾何の場合は部分空間から直接構成する．比較不能なflatを含む積は捨てる．次数$d$の鎖単項式でflat $F$が重複する場合，$x_F$を一つ取り除き，残りに$i$と$j$の線形関係を掛ける．ここで$i\in F\setminus F_{\rm prev}$，$j\in F_{\rm next}\setminus F$と選ぶ．$x_F$の係数は1である．それ以外に残るflatは鎖を細分するため，相異なるflatの個数が増える．よって再帰はdegreeが1の完全旗，または0で終了する．これは数値近似ではなく厳密な簡約アルゴリズムである．
+
+階数3から6の指定例25件に加え，417件を計算した．その内訳は，6点以下の単純な階数4のラベル付きマトロイド全354件，$\operatorname{PG}(3,2)$，$\operatorname{PG}(3,3)$，8点の零和ブロックの例，および$\mathbb F_2,\mathbb F_3,\mathbb F_5$上の8元のベクトルマトロイドを固定乱数種で生成した60件である．354件は4点，5点，6点でそれぞれ1，16，337件に分かれる．同型類の個数ではない．網羅性は双対を取ることで分かる．階数2のマトロイドはloop集合と非loopの平行類への分割で指定でき，階数1はさらに簡単である．コードはそれらを列挙し，双対が単純な階数4となる場合を正確に残している．
+
+さらに$N_2,N_3,N_5$のChow環を直接計算し，合計は445件となった．円の格子を射影変換とノルムの等位集合の二つの方法で構成し，$q=2,3$ではベクトル実現とも照合した．469点の反例については，周囲の12190個の円すべてとその制限を別途厳密に列挙した．そのデータファイルには\eqref{ja-small-columns}の469本の列をすべて収録した．この最後の検証は証明した接続数の公式を評価するもので，469点上のChow環全体の列挙ではない．
+
+計算したすべての$\alpha,\beta$の体積係数を，\cite[Proposition 9.5]{AHK}に従って被約特性多項式と照合した．既知の$\alpha$判別式公式も全レコードで検算した．追加計算の階数4の例では，Chern数を\eqref{ja-endpoints}と独立に照合した．さらに$U_{4,4}$，$U_{4,6}$，$\operatorname{PG}(3,2)$，$\operatorname{PG}(3,3)$について，\cite[Theorem 3.4]{Che}の別のChern積表示をすべての因子との交叉で比較した．これらは係数や実装の誤りを検出するための検算であり，上記の証明は有限探索に依存しない．
+
+最初の小規模探索では標準判別式の反例も等号例も見つからなかった．その後，有限射影幾何の公式から厳密な反例を得た．同族の$q>3$の行は証明済み公式の評価であり，その台集合上のChow環全体を列挙したという意味ではない．
+
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+$M$&$\deg(c_1^2\beta)$&$\deg(c_2\beta)$&$(P_M(0),P_M(1))$\\\midrule
+$U_{4,4}$&10&12&$(66,66)$\\
+$U_{4,5}$&4&24&$(110,180)$\\
+$U_{4,6}$&$-5$&45&$(165,375)$\\
+Fanoの双対&$-2$&36&$(231,294)$\\
+V\'amos&$-18$&96&$(308,822)$\\
+5頂点のwheelグラフ&$-2$&40&$(220,326)$\\
+$M(K_{3,3})^*$&$-4$&48&$(264,396)$\\
+$U_{2,3}\oplus U_{2,3}$&7&21&$(121,147)$\\
+$U_{3,4}\oplus U_{1,1}$&6&18&$(110,126)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+階数3のFano，non-Fanoマトロイドの$(\deg c_1^2,\deg c_2)$はそれぞれ$(2,10)$，$(0,12)$であり，$P=56$，$72$となる．これは対数Chern数ではなく通常のChern数である．
+
+\section{Mixed不等式と証明戦略の比較}
+任意の階数について，厳密な混合係数を
+\[
+ D_j(M)=\deg(\Delta_M\alpha^{d-2-j}\beta^j),\qquad 0\leq j\leq d-2
+\]
+と定める．このとき
+\begin{equation}\label{ja-bernstein}
+ P_M(t)=\sum_{j=0}^{d-2}\binom{d-2}{j}D_j(M)(1-t)^{d-2-j}t^j.
+\end{equation}
+すべての$D_j$が非負なら，$a_i,b_i\geq0$である類$a_i\alpha+b_i\beta$の任意の積に対する非負性が展開から従う．この含意は初等的であり，新しいmixed定理とは呼ばない．$P_M(t)$の各点での非負性だけから，全混合係数の非負性が従うわけではない．
+
+例えば厳密な$D_j$の列は
+\[
+\begin{array}{c|l}
+U_{5,5}&(140,220,140)\\
+U_{5,6}&(210,460,480)\\
+U_{6,6}&(255,545,545,255)\\
+U_{6,7}&(357,980,1365,1050)
+\end{array}
+\]
+である．従って$P_{U_{5,5}}(t)=140+160t-160t^2$となる．これらの特定の混合交叉数はすべて正である．階数4では偏極因子は一つだけなので，定理\ref{ja-main}は複数因子の本格的なmixed定理ではない．
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{3.6cm}X@{}}
+\toprule
+検討した方法&本研究での帰結\\\midrule
+Hard Lefschetz，Hodge--Riemann&因子の交叉形式を制御するが，$\Delta_M$の正値性自体は与えない．\\
+Mixed Hodge--Riemann，Alexandrov--Fenchel&Lefschetz fanに対する\cite[Theorem 5.20]{ADH}は原始形式を扱う．$\Delta_M$に必要な原始表示は得ていない．\\
+Lorentzian多項式&体積やマトロイド多項式の理論\cite{BH}は特定の正係数を扱う．符号を持つChern微分作用素がその正値性を保存するとは限らない．\\
+Deletion--contraction，階数・元数による帰納法&削除でflatの接続関係も接類も変わり，未評価の補正項を捨てられない．一方，各点での縮約は本稿で用いた初等的接続不等式を与える．\\
+Building setのblow-up，wonderful model&接類の積表示が計算の動機を与える．Chow関係からの直接証明は実現可能性を不要にする．小さいbuilding setでは答えが変わる．\\
+Valuativeな方法&接類理論の構成には有用だが，本稿の格子による証明には追加のvaluative拡張は不要である．\\
+\bottomrule
+\end{tabularx}
+\end{center}
+特に「nefなのでHodge--Riemannから従う」という説明は使っていない．追加の正値性を与えるのは接続関係による分解である．階数5以上の一般mixed不等式は本稿では未解決である．
+
+\section{実現可能マトロイドとwonderful model}
+マトロイドが$r$次元部分空間$V\subset K^E$で実現される場合，射影的wonderfulコンパクト化の次元は$r-1$であり，$\mathbb P(V)$から配置の層を適切な順序でblow-upして得られる\cite{DCP,CheG}．階数4の複素実現に対し，定理\ref{ja-main}は
+\[
+ \int_{W_V}(3c_2(T_{W_V})-c_1(T_{W_V})^2)(aH+bH_{\rm Cr})>0
+\]
+と読める．$H$は超平面の引き戻し，$H_{\rm Cr}$は周囲のCremona超平面類の制限である．$K_{W_V}$の正値性や$T_{W_V}$の安定性は仮定しない．証明は同じ交叉計算である．
+
+最適性を与える族$\operatorname{PG}(3,q)$と$N_q$は$\mathbb F_q$上で実現される．固定した各正標数におけるpavingの主張を含め，その最適性は複素実現可能なマトロイドだけに制限した最適定数を決定するものではない．組合せ論的証明により，標数0の微分幾何をこれらの例に持ち込むことを避けている．\cite[Theorem 1.1]{BP}の重み付き複素配置の不等式は，安定な配置の放物型類に関するものであり，本稿で用いる通常の接類の不等式ではない．
+
+Building setへの依存性はBooleanマトロイドですでに見える．点と$E$からなるbuilding setは$\mathbb P^d$を与え，$c_1=(d+1)H$，$c_2=\binom{d+1}2H^2$，$\Delta=0$となる．最大building setはpermutohedral modelを与え，$U_{4,4}$の$\alpha$に対する標準判別式は66である．したがって本稿の等号条件と最適定数を，小さいbuilding setへそのまま移すことはできない．
+
+\section{新規性監査と未解決問題}
+文献検索は2026年9月10日に行った．Chengの\cite{Che}第3版と\cite{CheG}第2版，Cheng--Linの\cite{CL}第1版と第3版，および\cite{FY,AHK,ADH,BH,Man}の関連する定理の記述を確認した．最終改訂では2026年4月29日付のCheng--Linの最新第3版を用いた．Corollary 4.15とRemark 4.16の先行する注意はこの版でも維持されている．接類のcompanion論文\cite{CLG}，tautological類のnef錐に関する論文\cite{Sta}，逆数空間のpolar degreeに関する論文\cite{BKW}も確認し，\cite[Theorem 1.1]{BP}と\cite[Lemma 2.3]{Ali}を調べた．これらの関連概念を理由に，通常の接判別式を対数，放物型，あるいはtautological quotientの判別式と同一視することはできない．
+
+検索語には``matroid Miyaoka Yau beta''，``matroid tangent Chern polarization''，``Cheng Lin Chern inequalities''，``matroid Chern sparse paving''，および最適定数，有限射影幾何，反転平面，楕円二次曲面に関する語を含めた．\cite[Remark 4.16]{CL}の先行する明示的な注意が見つかり，本稿全体でこれを認めている．調査した文献中には，階数4の$\mathscr C_M$上の正確な係数9，固定した正標数で実現可能なpavingだけでのその最適性，零和ブロックの最適族を伴うsparse pavingの係数3，あるいは上記の縮小区間の公式に一致する定理は見つからなかった．2026年9月時点で行った文献調査の範囲では，これらは新しい結論と考えられる．ただしこれは範囲を限定した監査であり，未索引・未公刊の結果まで存在しないことを保証するものではない．
+
+端点の公式は証明を支える計算である．その価値は見た目の新しい式そのものよりも，最適不等式と一律の障害を導く点にある．端点が既知になった後で正値性区間を求める部分は線形代数であり，独立の深い定理とは数えない．本報告で残る問題は次の通りである．
+\begin{enumerate}
+\item 標準係数の反例の最小台集合サイズを決め（本稿の明示的な上界は469），$B=0$となる階数4のマトロイドを接続数の等式以上の構造で分類する．
+\item Nef錐全体の最適係数，および複素実現可能またはorientableなマトロイドの$\alpha,\beta$錐における最適係数を決定する．
+\item 階数5以上の本格的なmixed不等式を証明するか，反例を構成するか，最適に修正する．個々の計算は証拠にとどまる．
+\item 非最大building setのblow-upにおける，新しい端点公式と等号集合の変化を調べる．
+\end{enumerate}
+\newpage
+\bibliographystyle{alpha}
+\begin{thebibliography}{BKW26}
+\bibitem[ADH23]{ADH} F.~Ardila, G.~Denham, and J.~Huh,
+\emph{Lagrangian geometry of matroids}, J. Amer. Math. Soc. \textbf{36} (2023), 727--794.
+\href{https://arxiv.org/abs/2004.13116}{arXiv:2004.13116}; Theorem 5.20 (mixed HL and HR).
+\bibitem[AHK18]{AHK} K.~Adiprasito, J.~Huh, and E.~Katz,
+\emph{Hodge theory for combinatorial geometries}, Ann. of Math. \textbf{188} (2018), 381--452.
+\href{https://annals.math.princeton.edu/2018/188-2/p01}{Published article};
+Definition 5.7, Proposition 5.8, Proposition 9.5, Lemma 9.7.
+\bibitem[Ali26]{Ali} M.~Aliabadi,
+\emph{Paving matroids that are not sparse paving}, 2026.
+\href{https://arxiv.org/abs/2605.11054v1}{arXiv:2605.11054v1}; Lemma 2.3 (paving construction; no Chern inequality).
+\bibitem[BH20]{BH} P.~Br\"and\'en and J.~Huh,
+\emph{Lorentzian polynomials}, Ann. of Math. \textbf{192} (2020), 821--891.
+\href{https://arxiv.org/abs/1902.03719}{arXiv:1902.03719}; Section 3.2, Theorem 3.10.
+\bibitem[BKW26]{BKW} C.~Briand, L.~Kayser, and J.~Weigert,
+\emph{Polar degrees of matroids}, 2026.
+\href{https://arxiv.org/abs/2606.26281v1}{arXiv:2606.26281v1}; introduction and polar-degree statements (scope comparison only).
+\bibitem[BP26]{BP} M.~de Borbon and D.~Panov,
+\emph{A Miyaoka--Yau inequality for hyperplane arrangements in $\mathbb{CP}^n$}, 2024, revised 2026.
+\href{https://arxiv.org/abs/2411.09573v3}{arXiv:2411.09573v3}; Theorem 1.1 and Section 1.2 (parabolic Chern theory).
+\bibitem[Che26a]{Che} R.~Cheng,
+\emph{On the tangent bundle and the divisor theory of a general matroid}, 2025, revised 13 March 2026.
+\href{https://arxiv.org/abs/2510.06609v3}{arXiv:2510.06609v3};
+Definitions 2.4, 2.5, 3.1; Theorems 3.4, 4.1; Section 6.
+\bibitem[Che26b]{CheG} R.~Cheng,
+\emph{Tangent classes for matroid building sets}, 2026.
+\href{https://arxiv.org/abs/2606.22650v2}{arXiv:2606.22650v2};
+Definition 3.3, equations (3.5)--(3.6), Corollaries 4.20 and 4.23, and the formula following Corollary 4.23.
+\bibitem[CL26]{CL} R.~Cheng and W.~Lin,
+\emph{Inequalities for Chow polynomials and Chern numbers of matroids}, 2026, revised 29 April 2026.
+\href{https://arxiv.org/abs/2603.21680v3}{arXiv:2603.21680v3};
+Corollary 4.15 and Remark 4.16. Version 1 was also checked under its earlier title.
+\bibitem[CLG26]{CLG} R.~Cheng, S.~Liu, and G.~Gao,
+\emph{Tangent classes of matroids and wonderful compactifications}, 2026.
+\href{https://arxiv.org/abs/2607.05835}{arXiv:2607.05835}; introduction and tangent-class construction (scope comparison only).
+\bibitem[DCP95]{DCP} C.~De Concini and C.~Procesi,
+\emph{Wonderful models of subspace arrangements}, Selecta Math. (N.S.) \textbf{1} (1995), 459--494.
+\href{https://doi.org/10.1007/BF01589496}{Published article}; construction of wonderful models. No unverified theorem number is used.
+\bibitem[FY04]{FY} E.~M.~Feichtner and S.~Yuzvinsky,
+\emph{Chow rings of toric varieties defined by atomic lattices}, Invent. Math. \textbf{155} (2004), 515--536.
+\href{https://arxiv.org/abs/math/0305142}{arXiv:math/0305142};
+Definitions 1--3, Theorems 1--3.
+\bibitem[Man23]{Man} E.~Mannino,
+\emph{Chern numbers of matroids}, 2023.
+\href{https://arxiv.org/abs/2310.01956v3}{arXiv:2310.01956v3};
+Theorems 1.2, 1.5, 1.6 (logarithmic Chern numbers).
+\bibitem[Sta26]{Sta} C.~Stastny,
+\emph{Extremality of tautological classes of matroids in nef cones}, 2026.
+\href{https://arxiv.org/abs/2606.01278v1}{arXiv:2606.01278v1}; introduction and main extremality statement (scope comparison only).
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,1447 @@
+\documentclass[12pt]{amsart}
+
+% ============================================================
+% Basic spacing
+% ============================================================
+\setlength{\lineskip}{0pt}
+
+% ============================================================
+% Packages for mathematics
+% ============================================================
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage{mathrsfs}
+% Unused dsfont removed for portability.
+% Unused bbm removed for portability.
+
+% ============================================================
+% Graphics
+% Use the following line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, remove the option [dvipdfmx].
+% For PNG/JPG files with dvipdfmx, run extractbb if LaTeX cannot find the bounding box.
+% ============================================================
+%\usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx} % Use this instead for pdfLaTeX or LuaLaTeX.
+
+% ============================================================
+% Packages for colors and text decorations
+% ============================================================
+\usepackage[dvipsnames]{xcolor}
+% Unused text-decoration package removed for portability.
+\usepackage{comment}
+
+% ============================================================
+% Packages for tables, lists, and diagrams
+% ============================================================
+\usepackage{multirow}
+\usepackage{bigdelim}
+\usepackage{enumerate}
+\usepackage{enumitem}
+% Unused Xy-pic removed: this installed driver requires pdfTeX primitives.
+\usepackage{tikz}
+
+
+
+
+
+% ============================================================
+% tcolorbox settings
+% Use as: \begin{tcolorbox}[mybox] ... \end{tcolorbox}
+% ============================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+\tcbset{
+  mybox/.style={
+    colback=white,
+    colframe=green!35!black,
+    fonttitle=\bfseries,
+    breakable=true
+  }
+}
+
+
+
+% ============================================================
+% Draft tools
+% Comment out showkeys before submitting to a journal or arXiv.
+% ============================================================
+\usepackage[final]{showkeys} % Use this when you want to hide all labels.
+%\usepackage{showkeys} % Use this when you want to show labels.
+\renewcommand*{\showkeyslabelformat}[1]{%
+  \begingroup
+  \fboxsep=2pt%
+  \fboxrule=0.3pt%
+  \fbox{%
+    \parbox{1.8cm}{%
+      \raggedright
+      \normalfont\tiny\sffamily
+      \strut #1\strut
+    }%
+  }%
+  \endgroup
+}
+%
+
+% ============================================================
+% This setting makes every enumerate environment use labels of the form (1), (2), (3), ...
+% ============================================================
+
+\usepackage{enumitem}
+\setlist[enumerate]{label=$(\arabic*)$}
+
+% ============================================================
+% Hyperlinks
+% Load hyperref near the end of the package list.
+% Use the first line for pLaTeX/upLaTeX + dvipdfmx.
+% If you compile with pdfLaTeX or LuaLaTeX, use the second line instead.
+% ============================================================
+%\usepackage[dvipdfmx,colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref}
+
+% Japanese text: LuaLaTeX; fonts distributed with TeX Live, no OS fonts.
+\PassOptionsToPackage{no-math}{fontspec}
+\usepackage{luatexja-fontspec}
+\setmainjfont[BoldFont=HaranoAjiGothic-Medium.otf]{HaranoAjiMincho-Regular.otf}
+\setsansjfont{HaranoAjiGothic-Medium.otf}
+\setmonojfont{HaranoAjiGothic-Medium.otf}
+\emergencystretch=2em
+
+\usepackage[unicode,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+
+
+% ============================================================
+% Page layout
+% ============================================================
+\setlength{\topmargin}{-0.25cm}
+\setlength{\textwidth}{15cm}
+\setlength{\textheight}{22.6cm}
+\setlength{\headheight}{1em}
+\setlength{\headsep}{0.5cm}
+\setlength{\oddsidemargin}{0.40cm}
+\setlength{\evensidemargin}{0.40cm}
+\setlength{\baselineskip}{15pt}
+\setlength{\footskip}{32pt}
+
+% ============================================================
+% Theorem environments
+% ============================================================
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{theo}[thm]{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem*{mainthm}{Theorem}
+
+\newtheorem{deflem}[thm]{Definition-Lemma}
+\newtheorem{lem}[thm]{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{propdefn}[thm]{Proposition-Definition}
+\newtheorem{lemdefn}[thm]{Lemma-Definition}
+\newtheorem{thmdefn}[thm]{Theorem-Definition}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{ques}[thm]{Question}
+\newtheorem{remin}[thm]{Reminder}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{setup}[thm]{Setup}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{notation}[thm]{Notation}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{assup}[thm]{Assumption}
+\newtheorem{cln}[thm]{Claim}
+
+% Independent theorem-like environments.
+\newtheorem{cl}{Claim}
+\newtheorem{step}{Step}
+\newtheorem{case}{Case}
+
+% Unnumbered theorem-like environments.
+\newtheorem*{clproof}{Proof of Claim}
+\newtheorem*{ack}{Acknowledgements}
+
+% Number equations by section.
+\numberwithin{equation}{section}
+
+% ============================================================
+% Mathematical operators
+% ============================================================
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\degree}{\operatorname{deg}}
+\newcommand{\codim}{\operatorname{codim}}
+\newcommand{\nd}{\operatorname{nd}}
+
+\newcommand{\Supp}{\operatorname{Supp}}
+\newcommand{\supp}{\operatorname{Supp}}
+\newcommand{\Rad}{\operatorname{Rad}}
+\newcommand{\Exc}{\operatorname{Exc}}
+\newcommand{\Div}{\operatorname{div}}
+
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\eend}{\operatorname{End}}
+\newcommand{\Coker}{\operatorname{Coker}}
+\newcommand{\GL}{\operatorname{GL}}
+
+\newcommand{\Hom}{\mathscr{H}\!\mathit{om}}
+\newcommand{\SheafHom}[1]{\mathscr{H}\!\mathit{om}_{#1}}
+\newcommand{\PGL}{\mathbb{P}\GL(r,\C)}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\Homop}{Hom}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Autop}{Aut}
+\DeclareMathOperator{\Kerop}{Ker}
+\DeclareMathOperator{\Imageop}{Im}
+
+
+% Additional mathematical notation from the template. 
+
+\newcommand{\MY}{\operatorname{MY}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\|#1\right\|} 
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Cal}{\operatorname{Cal}}
+\newcommand{\NA}{\operatorname{NA}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+% ============================================================
+% Standard maps and geometric notation
+% ============================================================
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Sym}{Sym}
+
+\DeclareMathOperator{\Alb}{Alb}
+\newcommand{\verti}{\mathrm{vert}}
+\newcommand{\hor}{\mathrm{hor}}
+\newcommand{\univ}{\mathrm{univ}}
+\newcommand{\reg}{\mathrm{reg}}
+\newcommand{\sing}{\mathrm{sing}}
+\newcommand{\qt}{\mathrm{qt}}
+\newcommand{\can}{\mathrm{can}}
+\newcommand{\loc}{\mathrm{loc}}
+
+\newcommand{\orb}{\mathrm{orb}}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\Tor}{\mathrm{tor}}
+
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\sha}{\operatorname{sha}}
+\newcommand{\Shaf}{\mathrm{Sha}}
+\newcommand{\shaf}{\mathrm{sha}}
+
+% ============================================================
+% Differential-geometric notation
+% ============================================================
+\newcommand{\ddbar}{\frac{\sqrt{-1}}{2\pi} \partial \bar{\partial}}
+\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
+\newcommand{\dbar}{\overline{\partial}}
+
+\newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\drv}[2]{\frac{d #1}{d#2}}
+\newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+\newcommand{\polar}{\Omega}
+
+% ============================================================
+% Sheaves, ideals, automorphisms, kernels, and images
+% ============================================================
+\newcommand{\sO}{\mathcal{O}}
+\newcommand{\mO}{\mathcal{O}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\I}[1]{\mathcal{I}(#1)}
+\newcommand{\Aut}[1]{\Autop(#1)}
+\newcommand{\Ker}[1]{\Kerop(#1)}
+\newcommand{\Image}[1]{\Imageop(#1)}
+
+% ============================================================
+% Number systems and standard spaces
+% ============================================================
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\mP}{\mathbb{P}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\G}{\mathbb{G}}
+
+% ============================================================
+% Chern character, Todd class, Chow groups, and volumes
+% ============================================================
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\Td}{Td}
+\DeclareMathOperator{\CH}{CH}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\Amp}{Amp}
+\DeclareMathOperator{\Cone}{Cone}
+\newcommand{\dR}{\mathrm{dR}}
+
+% ============================================================
+% Special symbols and formatting shortcuts
+% ============================================================
+%\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
+%\newcommand{\tr}{\hspace{-0.8ex}>}
+
+\newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+% This command places a short explanation below an equality or inequality sign.
+% Example: A \underalign{\text{by Lemma 1.1}}{=} B.
+\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
+
+
+
+\newtheorem{jthm}[thm]{定理}
+\newtheorem{jcor}[thm]{系}
+\newtheorem{jlem}[thm]{補題}
+\newtheorem{jprop}[thm]{命題}
+\providecommand{\theHthm}{\arabic{section}.\arabic{thm}}
+\title[Robin extrema on weighted intervals]{Robin eigenvalues on weighted intervals:\\
+collapse of the infimum and sharp upper-model rigidity}
+\author{chatGPT 6 Astra}
+\date{10 September 2026}
+\subjclass[2020]{Primary 58J50; Secondary 34B24, 35P15, 53C21}
+\keywords{Bakry--\'Emery curvature, curvature-dimension condition, Robin eigenvalue,
+weighted interval, density optimization, equality rigidity}
+\hypersetup{pdftitle={Robin eigenvalues on weighted intervals},pdfauthor={chatGPT 6 Astra}}
+\begin{document}
+\begin{abstract}
+We study the principal Robin eigenvalue over positive smooth densities on a fixed interval satisfying a finite-dimensional Bakry--\'Emery curvature bound. The proposed lower optimization degenerates: its value is zero whenever the admissible class is nonempty, and it has no minimizer unless both boundary parameters vanish. The nontrivial comparison has the opposite direction. Every admissible density is spectrally dominated by a curvature-equality density tangent at the maximum of its ground state. We prove a sharp one-parameter reduction for the supremum, an exact nonnegative curvature-defect identity, and equality rigidity. For $CD(0,2)$ we solve the asymmetric Robin maximization completely: two explicit Bessel thresholds distinguish a unique positive affine maximizer from either endpoint-degenerate affine profile. Symmetric parameters yield the constant density, also for $1<N\le2$, with an elementary sharp eigenvalue equation. Symbolic calculations, 6,768 numerical comparisons, and a dated literature audit accompany the proofs. The results are mathematically proved here; novelty is not verified.
+\end{abstract}
+\maketitle
+
+\xr{This note was generated by ChatGPT 6. Iwai has NOT verified any of its mathematical content. It may therefore contain mathematical errors and should be read with caution. A Japanese version is provided below.}
+
+
+\section{Introduction and main statements}
+Robin boundary loss depends on the density at the endpoints, whereas the bulk mass depends on its integral. A lower curvature bound controls neither of these quantities separately. This creates a basic distinction between the principal Robin eigenvalue and the first \emph{nonzero} Neumann eigenvalue appearing in spectral-gap comparison. Our initial lower-model conjecture fails because both endpoint densities can collapse.
+
+We retain the original admissible class and solve the lower problem first. We then change only the optimization direction and obtain a sharp upper-model theorem. The asymmetric $CD(0,2)$ classification below determines a quantity beyond the zero lower bound, including precisely when a smooth positive extremizer exists. All the analytic proofs are included; no unproved spectral comparison is used.
+
+Let $p=N-1>0$, $\kappa=K/p$, and
+\[
+ \mathcal H_{K,N,D}=\{h=w^p:w\in C^2([0,D]),\ w>0,\ w''+\kappa w\le0\}.
+\]
+Write $\lambda_R(h;\alpha,\beta)$ for the principal eigenvalue with
+$u'(0)=\alpha u(0)$ and $u'(D)=-\beta u(D)$, where $\alpha,\beta\ge0$ are finite.
+
+\begin{thm}[The original infimum]\label{en:lower}
+The class $\mathcal H_{K,N,D}$ is nonempty if and only if
+$\kappa D^2<\pi^2$. Whenever it is nonempty,
+\[
+ \Lambda(K,N,D;\alpha,\beta)=0.
+\]
+If $\alpha+\beta>0$, this infimum is not attained. If $\alpha=\beta=0$, every admissible density attains it. Prescribing any positive total weighted volume does not alter these conclusions.
+\end{thm}
+
+For the meaningful upper optimization put
+\[
+ \mathcal U(K,N,D;\alpha,\beta)=\sup_{h\in\mathcal H_{K,N,D}}
+ \lambda_R(h;\alpha,\beta).
+\]
+Define $s_\kappa(t)$ to be $\sin(\sqrt\kappa t)/\sqrt\kappa$, $t$, or
+$\sinh(\sqrt{-\kappa}t)/\sqrt{-\kappa}$ according as $\kappa>0$, $\kappa=0$, or $\kappa<0$, and put $c_\kappa=s_\kappa'$.
+
+\begin{thm}[Sharp upper reduction and rigidity]\label{en:upper}
+Suppose $\kappa D^2<\pi^2$ and $\alpha+\beta>0$. Set
+\[
+ B_\kappa=\frac{c_\kappa(D/2)}{s_\kappa(D/2)},\qquad
+ W_b(t)=c_\kappa(t-D/2)+b s_\kappa(t-D/2).
+\]
+Then $0<\mathcal U<\infty$ and
+\begin{equation}\label{en:reduction}
+ \mathcal U(K,N,D;\alpha,\beta)
+ =\sup_{|b|<B_\kappa}\lambda_R(W_b^p;\alpha,\beta).
+\end{equation}
+More precisely, if $u>0$ is the ground state of $w^p$ and $x$ is its unique maximum point, the solution $W$ of
+\[
+ W''+\kappa W=0,\qquad W(x)=w(x),\quad W'(x)=w'(x)
+\]
+is positive on $[0,D]$ and satisfies
+\[
+ \lambda_R(w^p;\alpha,\beta)\le\lambda_R(W^p;\alpha,\beta).
+\]
+Equality holds if and only if $w=W$. Consequently, every maximizer in the original positive smooth class is a curvature-equality model, up to multiplication by a positive constant. Formula \eqref{en:reduction} uses a supremum; it does not assert general attainment.
+\end{thm}
+
+Here is the complete classification in total dimension two. Scaling reduces its statement to $D=1$. Let $J_0$ be the regular solution of
+$J_0''(z)+z^{-1}J_0'(z)+J_0(z)=0$, with $J_0(0)=1$, $J_0'(0)=0$; put $J_1=-J_0'$. Let $j_{0,1}$ be the first positive zero of $J_0$. For $s>0$ define $k_s\in(0,j_{0,1})$ by
+\begin{equation}\label{en:radialroot}
+ k_sJ_1(k_s)=sJ_0(k_s),\qquad
+ R(s)=k_s^2,\qquad U_s(t)=J_0(k_st),
+\end{equation}
+and set
+\begin{equation}\label{en:threshold}
+ T(s)=-\int_0^1\frac{U_s(t)U_s'(t)}{t}\,dt
+ =k_s\int_0^1\frac{J_0(k_st)J_1(k_st)}{t}\,dt.
+\end{equation}
+The integrand is defined continuously at zero. Put $R(0)=T(0)=0$.
+
+\begin{thm}[Asymmetric threshold classification]\label{en:phase}
+Let $K=0$, $N=2$, $D=1$, and $\alpha,\beta\ge0$ with $\alpha+\beta>0$.
+Then $0<T(s)<s$ for $s>0$, and exactly one of the following occurs.
+\begin{enumerate}
+\item If $\alpha\le T(\beta)$, then $\mathcal U=R(\beta)$. No positive smooth density attains the supremum. The unique maximizing profile in the closure of the affine model family is $h(t)=Ct$.
+\item If $\beta\le T(\alpha)$, then $\mathcal U=R(\alpha)$. Again there is no positive smooth maximizer. The corresponding unique affine profile is $h(t)=C(1-t)$.
+\item If $\alpha>T(\beta)$ and $\beta>T(\alpha)$, there is a unique $b_*\in(-2,2)$ such that
+\begin{equation}\label{en:stationarity}
+ \int_0^1\frac{u_{b_*}(t)u_{b_*}'(t)}{1+b_*(t-1/2)}\,dt=0,
+\end{equation}
+where $u_b>0$ is the ground state for $h_b(t)=1+b(t-1/2)$ with the prescribed Robin conditions. The sharp value is
+$\mathcal U=\lambda_R(h_{b_*};\alpha,\beta)$, and its full set of maximizers is
+$\{Ch_{b_*}:C>0\}$.
+\end{enumerate}
+For a general length, replace $(\alpha,\beta)$ by $(\alpha D,\beta D)$, compute on $[0,1]$, and multiply the resulting eigenvalue by $D^{-2}$.
+\end{thm}
+
+\begin{cor}[Symmetric coefficients]\label{en:symmetric}
+If $K=0$, $1<N\le2$, and $\sigma>0$, then
+\[
+ \mathcal U(0,N,D;\sigma,\sigma)=k^2,
+ \qquad k\tan(kD/2)=\sigma,\quad 0<k<\pi/D.
+\]
+The maximizing densities are exactly the positive constants. The condition $N\le2$ is sharp for a statement uniform in $\sigma>0$.
+\end{cor}
+
+The new-candidate content is the upper optimization, its curvature-defect identity, and the asymmetric thresholds. The zero-infimum obstruction and the elementary symmetric comparison are not advertised as established literature novelties. The final audit explains why the overall status remains \emph{mathematically proved, novelty not verified}.
+
+\section{Bakry--\'Emery curvature and one-dimensional densities}
+For $h=e^{-f}=w^p$ we have $f=-p\log w$, hence
+\[
+ f'=-p\frac{w'}w,\qquad
+ f''=-p\frac{w''}w+p\frac{(w')^2}{w^2}.
+\]
+Thus, in the total dimension convention,
+\begin{equation}\label{en:ricci}
+ \Ric_f^N=f''-\frac{(f')^2}{N-1}=-p\frac{w''}w.
+\end{equation}
+Since $p,w>0$, $\Ric_f^N\ge K$ is equivalent to $w''+\kappa w\le0$.
+This is an exact equivalence, including the sign.
+
+For completeness, the local diffusion convention is also checkable directly. With
+$L=u''-f'u'$, $\Gamma(u)=(u')^2$ and
+$\Gamma_2(u)=(u'')^2+f''(u')^2$, one obtains
+\[
+ \Gamma_2(u)-K\Gamma(u)-\frac{(Lu)^2}{N}
+ =\frac{N-1}{N}\left(u''+\frac{f'u'}{N-1}\right)^2
+ +(\Ric_f^N-K)(u')^2.
+\]
+At a given interior point, $u'$ and $u''$ can be prescribed independently. This proves equivalence with the local $CD(K,N)$ inequality. On the interval, the usual one-dimensional distortion formulation is expressed by the same differential inequality; see \cite[\S4.1, equation (4-4)]{CM}. We require positive endpoint densities throughout the original optimization. Singular endpoint models occur only as explicitly described limits.
+
+The parameter $p=N-1$ in this manuscript is a density power, not the nonlinear exponent of a weighted $p$-Laplacian in the literature. Those are different parameters.
+
+\section{The weighted Robin Sturm--Liouville problem}
+For real $u\in H^1(0,D)$ define
+\begin{align*}
+ a_h(u,v)&=\int_0^D u'v'h\,dt+\alpha h(0)u(0)v(0)+\beta h(D)u(D)v(D),\\
+ m_h(u,v)&=\int_0^D uvh\,dt.
+\end{align*}
+Positive continuity of $h$ on a compact interval makes its minimum positive, so the weighted and unweighted Sobolev norms are equivalent. Traces are continuous and $H^1(0,D)\hookrightarrow L^2(0,D)$ is compact. A normalized minimizing sequence is bounded in $H^1$; weak compactness, strong $L^2$ convergence and trace convergence give a minimizer. Its Euler equation is
+\[
+ -(hu')'=\lambda hu,\qquad u'(0)=\alpha u(0),\quad u'(D)=-\beta u(D).
+\]
+In particular,
+\[
+ \int_0^D(-L_hu)u h\,dt
+ =\int_0^D(u')^2h\,dt-[hu'u]_0^D=a_h(u,u).
+\]
+The outward normals are $-\partial_t$ at zero and $+\partial_t$ at $D$; the boundary signs therefore agree with $\partial_\nu u+\sigma u=0$.
+
+Replacing a minimizer by its absolute value leaves the quotient unchanged. The resulting nonnegative weak solution is $C^2$ by the ODE. A zero at an interior minimum has zero derivative, so ODE uniqueness forces the solution to vanish identically. A zero at an endpoint has zero derivative by the Robin condition and gives the same contradiction. Thus a ground state is strictly positive, including at the endpoints. The Wronskian of two solutions satisfying the left Robin condition vanishes; this proves simplicity.
+
+If $\alpha+\beta>0$, a zero minimum would force $u'$ to vanish and a nonzero constant to have positive boundary energy, a contradiction. Hence $\lambda_R>0$. The identity
+\begin{equation}\label{en:flux}
+ (hu')'=-\lambda_R hu<0
+\end{equation}
+shows that $hu'$ is strictly decreasing. Its endpoint values have opposite weak signs, and at least one is nonzero. Consequently $u$ has exactly one maximum $x$: it lies in $(0,D)$ when $\alpha\beta>0$, at $0$ when $\alpha=0$, and at $D$ when $\beta=0$. This single sign change is essential in the upper comparison.
+
+\section{Scaling and normalization}
+Put $t=Dx$, $v(x)=u(Dx)$ and $\widetilde h(x)=h(Dx)$ on $[0,1]$. Then
+\[
+ v'=Du',\quad v''=D^2u'',\quad
+ L_{\widetilde h}v=D^2(L_hu)(Dx),\quad
+ \Ric_{\widetilde f}^N=D^2\Ric_f^N(Dx).
+\]
+The boundary conditions become $v'(0)=D\alpha v(0)$ and $v'(1)=-D\beta v(1)$. Equivalently, the pullback metric is $D^2dx^2$; replacing it by $dx^2$ is the constant metric scaling $g\mapsto D^{-2}g$. Unit tangent vectors and normal derivatives gain a factor $D$, and the Laplacian gains $D^2$.
+
+The pushed-forward measure has density $Dh(Dx)$, but the factor $D$ cancels from the Rayleigh quotient. Directly,
+\[
+ \int_0^D(u')^2h\,dt=D^{-1}\int_0^1(v')^2\widetilde h\,dx,
+ \quad \int_0^D u^2h\,dt=D\int_0^1v^2\widetilde h\,dx.
+\]
+Multiplying the numerator by $D$ changes the endpoint coefficients to $D\alpha,D\beta$. Therefore
+\begin{equation}\label{en:scaling}
+ \Lambda(K,N,D;\alpha,\beta)=D^{-2}\Lambda(KD^2,N,1;\alpha D,\beta D),
+\end{equation}
+and the same formula holds for $\mathcal U$. The dimensionless combinations are $KD^2$, $\alpha D$, $\beta D$ and $\lambda D^2$.
+
+For $c>0$, $a_{ch}=ca_h$ and $m_{ch}=cm_h$, so $\lambda_R(ch)=\lambda_R(h)$. Also $f$ changes by a constant and the curvature is unchanged. Thus fixing $\int h=V>0$ alone removes no density shape.
+
+\section{Computational and symbolic exploration}
+The script \texttt{bakry\_emery\_robin\_\allowbreak computations.py} records exact symbolic checks for \eqref{en:ricci}, the Schr\"odinger potential below, and the Taylor expansion of $w_\varepsilon^p$. It uses a uniform mesh with 800 cells, a positive tridiagonal discretization of the weighted energy, and lumped mass. Cell density is the mean of its endpoint values. This is an approximate scheme, not a certified interval computation.
+
+Smooth admissible samples are generated analytically. On $[0,1]$ take
+\[
+ g(t)=\sin(\pi t)\left(c_0+\sum_{j=1}^m c_j\cos(j\pi t)\right),
+ \qquad c_0\ge\sum_{j=1}^m|c_j|.
+\]
+Expand $g=\sum g_\ell\sin(\ell\pi t)$ and set
+\[
+ w=W_b+A\sum_{\ell}\frac{g_\ell\sin(\ell\pi t)}{\ell^2\pi^2-\kappa},\quad A>0.
+\]
+Then $w''+\kappa w=-Ag\le0$. The Dirichlet Green kernel is
+$s_\kappa(\min(t,s))s_\kappa(1-\max(t,s))/s_\kappa(1)>0$, so the added term is nonnegative and $w>0$. Positivity and curvature are justified analytically, rather than only at mesh points.
+
+We used $\kappa=-1,0,1$, $N=2,3,4,5$ and boundary pairs
+$(1,1),(.2,3),(0,2),(5,.1)$. For each of these 48 cases, the finite grid exhausts
+\[
+ b/B_\kappa\in\{-.8,0,.8\},\quad
+ (c_0,c_1,c_2)\in\{1\}\times\{-.5,0,.5\}^2,\quad A\in\{.1,1,10\}.
+\]
+There are 81 grid samples and 60 further seeded random samples per case, hence 6,768 comparisons. No invalid density occurred and no negative comparison gap below $-10^{-5}$ occurred. The smallest computed model-minus-density gap was $0.00054818$. The model was tangent at the discrete ground-state maximum; this mesh choice is an approximation to the analytic construction.
+
+For the collapsing family in Section 6, with $N=2$, $D=\alpha=\beta=1$, the approximate eigenvalues were
+\[
+\begin{array}{c|ccc}
+ \varepsilon&10^{-1}&10^{-2}&10^{-3}\\\hline
+ \lambda_R&0.6300803&0.0919715&0.0097774\\
+ \text{constant-test bound}&0.7014893&0.0948936&0.0098303
+\end{array}
+\]
+The affine equality family, in contrast, has infimum $R(1)=1.5769927$ in this case; Section 12 proves this separation. Refining the constant-density mesh from 400 to 3,200 cells changes its computed eigenvalue from $1.707054037$ to $1.707052989$, compared with the shooting value $1.707052976$. Independent high-accuracy ODE shooting is used for the asymmetric examples in Section 11. All numerical conclusions remain evidence, not proof.
+
+\section{Proof of the zero-infimum theorem}
+Let $\psi(t)=\sin(\pi t/D)$. Twice integrating by parts gives
+\[
+ \int_0^D\psi(w''+\kappa w)\,dt
+ =\frac\pi D(w(0)+w(D))+
+ \left(\kappa-\frac{\pi^2}{D^2}\right)\int_0^D\psi w\,dt.
+\]
+If $\kappa D^2\ge\pi^2$, the right side is positive while the left side is nonpositive. This proves emptiness, including the borderline case. For an empty class we may use the extended-real convention $\inf\varnothing=+\infty$; the asserted value zero is only for the nonempty class.
+
+If $\kappa D^2<\pi^2$, choose $\varepsilon>0$ small enough that
+$a_\varepsilon=\pi/(D+2\varepsilon)$ satisfies $a_\varepsilon^2>\kappa$, and put
+\[
+ w_\varepsilon(t)=\sin(a_\varepsilon(t+\varepsilon)),\qquad
+ h_\varepsilon=w_\varepsilon^p.
+\]
+These functions are smooth and strictly positive on the closed interval, and
+$w_\varepsilon''+\kappa w_\varepsilon=(\kappa-a_\varepsilon^2)w_\varepsilon<0$.
+The test function $1$ yields
+\[
+ 0\le\lambda_R(h_\varepsilon)\le
+ \frac{(\alpha+\beta)\sin(a_\varepsilon\varepsilon)^p}
+ {\int_0^D\sin(a_\varepsilon(t+\varepsilon))^p\,dt}\longrightarrow0.
+\]
+The denominator converges to a strictly positive integral by dominated convergence. Section 3 gives nonattainment for $\alpha+\beta>0$ and the complete Neumann equality case. Volume normalization follows from Section 4. This proves Theorem~\ref{en:lower}.
+
+\section{Sharp comparison and a curvature-defect identity}
+Fix the maximum point $x$ from \eqref{en:flux}, and define the tangent model $W$ as in Theorem~\ref{en:upper}. Put $g=-w''-\kappa w\ge0$. Variation of constants gives, for $t\ge x$,
+\[
+ W(t)-w(t)=\int_x^t s_\kappa(t-s)g(s)\,ds\ge0,
+\]
+and for $t\le x$ the corresponding expression is
+$\int_t^x s_\kappa(s-t)g(s)\,ds\ge0$.
+The kernels are nonnegative because $|t-s|\le D<\pi/\sqrt\kappa$ when $\kappa>0$; they are positive at positive arguments when $\kappa\le0$. In particular $W\ge w>0$.
+
+Write $r=w'/w$ and $R=W'/W$. The Wronskian satisfies
+\[
+ (w'W-wW')'=-gW,\qquad (w'W-wW')(x)=0.
+\]
+Consequently,
+\begin{equation}\label{en:drift}
+ r(t)-R(t)=
+ \begin{cases}
+ \displaystyle\frac{\int_t^x g(s)W(s)\,ds}{w(t)W(t)},&t<x,\\[6pt]
+ \displaystyle-\frac{\int_x^t g(s)W(s)\,ds}{w(t)W(t)},&t>x.
+ \end{cases}
+\end{equation}
+Both $(r-R)$ and $u'$ are positive to the left and negative to the right, in the weak sense for the first factor. Thus
+\[
+ -L_{W^p}u=\lambda_R(w^p)u+p(r-R)u'\ge\lambda_R(w^p)u.
+\]
+Let $v>0$ be the model ground state, with eigenvalue $\lambda_M$. Multiply by $vW^p$ and integrate. The Green boundary expression vanishes at both endpoints because $u$ and $v$ satisfy the same Robin parameters. It follows that
+\begin{equation}\label{en:gap}
+ (\lambda_M-\lambda_R(w^p))\int_0^D uvW^p\,dt
+ =p\int_0^D vW^p(r-R)u'\,dt\ge0.
+\end{equation}
+This proves the comparison without a Barta theorem citation.
+
+\begin{prop}[Exact defect formula]\label{en:defect}
+With the preceding notation,
+\begin{align}\label{en:defectidentity}
+ &(\lambda_M-\lambda_R(w^p))\int_0^DuvW^p\,dt\\
+ &\quad=p\int_0^D\frac{v(t)W(t)^{p-1}|u'(t)|}{w(t)}
+ \left(\int_{\min(t,x)}^{\max(t,x)}g(s)W(s)\,ds\right)dt.\notag
+\end{align}
+In particular the comparison is strict unless $g\equiv0$.
+\end{prop}
+\begin{proof}
+Substitute \eqref{en:drift} into \eqref{en:gap}. If the integral vanishes, continuity and positivity imply $r=R$ wherever $u'\ne0$, that is on both open subintervals separated by $x$ (or the single such interval in a mixed problem). Integrating the logarithmic derivative and using $w(x)=W(x)$ gives $w=W$ everywhere. Equivalently, $g\equiv0$. The converse follows directly.
+\end{proof}
+
+Every positive equality solution, after division by its midpoint value, is $W_b$ for exactly one $|b|<B_\kappa$. Endpoint positivity is equivalent to this interval of parameters; positivity inside also follows from the positive Dirichlet interpolation by its endpoint values. The comparison gives one inequality in \eqref{en:reduction}, and inclusion of the models in the admissible class gives the other. To see finiteness, allow $|b|\le B_\kappa$ temporarily. The continuous function $\int W_b^p$ has a positive minimum on this compact parameter interval, while $\alpha W_b(0)^p+\beta W_b(D)^p$ is bounded. The constant Rayleigh test bounds all model eigenvalues uniformly. Positivity follows by choosing any one positive model. The equality argument proves all the remaining assertions of Theorem~\ref{en:upper}.
+
+\section{Variation, shooting, and the Schr\"odinger viewpoint}
+For $w_\varepsilon=w+\varepsilon\phi$ put $\eta=\phi/w$ and normalize $m_h(u,u)=1$. Differentiation of the simple eigenvalue gives
+\begin{align}\label{en:firstvariation}
+ \dot\lambda&=p\left[\int h\eta((u')^2-\lambda u^2)
+ +\alpha h(0)\eta(0)u(0)^2+\beta h(D)\eta(D)u(D)^2\right]\\
+ &=-p\int_0^D hu u'\eta'\,dt.\notag
+\end{align}
+The last equality uses $(huu')'=h((u')^2-\lambda u^2)$; its endpoint terms cancel exactly. Thus dropping density-dependent Robin boundary terms would give an incorrect variation.
+
+Here is also a second-variation formula, so that a saturation argument is not assumed. Let $a_\varepsilon,m_\varepsilon$ be the forms, $\{u_j\}_{j\ge1}$ an $m_h$-orthonormal eigenbasis with $u_1=u$, and $B'=a'-\lambda m'$. Then
+\begin{equation}\label{en:secondvariation}
+ \ddot\lambda=(a''-\lambda m'')(u,u)-2\dot\lambda\,m'(u,u)
+ -2\sum_{j\ge2}\frac{|B'(u,u_j)|^2}{\lambda_j-\lambda}.
+\end{equation}
+Here $\dot h=p h\eta$ and $\ddot h=p(p-1)h\eta^2$ are parameter derivatives. To verify \eqref{en:secondvariation}, differentiate the eigen-equation and normalization. The coefficients of $\dot u$ are $-m'(u,u)/2$ along $u$, and $-B'(u,u_j)/(\lambda_j-\lambda)$ along $u_j$. Substitute them into the derivative of the first-variation identity. This is equivalently the reduced-resolvent formula; the form smoothness and the isolated simple eigenvalue justify the expansion. There is no general sign for this second derivative. When $p=1$ and $\dot\lambda=0$ it is nonpositive.
+
+At an equality model, an admissible one-sided perturbation obeys $\phi''+\kappa\phi\le0$. If it also has $\phi(x)=\phi'(x)=0$ at the model ground-state maximum, the Wronskian gives $\eta'\ge0$ on the left and $\eta'\le0$ on the right. Formula \eqref{en:firstvariation} is then negative for every nonzero such perturbation. Saturation is compatible with a maximum, not with the proposed minimum. For $w=1$, $N=2$, $D=\alpha=\beta=1$ and $\phi=\sin(\pi t)/\pi^2$, the exact integral in \eqref{en:firstvariation} is approximately $-0.1073464076$; the recorded one-sided numerical quotients converge to this number.
+
+For shooting, $z=u'/u$ satisfies
+\[
+ z'=-\lambda-p(w'/w)z-z^2,\quad z(0)=\alpha,\quad z(D)=-\beta.
+\]
+A root must be selected on the positive-eigenfunction branch. This is the Riccati version of Sturm comparison. Its drift coefficient changes the comparison direction when $z$ changes sign; matching the density at the ground-state maximum handles precisely that change. A global one-sided drift inequality alone does not give the desired result.
+
+Finally set $v=h^{1/2}u$ and $a=(\log h)'/2$. A direct derivative calculation yields
+\begin{align*}
+ h^{1/2}(-L_h)h^{-1/2}&=-\frac{d^2}{dt^2}+V,\\
+ V&=a'+a^2=\frac{(f')^2}{4}-\frac{f''}{2}
+ =\frac p2\frac{w''}{w}+\frac{p(p-2)}4\left(\frac{w'}w\right)^2.
+\end{align*}
+The new boundary conditions are
+\[
+ v'(0)=(\alpha+a(0))v(0),\qquad
+ v'(D)=-(\beta-a(D))v(D).
+\]
+In particular
+$V\le-K/2+p(p-2)(w'/w)^2/4$.
+This is an upper constraint with an additional drift-square term, and the transformed boundary coefficients vary with the density. A potential-only lower comparison is therefore unavailable. The direct Wronskian proof is shorter and avoids these moving boundary coefficients. Localization results for mean-zero Neumann problems likewise cannot be substituted for the Robin argument.
+
+\section{Proof of the asymmetric classification}
+Throughout this section $D=1$, $K=0$, $N=2$. Thus $h''\le0$ and the equality models are affine. We supply the endpoint limit argument because replacing a positive density by a vanishing one without tracking its boundary condition would be invalid.
+
+\begin{lem}[The endpoint model]\label{en:endpoint}
+For $s\ge0$, the density $t$ with natural condition $(tu')(0)=0$ and $u'(1)=-su(1)$ has positive ground state $U_s$ and eigenvalue $R(s)$ from \eqref{en:radialroot}. For $\alpha,\beta\ge0$,
+\[
+ \lambda_R(t+\delta;\alpha,\beta)\longrightarrow R(\beta),\qquad \delta\downarrow0.
+\]
+Moreover its right derivative at zero exists and equals
+\begin{equation}\label{en:endpointderivative}
+ \left.\frac{d}{d\delta}\lambda_R(t+\delta;\alpha,\beta)\right|_{0+}
+ =\frac{\alpha-T(\beta)}{\int_0^1tU_\beta^2\,dt}.
+\end{equation}
+\end{lem}
+\begin{proof}
+The regular radial equation is $U''+t^{-1}U'+\lambda U=0$, $U(0)=1$, $U'(0)=0$. Its solution is $J_0(\sqrt\lambda t)$. On the branch before the first zero, the boundary loss $-U'(1)/U(1)$ increases strictly with $\lambda$: differentiating the ODE and its Wronskian gives derivative $\int_0^1tU^2\,dt/U(1)^2>0$. This loss runs from zero to infinity. It proves uniqueness of $k_s$ and positivity of $U_s$. Integration by parts, or the identity $\int tU_s^2((v/U_s)')^2\ge0$, proves the ground-state variational characterization; the boundary term at zero vanishes. This identity first applies to smooth $v$, and approximation gives the corresponding weighted energy inequality whenever needed below.
+
+Write $u_\delta(0)=1$ for the positive ground state and $\lambda_\delta$ for its eigenvalue. Constant tests bound $\lambda_\delta$ uniformly for small $\delta$. Integration of the equation gives
+\[
+ u_\delta'(t)=\frac{\alpha\delta}{t+\delta}
+ -\frac{\lambda_\delta}{t+\delta}\int_0^t(s+\delta)u_\delta(s)\,ds.
+\]
+Positivity implies $u_\delta(t)\le1+\alpha\delta\log(1+1/\delta)$. Hence
+$|u_\delta'(t)|\le\alpha\delta/(t+\delta)+Ct$, with $C$ uniform. Equicontinuity and the integrated equation show that every subsequential limit is the regular radial solution with the right Robin condition. It is nonnegative; an interior or right endpoint zero would force it to vanish identically, contradicting $U(0)=1$. Thus it is the unique positive solution $U_\beta$, and the whole sequence converges uniformly. The derivative converges pointwise for $t>0$ and in $L^2(0,1)$ by the displayed bound. In particular the right boundary condition passes to the limit.
+
+For $\delta>0$ differentiate the Rayleigh quotient:
+\[
+ \lambda_\delta'=
+ \frac{\int_0^1((u_\delta')^2-\lambda_\delta u_\delta^2)\,dt
+ +\alpha u_\delta(0)^2+\beta u_\delta(1)^2}
+ {\int_0^1(t+\delta)u_\delta^2\,dt}.
+\]
+Uniform and $H^1$ convergence give a limit for this derivative. Using
+$U''=-U'/t-R(\beta)U$, its numerator tends to
+\[
+ \alpha+\int_0^1\frac{UU'}t\,dt=\alpha-T(\beta).
+\]
+The denominator has a positive limit. Continuity at zero and the mean value theorem now establish \eqref{en:endpointderivative}.
+\end{proof}
+
+\begin{lem}[Threshold range]\label{en:thresholdrange}
+For every $s>0$, $0<T(s)<s$.
+\end{lem}
+\begin{proof}
+Let $\lambda=R(s)$ and put $A(t)=-U_s'(t)/(tU_s(t))$. The radial equation gives
+$tA'=\lambda-2A+t^2A^2$, and its regular expansion is
+$A(t)=\lambda/2+\lambda^2t^2/16+O(t^4)$.
+Thus $A'>0$ near zero. At a hypothetical first zero of $A'$ in $(0,1)$, differentiating the equation would give $A''=2A^2>0$, impossible for a first zero approached from positive values. Therefore $A(t)<A(1)=s$ for $t<1$. Since $0<U_s\le1$ and $-U_s'>0$ on $(0,1]$,
+$0<T(s)=\int_0^1 A(t)U_s(t)^2\,dt<s$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{en:phase}]
+By Theorem~\ref{en:upper} it suffices to maximize over $h_b=1+b(t-1/2)$, $-2<b<2$. Lemma~\ref{en:endpoint} extends its eigenvalue continuously to $b=2$ and $b=-2$, with values $R(\beta)$ and $R(\alpha)$. A maximum on this closed parameter interval exists.
+
+Suppose first $\alpha\le T(\beta)$, and use $U=U_\beta$ as a trial function for any positive affine density $h(t)=a+ct$. Linearity of both forms in $h$ and the radial equation give
+\begin{equation}\label{en:support}
+ a_h(U,U)-R(\beta)m_h(U,U)=a\,[\alpha-T(\beta)]\le0.
+\end{equation}
+Here $a=h(0)>0$ and $U(0)=1$. It follows that every such eigenvalue is at most $R(\beta)$. The inequality is strict if $\alpha<T(\beta)$. If equality holds at the threshold $\alpha=T(\beta)>0$, equality in the Rayleigh principle would make $U$ a ground state with left boundary condition $U'(0)=\alpha U(0)$, although $U'(0)=0$ and $U(0)=1$. This is impossible. The limiting model $t$ reaches the supremum in the closure. Reflection proves the other endpoint case. The opposite endpoint cannot also maximize: the same supporting identity, or its radial trial-function version at that endpoint, is strict there. Lemma~\ref{en:thresholdrange} also shows the two parameter regimes are disjoint.
+
+In the remaining case both endpoint derivatives into the interval are positive by \eqref{en:endpointderivative} and reflection. Thus a maximum occurs at an interior $b_*$. Differentiating with $h_b$ gives
+\begin{equation}\label{en:affinevariation}
+ \frac{d\lambda_R(h_b)}{db}
+ =-\frac{\int_0^1u_bu_b'/h_b\,dt}{\int_0^1h_bu_b^2\,dt}.
+\end{equation}
+This follows from \eqref{en:firstvariation}, since
+$((t-1/2)/h_b)'=1/h_b^2$. Hence every interior critical point satisfies \eqref{en:stationarity}.
+
+Conversely, let $b_*$ be any critical point, $u=u_{b_*}$, and $\lambda_* =\lambda_R(h_{b_*})$. The linear functional on affine densities
+$F(h)=a_h(u,u)-\lambda_*m_h(u,u)$ vanishes on $h_{b_*}$ by the eigen-equation and on $t-1/2$ by stationarity. These two functions span all affine functions. Thus $F(h)=0$ for every affine $h$, and the Rayleigh principle gives $\lambda_R(h)\le\lambda_*$.
+If equality held for two distinct positive affine shapes, their common ground state $u$ would satisfy both ODEs. Subtraction gives
+\[
+ \left(\frac{h_1'}{h_1}-\frac{h_2'}{h_2}\right)u'=0.
+\]
+For nonproportional affine functions the factor in parentheses is nowhere zero. It follows that $u$ is constant, contradicting $\lambda_*>0$. Therefore the critical point is unique and is the unique affine maximizer. Finally Theorem~\ref{en:upper} is strict for nonaffine densities. This proves the stated full equality classification and nonattainment assertions.
+\end{proof}
+
+\section{Symmetry, parameter dependence, and limits}
+When $\alpha=\beta=\sigma$, reflection makes $u_0$ symmetric for the constant density. Equation \eqref{en:affinevariation} then vanishes at $b=0$, so the preceding proof gives the unique affine maximizer for $N=2$.
+There is an independent argument valid for every positive concave density $h$. Let
+$v(t)=\cos(k(t-D/2))$, where $k\tan(kD/2)=\sigma$. Integration by parts gives
+\[
+ a_h(v,v)-k^2m_h(v,v)=-\int_0^D h'vv'\,dt
+ =-\int_0^{D/2}[h'(t)-h'(D-t)]v(t)v'(t)\,dt\le0.
+\]
+Concavity gives the sign of the bracket and $v'>0$ on the left half. Equality of the principal eigenvalues would make $v$ a ground state for $h$; subtracting its constant-density equation gives $h'v'=0$, hence $h$ is constant. If $1<N\le2$ and $w''\le0$, then
+\[
+ h''=p w^{p-2}\bigl(ww''+(p-1)(w')^2\bigr)\le0.
+\]
+This proves Corollary~\ref{en:symmetric} and its equality case.
+
+For any fixed positive smooth $h$, the map $\sigma\mapsto\lambda_R(h;\sigma,\sigma)$ is strictly increasing and strictly concave on $[0,\infty)$. Monotonicity follows by testing a ground state for the larger parameter in the smaller form; its endpoint values are positive. Concavity follows because the quotient is affine in $\sigma$ for each fixed trial function. Equality in a concavity chord would produce a common ground state for two parameters. Subtracting either Robin condition would force an endpoint value, and then the derivative, to vanish. This contradicts ODE uniqueness, proving strictness. At zero,
+\[
+ \lambda_R(h;0,0)=0,\qquad
+ \left.\frac{d}{d\sigma}\lambda_R(h;\sigma,\sigma)\right|_{0}
+ =\frac{h(0)+h(D)}{\int_0^Dh}.
+\]
+As $\sigma\to\infty$, the eigenvalue increases to the principal Dirichlet eigenvalue. Indeed Dirichlet trial functions provide an upper bound; normalized Robin ground states have uniformly bounded $H^1$ norm and endpoint values tending to zero. A subsequential limit belongs to $H^1_0$, has unit weighted norm and has energy at most the limiting eigenvalue. The Dirichlet variational principle gives the reverse inequality.
+
+For the sharp symmetric \emph{supremum} in Corollary~\ref{en:symmetric}, all these assertions hold since its model is independent of $\sigma$:
+\[
+ \mathcal U=\frac{2\sigma}{D}-\frac{\sigma^2}{3}+O(\sigma^3D)
+ \quad(\sigma\downarrow0),\qquad
+ \mathcal U\longrightarrow\frac{\pi^2}{D^2}\quad(\sigma\to\infty).
+\]
+The expansion follows by inserting $k\tan(kD/2)=k^2D/2+k^4D^3/24+O(k^6D^5)$. The original \emph{infimum} $\Lambda$ is identically zero for finite $\sigma$: it is both concave and convex, and is not strictly increasing. Its limit as $\sigma\to\infty$ is zero. This is not the fixed-density Dirichlet limit, and no interchange of infimum and limit is being claimed.
+
+\section{Explicit models and examples}
+For the constant model, the general principal eigenvalue $k^2$ is the first positive-branch root of
+\[
+ (\alpha\beta-k^2)\sin(kD)+k(\alpha+\beta)\cos(kD)=0.
+\]
+One must not count the formal root $k=0$ introduced by multiplying a shooting expression by $k$ when $\alpha+\beta>0$.
+
+For $N=2$, $K=0$, $b\ne0$, set $r(t)=h_b(t)/|b|$ and $e=\operatorname{sgn}(b)$. The model solutions are
+$A J_0(kr(t))+B Y_0(kr(t))$, where $Y_0$ is the second standard Bessel solution. Thus an explicit determinant for the Robin equation is
+\[
+\det\begin{pmatrix}
+e kJ_0'(kr(0))-\alpha J_0(kr(0))&e kY_0'(kr(0))-\alpha Y_0(kr(0))\\
+e kJ_0'(kr(1))+\beta J_0(kr(1))&e kY_0'(kr(1))+\beta Y_0(kr(1))
+\end{pmatrix}=0.
+\]
+Select the root with positive eigenfunction and combine it with \eqref{en:stationarity}; Theorem~\ref{en:phase} guarantees a unique solution in the interior regime. Numerically, the equivalent shooting equation is more stable near $b=0$.
+
+For $D=1$, independent shooting and quadrature give the following values (rounded):
+\[
+\begin{array}{c|c|c|c}
+ (\alpha,\beta)&T(\beta)&b_*\text{ or limiting }b&\mathcal U\\\hline
+ (1,1)&0.65190230&0&1.70705298\\
+ (0.2,3)&1.10500615&2&3.19929448\\
+ (1,2)&0.94664167&1.95688709&2.55911255\\
+ (0.8,1)&0.65190230&1.38602265&1.59771090\\
+ (0,2)&0.94664167&2&2.55823776\\
+ (4,0.1)&0.09520110&-2&3.64076467
+\end{array}
+\]
+Rows with $b=\pm2$ are supremal limits, not positive-density maximizers. The small difference between the $(1,2)$ interior maximum and $R(2)=2.55823776$ is a useful check that merely comparing the centered and endpoint models would miss the exact optimum.
+
+\section{Counterexamples and necessary assumptions}
+The original equality-model lower reduction fails even with $K=0$, $N=2$, $D=1$ and equal positive coefficients. To see that this is stronger than a failure of attainment, extend the affine family to $t$ and $1-t$. Both endpoint eigenvalues equal $R(\sigma)>0$. For every $v\in H^1$, their two ground-state inequalities give
+$a_t(v,v)\ge R(\sigma)m_t(v,v)$ and
+$a_{1-t}(v,v)\ge R(\sigma)m_{1-t}(v,v)$.
+Every nonnegative affine density is a nonnegative combination of these two, so its quotient is at least $R(\sigma)$. Endpoint approximation attains this value in the limit. Thus
+\[
+ \inf_{\substack{h>0\\h''=0}}\lambda_R(h;\sigma,\sigma)=R(\sigma)>0,
+ \qquad
+ \inf_{\substack{h>0\\h''\le0}}\lambda_R(h;\sigma,\sigma)=0.
+\]
+
+The dimension restriction in the constant-density upper bound cannot be removed. Fix any $N>2$, let $h_\varepsilon(t)=(t+\varepsilon)^{N-1}$ on $[0,1]$, and choose $\varepsilon$ small. This is a $CD(0,N)$ equality density, and
+\[
+ \frac{h_\varepsilon(0)+h_\varepsilon(1)}{\int_0^1h_\varepsilon}
+ \longrightarrow N>2.
+\]
+The first derivative at $\sigma=0$ therefore exceeds that for the constant density. For a fixed sufficiently small $\varepsilon$, and then sufficiently small $\sigma>0$, it is a counterexample. An especially concrete case is $N=3$, $\sigma=1$: conjugation by $t+\varepsilon$ gives zero potential, left coefficient $1+1/\varepsilon$, and right coefficient $1-1/(1+\varepsilon)$. The eigenvalue tends to $\pi^2/4>1.70705298$, the constant-density value.
+
+If the curvature assumption $K=0$ in that upper bound is weakened to $K<0$, already $N=2$ permits $h(t)=\cosh(a(t-1/2))$ with $K=-a^2$. Its small-$\sigma$ derivative is $a\coth(a/2)>2$, again defeating the constant model. If both Robin parameters vanish, every density is a minimizer and maximizer of the principal value zero; all strict rigidity statements would fail. If negative Robin parameters are admitted, even nonnegativity fails by a constant test with a negative total boundary contribution. Finally, the endpoint profiles $t$ and $1-t$ are outside the prescribed positive class; calling them attained extrema in that class is incorrect.
+
+\section{Previous results and novelty audit}
+The audit cutoff is 10 September 2026. Searches included variants of ``Robin Bakry--Emery sharp eigenvalue'', ``Robin curvature-dimension'', ``Robin concave density maximization'', ``Robin affine density'', asymmetric weighted interval optimization, and integral Bakry--\'Emery eigenvalues, with separate 2025 and 2026 searches. A failed search is not evidence of absence. The following are comparisons with sources actually inspected, with access limitations stated explicitly.
+
+\begin{description}[style=nextline,leftmargin=0pt,labelwidth=0pt,labelsep=0pt]
+\item[Spectral gaps and localization.]
+Bakry--Qian \cite{BQ}, Kr\"oger \cite{Kroeger}, and Chen--Wang \cite{CW} are historical spectral-gap comparison leads. Their original full statements were not successfully retrieved here; no theorem number or numerical convention is imported from them. Cavalletti--Mondino \cite[Theorem 4.4 and Corollary 4.7]{CM} was inspected in full text: its mean-zero spectral gap and spherical-suspension rigidity are different from the principal Robin optimization. Its $N$ is total dimension, matching the exponent $1/(N-1)$ in its one-dimensional density condition.
+\item[Robin geometric comparison.]
+Savo \cite[Theorem 1, \S4.1]{Savo} proves a sharp Robin lower comparison with curvature, boundary mean curvature and inradius data. His space-form curvature parameter corresponds to $K/(N-1)$ here when the model exponent is $N-1$. His boundary control is absent in our zero-infimum problem. Shouman's accessible abstract \cite{Shouman} also involves boundary convexity. The full theorem and the precise finite-versus-infinite dimension convention were not accessible; exact theorem number not verified.
+\item[Weighted nonlinear spectra and integral curvature.]
+Li--Wang \cite[Theorem 1.1]{LW} was checked: the tensor there is $\Ric+\nabla^2f$, corresponding to $N=\infty$, with Neumann spectral gap. Ramos Oliv\'e--Seto--Tuerkoen \cite[Theorem 1.3]{RST} treats integral ordinary Ricci bounds and a nonzero Neumann eigenvalue. Liu's April 2026 article \cite{Liu} concerns integral $m$-Bakry--\'Emery curvature and weighted Reilly methods; only its publisher abstract and metadata were accessible. Its detailed boundary assumptions and $m$ convention remain unverified here.
+\item[Asymmetric and weighted Robin optimization, 2025--2026.]
+Schneider--Schneiderov\'a--Zhang \cite[\S1, Theorem 3]{SSZ}, including the June 2026 revision, optimizes a sign-changing coefficient in the mass term of an unweighted diffusion problem. Della Pietra--di Blasio--Riey \cite[\S1, \S3]{DPR} also puts a possibly singular weight in the mass term. Ahrami--El Allali--Ounejma \cite[\S1]{AEO} studies a vibrating string $-u''=\lambda w u$ and eigenvalue ratios. None of these is the operator $-h^{-1}(hu')'$ with the same density in energy, mass and boundary terms.
+\item[The closest recent same-density result.]
+Chen--Wang--Zhu \cite[Theorems 1.3 and 1.5]{CWZ}, August 2026 version, treats fixed radial log-convex densities and domain optimization in Euclidean and hyperbolic spaces. Our interval and its length are fixed while the density varies under a lower finite-dimensional curvature bound. Do--Trong--Truong \cite[\S1.1--1.2]{DTT}, dated August 2026, uses a different relation between volume and boundary densities and unweighted diffusion. Its singular radial analysis does not supply the asymmetric thresholds proved above.
+\end{description}
+
+\noindent\textbf{Component-by-component assessment.}
+The closest known ingredients are model ODE comparison, the Rayleigh principle, simple-eigenvalue variation, and regular radial Bessel solutions. None is claimed new. The specific new candidates are: (i) the supremum reduction over all positive $CD(K,N)$ interval densities with an exact defect identity; (ii) the complete $CD(0,2)$ asymmetric phase classification, especially the threshold $T$ and the unique positive affine optimizer determined by \eqref{en:stationarity}. In the inspected statements, no result determines this quantity or these equality objects. However, inaccessible older statements and incomplete indexing prevent a definitive global novelty claim. Accordingly every main result carries the status \emph{mathematically proved, novelty not verified}. This is a research manuscript, not a certification of publication priority.
+
+\section{Specific remaining questions and reproducibility}
+The original lower problem is solved by Theorem~\ref{en:lower}; it is not left open. Concrete extensions suggested by the proved upper theorem are the full affine-power phase diagram for $N>2$, optimization of the curved model parameter when $K\ne0$, and quantitative consequences of \eqref{en:defectidentity} under fixed positive upper and lower density bounds. Uniform stability for arbitrary normalized maximizing sequences is not proved here. A nonzero lower optimization would require a genuine shape restriction, such as boundary-to-bulk control; a volume normalization alone is insufficient.
+
+The accompanying Python file needs NumPy, SciPy and SymPy. Running it regenerates the finite-grid and seeded random search, collapse tests, Bessel thresholds, independent shooting values, mesh refinements and symbolic checks. The JSON output records the environment versions and seed. The search is exhaustive only on the displayed 81-element coefficient grid in each regime, not over all densities. The manuscript was composed from the supplied \texttt{amsart} template, with repaired title metadata, author \texttt{chatGPT 6 Astra}, and LuaLaTeX-compatible Japanese typesetting. The bibliography following the Japanese text is shared by both full versions.
+
+\newpage
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{equation}{0}
+\renewcommand{\theHsection}{ja.\arabic{section}}
+\renewcommand{\theHequation}{ja.\arabic{section}.\arabic{equation}}
+\renewcommand{\theHthm}{ja.\arabic{section}.\arabic{thm}}
+\renewcommand{\proofname}{証明}
+\markboth{chatGPT 6 Astra}{重み付き区間のRobin固有値の極値問題}
+\begin{center}
+{\Large\bfseries 重み付き区間のRobin固有値：\\下限の退化と鋭い上限モデル・剛性定理}\par\medskip
+chatGPT 6 Astra\par\smallskip
+日本語版（英語版と定理・数式番号が対応）
+\end{center}
+\noindent\textbf{概要.}
+有限次元Bakry--\'Emery曲率に下限を課した，固定区間上の正の滑らかな密度について，第一Robin固有値を最適化する．当初の下限問題は退化し，許容クラスが空でなければ下限は常に零である．両端のRobin係数がともに零の場合を除いて最小化密度は存在しない．非自明な比較は逆向きに成立する．任意の許容密度に対し，その正の第一固有関数の最大点で接する曲率等号密度は，元の密度以上の第一固有値を持つ．これにより上限を一変数のモデル族へ鋭く縮約し，非負の曲率欠損恒等式と等号剛性を証明する．さらに$CD(0,2)$では非対称Robin係数を含む最大化問題を完全に解く．Bessel関数で定義される二つの閾値によって，一意な正の一次密度が最大化する場合と，いずれかの端点で消える一次密度への極限で上限が得られる場合を分類する．対称な係数では定数密度が最大化し，この結論は$1<N\le2$でも成立する．記号計算，6,768例の数値比較，日付を明記した文献監査を付す．本稿の結果は数学的には証明済みであるが，新規性は未確認である．
+
+\xr{このノートはchatGPT 6が生成したものであり, 岩井は数学的な検証を全く行っていません. そのため数学的な間違いがあるかもしれません. そのため注意深く読んでください.}
+
+
+\section{序論と主定理}
+Robin境界条件による損失は密度の端点値に依存する一方，内部の質量は密度の積分に依存する．曲率の下限だけでは両者の比は制御されない．この点で，第一Robin固有値はスペクトルギャップ比較に現れる\emph{第一非零}Neumann固有値と本質的に異なる．最初に想定した下限モデル予想は，両端の密度を同時に零へ近づけることで反証される．
+
+本稿では許容クラスを変更せず，まず元の下限問題を解く．その後，最適化の向きだけを変え，上限に対する鋭いモデル定理を得る．以下の非対称$CD(0,2)$分類は，零という下限を超えて別の極値量を正確に決定し，正で滑らかな最大化密度の存在条件も与える．解析的証明はすべて記載し，未証明の固有値比較を用いない．
+
+$p=N-1>0$, $\kappa=K/p$とおき，
+\[
+ \mathcal H_{K,N,D}=\{h=w^p:w\in C^2([0,D]),\ w>0,\ w''+\kappa w\le0\}
+\]
+と定める．有限の係数$\alpha,\beta\ge0$に対し，境界条件
+$u'(0)=\alpha u(0)$, $u'(D)=-\beta u(D)$を持つ第一固有値を
+$\lambda_R(h;\alpha,\beta)$と書く．
+
+\begin{jthm}[元の下限問題]\label{ja:lower}
+$\mathcal H_{K,N,D}$が空でないための必要十分条件は
+$\kappa D^2<\pi^2$である．この条件のもとで
+\[
+ \Lambda(K,N,D;\alpha,\beta)=0
+\]
+が成立する．$\alpha+\beta>0$なら下限は達成されない．$\alpha=\beta=0$ならすべての許容密度が下限を達成する．任意の正の全重み付き体積を指定しても，これらの結論は変わらない．
+\end{jthm}
+
+非自明な上限問題を
+\[
+ \mathcal U(K,N,D;\alpha,\beta)=\sup_{h\in\mathcal H_{K,N,D}}
+ \lambda_R(h;\alpha,\beta)
+\]
+と定める．$\kappa>0$, $\kappa=0$, $\kappa<0$の各場合に応じて
+$s_\kappa(t)=\sin(\sqrt\kappa t)/\sqrt\kappa$, $t$,
+$\sinh(\sqrt{-\kappa}t)/\sqrt{-\kappa}$とし，$c_\kappa=s_\kappa'$とおく．
+
+\begin{jthm}[鋭い上限縮約と剛性]\label{ja:upper}
+$\kappa D^2<\pi^2$, $\alpha+\beta>0$と仮定し，
+\[
+ B_\kappa=\frac{c_\kappa(D/2)}{s_\kappa(D/2)},\qquad
+ W_b(t)=c_\kappa(t-D/2)+b s_\kappa(t-D/2)
+\]
+とおく．このとき$0<\mathcal U<\infty$であり，
+\begin{equation}\label{ja:reduction}
+ \mathcal U(K,N,D;\alpha,\beta)
+ =\sup_{|b|<B_\kappa}\lambda_R(W_b^p;\alpha,\beta)
+\end{equation}
+が成立する．より具体的に，$w^p$の正の第一固有関数を$u$，その一意な最大点を$x$とすると，
+\[
+ W''+\kappa W=0,\qquad W(x)=w(x),\quad W'(x)=w'(x)
+\]
+を満たす$W$は$[0,D]$全体で正であり，
+\[
+ \lambda_R(w^p;\alpha,\beta)\le\lambda_R(W^p;\alpha,\beta)
+\]
+を満たす．等号成立の必要十分条件は$w=W$である．したがって，元の正で滑らかなクラスに最大化密度が存在すれば，それは正の定数倍を除いて曲率等号モデルである．式\eqref{ja:reduction}は上限による等式であり，一般の達成を主張するものではない．
+\end{jthm}
+
+全次元が二の場合は完全分類が可能である．まずスケーリングによって$D=1$とする．$J_0$を
+$J_0''(z)+z^{-1}J_0'(z)+J_0(z)=0$, $J_0(0)=1$, $J_0'(0)=0$
+の正則解，$J_1=-J_0'$とする．$J_0$の最初の正の零点を$j_{0,1}$と書く．$s>0$に対して$k_s\in(0,j_{0,1})$を
+\begin{equation}\label{ja:radialroot}
+ k_sJ_1(k_s)=sJ_0(k_s),\qquad
+ R(s)=k_s^2,\qquad U_s(t)=J_0(k_st)
+\end{equation}
+で定め，
+\begin{equation}\label{ja:threshold}
+ T(s)=-\int_0^1\frac{U_s(t)U_s'(t)}{t}\,dt
+ =k_s\int_0^1\frac{J_0(k_st)J_1(k_st)}{t}\,dt
+\end{equation}
+とおく．零での被積分関数は連続延長によって解釈する．$R(0)=T(0)=0$と定める．
+
+\begin{jthm}[非対称係数の閾値分類]\label{ja:phase}
+$K=0$, $N=2$, $D=1$, $\alpha,\beta\ge0$, $\alpha+\beta>0$とする．
+$s>0$なら$0<T(s)<s$であり，次の三つのうちちょうど一つが成立する．
+\begin{enumerate}
+\item $\alpha\le T(\beta)$の場合，$\mathcal U=R(\beta)$である．正で滑らかな密度は上限を達成しない．一次モデル族の閉包における一意な最大化形状は$h(t)=Ct$である．
+\item $\beta\le T(\alpha)$の場合，$\mathcal U=R(\alpha)$である．この場合も正で滑らかな最大化密度は存在せず，一次モデル族の閉包での形状は$h(t)=C(1-t)$である．
+\item $\alpha>T(\beta)$かつ$\beta>T(\alpha)$の場合，次を満たす$b_*\in(-2,2)$が一意に存在する：
+\begin{equation}\label{ja:stationarity}
+ \int_0^1\frac{u_{b_*}(t)u_{b_*}'(t)}{1+b_*(t-1/2)}\,dt=0.
+\end{equation}
+ここで$u_b>0$は，指定したRobin条件のもとでの
+$h_b(t)=1+b(t-1/2)$の第一固有関数である．鋭い上限は
+$\mathcal U=\lambda_R(h_{b_*};\alpha,\beta)$であり，最大化密度全体は
+$\{Ch_{b_*}:C>0\}$に一致する．
+\end{enumerate}
+一般の長さでは，$(\alpha,\beta)$を$(\alpha D,\beta D)$に置き換えて単位区間で計算し，固有値を$D^{-2}$倍する．
+\end{jthm}
+
+\begin{jcor}[対称な係数]\label{ja:symmetric}
+$K=0$, $1<N\le2$, $\sigma>0$なら
+\[
+ \mathcal U(0,N,D;\sigma,\sigma)=k^2,
+ \qquad k\tan(kD/2)=\sigma,\quad 0<k<\pi/D.
+\]
+最大化密度は正の定数密度に限る．すべての$\sigma>0$に対して一様にこの結論を主張するには，次元の条件$N\le2$は最良である．
+\end{jcor}
+
+新規性の候補は，上限の最適化，曲率欠損恒等式，非対称係数の閾値分類である．下限零という障害や初等的な対称比較について，文献上新しいと確認できたと主張しない．全体の評価を\emph{数学的には証明済み，新規性は未確認}とする理由は末尾の監査に記す．
+
+\section{Bakry--\'Emery曲率と一次元密度}
+$h=e^{-f}=w^p$なら$f=-p\log w$であるから，
+\[
+ f'=-p\frac{w'}w,\qquad
+ f''=-p\frac{w''}w+p\frac{(w')^2}{w^2}.
+\]
+したがって，全次元の規約では
+\begin{equation}\label{ja:ricci}
+ \Ric_f^N=f''-\frac{(f')^2}{N-1}=-p\frac{w''}w.
+\end{equation}
+$p,w>0$なので，$\Ric_f^N\ge K$と$w''+\kappa w\le0$は同値である．これは符号を含めた正確な同値である．
+
+拡散作用素に対する局所的な規約も直接確認できる．$Lu=u''-f'u'$，
+$\Gamma(u)=(u')^2$，$\Gamma_2(u)=(u'')^2+f''(u')^2$とすれば，
+\[
+ \Gamma_2(u)-K\Gamma(u)-\frac{(Lu)^2}{N}
+ =\frac{N-1}{N}\left(u''+\frac{f'u'}{N-1}\right)^2
+ +(\Ric_f^N-K)(u')^2.
+\]
+内部の一点で$u'$と$u''$は独立に指定できるので，局所的な$CD(K,N)$不等式との同値が従う．区間上の通常の一次元歪み係数による定式化も同じ微分不等式で表される．\cite[\S4.1, 式(4-4)]{CM}を参照されたい．元の最適化問題では端点でも密度は正と仮定する．端点で消えるモデルを扱うのは，明記した極限の議論に限る．
+
+本稿の$p=N-1$は密度の冪であり，先行研究に現れる非線形な重み付き$p$-Laplacianの指数とは異なる．
+
+\section{重み付きRobin Sturm--Liouville問題}
+実数値関数$u\in H^1(0,D)$について，
+\begin{align*}
+ a_h(u,v)&=\int_0^D u'v'h\,dt+\alpha h(0)u(0)v(0)+\beta h(D)u(D)v(D),\\
+ m_h(u,v)&=\int_0^D uvh\,dt
+\end{align*}
+と定める．$h$はコンパクト区間上の正の連続関数なので正の最小値を持ち，重み付きSobolevノルムと通常のノルムは同値である．トレース写像は連続で，$H^1(0,D)\hookrightarrow L^2(0,D)$はコンパクトである．正規化された最小化列は$H^1$で有界であり，弱コンパクト性，強い$L^2$収束，トレースの収束から最小化関数が得られる．Euler方程式は
+\[
+ -(hu')'=\lambda hu,\qquad u'(0)=\alpha u(0),\quad u'(D)=-\beta u(D)
+\]
+である．特に，
+\[
+ \int_0^D(-L_hu)u h\,dt
+ =\int_0^D(u')^2h\,dt-[hu'u]_0^D=a_h(u,u).
+\]
+外向き単位法線は零で$-\partial_t$，$D$で$+\partial_t$なので，境界符号は$\partial_\nu u+\sigma u=0$と整合する．
+
+最小化関数を絶対値に置き換えても商は変わらない．得られた非負弱解はODEにより$C^2$である．内部の最小点で零を取れば導関数も零となり，初期値問題の一意性から恒等的に零となって矛盾する．端点で零を取る場合もRobin条件により導関数が零となり，同じ矛盾が生じる．したがって第一固有関数は端点を含めて正である．左Robin条件を満たす二解のWronskianは零なので，第一固有値は単純である．
+
+$\alpha+\beta>0$のとき最小値が零なら$u'=0$が従うが，非零定数の境界エネルギーは正となる．よって$\lambda_R>0$である．さらに
+\begin{equation}\label{ja:flux}
+ (hu')'=-\lambda_Rhu<0
+\end{equation}
+により$hu'$は狭義減少する．両端の値は弱い意味で逆符号であり，少なくとも一方は非零である．したがって$u$の最大点$x$は一意であり，$\alpha\beta>0$なら内部，$\alpha=0$なら零，$\beta=0$なら$D$に位置する．この一回だけの符号変化が上限比較の鍵となる．
+
+\section{スケーリングと正規化}
+$t=Dx$，$v(x)=u(Dx)$，$\widetilde h(x)=h(Dx)$とおき，区間を$[0,1]$に移す．
+\[
+ v'=Du',\quad v''=D^2u'',\quad
+ L_{\widetilde h}v=D^2(L_hu)(Dx),\quad
+ \Ric_{\widetilde f}^N=D^2\Ric_f^N(Dx)
+\]
+が成立する．境界条件は$v'(0)=D\alpha v(0)$，$v'(1)=-D\beta v(1)$となる．計量で説明すれば，引き戻した計量は$D^2dx^2$であり，これを$dx^2$に置き換える操作は$g\mapsto D^{-2}g$である．単位接ベクトルと法線微分は$D$倍，Laplacianは$D^2$倍になる．
+
+押し出し測度の密度は$Dh(Dx)$であるが，定数因子$D$はRayleigh商で相殺される．直接計算すると，
+\[
+ \int_0^D(u')^2h\,dt=D^{-1}\int_0^1(v')^2\widetilde h\,dx,
+ \quad \int_0^D u^2h\,dt=D\int_0^1v^2\widetilde h\,dx.
+\]
+分子を$D$倍すると境界係数は$D\alpha,D\beta$に変わる．ゆえに
+\begin{equation}\label{ja:scaling}
+ \Lambda(K,N,D;\alpha,\beta)=D^{-2}\Lambda(KD^2,N,1;\alpha D,\beta D)
+\end{equation}
+であり，$\mathcal U$にも同じ式が成り立つ．無次元量は$KD^2$，$\alpha D$，$\beta D$，$\lambda D^2$である．
+
+$c>0$に対して$a_{ch}=ca_h$，$m_{ch}=cm_h$なので，$\lambda_R(ch)=\lambda_R(h)$である．$f$の変化は定数だけで曲率も変わらない．したがって$\int h=V>0$という条件だけでは，密度の形状は何も除外されない．
+
+\section{数値探索と記号計算}
+添付コード\texttt{bakry\_emery\_robin\_\allowbreak computations.py}は，式\eqref{ja:ricci}，Schr\"odingerポテンシャル，$w_\varepsilon^p$のTaylor展開を記号的に検証する．数値計算では区間を800等分し，重み付きエネルギーの正値性を保つ三重対角離散化と集中質量行列を用いた．各小区間の密度は両端の平均で近似した．これは近似計算であり，区間演算による誤差保証を持つものではない．
+
+滑らかな許容密度は解析的に生成する．$[0,1]$上で
+\[
+ g(t)=\sin(\pi t)\left(c_0+\sum_{j=1}^m c_j\cos(j\pi t)\right),
+ \qquad c_0\ge\sum_{j=1}^m|c_j|
+\]
+とおき，有限和$g=\sum g_\ell\sin(\ell\pi t)$に展開して
+\[
+ w=W_b+A\sum_{\ell}\frac{g_\ell\sin(\ell\pi t)}{\ell^2\pi^2-\kappa},\quad A>0
+\]
+と定める．このとき$w''+\kappa w=-Ag\le0$である．Dirichlet Green核
+$s_\kappa(\min(t,s))s_\kappa(1-\max(t,s))/s_\kappa(1)$は正なので，追加項は非負で$w>0$となる．したがって，正値性と曲率条件は格子点だけでなく解析的に保証される．
+
+$\kappa=-1,0,1$，$N=2,3,4,5$，境界係数の組
+$(1,1),(.2,3),(0,2),(5,.1)$を用いた．これら48通りの各場合に，
+\[
+ b/B_\kappa\in\{-.8,0,.8\},\quad
+ (c_0,c_1,c_2)\in\{1\}\times\{-.5,0,.5\}^2,\quad A\in\{.1,1,10\}
+\]
+をすべて列挙した．各場合81個の格子例と，固定シードによる60個の乱数例を加え，合計6,768回比較した．不適切な密度はなく，モデル固有値から元の固有値を引いた差が$-10^{-5}$未満になる例もなかった．最小の差は$0.00054818$であった．モデルを接させる点には離散第一固有関数の最大点を用いており，これは解析的構成の近似である．
+
+第6節の退化族について，$N=2$，$D=\alpha=\beta=1$で次の近似値を得た．
+\[
+\begin{array}{c|ccc}
+ \varepsilon&10^{-1}&10^{-2}&10^{-3}\\\hline
+ \lambda_R&0.6300803&0.0919715&0.0097774\\
+ \text{定数試験関数による上界}&0.7014893&0.0948936&0.0098303
+\end{array}
+\]
+一方，同じ係数で一次の曲率等号密度だけを考えると，下限は$R(1)=1.5769927$である．第12節でこの差を証明する．定数密度の分割数を400から3,200に増やすと固有値の近似は$1.707054037$から$1.707052989$に変わり，射撃法の値$1.707052976$に近づく．第11節の非対称な例には独立の高精度ODE射撃法を用いた．数値結果は証拠ではあっても証明ではない．
+
+\section{下限零の定理の証明}
+$\psi(t)=\sin(\pi t/D)$とおく．二回の部分積分により，
+\[
+ \int_0^D\psi(w''+\kappa w)\,dt
+ =\frac\pi D(w(0)+w(D))+
+ \left(\kappa-\frac{\pi^2}{D^2}\right)\int_0^D\psi w\,dt.
+\]
+$\kappa D^2\ge\pi^2$なら右辺は正，左辺は非正となり矛盾する．境界値の場合も含めて許容クラスは空である．空集合上の下限を拡張実数の規約で$+\infty$としてもよいが，零という結論は空でない場合に限る．
+
+$\kappa D^2<\pi^2$なら，十分小さな$\varepsilon>0$を選び，
+$a_\varepsilon=\pi/(D+2\varepsilon)$が$a_\varepsilon^2>\kappa$を満たすようにする．
+\[
+ w_\varepsilon(t)=\sin(a_\varepsilon(t+\varepsilon)),\qquad
+ h_\varepsilon=w_\varepsilon^p
+\]
+とおけば，閉区間上で滑らかかつ狭義正であり，
+$w_\varepsilon''+\kappa w_\varepsilon=(\kappa-a_\varepsilon^2)w_\varepsilon<0$となる．定数関数$1$を代入すると，
+\[
+ 0\le\lambda_R(h_\varepsilon)\le
+ \frac{(\alpha+\beta)\sin(a_\varepsilon\varepsilon)^p}
+ {\int_0^D\sin(a_\varepsilon(t+\varepsilon))^p\,dt}\longrightarrow0.
+\]
+分母は優収束定理により正の積分に収束する．$\alpha+\beta>0$での非達成と，純Neumannの場合の全等号例は第3節から従う．体積の正規化については第4節による．以上で定理\ref{ja:lower}が証明された．
+
+\section{鋭い比較と曲率欠損恒等式}
+式\eqref{ja:flux}の最大点$x$を固定し，定理\ref{ja:upper}の接するモデル$W$を取る．$g=-w''-\kappa w\ge0$とおく．定数変化法によって$t\ge x$なら
+\[
+ W(t)-w(t)=\int_x^t s_\kappa(t-s)g(s)\,ds\ge0,
+\]
+$t\le x$なら対応する式は
+$\int_t^x s_\kappa(s-t)g(s)\,ds\ge0$となる．$\kappa>0$では
+$|t-s|\le D<\pi/\sqrt\kappa$によって核の符号が保証され，$\kappa\le0$では正の引数に対して核は常に正である．特に$W\ge w>0$となる．
+
+$r=w'/w$，$R=W'/W$と書く．Wronskianについて
+\[
+ (w'W-wW')'=-gW,\qquad (w'W-wW')(x)=0
+\]
+であるから，
+\begin{equation}\label{ja:drift}
+ r(t)-R(t)=
+ \begin{cases}
+ \displaystyle\frac{\int_t^x g(s)W(s)\,ds}{w(t)W(t)},&t<x,\\[6pt]
+ \displaystyle-\frac{\int_x^t g(s)W(s)\,ds}{w(t)W(t)},&t>x.
+ \end{cases}
+\end{equation}
+$r-R$と$u'$は左側では正，右側では負の符号を持つ．ただし前者については弱い意味である．ゆえに
+\[
+ -L_{W^p}u=\lambda_R(w^p)u+p(r-R)u'\ge\lambda_R(w^p)u.
+\]
+モデルの正の第一固有関数を$v$，固有値を$\lambda_M$とする．上式に$vW^p$を掛けて積分する．$u,v$は同じRobin係数を満たすので，Green公式の境界項は両端で消える．したがって
+\begin{equation}\label{ja:gap}
+ (\lambda_M-\lambda_R(w^p))\int_0^D uvW^p\,dt
+ =p\int_0^D vW^p(r-R)u'\,dt\ge0.
+\end{equation}
+Barta型定理を引用することなく比較が得られた．
+
+\begin{jprop}[正確な欠損公式]\label{ja:defect}
+上の記号で，
+\begin{align}\label{ja:defectidentity}
+ &(\lambda_M-\lambda_R(w^p))\int_0^DuvW^p\,dt\\
+ &\quad=p\int_0^D\frac{v(t)W(t)^{p-1}|u'(t)|}{w(t)}
+ \left(\int_{\min(t,x)}^{\max(t,x)}g(s)W(s)\,ds\right)dt.\notag
+\end{align}
+特に$g\equiv0$の場合を除いて比較は狭義である．
+\end{jprop}
+\begin{proof}
+式\eqref{ja:drift}を\eqref{ja:gap}に代入すればよい．積分が零なら，連続性と正値性から$u'\ne0$の部分で$r=R$となる．これは$x$の左右の開区間全体であり，混合条件の場合は一方の開区間全体である．対数微分を積分し，$w(x)=W(x)$を用いると全体で$w=W$となる．これは$g\equiv0$と同値であり，逆も直ちに成立する．
+\end{proof}
+
+正の曲率等号解をその中点値で割ると，一意な$|b|<B_\kappa$について$W_b$となる．両端の正値性がこのパラメータ条件と同値であり，内部の正値性は正のDirichlet補間によっても確認できる．比較から式\eqref{ja:reduction}の一方の不等式が従い，モデルが許容クラスに含まれることから他方が従う．有限性を示すため一時的に$|b|\le B_\kappa$を許す．コンパクトなパラメータ区間上で連続関数$\int W_b^p$は正の最小値を持ち，$\alpha W_b(0)^p+\beta W_b(D)^p$は有界である．定数試験関数によってモデル固有値は一様に上から抑えられる．任意の正のモデルを一つ取れば$\mathcal U>0$も従う．先ほどの等号追跡により定理\ref{ja:upper}の残りの主張も証明された．
+
+\section{変分，射撃法，Schr\"odinger作用素による見方}
+$w_\varepsilon=w+\varepsilon\phi$，$\eta=\phi/w$とおき，$m_h(u,u)=1$と正規化する．単純固有値を微分すると
+\begin{align}\label{ja:firstvariation}
+ \dot\lambda&=p\left[\int h\eta((u')^2-\lambda u^2)
+ +\alpha h(0)\eta(0)u(0)^2+\beta h(D)\eta(D)u(D)^2\right]\\
+ &=-p\int_0^D hu u'\eta'\,dt.\notag
+\end{align}
+最後の等式では$(huu')'=h((u')^2-\lambda u^2)$を用い，端点項が正確に相殺される．密度に依存するRobin境界項を省略すると，変分公式自体が誤る．
+
+曲率制約の飽和を仮定してしまわないため，第二変分も明記する．形式を$a_\varepsilon,m_\varepsilon$，$m_h$-正規直交固有基底を$\{u_j\}_{j\ge1}$とし，$u_1=u$，$B'=a'-\lambda m'$とおく．このとき
+\begin{equation}\label{ja:secondvariation}
+ \ddot\lambda=(a''-\lambda m'')(u,u)-2\dot\lambda\,m'(u,u)
+ -2\sum_{j\ge2}\frac{|B'(u,u_j)|^2}{\lambda_j-\lambda}.
+\end{equation}
+ここでは密度のパラメータ微分は$\dot h=p h\eta$，$\ddot h=p(p-1)h\eta^2$である．この公式を検算するには固有方程式と正規化を微分する．$\dot u$の$u$方向の係数は$-m'(u,u)/2$，$u_j$方向の係数は
+$-B'(u,u_j)/(\lambda_j-\lambda)$となるので，これを第一変分の微分に代入すればよい．これは被約レゾルベントによる公式でもあり，形式の滑らかさと孤立した単純固有値によって展開が正当化される．第二変分の符号は一般には一定しない．$p=1$かつ$\dot\lambda=0$なら非正である．
+
+曲率等号モデルでの許容される片側変分は$\phi''+\kappa\phi\le0$を満たす．さらにモデルの第一固有関数の最大点$x$で$\phi(x)=\phi'(x)=0$と仮定すれば，Wronskianから左側で$\eta'\ge0$，右側で$\eta'\le0$が従う．非零のこのような変分に対し，式\eqref{ja:firstvariation}は負となる．したがって制約の飽和は最大化と整合し，提案された最小化とは整合しない．$w=1$，$N=2$，$D=\alpha=\beta=1$，$\phi=\sin(\pi t)/\pi^2$の場合，式\eqref{ja:firstvariation}の積分は約$-0.1073464076$であり，記録した片側差分商はこの値に収束する．
+
+射撃法では$z=u'/u$が
+\[
+ z'=-\lambda-p(w'/w)z-z^2,\quad z(0)=\alpha,\quad z(D)=-\beta
+\]
+を満たす．根は固有関数が正である枝から選ぶ必要がある．これはSturm比較のRiccati形式である．$z$が符号を変えるとドリフト項による比較の向きも変わるため，その最大点で密度を接させることが必要になる．全区間で片向きのドリフト不等式があるだけでは，求める比較は得られない．
+
+最後に$v=h^{1/2}u$，$a=(\log h)'/2$とおく．直接微分すると
+\begin{align*}
+ h^{1/2}(-L_h)h^{-1/2}&=-\frac{d^2}{dt^2}+V,\\
+ V&=a'+a^2=\frac{(f')^2}{4}-\frac{f''}{2}
+ =\frac p2\frac{w''}{w}+\frac{p(p-2)}4\left(\frac{w'}w\right)^2.
+\end{align*}
+変換後の境界条件は
+\[
+ v'(0)=(\alpha+a(0))v(0),\qquad
+ v'(D)=-(\beta-a(D))v(D)
+\]
+であり，特に$V\le-K/2+p(p-2)(w'/w)^2/4$が従う．これはドリフトの二乗項を伴う上からの制約であり，境界係数も密度とともに変化する．したがって，ポテンシャルだけを比較して下限を導くことはできない．Wronskianによる直接証明の方が短く，変化する境界係数を扱う必要もない．平均零Neumann問題の局所化定理をRobinの議論にそのまま代入することもできない．
+
+\section{非対称閾値分類の証明}
+本節では$D=1$，$K=0$，$N=2$とする．したがって$h''\le0$であり，曲率等号モデルは一次関数である．正の密度を端点で消える密度に置き換えるには境界条件の追跡が必要なので，極限の議論を省略しない．
+
+\begin{jlem}[端点モデル]\label{ja:endpoint}
+$s\ge0$に対し，密度$t$，自然境界条件$(tu')(0)=0$，右境界条件$u'(1)=-su(1)$を持つ問題の正の第一固有関数と固有値は，式\eqref{ja:radialroot}の$U_s,R(s)$である．$\alpha,\beta\ge0$なら
+\[
+ \lambda_R(t+\delta;\alpha,\beta)\longrightarrow R(\beta),\qquad\delta\downarrow0.
+\]
+さらに零での右微分が存在し，
+\begin{equation}\label{ja:endpointderivative}
+ \left.\frac{d}{d\delta}\lambda_R(t+\delta;\alpha,\beta)\right|_{0+}
+ =\frac{\alpha-T(\beta)}{\int_0^1tU_\beta^2\,dt}
+\end{equation}
+となる．
+\end{jlem}
+\begin{proof}
+正則な動径方程式は$U''+t^{-1}U'+\lambda U=0$，$U(0)=1$，$U'(0)=0$であり，解は$J_0(\sqrt\lambda t)$である．最初の零点に到達する前の枝で，境界損失$-U'(1)/U(1)$は$\lambda$に関して狭義増加する．実際，方程式とWronskianを微分すると，その微分は
+$\int_0^1tU^2\,dt/U(1)^2>0$となる．この損失は零から無限大まで変化するので，$k_s$の一意性と$U_s$の正値性が従う．部分積分，あるいは
+$\int tU_s^2((v/U_s)')^2\ge0$という恒等式によって，第一固有値の変分的特徴付けも得られる．零での境界項は消える．まず滑らかな$v$に対して恒等式を示し，近似によって以下で用いる重み付きエネルギー不等式を得る．
+
+正の第一固有関数を$u_\delta(0)=1$と正規化し，固有値を$\lambda_\delta$と書く．定数試験関数によって，小さい$\delta$に対する$\lambda_\delta$は一様有界である．方程式を積分すると
+\[
+ u_\delta'(t)=\frac{\alpha\delta}{t+\delta}
+ -\frac{\lambda_\delta}{t+\delta}\int_0^t(s+\delta)u_\delta(s)\,ds.
+\]
+正値性から$u_\delta(t)\le1+\alpha\delta\log(1+1/\delta)$となる．したがって
+$|u_\delta'(t)|\le\alpha\delta/(t+\delta)+Ct$が一様な$C$で成立する．同程度連続性と積分形の方程式から，任意の部分列極限は右Robin条件を持つ正則動径解である．その極限は非負であり，内部または右端で零を取れば恒等的に零となって$U(0)=1$に矛盾する．よって一意な正解$U_\beta$であり，全列が一様収束する．導関数は$t>0$で各点収束し，上の評価から$L^2(0,1)$でも収束する．特に右境界条件が極限に移る．
+
+$\delta>0$でRayleigh商を微分すると
+\[
+ \lambda_\delta'=
+ \frac{\int_0^1((u_\delta')^2-\lambda_\delta u_\delta^2)\,dt
+ +\alpha u_\delta(0)^2+\beta u_\delta(1)^2}
+ {\int_0^1(t+\delta)u_\delta^2\,dt}.
+\]
+一様収束と$H^1$収束によりこの微分は極限を持つ．
+$U''=-U'/t-R(\beta)U$を用いれば，分子の極限は
+\[
+ \alpha+\int_0^1\frac{UU'}t\,dt=\alpha-T(\beta)
+\]
+であり，分母の極限は正である．零での連続性と平均値の定理によって式\eqref{ja:endpointderivative}が得られる．
+\end{proof}
+
+\begin{jlem}[閾値の範囲]\label{ja:thresholdrange}
+すべての$s>0$に対し$0<T(s)<s$が成立する．
+\end{jlem}
+\begin{proof}
+$\lambda=R(s)$，$A(t)=-U_s'(t)/(tU_s(t))$とおく．動径方程式から
+$tA'=\lambda-2A+t^2A^2$を得る．正則展開は
+$A(t)=\lambda/2+\lambda^2t^2/16+O(t^4)$なので，零の近傍で$A'>0$である．
+$(0,1)$内に$A'$の最初の零点があれば，方程式を微分してその点で
+$A''=2A^2>0$となる．これは正の値から最初の零点に到達することに矛盾する．したがって$t<1$で$A(t)<A(1)=s$となる．$0<U_s\le1$かつ$(0,1]$で$-U_s'>0$であるから，
+$0<T(s)=\int_0^1A(t)U_s(t)^2\,dt<s$が従う．
+\end{proof}
+
+\begin{proof}[定理\ref{ja:phase}の証明]
+定理\ref{ja:upper}により，$h_b=1+b(t-1/2)$，$-2<b<2$について最大化すればよい．補題\ref{ja:endpoint}によって固有値は$b=2,-2$まで連続延長でき，そこでの値はそれぞれ$R(\beta),R(\alpha)$である．閉パラメータ区間上で最大値が存在する．
+
+まず$\alpha\le T(\beta)$と仮定し，$U=U_\beta$を任意の正の一次密度
+$h(t)=a+ct$に対する試験関数に用いる．両形式の$h$に関する線形性と動径方程式から
+\begin{equation}\label{ja:support}
+ a_h(U,U)-R(\beta)m_h(U,U)=a\,[\alpha-T(\beta)]\le0
+\end{equation}
+となる．ここで$a=h(0)>0$，$U(0)=1$である．したがってすべての正の一次密度の固有値は$R(\beta)$以下である．$\alpha<T(\beta)$なら狭義不等式となる．閾値$\alpha=T(\beta)>0$で等号が起こるなら，Rayleigh原理の等号条件により$U$は左境界条件$U'(0)=\alpha U(0)$を満たすはずである．しかし$U'(0)=0$，$U(0)=1$なので不可能である．極限密度$t$はモデル族の閉包で上限を達成する．反転によってもう一方の端点の場合も同様に得られる．逆側の端点モデルに対しても，同じ支持式またはその動径試験関数による式は狭義となり，同時に最大化することはない．補題\ref{ja:thresholdrange}からも，二つの端点領域が交わらないことが分かる．
+
+残る場合は，式\eqref{ja:endpointderivative}と反転により，両端から内部へ動く微分がともに正となる．したがって最大値は内部の$b_*$で達成される．$h_b$についての微分は
+\begin{equation}\label{ja:affinevariation}
+ \frac{d\lambda_R(h_b)}{db}
+ =-\frac{\int_0^1u_bu_b'/h_b\,dt}{\int_0^1h_bu_b^2\,dt}.
+\end{equation}
+実際，$((t-1/2)/h_b)'=1/h_b^2$を式\eqref{ja:firstvariation}に代入すればよい．したがって内部の臨界点は式\eqref{ja:stationarity}を満たす．
+
+逆に任意の臨界点$b_*$を取り，$u=u_{b_*}$，$\lambda_* =\lambda_R(h_{b_*})$とする．一次密度上の線形汎関数
+$F(h)=a_h(u,u)-\lambda_*m_h(u,u)$は，固有方程式により$h_{b_*}$で零となり，停留条件により$t-1/2$でも零となる．この二つの関数は一次関数全体を張るので，すべての一次$h$について$F(h)=0$となる．Rayleigh原理から$\lambda_R(h)\le\lambda_*$である．
+異なる二つの正の一次形状で等号が起これば，共通の第一固有関数$u$が二つのODEを満たす．差を取ると
+\[
+ \left(\frac{h_1'}{h_1}-\frac{h_2'}{h_2}\right)u'=0.
+\]
+互いに比例しない一次関数では括弧内はどこでも零でないので，$u$は定数となって$\lambda_*>0$に矛盾する．したがって臨界点は一意で，唯一の一次最大化形状となる．最後に，定理\ref{ja:upper}は非一次密度について狭義である．以上により，元のクラスにおける全等号例と非達成の主張が証明された．
+\end{proof}
+
+\section{対称性，パラメータ依存性，極限}
+$\alpha=\beta=\sigma$なら，定数密度の第一固有関数$u_0$は反転対称である．式\eqref{ja:affinevariation}は$b=0$で零となるので，前節の証明から$N=2$での一意な一次最大化形状が得られる．
+任意の正の凹密度$h$に対して，独立の証明もある．
+$v(t)=\cos(k(t-D/2))$，$k\tan(kD/2)=\sigma$とおく．部分積分により
+\[
+ a_h(v,v)-k^2m_h(v,v)=-\int_0^D h'vv'\,dt
+ =-\int_0^{D/2}[h'(t)-h'(D-t)]v(t)v'(t)\,dt\le0.
+\]
+凹性が括弧内の符号を与え，左半分では$v'>0$である．第一固有値の等号が成立すれば$v$は$h$に対する第一固有関数でもある．定数密度の方程式との差から$h'v'=0$となり，$h$は定数である．$1<N\le2$かつ$w''\le0$なら
+\[
+ h''=p w^{p-2}\bigl(ww''+(p-1)(w')^2\bigr)\le0
+\]
+なので，系\ref{ja:symmetric}とその等号例が証明された．
+
+固定した正で滑らかな$h$に対し，$\sigma\mapsto\lambda_R(h;\sigma,\sigma)$は
+$[0,\infty)$で狭義増加かつ狭義凹である．単調性は，大きい係数の第一固有関数を小さい係数の形式に代入して得られる．端点値が正なので狭義となる．各試験関数の商が$\sigma$について一次であるため，その下限は凹である．凹性の弦で等号が成り立てば二つの係数に共通の第一固有関数が存在する．Robin条件の差を取ると端点値が零となり，さらに導関数も零となってODEの一意性に矛盾する．よって狭義凹である．零での値と微分は
+\[
+ \lambda_R(h;0,0)=0,\qquad
+ \left.\frac{d}{d\sigma}\lambda_R(h;\sigma,\sigma)\right|_{0}
+ =\frac{h(0)+h(D)}{\int_0^Dh}.
+\]
+$\sigma\to\infty$では第一Dirichlet固有値へ単調増加する．実際，Dirichlet試験関数が上界を与える．正規化したRobin第一固有関数は$H^1$で一様有界となり，端点値は零に収束する．部分列極限は$H^1_0$に属し，重み付きノルムが一で，エネルギーは固有値の極限以下となる．Dirichlet変分原理から逆の不等式が得られる．
+
+系\ref{ja:symmetric}の鋭い\emph{上限}$\mathcal U$でも，モデルが$\sigma$によらないので同じ性質が成り立つ．具体的には
+\[
+ \mathcal U=\frac{2\sigma}{D}-\frac{\sigma^2}{3}+O(\sigma^3D)
+ \quad(\sigma\downarrow0),\qquad
+ \mathcal U\longrightarrow\frac{\pi^2}{D^2}\quad(\sigma\to\infty).
+\]
+展開は$k\tan(kD/2)=k^2D/2+k^4D^3/24+O(k^6D^5)$を代入して得られる．
+元の\emph{下限}$\Lambda$は有限の$\sigma$について恒等的に零であり，凹でも凸でもあるが，狭義増加ではない．$\sigma\to\infty$の極限も零である．これは固定密度のDirichlet極限とは異なり，下限と極限の交換を主張しているわけではない．
+
+\section{明示的モデルと具体例}
+定数モデルの一般の第一固有値$k^2$は，
+\[
+ (\alpha\beta-k^2)\sin(kD)+k(\alpha+\beta)\cos(kD)=0
+\]
+の正の固有関数に対応する最初の根である．$\alpha+\beta>0$なら，射撃式に$k$を掛けた際に形式的に現れる$k=0$を固有値として数えてはならない．
+
+$N=2$，$K=0$，$b\ne0$の場合は$r(t)=h_b(t)/|b|$，$e=\operatorname{sgn}(b)$とおく．モデル解は
+$A J_0(kr(t))+B Y_0(kr(t))$であり，$Y_0$は標準的な第二Bessel解である．Robin条件を表す行列式は
+\[
+\det\begin{pmatrix}
+e kJ_0'(kr(0))-\alpha J_0(kr(0))&e kY_0'(kr(0))-\alpha Y_0(kr(0))\\
+e kJ_0'(kr(1))+\beta J_0(kr(1))&e kY_0'(kr(1))+\beta Y_0(kr(1))
+\end{pmatrix}=0.
+\]
+固有関数が正となる根を選び，式\eqref{ja:stationarity}と組み合わせる．内部領域では定理\ref{ja:phase}が解の一意性を保証する．数値的には$b=0$の近くで同値な射撃方程式の方が安定する．
+
+$D=1$で独立の射撃法と数値積分を用いると，次の値を得る（表示桁で丸めた）．
+\[
+\begin{array}{c|c|c|c}
+ (\alpha,\beta)&T(\beta)&b_*\text{または極限の}b&\mathcal U\\\hline
+ (1,1)&0.65190230&0&1.70705298\\
+ (0.2,3)&1.10500615&2&3.19929448\\
+ (1,2)&0.94664167&1.95688709&2.55911255\\
+ (0.8,1)&0.65190230&1.38602265&1.59771090\\
+ (0,2)&0.94664167&2&2.55823776\\
+ (4,0.1)&0.09520110&-2&3.64076467
+\end{array}
+\]
+$b=\pm2$の行は上限を与える極限であり，正の密度での最大値ではない．$(1,2)$の内部最大値と$R(2)=2.55823776$のわずかな差は，中央のモデルと端点モデルだけを比較しても真の最大値を捉えられないことを示している．
+
+\section{反例と仮定の必要性}
+元の曲率等号モデルへの下限縮約は，$K=0$，$N=2$，$D=1$，対称な正の係数という場合にも成立しない．単なる達成の失敗より強い差があることを示そう．一次モデル族を$t$と$1-t$まで拡張すると，両端での固有値は$R(\sigma)>0$で一致する．任意の$v\in H^1$について二つの第一固有値不等式
+$a_t(v,v)\ge R(\sigma)m_t(v,v)$，
+$a_{1-t}(v,v)\ge R(\sigma)m_{1-t}(v,v)$が成り立つ．非負一次関数はこの二つの非負線形結合であるから，その商も$R(\sigma)$以上となる．端点への近似でこの値に近づくので，
+\[
+ \inf_{\substack{h>0\\h''=0}}\lambda_R(h;\sigma,\sigma)=R(\sigma)>0,
+ \qquad
+ \inf_{\substack{h>0\\h''\le0}}\lambda_R(h;\sigma,\sigma)=0.
+\]
+
+定数密度による上限の次元制約も外せない．任意の$N>2$を固定し，$[0,1]$上で
+$h_\varepsilon(t)=(t+\varepsilon)^{N-1}$とする．これは$CD(0,N)$の曲率等号密度であり，
+\[
+ \frac{h_\varepsilon(0)+h_\varepsilon(1)}{\int_0^1h_\varepsilon}
+ \longrightarrow N>2.
+\]
+したがって，$\sigma=0$での第一微分は定数密度の場合を上回る．まず十分小さい$\varepsilon$を固定し，次に十分小さい$\sigma>0$を取れば反例となる．特に明示的なのは$N=3$，$\sigma=1$の場合である．$t+\varepsilon$による共役変換でポテンシャルは零，左係数は$1+1/\varepsilon$，右係数は$1-1/(1+\varepsilon)$となる．その固有値は$\pi^2/4$に収束し，定数密度の値$1.70705298$より大きい．
+
+この上限で曲率条件$K=0$を$K<0$に弱めると，すでに$N=2$で
+$h(t)=\cosh(a(t-1/2))$，$K=-a^2$が許される．その小さい$\sigma$での微分は
+$a\coth(a/2)>2$となり，やはり定数モデルを上回る．両方のRobin係数が零なら，すべての密度が第一固有値零の最小化密度でも最大化密度でもあり，狭義の剛性は成立しない．負のRobin係数を許せば，定数試験関数の境界寄与の和が負となる場合に非負性さえ失われる．また端点形状$t$と$1-t$は指定した正のクラスの外にあり，このクラスで達成された極値と呼ぶことは誤りである．
+
+\section{先行研究との比較と新規性監査}
+監査の基準日は2026年9月10日である．検索語は``Robin Bakry--Emery sharp eigenvalue''，``Robin curvature-dimension''，``Robin concave density maximization''，``Robin affine density''のほか，非対称な重み付き区間の最適化，積分Bakry--\'Emery曲率と固有値を含み，2025年と2026年も別途検索した．検索で見つからないことは不存在の証明ではない．以下では実際に確認した資料との差を述べ，アクセスの限界も明記する．
+
+\begin{description}[style=nextline,leftmargin=0pt,labelwidth=0pt,labelsep=0pt]
+\item[スペクトルギャップと局所化.]
+Bakry--Qian \cite{BQ}，Kr\"oger \cite{Kroeger}，Chen--Wang \cite{CW}は歴史的なスペクトルギャップ比較の調査対象である．原論文の完全なstatementは今回取得できなかったため，定理番号や数値規約をそこから転用していない．Cavalletti--Mondino \cite[Theorem 4.4, Corollary 4.7]{CM}は本文を確認した．平均零のスペクトルギャップと球面的懸垂の剛性であり，本稿の第一Robin固有値の最適化とは異なる．同論文の$N$は全次元で，密度条件の指数$1/(N-1)$は本稿と一致する．
+\item[Robin固有値の幾何学的比較.]
+Savo \cite[Theorem 1, \S4.1]{Savo}は曲率，境界平均曲率，内接半径を用いた鋭いRobin下限比較を証明する．モデル指数を$N-1$と対応させると，その空間形の曲率パラメータは本稿の$K/(N-1)$に対応する．その境界制御は本稿の下限零の問題にはない．Shouman \cite{Shouman}の公開abstractにも境界の凸性条件がある．完全な定理と有限・無限次元の正確な規約は取得できず，定理番号は未確認である．
+\item[重み付き非線形スペクトルと積分曲率.]
+Li--Wang \cite[Theorem 1.1]{LW}で用いるテンソルは$\Ric+\nabla^2f$であり，本稿でいえば$N=\infty$に対応する．対象はNeumannスペクトルギャップである．Ramos Oliv\'e--Seto--Tuerkoen \cite[Theorem 1.3]{RST}は通常のRicci曲率の積分的評価と非零Neumann固有値を扱う．2026年4月のLiu \cite{Liu}は積分$m$-Bakry--\'Emery曲率と重み付きReilly法を用いる．出版社のabstractと書誌情報のみ取得でき，詳細な境界条件と$m$の規約は未確認である．
+\item[2025--2026年の非対称・重み付きRobin最適化.]
+Schneider--Schneiderov\'a--Zhang \cite[\S1, Theorem 3]{SSZ}は2026年6月改訂版も確認したが，重みのない拡散作用素の質量項に入る符号変化係数を最適化する．Della Pietra--di Blasio--Riey \cite[\S1, \S3]{DPR}も，特異になり得る重みを質量項に置く．Ahrami--El Allali--Ounejma \cite[\S1]{AEO}は振動弦$-u''=\lambda w u$の固有値比を扱う．いずれもエネルギー・質量・境界に同じ密度が入る本稿の$-h^{-1}(hu')'$とは異なる．
+\item[同じ密度を用いる最近接の結果.]
+Chen--Wang--Zhu \cite[Theorems 1.3, 1.5]{CWZ}の2026年8月版は，固定した動径対数凸密度のもとでEuclid空間と双曲空間の領域を最適化する．本稿では区間と長さを固定し，有限次元曲率の下限のもとで密度を動かす．2026年8月のDo--Trong--Truong \cite[\S1.1--1.2]{DTT}は，体積密度と境界密度の別の対応関係を用い，拡散部分には重みがない．その特異動径解析から本稿の非対称閾値が得られるわけではない．
+\end{description}
+
+\noindent\textbf{構成要素ごとの評価.}
+最も近い既知の道具は，モデルODE比較，Rayleigh原理，単純固有値の変分，正則動径Bessel解である．これら自体の新規性は主張しない．具体的な新規性候補は，(i)正の$CD(K,N)$区間密度全体の上限を縮約する定理と正確な欠損恒等式，(ii)$CD(0,2)$の非対称係数の完全な場合分け，特に閾値$T$と式\eqref{ja:stationarity}で決まる一意な正の一次最大化密度である．確認したstatementにはこの量や等号対象を決定する結果は見つからなかった．しかし古い論文の本文の一部を確認できず，索引も完全ではないので，文献全体に対する確定的な新規性の主張はできない．したがって主結果の評価は\emph{数学的には証明済み，新規性は未確認}である．本稿は研究原稿であり，公表優先権を保証するものではない．
+
+\section{証明済み定理から生じる課題と再現方法}
+元の下限問題は定理\ref{ja:lower}で解決しており，未解決のまま残してはいない．上限定理から直接生じる拡張として，$N>2$における一次関数の冪の完全な場合分け，$K\ne0$での曲率モデルのパラメータ最適化，正の一様な密度上下界のもとでの式\eqref{ja:defectidentity}の定量的帰結がある．一般の正規化された最大化列に対する一様安定性は本稿では証明しない．非零の下限問題を得るには，端点と内部の質量比の制御など，形状を実際に制限する仮定が必要であり，体積の正規化だけでは不十分である．
+
+添付PythonファイルはNumPy，SciPy，SymPyを使用する．実行すると，有限格子と固定シードの乱数探索，退化テスト，Bessel閾値，独立の射撃法，格子細分化，記号計算が再現される．JSON出力には環境のバージョンとシードも記録される．全探索したのは，各条件における明示した81要素の係数格子であり，すべての密度ではない．原稿には指定された\texttt{amsart}テンプレートを使用し，未完成のtitleとmetadataを修正して著者を\texttt{chatGPT 6 Astra}とした．日本語はLuaLaTeXで処理する．以下の参考文献は英語版と日本語版で共通である．
+
+\begin{thebibliography}{99}
+\bibitem{BQ} D.~Bakry and Z.~Qian,
+\emph{Some new results on eigenvectors via dimension, diameter, and Ricci curvature},
+Adv. Math. \textbf{155} (2000), 98--153.
+\href{https://ora.ox.ac.uk/objects/uuid:8eef7c4e-f91b-4ed1-a68f-ca79c2e45061}{Oxford repository record}.
+Original full theorem not retrieved in this audit; exact theorem number not verified.
+
+\bibitem{Kroeger} P.~Kr\"oger,
+\emph{On the spectral gap for compact manifolds},
+J. Differential Geom. \textbf{36} (1992), no.~2, 315--330.
+\href{https://doi.org/10.4310/jdg/1214448744}{doi:10.4310/jdg/1214448744}.
+Original full theorem not retrieved; exact theorem number not verified.
+
+\bibitem{CW} M.-F.~Chen and F.-Y.~Wang,
+\emph{Application of coupling method to the first eigenvalue on manifold},
+Sci. China Ser. A \textbf{37} (1994), no.~1, 1--14.
+Bibliographic lead checked against the references of \cite{Liu}; original full text not retrieved and exact theorem number not verified.
+
+\bibitem{CM} F.~Cavalletti and A.~Mondino,
+\emph{Sharp geometric and functional inequalities in metric measure spaces with lower Ricci curvature bounds},
+Geom. Topol. \textbf{21} (2017), 603--645.
+\href{https://doi.org/10.2140/gt.2017.21.603}{doi:10.2140/gt.2017.21.603};
+\href{https://arxiv.org/abs/1505.02061}{arXiv:1505.02061}.
+\S4.1, Theorem~4.4, Corollary~4.7 verified in the published text.
+
+\bibitem{Savo} A.~Savo,
+\emph{Optimal eigenvalue estimates for the Robin Laplacian on Riemannian manifolds},
+\href{https://arxiv.org/abs/1904.07525}{arXiv:1904.07525v1} (2019).
+Theorem~1 and \S4.1 verified. This citation identifies the inspected preprint version.
+
+\bibitem{Shouman} A.~Shouman,
+\emph{Generalization of Philippin's results for the first Robin eigenvalue and estimates for eigenvalues of the bi-drifting Laplacian},
+Ann. Global Anal. Geom. \textbf{55} (2019), 805--817.
+\href{https://doi.org/10.1007/s10455-019-09652-1}{doi:10.1007/s10455-019-09652-1}.
+Publisher abstract inspected; exact theorem number not verified.
+
+\bibitem{LW} X.~Li and K.~Wang,
+\emph{Sharp lower bound for the first eigenvalue of the weighted $p$-Laplacian II},
+\href{https://arxiv.org/abs/1911.04596}{arXiv:1911.04596v2} (2020).
+Theorem~1.1 verified in this version.
+
+\bibitem{RST} X.~Ramos Oliv\'e, S.~Seto and M.~Tuerkoen,
+\emph{Sharp spectral gap estimates on manifolds under integral Ricci curvature bounds},
+\href{https://arxiv.org/abs/2510.27083}{arXiv:2510.27083v1} (2025).
+Theorem~1.3 and the Neumann problem in \S1 verified.
+
+\bibitem{Liu} Y.~Liu,
+\emph{Escobar--Lichnerowicz--Reilly type eigenvalue estimate for the weighted $p$-Laplacian on manifolds with integral Ricci curvature},
+Acta Math. Sin. (Engl. Ser.) \textbf{42} (2026), 1045--1061.
+\href{https://doi.org/10.1007/s10114-026-4479-0}{doi:10.1007/s10114-026-4479-0}.
+Published 15 April 2026. Publisher abstract inspected; exact theorem number and dimension convention not verified.
+
+\bibitem{SSZ} B.~Schneider, D.~Schneiderov\'a and Y.~Zhang,
+\emph{One-dimensional optimisation of indefinite-weight principal eigenvalues with asymmetric Robin parameters and a Schr\"odinger-type perturbation},
+\href{https://arxiv.org/abs/2510.16866v3}{arXiv:2510.16866v3} (23 June 2026).
+\S1 and Theorem~3 verified.
+
+\bibitem{DPR} F.~Della Pietra, G.~di Blasio and G.~Riey,
+\emph{Weighted Robin eigenvalue problems and nonlinear elliptic equations with general growth in the gradient},
+\href{https://arxiv.org/abs/2512.20192v1}{arXiv:2512.20192v1} (2025).
+\S1 and the variational setting of \S3 inspected.
+
+\bibitem{AEO} M.~Ahrami, Z.~El Allali and J.~Ounejma,
+\emph{Lower bounds on the eigenvalue ratio with Robin boundary conditions},
+Gulf J. Math. \textbf{19} (2025), no.~2, 489--499.
+\href{https://doi.org/10.56947/gjom.v19i2.2825}{doi:10.56947/gjom.v19i2.2825}.
+\S1 inspected to distinguish the vibrating-string operator from the present diffusion operator.
+
+\bibitem{CWZ} D.~Chen, K.~Wang and A.~Zhu,
+\emph{Faber--Krahn inequalities for weighted Robin eigenvalues},
+\href{https://arxiv.org/html/2607.06947v2}{arXiv:2607.06947v2} (4 August 2026).
+Title as displayed in the inspected v2 full text; Theorems~1.3 and 1.5 verified.
+
+\bibitem{DTT} T.~D.~Do, N.~N.~Trong and N.~N.~H.~Truong,
+\emph{A weighted Bossel--Daners transfer principle and a pure-power Robin Faber--Krahn inequality},
+\href{https://arxiv.org/abs/2608.21745v1}{arXiv:2608.21745v1} (22 August 2026).
+\S1.1--1.2 and the distinct variational density structure inspected.
+\end{thebibliography}
+
+\end{document}
