@@ -122,7 +122,7 @@ chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あっ�
 - [Sharp polarized Chern inequalities for rank-four matroids:](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/matroid_miyaoka_yau.pdf) 
 - [Virtual tightness on M(5, 2): a lens-space reduction and an explicit double cover](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/m52_contact.pdf) 
 - [An integral refinement of the Bachmann–Risan matrix](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/br_integral_refinement.pdf) 
-- [Robin eigenvalues on weighted intervals:collapse of the infimum and sharp upper-model rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/br_integral_refinement.pdf) 
+- [Robin eigenvalues on weighted intervals:collapse of the infimum and sharp upper-model rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/bakry_emery_robin.pdf) 
 
 みたらわかるが, 修士論文でこれが出てきても特に何も思わないし, むしろよくできていると思う. 
 しかし恐ろしい時代になったものである. 
