@@ -88,13 +88,13 @@ chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あっ�
 近年流行ってそうな分野の単語をいれてプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. 
 ここにおいたのは「論文っぽいものが容易に1時間で作れる」と言うのを見てほしいためです. (これをそのまま論文にするつもりはないです.)
 
-代数幾何学
+代数幾何学(岩井関連・MMP)
 - [A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/toric_MY_20260908.pdf) 
 - [Maximal relative anticanonical growth and finite etale splitting](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/anticanonical_20260908.pdf) 
 - [Torsion obstructions to generalized abundance](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/mmp_torsion_note.pdf) 
 - [Magnitude homology of Abelian surfaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/magnitude_geometry_bilingual.pdf) 
 
-複素幾何学
+複素幾何学(ベクトル束のpositivity, stability, non-Kahler)
 - [RC-positivity of induced symmetric powers and positive mean curvature](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_positive_2.pdf) 
 - [Positive curvature averages without a common RC direction](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_positive_1.pdf) 
 - [Mean RC curvature and pinched volume rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/RC_DS_continues.pdf) 
@@ -104,28 +104,29 @@ chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あっ�
 - [A conic criterion for higher Kahler structureson diagonal complex nilmanifolds](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/nil_solv_research_2.pdf) 
 - [p-Kahler thresholds for two-step nilmanifolds from rational normal curves](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/nil_solv_research_bilingual.pdf) 
 
-微分幾何学・幾何解析
+微分幾何学・幾何解析(RCD, Graph Laplacian, Weighted Laplacian)
 - [Heat-semigroup defects, gaussian approximation, and spectral multiplicities on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_bilingual.pdf) 
 - [Spectral cluster multiplicities from almost gaussian eigenfunctions on RCD spaces](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/metric_measure_research_2.pdf) 
+- [Robin eigenvalues on weighted intervals:collapse of the infimum and sharp upper-model rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/bakry_emery_robin.pdf) 
+- [Minimal signless laplacian coefficient vectors of cacti and sharp incidence energy in the even-cycle class](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/cactus_coefficients.pdf) 
 
-多変数複素解析
+多変数複素解析(L2, Oka, 複素力学系)
 - [Magnitude homology of annuli and holomorphic maps](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/maginutude_20260908.pdf) 
 - [Minimal local sprays and a rank obstruction on projective-space bundles](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/oka_geometry.pdf) 
 - [Joint collision and pole regularization in weighted Bergman interpolation](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/l2_collision.pdf) 
 - [Algebraic rigidity and prescribed convergence sets for triangular non-autonomous automorphisms](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/complex_dynamics_scv.pdf) 
 
-その他
+その他(多重ゼータ, マトロイド, 結び目, トポロジー)
 - [Depth-three symmetric Eisenstein series](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/symmetric_triple_eisenstein.pdf) 
-- [Graphic matroid Chow polynomials](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/graphic_matroid_chow.pdf) 
-- [Minimal signless laplacian coefficient vectors of cacti and sharp incidence energy in the even-cycle class](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/cactus_coefficients.pdf) 
-- [Sharp separation from twelve intersection polynomials: long virtual knots with identical closures](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/virtual_knot_separation.pdf) 
-- [Sharp polarized Chern inequalities for rank-four matroids:](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/matroid_miyaoka_yau.pdf) 
-- [Virtual tightness on M(5, 2): a lens-space reduction and an explicit double cover](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/m52_contact.pdf) 
 - [An integral refinement of the Bachmann–Risan matrix](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/br_integral_refinement.pdf) 
-- [Robin eigenvalues on weighted intervals:collapse of the infimum and sharp upper-model rigidity](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/bakry_emery_robin.pdf) 
+- [Sharp polarized Chern inequalities for rank-four matroids](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/matroid_miyaoka_yau.pdf) 
+- [Graphic matroid Chow polynomials](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/graphic_matroid_chow.pdf) 
+- [Sharp separation from twelve intersection polynomials: long virtual knots with identical closures](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/virtual_knot_separation.pdf) 
+- [Virtual tightness on M(5, 2): a lens-space reduction and an explicit double cover](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/m52_contact.pdf) 
+
 
 みたらわかるが, 修士論文でこれが出てきても特に何も思わないし, むしろよくできていると思う. 
-しかし恐ろしい時代になったものである. 
+恐ろしい時代になったものである. 
 証明を知ってなくても上の論文を自分の論文だと言い張って出すことはできるからである. 
 多分こういったことをする人は増えていくと思う. 
 
