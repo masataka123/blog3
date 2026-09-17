@@ -83,10 +83,10 @@
 
 
 # **chatGPTが書いたノート**
-chatGPTに論文ぽいこと書いてと言ったら書いてくれた. あってるか知らないので注意すること. 
+呑んだ勢いでchatGPTニ修士論文を26本書いてもらいました. あってるか知らないので注意するしてください. 
 
-近年流行ってそうな分野の単語をいれてプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. 
-ここにおいたのは「論文っぽいものが容易に1時間で作れる」と言うのを見てほしいためです. (これをそのまま論文にするつもりはないです.)
+数学の単語をいれてchatGPTにプロンプトを作ってもらい, それを用いてchatGPT 6 Astra をUltraで1時間ほど回したものです. なお私はRCDや仮想結び目の定義を知りません. 
+ここにおいたのは「修士論文が容易に1時間で作れる」と言うのを見てほしいためです. これをそのまま論文にするつもりはないです.
 
 代数幾何学(岩井関連・MMP)
 - [A combinatorial proof of the delta-corrected Miyaoka--Yau inequality for toric Fano varieties](https://masataka123.github.io/blog3/pdf/20260908_chatGPT_paper/toric_MY_20260908.pdf) 
