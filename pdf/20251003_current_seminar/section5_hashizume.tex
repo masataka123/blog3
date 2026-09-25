@@ -1,251 +1,4 @@
-%\documentclass[dvipdfmx,a4paper,12pt]{amsart}
-\documentclass[dvipdfmx,a4paper,11pt]{report} %titleとe-mailをコメントアウトする．
-
-
-%%% Packages %%%
-\setlength{\lineskip}{0pt}
-
-% --- 和文フォント設定 (ゴシックを使うなら) ---amsartを使う時はコメントアウト
-\renewcommand{\kanjifamilydefault}{\gtdefault}
-\usepackage{otf}          % min10を避けるため
-\usepackage{pxrubrica}    % 和文ルビ
-
-% --- 基本パッケージ ---
-\usepackage{graphicx}
-\usepackage[all]{xy}
-\usepackage{wrapfig}
-\usepackage{pgfplots}
-\usepackage{color}
-\usepackage[dvipsnames]{xcolor}
-
-% --- 数学関連 ---
-\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
-\usepackage{amscd,dsfont,bigdelim,braket,physics,mathrsfs,bm}
-
-% --- 書式・リスト関連 ---
-\usepackage{latexsym}
-\usepackage{setspace}
-\usepackage{multirow}
-\usepackage{enumerate}
-\usepackage{enumitem}
-
-% --- コメント・取消線など ---
-\usepackage{comment}
-\usepackage[normalem]{ulem} % \emph の下線化を抑止（cancelと共存）
-
-% --- URL・文字コード ---
-\usepackage{url}
-% \usepackage[utf8]{inputenc}  % ← 使用しているエンジンがuplatexなら不要、pdflatexなら有効に
-
-% --- showkeys（常に表示） ---
-\usepackage{showkeys}
-\renewcommand*{\showkeyslabelformat}[1]{%
- \fbox{\parbox{1.6cm}{\normalfont\tiny\sffamily#1\vspace{6mm}}}%
-}
-% --- hyperrefは最後に読み込む ---
-\usepackage[dvipdfmx,colorlinks,linkcolor=blue,anchorcolor=blue,citecolor=blue]{hyperref}
-
-%%% レイアウト調整 %%%
-%%% レイアウト調整（geometryに統一） %%%
-\usepackage[
-  top=30mm,        % 上余白
-  bottom=30mm,     % 下余白
-  left=25mm,       % 左余白
-  right=25mm,      % 右余白
-  headheight=12pt, % ヘッダー高さ（必要なら）
-  headsep=10mm,    % ヘッダーと本文の間
-  footskip=32pt,   % 本文とフッターの距離
-  includehead,     % ヘッダー分も高さに含める
-  includefoot      % フッター分も高さに含める
-]{geometry}
-
-%%% 行間調整（適宜 1.2 などに変更） %%%
-\usepackage{setspace}
-\setstretch{1.1}
-
-% --- 段落設定 --- 文字の行間ならここを変更する
-\setlength{\parskip}{5pt}   % 段落間のスペース
-\setlength{\parindent}{0pt}   % 段落先頭の字下げをなくす
-
-
-%%% 追加（重複なし）パッケージ・設定 %%%
-
-% --- 目次の体裁調整 ---
-%\usepackage{tocloft}
-%\renewcommand{\contentsname}{目次} % 日本語化
-%\setlength{\cftbeforesecskip}{0pt}
-%\setlength{\cftbeforesubsecskip}{0pt}
-%\setlength{\cftbeforesubsubsecskip}{0pt}
-
-% --- セクション見出しの体裁調整 ---
-%\usepackage{titlesec}
-%\titleformat*{\section}{\Large\bfseries}
-%\titleformat*{\subsection}{\large\bfseries}
-%\titlespacing*{\section}{0pt}{1.5ex plus .2ex minus .2ex}{0.8ex plus .1ex}
-%\titlespacing*{\subsection}{0pt}{1.0ex plus .2ex minus .2ex}{0.5ex plus .1ex}
-
-% --- ヘッダー／フッター設定 ---
-%\usepackage{fancyhdr}
-%\pagestyle{fancy}
-%\fancyhf{}
-%\rhead{岩井 雅崇}
-%\lhead{大阪大学 数学専攻}
-%\cfoot{\thepage}
-
-
-% -- enumerate, itemize行間設定
-\usepackage{enumitem} % デフォルト設定
-\setlist[itemize]{itemsep=3pt, parsep=0pt}
-\setlist[enumerate]{itemsep=3pt, parsep=0pt}
-% "変更する際は右を使う" \setlength{\parskip}{0cm} % 段落間\setlength{\itemsep}{5pt} % 項目間
-
-% --- tcolorbox 設定 ---%\begin{tcolorbox}[mybox]と使う
-\usepackage[most]{tcolorbox}
-\tcbuselibrary{breakable, skins, theorems}
-\tcbset{
-  mybox/.style={
-    colback = white,
-    colframe = green!35!black,
-    fonttitle = \bfseries,
-    breakable = true
-  }
-}
-
-% --- TikZ 設定 ---
-\usepackage{tikz}
-\usetikzlibrary{positioning, arrows.meta, fit, calc, backgrounds}
-\pgfdeclarelayer{background}
-\pgfdeclarelayer{foreground}
-\pgfsetlayers{background,main,foreground}
-
-% --- footnote がページをまたがない設定 ---
-\interfootnotelinepenalty=10000
-
-% --- 目次に表示する階層の深さ ---
-\setcounter{tocdepth}{2}
-
-% --- 日本語目次---
-\usepackage{pxjahyper}
-
-%--newtheorem%--newcommand----
-
-\newtheorem{thm}{Theorem}[section] 
-\newtheorem{theo}[thm]{Theorem}
-\newtheorem{cor}[thm]{Corollary}
-\newtheorem{prop}[thm]{Proposition}
-\newtheorem{conj}[thm]{Conjecture}
-\newtheorem*{mainthm}{Theorem}
-\newtheorem{deflem}[thm]{Definition-Lemma}
-\newtheorem{lem}[thm]{Lemma}
-\theoremstyle{definition} 
-\newtheorem{defn}[thm]{Definition}
-\newtheorem{propdefn}[thm]{Proposition-Definition} 
-\newtheorem{lemdefn}[thm]{Lemma-Definition} 
-\newtheorem{thmdefn}[thm]{Theorem-Definition} 
-\newtheorem{eg}[thm]{Example} 
-\newtheorem{ex}[thm]{Example} 
-\newtheorem{ques}[thm]{Question}
-\newtheorem{remin}[thm]{Reminder}
-\theoremstyle{remark}
-\newtheorem{rem}[thm]{Remark}
-\newtheorem{setup}[thm]{Setup}
-\newtheorem{obs}[thm]{Observation}
-\newtheorem{notation}[thm]{Notation}
-\newtheorem{cl}{Claim}
-\newtheorem{claim}[thm]{Claim}
-\newtheorem{assup}[thm]{Assumption}
-\newtheorem{step}{Step}
-\newtheorem*{clproof}{Proof of Claim}
-\newtheorem{cln}[thm]{Claim}
-\newtheorem*{ack}{Acknowledgements} 
-\numberwithin{equation}{section}
-\newtheorem{case}{Case}
-
-\newcommand{\rk}[0]{\operatorname{rk}}
-\newcommand{\supp}[0]{\operatorname{Supp}}
-\newcommand{\Rad}[0]{\operatorname{Rad}}
-\newcommand{\Sha}[0]{\operatorname{Sha}}
-\newcommand{\sha}[0]{\operatorname{sha}}
-\newcommand{\eend}[0]{\operatorname{End}}
-\newcommand{\codim}[0]{\operatorname{codim}}
-\newcommand{\nd}[0]{\operatorname{nd}}
-\renewcommand{\rank}[0]{\operatorname{rank}}
-\newcommand{\degree}[0]{\operatorname{deg}}
-\newcommand{\Exc}[0]{\operatorname{Exc}}
-\newcommand{\pr}{{\rm pr}}
-\newcommand{\id}{{\rm id}}
-\newcommand{\Sym}{{\rm Sym}}
-\newcommand{\End}[0]{\operatorname{End}}
-\newcommand{\Coker}[0]{\operatorname{Coker}}
-
-\newcommand{\Supp}{{\rm Supp}}
-\newcommand{\Hom}[0]{\mathscr{H}\!\textit{om}}
-\newcommand{\Ext}[0]{\mathscr{E}\!\textit{xt}}
-\newcommand{\GL}[0]{\operatorname{GL}}
-\newcommand{\SheafHom[1]}{\mathscr{H}\!\!\!\text{\calligra om}_{\,{#1}}}
-\newcommand{\PGL}[0]{\mathbb{P}\GL(r,\C)}
-
-\newcommand{\Alb}{{\rm Alb}}
-\newcommand{\verti}{{\rm vert}}
-\newcommand{\hor}{{\rm hor}}
-\newcommand{\univ}{{\rm univ}}
-\newcommand{\Tor}{{\rm tor}}
-\newcommand{\shaf}{\mathrm{sha}}
-\newcommand{\Shaf}{\mathrm{Sha}}
-\newcommand{\reg}{{\rm{reg}}}
-\newcommand{\sing}{{\rm{sing}}}
-\newcommand{\qt}{{\rm{qt}}}
-\newcommand\sO{{\mathcal O}}
-\newcommand{\Div}[0]{\operatorname{div}}
-\newcommand{\ddbar}{dd^c}
-\newcommand{\cV}{\mathcal{V}}
-\newcommand{\deldel}{\sqrt{-1}\partial \overline{\partial}}
-\newcommand{\dbar}{\overline{\partial}}
-\newcommand{\I}[1]{\mathcal{I}(#1)}
-\newcommand{\Aut}[1]{\mathrm{Aut}(#1)}
-\newcommand{\Ker}[1]{\mathrm{Ker}(#1)}
-\newcommand{\Image}[1]{\mathrm{Im}(#1)}
-\DeclareMathOperator{\Ric}{Ric}
-\DeclareMathOperator{\Vol}{Vol}
- \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
- \newcommand{\drv}[2]{\frac{d #1}{d#2}}
-  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
-\newcommand{\underalign}[2]{\quad \underset{\mathclap{\strut #1}}{#2}\quad}
-\newcommand{\polar}{\beta}
-  
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{Z}_+}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\D}{\mathbb{D}}
-\newcommand{\mP}{\mathbb{P}}
-\newcommand{\mO}{\mathcal{O}}
-\newcommand{\B}{\mathds{B}}
-\newcommand{\tl}{\hspace{-0.8ex}<\hspace{-0.8ex}}
-\renewcommand{\tr}{\hspace{-0.8ex}>}
-
-\newcommand{\xb}[1]{\textcolor{blue}{#1}}
-\newcommand{\xr}[1]{\textcolor{red}{#1}}
-\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
-
-\newcommand{\illegible}[1]{\textcolor{red}{[ILLEGIBLE: #1]}}
-
-%\title{カレントセミナーのノート} 
-%\author{岩井雅崇}
-%\address{Department of Mathematics, Graduate School of Science, Osaka City University 3-3-138, Sugimoto, Sumiyoshi-ku Osaka, 558-8585Japan} 
-%\email{{\tt masataka.math@gmail.com}}
-%\email{{\tt masataka.math@gmail.com, masataka@sci.osaka-cu.ac.jp}}
-%\date{\today, version 0.01}
-
-\renewcommand{\thefootnote}{\arabic{footnote}}
-
-\baselineskip = 15pt
-\footskip = 32pt
-
-\begin{document}
-%\maketitle
-%\tableofcontents % 目次を出力
+\chapter{Lelong number}
 
 \begin{thebibliography}{n}
 \bibitem[Dem12]{Dem}
@@ -1476,9 +1229,358 @@ $z\in U$について, Lelong number $\mathcal{L}(z;T)$を以下のように定�
 \end{tcolorbox}
 
 
-\end{document}
 
-%2026/07/29 下に次回分のノートを添付
+% [PDF page 2]
+\section{Lelong number for complex submanifolds}
+\label{sec-H-0925}
+
+\underline{Notation（前回より）}
+\begin{itemize}
+\item $(z^1,\ldots,z^m)$: coordinate of $\C^m$.
+\item $d^c:=\dfrac{1}{2\pi}\dfrac{i}{2}(\bar\partial-\partial)$
+\quad (thus $dd^c=\dfrac{i}{2\pi}\partial\bar\partial$).
+\item $\displaystyle
+\alpha:=dd^c|z|^2
+=\frac{i}{2\pi}\sum_{j=1}^m dz^j\wedge d\bar z^j$.
+\item $\displaystyle
+\beta:=dd^c\log|z|^2
+=\frac{i}{2\pi}\sum_{j,\ell=1}^m
+\left(\frac{\delta_{j\ell}}{|z|^2}
+-\frac{z^\ell\bar z^j}{|z|^4}\right)
+dz^j\wedge d\bar z^\ell$
+\quad on $\C^m\setminus\{0\}$.
+\item $\alpha^q$, $\beta^q$: $q$回のウェッジ積.
+\quad $\alpha^0:=1$, $\beta^0:=1$.
+\item $\eta:=d^c\log|z|^2\wedge\beta^{m-1}$.
+\item $B(z;r):=\{w\in\C^m\mid |w-z|<r\}$.
+\item $\Gamma(z;r):=\{w\in\C^m\mid |w-z|=r\}$.
+\item $B(r):=B(0;r)$, $\Gamma(r):=\Gamma(0;r)$.
+\end{itemize}
+
+$U\subset\C^m$を開集合,
+$S\subset U$を$k$次元のclosed complex submanifoldとする.
+ここでclosedとは$U$の相対位相に関して閉じているという意味である.
+$S$は積分カレント
+$I_S\in\mathcal{D}'^{(m-k,m-k)}(U)$を
+\begin{equation*}
+I_S(\phi):=\int_S\phi
+\qquad
+\left(\phi\in\mathcal{D}^{(k,k)}(U)\right)
+\end{equation*}
+によって定める. $I_S$はpositive currentである.
+また$S$は境界を持たないので, Stokesの定理から$dI_S=0$である.
+
+$K\subset U$をコンパクト集合とする.
+$\Vol(K\cap S)$は標準Euclid計量から誘導される体積である.
+具体的には, $z^j=x^j+i\,y^j$として
+\begin{equation*}
+g:=\sum_{j=1}^m
+\left(dx^j\otimes dx^j+dy^j\otimes dy^j\right)
+\end{equation*}
+とおく. $S$上の実局所座標$(u^1,\ldots,u^{2k})$を用いて
+\begin{equation*}
+\left.g\right|_S
+=\sum_{i,j=1}^{2k}g_{ij}\,du^i\otimes du^j
+\end{equation*}
+と書くと, 複素構造が定める向きと整合的な座標について
+\begin{equation*}
+\mathrm{vol}_S
+:=\sqrt{\det(g_{ij})_{1\leq i,j\leq 2k}}\,
+ du^1\wedge\cdots\wedge du^{2k},
+\qquad
+\Vol(K\cap S):=\int_{K\cap S}\mathrm{vol}_S.
+\end{equation*}
+
+% [PDF page 3; Rem 1]
+\begin{rem}
+\label{rem-H-0925-volume}
+上の記号のもとで,
+\begin{equation*}
+\Vol(K\cap S)=\frac{\pi^k}{k!}\int_{K\cap S}\alpha^k.
+\end{equation*}
+実際, 標準複素構造を$J$とすると,
+$g$に対応する$2$-formは
+\begin{equation*}
+\omega:=g(J\,\cdot,\cdot)
+=\sum_{j=1}^m dx^j\wedge dy^j
+=\frac{i}{2}\sum_{j=1}^m dz^j\wedge d\bar z^j
+=\pi\alpha.
+\end{equation*}
+適当な局所座標で計算すれば
+\begin{equation*}
+\mathrm{vol}_S
+=\frac{1}{k!}\left(\left.\omega\right|_S\right)^k
+=\frac{\pi^k}{k!}\left.\alpha^k\right|_S
+\end{equation*}
+となるので, 主張が従う.
+
+特に$U=\C^m$, $S=V$を$k$次元複素線形部分空間,
+$K=\overline{B(r)}$とすると,
+\begin{align*}
+\int_{B(r)\cap V}\alpha^k
+&=\int_{\overline{B(r)}\cap V}\alpha^k\\
+&=\frac{k!}{\pi^k}\Vol\left(\overline{B(r)}\cap V\right)
+=r^{2k}.
+\end{align*}
+最後の等号では, 前回のFact 2にある$2k$次元Euclid球の体積
+$\dfrac{\pi^k}{k!}r^{2k}$を用いた.
+\end{rem}
+
+% 原稿では Lem 3．記載順（Rem 1, Lem 3, Prop 2, Cor 3）はそのまま．
+\begin{tcolorbox}[mybox]
+\begin{lem}
+\label{lem-H-0925-measure}
+$\mu_{I_S\wedge\alpha^k}$をpositive current
+$I_S\wedge\alpha^k$に対応するRadon測度とする（前回のObs 8）.
+$z\in U$, $r>0$, $\overline{B(z;r)}\subset U$に対して,
+前回のDef 9と同様に
+\begin{equation*}
+n(z;r,I_S):=\frac{1}{r^{2k}}
+\mu_{I_S\wedge\alpha^k}(B(z;r))
+\end{equation*}
+と定める. このとき
+\begin{equation*}
+n(z;r,I_S)=\frac{1}{r^{2k}}\int_{B(z;r)\cap S}\alpha^k.
+\end{equation*}
+特に$n(r;I_S):=n(0;r,I_S)$と書く.
+\end{lem}
+\end{tcolorbox}
+
+\begin{proof}
+$S$上のBorel測度$\nu$を
+\begin{equation*}
+\nu(E):=\int_E\left(\left.\alpha\right|_S\right)^k
+\qquad (E\in\mathcal{B}(S))
+\end{equation*}
+によって定める.
+補足\ref{rem-H-0925-volume}より
+$\left(\left.\alpha\right|_S\right)^k
+=\dfrac{k!}{\pi^k}\mathrm{vol}_S$なので, $\nu$はRadon測度である.
+包含写像$\iota\colon S\hookrightarrow U$による押し出しを
+$\mu:=\iota_*\nu$とおく. すなわち
+\begin{equation*}
+\mu(E):=\nu(E\cap S)=\int_{E\cap S}\alpha^k
+\qquad (E\in\mathcal{B}(U)).
+\end{equation*}
+$S$は$U$で閉じているので, $\mu$も$U$上のRadon測度である.
+任意の$\phi\in\mathcal{D}(U)$について
+\begin{align*}
+(I_S\wedge\alpha^k)(\phi)
+&=I_S(\alpha^k\wedge\phi)
+=\int_S\phi\,\alpha^k
+=\int_U\phi\,d\mu.
+\end{align*}
+よってRiesz表示定理の一意性から
+$\mu=\mu_{I_S\wedge\alpha^k}$となる.
+特に
+\begin{equation*}
+\mu_{I_S\wedge\alpha^k}(B(z;r))
+=\int_{B(z;r)\cap S}\alpha^k
+\end{equation*}
+であり, 主張が従う.
+\end{proof}
+% 補足: 原稿ではS上の測度とU上の測度が同じ記号で書かれているため，
+% 包含写像による押し出しを明記した．
+
+% [PDF page 4; Prop 2]
+\begin{tcolorbox}[mybox]
+\begin{prop}[{野口--落合, (3.2.39)}]
+\label{prop-H-0925-lelong}
+$U\subset\C^m$を開集合, $S\subset U$を$k$次元の
+closed complex submanifoldとする.
+$z\in S$, $r>0$, $\overline{B(z;r)}\subset U$とする.
+$I_S$の$z$におけるLelong numberを
+\begin{equation*}
+\mathcal{L}(z;I_S):=\lim_{t\to0+}n(z;t,I_S)
+\end{equation*}
+とおく（前回のDef 19）. このとき
+\begin{equation*}
+n(z;r,I_S)
+=\frac{1}{r^{2k}}\int_{B(z;r)\cap S}\alpha^k
+\geq\mathcal{L}(z;I_S)=1.
+\end{equation*}
+\end{prop}
+\end{tcolorbox}
+% 原稿で省略されている z\in S と球の条件を明記した．
+
+\begin{proof}
+平行移動によって$z=0$としてよい.
+補題\ref{lem-H-0925-measure}と前回のThm 10
+（closed positive currentの$n(z;r,T)$は$r$について非減少）から,
+$\mathcal{L}(0;I_S)=1$を示せば十分である.
+以下$1\leq k<m$の場合を示す.
+$k=m$の場合は$S$が$0$の近傍で開集合となることから,
+$k=0$の場合は十分小さい球内の$S$が$\{0\}$となることから従う.
+
+[Step 1.] $S$を接空間上の正則グラフとして表示する.
+
+$S$は$0$の近傍で$k$次元複素部分多様体なので,
+$0$のある近傍$W\subset U$上の正則関数
+$f_1,\ldots,f_{m-k}$があって,
+\begin{equation*}
+S\cap W=\{z\in W\mid f_1(z)=\cdots=f_{m-k}(z)=0\},
+\qquad
+\rank\left(\frac{\partial f_i}{\partial z^j}(0)\right)
+_{\substack{1\leq i\leq m-k\\1\leq j\leq m}}=m-k.
+\end{equation*}
+ユニタリ座標変換を施すことにより,
+標準Euclid計量と$\alpha$を保ったまま
+\begin{equation*}
+T_0S
+=\left\langle\frac{\partial}{\partial z^1},\ldots,
+\frac{\partial}{\partial z^k}\right\rangle
+\subset T_0\C^m
+\end{equation*}
+としてよい. このとき
+\begin{equation*}
+\left(\frac{\partial f_i}{\partial z^j}(0)\right)
+_{\substack{1\leq i\leq m-k\\1\leq j\leq k}}=0.
+\end{equation*}
+
+% [PDF page 5]
+したがって
+\begin{equation*}
+\det\left(\frac{\partial f_i}{\partial z^{k+j}}(0)\right)
+_{1\leq i,j\leq m-k}\neq0.
+\end{equation*}
+$f_1,\ldots,f_{m-k}$を可逆な定数行列による線形結合で取り替えれば,
+\begin{equation*}
+\left(\frac{\partial f_i}{\partial z^{k+j}}(0)\right)
+_{1\leq i,j\leq m-k}=E_{m-k}
+\end{equation*}
+としてよい. ここで$E_{m-k}$は単位行列である.
+% 原稿の「det(行列)=E_{m-k}」は「行列=E_{m-k}」に修正．
+
+正則陰関数定理から, $0\in\C^k$の近傍で定義された正則関数
+$F^{k+1},\ldots,F^m$が存在し, $W$を縮めれば
+\begin{gather*}
+F^{k+j}(0)=0\qquad(1\leq j\leq m-k),\\
+S\cap W
+=\left\{(z^1,\ldots,z^m)\in W\ \middle|\
+z^{k+j}=F^{k+j}(z^1,\ldots,z^k),\ 1\leq j\leq m-k\right\}.
+\end{gather*}
+$w=(z^1,\ldots,z^k)$, $F=(F^{k+1},\ldots,F^m)$とおく.
+$f_i(w,F(w))=0$を$w^j$で微分し, $w=0$で評価すると
+\begin{align*}
+0
+&=\frac{\partial f_i}{\partial z^j}(0)
++\sum_{\ell=1}^{m-k}
+\frac{\partial f_i}{\partial z^{k+\ell}}(0)
+\frac{\partial F^{k+\ell}}{\partial w^j}(0)\\
+&=0+\frac{\partial F^{k+i}}{\partial w^j}(0)
+\qquad(1\leq i\leq m-k,\ 1\leq j\leq k).
+\end{align*}
+つまり$F(0)=0$, $dF(0)=0$である.
+したがって, 各$F^{k+i}$の$0$の近傍でのべき級数展開には
+$2$次以上の項しか現れない. 特に
+\begin{equation*}
+F(w)=O(|w|^2),\qquad dF(w)=O(|w|).
+\end{equation*}
+
+[Step 2.] 体積の主要項を計算する.
+
+\xb{以下では, 原稿の積分領域の同一視を補足して記述する.}
+\begin{equation*}
+V:=\{(z^1,\ldots,z^k,0,\ldots,0)\in\C^m\}\simeq\C^k,
+\qquad
+\Phi(w):=(w,F(w))
+\end{equation*}
+とおき, $S$の$0$の近傍を$V$上のグラフで表示する.
+$B(r)\cap S$に対応する$V$上の領域は, 厳密には$B(r)\cap V$ではなく
+\begin{equation*}
+D_r:=\{w\in\C^k\mid |w|^2+|F(w)|^2<r^2\}
+\end{equation*}
+である（$r>0$は十分小さくとる）.
+$V$上の標準形式を
+\begin{equation*}
+\alpha_V:=\frac{i}{2\pi}\sum_{j=1}^k dw^j\wedge d\bar w^j
+\end{equation*}
+と書けば,
+\begin{align*}
+\Phi^*\alpha
+&=\frac{i}{2\pi}\left(
+\sum_{j=1}^k dw^j\wedge d\bar w^j
++\sum_{\ell=1}^{m-k}dF^{k+\ell}\wedge d\overline{F^{k+\ell}}
+\right),\\
+n(r;I_S)
+&=\frac{1}{r^{2k}}\int_{D_r}(\Phi^*\alpha)^k.
+\end{align*}
+$dF(w)=O(|w|)$より, 体積形式の比として
+\begin{equation*}
+(\Phi^*\alpha)^k
+=\left(1+O(|w|^2)\right)\alpha_V^k.
+\end{equation*}
+また$|F(w)|\leq C|w|^2$となる定数$C>0$をとれば,
+十分小さい$r$について
+\begin{equation*}
+B_V\left(\frac{r}{\sqrt{1+C^2r^2}}\right)
+\subset D_r\subset B_V(r),
+\qquad B_V(t):=B(t)\cap V.
+\end{equation*}
+補足\ref{rem-H-0925-volume}より
+$\displaystyle\int_{B_V(t)}\alpha_V^k=t^{2k}$なので,
+\begin{equation*}
+(1+C^2r^2)^{-k}
+\leq\frac{1}{r^{2k}}\int_{D_r}\alpha_V^k\leq1.
+\end{equation*}
+以上から
+\begin{equation*}
+n(r;I_S)
+=\frac{1}{r^{2k}}\int_{D_r}
+\left(1+O(|w|^2)\right)\alpha_V^k
+=1+O(r^2).
+\end{equation*}
+
+% [PDF page 6]
+特に原稿にある評価$n(r;I_S)=1+O(r)$も従い,
+\begin{equation*}
+\mathcal{L}(0;I_S)=\lim_{r\to0+}n(r;I_S)=1.
+\end{equation*}
+これで命題が示された.
+\end{proof}
+
+% [PDF page 6; Cor 3]
+\begin{tcolorbox}[mybox,breakable=false]
+\begin{cor}[{野口--落合, (3.2.40)}]
+\label{cor-H-0925-volume-lower}
+命題\ref{prop-H-0925-lelong}と同じ仮定のもとで,
+\begin{equation*}
+\Vol(B(z;r)\cap S)\geq\frac{\pi^k}{k!}r^{2k}.
+\end{equation*}
+特に$0\in S$の場合,
+$\Vol(B(r)\cap S)\geq\dfrac{\pi^k}{k!}r^{2k}$である.
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+命題\ref{prop-H-0925-lelong}から
+\begin{equation*}
+\frac{1}{r^{2k}}\int_{B(z;r)\cap S}\alpha^k\geq1,
+\qquad\text{すなわち}\qquad
+\int_{B(z;r)\cap S}\alpha^k\geq r^{2k}.
+\end{equation*}
+補足\ref{rem-H-0925-volume}の体積形式の等式を用いて,
+\begin{equation*}
+\Vol(B(z;r)\cap S)
+=\frac{\pi^k}{k!}\int_{B(z;r)\cap S}\alpha^k
+\geq\frac{\pi^k}{k!}r^{2k}.
+\end{equation*}
+\end{proof}
+
+\begin{rem}[原稿の表記と補足について]
+\label{rem-H-0925-editorial}
+\leavevmode\par
+\begin{itemize}
+\item $\beta=dd^c\log|z|^2$は今回のPDFの表記に合わせた.
+\item 命題・系には$z\in S$と$\overline{B(z;r)}\subset U$を明記した.
+\item 原稿の$S$上の測度は, 包含写像によって$U$上に押し出して扱った.
+\item 座標変換はEuclid計量を保つユニタリ変換とし,
+原稿の「$\det(\text{行列})=E_{m-k}$」は「行列$=E_{m-k}$」に整えた.
+\item グラフ表示による積分領域を$D_r$として明記し,
+原稿の$1+O(r)$に至る議論を補った.
+\end{itemize}
+\end{rem}
+
 
 
 
