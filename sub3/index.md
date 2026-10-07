@@ -1,13 +1,12 @@
 # **出張予定**
+- 2026年11月5日に名古屋大学幾何学セミナーで講演します. 
+- 2026年11月25日から27日に[第３２回複素幾何シンポジウム(金沢) 2026](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa32.html)に参加するかもしれません. 
+- 2026年12月11日から13日に静岡で開かれる[多変数関数論冬セミナー](https://takahiro-ina.github.io/2026scvwinter/)に参加します. 
+- 2027年2月6日から10日に阪大で集会を開きます. (後日詳細をお知らせします. )
+- 2027年2月11日から13日に阪大で集会を開きます. (後日詳細をお知らせします. )
+- 2027年3月22日から26日にUCLAで開かれる [Japan–California Algebraic Geometry Meeting](https://www.math.ucla.edu/~jmoraga/Japan-California-AG-Meeting)で講演します. 
 
-- 2026年9月12--13日に大阪公立大学で[CR多様体の勉強会](https://masataka123.github.io/CR_manifold_2026/)を開催いたします.
-- 2026年9月14--17日に大阪公立大学で開催される[複素幾何学への多角的アプローチ](https://tkoike.com/multi_appr_cpx_geom/)に参加いたします. 
 
-<!--
-- 2026年9月14--18日に名古屋大学で開催される[Fano varieties and Related topics](https://shotanimoto.wordpress.com/fano-varieties-and-related-topics/)に参加するかもしれません(参加するなら上の集会をちょっと抜けて参加します.)
--->
-
-- 9月26日(日本時間)にBirational Geometry Seminar [2026](https://www.math.ucla.edu/~jmoraga/BGS2026)で講演します. 
 
 # **講演履歴**
 
@@ -71,6 +70,7 @@
 14. '数学の勉強法・研究の進め方・専門の決め方について' [What is セミナー](https://sites.google.com/view/handai-what-is-seminar/), 大阪大学, 2025年1月16日. [PDF](https://masataka123.github.io/blog3/pdf/2025_0116_What_is_seminar.pdf)
 15. "Inequalities for the second Chern class -Miyaoka-Yau inequality and Miyaoka's inequality-" [代数幾何学セミナー](http://www4.math.sci.osaka-u.ac.jp/sembbs2/announce.cgi) 大阪大学, 2025年12月8日.
 16. "Chern類の不等式と構造定理 “宮岡-Yau不等式と宮岡の不等式” 東北大学談話会, 東北大学, 2026年5月25日
+17. "The Miyaoka-Yau inequality and the delta invariant for Fano varieties " [Birational Geometry Seminar 2026](https://www.math.ucla.edu/~jmoraga/BGS2026), online (UCLA), 2026年9月25日
 
 ### **2018年4月から2022年3月まで**
 1.  'Vanishing theorems of vector bundles with singular Hermitian metrics' 幾何学セミナー, 名古屋大学 大学院多元数理科学研究科,  2018年5月 [slide](https://masataka123.github.io/blog3/pdf/2018_05_29.pdf)

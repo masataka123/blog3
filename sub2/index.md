@@ -12,11 +12,10 @@
 9. Sho Ejiri, Osamu Fujino, Masataka Iwai 'Positivity of extensions of vector bundles.' Mathematische Zeitschrift. 306, 47 (2024). DOI: https://doi.org/10.1007/s00209-023-03428-x [arXiv](https://arxiv.org/abs/2307.05022) [Article Link](https://link.springer.com/article/10.1007/s00209-023-03428-x)
 10. Masataka Iwai, Shin-ichi Matsumura, Guolei Zhong 'Positivity of tangent sheaves of projective varieties -- the structure of MRC fibrations.'  [arXiv](https://arxiv.org/abs/2309.09489) to appear in Algebraic Geometry
 11. Masataka Iwai, Shin-ichi Matsumura, Niklas Müller 'Minimal projective varieties satisfying Miyaoka's equality.' Proceedings of the London Mathematical Society. [arXiv](https://arxiv.org/abs/2404.07568) [Article Link](https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/plms.70104)  DOI: https://doi.org/10.1112/plms.70104
-
+12. Masataka Iwai, Shin-ichi Matsumura. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' [arXiv](https://arxiv.org/abs/2205.10613) [Remark](https://masataka123.github.io/blog3/pdf/Torus_fibration_c2=0.pdf) to appear in Advances in Mathematics
 
 # **プレプリント**
 
-- Masataka Iwai, Shin-ichi Matsumura. 'Abundance theorem for minimal compact Kahler manifolds with vanishing second Chern class.' [arXiv](https://arxiv.org/abs/2205.10613) [Remark](https://masataka123.github.io/blog3/pdf/Torus_fibration_c2=0.pdf)
 
 - Masataka Iwai, Satoshi Jinnouchi, Shiyu Zhang 'The Miyaoka-Yau inequality for singular varieties with big canonical or anticanonical divisors' [arXiv](https://arxiv.org/abs/2507.08522)
 
