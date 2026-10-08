@@ -8,10 +8,16 @@ layout: default
 
 
 ## **ニュース**
+- 10月7日にOpen AIが発表したOpenAI Research Catalog の論文を概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. 
 - 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 
 - [chatGPTが書いたノート](https://masataka123.github.io/blog3/sub2/)を追加しました. 呑んだ勢いでchatGPTに修士論文を26本書いてもらいました. びっくりするのでご覧ください. 
 - [ノート](https://masataka123.github.io/blog3/sub2/)に[リーマン面・代数曲線論](https://masataka123.github.io/blog3/pdf/20261005_Riemann_surface/0_リーマン面_2026_1005.pdf) を追加しました. 
 - 2027年3月22日から26日にUCLAで開かれる [Japan–California Algebraic Geometry Meeting](https://www.math.ucla.edu/~jmoraga/Japan-California-AG-Meeting)で講演します. 
+
+## **OpenAI Math Digest**
+ 10月7日にOpen AIが発表したOpenAI Research Catalog の論文を概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. 
+ AIが書いた論文はAIに解説してもらった方が良いと思ったので, 解説は全てAIが書いています. 
+ 論文のつながりやどうやって証明したかの雰囲気を味わいたい人は参考にしてください. 
 
 ## **Geometry Paper Digest**
 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 代数幾何学・複素幾何学・多変数複素解析をカバーしてます. 大阪公立大学の松澤陽介さんに深く感謝いたします. 
