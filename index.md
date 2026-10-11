@@ -6,13 +6,16 @@ layout: default
 岩井雅崇のホームページです。
 英語版はこちら→[English Version](https://masataka123.github.io/blog3_e/)
 
+## **集会のニュース**
 
-## **ニュース**
+- 2027年2月11日から13日に大阪大学で京都大学の藤野修先生と[Workshop on Algebraic Geometry, Complex Geometry, and Several Complex Variables in Osaka 2027](https://masataka123.github.io/AGCGSCV_Osaka_2027/)を開催します. 皆様のご参加お待ちしております. 
+- 2027年3月22日から26日にUCLAで開かれる [Japan–California Algebraic Geometry Meeting](https://www.math.ucla.edu/~jmoraga/Japan-California-AG-Meeting)で講演します. 
+
+## **その他のニュース**
 - 10月7日にOpen AIが発表したOpenAI Research Catalog の論文を概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. 
 - 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 
 - [chatGPTが書いたノート](https://masataka123.github.io/blog3/sub2/)を追加しました. 呑んだ勢いでchatGPTに修士論文を26本書いてもらいました. びっくりするのでご覧ください. 
 - [ノート](https://masataka123.github.io/blog3/sub2/)に[リーマン面・代数曲線論](https://masataka123.github.io/blog3/pdf/20261005_Riemann_surface/0_リーマン面_2026_1005.pdf) を追加しました. 
-- 2027年3月22日から26日にUCLAで開かれる [Japan–California Algebraic Geometry Meeting](https://www.math.ucla.edu/~jmoraga/Japan-California-AG-Meeting)で講演します. 
 
 ## **OpenAI Math Digest**
  10月7日にOpen AIが発表したOpenAI Research Catalog の論文を概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. 

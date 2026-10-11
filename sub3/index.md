@@ -1,9 +1,9 @@
 # **出張予定**
 - 2026年11月5日に名古屋大学幾何学セミナーで講演します. 
-- 2026年11月25日から27日に[第３２回複素幾何シンポジウム(金沢) 2026](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa32.html)に参加するかもしれません. 
+- 2026年11月25日から27日に[第３２回複素幾何シンポジウム(金沢) 2026](https://u-lab.my-pharm.ac.jp/~noda/cnf/kanazawa32.html)に参加します. 
 - 2026年12月11日から13日に静岡で開かれる[多変数関数論冬セミナー](https://takahiro-ina.github.io/2026scvwinter/)に参加します. 
-- 2027年2月6日から10日に阪大で集会を開きます. (後日詳細をお知らせします. )
-- 2027年2月11日から13日に阪大で集会を開きます. (後日詳細をお知らせします. )
+- 2027年2月6日から10日に大阪大学で集会を開きます. (後日詳細をお知らせします. )
+- 2027年2月11日から13日に大阪大学で京都大学の藤野修先生と[Workshop on Algebraic Geometry, Complex Geometry, and Several Complex Variables in Osaka 2027](https://masataka123.github.io/AGCGSCV_Osaka_2027/)を開催します. 
 - 2027年3月22日から26日にUCLAで開かれる [Japan–California Algebraic Geometry Meeting](https://www.math.ucla.edu/~jmoraga/Japan-California-AG-Meeting)で講演します. 
 
 
@@ -99,6 +99,7 @@
 13. "岡多様体の勉強会" 九州大学. 2025年12月17--18日. (九州大学 日下部佑太氏, 中央大学 渡邊祐太氏との共同主催) [Link](https://masataka123.github.io/Oka_manifold_2025/) 
 14. "Workshop on Algebraic Geometry and Complex Geometry in Osaka" 大阪大学. 2026年1月26--30日. (新潟大学 橋詰健太氏, 大阪大学 藤田健人氏との共同主催) [Link](https://masataka123.github.io/AGCG_Osaka_2026/) 
 15. "CR多様体の勉強会" 大阪公立大学. 2026年9月12--13日. (九州大学 日下部佑太氏, 大阪大学 鈴木良明氏, 東京大学 松本周也氏, 大阪公立大学 村上 怜氏 との共同主催) [Link](https://masataka123.github.io/CR_manifold_2026/) 
+17. "Workshop on Algebraic Geometry, Complex Geometry, and Several Complex Variables in Osaka 2027" 大阪大学 2027年2月11--13日 (京都大学 藤野修氏との共同主催) [Link](https://masataka123.github.io/AGCGSCV_Osaka_2027/) 
 
 
 ## **学内・学外セミナー**
