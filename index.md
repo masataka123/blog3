@@ -17,7 +17,6 @@ layout: default
 - 10月7日にOpen AIが発表したOpenAI Research Catalog の論文を真面目に概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. なお適当に解説する[漫画版](https://masataka123.github.io/OpenAI-Math-Digest/comics/)も作りました. 
 - 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 
 - [chatGPTが書いたノート](https://masataka123.github.io/blog3/sub2/)を追加しました. 呑んだ勢いでchatGPTに修士論文を26本書いてもらいました. びっくりするのでご覧ください. 
-- [ノート](https://masataka123.github.io/blog3/sub2/)に[リーマン面・代数曲線論](https://masataka123.github.io/blog3/pdf/20261005_Riemann_surface/0_リーマン面_2026_1005.pdf) を追加しました. 
 - [数学パズル/その他](https://masataka123.github.io/blog3/sub6/)に学祭で用いた数学科の展示のポスター・マニュアルを追加しました. 
 
 ## **OpenAI Math Digest**
