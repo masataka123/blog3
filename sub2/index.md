@@ -21,7 +21,9 @@
 
 - Masataka Iwai, Satoshi Jinnouchi, Shiyu Zhang 'Semipositivity of the orbifold second Chern class in Fujiki's class' [arXiv](https://arxiv.org/abs/2607.18699)
 
-- Tomoyuki Hisamoto, Masataka Iwai 'The Miyaoka-Yau inequality and the delta invariant for Fano varieties' [arXiv](https://arxiv.org/abs/2607.25181)
+- Tomoyuki Hisamoto, Masataka Iwai 'The Miyaoka-Yau inequality and the delta invariant for Fano varieties I -klt Fano case-' [arXiv](https://arxiv.org/abs/2607.25181)
+
+- Tomoyuki Hisamoto, Masataka Iwai 'The Miyaoka-Yau inequality and the delta invariant for Fano varieties II -soliton case-' [arXiv](https://arxiv.org/abs/2610.38137)
 
 
 # **報告集**

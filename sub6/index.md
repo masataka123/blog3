@@ -27,22 +27,35 @@
 いちょう祭まちかね祭での数学科の展示, [まちかね山の数学教室](http://www.math.sci.osaka-u.ac.jp/event/machikaneyama/)
 で用いたもの. 上のパズルをもう少し簡単にした.
 
-- [2026年のポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E3%81%AE%E5%B1%95%E7%A4%BA_20260426.pdf)
+### 2026年11月のもの
+
+- [正多面体のマニュアル](https://masataka123.github.io/blog3/pdf/20261103_gakusai/regular_polyhedron_explanation.pdf) 
+- [数学パズルのポスター](https://masataka123.github.io/blog3/pdf/20261103_gakusai/math_puzzles_poster.pdf) 
+- [数学パズルのマニュアル](https://masataka123.github.io/blog3/pdf/20261103_gakusai/math_puzzles_explanation.pdf) 
+- [未解決問題特集のポスター](https://masataka123.github.io/blog3/pdf/20261103_gakusai/unsolved_poster.pdf) 
+- [未解決問題特集のマニュアル](https://masataka123.github.io/blog3/pdf/20261103_gakusai/unsolved_explanation.pdf) 
+- [未解決問題特集2のマニュアル](https://masataka123.github.io/blog3/pdf/20261103_gakusai/unsolved2_explanation.pdf) 
+- [ピザ定理とランベルトの方法のポスター](https://masataka123.github.io/blog3/pdf/20261103_gakusai/Pizza_poster.pdf) 
+- [ピザ定理とランベルトの方法のマニュアル](https://masataka123.github.io/blog3/pdf/20261103_gakusai/Pizza_explanation.pdf) 
+- [オイラーゲッターのポスター](https://masataka123.github.io/blog3/pdf/20261103_gakusai/Euler_getter_poster.pdf) 
+- [曲がりから、空間の正体へ (Chern数)のポスター](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20260807.pdf)
+
+<!--
+### その前のもの
+- [2026年ポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E3%81%AE%E5%B1%95%E7%A4%BA_20260426.pdf)
 - [2026年の配布資料](https://masataka123.github.io/blog3/pdf/20251103_gakusai/%E5%AD%A6%E7%A5%AD%E3%81%AE%E3%83%91%E3%82%BA%E3%83%AB%E8%A7%A3%E8%AA%AC%E6%9B%B8_20260426.pdf)
 - [2025年のポスター](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_20251029.pdf)
 - [2025年の配布資料](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4.pdf)
 - [2025年の問題の解説](https://masataka123.github.io/blog3/pdf/20251103_gakusai/gakusai_A4_解説書_ホームページ用.pdf)
+-->
 
-展示の解説もよく使うのであげておいた．
+### 手書きのノート・以前のポスター
 
-- [正多面体 (tex)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体展示マニュアル_2026_0428.pdf) [正多面体(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
+- [正多面体(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/正多面体.pdf)
 - [シャボン膜(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/syabon.pdf)
 - [カルキンウィルフツリー(手書き)](https://masataka123.github.io/blog3/pdf/20251103_gakusai/カルキンウィルフツリー.pdf)
-
-研究の展示のポスター(学祭以外も含む)
-
 - [複素射影多様体の構造定理 (接束)のポスター](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20241102.pdf)
-- [曲がりから、空間の正体へ (Chern数)のポスター](https://masataka123.github.io/blog3/pdf/20260807_poster_kagakukan/poster_20260807.pdf)
+
 
 ## 数学パズルの引用文献
 せっかくなのでパズルの引用文献も上げておく. (もちろん全てではない.)
