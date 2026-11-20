@@ -117,6 +117,7 @@ Takayama 60で初めて全員集合するので何年後かに期待である.
 - [Henri Guenancia](https://hguenancia.perso.math.cnrs.fr/index.html)
 - [Andreas Höring](https://math.univ-cotedazur.fr/~hoering/)
 - [Stefan Kebekus](https://cplx.vm.uni-freiburg.de/research/)  どうもValue Distribution Theory をleanで確立しているらしい. [Project VD](https://github.com/kebekus/ProjectVD?tab=readme-ov-file)
+- [Jihao Liu](https://jihaoliu.org/index.html)
 - [Jie Liu](http://www.jliumath.com/miscellaneou_en.html)
 - [Wenhao Ou](https://sites.google.com/site/wenhaooumath/home)
 - [Jorge Vitório Pereira](https://w3.impa.br/~jvp/)
@@ -237,6 +238,7 @@ Terence Tao先生のホームページ. Career advice, On writingとか結構い
 東京大学の河東先生のホームページ. [セミナーの準備のしかたについて](https://www.ms.u-tokyo.ac.jp/~yasuyuki/sem.htm)はあまりにも有名である. (私には真似できないが...) また[どうでもよい記事](https://www.ms.u-tokyo.ac.jp/~yasuyuki/misc.htm)というページが面白くとても参考になる.
 2024年に河東先生の本[数学者の思案](https://www.iwanami.co.jp/book/b646698.html)が出版された. 
 - [松尾先生のホームページ](https://www.math.nagoya-u.ac.jp/~shinichiroh/) 名古屋大学 松尾先生のホームページ. 私と松尾先生は(多分)面識はない. ただ[雑記帳](https://www.math.nagoya-u.ac.jp/~shinichiroh/notebook.html)の内容がかなり面白くためになるものが多いのでここに書いた. 
+- [liuxiv](https://jihaoliu.org/liuxiv.html) 2026年現在, arXivは一人１ヶ月2本しか出せない. では人間が検証していない大量のAIが書いた論文をどう出すのか？Jihao Liuさんは自分用のarXiv, liuXivを作りそれを可能にした. 良いか悪いは別として(まあ多分ほとんどの人は悪いと思うけど), この発想は驚くべき発想だと思う.  個人的には電流が走る痺れた発想で思いもつかなかった. ちなみにliuXivのpdfを読んだ際にIPアドレスを書かれるので, 注意してほしい. 多分無断転載されるのを防ぐ抑止力だと思う. ちなみにIwaXivも作った. これは現時点でテスト段階で非公開だが, AI論文やノート, アプリや漫画など岩井が作ったものをまとめるサイトにしたいと思う. 
 
 ## その他の役に立つ情報
 - [志学数学 -研究の諸段階 発表の工夫-](https://www.amazon.co.jp/志学数学-研究の諸段階-発表の工夫-シュプリンガー数学クラブ-伊原/dp/4621061593) 伊原康隆先生の本. 数学を志すならば読んでほしい. 良い本なのでここでも勧めることにした. 東大の河東先生の[書評](https://mathsoc.jp/publication/tushin/1004/kawahigashi.pdf)も面白い. 
