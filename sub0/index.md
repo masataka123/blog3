@@ -37,3 +37,4 @@
 また岩井含め高山研出身の人は[Mathematics Genealogy Project](https://www.mathgenealogy.org)に載っていない研究者になります. 
 
 3は説教くさいの読んでも読まなくてもいいです. 不要な部分は無視して必要な部分だけ取り入れてください. 
+

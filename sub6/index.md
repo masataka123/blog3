@@ -85,6 +85,9 @@
 
 # **その他**
 
+##  AIまとめ
+-[数学とAIまとめと岩井の意見(2026年11月時点)](https://masataka123.github.io/blog3/sub6/AI_stand/)
+
 ## 写真
 - [研究室の写真 (since 2026/03)](https://masataka123.github.io/blog3/sub6/picture_room_3/)
 - [研究室の写真 (before 2025/08)](https://masataka123.github.io/blog3/sub6/picture_room_2/)
