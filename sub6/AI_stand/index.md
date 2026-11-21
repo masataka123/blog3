@@ -127,7 +127,7 @@ AIの使い方をめぐる声明. AIの利用を開示して, 内容の正しさ
 
 ### Jihao Liu
 
-Rethlas, Danus, Pharosなどの北京大学のチーム[FrenzyMathによるシステム](https://frenzymath.com/news/pharos-preview/) がある. Jihao LiuはこうしたAIを使って未解決問題に取り組み, AIに論文を書かせて出しまくってる. 自分用のarXivみたいなサイト, [JLiuXiv](https://jihaoliu.org/liuxiv.html)を作って公開している. 
+Rethlas, Danus, Pharosなどの北京大学のチーム[FrenzyMathによるシステム](https://frenzymath.com/news/pharos-preview/) がある. Jihao LiuはこうしたAIを使って未解決問題に取り組み, AIに論文を書かせて出しまくってる. 自分用のarXivみたいなサイト, [LiuXiv](https://jihaoliu.org/liuxiv.html)を作って公開している. 
 LiuXivでは人間による検証の有無が表示されている. 人間がまだ検証していない原稿でもJihao Liuの名前で出ているものがある. 
 なお著者名に付いているアスタリスクは, 最終版が出るまで引用する際の暫定的な著者表示だそうだ. 
 
