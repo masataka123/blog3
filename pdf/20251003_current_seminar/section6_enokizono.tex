@@ -468,7 +468,47 @@ a_1u_1(z)+a_2u_2(z)<a
 となる.)
 よって, $V_a$は開集合である.
 
-\xr{(2)以降はノートをもらう. }
+(ii)
+各連結成分上で$u$が恒等的に$-\infty$ではないことと,
+$u$の上半連続性についてはよい.
+任意の$\varepsilon>0$と$z\in U_\varepsilon$に対して,
+\[
+\begin{aligned}
+u(z)
+&=\sup_{\lambda\in\Lambda}u_\lambda(z)
+\leq
+\sup_{\lambda\in\Lambda}
+\frac{1}{2\pi}
+\int_0^{2\pi}
+\underbrace{
+u_\lambda\bigl(z+\varepsilon e^{i\theta}\bigr)
+}_{
+\leq u(z+\varepsilon e^{i\theta})
+}
+\,d\theta
+\leq
+\frac{1}{2\pi}
+\int_0^{2\pi}
+u\bigl(z+\varepsilon e^{i\theta}\bigr)\,d\theta.
+\end{aligned}
+\]
+となるので示せた.
+
+また$\Lambda$が有限の場合に仮定が満たされることについては,
+任意の$a\in\R$に対して,
+\[
+\begin{aligned}
+&\left\{
+z\in U
+\,\middle|\,
+\sup_{\lambda\in\Lambda}u_\lambda(z)<a
+\right\}
+=
+\bigcap_{\lambda\in\Lambda}
+\{z\in U\mid u_\lambda(z)<a\}
+\end{aligned}
+\]
+であり, $\Lambda$が有限の場合には有限個の開集合の共通部分であるから開集合である.
 
 
 (iii) 一般性を失わずに, $U$は連結であり,
@@ -856,8 +896,609 @@ f(m)+a\bigl(g(x)-m\bigr)
 \geq
 \int_X \bigl(f(m)+a(g-m)\bigr)\,d\mu.
 \]
-
 \end{proof}
 
+\subsection{Subharmonic function 続き}
+\begin{tcolorbox}[mybox]
+\begin{thm}
+$U \subset \C$ open, $u : U \to [-\infty, \infty)$ subharmonic function.
+この時$u \in L_{\mathrm{loc}}(U)$である. 
+つまり任意の$z \in U$について, ある開近傍$z \in W \subset U$があって, 
+$$
+\int_{W} |u| d \mu < +\infty
+$$
+ただしここで$d\mu=\frac{i}{2}dz \wedge d \bar{z}$とする. 
+特に$dd^c[u]$はpositive currentである. 
+\end{thm}
+\end{tcolorbox}
+$d^c=\frac{1}{2 \pi} \frac{i}{2}(\bar{\partial} - \partial)$とする. 
+$dd^c = \frac{i}{2 \pi} \partial \bar{\partial}$であることに注意する. 
+\begin{proof}
+$u=u^{+} - u^{-}$とする. 
+($u^{\pm}(z):= \max\{ \pm u(z), 0\}$とする)
+$u$は上半連続なので, コンパクト集合上で最大値を取る. よって$u^{+}$は局所可積分である.
+$u^{-}$については, 
+$$
+V:= \{ z \in U \mid \text{ある開近傍$z \in W \subset U$があって, 
+$\int_{W} u^{-} d \mu < +\infty$} \}
+$$
+とする. $V=U$を示す. $U$を連結と仮定して良い. 
+
+$u \not \equiv - \infty$なので, ある$z \in U$があって
+$u(z) \in \R$である. 
+$\varepsilon >0$を
+$$
+U_\varepsilon := \{ z \in U \mid\inf_{w \in \C \setminus U}|w - z|>\varepsilon \}
+$$
+をとる. 平均値不等式から$0 < t < \varepsilon$から
+\begin{align*}
+&u(z) \le \frac{1}{2 \pi}\int_{0}^{2\pi}u(z + t e^{i \theta}) d \theta
+\\
+&\underalign{\text{}}{\Rightarrow}
+\frac{\varepsilon^2}{2}u(z) \le 
+\frac{1}{2 \pi}\int_{0}^{\varepsilon } dt\int_{0}^{2\pi}u(z + t e^{i \theta}) d \theta
+\underalign{\text{Fubini}}{=}
+\frac{1}{2 \pi}\int_{\Delta(z, \varepsilon)} u d \mu
+\\
+&\underalign{\text{}}{\Rightarrow}
+- \infty < u(z) \le 
+\frac{1}{\pi \varepsilon^2 }\int_{\Delta(z, \varepsilon)} u d \mu
+\underalign{\text{}}{=}
+\underbrace{\frac{1}{\pi \varepsilon^2 }\int_{\Delta(z, \varepsilon)} u^{+} d \mu}_{<+\infty}
+-
+\frac{1}{\pi \varepsilon^2 }\int_{\Delta(z, \varepsilon)} u^{-} d \mu
+\end{align*}
+以上から, $z \in U_\varepsilon := \{ z \in U \mid\inf_{w \in \C \setminus U}|w - z|>\varepsilon \}$かつ$u(z) \neq - \infty$ならば, $\int_{\Delta(z, \varepsilon)} u^{-} d \mu< \infty$である. 
+特に
+$$
+\{ z \in U \mid u(z) \neq - \infty\}
+\subset 
+V
+$$
+であり$V \neq \varnothing$である. 
+$V$がopenは定義より明らかなので, $U =V$を示すには, $U \setminus V$がopenを示せば良い. 
+ 
+ 
+ $z \in U \setminus V$とする. $z \in U_{4 \varepsilon}$ととる.
+ $u(z)=-\infty$である. 
+ 任意の$w \in \Delta(z,\varepsilon)$に対して,
+\(
+u(w)=-\infty
+\)
+となることを示す.
+ある$w \in \Delta(z,\varepsilon)$に対して,
+$u(w) \neq -\infty$であると仮定する.
+$w \in U_{2\varepsilon}$であるから, 先の議論より,
+\[
+\int_{\Delta(w,2\varepsilon)} u^-\,d\mu < \infty
+\]
+となる.
+特に, $\Delta(w,2\varepsilon) \subset V$である.
+一方, $w \in \Delta(z,\varepsilon)$より,
+\(
+z \in \Delta(w,2\varepsilon) \subset V
+\)
+となる.
+これは$z \notin V$に矛盾する.
+
+以上より 
+$W \subset \Delta(z,\varepsilon)$に対して,
+\[
+\int_W u\,d\mu=-\infty
+\]
+となる.
+よって, $\Delta(z,\varepsilon) \subset U \setminus V$であり,
+$U \setminus V$は開集合である.
+
+$dd^c[u] \ge 0$について. 
+$\phi \in \mathcal{D}(U)$を$U$上のコンパクトサポートを持つ$C^\infty$級関数でとする. 
+示すべきことは
+$$
+\phi \in \mathcal{D}(U)
+\& 
+\phi\ge 0
+\Rightarrow 
+(dd^c[u])(\phi) \ge 0
+$$
+である. 左辺を展開すると
+\begin{align*}
+(dd^c[u])(\phi) 
+&\underalign{\text{(定義)}}{=}
+\frac{i}{2 \pi} (\partial \bar{\partial}[u])(\phi) 
+\underalign{\text{(外微分の定義)}}{=}
+- \frac{i}{2 \pi} (\bar{\partial}[u])(\partial \phi) 
+\underalign{\text{(外微分の定義)}}{=}
+- \frac{i}{2 \pi} ([u])(\bar{\partial}\partial \phi) 
+\\
+&\underalign{\text{}}{=}
+\frac{i}{2 \pi} ([u])(\partial \bar{\partial}\phi) 
+\underalign{\text{}}{=}
+\int_{\C}
+ \frac{i}{2 \pi} (u \cdot \bar{\partial}\partial \phi) 
+ \underalign{\text{}}{=}
+ \frac{1}{ \pi}  \int_{\C}
+u \cdot \frac{\partial ^2 \phi}{\partial z \bar{\partial} z}
+\underbrace{\frac{i}{2}dz \wedge d \bar{z}}_{d \mu}
+\\
+\end{align*}
+よって右辺が0以上を示せば良い. 
+今平均値不等式から, $z \in U_{\varepsilon}$について
+\begin{align*}
+&u(z) \le \frac{1}{2 \pi}\int_{0}^{2\pi}u(z + t e^{i \theta}) d \theta
+\\
+&
+\underalign{}{\Rightarrow}
+2 \pi \int_{\C}u(z) \phi(z)d \mu
+\le \int_{0}^{2 \pi} d \theta \int_{\C}u(z + \varepsilon e^{i \theta}) \phi(z) d \mu
+=
+\int_{0}^{2 \pi} d \theta \int_{\C}u(z) \phi(z - \varepsilon e^{i \theta}) d \mu
+\\
+&
+\underalign{}{\Rightarrow}
+\int_{0}^{2 \pi} d \theta \int_{\C}u(z) 
+\left\{\phi(z - \varepsilon e^{i \theta}) - \phi(z) \right\} d \mu
+\ge 0
+\end{align*}
+あとは$\phi(z - \varepsilon e^{i \theta}) - \phi(z) $を$w=- \varepsilon e^{i \theta}$としてテイラー展開すると
+$w:=-\varepsilon e^{i\theta}$とおく.
+Taylor展開より,
+\[
+\begin{aligned}
+\phi(z+w)
+&=
+\phi(z)
++
+\pdrv{\phi}{z}(z)w
++
+\pdrv{\phi}{\bar z}(z)\bar w
+\\
+&\quad+
+\frac{1}{2}
+\left(
+\frac{\partial^2\phi}{\partial z^2}(z)w^2
++
+2\frac{\partial^2\phi}{\partial z\partial\bar z}(z)w\bar w
++
+\frac{\partial^2\phi}{\partial\bar z^2}(z)\bar w^2
+\right)
++
+o(|w|^2)
+\end{aligned}
+\]
+となる.
+ここで,
+\[
+\int_0^{2\pi}w\,d\theta
+=
+\int_0^{2\pi}\bar w\,d\theta
+=
+\int_0^{2\pi}w^2\,d\theta
+=
+\int_0^{2\pi}\bar w^2\,d\theta
+=0
+\]
+であり, $w\bar w=\varepsilon^2$である.
+以上より
+$$
+0 \le 
+\frac{1}{\varepsilon ^2}
+\int_{0}^{2 \pi} d \theta \int_{\C}u(z) 
+\left\{\phi(z - \varepsilon e^{i \theta}) - \phi(z) \right\} 
+d \theta
+=
+\int_{\C}u(z) 
+\frac{\partial^2\phi}{\partial z\partial\bar z}
++o(\varepsilon)
+\to 
+\int_{\C}u(z) 
+\frac{\partial^2\phi}{\partial z\partial\bar z}
+$$
+となり欲しい式が得られた. 
+\end{proof}
+
+% 手書きノートの定理番号は 3.2.9
+\begin{tcolorbox}[mybox]
+\begin{thm}
+$U \subset \C$を開集合とし,
+$u \colon U \to [-\infty,\infty)$を上半連続関数とする.
+$U$の任意の連結成分上で$u \not\equiv -\infty$と仮定する.
+このとき, 次の三条件は同値である.
+
+\begin{enumerate}[label=(\roman*)]
+\item
+$u$は$U$上の劣調和関数である.
+
+\item
+任意の$\varepsilon > 0$と任意の$z \in U_\varepsilon$に対して,
+\[
+u(z)
+\leq
+\frac{1}{\pi\varepsilon^2}
+\int_{\Delta(z,\varepsilon)} u\,d\mu
+\]
+が成り立つ.
+
+\item
+$K \subset U$を任意のコンパクト集合とし,
+$h \colon K \to \R$を連続関数とする.
+$h|_{K^\circ}$が調和関数であるとき,
+$\partial K=K\setminus K^\circ$上で$u \leq h$ならば,
+$K$上で$u \leq h$である.
+\end{enumerate}
+\end{thm}
+\end{tcolorbox}
+
+\begin{proof}
+$(i) \Rightarrow (ii)$は前に同じ.
+
+$\mathrm{(ii)} \Rightarrow \mathrm{(iii)}$.
+$K,h$を$\mathrm{(iii)}$の通りとし,
+$\partial K$上で$u \leq h$と仮定する.
+
+$K^\circ$上の$h$と$-h$に
+$\mathrm{(i)} \Rightarrow \mathrm{(ii)}$を適用すると,
+任意の$\varepsilon > 0$と
+任意の$z \in (K^\circ)_\varepsilon$に対して,
+\[
+h(z)
+=
+\frac{1}{\pi\varepsilon^2}
+\int_{\Delta(z,\varepsilon)} h\,d\mu
+\]
+が成り立つ.
+
+$K$の連結成分ごとに考えればよいので,
+一般性を失わずに, $K$は連結であるとしてよい.
+$u-h$は上半連続であるから,
+$K$上で最大値をとる.
+その最大値を$M$とおき, $M>0$と仮定する.
+このとき,
+\[
+V:=\{z \in K \mid u(z)-h(z)=M\}
+\]
+とおくと, $\partial K$上で$u \leq h$であるから,
+$V \subset K^\circ$である.
+
+任意の$z \in V$に対して,
+$z \in (K^\circ)_\varepsilon$となる$\varepsilon>0$をとる.
+$\mathrm{(ii)}$と$h$の平均値の等式より,
+\[
+\underbrace{u(z)-h(z)}_{=M}
+\leq
+\frac{1}{\pi\varepsilon^2}
+\int_{\Delta(z,\varepsilon)} (u-h)\,d\mu
+\leq M
+\]
+が成り立つ.
+よって, 上の不等式はすべて等号であり,
+\[
+u(w)-h(w)=M
+\quad
+\text{for almost all $w \in \Delta(z,\varepsilon)$}
+\]
+が成り立つ.
+一方, $u-h$の上半連続性より,
+\[
+\{w \in \Delta(z,\varepsilon) \mid u(w)-h(w)<M\}
+\]
+は開集合である.
+この集合は測度零なので空集合であり,
+任意の$w \in \Delta(z,\varepsilon)$に対して
+$u(w)-h(w)=M$となる.
+したがって, $\Delta(z,\varepsilon) \subset V$である.
+$z \in V$は任意であったから, $V$は$K$の開集合である.
+
+また, $u-h$は$K$上で上半連続であり,
+\[
+V=\{z \in K \mid u(z)-h(z)\geq M\}
+\]
+であるから, $V$は$K$の閉集合でもある.
+$K$は連結であり, $V$は空でないので, $V=K$となる.
+これは, $V \subset K^\circ$かつ$\partial K \neq \varnothing$
+であることに矛盾する.
+よって, $M \leq 0$であり, $K$上で$u \leq h$である.
+
+$\mathrm{(iii)} \Rightarrow \mathrm{(i)}$.
+任意の$\varepsilon > 0$と$w \in U_\varepsilon$をとる.
+このとき,
+\[
+u(w)
+\leq
+\frac{1}{2\pi}
+\int_0^{2\pi}
+u\bigl(w+\varepsilon e^{i\theta}\bigr)\,d\theta
+\]
+が成り立つことを示す.
+
+\begin{tcolorbox}[mybox]
+\begin{claim}
+$(X,d)$をコンパクト距離空間とし,
+$u \colon X \to [-\infty,\infty)$を上半連続関数とする.
+このとき, 連続関数$a_j \colon X \to \R$からなる
+単調減少列$\{a_j\}_{j=1}^{\infty}$であって,
+任意の$z \in X$に対して
+\[
+a_j(z) \to u(z)
+\quad (j \to \infty)
+\]
+を満たすものが存在する.
+\end{claim}
+\end{tcolorbox}
+
+\begin{proof}[Proof of Claim]
+$j \in \N$に対して,
+\[
+u^{(j)}(\zeta):=\max\{u(\zeta),-j\},
+\qquad
+a_j(z):=\sup_{\zeta \in X}
+\bigl\{u^{(j)}(\zeta)-j\,d(\zeta,z)\bigr\}
+=
+\bigl\{\max\{u(\zeta),-j\}\,d(\zeta,z)\bigr\}
+\]
+とおく.
+$u$はコンパクト集合$X$上で上半連続なので上に有界であり,
+また, $\zeta=z$とすると$a_j(z)\geq u^{(j)}(z)\geq -j$となる.
+したがって, $a_j(z) \in \R$である.
+定義より,
+\[
+a_1 \geq a_2 \geq \cdots \geq u
+\]
+が成り立つ.
+
+任意の$z,z',\zeta \in X$に対して,
+三角不等式より,
+\[
+d(\zeta,z') \leq d(\zeta,z)+d(z,z')
+\]
+が成り立つ.
+したがって,
+\[
+u^{(j)}(\zeta)-j\,d(\zeta,z)
+\leq
+u^{(j)}(\zeta)-j\,d(\zeta,z')+j\,d(z,z')
+\]
+となる.
+両辺の$\zeta \in X$に関する上限をとると,
+\[
+a_j(z) \leq a_j(z')+j\,d(z,z')
+\]
+となる.
+$z$と$z'$を入れ替えると,
+\[
+|a_j(z)-a_j(z')| \leq j\,d(z,z')
+\]
+が成り立つ.
+よって, $a_j$は連続である.
+
+\(
+a(z):=\lim_{j \to \infty}a_j(z)
+\)
+とおく. $a=u$を示す.
+まず, $u(z) \neq -\infty$とする.
+任意の$\varepsilon > 0$に対して,
+$u$の上半連続性より,
+\[
+D_\varepsilon
+:=
+\{\zeta \in X \mid u(\zeta)<u(z)+\varepsilon\}
+\]
+は$z$を含む開集合である.
+したがって, ある$C_\varepsilon > 0$が存在して,
+任意の$\zeta \in X \setminus D_\varepsilon$に対して,
+\(
+d(\zeta,z) \geq C_\varepsilon
+\)
+が成り立つ.
+ここで,
+\(
+M:=\max_{\zeta \in X}u(\zeta)
+\)
+とおくと, 十分大きな$j$に対して, $-j<u(z)\leq M$である.
+このとき, 任意の$\zeta \in X \setminus D_\varepsilon$に対して,
+\[
+u^{(j)}(\zeta)-j\,d(\zeta,z)
+\leq
+M-jC_\varepsilon
+\xrightarrow[j \to \infty]{} -\infty
+\]
+となる.
+一方, 任意の$\zeta \in D_\varepsilon$に対して,
+\[
+\begin{aligned}
+u^{(j)}(\zeta)-j\,d(\zeta,z)
+&<
+u(z)+\varepsilon-j\,d(\zeta,z)
+\leq u(z)+\varepsilon
+\end{aligned}
+\]
+となる.
+よって, 任意の$\varepsilon > 0$に対して,
+十分大きな$j$について
+\[
+u(z) \leq a_j(z) < u(z)+\varepsilon
+\]
+が成り立つ.
+したがって,
+\(
+a(z)=\lim_{j \to \infty}a_j(z)=u(z)
+\)
+となる.
+
+次に, $u(z)=-\infty$とする.
+任意の$r \in \R$に対して,
+\[
+D_r:=\{\zeta \in X \mid u(\zeta)<r\}
+\]
+は$z$を含む開集合である.上と同様に, $X \setminus D_r$上では$d(\zeta,z)$に正の下界があり,
+$u^{(j)}$は$j$によらず上に有界である.
+一方, $\zeta \in D_r$に対しては,
+$-j<r$ならば$u^{(j)}(\zeta)<r$である.
+したがって, ある$J \in \N$が存在して,
+任意の$j \geq J$と任意の$\zeta \in X$に対して,
+\[
+u^{(j)}(\zeta)-j\,d(\zeta,z)<r
+\]
+となる.
+よって, $j \geq J$ならば$a_j(z)\leq r$である.
+$r$は任意であったから,
+\(
+a(z)=\lim_{j \to \infty}a_j(z)=-\infty=u(z)
+\)
+となる.
+\end{proof}
+
+上のClaimを$X=\partial\Delta(w,\varepsilon)$に適用すると,
+連続関数$a_j \colon \partial\Delta(w,\varepsilon) \to \R$からなる
+単調減少列$\{a_j\}_{j=1}^{\infty}$であって,
+\[
+a_j(z) \downarrow u(z)
+\quad
+(z \in \partial\Delta(w,\varepsilon))
+\]
+を満たすものが得られる.
+
+\begin{tcolorbox}[mybox]
+\begin{claim}
+$z \in \Delta(w,\varepsilon)$に対して,
+\[
+h_j(z)
+:=
+\frac{1}{2\pi}
+\int_0^{2\pi}
+a_j\bigl(w+\varepsilon e^{i\theta}\bigr)
+\underbrace{
+\frac{\varepsilon^2-|z-w|^2}
+{\bigl|\varepsilon e^{i\theta}-(z-w)\bigr|^2}
+}_{\text{Poisson核}}
+\,d\theta
+\]
+とおく.
+この時$h_j$は$\Delta(w,\varepsilon)$上で調和関数であり,
+$\overline{\Delta(w,\varepsilon)}$上の連続関数に拡張される.
+その拡張を同じ記号で表すと,
+\[
+h_j|_{\partial\Delta(w,\varepsilon)}=a_j
+\]
+が成り立つ.
+\end{claim}
+\end{tcolorbox}
+（証明は次回）.
+
+上のClaimを認めると,
+$\partial\Delta(w,\varepsilon)$上で
+\[
+u \leq a_j=h_j|_{\partial\Delta(w,\varepsilon)}
+\]
+であるから, $K=\overline{\Delta(w,\varepsilon)}$として
+$\mathrm{(iii)}$を適用すると,
+$K$上で$u \leq h_j$となる.
+特に, $z=w$ではPoisson核が$1$となるので,
+\[
+u(w)
+\leq h_j(w)
+=
+\frac{1}{2\pi}
+\int_0^{2\pi}
+a_j\bigl(w+\varepsilon e^{i\theta}\bigr)\,d\theta
+\]
+が成り立つ.
+円周上で$a_1-a_j$は$a_1-u$に単調増加する.
+したがって, $a_1-a_j$に単調収束定理を適用して,
+$j \to \infty$とすると,
+\[
+u(w)
+\leq
+\frac{1}{2\pi}
+\int_0^{2\pi}
+u\bigl(w+\varepsilon e^{i\theta}\bigr)\,d\theta
+\]
+を得る.
+\end{proof}
+
+% 手書きノートの番号は 3.3.11
+\begin{tcolorbox}[mybox]
+\begin{cor}
+$U \subset \C$を開集合とし,
+$u \colon U \to [-\infty,\infty)$を関数とする.
+このとき, 次の三条件は同値である.
+
+\begin{enumerate}[label=(\roman*)]
+\item
+$u$は$U$上の劣調和関数である.
+
+\item
+任意の開集合$U' \subset U$に対して,
+$u|_{U'}$は$U'$上の劣調和関数である.
+
+\item
+任意の$z \in U$に対して,
+$z$の開近傍$U' \subset U$が存在し,
+$u|_{U'}$は$U'$上の劣調和関数である.
+\end{enumerate}
+\end{cor}
+\end{tcolorbox}
+
+\begin{proof}
+上半連続性は局所的な条件である.
+また, $\mathrm{(i)}$--$\mathrm{(iii)}$のいずれを仮定しても,
+劣調和関数の局所可積分性より, $u$は$U$上で局所可積分である.
+したがって,
+\[
+\{z \in U \mid u(z)=-\infty\}
+\]
+は測度零であり,
+$U$に含まれる任意の空でない連結開集合上で
+$u \not\equiv -\infty$である.
+
+$\mathrm{(i)} \Rightarrow \mathrm{(ii)}$.
+任意の開集合$U' \subset U$に対して,
+$U'_\varepsilon \subset U_\varepsilon$であるから,
+$u$の$U$上での劣平均不等式より,
+$u|_{U'}$の$U'$上での劣平均不等式が従う.
+
+$\mathrm{(ii)} \Rightarrow \mathrm{(iii)}$.
+明らかである.
+
+$\mathrm{(iii)} \Rightarrow \mathrm{(i)}$.
+
+上の定理の条件$\mathrm{(iii)}$を$u$が満たすことを示す.
+$K \subset U$をコンパクト集合とし,
+$h \colon K \to \R$を$K^\circ$上で調和な連続関数とする.
+また, $\partial K$上で$u \leq h$と仮定する.
+
+$K$のコンパクト性より, $0<\varepsilon<\delta$を,
+$K \subset U_\delta$であり, 任意の$z \in K$に対して
+$u$が$\overline{\Delta(z,\varepsilon)}$のある開近傍上で
+劣調和となるようにとることができる.
+このとき, 任意の$z \in K$と
+任意の$0<\varepsilon' \leq \varepsilon$に対して,
+\[
+u(z)
+\leq
+\frac{1}{2\pi}
+\int_0^{2\pi}
+u\bigl(z+\varepsilon' e^{i\theta}\bigr)\,d\theta
+\]
+が成り立つ.
+$h$の調和性より, 任意の$z \in (K^\circ)_{\varepsilon'}$に対して,
+\[
+u(z)-h(z)
+\leq
+\frac{1}{2\pi}
+\int_0^{2\pi}
+\bigl(u-h\bigr)\bigl(z+\varepsilon' e^{i\theta}\bigr)\,d\theta
+\]
+が成り立つ.
+一般性を失わずに, $K$は連結とする.
+$M:=\max_{z \in K}(u-h)(z)$とおき, $M>0$と仮定する.
+このとき,
+\[
+V:=\{z \in K \mid (u-h)(z)=M\} \subset K^\circ.
+\]
+最大値の原理の証明と同様に, $V$は$K$の開集合である.
+また, $u-h$の上半連続性より, $V$は$K$の閉集合でもある.
+よって, $V=K$となり矛盾する.
+したがって, $K$上で$u \leq h$である.
+\end{proof}
 
 \end{document}
