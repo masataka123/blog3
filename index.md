@@ -16,6 +16,7 @@ layout: default
 ## **その他のニュース**
 - [数学とAIまとめと岩井の意見(2026年11月時点)](https://masataka123.github.io/blog3/sub6/AI_stand/)を書きました. 東京大学の今野北斗さんのページに触発されて書きました. なお岩井の数学の立場を表明したものではございません. 平凡な数学者の意見の一つとしてみてください. 
 - 10月7日にOpen AIが発表したOpenAI Research Catalog の論文を真面目に概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. なお適当に解説する[漫画版](https://masataka123.github.io/OpenAI-Math-Digest/comics/)も作りました. 
+- [chatGPTが書いたノート](https://masataka123.github.io/blog3/sub2/)を追加しました. 呑んだ勢いでchatGPTに修士論文を26本書いてもらいました. びっくりするのでご覧ください. 
 - 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 
 - [数学パズル/その他](https://masataka123.github.io/blog3/sub6/)に学祭で用いた数学科の展示のポスター・マニュアルを追加しました. 
 
