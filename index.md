@@ -8,7 +8,7 @@ layout: default
 
 ## **集会・論文のニュース**
 
-- 2027年2月6日から10日に大阪大学で大阪公立大学の松澤陽介先生と[AI for Math at Osaka](https://sites.google.com/view/ai-for-math-at-osaka/home)を開催します. 実験的な試みでAIと数学という新しい数学の研究方法を模索したいと考えております. 皆様のご参加お待ちしております. 
+- 2027年2月6日から10日に大阪大学で大阪公立大学の松澤陽介先生・名古屋大学の若月駿先生と[AI for Math at Osaka](https://sites.google.com/view/ai-for-math-at-osaka/home)を開催します. 実験的な試みでAIと数学という新しい数学の研究方法を模索したいと考えております. 皆様のご参加お待ちしております. 
 - 2027年2月11日から13日に大阪大学で京都大学の藤野修先生と[Workshop on Algebraic Geometry, Complex Geometry, and Several Complex Variables in Osaka 2027](https://masataka123.github.io/AGCGSCV_Osaka_2027/)を開催します. 皆様のご参加お待ちしております. 
 - 2027年3月22日から26日にUCLAで開かれる [Japan–California Algebraic Geometry Meeting](https://www.math.ucla.edu/~jmoraga/Japan-California-AG-Meeting)で講演します. 
 - 7月にあげた論文を二つに分け, 結果を改良しました. [I -klt Fano case-](https://arxiv.org/abs/2607.25181), [II -soliton case-](https://arxiv.org/abs/2610.38137) 二つとも名古屋大学の久本 智之先生との共同研究です. 
@@ -18,7 +18,7 @@ layout: default
 - 10月7日にOpen AIが発表したOpenAI Research Catalog の論文を真面目に概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. なお適当に解説する[漫画版](https://masataka123.github.io/OpenAI-Math-Digest/comics/)も作りました. 
 - [chatGPTが書いたノート](https://masataka123.github.io/blog3/sub2/)を追加しました. 呑んだ勢いでchatGPTに修士論文を26本書いてもらいました. びっくりするのでご覧ください. 
 - 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 
-- [数学パズル/その他](https://masataka123.github.io/blog3/sub6/)に学祭で用いた数学科の展示のポスター・マニュアルを追加しました. 
+- [IwaXiv](https://masataka123.github.io/IwaXiv/)を作りました. AI論文や今までのノート, 漫画, 制作物などをここにまとめたいと思います. 
 
 ## **OpenAI Math Digest**
  10月7日にOpen AIが発表したOpenAI Research Catalog の論文を真面目に概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. 
@@ -30,6 +30,9 @@ layout: default
 
 ## **Geometry Paper Digest**
 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 代数幾何学・複素幾何学・多変数複素解析をカバーしてます. 大阪公立大学の松澤陽介さんに深く感謝いたします. 
+
+## **IwaXiv**
+このホームページに掲載されている制作物が多くなってきたので, AI論文や今までのノート, 漫画, アプリなどを[IwaXiv](https://masataka123.github.io/IwaXiv/)にまとめたいと思います. Jihao Liu氏の[LiuXiv](https://jihaoliu.org/liuxiv.html)を手本に作成しました. LiuXiv自体は賛否があるものの, 自分用のArXivを作るというアイデアには「なるほど, それはかなり素晴らしいな」となった. 
 
 ## **岩井のところでセミナーを志望される方**
 
