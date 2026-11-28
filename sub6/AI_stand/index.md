@@ -177,14 +177,14 @@ LiuXivでは人間による検証の有無が表示されている. 人間がま
 あえて岩井が言うなら「数学者は[ディズニーランド](https://www.tokyodisneyresort.jp/tdl/)・[ディズニーシー](https://www.tokyodisneyresort.jp/tds/) · [ポケパーク](https://www.pokepark-kanto.co.jp/ppark/top/index)に行け！」である. 
 今ある悩みはディズニーやポケパークに行けばすべて無くなると思っている. (以下の意見は, 並の数学者でディズニー・ポケパーク初心者の意見だと聞いてほしい. 私は数学は一般の人よりできる自信はあるが, ディズニーやポケパークは初心者である.)
 
-まずディズニーランド・シーでショーやパレードをみよう. [ビリーヴ！～シー・オブ・ドリームス～](https://www.tokyodisneyresort.jp/tds/show/detail/967/)や[マジカルミュージックワールド](https://www.tokyodisneyresort.jp/tdl/show/detail/895/)を見たが最高だった. そして夕食では[シェフ・ミッキー](https://www.tokyodisneyresort.jp/hotel/dah/restaurant/chef/)に行ってミッキー大先生に会おう. なんと写真や握手をしてくれる. そしてランドホテルに泊まろう. ランドホテルからシンデレラ城が見えて素敵である. もしくはミラコスタでもいい. ミラコスタは [ダッフィーフレンズの部屋](https://www.tokyodisneyresort.jp/hotel/dhm/room/detail/tosca_superior_duffy/)ができるみたいである.
+まずディズニーランド・シーでショーやパレードをみよう. [ビリーヴ！～シー・オブ・ドリームス～](https://www.tokyodisneyresort.jp/tds/show/detail/967/)や[マジカルミュージックワールド](https://www.tokyodisneyresort.jp/tdl/show/detail/895/)を見たが最高だった. そして夕食では[シェフ・ミッキー](https://www.tokyodisneyresort.jp/hotel/dah/restaurant/chef/)に行ってミッキー大先生に会おう. なんと写真や握手をしてくれる. そして[ランドホテル](https://www.tokyodisneyresort.jp/hotel/tdh.html)に泊まろう. ランドホテルからシンデレラ城が見えて素敵である. もしくは[ミラコスタ](https://www.tokyodisneyresort.jp/hotel/dhm.html)でもいい. ミラコスタは [ダッフィーフレンズの部屋](https://www.tokyodisneyresort.jp/hotel/dhm/room/detail/tosca_superior_duffy/)ができるみたいである.
 
-ポケパークでは, [ポケモンフォレスト](https://www.pokepark-kanto.co.jp/ppark/about/ppark/index#forest)でイーブイなどのポケモンを写真に撮りまくろう. 私はイーブイやその進化先のぬいぐるみ9個を全て持っていった. そしてイーブイのメリーゴーランド,  [ブイブイヴォヤージュ](https://www.pokepark-kanto.co.jp/ppark/attraction/buibui/index)に乗ろう. グレイシアとリーフィアの席に乗ったが最高だった. 
+ポケパークでは, [ポケモンフォレスト](https://www.pokepark-kanto.co.jp/ppark/about/ppark/index#forest)でイーブイなどのポケモンを写真に撮りまくろう. 私は[イーブイ](https://zukan.pokemon.co.jp/detail/0133)やその進化先の[ぬいぐるみ9個](https://www.pokemoncenter-online.com/4521329437279.html?srsltid=AY6E960b7LiHX1HYf-Mw2jDeOMFNCEV5k76qQvXxXScuuu9_SFQEGk4z)を全て持っていった. そしてイーブイのメリーゴーランド,  [ブイブイヴォヤージュ](https://www.pokepark-kanto.co.jp/ppark/attraction/buibui/index)に乗ろう. [グレイシア](https://zukan.pokemon.co.jp/detail/0471)と[リーフィア](https://zukan.pokemon.co.jp/detail/0470)の席に乗ったが最高だった. 
 
-そしてダッフィーフレンズやポケモンのぬいぐるみを買ってカバンや[研究室](https://masataka123.github.io/blog3/sub6/picture_room_3/)に飾ろう. ダッフィーフレンズはディズニーシーでしか買えない. 周りにディズニーシーに行く方にお願いして, オンラインでダッフィーのグッズを買ってもらおう. 私は姉にお願いして, ダッフィーフレンズを揃えた. イーブイフレンズは最寄りのポケモンセンターでそろうしオンラインでも買える. 阪大からだと[梅田のポケセン](https://shop.pokemon.co.jp/ja/shop/pokemoncenter-osaka/)が近い. 
+そして[ダッフィーフレンズ](https://www.tokyodisneyresort.jp/treasure/duffy/)やポケモンのぬいぐるみを買ってカバンや[研究室](https://masataka123.github.io/blog3/sub6/picture_room_3/)に飾ろう. ダッフィーフレンズはディズニーシーでしか買えない. 周りにディズニーシーに行く方にお願いして, オンラインでダッフィーのグッズを買ってもらおう. 私は姉にお願いして, ダッフィーフレンズを揃えた. イーブイフレンズは最寄りのポケモンセンターでそろうしオンラインでも買える. 阪大からだと[梅田のポケセン](https://shop.pokemon.co.jp/ja/shop/pokemoncenter-osaka/)が近い. 
 
 岩井は「ディズニーやポケパークに行けば数学者はAI時代を乗り越えられる」と思っている. 
-ただし今のところ誰からも賛同が得られてない. 悩んでいた先生に「ディズニーに行った方がいい」と飲み会の場で何度も言ったが, 全く賛同されなかった. ショーやパレードでの名言も言ったが, 全然だった. 
+ただし今のところ誰からも賛同が得られてない. 悩んでいた先生に「ディズニーに行った方がいい」と飲み会の場で何度も言ったが, 全く賛同されなかった. ショーやパレードでの名言も結構言ったのだが... 
 
 まあ要するに, 2026年11月の時点では「今の数学者によるAIと数学の未来に関する意見」は, 岩井の「数学者はディズニーランド・ディズニーシー・ポケパークに行け！」と同じくらいだと思う. それくらい未来のことがわからない. １ヶ月単位で変化しているからだ. また別の理由として, 数学者のAIに対する知識が不足しているのもある. これは今後数学者側が努力していくべき問題である.
 
