@@ -18,7 +18,7 @@ layout: default
 - 10月7日にOpen AIが発表したOpenAI Research Catalog の論文を真面目に概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. なお適当に解説する[漫画版](https://masataka123.github.io/OpenAI-Math-Digest/comics/)も作りました. 
 - [chatGPTが書いたノート](https://masataka123.github.io/blog3/sub2/)を追加しました. 呑んだ勢いでchatGPTに修士論文を26本書いてもらいました. びっくりするのでご覧ください. 
 - 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 
-- [IwaXiv](https://masataka123.github.io/IwaXiv/)を作りました. AI論文や今までのノート, 漫画, 制作物などをここにまとめたいと思います. 
+- [IwaXiv](https://masataka123.github.io/IwaXiv/)を作りました. 今までのノート, 漫画, 制作物などをここにまとめたいと思います. 
 
 ## **OpenAI Math Digest**
  10月7日にOpen AIが発表したOpenAI Research Catalog の論文を真面目に概説する[OpenAI Math Digest](https://masataka123.github.io/OpenAI-Math-Digest/ja/)を作りました. 
@@ -32,7 +32,7 @@ layout: default
 岩井が気になる論文をまとめる[Geometry Paper Digest](https://masataka123.github.io/geometry-paper-digest/)を作りました. 代数幾何学・複素幾何学・多変数複素解析をカバーしてます. 大阪公立大学の松澤陽介さんに深く感謝いたします. 
 
 ## **IwaXiv**
-このホームページに掲載されている制作物が多くなってきたので, AI論文や今までのノート, 漫画, アプリなどを[IwaXiv](https://masataka123.github.io/IwaXiv/)にまとめたいと思います. Jihao Liu氏の[LiuXiv](https://jihaoliu.org/liuxiv.html)を手本に作成しました. LiuXiv自体は賛否があるものの, 自分用のArXivを作るというアイデアには「なるほど, それはかなり素晴らしいな」となった. 
+このホームページに掲載されている制作物が多くなってきたので, 今までのノート, 漫画, アプリなどを[IwaXiv](https://masataka123.github.io/IwaXiv/)にまとめたいと思います. Jihao Liu氏の[LiuXiv](https://jihaoliu.org/liuxiv.html)を手本に作成しました. LiuXiv自体は賛否があるものの, 自分用のArXivを作るというアイデアには「なるほど, それはかなり素晴らしいな」となった. 
 
 ## **岩井のところでセミナーを志望される方**
 
